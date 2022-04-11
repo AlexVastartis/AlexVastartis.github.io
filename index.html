@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>r/PlaceOhio</title>
+    <title>HexWarfare</title>
     <style>
         .container {
             position: relative;
@@ -152,5 +152,22 @@
         }, 60000 * 5)
     </script>
 
+	
+	<script>
+		
+	// create a Grid factory that uses the default Hex Factory:
+const Grid = Honeycomb.defineGrid()
+const hex = Grid.Hex()
+hex.size         // { xRadius: 1, yRadius: 1 }
+
+// create your own Hex factory
+const CustomHex = Honeycomb.extendHex({ size: 10, custom: '🤓' })
+// …and pass it to defineGrid() to create a Grid factory that produces your custom hexes
+const CustomGrid = Honeycomb.defineGrid(CustomHex)
+const customHex = CustomGrid.Hex()
+customHex.size   // { xRadius: 10, yRadius: 10 }
+customHex.custom // 🤓
+	</script>
+	
 </body>
 </html>
