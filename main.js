@@ -26,39 +26,39 @@ function drawHexagon(x, y) {
   ctx.stroke();
 }
 
+const X_PIXELS=20
+const Y_PIXELS=20
+const X_OFFSET=400
+const Y_OFFSET=100
 
-        const X_PIXELS=20
-        const Y_PIXELS=20
-        const X_OFFSET=400
-        const Y_OFFSET=100
+const X_IN_PLACE=1332
+const Y_IN_PLACE=795
 
-        const X_IN_PLACE=1332
-        const Y_IN_PLACE=795
-        foreground.addEventListener('mousemove', event =>
-        {
-            let p = getMousePos(foreground, event);
-            let x = Math.floor((p.x)/X_PIXELS);
-            let y = Math.floor((p.y-Y_OFFSET)/Y_PIXELS) ;
-            fg.clearRect(0, 0, fg.canvas.width, fg.canvas.height);
-            drawText((x+ X_IN_PLACE)+"", p.x+40, p.y - 30)
-            drawText((y+ Y_IN_PLACE)+"", p.x+40, p.y + 50)
+canvas.addEventListener('mousemove', event =>
+{
+    let p = getMousePos(foreground, event);
+    let x = Math.floor((p.x)/X_PIXELS);
+    let y = Math.floor((p.y-Y_OFFSET)/Y_PIXELS) ;
+    fg.clearRect(0, 0, fg.canvas.width, fg.canvas.height);
+    drawText((x+ X_IN_PLACE)+"", p.x+40, p.y - 30)
+    drawText((y+ Y_IN_PLACE)+"", p.x+40, p.y + 50)
 
-            fg.lineWidth = 4;
-            let circle_x = x*X_PIXELS+X_PIXELS/2;
-            let circle_y = y*Y_PIXELS+Y_OFFSET+Y_PIXELS/2;
-            fg.beginPath()
-            fg.strokeStyle = 'red';
-            fg.arc(circle_x, circle_y, X_PIXELS-6, 0, 2 * Math.PI, false);
-            fg.stroke()
+    fg.lineWidth = 4;
+    let circle_x = x*X_PIXELS+X_PIXELS/2;
+    let circle_y = y*Y_PIXELS+Y_OFFSET+Y_PIXELS/2;
+    fg.beginPath()
+    fg.strokeStyle = 'red';
+    fg.arc(circle_x, circle_y, X_PIXELS-6, 0, 2 * Math.PI, false);
+    fg.stroke()
 
-            fg.beginPath()
-            fg.strokeStyle = 'white';
-            fg.arc(circle_x, circle_y, X_PIXELS-4, 0, 2 * Math.PI, false);
-            fg.stroke()
+    fg.beginPath()
+    fg.strokeStyle = 'white';
+    fg.arc(circle_x, circle_y, X_PIXELS-4, 0, 2 * Math.PI, false);
+    fg.stroke()
 
-            fg.beginPath()
-            fg.strokeStyle = 'black';
-            fg.arc(circle_x, circle_y, X_PIXELS, 0, 2 * Math.PI, false);
-            fg.stroke()
+    fg.beginPath()
+    fg.strokeStyle = 'black';
+    fg.arc(circle_x, circle_y, X_PIXELS, 0, 2 * Math.PI, false);
+    fg.stroke()
 
-        });
+});
