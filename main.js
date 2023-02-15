@@ -1,11 +1,14 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+const background = document.getElementById("canvas_background");
+const bg = background.getContext("2d");
+
+const foreground = document.getElementById("canvas_foreground");
+const fg = foreground.getContext("2d");
 
 const a = 2 * Math.PI / 6;
 const r = 50;
 
 function init() {
-  drawGrid(canvas.width, canvas.height);
+  drawGrid(foreground.width, foreground.height);
 }
 init();
 
@@ -18,12 +21,12 @@ function drawGrid(width, height) {
 }
 
 function drawHexagon(x, y) {
-  ctx.beginPath();
+  bg.beginPath();
   for (let i = 0; i < 6; i++) {
-    ctx.lineTo(x + r * Math.cos(a * i), y + r * Math.sin(a * i));
+    bg.lineTo(x + r * Math.cos(a * i), y + r * Math.sin(a * i));
   }
-  ctx.closePath();
-  ctx.stroke();
+  bg.closePath();
+  bg.stroke();
 }
 
 const X_PIXELS=20
@@ -34,7 +37,7 @@ const Y_OFFSET=100
 const X_IN_PLACE=1332
 const Y_IN_PLACE=795
 
-canvas.addEventListener('mousemove', event =>
+foreground.addEventListener('mousemove', event =>
 {
     let p = getMousePos(foreground, event);
     let x = Math.floor((p.x)/X_PIXELS);
