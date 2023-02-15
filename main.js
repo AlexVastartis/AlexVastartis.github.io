@@ -4,10 +4,25 @@ const ctx = canvas.getContext('2d');
 const a = 2 * Math.PI / 6;
 const r = 50;
 
-function init() {
-  drawHexagon(r, r);
-}
-init();
+// 1st
+x = r;
+y = r;
+drawHexagon(x, y);
+
+// 2nd
+x = x + r + r * Math.cos(a);
+y = y + r * Math.sin(a);
+drawHexagon(x, y);
+
+// 3rd
+x = x + r + r * Math.cos(a);
+y = y - r * Math.sin(a);
+drawHexagon(x, y);
+
+// 4th
+x = x + r + r * Math.cos(a);
+y = y + r * Math.sin(a);
+drawHexagon(x, y);
 
 function drawHexagon(x, y) {
   ctx.beginPath();
