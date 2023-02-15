@@ -1,12 +1,13 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-function init() {}
-init();
-
 const a = 2 * Math.PI / 6;
 const r = 50;
 
+function init() {
+  drawHexagon(r, r);
+}
+init();
 
 function drawHexagon(x, y) {
   ctx.beginPath();
