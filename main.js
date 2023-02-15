@@ -37,6 +37,31 @@ const Y_OFFSET=100
 const X_IN_PLACE=1332
 const Y_IN_PLACE=795
 
+const img = new Image();
+img.onload = function(){
+    w = img.width * X_PIXELS
+    h = img.height * Y_PIXELS
+
+    bg.canvas.width  = w + X_OFFSET;
+    bg.canvas.height = h + 2*Y_OFFSET;
+
+    fg.canvas.width  = bg.canvas.width;
+    fg.canvas.height = bg.canvas.height;
+    bg.imageSmoothingEnabled = false;
+    bg.drawImage(img, 0, 0, img.width, img.height, 0, Y_OFFSET, w, h)
+    drawGrid(0, Y_OFFSET, w, h + Y_OFFSET, bg)
+};
+img.src = "images/rPlaceOhio.png";
+
+function drawText(text, x, y){
+    fg.font = '80px Sans-serif';
+    fg.strokeStyle = 'black';
+    fg.lineWidth = 8;
+    fg.strokeText(text, x, y);
+    fg.fillStyle = 'white';
+    fg.fillText(text, x, y);
+}
+
 foreground.addEventListener('mousemove', event =>
 {
     let p = getMousePos(foreground, event);
@@ -65,3 +90,17 @@ foreground.addEventListener('mousemove', event =>
     fg.stroke()
 
 });
+
+foreground.addEventListener('click', event =>
+{
+    let p = getMousePos(foreground, event);
+    let x = Math.floor((p.x)/X_PIXELS) + X_IN_PLACE;
+    let y = Math.floor((p.y-Y_OFFSET)/Y_PIXELS) + Y_IN_PLACE;
+    let url ="https://new.reddit.com/r/place/?cx="+x+"&cy="+y+"&px=23"
+    window.open(url, '_blank').focus();
+});
+
+setTimeout(() => {
+    // Reload every 5 minutes to fetch updates from the gh
+    location.reload(); 
+}, 60000 * 5)
