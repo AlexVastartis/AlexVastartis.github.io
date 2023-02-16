@@ -4,7 +4,7 @@ const bg = background.getContext("2d");
 const foreground = document.getElementById("canvas_foreground");
 const fg = foreground.getContext("2d");
 
-const a = 2 * Math.PI / 3;
+const a = 2 * Math.PI / 6;
 const r = 25;
 
 
