@@ -45,7 +45,7 @@ function drawHexagon(x, y) {
             };
         }
 
-        function drawGrid(x_0, y_0, x_max, y_max, ctx) {
+        function drawGrid(x_0, y_0, x_max, y_max, bg) {
             for (let x = x_0; x <= x_max; x += X_PIXELS) {
                 bg.moveTo(x, y_0);
                 bg.lineTo(x, y_max);
