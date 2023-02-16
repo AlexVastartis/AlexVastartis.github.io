@@ -1,5 +1,9 @@
-/*
-.container:hover {
-    background-color: #999;
+
+.canvas_background:hover {
+    background-color: #999999;
 }
-*/
+
+
+.canvas_foreground:hover {
+    background-color: #DDDDDD;
+}
