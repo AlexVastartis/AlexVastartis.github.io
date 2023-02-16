@@ -4,28 +4,57 @@ const bg = background.getContext("2d");
 const foreground = document.getElementById("canvas_foreground");
 const fg = foreground.getContext("2d");
 
-const a = 2 * Math.PI / 6;
-const r = 25;
+const r = 30;
+//const a = 2 * Math.PI / 6; //1.0471975512
 
+var HexInteriorAngle = 60;
+const a = HexInteriorAngle * (Math.PI / 180); //1.0471975512
+
+var hexID = 0;
 
 drawGrid(foreground.width, foreground.height);
 
-function drawGrid(width, height) {
-  for (let y = r; y + r * Math.sin(a) < height; y += r * Math.sin(a)) {
-    for (let x = r, j = 0; x + r * (1 + Math.cos(a)) < width; x += r * (1 + Math.cos(a)), y += (-1) ** j++ * r * Math.sin(a)) {
-      drawHexagon(x, y);
+function drawGrid(width, height) 
+{
+    for (let y = r; y + r * Math.sin(a) < height; y = y + (r * Math.sin(a))) 
+    {
+        for (let x = r, j = 0; x + (r * (1 + Math.cos(a))) < width; x = x +  (r * (1 + Math.cos(a))), y = y + ((-1) ** j++ * r * Math.sin(a)))
+        {
+            drawHexagon(x, y);
+        }
     }
-  }
 }
 
 function drawHexagon(x, y) {
-  bg.beginPath();
-  for (let i = 0; i < 6; i++) {
-    bg.lineTo(x + r * Math.cos(a * i), y + r * Math.sin(a * i));
-  }
-  bg.closePath();
-  bg.stroke();
+
+    x = Math.round(x);
+    y = Math.round(y);
+
+    hexID++;
+
+    bg.textAlign = 'center';
+    bg.textBaseline = 'middle';
+    bg.strokeStyle = "#AAAAAA";
+    bg.strokeText(hexID,x,y);
+    //bg.strokeText("(" + x + "," + y + ")", x, y + 10);
+    bg.strokeStyle = "#000000";
+    
+
+    bg.beginPath();
+    for (let side = 0; side < 6; side++) 
+    {
+        bg.lineTo(x + r * Math.cos(side * a), y + r * Math.sin(side * a));
+    }
+    bg.closePath();
+    bg.stroke();
 }
+
+
+
+
+/*
+
+
 
         const X_PIXELS=20
         const Y_PIXELS=20
@@ -54,7 +83,7 @@ function drawHexagon(x, y) {
             }
             bg.strokeStyle = '#bbbbbb';
             bg.stroke();
-        }*/
+        }
 
         const img = new Image();
         img.onload = function(){
@@ -123,3 +152,5 @@ function drawHexagon(x, y) {
             // Reload every 5 minutes to fetch updates from the gh
             location.reload(); 
         }, 60000 * 5)
+
+        */
