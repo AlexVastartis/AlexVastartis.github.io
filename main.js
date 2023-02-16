@@ -28,7 +28,7 @@ function drawHexagon(x, y) {
   bg.closePath();
   bg.stroke();
 }
-    <script>
+
         const X_PIXELS=20
         const Y_PIXELS=20
         const X_OFFSET=400
