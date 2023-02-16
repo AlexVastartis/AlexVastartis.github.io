@@ -5,7 +5,7 @@ const foreground = document.getElementById("canvas_foreground");
 const fg = foreground.getContext("2d");
 
 const a = 2 * Math.PI / 6;
-const r = 50;
+const r = 25;
 
 function init() {
   drawGrid(foreground.width, foreground.height);
