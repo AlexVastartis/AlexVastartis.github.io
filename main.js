@@ -47,15 +47,15 @@ function drawHexagon(x, y) {
 
         function drawGrid(x_0, y_0, x_max, y_max, ctx) {
             for (let x = x_0; x <= x_max; x += X_PIXELS) {
-                ctx.moveTo(x, y_0);
-                ctx.lineTo(x, y_max);
+                bg.moveTo(x, y_0);
+                bg.lineTo(x, y_max);
                 for (let y = y_0; y <= y_max; y += Y_PIXELS) {
-                    ctx.moveTo(x_0, y);
-                    ctx.lineTo(x_max, y);
+                    bg.moveTo(x_0, y);
+                    bg.lineTo(x_max, y);
                 }
             }
-            ctx.strokeStyle = '#bbbbbb';
-            ctx.stroke();
+            bg.strokeStyle = '#bbbbbb';
+            bg.stroke();
         }
 
         const img = new Image();
