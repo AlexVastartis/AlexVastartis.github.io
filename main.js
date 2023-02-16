@@ -58,12 +58,6 @@ function drawHexagon(x, y) {
             ctx.stroke();
         }
 
-        const background = document.getElementById("canvas_background");
-        const bg = background.getContext("2d");
-
-        const  foreground = document.getElementById("canvas_foreground");
-        const fg = foreground.getContext("2d");
-
         const img = new Image();
         img.onload = function(){
             w = img.width * X_PIXELS
