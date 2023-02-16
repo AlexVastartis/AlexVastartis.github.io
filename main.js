@@ -7,10 +7,8 @@ const fg = foreground.getContext("2d");
 const a = 2 * Math.PI / 6;
 const r = 25;
 
-function init() {
-  drawGrid(foreground.width, foreground.height);
-}
-init();
+
+drawGrid(foreground.width, foreground.height);
 
 function drawGrid(width, height) {
   for (let y = r; y + r * Math.sin(a) < height; y += r * Math.sin(a)) {
