@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <canvas id="theChart"></canvas>
+
+    <script type="text/javascript">
+        
+
+        var ctx = document.getElementById('theChart');
+
+        //ctx.style.backgroundColor = '#eeeeee';
+
+        const chart = new Chart(ctx, {
+            type: 'scatter',
+            options: {
+                title: {
+                    display: true,
+                    text: ['All-Americans'],
+                    position: 'top',
+                    fontSize: 48,
+                    fontColor: '#000000'
+                    
+                },
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Consensus All-Americans',
+                        fontSize: 24,
+                        fontColor: '#000000'
+                    },
+                    ticks: {
+                       fontSize: 24,
+                       fontColor: '#000000'
+                    },
+                    gridLines: {
+                        color: "#000000"
+                    }
+                    }],
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Unanimous All Americans',
+                        fontSize: 24,
+                        fontColor: '#000000'
+                    },
+                    ticks: {
+                        fontSize: 24,
+                        fontColor: '#000000'
+                    },
+                    gridLines: {
+                        color: "#000000"
+                    }
+                    }]
+                }     
+            },
+            data: {
+                datasets: [{
+                data: data
+                }]
+            },
+            plugins: {
+                afterUpdate: chart => {
+                    chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyles[i]);
+                }
+            }
+            });
+
+    </script>
+
+    <div id=date>October 29, 2023</div>
+    <div id=credit>u/WhoDaBlueBloods</div>
+
+    <style>
+        #credit{
+            color: #000000;
+            text-align: right;
+            font-size: 10pt;
+        }
+        #date{
+            color: #000000;
+            text-align: right;
+            font-size: 10pt;
+        }
+    </style>
+</body>
+
+</html>
