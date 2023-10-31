@@ -13,74 +13,13 @@
     <script src="logovar.js"></script>
     <script src="logosrc.js"></script>
     <script src="aa.js"></script>
-
+    <script src="main.js"></script>
+    
     <script type="text/javascript">
-        
-
-        var ctx = document.getElementById('theChart');
-
-        //ctx.style.backgroundColor = '#eeeeee';
-
-        const chart = new Chart(ctx, {
-            type: 'scatter',
-            options: {
-                title: {
-                    display: true,
-                    text: ['All-Americans'],
-                    position: 'top',
-                    fontSize: 48,
-                    fontColor: '#000000'
-                    
-                },
-                legend: {
-                    display: false
-                },
-                scales: {
-                    xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Consensus All-Americans',
-                        fontSize: 24,
-                        fontColor: '#000000'
-                    },
-                    ticks: {
-                       fontSize: 24,
-                       fontColor: '#000000'
-                    },
-                    gridLines: {
-                        color: "#000000"
-                    }
-                    }],
-                    yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Unanimous All Americans',
-                        fontSize: 24,
-                        fontColor: '#000000'
-                    },
-                    ticks: {
-                        fontSize: 24,
-                        fontColor: '#000000'
-                    },
-                    gridLines: {
-                        color: "#000000"
-                    }
-                    }]
-                },
-                devicePixelRatio: 3
-            },
-            data: {
-                datasets: [{
-                data: data
-                }]
-            },
-            plugins: {
-                afterUpdate: chart => {
-                    chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyles[i]);
-                }
-            }
-            });
-
+        const title = 'All-Americans';
+        const xLabel = 'Consensus All-Americans';
+        const yLabel = 'Unanimous All-Americans';
+        buildChart(title, xLabel, yLabel);
     </script>
 
     <div id=date>October 29, 2023</div>
