@@ -77,6 +77,19 @@
                 afterUpdate: chart => {
                     chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyles[i]);
                 }
+            },
+            plugins: {
+                  zoom: {
+                    zoom: {
+                      wheel: {
+                        enabled: true,
+                      },
+                      pinch: {
+                        enabled: true
+                      },
+                      mode: 'xy',
+                    }
+                  }
             }
             });
 
