@@ -53,8 +53,8 @@ function buildChart(title, xLabel, yLabel)
                     color: "#000000"
                 }
                 }]
-            },
-            devicePixelRatio: 3
+            }
+//            ,devicePixelRatio: 3
         },
         data: {
             datasets: [{
