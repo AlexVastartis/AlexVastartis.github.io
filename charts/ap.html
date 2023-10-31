@@ -3,9 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <title>AP Poll Success</title>
+
+        <script src="sidenav.js"></script>
+        <link rel="stylesheet" href="sidenav.css">
     </head>
 
 <body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/charts/thechart.html">The Chart</a>
+        <a href="/charts/thechart2.html">The Chart 2</a>
+        <a href="/charts/ap.html">AP Poll Success</a>
+        <a href="/charts/ap365.html">AP 365</a>
+        <a href="/charts/ap1460.html">AP 1460</a>
+        <a href="/charts/aa.html">All-Americans</a>
+        <a href="/charts/nfldraftsuccess.html">NFL Draft Success</a>
+        <a href="/charts/wins.html">Wins</a>
+        <div id=date>October 29, 2023</div>
+        <div id=credit>u/WhoDaBlueBloods</div>
+    </div>
+      
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <canvas id="theChart"></canvas>
