@@ -13,7 +13,6 @@ function buildChart(title, xLabel, yLabel)
                 position: 'top',
                 fontSize: 48,
                 fontColor: '#000000'
-                
             },
             legend: {
                 display: false
