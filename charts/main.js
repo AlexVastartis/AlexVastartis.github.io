@@ -13,6 +13,12 @@ function buildChart(title, xLabel, yLabel)
     ctx.style.backgroundColor = '#ffffff';
 
     const chart = new Chart(ctx, {
+        data: {
+            datasets: [{
+            type: 'scatter',
+            data: data
+            }]
+        },
         options: {
             title: {
                 display: true,
@@ -26,43 +32,37 @@ function buildChart(title, xLabel, yLabel)
             },
             scales: {
                 xAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: xLabel,
-                    fontSize: 24,
-                    fontColor: '#000000'
-                },
-                ticks: {
-                   fontSize: 24,
-                   fontColor: '#000000'
-                },
-                gridLines: {
-                    color: "#000000"
-                }
+                    scaleLabel: {
+                        display: true,
+                        labelString: xLabel,
+                        fontSize: 24,
+                        fontColor: '#000000'
+                    },
+                    ticks: {
+                       fontSize: 24,
+                       fontColor: '#000000'
+                    },
+                    gridLines: {
+                        color: "#000000"
+                    }
                 }],
                 yAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: yLabel,
-                    fontSize: 24,
-                    fontColor: '#000000'
-                },
-                ticks: {
-                    fontSize: 24,
-                    fontColor: '#000000'
-                },
-                gridLines: {
-                    color: "#000000"
-                }
+                    scaleLabel: {
+                        display: true,
+                        labelString: yLabel,
+                        fontSize: 24,
+                        fontColor: '#000000'
+                    },
+                    ticks: {
+                        fontSize: 24,
+                        fontColor: '#000000'
+                    },
+                    gridLines: {
+                        color: "#000000"
+                    }
                 }]
             }
-//            ,devicePixelRatio: 3
-        },
-        data: {
-            datasets: [{
-            type: 'scatter',
-            data: data
-            }]
+//          ,devicePixelRatio: 3
         },
         plugins: {
             afterUpdate: chart => {
