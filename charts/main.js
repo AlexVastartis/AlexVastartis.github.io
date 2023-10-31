@@ -1,3 +1,11 @@
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
 function buildChart(title, xLabel, yLabel)
 {
     var ctx = document.getElementById('theChart');
