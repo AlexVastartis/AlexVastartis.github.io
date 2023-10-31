@@ -3,7 +3,7 @@ const data = [3.5, 3, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.4, 3, 3, 4,
 Highcharts.chart('container', {
 
     title: {
-        text: 'Bell curve'
+        text: 'Blue Blood'
     },
 
     xAxis: [{
