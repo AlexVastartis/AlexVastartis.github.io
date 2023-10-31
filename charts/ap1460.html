@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <title>AP 1460</title>
     </head>
-
 <body>
     <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
@@ -14,74 +13,13 @@
     <script src="logosrc.js"></script>
     <script src="ap1460.js"></script>
 
+    <script src="main.js"></script>
+
     <script type="text/javascript">
-        
-
-        var ctx = document.getElementById('theChart');
-
-        ctx.style.backgroundColor = '#ffffff';
-
-        const chart = new Chart(ctx, {
-            type: 'scatter',
-            options: {
-                title: {
-                    display: true,
-                    text: ['AP 1460'],
-                    position: 'top',
-                    fontSize: 48,
-                    fontColor: '#000000'
-                    
-                },
-                legend: {
-                    display: false
-                },
-                scales: {
-                    xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'AP Points',
-                        fontSize: 24,
-                        fontColor: '#000000'
-                    },
-                    ticks: {
-                       fontSize: 24,
-                       fontColor: '#000000'
-                    },
-                    gridLines: {
-                        color: "#000000"
-                    }
-                    }],
-                    yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Weeks Ranked',
-                        fontSize: 24,
-                        fontColor: '#000000'
-                    },
-                    ticks: {
-                        fontSize: 24,
-                        fontColor: '#000000'
-                    },
-                    gridLines: {
-                        color: "#000000"
-                    },
-                    devicePixelRatio: 3
-                    }]
-                },
-                devicePixelRatio: 3     
-            },
-            data: {
-                datasets: [{
-                data: data
-                }]
-            },
-            plugins: {
-                afterUpdate: chart => {
-                    chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyles[i]);
-                }
-            }
-            });
-
+        const title = 'AP 1460';
+        const xLabel = 'AP Points';
+        const yLabel = 'Weeks Ranked';
+        buildChart(title, xLabel, yLabel);
     </script>
 
     <div id=date>October 29, 2023</div>
@@ -100,5 +38,4 @@
         }
     </style>
 </body>
-
 </html>
