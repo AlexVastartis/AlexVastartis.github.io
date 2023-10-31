@@ -74,10 +74,9 @@ function buildChart(title, xLabel, yLabel)
         fill: false,
         borderWidth: 1,
         data: [
-        {
-        "x": 0.4175611241375584,
-        "y": 0
-        }],
+        {"x": 10,"y": 20},
+        {"x": 1,"y": 10},
+        ],
     });
 }
 
