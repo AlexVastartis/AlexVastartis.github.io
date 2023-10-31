@@ -13,7 +13,6 @@ function buildChart(title, xLabel, yLabel)
     ctx.style.backgroundColor = '#ffffff';
 
     const chart = new Chart(ctx, {
-        type: 'scatter',
         options: {
             title: {
                 display: true,
@@ -61,6 +60,7 @@ function buildChart(title, xLabel, yLabel)
         },
         data: {
             datasets: [{
+            type: 'scatter',
             data: data
             }]
         },
@@ -68,14 +68,7 @@ function buildChart(title, xLabel, yLabel)
             afterUpdate: chart => {
                 chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyles[i]);
             }
-        },
-        type: 'line',
-        fill: false,
-        borderWidth: 1,
-        data: [
-        {"x": 10,"y": 20},
-        {"x": 1,"y": 10},
-        ]
+        }
     });
 }
 
