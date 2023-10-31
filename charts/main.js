@@ -76,7 +76,8 @@ function buildChart(title, xLabel, yLabel)
         data: [
         {"x": 10,"y": 20},
         {"x": 1,"y": 10},
-        ],
+        ]
+        }
     });
 }
 
