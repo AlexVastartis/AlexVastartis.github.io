@@ -66,20 +66,8 @@
                         color: "#000000"
                     }
                     }]
-                }     
-            },
-            data: {
-                datasets: [{
-                data: data
-                }]
-            },
-            plugins: {
-                afterUpdate: chart => {
-                    chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyles[i]);
-                }
-            },
-            plugins: {
-                  zoom: {
+                },
+                zoom: {
                     zoom: {
                       wheel: {
                         enabled: true,
@@ -90,6 +78,16 @@
                       mode: 'xy',
                     }
                   }
+            },
+            data: {
+                datasets: [{
+                data: data
+                }]
+            },
+            plugins: {
+                afterUpdate: chart => {
+                    chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyles[i]);
+                }
             }
             });
 
