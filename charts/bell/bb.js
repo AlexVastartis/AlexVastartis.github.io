@@ -169,6 +169,7 @@ Highcharts.chart('container', {
         name: 'Data',
         type: 'scatter',
         data: data,
+        marker: pointStyles,
         accessibility: {
             exposeAsGroupOnly: true
         },
