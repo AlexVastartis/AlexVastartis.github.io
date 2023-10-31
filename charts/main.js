@@ -1,7 +1,3 @@
-//var title;
-//var xLabel;
-//var yLabel;
-
 function buildChart(title, xLabel, yLabel)
 {
     var ctx = document.getElementById('theChart');
