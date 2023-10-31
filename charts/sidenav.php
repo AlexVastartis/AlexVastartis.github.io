@@ -1,4 +1,5 @@
-        <div id="mySidenav" class="sidenav">
+<?php echo '
+<div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="/charts/thechart.html">The Chart</a>
             <a href="/charts/thechart2.html">The Chart 2</a>
@@ -11,3 +12,4 @@
         </div>
       
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+'?>
