@@ -68,7 +68,16 @@ function buildChart(title, xLabel, yLabel)
             afterUpdate: chart => {
                 chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyles[i]);
             }
-        }
-        });
+        },
+        {
+        type: 'line',
+        fill: false,
+        borderWidth: 1,
+        data: [
+        {
+        "x": 0.4175611241375584,
+        "y": 0
+        }],
+    });
 }
 
