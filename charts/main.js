@@ -13,9 +13,9 @@ function buildChart(title, xLabel, yLabel)
     ctx.style.backgroundColor = '#ffffff';
 
     const chart = new Chart(ctx, {
-        data: {
+      type: 'scatter',  
+      data: {
             datasets: [{
-            type: 'scatter',
             data: data
             }]
         },
