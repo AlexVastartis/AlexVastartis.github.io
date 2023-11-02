@@ -36,17 +36,23 @@
             const xValues = [50,60,70,80,90,100,110,120,130,140,150];
             const yValues = [7,8,8,9,9,9,10,11,14,14,15];
             
-             const chart = new Chart("myChart", {
-              type: "line",
-              data: {
-                labels: xValues,
-                datasets: [{
-                  backgroundColor:"rgba(0,0,255,1.0)",
-                  borderColor: "rgba(0,0,255,0.1)",
-                  data: yValues
-                }]
-              },
-              options:{...}
+            var chrt = document.getElementById("chartId").getContext("2d");
+            var chartId = new Chart(chrt, {
+                 type: 'line',
+                 data: {
+                    labels: ["HTML", "CSS", "JAVASCRIPT", "CHART.JS", "JQUERY", "BOOTSTRP"],
+                    datasets: [{
+                       label: "online tutorial subjects",
+                       data: [20, 40, 30, 35, 30, 20],
+                       backgroundColor: ['yellow', 'aqua', 'pink', 'lightgreen', 'lightblue', 'gold'],
+                       borderColor: ['black'],
+                       borderWidth: 2,
+                       pointRadius: 5,
+                    }],
+                 },
+                 options: {
+                    responsive: false,
+                 },
             });
             /*
             function buildChart(title, xLabel, yLabel)
