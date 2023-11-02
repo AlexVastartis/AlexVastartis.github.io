@@ -35,7 +35,7 @@
         var mean = 12;
         var sigma = 4;
             
-        for(x=0;x<24;x+=1) {
+        for(x=-6;x<6;x+=1) {
         	var y = gaussian(x)
         	data.push({x:x,y:y*scaleFactor});
         }
