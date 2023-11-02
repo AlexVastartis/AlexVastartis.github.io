@@ -31,8 +31,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         
         <script>
-        
-          const ctx = document.getElementById('myChart');
+            const ctx = document.getElementById('myChart');
         
             const myChart = new Chart(ctx, {
                 data: {
@@ -47,7 +46,23 @@
                     }],
                     labels: ['January', 'February', 'March', 'April']
                 }
+            });
+
+            var data = [];
+            var scaleFactor = 250;
+            var mean = 0;
+            var sigma = 1;
+                
+            for(x=-6;x<7;x+=1) {
+            	var y = gaussian(x)
+            	data.push({x:x,y:y*scaleFactor});
             }
+            function gaussian(x) {
+            	var gaussianConstant = 1 / Math.sqrt(2 * Math.PI);
+            	x = (x - mean) / sigma;
+            	return gaussianConstant * Math.exp(-.5 * x * x) / sigma;
+            };
+                        
         </script>
 
         
