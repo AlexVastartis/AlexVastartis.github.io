@@ -29,26 +29,37 @@
         <script src="logosrc.js"></script>
         
         <script type="text/javascript">
-            const title = 'Blue Blood Bell';
-            const xLabel = 'Consensus All-Americans';
-            const yLabel = 'Unanimous All-Americans';
 
-            const xValues = [50,60,70,80,90,100,110,120,130,140,150];
-            const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+            const xValues = [];
+            const yValues = [];
+            generateData("x * 2 + 7", 0, 10, 0.5);
             
             new Chart("myChart", {
               type: "line",
               data: {
                 labels: xValues,
                 datasets: [{
-                  backgroundColor:"rgba(0,0,255,1.0)",
-                  borderColor: "rgba(0,0,255,0.1)",
+                  fill: false,
+                  pointRadius: 1,
+                  borderColor: "rgba(255,0,0,0.5)",
                   data: yValues
                 }]
               },
-              options:{...}
+              options: {...}
             });
+            
+            function generateData(value, i1, i2, step = 1) {
+              for (let x = i1; x <= i2; x += step) {
+                yValues.push(eval(value));
+                xValues.push(x);
+              }
+            }
             /*
+            const title = 'Blue Blood Bell';
+            const xLabel = 'Consensus All-Americans';
+            const yLabel = 'Unanimous All-Americans';
+            
             function buildChart(title, xLabel, yLabel)
             {
                 var ctx = document.getElementById('theChart');
