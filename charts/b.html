@@ -38,7 +38,7 @@
                 
             for(x=-6;x<7;x+=1) {
             	var y = gaussian(x)
-            	data.push({x:x,y:y*scaleFactor});
+            	data2.push({x:x,y:y*scaleFactor});
             }
             function gaussian(x) {
             	var gaussianConstant = 1 / Math.sqrt(2 * Math.PI);
@@ -51,6 +51,14 @@
             const myChart = new Chart(ctx, {
                 data: {
                     datasets: [{
+                        type: 'scatter',
+                        label: 'Teams',
+                        data: data
+                    }, {
+                        type: 'line',
+                        label: 'Line Dataset',
+                        data: [-3, -2, 1, 2]
+                    }, {
                         type: 'scatter',
                         label: 'Bell Curve',
                         data: data2
