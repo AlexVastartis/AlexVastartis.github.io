@@ -31,7 +31,6 @@
         
         <script>
         var data = [];
-        
         var scaleFactor = 250
         		mean = 12,
         		sigma = 4;
@@ -40,8 +39,6 @@
         	var y = gaussian(x)
         	data.push({x:x,y:y*scaleFactor});
         }
-        //taken from Jason Davies science library
-        // https://github.com/jasondavies/science.js/
         function gaussian(x) {
         	var gaussianConstant = 1 / Math.sqrt(2 * Math.PI);
         	x = (x - mean) / sigma;
@@ -60,7 +57,6 @@
         });        
         </script>
 
-        
         <script type="text/javascript">
             /*
             const title = 'Blue Blood Bell';
@@ -133,8 +129,7 @@
             }
              */
         </script>
-       
-        
+
         <div id=date>October 29, 2023</div>
         <div id=credit>u/WhoDaBlueBloods</div>
     </body>
