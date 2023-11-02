@@ -23,39 +23,39 @@
         
         <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
-        <canvas id="myChart"></canvas>
     
         <script src="logovar.js"></script>
         <script src="logosrc.js"></script>
+
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
         
-        <script type="text/javascript">
-
-
-            const xValues = [];
-            const yValues = [];
-            generateData("x * 2 + 7", 0, 10, 0.5);
-            
-            new Chart("myChart", {
-              type: "line",
-              data: {
-                labels: xValues,
-                datasets: [{
-                  fill: false,
-                  pointRadius: 1,
-                  borderColor: "rgba(255,0,0,0.5)",
-                  data: yValues
-                }]
-              },
-              options: {...}
-            });
-            
-            function generateData(value, i1, i2, step = 1) {
-              for (let x = i1; x <= i2; x += step) {
-                yValues.push(eval(value));
-                xValues.push(x);
-              }
+        <script>
+        const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+        const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+        
+        new Chart("myChart", {
+          type: "line",
+          data: {
+            labels: xValues,
+            datasets: [{
+              fill: false,
+              lineTension: 0,
+              backgroundColor: "rgba(0,0,255,1.0)",
+              borderColor: "rgba(0,0,255,0.1)",
+              data: yValues
+            }]
+          },
+          options: {
+            legend: {display: false},
+            scales: {
+              yAxes: [{ticks: {min: 6, max:16}}],
             }
-            /*
+          }
+        });
+        </script>
+
+        /*
+        <script type="text/javascript">
             const title = 'Blue Blood Bell';
             const xLabel = 'Consensus All-Americans';
             const yLabel = 'Unanimous All-Americans';
@@ -123,9 +123,10 @@
                         }
                     }
                 });
-            }*/
+            }
         </script>
-    
+        */
+        
         <div id=date>October 29, 2023</div>
         <div id=credit>u/WhoDaBlueBloods</div>
     </body>
