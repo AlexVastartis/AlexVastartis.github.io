@@ -24,28 +24,34 @@
         <script src="logovar.js"></script>
         <script src="logosrc.js"></script>
 
-        <canvas id="myChart"></canvas>
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-        <script>
-             const ctx = document.getElementById('myChart');
         
-            const myChart = new Chart(ctx, {
+        <script>
+          const ctx = document.getElementById('myChart');
+        
+          new Chart(ctx, {
+            type: 'bar',
             data: {
-                datasets: [{
-                    type: 'bar',
-                    label: 'Bar Dataset',
-                    data: [10, 20, 30, 40]
-                }, {
-                    type: 'line',
-                    label: 'Line Dataset',
-                    data: [50, 50, 50, 50],
-                }],
-                labels: ['January', 'February', 'March', 'April']
-            }//,
-            //options: options
-        });
+              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        </script>
         </script>
         <div id=date>October 29, 2023</div>
         <div id=credit>u/WhoDaBlueBloods</div>
