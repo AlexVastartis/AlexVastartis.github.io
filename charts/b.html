@@ -30,12 +30,7 @@
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         
-        <script>
-        const title = 'AP 4-Year Success';
-        const xLabel = 'AP Points';
-        const yLabel = 'Weeks Ranked';
-        buildChart(title, xLabel, yLabel);
-            
+        <script>            
             var data2 = [];
             var labels = [];
             var scaleFactor = 50;
@@ -72,23 +67,7 @@
                                 }
                             }
                         }
-                    }],
-                    datasets: [{
-                        type: 'scatter',
-                        label: 'Teams',
-                        data: data,
-                        options: {
-                            showLine: true,
-                            elements: { 
-                                line: {
-                                    fill: true
-                                },
-                                point: {
-                                    radius: 0
-                                }
-                            }
-                        }
-                    }],
+                    }]
                     labels: labels
                 },
 
