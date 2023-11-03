@@ -32,6 +32,7 @@
         
         <script>
             var data2 = [];
+            var labels = [];
             var scaleFactor = 50;
             var mean = 0;
             var sigma = 1;
@@ -39,6 +40,7 @@
             for(x=-6;x<7;x+=1) {
             	var y = gaussian(x)
             	data2.push({x:x,y:y*scaleFactor});
+                labels.push("'",x,"'");
             }
             function gaussian(x) {
             	var gaussianConstant = 1 / Math.sqrt(2 * Math.PI);
@@ -55,8 +57,7 @@
                         label: 'Bell Curve',
                         data: data2
                     }],
-                    labels: ['-6','-5','-4','-3','-2','-1','0','1','2','3','4','5','6']
-                    //labels: ['January', 'February', 'March', 'April']
+                    labels: labels;
                 },
                 options: {
                     showLine: true,
