@@ -40,7 +40,7 @@
             for(x=-6;x<7;x+=1) {
             	var y = gaussian(x)
             	data2.push({x:x,y:y*scaleFactor});
-                labels.push("\'",x,"\'");
+                labels.push(x);
             }
             function gaussian(x) {
             	var gaussianConstant = 1 / Math.sqrt(2 * Math.PI);
