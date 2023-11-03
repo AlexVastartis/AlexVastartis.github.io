@@ -68,6 +68,23 @@
                             }
                         }
                     }],
+                    datasets: [{
+                        type: 'scatter',
+                        label: 'Teams',
+                        data: data2,
+                        options: {
+                            showLine: true,
+                            elements: { 
+                                line: {
+                                    fill: true,
+                                    color: red
+                                },
+                                point: {
+                                    radius: 0
+                                }
+                            }
+                        }
+                    }],
                     labels: labels
                 },
 
