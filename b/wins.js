@@ -1,4 +1,5 @@
 const pointStyles = [
+'dash'
 charlotte,
 fiu,
 georgiastate,
@@ -132,6 +133,7 @@ appalachianstate
 ];
 
 const data = [
+  { x: -4, y: 0 },
 { x: -2.42, y: 1.067 },
 { x: -2.34, y: 1.291 },
 { x: -2.05, y: 2.44 },
