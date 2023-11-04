@@ -1,5 +1,5 @@
 const pointStyles = [
-'dash'
+'dash',
 charlotte,
 fiu,
 georgiastate,
