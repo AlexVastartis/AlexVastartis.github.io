@@ -1,4 +1,5 @@
 const pointStyles = [
+'dash',
 airforce,
 akron,
 arizona,
@@ -132,6 +133,7 @@ alabama
 ];
 
 const data = [
+  { x: -6, y: 0 },
  { x: -0.47, y: 17.861 },
 { x: -0.47, y: 17.861 },
 { x: -0.47, y: 17.861 },
