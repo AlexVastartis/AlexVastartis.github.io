@@ -48,7 +48,6 @@ body {
   color: #FFFFFF;
   display: block;
   transition: 0.3s;
-  text-decoration: underline;
 }
 
 #theChart {
