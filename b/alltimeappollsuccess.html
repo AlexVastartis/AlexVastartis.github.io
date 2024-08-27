@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>All-Time AP Poll Success - Scatter Plot</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+        <script src="/scripts/main.js"></script>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+        <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div id="navHeader">Blue Blood Summaries</div>
+                <a href="/b/thechart.html">▸The Chart</a>
+                <a href="/b/blueblood.html">▸Blue Bloods</a>
+            <div id="navHeader">Blue Blood Data Points</div>
+                <a href="/s/allamericans.html">▸All-Americans</a>
+                <a href="/s/championships.html">▸Championships</a>
+                <a href="/s/nfldraftsuccess.html">▸NFL Draft Success</a>
+                <a href="/s/wins.html">▸Wins</a>
+            <div id="navHeader">AP Poll Success</div>
+                <a href="/a/1yearappollsuccess.html">▸1-Year AP Poll Success</a>
+                <a href="/a/4yearappollsuccess.html">▸4-Year AP Poll Success</a>
+                <a href="/a/40yearappollsuccess.html">▸40-Year AP Poll Success</a>
+                <a href="/a/alltimeappollsuccess.html">▸All-Time AP Poll Success</a>
+        </div>
+          
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+        <canvas id="theChart"></canvas>
+    
+        <script src="/scripts/logovar.js"></script>
+        <script src="/scripts/logosrc.js"></script>
+        <script src="/scripts/pointstyles.js"></script>
+        <script src="alltimeappollsuccess.js"></script>
+    
+        <script type="text/javascript">
+            const title = 'All-Time AP Poll Success';
+            const xLabel = 'Weeks in the Top 25';
+            const yLabel = 'Weeks in the Top 10';
+            buildChart(title, xLabel, yLabel);
+        </script>
+
+        <div class="footer-container">
+            <div class="div-left">
+              <ul class="footer">
+                <li>Source: All AP Polls through 2024 Preseaon AP Poll</li>
+              </ul>
+            </div>
+            <div class="div-right">
+              <ul class="footer">
+                <li>u/WhoDaBlueBloods</li>
+               </ul>
+            </div>
+        </div>
+
+        <style>
+            .div-left{
+                float:left;
+                padding-left:10px;
+            }
+            .div-right{
+                float:right;
+                padding-right:10px;
+            }
+            .footer-container{
+                padding-top:5px;
+            }
+            .footer {
+                font-size: 10pt;
+            }
+            .footer li {
+                list-style-type:none;
+                float:left;
+                padding-left:10px;
+            }
+            .footer a {
+                text-decoration:none;
+                color:#0088CC;
+            }
+            .footer li:nth-child(1) {
+                text-decoration:none;
+                height:30px;
+                display:block;
+                background-image:url('http://s7.postimg.org/w0nt224pj/bc_separator.png');
+                background-repeat:no-repeat;
+                background-position:right;
+                padding-right: 15px;
+            }
+            ul {
+                list-style-type:none;
+                padding:0px;
+                margin:0px;
+            }
+        </style>
+    </body>
+</html>
