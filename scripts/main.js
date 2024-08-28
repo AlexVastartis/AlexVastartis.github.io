@@ -38,7 +38,7 @@ function buildChart(title, xLabel, yLabel)
       type: 'scatter',  
       data: {
             datasets: [{
-            data: sortedPointData
+            data: data
             }]
         },
         options: {
@@ -89,7 +89,7 @@ function buildChart(title, xLabel, yLabel)
         },
         plugins: {
             afterUpdate: chart => {
-                chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = sortedPointStyle[i]);
+                chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyle[i]);
             }
         }
     });
