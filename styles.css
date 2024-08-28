@@ -68,10 +68,12 @@ body {
 .div-left{
     float:left;
     padding-left:10px;
+    width:80%;
 }
 .div-right{
     float:right;
     padding-right:10px;
+    width:20%;
 }
 .footer-container{
     padding-top:5px;
