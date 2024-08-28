@@ -8,10 +8,15 @@ function closeNav() {
 
 function buildChart(title, xLabel, yLabel)
 {
+
+
+  
     var ctx = document.getElementById('theChart');
 
     ctx.style.backgroundColor = '#ffffff';
 
+  setTimeout(() => {
+ 
     const chart = new Chart(ctx, {
       type: 'scatter',  
       data: {
@@ -70,5 +75,6 @@ function buildChart(title, xLabel, yLabel)
             }
         }
     });
+    }, 1000);
 }
 
