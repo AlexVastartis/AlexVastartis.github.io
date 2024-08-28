@@ -1,4 +1,4 @@
-const pointStyles = [
+const pointStyle = [
 airforce,
 akron,
 alabama,
