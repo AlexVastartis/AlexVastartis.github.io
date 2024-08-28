@@ -64,3 +64,41 @@ body {
     text-align: right;
     font-size: 10pt;
 }
+
+.div-left{
+    float:left;
+    padding-left:10px;
+}
+.div-right{
+    float:right;
+    padding-right:10px;
+}
+.footer-container{
+    padding-top:5px;
+}
+.footer {
+    font-size: 10pt;
+}
+.footer li {
+    list-style-type:none;
+    float:left;
+    padding-left:10px;
+}
+.footer a {
+    text-decoration:none;
+    color:#0088CC;
+}
+.footer li:nth-child(1) {
+    text-decoration:none;
+    height:30px;
+    display:block;
+    background-image:url('http://s7.postimg.org/w0nt224pj/bc_separator.png');
+    background-repeat:no-repeat;
+    background-position:right;
+    padding-right: 15px;
+}
+ul {
+    list-style-type:none;
+    padding:0px;
+    margin:0px;
+}
