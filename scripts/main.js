@@ -6,30 +6,8 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
-function sortArray()
-{
-  const labels = Array.from(pointStyle);
-  const data1 = Array.from(pointData);
-  
-  const allData = [];
-  for (let i = 0; i < labels.length; ++i) {
-      allData.push({
-          label: labels[i],
-          data: data1[i]
-      });
-  }
-  
-  allData.sort((a, b) => a.data - b.data);
-  
-  // And split them again
-  var sortedPointStyle = allData.map(e => e.label);
-  var sortedPointData = allData.map(e => e.data);
-}
-
 function buildChart(title, xLabel, yLabel)
 {
-    sortArray();
-  
     var ctx = document.getElementById('theChart');
 
     ctx.style.backgroundColor = '#ffffff';
@@ -82,16 +60,14 @@ function buildChart(title, xLabel, yLabel)
                     gridLines: {
                         color: "#000000"
                     }
-                }],
-              animation: false
+                }]
             }
 //          ,devicePixelRatio: 10
         },
         plugins: {
             afterUpdate: chart => {
-                chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyles = pointStyle[i]);
+                chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyles[i]);
             }
         }
     });
 }
-
