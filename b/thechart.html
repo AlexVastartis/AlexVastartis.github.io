@@ -8,24 +8,11 @@
         <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
-        <div id="mySidenav" class="sidenav">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <div id="navHeader">Blue Blood Summaries</div>
-                <a href="/b/thechart.html">▩ The Chart</a>
-                <a href="/b/blueblood.html">∿ Blue Bloods</a>
-            <div id="navHeader">Blue Blood Data Points</div>
-                <a href="/s/allamericans.html">∿ All-Americans</a>
-                <a href="/s/championships.html">∿ Championships</a>
-                <a href="/s/nfldraftsuccess.html">∿ NFL Draft Success</a>
-                <a href="/s/wins.html">∿ Wins</a>
-            <div id="navHeader">AP Poll Success</div>
-                <a href="/a/1yearappollsuccess.html">▩ 1-Year AP Poll Success</a>
-                <a href="/a/4yearappollsuccess.html">▩ 4-Year AP Poll Success</a>
-                <a href="/a/40yearappollsuccess.html">▩ 40-Year AP Poll Success</a>
-                <a href="/a/alltimeappollsuccess.html">▩ All-Time AP Poll Success</a>
-        </div>
-          
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        <div id="sidenav"></div>
+
+        <script>
+            fetch('/html/sidenav.html').then(response => response.text()).then(html => {document.getElementById('sidenav').innerHTML = html;});
+        </script>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
         <canvas id="theChart"></canvas>
