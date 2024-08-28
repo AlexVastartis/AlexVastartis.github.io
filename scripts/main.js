@@ -9,7 +9,7 @@ function closeNav() {
 function sortArray()
 {
   const labels = pointStyle;
-  const data1 = data;
+  const data1 = pointData;
   
   const allData = [];
   for (let i = 0; i < labels.length; ++i) {
@@ -23,7 +23,7 @@ function sortArray()
   
   // And split them again
   const sortedPointStyle = allData.map(e => e.label);
-  const sortedData = allData.map(e => e.data);
+  const sortedPointData = allData.map(e => e.data);
 }
 
 function buildChart(title, xLabel, yLabel)
@@ -38,7 +38,7 @@ function buildChart(title, xLabel, yLabel)
       type: 'scatter',  
       data: {
             datasets: [{
-            data: sortedData
+            data: sortedPointData
             }]
         },
         options: {
@@ -89,7 +89,7 @@ function buildChart(title, xLabel, yLabel)
         },
         plugins: {
             afterUpdate: chart => {
-                chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = sortedPointStyles[i]);
+                chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = sortedPointStyle[i]);
             }
         }
     });
