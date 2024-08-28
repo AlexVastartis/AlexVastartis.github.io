@@ -6,8 +6,30 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
+function sortArray()
+{
+  const labels = pointStyle;
+  const data1 = data;
+  
+  const allData = [];
+  for (let i = 0; i < labels.length; ++i) {
+      allData.push({
+          label: labels[i],
+          data: data1[i]
+      });
+  }
+  
+  allData.sort((a, b) => a.data - b.data);
+  
+  // And split them again
+  const sortedPointStyle = allData.map(e => e.label);
+  const sortedData = allData.map(e => e.data);
+}
+
 function buildChart(title, xLabel, yLabel)
 {
+    sortArray();
+  
     var ctx = document.getElementById('theChart');
 
     ctx.style.backgroundColor = '#ffffff';
