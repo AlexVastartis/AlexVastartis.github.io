@@ -22,8 +22,8 @@ function sortArray()
   allData.sort((a, b) => a.data - b.data);
   
   // And split them again
-  const sortedPointStyle = allData.map(e => e.label);
-  const sortedPointData = allData.map(e => e.data);
+  var sortedPointStyle = allData.map(e => e.label);
+  var sortedPointData = allData.map(e => e.data);
 }
 
 function buildChart(title, xLabel, yLabel)
