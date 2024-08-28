@@ -8,8 +8,8 @@ function closeNav() {
 
 function sortArray()
 {
-  const labels = pointStyle;
-  const data1 = pointData;
+  const labels = Array.from(pointStyle);
+  const data1 = Array.from(pointData);
   
   const allData = [];
   for (let i = 0; i < labels.length; ++i) {
