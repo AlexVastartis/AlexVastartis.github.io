@@ -89,7 +89,7 @@ function buildChart(title, xLabel, yLabel)
         },
         plugins: {
             afterUpdate: chart => {
-                chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyle = pointStyle[i]);
+                chart.getDatasetMeta(0).data.forEach((d, i) => d._model.pointStyles = pointStyle[i]);
             }
         }
     });
