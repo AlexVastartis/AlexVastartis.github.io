@@ -70,4 +70,6 @@ function buildChart(title, xLabel, yLabel)
             }
         }
     });
+
+  chart.update();
 }
