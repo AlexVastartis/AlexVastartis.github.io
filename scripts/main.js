@@ -71,6 +71,6 @@ function buildChart(title, xLabel, yLabel)
         }
     });
   setTimeout(function(){
-      chart.update();
-  }, 10000);  
+      window.dispatchEvent(resizeEvent);
+  }, 2000);  
 }
