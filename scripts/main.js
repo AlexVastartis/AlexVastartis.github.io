@@ -71,5 +71,5 @@ function buildChart(title, xLabel, yLabel)
         }
     });
 
-  window.dispatchEvent(new Event('resize'));
+  chart.update();
 }
