@@ -70,6 +70,8 @@ function buildChart(title, xLabel, yLabel)
             }
         }
     });
+  chart.update();
+  
   setTimeout(function(){
       window.dispatchEvent(resizeEvent);
   }, 2000);  
