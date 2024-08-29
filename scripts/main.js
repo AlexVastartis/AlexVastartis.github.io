@@ -72,5 +72,5 @@ function buildChart(title, xLabel, yLabel)
     });
   setTimeout(function(){
       chart.update();
-  }, 2000);  
+  }, 10000);  
 }
