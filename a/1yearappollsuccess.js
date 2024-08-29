@@ -1,4 +1,4 @@
-const pointData = [
+const data = [
 { x: 1254, y: 3 },
 { x: 0, y: 0 },
 { x: 17556, y: 16 },
