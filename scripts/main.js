@@ -62,7 +62,7 @@ function buildChart(title, xLabel, yLabel)
                     }
                 }]
             }
-          ,devicePixelRatio: 1
+          ,devicePixelRatio: 10
         },
         plugins: {
             afterUpdate: chart => {
