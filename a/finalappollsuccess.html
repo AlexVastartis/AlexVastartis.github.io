@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>All-Time AP Poll Success</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+        <script src="/scripts/main.js"></script>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+        <div id="sidenav"></div>
+
+        <script>
+            fetch('/html/sidenav.html').then(response => response.text()).then(html => {document.getElementById('sidenav').innerHTML = html;});
+        </script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+        <canvas id="theChart"></canvas>
+    
+        <script src="/scripts/logovar.js"></script>
+        <script src="/scripts/logosrc.js"></script>
+        <script src="/scripts/pointstyles.js"></script>
+        <script src="alltimeappollsuccess.js"></script>
+    
+        <script type="text/javascript">
+            const title = 'All-Time AP Poll Success';
+            const xLabel = 'Weeks in the Top 25';
+            const yLabel = 'Weeks in the Top 10';
+            buildChart(title, xLabel, yLabel);
+        </script>
+
+        <div class="footer-container">
+            <div class="div-left">
+              <ul class="footer">
+                <li>Source: All AP Polls through December 8th, 2024 AP Poll</li>
+              </ul>
+            </div>
+            <div class="div-right">
+              <ul class="footer">
+                <li>u/WhoDaBlueBloods</li>
+               </ul>
+            </div>
+        </div>
+    </body>
+</html>
