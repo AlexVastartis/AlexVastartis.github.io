@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wins - Bell Curve</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+        <script src="/scripts/main.js"></script>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+        <div id="sidenav"></div>
+        <script>
+            fetch('/html/sidenav.html').then(response => response.text()).then(html => {document.getElementById('sidenav').innerHTML = html;});
+        </script>
+        <img id="theImage" style="width:100%; z-index:-1;"  class="fullscreen" src="/b/wins.png" onClick="makeFullScreen()"></img>
+    </body>
+</html>
