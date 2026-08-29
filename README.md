@@ -1,9 +1,12 @@
 # BlueBloodFootball.com
 
 Clean, data-driven college-football "blue blood" charts. Every program's logo plotted
-on **The Chart** (Perception Poll), the other stat categories, and standard-deviation
-bell curves — filterable by current conference, switchable between logos and team-colored
-bubbles, light/dark aware, and exportable to PNG.
+on **The Chart** (Perception Poll) and on four more **Criteria**, each viewable two ways —
+a logo scatter or the bell curve of the same data (one toggle). Plus **The Blue Blood
+Ranking**: all five criteria as a single score, shown as a bell curve and a grouped
+ranked list (Blue Bloods → Debated → the field). Filterable by current conference,
+logos or team-colored bubbles, light/dark, PNG export. Overlap is intentional — more
+impressive logos are drawn on top.
 
 ## Stack
 
@@ -20,13 +23,21 @@ npm run dev
 
 ## Data model
 
-| Category        | Stat X                | Stat Y                     |
+Five **criteria**, each = two raw stats. Per criterion, each team gets a *composite*
+z-score (mean of the two stats' z-scores). The **overall Blue Blood score** is the
+z-score of a team's mean composite across all five.
+
+| Criterion       | Stat X (scatter)      | Stat Y (scatter)           |
 | --------------- | --------------------- | -------------------------- |
 | Perception Poll | Weeks in the AP Poll  | Weeks in the AP Top 10     |
 | Wins            | All-Time Wins         | All-Time Winning %         |
 | Championships   | National Championships| Conference Championships   |
 | All-Americans   | Consensus AA          | Unanimous AA               |
 | NFL Draft       | NFL Draft Picks       | First-Round Picks          |
+
+Ranked-list groupings (`src/config/ranking.ts`): **Blue Bloods** = overall rank ≤ 6;
+**Debated** = Nebraska & Texas (hardcoded — the perennial argument); then z-score bands
+(Blue Blood Adjacent ≥ 1.0, National Brands ≥ 0.25, Regional Powers ≥ −0.5, The Field).
 
 ### Sources of truth
 
@@ -47,9 +58,9 @@ the original `Blue Bloods.xlsx` / `Conference.xlsx`; you normally won't need it 
 `npm run build:data` writes:
 
 - `public/data/teams.json` — `{ meta, teams[] }` with raw stats + z-scores + percentiles
-  + per-category composite z-scores.
-- `public/data/meta.json` — per-stat and per-category mean / σ / min / max, plus
-  `generatedAt` and which sources were used.
+  + per-criterion composite z-scores + `overall` / `overallRank` / `overallPct`.
+- `public/data/meta.json` — per-stat and per-criterion mean / σ / min / max, the
+  `overall` distribution, `generatedAt`, and which sources were used.
 - `data/snapshots/data-YYYY-MM-DD.json` — dated copy for history.
 
 ## Scheduled refresh
@@ -64,7 +75,9 @@ secret. Adjust the `cron:` line to change cadence.
 replacements any time — no code change. Optional dark-mode overrides go in
 `public/logos/dark/<slug>.svg` and are picked up automatically in dark mode.
 
-## Roadmap (slice 2)
+## Roadmap
 
-Remaining 3 category charts, what-if stat editor with echelon tiers, AP-poll era
-variations (1936 / 1968 / 1992 + AP365 / AP440), dark-mode logo set, deploy config.
+- What-if stat editor: override a team's raw stats, replot live, see which echelon it
+  moves into (`src/lib/derive.ts` already recomputes z / composite / overall).
+- AP-poll era variations (1936 / 1968 / 1992 + AP365 / AP440) — `src/config/eras.ts`.
+- Dark-mode logo set (`public/logos/dark/`), deploy config.

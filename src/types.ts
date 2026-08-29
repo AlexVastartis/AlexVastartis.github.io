@@ -12,8 +12,14 @@ export interface Team {
   z: Record<StatKey, number>;
   /** 0..100 percentile per stat */
   pct: Record<StatKey, number>;
-  /** composite z-score per category (mean of the category's two stat z-scores) */
+  /** composite z-score per criterion (mean of the criterion's two stat z-scores) */
   composite: Record<CategoryKey, number>;
+  /** overall Blue Blood score: z-score of the mean of the 5 criterion composites */
+  overall: number;
+  /** 0..100 percentile of the overall score */
+  overallPct: number;
+  /** 1 = highest overall score */
+  overallRank: number;
 }
 
 export type StatKey =
@@ -71,7 +77,12 @@ export interface DataMeta {
   dataRange: string;
   stats: Record<StatKey, StatDistribution>;
   composites: Record<CategoryKey, StatDistribution>;
+  /** distribution of the overall Blue Blood score (standardized: mean 0, σ 1) */
+  overall: StatDistribution;
 }
+
+/** "Criterion" is the user-facing name for a category. */
+export type CriterionKey = CategoryKey;
 
 export interface TeamsPayload {
   meta: DataMeta;

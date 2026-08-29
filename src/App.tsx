@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
-import { NavLink, Route, Routes, Navigate, useOutletContext, Outlet } from 'react-router-dom';
+import { NavLink, Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet } from 'react-router-dom';
 import { useTeams, useConferences } from './data/useTeams';
-import { useViewState } from './data/useViewState';
+import { useViewState, type Lens } from './data/useViewState';
 import { useTheme, type Theme } from './lib/theme';
 import Controls from './components/Controls';
 import type { Team, TeamsPayload } from './types';
+import { CRITERIA_LABEL } from './config/stats';
 import TheChart from './routes/TheChart';
-import CategoryChart from './routes/CategoryChart';
-import BellCurves from './routes/BellCurves';
+import CriteriaChart from './routes/CriteriaChart';
 
 export interface ChartContext {
   data: TeamsPayload;
@@ -15,23 +15,26 @@ export interface ChartContext {
   allTeams: Team[];
   theme: Theme;
   marker: 'logo' | 'bubble';
+  lens: Lens;
+  setLens: (l: Lens) => void;
 }
 
 export function useChartContext() {
   return useOutletContext<ChartContext>();
 }
 
-const NAV = [
-  { to: '/', label: 'The Chart', end: true },
-  { to: '/category/wins', label: 'Categories', end: false },
-  { to: '/bell-curves', label: 'Bell Curves', end: false },
-];
-
 function Layout() {
   const { loading, error, data } = useTeams();
   const { state, update, toggleConference } = useViewState();
   const [theme, toggleTheme] = useTheme();
   const conferences = useConferences(data);
+  const { search } = useLocation();
+
+  // carry conference / marker / lens across the top-level nav
+  const NAV = [
+    { to: { pathname: '/', search }, label: 'The Chart', end: true },
+    { to: { pathname: '/criteria/perception', search }, label: CRITERIA_LABEL, end: false },
+  ];
 
   const teams = useMemo(() => {
     if (!data) return [];
@@ -52,7 +55,7 @@ function Layout() {
         <nav className="flex gap-1 rounded-lg border border-line bg-panel/40 p-1">
           {NAV.map((n) => (
             <NavLink
-              key={n.to}
+              key={n.label}
               to={n.to}
               end={n.end}
               className={({ isActive }) =>
@@ -91,7 +94,15 @@ function Layout() {
           ) : (
             <Outlet
               context={
-                { data, teams, allTeams: data.teams, theme, marker: state.marker } satisfies ChartContext
+                {
+                  data,
+                  teams,
+                  allTeams: data.teams,
+                  theme,
+                  marker: state.marker,
+                  lens: state.lens,
+                  setLens: (l: Lens) => update({ lens: l }),
+                } satisfies ChartContext
               }
             />
           )}
@@ -119,10 +130,17 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<TheChart />} />
-        <Route path="category/:key" element={<CategoryChart />} />
-        <Route path="bell-curves" element={<BellCurves />} />
+        <Route path="criteria/:key" element={<CriteriaChart />} />
+        {/* legacy paths */}
+        <Route path="category/:key" element={<LegacyCategory />} />
+        <Route path="bell-curves" element={<Navigate to="/criteria/perception?lens=curve" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
   );
+}
+
+function LegacyCategory() {
+  const { key } = useParams<{ key: string }>();
+  return <Navigate to={`/criteria/${key ?? 'perception'}`} replace />;
 }

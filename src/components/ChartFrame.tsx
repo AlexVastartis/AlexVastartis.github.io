@@ -5,11 +5,13 @@ interface Props {
   title: string;
   subtitle?: string;
   footer?: ReactNode;
+  /** controls shown to the left of the Save-PNG button (e.g. a lens toggle) */
+  actions?: ReactNode;
   filename: string;
   children: ReactNode;
 }
 
-export default function ChartFrame({ title, subtitle, footer, filename, children }: Props) {
+export default function ChartFrame({ title, subtitle, footer, actions, filename, children }: Props) {
   const wrap = useRef<HTMLDivElement>(null);
   const [busy, setBusy] = useState(false);
 
@@ -29,18 +31,21 @@ export default function ChartFrame({ title, subtitle, footer, filename, children
 
   return (
     <figure className="rounded-xl border border-line bg-panel/40 p-4 sm:p-6">
-      <div className="mb-3 flex items-start justify-between gap-4">
-        <div>
+      <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0">
           <h2 className="text-xl font-bold tracking-tight">{title}</h2>
           {subtitle && <p className="mt-0.5 text-sm text-muted">{subtitle}</p>}
         </div>
-        <button
-          onClick={save}
-          disabled={busy}
-          className="shrink-0 rounded-md border border-line px-3 py-1.5 text-sm font-medium hover:bg-panel disabled:opacity-50"
-        >
-          {busy ? 'Saving…' : 'Save PNG'}
-        </button>
+        <div className="flex shrink-0 items-center gap-2">
+          {actions}
+          <button
+            onClick={save}
+            disabled={busy}
+            className="rounded-md border border-line px-3 py-1.5 text-sm font-medium hover:bg-panel disabled:opacity-50"
+          >
+            {busy ? 'Saving…' : 'Save PNG'}
+          </button>
+        </div>
       </div>
       <div ref={wrap} className="rounded-lg bg-paper">
         {children}

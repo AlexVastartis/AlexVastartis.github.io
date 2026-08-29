@@ -177,14 +177,35 @@ function derive(rows) {
     const mu = mean(xs);
     composites[ck] = { mean: mu, stddev: stddev(xs, mu), min: Math.min(...xs), max: Math.max(...xs) };
   }
-  return { teams, stats: dist, composites };
+
+  // overall "Blue Blood" score: mean of the 5 category composites, re-standardized
+  const overallRaw = teams.map((t) => mean(Object.keys(CATEGORIES).map((ck) => t.composite[ck])));
+  const oMu = mean(overallRaw);
+  const oSd = stddev(overallRaw, oMu);
+  const overallAsc = [...overallRaw].sort((a, b) => a - b);
+  teams.forEach((t, i) => {
+    t.overall = oSd === 0 ? 0 : (overallRaw[i] - oMu) / oSd;
+    t.overallPct = percentile(overallRaw[i], overallAsc);
+  });
+  const ranked = [...teams].sort((a, b) => b.overall - a.overall);
+  ranked.forEach((t, i) => {
+    t.overallRank = i + 1;
+  });
+  const overall = {
+    mean: 0,
+    stddev: stddev(teams.map((t) => t.overall)),
+    min: Math.min(...teams.map((t) => t.overall)),
+    max: Math.max(...teams.map((t) => t.overall)),
+  };
+
+  return { teams, stats: dist, composites, overall };
 }
 
 async function main() {
   const notes = [];
   const rows = loadManual();
   const usedCfbd = await applyCfbd(rows, notes);
-  const { teams, stats, composites } = derive(rows);
+  const { teams, stats, composites, overall } = derive(rows);
 
   // logo coverage check
   const missingLogo = teams
@@ -199,6 +220,7 @@ async function main() {
       : 'Blue Bloods.xlsx "BBR Raw" (through 2024 season)',
     stats,
     composites,
+    overall,
   };
   const payload = { meta, teams };
 
@@ -213,13 +235,10 @@ async function main() {
   console.log(`  sources: ${usedCfbd ? 'CFBD + manual' : 'manual only'}`);
   for (const n of notes) console.log(`  · ${n}`);
   if (missingLogo.length) console.log(`  ! missing logo file: ${missingLogo.join(', ')}`);
-  const oh = teams.find((t) => t.school === 'Ohio State');
-  if (oh) {
-    console.log(
-      `  spot-check Ohio State: wins ${oh.stats.allTimeWins}, win% ${oh.stats.winPct}, ` +
-        `AP wks ${oh.stats.weeksApPoll}/${oh.stats.weeksApTop10}, ` +
-        `perception z ${oh.composite.perception.toFixed(2)}`,
-    );
+  const top10 = [...teams].sort((a, b) => a.overallRank - b.overallRank).slice(0, 10);
+  console.log('  Blue Blood ranking (top 10):');
+  for (const t of top10) {
+    console.log(`   ${String(t.overallRank).padStart(2)}. ${t.school.padEnd(16)} overall z ${t.overall.toFixed(2)}`);
   }
 }
 

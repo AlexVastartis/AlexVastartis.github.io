@@ -83,5 +83,5 @@ export const CATEGORY_ORDER: CategoryKey[] = [
   'perception', 'wins', 'championships', 'allAmericans', 'nflDraft',
 ];
 
-/** Slice-1 routes wire these two directly; the rest come online in slice 2. */
-export const ACTIVE_CATEGORIES: CategoryKey[] = ['perception', 'wins'];
+/** user-facing name for the whole group of category charts */
+export const CRITERIA_LABEL = 'Criteria';

@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react';
 import type { DataMeta, StatKey, Team } from '../types';
 import { STATS } from '../config/stats';
 import { DEFAULT_MARGINS, linearScales } from '../lib/scale';
-import { relax, tether, type Node } from '../lib/collide';
 import type { MarkerMode } from '../data/useViewState';
 import type { Theme } from '../lib/theme';
 import TeamMarker from './TeamMarker';
@@ -15,6 +14,9 @@ interface Props {
   meta: DataMeta;
   marker: MarkerMode;
   theme: Theme;
+  /** z-order key — bigger renders on top ("more impressive covers less impressive").
+   *  defaults to the sum of the two plotted stats' z-scores. */
+  order?: (t: Team) => number;
   width?: number;
   height?: number;
   markerSize?: number;
@@ -25,8 +27,10 @@ export default function ScatterChart({
   allTeams,
   xStat,
   yStat,
+  meta,
   marker,
   theme,
+  order,
   width = 1000,
   height = 600,
   markerSize = 26,
@@ -47,28 +51,21 @@ export default function ScatterChart({
     [allTeams, xStat, yStat, width, height, m],
   );
 
+  // no de-overlap: overlap is part of the fun. just sort so the best land on top.
   const placed = useMemo(() => {
-    const r = markerSize / 2;
-    const minX = m.left + r;
-    const maxX = width - m.right - r;
-    const minY = m.top + r;
-    const maxY = height - m.bottom - r;
-    const nodes: (Node & { team: Team })[] = teams.map((t) => {
-      const px = x(t.stats[xStat]);
-      const py = y(t.stats[yStat]);
-      return { x: px, y: py, x0: px, y0: py, r, team: t };
-    });
-    // a few relax/clamp passes so markers separate but never leave the plot area
-    for (let pass = 0; pass < 4; pass += 1) {
-      relax(nodes, 18, 1.5);
-      tether(nodes, 0.06);
-      for (const n of nodes) {
-        n.x = Math.min(Math.max(n.x, minX), maxX);
-        n.y = Math.min(Math.max(n.y, minY), maxY);
-      }
-    }
-    return nodes;
-  }, [teams, x, y, xStat, yStat, markerSize, width, height, m]);
+    const rank =
+      order ??
+      ((t: Team) => {
+        const dx = meta.stats[xStat];
+        const dy = meta.stats[yStat];
+        const zx = dx.stddev ? (t.stats[xStat] - dx.mean) / dx.stddev : 0;
+        const zy = dy.stddev ? (t.stats[yStat] - dy.mean) / dy.stddev : 0;
+        return zx + zy;
+      });
+    return [...teams]
+      .sort((a, b) => rank(a) - rank(b))
+      .map((team) => ({ team, x: x(team.stats[xStat]), y: y(team.stats[yStat]) }));
+  }, [teams, x, y, xStat, yStat, meta, order]);
 
   const fmtX = STATS[xStat].format ?? ((v: number) => String(v));
   const fmtY = STATS[yStat].format ?? ((v: number) => String(v));
