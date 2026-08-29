@@ -1,43 +1,42 @@
-/** Raw + derived stat values for one program, as emitted by scripts/build-data.mjs. */
-export interface Team {
+/** Fields that differ between the as-played and official (vacated-removed) views. */
+export interface WinsVariant {
+  stats: Record<StatKey, number>;
+  pct: Record<StatKey, number>;
+  critScore: Record<CategoryKey, number>;
+  composite: Record<CategoryKey, number>;
+  rating: number;
+  overall: number;
+  ratingRank: number;
+  grouping: string;
+  peer: PeerComparison;
+  note: string;
+}
+
+export interface PeerComparison {
+  leads: string[];
+  lags: string[];
+  summary: string;
+}
+
+/**
+ * One program, as emitted by scripts/build-data.mjs. The wins-dependent fields
+ * are mirrored at the top level (the default "as-played" view) and also carried
+ * per view in `variants`; `useTeams` swaps them when the toggle changes.
+ */
+export interface Team extends WinsVariant {
   school: string;
   slug: string;
   conference: string;
   primary: string;
   secondary: string;
   formerFcs: boolean;
-  /** raw stat values, keyed by StatKey */
-  stats: Record<StatKey, number>;
-  /** z-score per stat vs the full league distribution */
-  z: Record<StatKey, number>;
-  /** 0..100 percentile per stat */
-  pct: Record<StatKey, number>;
-  /** composite z-score per criterion (mean of the criterion's two stat z-scores) */
-  composite: Record<CategoryKey, number>;
-  /** criterion score, 0..100 = mean of the two stats' FBS percentiles */
-  critScore: Record<CategoryKey, number>;
-  /** Blue Blood Rating, 0..100 = mean of the middle 8 of the 10 stat percentiles */
-  rating: number;
-  /** z-score of `rating` across FBS — drives the ranking bell curve */
-  overall: number;
-  /** 1 = highest rating */
-  ratingRank: number;
-  /** 0..100, how even a program is across the five criteria (100 = flat) */
-  consistency: number;
-  trend: { score: number; dir: TrendDir };
+  heismans: number;
+  trend: { score: number; dir: TrendDir; recentStanding?: number; priorStanding?: number };
   label: { standard: string; personal: string };
-  /** one concrete decade-scale path into the next grouping up (null at the top) */
-  nextTier: NextTierPath | null;
+  variants: { asPlayed: WinsVariant; official: WinsVariant };
 }
 
 export type TrendDir = 'up' | 'down' | 'even';
-
-export interface NextTierPath {
-  label: string;
-  gapPoints: number;
-  moves: { stat: StatKey; phrase: string }[];
-  summary: string;
-}
 
 export type StatKey =
   | 'allTimeWins'
@@ -92,14 +91,19 @@ export interface DataMeta {
   generatedAt: string;
   model: string;
   modelBlurb: string;
-  trendRecentYears: number;
+  trendRecentFraction: number;
   latestSeason: number;
   latestChampion: string | null;
   conferenceYear: number | null;
-  sources: { cfbd: boolean; manual: boolean };
+  titleSelectors: string[];
+  sources: { store: string; network: boolean };
   /** one sentence per criterion on exactly where its numbers come from */
   provenance: Record<CategoryKey, string>;
+  granular: { allAmericans: string; nationalTitles: string; conferenceTitles: string };
   dataRange: string;
+  groupings: string[];
+  tierBoundaries: number[];
+  tierGaps: number[];
   stats: Record<StatKey, StatDistribution>;
   composites: Record<CategoryKey, StatDistribution>;
   /** distribution of the overall Blue Blood score (standardized: mean 0, σ 1) */

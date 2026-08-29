@@ -16,22 +16,22 @@ export default function RankedList({ teams, favorite, onPick }: Props) {
 
   return (
     <div className="flex flex-col gap-5">
-      {groups.map(({ group, teams: rows }) => (
+      {groups.map(({ grouping, blurb, teams: rows }) => (
         <section
-          key={group.key}
+          key={grouping}
           className={
-            group.key === 'debated'
+            grouping === 'Blue Blood Fringe'
               ? 'rounded-xl border border-dashed border-accent/60 bg-accent/5 p-3'
-              : group.key === 'blueblood'
+              : grouping === 'Blue Bloods'
                 ? 'rounded-xl border border-line bg-panel/60 p-3'
                 : 'rounded-xl border border-line p-3'
           }
         >
           <header className="mb-1.5 flex items-baseline gap-2 px-1">
-            <h3 className="text-sm font-bold uppercase tracking-wide">{group.label}</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wide">{grouping}</h3>
             <span className="text-xs text-muted">{rows.length}</span>
           </header>
-          <p className="mb-2 px-1 text-xs leading-snug text-muted">{group.blurb}</p>
+          <p className="mb-2 px-1 text-xs leading-snug text-muted">{blurb}</p>
 
           <ol className="flex flex-col">
             {rows.map((t) => {

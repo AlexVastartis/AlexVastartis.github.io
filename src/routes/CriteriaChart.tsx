@@ -39,7 +39,7 @@ export default function CriteriaChart() {
 
       <CriterionView criterion={ck} ctx={ctx} />
 
-      {favTeam && <TeamCard team={favTeam} allTeams={ctx.allTeams} />}
+      {favTeam && <TeamCard team={favTeam} />}
     </div>
   );
 }

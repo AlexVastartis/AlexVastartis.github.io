@@ -9,4 +9,4 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 data/snapshots/cfbd-*.json
-data/snapshots/cfbd/
+# data/api/ (the consolidated CFBD store + raw per-year cache) IS committed on purpose

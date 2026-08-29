@@ -32,8 +32,8 @@ export function useChartContext() {
 }
 
 function Layout() {
-  const { loading, error, data } = useTeams();
   const { state, update, toggleConference } = useViewState();
+  const { loading, error, data } = useTeams(state.wins);
   const { mode, setMode } = useTheme();
   const [favorite, setFavorite] = useFavorite();
   const conferences = useConferences(data);
@@ -101,6 +101,8 @@ function Layout() {
             schools={data.teams.map((t) => t.school).sort()}
             favorite={favorite}
             onSetFavorite={setFavorite}
+            wins={state.wins}
+            onSetWins={(w) => update({ wins: w })}
           />
           <Outlet
             context={

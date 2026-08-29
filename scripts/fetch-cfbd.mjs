@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CACHE = path.resolve(__dirname, '../data/snapshots/cfbd');
+const CACHE = path.resolve(__dirname, '../data/api/cfbd');
 
 const BASE = 'https://api.collegefootballdata.com';
 const KEY = process.env.CFBD_API_KEY || '';
@@ -71,8 +71,13 @@ export async function getTeamsMeta(year = CURRENT_SEASON) {
       conference: t.conference || null,
       color: t.color || null,
       altColor: t.alt_color || null,
-      logo: logos.find((u) => /\/logos\/500\//.test(u)) || logos[0] || null,
-      logoDark: logos.find((u) => /\/logos-dark\/500\//.test(u)) || null,
+      // 128px is the right source for 24–56px chart markers; 500px aliases badly when downscaled
+      logo:
+        logos.find((u) => /\/logos\/128\//.test(u)) ||
+        logos.find((u) => /\/logos\/(96|256|500)\//.test(u)) ||
+        logos[0] ||
+        null,
+      logoDark: null,
     });
   }
   return out;

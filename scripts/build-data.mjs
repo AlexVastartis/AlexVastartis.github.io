@@ -1,55 +1,48 @@
 /**
- * Builds public/data/teams.json (+ meta.json + a dated snapshot).
+ * Builds public/data/teams.json (+ meta.json + a dated snapshot) from the
+ * committed data store — NEVER the network.
  *
- * Overall model — "percentile-trimmed-mean":
- *   each of the 10 raw stats -> its within-FBS percentile; drop each program's
- *   single highest and single lowest percentile; the Blue Blood Rating is the
- *   mean of the remaining 8. Nonparametric, no weighting knobs, unbothered by the
- *   skew / disputed counts in the honors data.
+ * Inputs
+ *   data/api/ap-poll-summary.json   AP weeks / top-10 / final #1, per team per season   (CFBD)
+ *   data/api/draft.json             every NFL draft pick                                 (CFBD)
+ *   data/api/conferences.json       current conference per school                        (CFBD)
+ *   data/season-records.csv         wins/losses/ties per (school, season)                (CFBD + manual pre-1936)
+ *   data/manual/national_titles.csv one row per title (school, year, selector)           (manual)
+ *   data/manual/conference_titles.csv / all_americans.csv                                (manual; summary fallback)
+ *   data/manual/heisman.csv / vacated_wins.csv / teams.csv / blurbs.csv                  (manual)
+ *   data/manual/stats_summary.csv   fallback counts where granular rows are absent       (manual)
  *
- * Data provenance (see PROVENANCE below):
- *   CFBD API  — AP-poll weeks (1936+), all-time records/wins (1900+), NFL draft
- *               counts (1936+), current conference, per-season history for trend.
- *   manual    — national & conference titles, consensus & unanimous All-Americans
- *               (data/manual/stats_manual.csv; not adjudicating claims).
+ * Model — "percentile-trimmed-mean": each of the 10 stats -> within-FBS percentile;
+ * drop each program's single highest and single lowest; Rating = mean of the other 8.
  *
- * Run: npm run build:data
+ * Everything is computed twice: `asPlayed` (default, vacated wins counted) and
+ * `official` (vacated wins removed). Trajectory always uses asPlayed.
+ *
+ * Run: npm run build:data   (run `npm run data:api` first if the store is stale)
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readRecords } from './lib/csv.mjs';
-import {
-  hasKey, CURRENT_SEASON, LATEST_SEASON, CURRENT_YEAR,
-  getApBySeason, getRecordsBySeason, getDraftBySeason, getConferences,
-} from './fetch-cfbd.mjs';
+import { detectTiers } from './lib/tiers.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const REPO = path.resolve(__dirname, '..');
+const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const API = path.join(REPO, 'data/api');
 const MANUAL = path.join(REPO, 'data/manual');
 const PUBLIC = path.join(REPO, 'public/data');
 const SNAP = path.join(REPO, 'data/snapshots');
 
 const AP_FROM = 1936;
-const RECORDS_FROM = 1900;
-const DRAFT_FROM = 1936;
-const CONF_YEAR = 2026; // current alignment
-const TREND_RECENT = 18; // "recent era" (~2 coaching generations) vs. everything before it
+const TREND_RECENT_FRAC = 0.2;
+// which national-title selectors count toward the Championships criterion.
+// data/manual/national_titles.csv also holds 'Coaches' (split-title co-champions) —
+// left out by default as the most disputed. Edit this one line to change the policy.
+const TITLE_SELECTORS = new Set(['AP', 'BCS', 'CFP', 'Historical']);
 
-/* ---- stat + criterion definitions (keep in sync with src/config/stats.ts) ---- */
-const STAT_COLS = {
-  allTimeWins: 'all_time_wins',
-  winPct: 'win_pct',
-  nationalTitles: 'national_titles',
-  conferenceTitles: 'conference_titles',
-  consensusAA: 'consensus_aa',
-  unanimousAA: 'unanimous_aa',
-  nflDraftPicks: 'nfl_draft_picks',
-  firstRoundPicks: 'first_round_picks',
-  weeksApPoll: 'weeks_ap_poll',
-  weeksApTop10: 'weeks_ap_top10',
-};
-const STAT_KEYS = Object.keys(STAT_COLS);
+const STAT_KEYS = [
+  'allTimeWins', 'winPct', 'nationalTitles', 'conferenceTitles', 'consensusAA',
+  'unanimousAA', 'nflDraftPicks', 'firstRoundPicks', 'weeksApPoll', 'weeksApTop10',
+];
 const CRITERIA = {
   perception: ['weeksApPoll', 'weeksApTop10'],
   wins: ['allTimeWins', 'winPct'],
@@ -58,610 +51,521 @@ const CRITERIA = {
   nflDraft: ['nflDraftPicks', 'firstRoundPicks'],
 };
 const CK = Object.keys(CRITERIA);
-const DEBATED = ['Nebraska', 'Texas'];
-
-const PROVENANCE = {
-  perception: 'AP poll ballots, weekly, 1936–present (CollegeFootballData).',
-  wins: 'Season-by-season W-L records, 1900–present (CollegeFootballData).',
-  championships:
-    'National titles and conference titles — hand-maintained (data/manual/stats_manual.csv); claimed vs. consensus counts are not adjudicated.',
-  allAmericans: 'Consensus & unanimous All-America selections — hand-maintained (data/manual/stats_manual.csv).',
-  nflDraft: 'NFL draft picks by school, 1936–present (CollegeFootballData).',
+const CRIT_LABEL = {
+  perception: 'AP Poll', wins: 'Wins', championships: 'Championships',
+  allAmericans: 'All-Americans', nflDraft: 'NFL Draft',
 };
 
-/* ---- stats helpers ---- */
+const GROUPS = ['Blue Bloods', 'Blue Blood Fringe', 'Blue Blood Adjacent', 'National Powers', 'National Brands', 'The Field'];
+
+const PROVENANCE = {
+  perception: 'Every weekly AP poll ballot, 1936–present (CollegeFootballData → data/api/ap-poll.json).',
+  wins: 'Wins/losses/ties per season (CollegeFootballData 1936+, hand-entered pre-1936 → data/season-records.csv).',
+  championships: 'Hand-curated title list, one row per selector (data/manual/national_titles.csv); conference titles hand-curated / summary.',
+  allAmericans: 'Consensus & unanimous All-America selections — hand-curated per season where available, else summary count (data/manual).',
+  nflDraft: 'Every NFL draft pick by school, 1936–present (CollegeFootballData → data/api/draft.json).',
+};
+
+/* ---- helpers ---- */
 const mean = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
-const stddev = (xs, mu = mean(xs)) =>
-  xs.length ? Math.sqrt(xs.reduce((a, b) => a + (b - mu) ** 2, 0) / xs.length) : 0;
-/** Excel-style TRIMMEAN: drop floor(n*prop/2) from each end, average the rest */
+const stddev = (xs, mu = mean(xs)) => (xs.length ? Math.sqrt(xs.reduce((a, b) => a + (b - mu) ** 2, 0) / xs.length) : 0);
 const trimmean = (arr, prop) => {
   const s = [...arr].sort((a, b) => a - b);
   const k = Math.floor((s.length * prop) / 2);
   return mean(s.slice(k, s.length - k));
 };
-function percentileFn(sortedAsc) {
-  return (x) => {
-    let lo = 0;
-    let hi = sortedAsc.length;
-    while (lo < hi) {
-      const mid = (lo + hi) >> 1;
-      if (sortedAsc[mid] < x) lo = mid + 1;
-      else hi = mid;
-    }
-    let hiEq = lo;
-    while (hiEq < sortedAsc.length && sortedAsc[hiEq] === x) hiEq += 1;
-    return (lo + hiEq) / 2 / sortedAsc.length;
-  };
-}
-/** raw value at percentile p (0..1) within a sorted-ascending array, nearest-rank */
-const valueAtPct = (sortedAsc, p) =>
-  sortedAsc[Math.max(0, Math.min(sortedAsc.length - 1, Math.round(p * (sortedAsc.length - 1))))];
 const zfun = (xs) => {
   const mu = mean(xs);
   const sd = stddev(xs, mu);
   return (x) => (sd === 0 ? 0 : (x - mu) / sd);
 };
+function pctFn(sortedAsc) {
+  return (x) => {
+    let lo = 0;
+    let hi = sortedAsc.length;
+    while (lo < hi) {
+      const m = (lo + hi) >> 1;
+      if (sortedAsc[m] < x) lo = m + 1;
+      else hi = m;
+    }
+    let he = lo;
+    while (he < sortedAsc.length && sortedAsc[he] === x) he += 1;
+    return (lo + he) / 2 / sortedAsc.length;
+  };
+}
+const pctOf = (arr) => {
+  const f = pctFn([...arr].sort((a, b) => a - b));
+  return arr.map(f);
+};
+const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+const csv = (name) => readRecords(fs.readFileSync(path.join(MANUAL, name), 'utf8'));
 
 /* ---- CFBD school name -> our canonical school ---- */
 const CFBD_ALIAS = {
-  'NC State': 'North Carolina State',
-  'App State': 'Appalachian State',
-  UMass: 'UMass',
-  Massachusetts: 'UMass',
-  Connecticut: 'UConn',
-  'Louisiana Monroe': 'Louisiana-Monroe',
-  'UL Monroe': 'Louisiana-Monroe',
-  'Southern Mississippi': 'Southern Miss',
-  Miami: 'Miami (FL)',
-  "Hawai'i": 'Hawaii',
-  'San José State': 'San Jose State',
-  'Sam Houston': 'Sam Houston State',
-  'Florida International': 'FIU',
+  'NC State': 'North Carolina State', 'App State': 'Appalachian State', Massachusetts: 'UMass',
+  Connecticut: 'UConn', 'Louisiana Monroe': 'Louisiana-Monroe', 'UL Monroe': 'Louisiana-Monroe',
+  'Southern Mississippi': 'Southern Miss', Miami: 'Miami (FL)', "Hawai'i": 'Hawaii',
+  'San José State': 'San Jose State', 'Sam Houston': 'Sam Houston State', 'Florida International': 'FIU',
 };
 const CONF_DISPLAY = {
-  'American Athletic': 'American',
-  'Mid-American': 'MAC',
-  'Conference USA': 'C-USA',
-  'FBS Independents': 'Independent',
+  'American Athletic': 'American', 'Mid-American': 'MAC', 'Conference USA': 'C-USA', 'FBS Independents': 'Independent',
 };
+const alias = (s) => CFBD_ALIAS[s] || s;
 
-function loadManual() {
-  const teams = readRecords(fs.readFileSync(path.join(MANUAL, 'teams.csv'), 'utf8'));
-  const stats = readRecords(fs.readFileSync(path.join(MANUAL, 'stats_manual.csv'), 'utf8'));
-  const statBySchool = new Map(stats.map((s) => [s.school, s]));
-  const blurbs = new Map();
-  const blurbFile = path.join(MANUAL, 'blurbs.csv');
-  if (fs.existsSync(blurbFile)) {
-    for (const b of readRecords(fs.readFileSync(blurbFile, 'utf8'))) {
-      if (b.school && b.personal_label) blurbs.set(b.school, b.personal_label);
-    }
+/* ---- load ---- */
+function load() {
+  const teams = csv('teams.csv');
+  const summary = new Map(csv('stats_summary.csv').map((r) => [r.school, r]));
+  const blurbs = new Map(csv('blurbs.csv').filter((r) => r.tagline).map((r) => [r.school, r.tagline]));
+
+  const titles = new Map();
+  for (const r of csv('national_titles.csv')) {
+    if (!TITLE_SELECTORS.has(r.selector)) continue;
+    if (!titles.has(r.school)) titles.set(r.school, new Set());
+    titles.get(r.school).add(r.year); // distinct years
   }
-  const rows = teams.map((t) => {
-    const s = statBySchool.get(t.school) || {};
-    const raw = {};
-    for (const [key, col] of Object.entries(STAT_COLS)) raw[key] = Number(s[col] || 0);
+  const confTitles = new Map();
+  for (const r of csv('conference_titles.csv')) {
+    confTitles.set(r.school, (confTitles.get(r.school) || 0) + 1);
+  }
+  const aa = new Map(); // school -> { total:{c,u}, perYear:{yr:{c,u}} }
+  for (const r of csv('all_americans.csv')) {
+    if (!r.school) continue;
+    const e = aa.get(r.school) || { c: 0, u: 0, perYear: {} };
+    const c = Number(r.consensus || 0);
+    const u = Number(r.unanimous || 0);
+    e.c += c;
+    e.u += u;
+    e.perYear[r.year] = { c, u };
+    aa.set(r.school, e);
+  }
+  const heisman = new Map();
+  for (const r of csv('heisman.csv')) heisman.set(r.school, (heisman.get(r.school) || 0) + 1);
+  const vacated = new Map();
+  for (const r of csv('vacated_wins.csv')) {
+    if (Number(r.wins_vacated) > 0) vacated.set(r.school, Number(r.wins_vacated));
+  }
+
+  const apSummary = readJson(path.join(API, 'ap-poll-summary.json'));
+  const draftRows = readJson(path.join(API, 'draft.json'));
+  const conferences = fs.existsSync(path.join(API, 'conferences.json'))
+    ? readJson(path.join(API, 'conferences.json')).bySchool
+    : {};
+
+  // season records -> per team totals + per-season
+  const sr = readRecords(fs.readFileSync(path.join(REPO, 'data/season-records.csv'), 'utf8'));
+  const records = new Map();
+  for (const r of sr) {
+    const e = records.get(r.school) || { wins: 0, games: 0, perSeason: {} };
+    const w = Number(r.wins || 0);
+    const g = w + Number(r.losses || 0) + Number(r.ties || 0);
+    e.wins += w;
+    e.games += g;
+    if (Number(r.season) >= AP_FROM) e.perSeason[r.season] = { wins: w, games: g };
+    records.set(r.school, e);
+  }
+
+  // draft -> per team totals + per-season picks
+  const draft = new Map();
+  for (const p of draftRows) {
+    const s = alias(p.school);
+    const e = draft.get(s) || { picks: 0, firstRound: 0, perSeason: {} };
+    e.picks += 1;
+    if (p.round === 1) e.firstRound += 1;
+    e.perSeason[p.year] = (e.perSeason[p.year] || 0) + 1;
+    draft.set(s, e);
+  }
+
+  return { teams, summary, blurbs, titles, confTitles, aa, heisman, vacated, apSummary, draftRows, conferences, records, draft };
+}
+
+/** raw stat line per team for a given wins mode ('asPlayed' | 'official') */
+function buildRows(D, mode) {
+  const granularAA = { consensus: 0, summaryC: 0 };
+  const rows = D.teams.map((t) => {
+    const ap = D.apSummary.teams[t.school] || D.apSummary.teams[revAlias(t.school)] || {};
+    const rec = D.records.get(t.school) || { wins: 0, games: 0, perSeason: {} };
+    const dr = D.draft.get(t.school) || { picks: 0, firstRound: 0, perSeason: {} };
+    const sum = D.summary.get(t.school) || {};
+
+    let wins = rec.wins;
+    let games = rec.games;
+    if (mode === 'official' && D.vacated.has(t.school)) {
+      const v = D.vacated.get(t.school);
+      wins -= v;
+      games -= v;
+    }
+
+    const aaRec = D.aa.get(t.school);
+    let consensusAA;
+    let unanimousAA;
+    if (aaRec && Object.keys(aaRec.perYear).length) {
+      consensusAA = aaRec.c;
+      unanimousAA = aaRec.u;
+      granularAA.consensus += 1;
+    } else {
+      consensusAA = Number(sum.consensus_aa || 0);
+      unanimousAA = Number(sum.unanimous_aa || 0);
+      granularAA.summaryC += 1;
+    }
+
+    const confT = D.confTitles.has(t.school) ? D.confTitles.get(t.school) : Number(sum.conference_titles || 0);
+
     return {
       school: t.school,
       slug: t.slug,
-      conference: t.conference,
       primary: t.primary_hex,
       secondary: t.secondary_hex,
       formerFcs: String(t.former_fcs) === '1',
-      raw,
-      trend: null,
+      conference: CONF_DISPLAY[D.conferences[t.school]] || D.conferences[t.school] || t.conference || 'Independent',
+      heismans: D.heisman.get(t.school) || 0,
+      raw: {
+        allTimeWins: wins,
+        winPct: games ? wins / games : 0,
+        nationalTitles: D.titles.has(t.school) ? D.titles.get(t.school).size : Number(sum.national_titles || 0),
+        conferenceTitles: confT,
+        consensusAA,
+        unanimousAA,
+        nflDraftPicks: dr.picks || Number(sum.nfl_draft_picks || 0),
+        firstRoundPicks: dr.firstRound || Number(sum.first_round_picks || 0),
+        weeksApPoll: ap.weeksPoll || 0,
+        weeksApTop10: ap.weeksTop10 || 0,
+      },
     };
   });
-  return { rows, blurbs };
+  return { rows, granularAA };
 }
 
-/** overlay CFBD figures for a cutoff season onto rows[].raw */
-function applyCfbd(rows, cfbd, cutoffSeason) {
-  if (!cfbd) return { apHit: 0, recHit: 0, drHit: 0 };
-  const bySchool = new Map(rows.map((r) => [r.school, r]));
-  const resolve = (name) => bySchool.get(CFBD_ALIAS[name] || name) || null;
-  let apHit = 0;
-  let recHit = 0;
-  let drHit = 0;
-
-  for (const [name, v] of cfbd.ap) {
-    if (name === 'finalNo1') continue;
-    const row = resolve(name);
-    if (!row) continue;
-    let weeksPoll = 0;
-    let weeksTop10 = 0;
-    for (const [y, w] of Object.entries(v.perSeason)) if (Number(y) <= cutoffSeason) weeksPoll += w;
-    for (const [y, w] of Object.entries(v.perSeasonTop10 || {})) if (Number(y) <= cutoffSeason) weeksTop10 += w;
-    row.raw.weeksApPoll = weeksPoll;
-    row.raw.weeksApTop10 = weeksTop10;
-    apHit += 1;
-  }
-  for (const [name, v] of cfbd.records) {
-    const row = resolve(name);
-    if (!row) continue;
-    let wins = 0;
-    let games = 0;
-    for (const [y, r] of Object.entries(v.perSeason)) {
-      if (Number(y) <= cutoffSeason) {
-        wins += r.wins;
-        games += r.games;
-      }
-    }
-    if (games > 0) {
-      row.raw.allTimeWins = wins;
-      row.raw.winPct = wins / games;
-      recHit += 1;
-    }
-  }
-  const draftCutoff = cutoffSeason + 1; // draft happens the spring after the season
-  for (const [name, v] of cfbd.draftByYear) {
-    const row = resolve(name);
-    if (!row) continue;
-    let picks = 0;
-    let firstRound = 0;
-    for (const [y, d] of Object.entries(v)) {
-      if (Number(y) <= draftCutoff) {
-        picks += d.picks;
-        firstRound += d.firstRound;
-      }
-    }
-    row.raw.nflDraftPicks = picks;
-    row.raw.firstRoundPicks = firstRound;
-    drHit += 1;
-  }
-  return { apHit, recHit, drHit };
+function revAlias(school) {
+  for (const [k, v] of Object.entries(CFBD_ALIAS)) if (v === school) return k;
+  return school;
 }
 
-/**
- * Trajectory: compare where a program sits among all 130 today (its recent era,
- * last TREND_RECENT seasons) with where it sits across its ENTIRE history, on
- * five stats — AP weeks, AP top-10 weeks, win %, AP national titles (final-poll
- * #1), and NFL draft picks. Working in cross-program percentile *position* (not
- * raw rate) cancels the era inflation, so "always elite" reads as `even` and only
- * a real change of station reads as `up` / `down`. Sparse by construction.
- */
-function computeTrend(rows, cfbd) {
-  if (!cfbd) {
-    for (const r of rows) r.trend = { score: 0, dir: 'even' };
-    return;
-  }
-  const rEnd = LATEST_SEASON;
-  const rStart = LATEST_SEASON - TREND_RECENT + 1;
-  const titlesByTeam = {};
-  for (const [year, school] of Object.entries(cfbd.ap.finalNo1 || {})) {
-    const s = CFBD_ALIAS[school] || school;
-    (titlesByTeam[s] = titlesByTeam[s] || []).push(Number(year));
-  }
+/* ---- trajectory: last 20% of a program's seasons vs. its whole history ---- */
+function computeTrend(rows, D) {
+  const finalNo1 = D.apSummary.finalNo1 || {};
+  const titleYears = {};
+  for (const [y, s] of Object.entries(finalNo1)) (titleYears[alias(s)] = titleYears[alias(s)] || []).push(Number(y));
 
-  const sumRange = (obj, a, b, pick = (v) => v || 0) => {
-    let s = 0;
-    for (let y = a; y <= b; y += 1) s += pick(obj[y]);
-    return s;
-  };
-  const sumAll = (obj, pick = (v) => v || 0) => Object.values(obj).reduce((s, v) => s + pick(v), 0);
-
-  // gather recent-window and career values per stat
-  const recent = { apW: [], apT: [], win: [], title: [], draft: [] };
-  const career = { apW: [], apT: [], win: [], title: [], draft: [] };
+  const feat = { apW: [], apT: [], win: [], title: [], draft: [] };
+  const recentFeat = { apW: [], apT: [], win: [], title: [], draft: [] };
   const meta = [];
   for (const r of rows) {
-    const ap = cfbd.ap.get(CFBD_ALIAS[r.school] || r.school) || cfbd.ap.get(r.school);
-    const rec = cfbd.records.get(CFBD_ALIAS[r.school] || r.school) || cfbd.records.get(r.school);
-    const draft = cfbd.draftByYear.get(CFBD_ALIAS[r.school] || r.school) || cfbd.draftByYear.get(r.school) || {};
-    const apPS = ap?.perSeason || {};
-    const apT10 = ap?.perSeasonTop10 || {};
-    const recPS = rec?.perSeason || {};
-    const firstRecord = Object.keys(recPS).length ? Math.min(...Object.keys(recPS).map(Number)) : rStart;
-    const apSpan = Math.max(1, rEnd - Math.max(AP_FROM, firstRecord) + 1);
-    const draftSpan = Math.max(1, rEnd - DRAFT_FROM + 1);
-    const wp = (a, b) => {
+    const ap = D.apSummary.teams[r.school] || D.apSummary.teams[revAlias(r.school)] || {};
+    const rec = D.records.get(r.school) || { perSeason: {} };
+    const dr = D.draft.get(r.school) || { perSeason: {} };
+    const seasons = Object.keys(rec.perSeason).map(Number).sort((a, b) => a - b);
+    const N = seasons.length || 1;
+    const recentN = Math.max(3, Math.ceil(TREND_RECENT_FRAC * N));
+    const recentYears = seasons.slice(-recentN);
+    const priorYears = seasons.slice(0, -recentN); // the program's history BEFORE its recent era
+
+    const rate = (obj, years) => {
+      let s = 0;
+      for (const y of years) s += obj[y] || 0;
+      return years.length ? s / years.length : 0;
+    };
+    const wp = (years) => {
       let w = 0;
       let g = 0;
-      for (let y = a; y <= b; y += 1) {
-        w += recPS[y]?.wins || 0;
-        g += recPS[y]?.games || 0;
+      for (const y of years) {
+        w += rec.perSeason[y]?.wins || 0;
+        g += rec.perSeason[y]?.games || 0;
       }
       return g ? w / g : 0;
     };
-    // career = the program's whole history BEFORE the recent window, so the
-    // surge we're measuring doesn't dilute its own baseline
-    const priorApSpan = Math.max(1, rStart - 1 - Math.max(AP_FROM, firstRecord) + 1);
-    const priorDraftSpan = Math.max(1, rStart - 1 - DRAFT_FROM + 1);
-    const beforeRecent = (obj, pick) => sumRange(obj, AP_FROM, rStart - 1, pick);
-    const titles = titlesByTeam[r.school] || [];
-    recent.apW.push(sumRange(apPS, rStart, rEnd) / TREND_RECENT);
-    career.apW.push(beforeRecent(apPS) / priorApSpan);
-    recent.apT.push(sumRange(apT10, rStart, rEnd) / TREND_RECENT);
-    career.apT.push(beforeRecent(apT10) / priorApSpan);
-    recent.win.push(wp(rStart, rEnd));
-    career.win.push(wp(Math.max(RECORDS_FROM, firstRecord), rStart - 1));
-    recent.title.push(titles.filter((y) => y >= rStart && y <= rEnd).length / TREND_RECENT);
-    career.title.push(titles.filter((y) => y < rStart).length / priorApSpan);
-    recent.draft.push(sumRange(draft, rStart, rEnd, (d) => d?.picks || 0) / TREND_RECENT);
-    career.draft.push(sumRange(draft, DRAFT_FROM, rStart - 1, (d) => d?.picks || 0) / priorDraftSpan);
+    const set = new Set(recentYears);
+    const priorSet = new Set(priorYears);
+    const titlesIn = (yrSet) => (titleYears[r.school] || []).filter((y) => yrSet.has(y)).length;
+
+    // "hist" here = the prior era (everything before the recent window)
+    feat.apW.push(rate(ap.perSeason || {}, priorYears));
+    feat.apT.push(rate(ap.perSeasonTop10 || {}, priorYears));
+    feat.win.push(wp(priorYears));
+    feat.title.push(priorYears.length ? titlesIn(priorSet) / priorYears.length : 0);
+    feat.draft.push(rate(dr.perSeason || {}, priorYears));
+    recentFeat.apW.push(rate(ap.perSeason || {}, recentYears));
+    recentFeat.apT.push(rate(ap.perSeasonTop10 || {}, recentYears));
+    recentFeat.win.push(wp(recentYears));
+    recentFeat.title.push(titlesIn(set) / recentN);
+    recentFeat.draft.push(rate(dr.perSeason || {}, recentYears));
     meta.push({
-      recentApW: recent.apW.at(-1),
-      recentWp: recent.win.at(-1),
-      careerWp: career.win.at(-1),
-      hasTitleRecent: titles.some((y) => y >= rStart && y <= rEnd),
+      recentWp: wp(recentYears),
+      histWp: wp(priorYears),
+      hasTitleRecent: (titleYears[r.school] || []).some((y) => set.has(y)),
     });
   }
 
-  const pctOf = (arr) => {
-    const s = [...arr].sort((a, b) => a - b);
-    const f = percentileFn(s);
-    return arr.map((x) => f(x));
-  };
-  const rPct = Object.fromEntries(Object.keys(recent).map((k) => [k, pctOf(recent[k])]));
-  const cPct = Object.fromEntries(Object.keys(career).map((k) => [k, pctOf(career[k])]));
+  const histPct = Object.fromEntries(Object.keys(feat).map((k) => [k, pctOf(feat[k])]));
+  const recPct = Object.fromEntries(Object.keys(recentFeat).map((k) => [k, pctOf(recentFeat[k])]));
   const W = { apW: 0.32, apT: 0.24, win: 0.18, title: 0.16, draft: 0.1 };
-
-  const shifts = rows.map((_, i) =>
-    Object.keys(W).reduce((s, k) => s + W[k] * (rPct[k][i] - cPct[k][i]), 0),
-  );
+  const shifts = rows.map((_, i) => Object.keys(W).reduce((s, k) => s + W[k] * (recPct[k][i] - histPct[k][i]), 0));
   const zShift = zfun(shifts);
-  rows.forEach((r, i) => {
+
+  return rows.map((_, i) => {
     const m = meta[i];
     const score = zShift(shifts[i]);
-    // recent / prior standing among all programs (AP weeks + win %), for gates
-    const recentStanding = (rPct.apW[i] + rPct.win[i]) / 2;
-    const priorStanding = (cPct.apW[i] + cPct.win[i]) / 2;
-    const material = Math.abs(m.recentWp - m.careerWp) >= 0.03 || m.recentApW >= 1 || m.hasTitleRecent;
+    const recentStanding = (recPct.apW[i] + recPct.win[i]) / 2;
+    const priorStanding = (histPct.apW[i] + histPct.win[i]) / 2;
+    const material = Math.abs(m.recentWp - m.histWp) >= 0.03 || recentFeat.apW[i] >= 1 || m.hasTitleRecent;
     let dir = 'even';
-    // up: clear positive shift AND the program is now genuinely respectable …
     if (material && score >= 1.1 && recentStanding >= 0.5) dir = 'up';
-    // … or it won a national title in the recent era and climbed doing it
     else if (m.hasTitleRecent && score >= 0.55 && recentStanding >= 0.7) dir = 'up';
-    // down: clear negative shift AND the program actually had height to fall from
     else if (material && score <= -1.1 && priorStanding >= 0.55) dir = 'down';
-    r.trend = { score: Number(score.toFixed(3)), dir };
+    return {
+      dir,
+      score: Number(score.toFixed(3)),
+      recentStanding: Number(recentStanding.toFixed(2)),
+      priorStanding: Number(priorStanding.toFixed(2)),
+    };
   });
 }
 
+/* ---- derive percentiles, criterion scores, rating, rank ---- */
 function derive(rows) {
   const sorted = {};
   const pct = {};
   const z = {};
-  const dist = {};
-  for (const key of STAT_KEYS) {
-    const xs = rows.map((r) => r.raw[key]);
-    sorted[key] = [...xs].sort((a, b) => a - b);
-    pct[key] = percentileFn(sorted[key]);
-    z[key] = zfun(xs);
-    const mu = mean(xs);
-    dist[key] = { mean: mu, stddev: stddev(xs, mu), min: sorted[key][0], max: sorted[key].at(-1) };
+  for (const k of STAT_KEYS) {
+    const xs = rows.map((r) => r.raw[k]);
+    sorted[k] = [...xs].sort((a, b) => a - b);
+    pct[k] = pctFn(sorted[k]);
+    z[k] = zfun(xs);
   }
-
   const teams = rows.map((r) => {
-    const zt = {};
     const pt = {};
-    for (const key of STAT_KEYS) {
-      zt[key] = z[key](r.raw[key]);
-      pt[key] = pct[key](r.raw[key]) * 100;
+    const zt = {};
+    for (const k of STAT_KEYS) {
+      pt[k] = pct[k](r.raw[k]) * 100;
+      zt[k] = z[k](r.raw[k]);
     }
-    const composite = {};
     const critScore = {};
-    for (const [ck, [a, b]] of Object.entries(CRITERIA)) {
-      composite[ck] = (zt[a] + zt[b]) / 2;
-      critScore[ck] = (pt[a] + pt[b]) / 2;
+    const composite = {};
+    for (const [c, [a, b]] of Object.entries(CRITERIA)) {
+      critScore[c] = (pt[a] + pt[b]) / 2;
+      composite[c] = (zt[a] + zt[b]) / 2;
     }
-    // Blue Blood Rating: drop the single highest and single lowest of the 10
-    // stat percentiles, average the remaining 8
     const rating = trimmean(STAT_KEYS.map((k) => pt[k]), 0.2);
-    const spread = stddev(CK.map((c) => critScore[c]));
-    const consistency = Math.max(0, Math.round(100 - spread * 2.5));
-    return {
-      school: r.school,
-      slug: r.slug,
-      conference: r.conference,
-      primary: r.primary,
-      secondary: r.secondary,
-      formerFcs: r.formerFcs,
-      stats: r.raw,
-      z: zt,
-      pct: pt,
-      composite,
-      critScore,
-      rating,
-      spread,
-      consistency,
-      trend: r.trend || { score: 0, dir: 'even' },
-    };
+    return { ...r, pct: pt, z: zt, critScore, composite, rating };
   });
-
   const zRating = zfun(teams.map((t) => t.rating));
-  teams.forEach((t) => {
-    t.overall = zRating(t.rating);
-  });
-  [...teams].sort((a, b) => b.rating - a.rating).forEach((t, i) => {
-    t.ratingRank = i + 1;
-  });
+  teams.forEach((t) => (t.overall = zRating(t.rating)));
+  [...teams].sort((a, b) => b.rating - a.rating).forEach((t, i) => (t.ratingRank = i + 1));
 
   const composites = {};
-  for (const ck of CK) {
-    const xs = teams.map((t) => t.composite[ck]);
+  for (const c of CK) {
+    const xs = teams.map((t) => t.composite[c]);
     const mu = mean(xs);
-    composites[ck] = { mean: mu, stddev: stddev(xs, mu), min: Math.min(...xs), max: Math.max(...xs) };
+    composites[c] = { mean: mu, stddev: stddev(xs, mu), min: Math.min(...xs), max: Math.max(...xs) };
   }
-  const overall = {
-    mean: 0,
-    stddev: stddev(teams.map((t) => t.overall)),
-    min: Math.min(...teams.map((t) => t.overall)),
-    max: Math.max(...teams.map((t) => t.overall)),
-  };
-  return { teams, stats: dist, composites, overall, sorted };
+  const ov = teams.map((t) => t.overall);
+  const overall = { mean: 0, stddev: stddev(ov), min: Math.min(...ov), max: Math.max(...ov) };
+  return { teams, composites, overall, sorted };
 }
 
-/* ---- grouping (mirrors src/config/ranking.ts) ---- */
-const GROUPS = [
-  { key: 'blueblood', label: 'Blue Bloods', test: (t) => t.ratingRank <= 6 },
-  { key: 'debated', label: 'Debated', test: (t) => DEBATED.includes(t.school) },
-  { key: 'adjacent', label: 'Blue Blood Adjacent', test: (t) => t.rating >= 88 },
-  { key: 'brand', label: 'National Brands', test: (t) => t.rating >= 72 },
-  { key: 'field', label: 'The Field', test: () => true },
-];
-const groupIndex = (t) => GROUPS.findIndex((g) => g.test(t));
-const groupLabel = (t) => GROUPS[groupIndex(t)].label;
-
-function trajectory(dir) {
-  return { up: 'Ascending', down: 'Receding', even: 'Holding' }[dir] || 'Holding';
+/* ---- groupings from natural gaps ---- */
+function applyGroupings(teams) {
+  const desc = [...teams].sort((a, b) => a.ratingRank - b.ratingRank).map((t) => t.rating);
+  const { boundaries, gaps, assign } = detectTiers(desc, { count: 6, minSize: 2, maxBoundaryRank: 60 });
+  for (const t of teams) t.grouping = GROUPS[assign(t.ratingRank)] || GROUPS.at(-1);
+  const counts = GROUPS.map((g) => teams.filter((t) => t.grouping === g).length);
+  return { boundaries, gaps, counts };
 }
 
-/**
- * Pointed suffix — only when it genuinely bears on the rating, and only for the
- * handful of programs where it's the real story. Two cases:
- *   "· needs the decades"  a riser whose rating is capped by cumulative totals
- *                          (all-time wins, poll weeks, draft picks), not by
- *                          current quality — a young/recent arrival.
- *   "· a former power"     a receder whose rating still rests on one genuinely
- *                          elite bygone strength (a criterion in the top ~10%).
- */
-function suffixFor(t) {
+/* ---- trajectory note (exhaustive for up/down, none for even) ---- */
+function trajectoryNote(t) {
+  if (t.trend.dir === 'even') return '';
   const cum = mean([t.pct.allTimeWins, t.pct.weeksApPoll, t.pct.nflDraftPicks, t.pct.consensusAA]);
-  const quality = mean([t.pct.winPct, t.pct.weeksApTop10, t.pct.firstRoundPicks]);
+  const rate = mean([t.pct.winPct, t.pct.weeksApTop10, t.pct.firstRoundPicks]);
   const peak = Math.max(...CK.map((c) => t.critScore[c]));
-  if (t.trend.dir === 'up' && quality - cum >= 20 && cum < 45 && t.ratingRank > 12) {
-    return ' · needs the decades';
+  const downCrit = CK.filter((c) => t.composite[c] < 0).length;
+  if (t.trend.dir === 'up') {
+    if (t.ratingRank <= 20) return 'still climbing';
+    if (rate - cum >= 18 && cum < 45) return 'needs the decades';
+    if (t.trend.priorStanding >= 0.55) return 'back from the wilderness';
+    return 'new money';
   }
-  if (t.trend.dir === 'down' && peak >= 90 && t.ratingRank > 15) return ' · a former power';
-  return '';
+  // down
+  if (t.ratingRank <= 20) return 'off its peak';
+  if (peak >= 90) return 'a former power';
+  if (cum - rate >= 15) return 'trading on history';
+  if (downCrit >= 4) return 'a long slide';
+  return 'off its peak';
 }
 
-/**
- * One concrete, decade-scale path into the next grouping up. The rating is the
- * mean of 8 of 10 stat percentiles, so we concentrate the needed lift on the
- * program's lowest few percentiles and translate the implied raw gains into
- * plain phrases — each capped at what a genuinely strong decade produces.
- */
-function nextTierPath(t, all, sorted) {
-  const gi = groupIndex(t);
-  if (gi <= 0) return null;
-  // "Debated" is a 2-team hardcoded callout, not a tier you climb into — skip it
-  let ti = gi - 1;
-  if (GROUPS[ti].key === 'debated') ti -= 1;
-  if (ti < 0) return null;
-  const target = GROUPS[ti];
-  const inTarget = all.filter((x) => groupIndex(x) === ti);
-  const bar = Math.min(...inTarget.map((x) => x.rating));
-  const gap = bar - t.rating;
-  if (gap <= 0.2) return null;
-
-  // per-decade ceilings for a top-tier program
-  const CAP = {
-    weeksApPoll: 130, weeksApTop10: 55, allTimeWins: 115, winPct: 0.15,
-    nationalTitles: 2, conferenceTitles: 4, consensusAA: 12, unanimousAA: 6,
-    nflDraftPicks: 55, firstRoundPicks: 12,
-  };
-  const PHRASE = {
-    weeksApPoll: (d) => `~${Math.round(d / 13)} more ranked seasons`,
-    weeksApTop10: (d) => `~${Math.max(1, Math.round(d / 10))} more top-10 finishes`,
-    allTimeWins: (d) => `~${Math.round(d / 10) * 10} more wins`,
-    winPct: () => 'a clear step up in the all-time win rate',
-    nationalTitles: (d) => `${Math.max(1, Math.ceil(d))} national title${Math.ceil(d) > 1 ? 's' : ''}`,
-    conferenceTitles: (d) => `${Math.max(1, Math.ceil(d))} more league titles`,
-    consensusAA: (d) => `${Math.max(1, Math.ceil(d))} more consensus All-Americans`,
-    unanimousAA: (d) => `${Math.max(1, Math.ceil(d))} more unanimous All-Americans`,
-    nflDraftPicks: (d) => `~${Math.round(d / 10) * 10} more draft picks`,
-    firstRoundPicks: (d) => `${Math.max(1, Math.ceil(d))} more first-round picks`,
-  };
-
-  const ranked = STAT_KEYS.map((k) => ({ k, p: t.pct[k], head: 100 - t.pct[k] }))
-    .filter((r) => r.k !== 'winPct') // implied by wins; not independently actionable
-    .sort((a, b) => a.p - b.p)
-    .slice(0, 4);
-  const headTotal = ranked.reduce((s, r) => s + r.head, 0) || 1;
-  const need = 8 * gap;
-
-  let covered = 0;
-  const moves = [];
-  for (const { k, head } of ranked) {
-    const addPct = Math.min(head, (need * head) / headTotal);
-    if (addPct < 3) continue;
-    const newRaw = valueAtPct(sorted[k], Math.min(1, (t.pct[k] + addPct) / 100));
-    let delta = newRaw - t.stats[k];
-    if (delta <= 0) continue;
-    const capped = Math.min(delta, CAP[k] ?? delta);
-    covered += capped / (delta || 1);
-    moves.push({ stat: k, phrase: PHRASE[k](capped) });
+/* ---- peer comparison ---- */
+function peerComparison(t, peers, groupName) {
+  const within = /^The\b/.test(groupName) ? groupName : `the ${groupName}`;
+  const bigGroup = peers.length > 10;
+  const leadCut = bigGroup ? Math.ceil(peers.length * 0.2) : 2;
+  const lagCut = bigGroup ? Math.floor(peers.length * 0.8) : peers.length - 2;
+  const leads = [];
+  const lags = [];
+  for (const c of CK) {
+    const ranked = [...peers].sort((a, b) => b.critScore[c] - a.critScore[c]);
+    const pos = ranked.findIndex((x) => x.school === t.school) + 1;
+    if (pos <= leadCut) leads.push(CRIT_LABEL[c]);
+    else if (pos > lagCut) lags.push(CRIT_LABEL[c]);
   }
-  if (!moves.length) return null;
-  const enough = covered >= moves.length * 0.8;
-  const items = moves.slice(0, 3).map((m) => m.phrase).join(', ');
-  const summary = enough
-    ? `One path to ${target.label}: a strong decade — ${items}.`
-    : `${target.label} is a long way off: it would take more than a decade of ${items}, sustained.`;
-  return { label: target.label, gapPoints: Number(gap.toFixed(1)), moves: moves.slice(0, 3), summary };
+  const list = (a) => (a.length === 1 ? a[0] : `${a.slice(0, -1).join(', ')} and ${a.at(-1)}`);
+  let summary;
+  if (leads.length && lags.length) {
+    summary = `Within ${within}, ${t.school} leads on ${list(leads)} and trails on ${list(lags)}.`;
+  } else if (leads.length) {
+    summary = `Within ${within}, ${t.school} leads on ${list(leads)}; it doesn't trail its peers in any criterion.`;
+  } else if (lags.length) {
+    summary = `Within ${within}, ${t.school} trails on ${list(lags)}; it doesn't lead its peers in any criterion.`;
+  } else {
+    summary = `Within ${within}, ${t.school} sits mid-pack on every criterion — no clear edge or gap against its peers.`;
+  }
+  return { leads, lags, summary };
 }
 
-function finalize(teams, sorted, blurbs) {
+/* ---- assemble one full variant ---- */
+function computeVariant(D, mode, trend) {
+  const { rows, granularAA } = buildRows(D, mode);
+  const d = derive(rows);
+  const teams = d.teams;
+  for (let i = 0; i < teams.length; i += 1) teams[i].trend = trend[i];
+  const groupInfo = applyGroupings(teams);
+  const byGroup = Object.fromEntries(GROUPS.map((g) => [g, teams.filter((t) => t.grouping === g)]));
   for (const t of teams) {
-    const standard = `${groupLabel(t)} · ${trajectory(t.trend.dir)}${suffixFor(t)}`;
-    t.label = { standard, personal: blurbs.get(t.school) || standard };
-    t.nextTier = nextTierPath(t, teams, sorted);
-    delete t.spread;
+    t.note = trajectoryNote(t);
+    // a small tier borrows the tiers directly above and below so the read is
+    // against "teams near it", not only teams above it
+    let peers = byGroup[t.grouping];
+    const gi = GROUPS.indexOf(t.grouping);
+    if (peers.length < 6) {
+      peers = [
+        ...(gi > 0 ? byGroup[GROUPS[gi - 1]] : []),
+        ...peers,
+        ...(gi < GROUPS.length - 1 ? byGroup[GROUPS[gi + 1]] : []),
+      ];
+    }
+    t.peer = peerComparison(t, peers, t.grouping);
   }
+  return { teams, ...d, groupInfo, granularAA };
 }
 
-function readPreviousSnapshot() {
+function readPrevious() {
   if (!fs.existsSync(SNAP)) return null;
-  const files = fs
-    .readdirSync(SNAP)
-    .filter((f) => /^data-\d{4}-\d{2}-\d{2}\.json$/.test(f))
-    .sort();
+  const files = fs.readdirSync(SNAP).filter((f) => /^data-\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort();
   const today = `data-${new Date().toISOString().slice(0, 10)}.json`;
   const prev = files.filter((f) => f !== today).pop();
   if (!prev) return null;
   try {
     const p = JSON.parse(fs.readFileSync(path.join(SNAP, prev), 'utf8'));
-    if (p.teams?.[0]?.rating == null) return null;
-    return Object.fromEntries(p.teams.map((t) => [t.school, { ratingRank: t.ratingRank, rating: t.rating }]));
+    const t0 = p.teams?.[0];
+    const get = (t) => t.variants?.asPlayed ?? t;
+    if (get(t0)?.rating == null) return null;
+    return Object.fromEntries(p.teams.map((t) => [t.school, { ratingRank: get(t).ratingRank, rating: get(t).rating }]));
   } catch {
     return null;
   }
 }
 
-async function main() {
-  const notes = [];
-  const { rows, blurbs } = loadManual();
+function main() {
+  const D = load();
+  const trend = computeTrend(buildRows(D, 'asPlayed').rows, D);
 
-  let cfbd = null;
-  let conferences = null;
-  if (hasKey()) {
-    console.log('Fetching CFBD history (cached per year under data/snapshots/cfbd/) …');
-    const [ap, records] = await Promise.all([
-      getApBySeason(AP_FROM, LATEST_SEASON),
-      getRecordsBySeason(RECORDS_FROM, LATEST_SEASON),
-    ]);
-    await getDraftBySeason(DRAFT_FROM, CURRENT_YEAR);
-    cfbd = { ap, records, draftByYear: await draftPerYear() };
-    conferences = await getConferences(CONF_YEAR);
-  } else {
-    notes.push('CFBD_API_KEY not set — manual sheet values only; trend flat; conferences from CSV.');
-  }
+  const asPlayed = computeVariant(D, 'asPlayed', trend);
+  const official = computeVariant(D, 'official', trend);
 
-  // current conference from CFBD (falls back to the CSV value)
-  if (conferences) {
-    let updated = 0;
-    for (const r of rows) {
-      const c = conferences.get(r.school) || conferences.get(reverseAlias(r.school));
-      if (c) {
-        const disp = CONF_DISPLAY[c] || c;
-        if (disp !== r.conference) updated += 1;
-        r.conference = disp;
-      }
-    }
-    notes.push(`conference alignment set from CFBD ${CONF_YEAR} (${updated} changed).`);
-  }
+  // per-team payload: shared fields top-level, wins-dependent fields per variant
+  const officialBy = new Map(official.teams.map((t) => [t.school, t]));
+  const teams = asPlayed.teams.map((a) => {
+    const o = officialBy.get(a.school);
+    const variantFields = (t) => ({
+      stats: t.raw,
+      pct: t.pct,
+      critScore: t.critScore,
+      composite: t.composite,
+      rating: t.rating,
+      overall: t.overall,
+      ratingRank: t.ratingRank,
+      grouping: t.grouping,
+      peer: t.peer,
+      note: t.note,
+    });
+    return {
+      school: a.school,
+      slug: a.slug,
+      conference: a.conference,
+      primary: a.primary,
+      secondary: a.secondary,
+      formerFcs: a.formerFcs,
+      heismans: a.heismans,
+      trend: a.trend,
+      label: {
+        standard: `${a.grouping} · ${{ up: 'Ascending', down: 'Receding', even: 'Holding' }[a.trend.dir]}${a.note ? ` · ${a.note}` : ''}`,
+        personal: D.blurbs.get(a.school) || '',
+      },
+      // default view is asPlayed — mirror onto the top level so components read team.rating directly
+      ...variantFields(a),
+      variants: { asPlayed: variantFields(a), official: variantFields(o) },
+    };
+  });
 
-  applyCfbd(rows, cfbd, LATEST_SEASON);
-  computeTrend(rows, cfbd);
-  const now = derive(rows.map((r) => ({ ...r, raw: { ...r.raw } })));
-  finalize(now.teams, now.sorted, blurbs);
-
-  // prior-season dataset for the year-over-year note
-  let previous = readPreviousSnapshot();
-  if (!previous && cfbd) {
-    const priorRows = loadManual().rows;
-    if (conferences) {
-      for (const r of priorRows) {
-        const c = conferences.get(r.school);
-        if (c) r.conference = CONF_DISPLAY[c] || c;
-      }
-    }
-    applyCfbd(priorRows, cfbd, LATEST_SEASON - 1);
-    const prior = derive(priorRows);
-    previous = Object.fromEntries(
-      prior.teams.map((t) => [t.school, { ratingRank: t.ratingRank, rating: t.rating }]),
-    );
-  }
-
-  const champRaw = cfbd?.ap.finalNo1?.[LATEST_SEASON] || null;
-  const latestChampion = champRaw ? CFBD_ALIAS[champRaw] || champRaw : null;
-
-  const missingLogo = now.teams
-    .filter(
-      (t) =>
-        !t.slug ||
-        (!fs.existsSync(path.join(REPO, 'public/logos', `${t.slug}.svg`)) &&
-          !fs.existsSync(path.join(REPO, 'public/logos', `${t.slug}.png`))),
-    )
-    .map((t) => t.school);
+  const previous = readPrevious();
+  const champ = D.apSummary.finalNo1?.[String(D.apSummary.toYear)];
 
   const meta = {
     generatedAt: new Date().toISOString(),
     model: 'percentile-trimmed-mean',
-    modelBlurb:
-      'Rank each of the ten stats within FBS, drop each program’s single best and single worst percentile, average the other eight.',
-    trendRecentYears: TREND_RECENT,
-    latestSeason: LATEST_SEASON,
-    latestChampion,
-    conferenceYear: conferences ? CONF_YEAR : null,
-    sources: { cfbd: Boolean(cfbd), manual: true },
+    modelBlurb: 'Rank each of the ten stats within FBS, drop each program’s single best and single worst percentile, average the other eight.',
+    trendRecentFraction: TREND_RECENT_FRAC,
+    latestSeason: D.apSummary.toYear,
+    latestChampion: champ ? alias(champ) : null,
+    conferenceYear: fs.existsSync(path.join(API, 'conferences.json')) ? readJson(path.join(API, 'conferences.json')).year : null,
+    titleSelectors: [...TITLE_SELECTORS],
+    sources: { store: 'data/api + data/season-records.csv + data/manual', network: false },
     provenance: PROVENANCE,
-    dataRange: cfbd
-      ? `AP poll ${AP_FROM}–${LATEST_SEASON} and all-time records via CollegeFootballData; titles & All-Americans hand-maintained`
-      : 'data/manual/*.csv only',
-    stats: now.stats,
-    composites: now.composites,
-    overall: now.overall,
+    granular: {
+      allAmericans: `${asPlayed.granularAA.consensus}/${asPlayed.granularAA.consensus + asPlayed.granularAA.summaryC} programs have per-season rows; the rest use a summary count.`,
+      nationalTitles: 'granular (data/manual/national_titles.csv, one row per selector)',
+      conferenceTitles: 'granular where filed, else summary',
+    },
+    dataRange: `AP poll ${AP_FROM}–${D.apSummary.toYear}; all-time records via CFBD + hand-entered pre-1936; titles & honors hand-curated`,
+    groupings: GROUPS,
+    tierBoundaries: asPlayed.groupInfo.boundaries,
+    tierGaps: asPlayed.groupInfo.gaps,
+    stats: Object.fromEntries(STAT_KEYS.map((k) => {
+      const xs = asPlayed.teams.map((t) => t.raw[k]);
+      const mu = mean(xs);
+      return [k, { mean: mu, stddev: stddev(xs, mu), min: Math.min(...xs), max: Math.max(...xs) }];
+    })),
+    composites: asPlayed.composites,
+    overall: asPlayed.overall,
     previous: previous || undefined,
   };
-  const payload = { meta, teams: now.teams };
 
   fs.mkdirSync(PUBLIC, { recursive: true });
   fs.mkdirSync(SNAP, { recursive: true });
+  const payload = { meta, teams };
   fs.writeFileSync(path.join(PUBLIC, 'teams.json'), JSON.stringify(payload));
   fs.writeFileSync(path.join(PUBLIC, 'meta.json'), JSON.stringify(meta, null, 2));
-  fs.writeFileSync(
-    path.join(SNAP, `data-${new Date().toISOString().slice(0, 10)}.json`),
-    JSON.stringify(payload),
-  );
+  fs.writeFileSync(path.join(SNAP, `data-${new Date().toISOString().slice(0, 10)}.json`), JSON.stringify(payload));
 
-  console.log(`\n✓ ${now.teams.length} teams → public/data/teams.json  (model: ${meta.model})`);
-  for (const n of notes) console.log(`  · ${n}`);
-  if (latestChampion) console.log(`  · ${LATEST_SEASON} AP champion: ${latestChampion}`);
-  if (missingLogo.length) console.log(`  ! missing logo: ${missingLogo.join(', ')}`);
-  const top = [...now.teams].sort((a, b) => a.ratingRank - b.ratingRank).slice(0, 12);
-  console.log('  Blue Blood Rating — top 12:');
-  for (const t of top) {
-    console.log(
-      `   ${String(t.ratingRank).padStart(2)}. ${t.school.padEnd(15)} ${t.rating.toFixed(1).padStart(5)}  ` +
-        `${t.trend.dir.padEnd(5)}  ${t.conference.padEnd(12)}  ${t.label.standard}`,
-    );
+  /* ---- build log ---- */
+  const gi = asPlayed.groupInfo;
+  console.log(`\n✓ ${teams.length} teams → public/data/teams.json  (model: ${meta.model}, no network)`);
+  console.log(`  tier boundaries after ranks: ${gi.boundaries.map((b, i) => `#${b} (gap ${gi.gaps[i].toFixed(1)})`).join(' | ')}`);
+  console.log(`  grouping counts: ${GROUPS.map((g, i) => `${g} ${gi.counts[i]}`).join(' · ')}`);
+  console.log(`  ${AP_FROM} AP champion → latest: ${meta.latestChampion}`);
+  console.log('  Blue Blood Rating — top 12 (as-played):');
+  for (const t of [...asPlayed.teams].sort((a, b) => a.ratingRank - b.ratingRank).slice(0, 12)) {
+    console.log(`   ${String(t.ratingRank).padStart(2)}. ${t.school.padEnd(15)} ${t.rating.toFixed(1).padStart(5)}  ${t.trend.dir.padEnd(5)} ${t.grouping.padEnd(20)} ${t.note}`);
   }
-  const dirs = now.teams.reduce((m, t) => ((m[t.trend.dir] = (m[t.trend.dir] || 0) + 1), m), {});
+  const dirs = asPlayed.teams.reduce((m, t) => ((m[t.trend.dir] = (m[t.trend.dir] || 0) + 1), m), {});
   console.log('  trend split:', dirs);
+  // national-title reconciliation vs old summary
+  const deltas = asPlayed.teams
+    .map((t) => ({ s: t.school, now: t.raw.nationalTitles, was: Number(D.summary.get(t.school)?.national_titles || 0) }))
+    .filter((x) => x.now !== x.was)
+    .sort((a, b) => Math.abs(b.now - b.was) - Math.abs(a.now - a.was))
+    .slice(0, 12);
+  if (deltas.length) console.log('  national-title count changes vs old summary:', deltas.map((d) => `${d.s} ${d.was}→${d.now}`).join(', '));
+  console.log(`  all-Americans: ${meta.granular.allAmericans}`);
 }
 
-function reverseAlias(school) {
-  for (const [cfbd, ours] of Object.entries(CFBD_ALIAS)) if (ours === school) return cfbd;
-  return school;
-}
-
-async function draftPerYear() {
-  const dir = path.join(SNAP, 'cfbd');
-  const out = new Map();
-  if (!fs.existsSync(dir)) return out;
-  for (const f of fs.readdirSync(dir)) {
-    const m = f.match(/^draft-(\d{4})\.json$/);
-    if (!m) continue;
-    const year = Number(m[1]);
-    for (const p of JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'))) {
-      const school = p.collegeTeam || p.college;
-      if (!school) continue;
-      let e = out.get(school);
-      if (!e) {
-        e = {};
-        out.set(school, e);
-      }
-      e[year] = e[year] || { picks: 0, firstRound: 0 };
-      e[year].picks += 1;
-      if (p.round === 1) e[year].firstRound += 1;
-    }
-  }
-  return out;
-}
-
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+main();

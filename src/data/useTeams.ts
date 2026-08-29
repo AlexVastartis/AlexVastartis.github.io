@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { TeamsPayload } from '../types';
+import type { Team, TeamsPayload } from '../types';
+
+export type WinsMode = 'asPlayed' | 'official';
 
 let cache: TeamsPayload | null = null;
 let inflight: Promise<TeamsPayload> | null = null;
@@ -30,8 +32,8 @@ export interface TeamsState {
   data: TeamsPayload | null;
 }
 
-export function useTeams(): TeamsState {
-  const [state, setState] = useState<TeamsState>(() => ({
+export function useTeams(wins: WinsMode = 'asPlayed'): TeamsState {
+  const [raw, setRaw] = useState<TeamsState>(() => ({
     loading: !cache,
     error: null,
     data: cache,
@@ -41,17 +43,25 @@ export function useTeams(): TeamsState {
     if (cache) return;
     let alive = true;
     load()
-      .then((data) => alive && setState({ loading: false, error: null, data }))
+      .then((data) => alive && setRaw({ loading: false, error: null, data }))
       .catch((e: unknown) =>
         alive &&
-        setState({ loading: false, error: e instanceof Error ? e.message : String(e), data: null }),
+        setRaw({ loading: false, error: e instanceof Error ? e.message : String(e), data: null }),
       );
     return () => {
       alive = false;
     };
   }, []);
 
-  return state;
+  // merge the chosen wins-variant onto every team so components read team.rating etc. directly
+  const data = useMemo<TeamsPayload | null>(() => {
+    if (!raw.data) return null;
+    if (wins === 'asPlayed') return raw.data;
+    const teams = raw.data.teams.map((t): Team => ({ ...t, ...t.variants[wins] }));
+    return { ...raw.data, teams };
+  }, [raw.data, wins]);
+
+  return { ...raw, data };
 }
 
 /** distinct conference list, ordered by team count desc then name */

@@ -1,0 +1,8 @@
+school,year,consensus,unanimous,source
+# Per-season counts of Consensus and Unanimous All-America selections.
+# One row per (school, year). `consensus` = number of that program's players named
+# consensus All-America that year; `unanimous` = the subset who were unanimous.
+# While a program has NO rows here, build-data falls back to its summary count in
+# data/manual/stats_summary.csv and drops the All-Americans term from its trend.
+# Source ideas: NCAA "Consensus All-America Selections" record book; Wikipedia
+# "List of <team> consensus All-Americans".

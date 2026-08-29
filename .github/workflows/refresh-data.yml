@@ -29,19 +29,24 @@ jobs:
         with:
           node-version: 20
 
-      - name: Rebuild data
+      - run: npm ci
+
+      - name: Refresh the CFBD store
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: node scripts/build-api-store.mjs
+
+      - name: Rebuild data (no network)
         run: node scripts/build-data.mjs
 
       - name: Commit if changed
         run: |
-          if git diff --quiet -- public/data data/snapshots; then
+          if git diff --quiet -- public/data data/api data/season-records.csv data/snapshots; then
             echo "No data changes."
             exit 0
           fi
           git config user.name  "bbf-bot"
           git config user.email "bbf-bot@users.noreply.github.com"
-          git add public/data data/snapshots
+          git add public/data data/api data/season-records.csv data/snapshots
           git commit -m "chore(data): refresh $(date -u +%Y-%m-%d)"
           git push

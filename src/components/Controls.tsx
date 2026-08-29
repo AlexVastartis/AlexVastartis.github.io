@@ -1,4 +1,4 @@
-import type { ViewState } from '../data/useViewState';
+import type { ViewState, WinsMode } from '../data/useViewState';
 import type { ThemeMode } from '../lib/theme';
 
 interface Props {
@@ -12,7 +12,14 @@ interface Props {
   schools: string[];
   favorite: string | null;
   onSetFavorite: (s: string | null) => void;
+  wins: WinsMode;
+  onSetWins: (w: WinsMode) => void;
 }
+
+const WINS: { value: WinsMode; label: string }[] = [
+  { value: 'asPlayed', label: 'As played' },
+  { value: 'official', label: 'NCAA official' },
+];
 
 const THEMES: { value: ThemeMode; label: string }[] = [
   { value: 'system', label: 'Auto' },
@@ -31,6 +38,8 @@ export default function Controls({
   schools,
   favorite,
   onSetFavorite,
+  wins,
+  onSetWins,
 }: Props) {
   return (
     <div className="flex flex-col gap-3 rounded-xl border border-line bg-panel/40 p-3">
@@ -87,6 +96,20 @@ export default function Controls({
               }`}
             >
               {mode}s
+            </button>
+          ))}
+        </div>
+
+        <div className="flex rounded-md ring-1 ring-line" title="Count NCAA-vacated wins, or use the official record">
+          {WINS.map((w) => (
+            <button
+              key={w.value}
+              onClick={() => onSetWins(w.value)}
+              className={`px-3 py-1.5 text-sm font-medium first:rounded-l-md last:rounded-r-md ${
+                wins === w.value ? 'bg-accent text-white' : 'hover:bg-panel'
+              }`}
+            >
+              {w.label}
             </button>
           ))}
         </div>

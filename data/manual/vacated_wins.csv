@@ -1,0 +1,10 @@
+school,seasons,wins_vacated,note,source
+# NCAA-vacated wins. CFBD reports games as played, so these are subtracted only
+# in the "official" wins view (toggle). The rating defaults to "as-played" and
+# the trajectory calc always uses as-played wins.
+USC,2004-2005,14,Reggie Bush infractions; 2004 BCS title & 2005 season vacated,ncaa
+Ohio State,2010,12,Tattoo-gate; entire 2010 season vacated,ncaa
+Louisville,2011-2014,15,men's staff misconduct; wins across 2011-2014 vacated,ncaa
+Notre Dame,2012-2013,21,academic misconduct; 2012 & 2013 wins vacated,ncaa
+Missouri,2015-2016,9,tutor misconduct; wins vacated,ncaa
+Baylor,2011-2013,0,see note — some sources cite vacated wins; confirm,manual

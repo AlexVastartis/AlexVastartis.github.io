@@ -40,9 +40,9 @@ export function parseCsv(text) {
   return rows;
 }
 
-/** parse into array of objects keyed by the header row */
+/** parse into array of objects keyed by the header row; `#`-prefixed lines are comments */
 export function readRecords(text) {
-  const rows = parseCsv(text);
+  const rows = parseCsv(text).filter((r) => !(r[0] ?? '').startsWith('#'));
   if (rows.length === 0) return [];
   const header = rows[0];
   return rows.slice(1).map((r) => {

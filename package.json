@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
+    "data:api": "node scripts/build-api-store.mjs",
     "build:data": "node scripts/build-data.mjs",
     "seed": "node scripts/lib/xlsx-to-csv.mjs",
     "logos:recolor": "node scripts/recolor-logos.mjs",

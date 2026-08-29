@@ -6,7 +6,6 @@ import BellCurve from '../components/BellCurve';
 import RankedList from '../components/RankedList';
 import TeamCard from '../components/TeamCard';
 import LensToggle from '../components/LensToggle';
-import { DEBATED } from '../config/ranking';
 import type { RankView } from '../data/useViewState';
 
 const OPTS: { value: RankView; label: string }[] = [
@@ -19,7 +18,12 @@ export default function Ranking() {
   const { search } = useLocation();
 
   const highlight = useMemo(
-    () => new Set(allTeams.filter((t) => t.ratingRank <= 6 || DEBATED.includes(t.school)).map((t) => t.school)),
+    () =>
+      new Set(
+        allTeams
+          .filter((t) => t.grouping === 'Blue Bloods' || t.grouping === 'Blue Blood Fringe')
+          .map((t) => t.school),
+      ),
     [allTeams],
   );
   const favTeam = favorite ? allTeams.find((t) => t.school === favorite) : null;
@@ -46,7 +50,7 @@ export default function Ranking() {
         </div>
       </section>
 
-      {favTeam && <TeamCard team={favTeam} allTeams={allTeams} />}
+      {favTeam && <TeamCard team={favTeam} />}
 
       {rankView === 'list' ? (
         <RankedList teams={teams} favorite={favorite} onPick={(t) => setFavorite(t.school)} />
@@ -76,11 +80,14 @@ export default function Ranking() {
       )}
 
       <p className="text-xs leading-relaxed text-muted">
-        <strong>How it’s built.</strong> {data.meta.modelBlurb} Wins and AP-poll weeks come from
-        CollegeFootballData (1936–{data.meta.latestSeason}); national &amp; conference titles and
-        All-America selections are hand-maintained and not adjudicated for “claimed vs. consensus”.
-        The trajectory arrow compares a program’s last {data.meta.trendRecentYears} seasons with its
-        entire prior history across AP standing, win rate, titles and draft output.
+        <strong>How it’s built.</strong> {data.meta.modelBlurb} AP-poll weeks and NFL-draft picks
+        come from CollegeFootballData (1936–{data.meta.latestSeason}); wins/losses are per-season,
+        CollegeFootballData from 1936 and hand-entered before that; national &amp; conference titles,
+        All-America selections and Heismans are hand-maintained
+        ({data.meta.titleSelectors.join(' / ')} title selectors count) and not adjudicated for
+        “claimed vs. consensus”. The trajectory arrow compares a program’s most recent{' '}
+        {Math.round(data.meta.trendRecentFraction * 100)}% of seasons with its whole prior history,
+        across AP standing, win rate, titles and draft output.
       </p>
     </div>
   );

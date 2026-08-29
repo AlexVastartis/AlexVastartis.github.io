@@ -1,0 +1,131 @@
+school,year,selector,note,source
+Michigan,1901,Historical,pre-poll era; Helms/NCF retroactive,ncaa-records
+Michigan,1902,Historical,pre-poll era; Helms/NCF retroactive,ncaa-records
+Michigan,1903,Historical,pre-poll era; Helms/NCF retroactive,ncaa-records
+Michigan,1904,Historical,pre-poll era; Helms/NCF retroactive,ncaa-records
+California,1920,Historical,Wonder Teams; consensus,ncaa-records
+California,1921,Historical,claimed; Helms,ncaa-records
+California,1922,Historical,claimed; Helms,ncaa-records
+Pittsburgh,1915,Historical,pre-poll era; consensus,ncaa-records
+Pittsburgh,1916,Historical,pre-poll era; consensus,ncaa-records
+Pittsburgh,1918,Historical,shared; pre-poll era,ncaa-records
+Michigan,1918,Historical,shared; pre-poll era,ncaa-records
+Notre Dame,1919,Historical,pre-poll era; Rockne,ncaa-records
+Georgia Tech,1917,Historical,pre-poll era; consensus,ncaa-records
+Georgia Tech,1928,Historical,Rose Bowl; consensus,ncaa-records
+Notre Dame,1924,Historical,Four Horsemen; consensus,ncaa-records
+Alabama,1925,Historical,Rose Bowl; consensus,ncaa-records
+Alabama,1926,Historical,shared; Rose Bowl,ncaa-records
+Stanford,1926,Historical,shared; Rose Bowl,ncaa-records
+USC,1928,Historical,pre-poll era; consensus,ncaa-records
+Notre Dame,1929,Historical,pre-poll era; Rockne,ncaa-records
+Notre Dame,1930,Historical,pre-poll era; Rockne,ncaa-records
+Alabama,1930,Historical,shared; Rose Bowl,ncaa-records
+USC,1931,Historical,pre-poll era; consensus,ncaa-records
+Michigan,1932,Historical,pre-poll era; consensus,ncaa-records
+Michigan,1933,Historical,shared; pre-poll era,ncaa-records
+USC,1932,Historical,pre-poll era; consensus,ncaa-records
+Minnesota,1934,Historical,pre-poll era; Bierman,ncaa-records
+Minnesota,1935,Historical,pre-poll era; Bierman,ncaa-records
+Pittsburgh,1934,Historical,shared; pre-poll era,ncaa-records
+Minnesota,1936,AP,final AP poll #1,ap-poll
+Pittsburgh,1937,AP,final AP poll #1,ap-poll
+TCU,1938,AP,final AP poll #1,ap-poll
+Texas A&M,1939,AP,final AP poll #1,ap-poll
+Minnesota,1940,AP,final AP poll #1,ap-poll
+Minnesota,1941,AP,final AP poll #1,ap-poll
+Ohio State,1942,AP,final AP poll #1,ap-poll
+Notre Dame,1943,AP,final AP poll #1,ap-poll
+Army,1944,AP,final AP poll #1,ap-poll
+Army,1945,AP,final AP poll #1,ap-poll
+Notre Dame,1946,AP,final AP poll #1,ap-poll
+Notre Dame,1947,AP,final AP poll #1,ap-poll
+Michigan,1948,AP,final AP poll #1,ap-poll
+Notre Dame,1949,AP,final AP poll #1,ap-poll
+Oklahoma,1950,AP,final AP poll #1,ap-poll
+Tennessee,1951,AP,final AP poll #1,ap-poll
+Michigan State,1952,AP,final AP poll #1,ap-poll
+Maryland,1953,AP,final AP poll #1,ap-poll
+Ohio State,1954,AP,final AP poll #1,ap-poll
+UCLA,1954,Coaches,UPI #1; split title,ncaa-records
+Oklahoma,1955,AP,final AP poll #1,ap-poll
+Oklahoma,1956,AP,final AP poll #1,ap-poll
+Auburn,1957,AP,final AP poll #1 (probation),ap-poll
+Ohio State,1957,Coaches,UPI #1; split title,ncaa-records
+LSU,1958,AP,final AP poll #1,ap-poll
+Syracuse,1959,AP,final AP poll #1,ap-poll
+Minnesota,1960,AP,final AP poll #1,ap-poll
+Alabama,1961,AP,final AP poll #1,ap-poll
+USC,1962,AP,final AP poll #1,ap-poll
+Texas,1963,AP,final AP poll #1,ap-poll
+Alabama,1964,AP,final AP poll #1,ap-poll
+Alabama,1965,AP,final AP poll #1,ap-poll
+Michigan State,1965,Coaches,UPI/NFF #1; split title,ncaa-records
+Notre Dame,1966,AP,final AP poll #1,ap-poll
+USC,1967,AP,final AP poll #1,ap-poll
+Ohio State,1968,AP,final AP poll #1,ap-poll
+Texas,1969,AP,final AP poll #1,ap-poll
+Nebraska,1970,AP,final AP poll #1,ap-poll
+Texas,1970,Coaches,UPI #1; split title,ncaa-records
+Nebraska,1971,AP,final AP poll #1,ap-poll
+USC,1972,AP,final AP poll #1,ap-poll
+Notre Dame,1973,AP,final AP poll #1,ap-poll
+Alabama,1973,Coaches,UPI #1; split title,ncaa-records
+Oklahoma,1974,AP,final AP poll #1 (probation),ap-poll
+USC,1974,Coaches,UPI #1; split title,ncaa-records
+Oklahoma,1975,AP,final AP poll #1,ap-poll
+Pittsburgh,1976,AP,final AP poll #1,ap-poll
+Notre Dame,1977,AP,final AP poll #1,ap-poll
+Alabama,1978,AP,final AP poll #1,ap-poll
+USC,1978,Coaches,UPI #1; split title,ncaa-records
+Alabama,1979,AP,final AP poll #1,ap-poll
+Georgia,1980,AP,final AP poll #1,ap-poll
+Clemson,1981,AP,final AP poll #1,ap-poll
+Penn State,1982,AP,final AP poll #1,ap-poll
+Miami (FL),1983,AP,final AP poll #1,ap-poll
+BYU,1984,AP,final AP poll #1,ap-poll
+Oklahoma,1985,AP,final AP poll #1,ap-poll
+Penn State,1986,AP,final AP poll #1,ap-poll
+Miami (FL),1987,AP,final AP poll #1,ap-poll
+Notre Dame,1988,AP,final AP poll #1,ap-poll
+Miami (FL),1989,AP,final AP poll #1,ap-poll
+Colorado,1990,AP,final AP poll #1,ap-poll
+Georgia Tech,1990,Coaches,UPI #1; split title,ncaa-records
+Miami (FL),1991,AP,final AP poll #1,ap-poll
+Washington,1991,Coaches,Coaches #1; split title,ncaa-records
+Alabama,1992,AP,final AP poll #1,ap-poll
+Florida State,1993,AP,final AP poll #1,ap-poll
+Nebraska,1994,AP,final AP poll #1,ap-poll
+Nebraska,1995,AP,final AP poll #1,ap-poll
+Florida,1996,AP,final AP poll #1,ap-poll
+Michigan,1997,AP,final AP poll #1,ap-poll
+Nebraska,1997,Coaches,Coaches #1; split title,ncaa-records
+Tennessee,1998,BCS,BCS champion,bcs
+Florida State,1999,BCS,BCS champion,bcs
+Oklahoma,2000,BCS,BCS champion,bcs
+Miami (FL),2001,BCS,BCS champion,bcs
+Ohio State,2002,BCS,BCS champion (beat Miami in Fiesta),bcs
+LSU,2003,BCS,BCS champion,bcs
+USC,2003,AP,final AP poll #1; split title,ap-poll
+USC,2004,AP,final AP poll #1 (BCS title later vacated),ap-poll
+Texas,2005,BCS,BCS champion,bcs
+Florida,2006,BCS,BCS champion,bcs
+LSU,2007,BCS,BCS champion,bcs
+Florida,2008,BCS,BCS champion,bcs
+Alabama,2009,BCS,BCS champion,bcs
+Auburn,2010,BCS,BCS champion,bcs
+Alabama,2011,BCS,BCS champion,bcs
+Alabama,2012,BCS,BCS champion,bcs
+Florida State,2013,BCS,BCS champion,bcs
+Ohio State,2014,CFP,College Football Playoff champion,cfp
+Alabama,2015,CFP,College Football Playoff champion,cfp
+Clemson,2016,CFP,College Football Playoff champion,cfp
+Alabama,2017,CFP,College Football Playoff champion,cfp
+Clemson,2018,CFP,College Football Playoff champion,cfp
+LSU,2019,CFP,College Football Playoff champion,cfp
+Alabama,2020,CFP,College Football Playoff champion,cfp
+Georgia,2021,CFP,College Football Playoff champion,cfp
+Georgia,2022,CFP,College Football Playoff champion,cfp
+Michigan,2023,CFP,College Football Playoff champion,cfp
+Ohio State,2024,CFP,College Football Playoff champion,cfp
+Indiana,2025,CFP,College Football Playoff champion,cfp

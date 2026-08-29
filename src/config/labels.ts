@@ -13,9 +13,9 @@ export const TREND_WORD: Record<TrendDir, string> = {
 };
 
 export const TREND_TITLE: Record<TrendDir, string> = {
-  up: 'Ascending — the last ~18 seasons rank the program higher among all of FBS than its deeper history does',
-  down: 'Receding — the last ~18 seasons rank the program lower than its deeper history does',
-  even: 'Holding — roughly the same standing now as across its whole history',
+  up: 'Ascending — the program’s recent era ranks higher among all of FBS than its prior history did',
+  down: 'Receding — the program’s recent era ranks lower among all of FBS than its prior history did',
+  even: 'Holding — roughly the same standing now as across its prior history',
 };
 
 export const TREND_CLASS: Record<TrendDir, string> = {

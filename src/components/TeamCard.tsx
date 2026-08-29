@@ -5,10 +5,7 @@ import { TREND_CLASS, TREND_GLYPH, TREND_WORD } from '../config/labels';
 const BASE = import.meta.env.BASE_URL;
 
 /** deeper read on the viewer's favourite program */
-export default function TeamCard({ team }: { team: Team; allTeams?: Team[] }) {
-  const best = CATEGORY_ORDER.reduce((a, b) => (team.critScore[b] > team.critScore[a] ? b : a));
-  const worst = CATEGORY_ORDER.reduce((a, b) => (team.critScore[b] < team.critScore[a] ? b : a));
-
+export default function TeamCard({ team }: { team: Team }) {
   return (
     <figure className="rounded-xl border border-accent/40 bg-accent/5 p-4 sm:p-5">
       <div className="flex items-start gap-4">
@@ -31,11 +28,12 @@ export default function TeamCard({ team }: { team: Team; allTeams?: Team[] }) {
               #{team.ratingRank} · {team.rating.toFixed(1)} rating ·{' '}
               <span className={TREND_CLASS[team.trend.dir]}>
                 {TREND_GLYPH[team.trend.dir]} {TREND_WORD[team.trend.dir]}
+                {team.note ? ` · ${team.note}` : ''}
               </span>
             </span>
           </div>
-          <p className="mt-0.5 text-sm">{team.label.personal}</p>
-          <p className="text-xs text-muted">{team.label.standard}</p>
+          {team.label.personal && <p className="mt-0.5 text-sm">{team.label.personal}</p>}
+          <p className="text-xs text-muted">{team.grouping}</p>
         </div>
       </div>
 
@@ -56,15 +54,7 @@ export default function TeamCard({ team }: { team: Team; allTeams?: Team[] }) {
         ))}
       </dl>
 
-      <p className="mt-3 text-xs text-muted">
-        Consistency {team.consistency}/100 · strongest {CATEGORIES[best].label.toLowerCase()},
-        thinnest {CATEGORIES[worst].label.toLowerCase()}.
-      </p>
-      {team.nextTier && (
-        <p className="mt-1.5 rounded-md bg-panel/70 px-3 py-2 text-xs leading-relaxed">
-          {team.nextTier.summary}
-        </p>
-      )}
+      <p className="mt-3 rounded-md bg-panel/70 px-3 py-2 text-xs leading-relaxed">{team.peer.summary}</p>
     </figure>
   );
 }

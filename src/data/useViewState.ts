@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 export type MarkerMode = 'logo' | 'bubble';
 export type Lens = 'plot' | 'curve';
 export type RankView = 'list' | 'curve';
+export type WinsMode = 'asPlayed' | 'official';
 
 export interface ViewState {
   /** selected conferences; empty = all */
@@ -13,6 +14,8 @@ export interface ViewState {
   lens: Lens;
   /** ranked list vs. bell curve — two views of the overall ranking */
   rankView: RankView;
+  /** as-played wins (default) vs. NCAA-official (vacated removed) */
+  wins: WinsMode;
 }
 
 /** filter/display state, kept in the URL query string so views are shareable */
@@ -25,6 +28,7 @@ export function useViewState() {
       marker: params.get('marker') === 'bubble' ? 'bubble' : 'logo',
       lens: params.get('lens') === 'curve' ? 'curve' : 'plot',
       rankView: params.get('rank') === 'curve' ? 'curve' : 'list',
+      wins: params.get('wins') === 'official' ? 'official' : 'asPlayed',
     }),
     [params],
   );
@@ -50,6 +54,10 @@ export function useViewState() {
           if ('rankView' in patch) {
             if (patch.rankView === 'curve') next.set('rank', 'curve');
             else next.delete('rank');
+          }
+          if ('wins' in patch) {
+            if (patch.wins === 'official') next.set('wins', 'official');
+            else next.delete('wins');
           }
           return next;
         },
