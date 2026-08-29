@@ -2,3 +2,15 @@
 # grouping ∈ Blue Bloods | Blue Blood Fringe | Blue Blood Contenders | National Powers | National Brands | The Field
 # Leave empty to let the ratings decide. See public/data/breakdown.csv for the current assignment.
 school,grouping,note
+# National Powers should end at Minnesota (#30); the modern/regional tier below it
+# drops to National Brands even though the natural gap is at Utah->North Carolina.
+TCU,National Brands,ends Powers at Minnesota
+Syracuse,National Brands,ends Powers at Minnesota
+Georgia Tech,National Brands,ends Powers at Minnesota
+Arizona State,National Brands,ends Powers at Minnesota
+BYU,National Brands,ends Powers at Minnesota
+Virginia Tech,National Brands,ends Powers at Minnesota
+Illinois,National Brands,ends Powers at Minnesota
+California,National Brands,ends Powers at Minnesota
+West Virginia,National Brands,ends Powers at Minnesota
+Utah,National Brands,ends Powers at Minnesota

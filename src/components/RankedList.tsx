@@ -11,6 +11,9 @@ interface Props {
   onPick?: (team: Team) => void;
 }
 
+// the rating spread within a grouping is only really interesting for the top of the table
+const RANGE_GROUPS = new Set(['Blue Bloods', 'Blue Blood Contenders']);
+
 export default function RankedList({ teams, favorite, onPick }: Props) {
   const groups = groupTeams(teams);
 
@@ -18,12 +21,12 @@ export default function RankedList({ teams, favorite, onPick }: Props) {
     <div className="flex flex-col gap-7">
       {groups.map((g, i) => {
         const gap = i > 0 ? groups[i - 1].teams.at(-1)!.rating - g.teams[0].rating : 0;
-        const top = g.teams[0].rating;
-        const bottom = g.teams.at(-1)!.rating;
+        const spread = g.teams[0].rating - g.teams.at(-1)!.rating;
+        const showRange = RANGE_GROUPS.has(g.grouping);
         return (
           <div key={g.grouping} className="relative">
             {i > 0 && gap > 0 && <GapNote gap={gap} />}
-            <RangeBrace top={top} bottom={bottom} />
+            {showRange && <RangeBrace spread={spread} />}
             <section
               className={
                 g.grouping === 'Blue Blood Fringe'
@@ -36,9 +39,9 @@ export default function RankedList({ teams, favorite, onPick }: Props) {
               <header className="mb-1.5 flex items-baseline gap-2 px-1">
                 <h3 className="text-sm font-bold uppercase tracking-wide">{g.grouping}</h3>
                 <span className="text-xs text-muted">{g.teams.length}</span>
-                <span className="font-hand text-sm text-accent 2xl:hidden">
-                  {top.toFixed(1)}–{bottom.toFixed(1)}%
-                </span>
+                {showRange && (
+                  <span className="font-hand text-sm text-accent 2xl:hidden">{spread.toFixed(1)}% range</span>
+                )}
               </header>
               <p className="mb-2 px-1 text-xs leading-snug text-muted">{g.blurb}</p>
 
@@ -149,16 +152,16 @@ function GapNote({ gap }: { gap: number }) {
         <span className="-rotate-3 text-xl leading-none">{text}</span>
       </div>
 
-      {/* wide desktop: out in the left margin */}
+      {/* wide desktop: out in the left margin, arrow flicking up at the break */}
       <div
-        className="pointer-events-none absolute -top-4 hidden -translate-x-full items-center gap-1 whitespace-nowrap pr-2 font-hand text-accent 2xl:flex"
+        className="pointer-events-none absolute -top-6 hidden -translate-x-full items-end gap-1 whitespace-nowrap pr-2 font-hand text-accent 2xl:flex"
         style={{ left: '-0.75rem' }}
       >
         <span className="-rotate-3 text-xl leading-none">{text}</span>
         <svg
           width="34"
-          height="16"
-          viewBox="0 0 34 16"
+          height="22"
+          viewBox="0 0 34 22"
           className="shrink-0"
           fill="none"
           stroke="currentColor"
@@ -166,8 +169,8 @@ function GapNote({ gap }: { gap: number }) {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <path d="M2 5 C 12 5, 16 12, 30 12" />
-          <path d="M24 7 L 31 12 L 23 15" />
+          <path d="M2 19 C 13 19, 19 7, 31 3" />
+          <path d="M24 3 L 32 2 L 31 10" />
         </svg>
       </div>
     </>
@@ -176,17 +179,15 @@ function GapNote({ gap }: { gap: number }) {
 
 /**
  * Wide-desktop only: a hand-drawn curly brace in the left margin spanning the
- * whole grouping, labelled with the rating range from its top team to its base.
+ * whole grouping, labelled with the rating spread (top team minus base team).
  */
-function RangeBrace({ top, bottom }: { top: number; bottom: number }) {
+function RangeBrace({ spread }: { spread: number }) {
   return (
     <div
       className="pointer-events-none absolute inset-y-1 hidden -translate-x-full items-center gap-1 pr-1 font-hand text-accent/90 2xl:flex"
       style={{ left: '-0.75rem' }}
     >
-      <span className="-rotate-2 whitespace-nowrap text-lg leading-none">
-        {top.toFixed(1)}–{bottom.toFixed(1)}%
-      </span>
+      <span className="-rotate-2 whitespace-nowrap text-lg leading-none">{spread.toFixed(1)}% range</span>
       <svg
         className="h-full w-3 shrink-0"
         viewBox="0 0 12 100"
