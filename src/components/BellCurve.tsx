@@ -4,8 +4,9 @@ import type { StatDistribution, Team } from '../types';
 import { DEFAULT_MARGINS } from '../lib/scale';
 import { normalPdf } from '../lib/stats';
 import type { MarkerMode } from '../data/useViewState';
-import type { Theme } from '../lib/theme';
+import type { ResolvedTheme } from '../lib/theme';
 import TeamMarker from './TeamMarker';
+import FavoriteHalo from './FavoriteHalo';
 
 interface Props {
   teams: Team[];
@@ -15,9 +16,10 @@ interface Props {
   distribution: StatDistribution;
   xLabel: string;
   marker: MarkerMode;
-  theme: Theme;
+  theme: ResolvedTheme;
   /** schools to keep at full strength while the rest dim (optional storytelling) */
   highlight?: Set<string>;
+  favorite?: string | null;
   width?: number;
   height?: number;
   markerSize?: number;
@@ -31,6 +33,7 @@ export default function BellCurve({
   marker,
   theme,
   highlight,
+  favorite,
   width = 1000,
   height = 460,
   markerSize = 26,
@@ -122,6 +125,24 @@ export default function BellCurve({
           </g>
         );
       })}
+
+      {favorite &&
+        (() => {
+          const f = teams.find((t) => t.school === favorite);
+          if (!f) return null;
+          const v = value(f);
+          return (
+            <FavoriteHalo
+              team={f}
+              cx={x(Math.max(lo, Math.min(hi, v)))}
+              cy={curveY(v) - markerSize * 0.12}
+              size={markerSize + 8}
+              marker={marker}
+              theme={theme}
+              onHover={setHover}
+            />
+          );
+        })()}
 
       {hover && (
         <text x={width - m.right} y={m.top + 2} textAnchor="end" fontSize={13} fontWeight={700} fill="rgb(var(--ink))">

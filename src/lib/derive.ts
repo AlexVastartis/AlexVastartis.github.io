@@ -5,9 +5,13 @@ import { zScore } from './stats';
 const STAT_KEYS = Object.keys(CATEGORIES).flatMap((k) => CATEGORIES[k as CategoryKey].stats) as StatKey[];
 
 /**
- * Recompute z-scores, percentiles and category composites for a single team's
- * raw stat line, holding the league distribution (`meta`) fixed. This is what
- * the what-if panel calls after the user edits a value.
+ * Recompute z-scores, percentiles and criterion composites for a single team's
+ * raw stat line, holding the league distribution (`meta`) fixed. For the future
+ * what-if panel.
+ *
+ * TODO(what-if): also recompute `critScore` (percentile-based), `rating`
+ * (40% trimmed mean of the five critScores) and `ratingRank` so the panel can
+ * show tier movement — see scripts/build-data.mjs `derive()`.
  */
 export function deriveTeam(
   base: Team,

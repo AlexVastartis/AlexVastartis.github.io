@@ -1,6 +1,7 @@
 import { Navigate, NavLink, useLocation, useParams } from 'react-router-dom';
 import { useChartContext } from '../App';
 import CriterionView from '../components/CriterionView';
+import TeamCard from '../components/TeamCard';
 import { CATEGORIES, CATEGORY_ORDER } from '../config/stats';
 import type { CategoryKey } from '../types';
 
@@ -11,6 +12,7 @@ export default function CriteriaChart() {
 
   if (!key || !(key in CATEGORIES)) return <Navigate to="/criteria/perception" replace />;
   const ck = key as CategoryKey;
+  const favTeam = ctx.favorite ? ctx.allTeams.find((t) => t.school === ctx.favorite) : null;
 
   return (
     <div className="flex flex-col gap-3">
@@ -36,6 +38,8 @@ export default function CriteriaChart() {
       </p>
 
       <CriterionView criterion={ck} ctx={ctx} />
+
+      {favTeam && <TeamCard team={favTeam} allTeams={ctx.allTeams} />}
     </div>
   );
 }

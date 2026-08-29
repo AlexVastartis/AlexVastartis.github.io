@@ -3,8 +3,9 @@ import type { DataMeta, StatKey, Team } from '../types';
 import { STATS } from '../config/stats';
 import { DEFAULT_MARGINS, linearScales } from '../lib/scale';
 import type { MarkerMode } from '../data/useViewState';
-import type { Theme } from '../lib/theme';
+import type { ResolvedTheme } from '../lib/theme';
 import TeamMarker from './TeamMarker';
+import FavoriteHalo from './FavoriteHalo';
 
 interface Props {
   teams: Team[];
@@ -13,7 +14,8 @@ interface Props {
   yStat: StatKey;
   meta: DataMeta;
   marker: MarkerMode;
-  theme: Theme;
+  theme: ResolvedTheme;
+  favorite?: string | null;
   /** z-order key — bigger renders on top ("more impressive covers less impressive").
    *  defaults to the sum of the two plotted stats' z-scores. */
   order?: (t: Team) => number;
@@ -30,6 +32,7 @@ export default function ScatterChart({
   meta,
   marker,
   theme,
+  favorite,
   order,
   width = 1000,
   height = 600,
@@ -142,6 +145,23 @@ export default function ScatterChart({
           onHover={setHover}
         />
       ))}
+
+      {/* favourite team, always on top */}
+      {favorite &&
+        (() => {
+          const f = teams.find((t) => t.school === favorite);
+          return f ? (
+            <FavoriteHalo
+              team={f}
+              cx={x(f.stats[xStat])}
+              cy={y(f.stats[yStat])}
+              size={markerSize + 8}
+              marker={marker}
+              theme={theme}
+              onHover={setHover}
+            />
+          ) : null;
+        })()}
 
       {/* hover tooltip */}
       {hover && (

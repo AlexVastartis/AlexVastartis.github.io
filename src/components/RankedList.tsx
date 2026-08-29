@@ -1,16 +1,17 @@
 import type { CategoryKey, Team } from '../types';
 import { CATEGORIES, CATEGORY_ORDER } from '../config/stats';
 import { groupTeams } from '../config/ranking';
+import { TREND_CLASS, TREND_GLYPH, TREND_TITLE } from '../config/labels';
 
 const BASE = import.meta.env.BASE_URL;
 
 interface Props {
   teams: Team[];
+  favorite?: string | null;
   onPick?: (team: Team) => void;
-  activeSchool?: string;
 }
 
-export default function RankedList({ teams, onPick, activeSchool }: Props) {
+export default function RankedList({ teams, favorite, onPick }: Props) {
   const groups = groupTeams(teams);
 
   return (
@@ -26,47 +27,61 @@ export default function RankedList({ teams, onPick, activeSchool }: Props) {
                 : 'rounded-xl border border-line p-3'
           }
         >
-          <header className="mb-2 flex items-baseline gap-2 px-1">
+          <header className="mb-1.5 flex items-baseline gap-2 px-1">
             <h3 className="text-sm font-bold uppercase tracking-wide">{group.label}</h3>
             <span className="text-xs text-muted">{rows.length}</span>
-            <p className="ml-auto hidden text-xs text-muted sm:block">{group.blurb}</p>
           </header>
-          <p className="mb-2 px-1 text-xs text-muted sm:hidden">{group.blurb}</p>
+          <p className="mb-2 px-1 text-xs leading-snug text-muted">{group.blurb}</p>
 
           <ol className="flex flex-col">
-            {rows.map((t) => (
-              <li key={t.slug || t.school}>
-                <button
-                  onClick={() => onPick?.(t)}
-                  className={`grid w-full grid-cols-[2rem_1.75rem_1fr_auto] items-center gap-3 rounded-md px-1.5 py-1.5 text-left hover:bg-panel ${
-                    activeSchool === t.school ? 'bg-panel ring-1 ring-accent' : ''
-                  }`}
-                >
-                  <span className="text-right text-sm font-semibold tabular-nums text-muted">
-                    {t.overallRank}
-                  </span>
-                  <img
-                    src={`${BASE}logos/${t.slug}.svg`}
-                    alt=""
-                    className="h-7 w-7 object-contain"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = `${BASE}logos/${t.slug}.png`;
-                    }}
-                  />
-                  <span className="min-w-0">
-                    <span className="block truncate text-sm font-medium">{t.school}</span>
-                    <span className="block truncate text-xs text-muted">{t.conference}</span>
-                  </span>
-                  <span className="flex items-center gap-3">
-                    <CriterionStrip team={t} />
-                    <span className="w-14 text-right text-sm font-bold tabular-nums">
-                      {t.overall.toFixed(2)}
-                      <span className="text-[10px] font-normal text-muted">σ</span>
+            {rows.map((t) => {
+              const fav = t.school === favorite;
+              return (
+                <li key={t.slug || t.school}>
+                  <button
+                    onClick={() => onPick?.(t)}
+                    className={`grid w-full grid-cols-[1.6rem_1.75rem_1fr_auto] items-center gap-3 rounded-md border-l-2 px-1.5 py-1.5 text-left hover:bg-panel ${
+                      fav ? 'border-accent bg-accent/10' : 'border-transparent'
+                    }`}
+                  >
+                    <span className="flex items-center justify-end gap-0.5 text-sm font-semibold tabular-nums text-muted">
+                      <span
+                        className={`text-[10px] leading-none ${TREND_CLASS[t.trend.dir]}`}
+                        title={TREND_TITLE[t.trend.dir]}
+                      >
+                        {TREND_GLYPH[t.trend.dir]}
+                      </span>
+                      {t.ratingRank}
                     </span>
-                  </span>
-                </button>
-              </li>
-            ))}
+                    <img
+                      src={`${BASE}logos/${t.slug}.svg`}
+                      alt=""
+                      className="h-7 w-7 object-contain"
+                      onError={(e) => {
+                        const el = e.currentTarget as HTMLImageElement;
+                        if (!el.dataset.png) {
+                          el.dataset.png = '1';
+                          el.src = `${BASE}logos/${t.slug}.png`;
+                        }
+                      }}
+                    />
+                    <span className="min-w-0">
+                      <span className="flex items-center gap-1.5">
+                        <span className="truncate text-sm font-medium">{t.school}</span>
+                        {fav && <span className="text-xs text-accent">★</span>}
+                      </span>
+                      <span className="block truncate text-xs text-muted">{t.label.standard}</span>
+                    </span>
+                    <span className="flex items-center gap-3">
+                      <CriterionStrip team={t} />
+                      <span className="w-12 text-right text-sm font-bold tabular-nums">
+                        {t.rating.toFixed(1)}
+                      </span>
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
           </ol>
         </section>
       ))}
@@ -77,22 +92,14 @@ export default function RankedList({ teams, onPick, activeSchool }: Props) {
 function CriterionStrip({ team }: { team: Team }) {
   return (
     <span className="hidden gap-1 sm:flex" aria-hidden>
-      {CATEGORY_ORDER.map((ck: CategoryKey) => {
-        const pct = pctOfComposite(team.composite[ck]);
-        return (
-          <span
-            key={ck}
-            title={`${CATEGORIES[ck].label}: ${team.composite[ck].toFixed(2)}σ`}
-            className="h-4 w-2.5 rounded-sm"
-            style={{ background: team.primary, opacity: 0.2 + 0.8 * pct }}
-          />
-        );
-      })}
+      {CATEGORY_ORDER.map((ck: CategoryKey) => (
+        <span
+          key={ck}
+          title={`${CATEGORIES[ck].label}: ${Math.round(team.critScore[ck])}th pct`}
+          className="h-4 w-2.5 rounded-sm"
+          style={{ background: team.primary, opacity: 0.18 + 0.82 * (team.critScore[ck] / 100) }}
+        />
+      ))}
     </span>
   );
-}
-
-/** rough 0..1 position of a composite z for the strip opacity */
-function pctOfComposite(z: number): number {
-  return 1 / (1 + Math.exp(-1.4 * z));
 }

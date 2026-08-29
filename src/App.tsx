@@ -2,21 +2,24 @@ import { useMemo } from 'react';
 import { NavLink, Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet } from 'react-router-dom';
 import { useTeams, useConferences } from './data/useTeams';
 import { useViewState, type Lens } from './data/useViewState';
-import { useTheme, type Theme } from './lib/theme';
+import { useTheme, type ResolvedTheme, type ThemeMode } from './lib/theme';
+import { useFavorite } from './data/useFavorite';
 import Controls from './components/Controls';
 import type { Team, TeamsPayload } from './types';
 import { CRITERIA_LABEL } from './config/stats';
 import TheChart from './routes/TheChart';
 import CriteriaChart from './routes/CriteriaChart';
+import Notes from './routes/Notes';
 
 export interface ChartContext {
   data: TeamsPayload;
   teams: Team[];
   allTeams: Team[];
-  theme: Theme;
+  theme: ResolvedTheme;
   marker: 'logo' | 'bubble';
   lens: Lens;
   setLens: (l: Lens) => void;
+  favorite: string | null;
 }
 
 export function useChartContext() {
@@ -26,7 +29,8 @@ export function useChartContext() {
 function Layout() {
   const { loading, error, data } = useTeams();
   const { state, update, toggleConference } = useViewState();
-  const [theme, toggleTheme] = useTheme();
+  const { mode, resolved, setMode } = useTheme();
+  const [favorite, setFavorite] = useFavorite();
   const conferences = useConferences(data);
   const { search } = useLocation();
 
@@ -34,6 +38,7 @@ function Layout() {
   const NAV = [
     { to: { pathname: '/', search }, label: 'The Chart', end: true },
     { to: { pathname: '/criteria/perception', search }, label: CRITERIA_LABEL, end: false },
+    { to: { pathname: '/notes', search }, label: 'Notes', end: false },
   ];
 
   const teams = useMemo(() => {
@@ -50,7 +55,7 @@ function Layout() {
           <h1 className="text-2xl font-black tracking-tight">
             BlueBlood<span className="text-accent">Football</span>
           </h1>
-          <p className="text-sm text-muted">Where programs actually rank — plotted from the data.</p>
+          <p className="text-sm text-muted">A century-long ledger of college football prestige.</p>
         </div>
         <nav className="flex gap-1 rounded-lg border border-line bg-panel/40 p-1">
           {NAV.map((n) => (
@@ -86,30 +91,29 @@ function Layout() {
             onToggleConference={toggleConference}
             onClearConferences={() => update({ conferences: [] })}
             onSetMarker={(m) => update({ marker: m })}
-            theme={theme}
-            onToggleTheme={toggleTheme}
+            themeMode={mode}
+            onSetThemeMode={(m: ThemeMode) => setMode(m)}
+            schools={data.teams.map((t) => t.school).sort()}
+            favorite={favorite}
+            onSetFavorite={setFavorite}
           />
-          {teams.length === 0 ? (
-            <Placeholder>No teams match this conference filter.</Placeholder>
-          ) : (
-            <Outlet
-              context={
-                {
-                  data,
-                  teams,
-                  allTeams: data.teams,
-                  theme,
-                  marker: state.marker,
-                  lens: state.lens,
-                  setLens: (l: Lens) => update({ lens: l }),
-                } satisfies ChartContext
-              }
-            />
-          )}
+          <Outlet
+            context={
+              {
+                data,
+                teams,
+                allTeams: data.teams,
+                theme: resolved,
+                marker: state.marker,
+                lens: state.lens,
+                setLens: (l: Lens) => update({ lens: l }),
+                favorite,
+              } satisfies ChartContext
+            }
+          />
           <footer className="mt-2 text-xs text-muted">
             Data generated {new Date(data.meta.generatedAt).toLocaleDateString()} · {data.meta.dataRange} ·
-            sources: {data.meta.sources.cfbd ? 'CFBD + ' : ''}manual sheets · logos are each school’s
-            trademarks, used for identification.
+            model: {data.meta.model} · logos are each school’s trademarks, used for identification.
           </footer>
         </>
       )}
@@ -131,6 +135,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<TheChart />} />
         <Route path="criteria/:key" element={<CriteriaChart />} />
+        <Route path="notes" element={<Notes />} />
         {/* legacy paths */}
         <Route path="category/:key" element={<LegacyCategory />} />
         <Route path="bell-curves" element={<Navigate to="/criteria/perception?lens=curve" replace />} />

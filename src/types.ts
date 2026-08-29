@@ -14,13 +14,21 @@ export interface Team {
   pct: Record<StatKey, number>;
   /** composite z-score per criterion (mean of the criterion's two stat z-scores) */
   composite: Record<CategoryKey, number>;
-  /** overall Blue Blood score: z-score of the mean of the 5 criterion composites */
+  /** criterion score, 0..100 = mean of the two stats' FBS percentiles */
+  critScore: Record<CategoryKey, number>;
+  /** Blue Blood Rating, 0..100 = 40% trimmed mean of the 5 criterion scores */
+  rating: number;
+  /** z-score of `rating` across FBS — drives the ranking bell curve */
   overall: number;
-  /** 0..100 percentile of the overall score */
-  overallPct: number;
-  /** 1 = highest overall score */
-  overallRank: number;
+  /** 1 = highest rating */
+  ratingRank: number;
+  /** 0..100, how even a program is across the five criteria (100 = flat) */
+  consistency: number;
+  trend: { score: number; dir: TrendDir };
+  label: { standard: string; personal: string };
 }
+
+export type TrendDir = 'up' | 'down' | 'even' | 'emerging';
 
 export type StatKey =
   | 'allTimeWins'
@@ -73,12 +81,16 @@ export interface StatDistribution {
 
 export interface DataMeta {
   generatedAt: string;
+  model: string;
+  trendWindowYears: number;
   sources: { cfbd: boolean; manual: boolean };
   dataRange: string;
   stats: Record<StatKey, StatDistribution>;
   composites: Record<CategoryKey, StatDistribution>;
   /** distribution of the overall Blue Blood score (standardized: mean 0, σ 1) */
   overall: StatDistribution;
+  /** prior-snapshot rank/rating per school, for the year-over-year note */
+  previous?: Record<string, { ratingRank: number; rating: number }>;
 }
 
 /** "Criterion" is the user-facing name for a category. */

@@ -18,7 +18,7 @@ interface Props {
  * data. The lens toggle lets people flip between the two tellings of the story.
  */
 export default function CriterionView({ criterion, ctx, title, subtitle }: Props) {
-  const { data, teams, allTeams, theme, marker, lens, setLens } = ctx;
+  const { data, teams, allTeams, theme, marker, lens, setLens, favorite } = ctx;
   const cat = CATEGORIES[criterion];
   const [xk, yk] = cat.stats;
 
@@ -51,6 +51,7 @@ export default function CriterionView({ criterion, ctx, title, subtitle }: Props
           meta={data.meta}
           marker={marker}
           theme={theme}
+          favorite={favorite}
           order={(t) => t.composite[criterion]}
         />
       ) : (
@@ -61,6 +62,7 @@ export default function CriterionView({ criterion, ctx, title, subtitle }: Props
           xLabel={`${cat.label} — composite (z-score)`}
           marker={marker}
           theme={theme}
+          favorite={favorite}
         />
       )}
     </ChartFrame>

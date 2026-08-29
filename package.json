@@ -9,7 +9,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "build:data": "node scripts/build-data.mjs",
-    "seed": "node scripts/lib/xlsx-to-csv.mjs"
+    "seed": "node scripts/lib/xlsx-to-csv.mjs",
+    "logos:recolor": "node scripts/recolor-logos.mjs",
+    "logos:sync": "node scripts/sync-logos.mjs"
   },
   "dependencies": {
     "d3-array": "^3.2.4",
