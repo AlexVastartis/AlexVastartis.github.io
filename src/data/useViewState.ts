@@ -2,18 +2,16 @@ import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export type MarkerMode = 'logo' | 'bubble';
-export type Lens = 'plot' | 'curve' | 'list';
-export type RankView = 'list' | 'curve';
+/** the three visualisation types, shared by the ranking and every criterion */
+export type ViewMode = 'list' | 'plot' | 'curve';
 export type WinsMode = 'asPlayed' | 'official';
 
 export interface ViewState {
   /** selected conferences; empty = all */
   conferences: string[];
   marker: MarkerMode;
-  /** logo scatter vs. bell curve — two views of the same criterion */
-  lens: Lens;
-  /** ranked list vs. bell curve — two views of the overall ranking */
-  rankView: RankView;
+  /** ranked list · logo plot · bell curve */
+  view: ViewMode;
   /** as-played wins (default) vs. NCAA-official (vacated removed) */
   wins: WinsMode;
 }
@@ -26,8 +24,7 @@ export function useViewState() {
     () => ({
       conferences: params.get('conf') ? params.get('conf')!.split('~').filter(Boolean) : [],
       marker: params.get('marker') === 'bubble' ? 'bubble' : 'logo',
-      lens: params.get('lens') === 'curve' ? 'curve' : params.get('lens') === 'list' ? 'list' : 'plot',
-      rankView: params.get('rank') === 'curve' ? 'curve' : 'list',
+      view: params.get('view') === 'plot' ? 'plot' : params.get('view') === 'curve' ? 'curve' : 'list',
       wins: params.get('wins') === 'official' ? 'official' : 'asPlayed',
     }),
     [params],
@@ -47,13 +44,9 @@ export function useViewState() {
             if (patch.marker === 'bubble') next.set('marker', 'bubble');
             else next.delete('marker');
           }
-          if ('lens' in patch) {
-            if (patch.lens === 'curve' || patch.lens === 'list') next.set('lens', patch.lens);
-            else next.delete('lens');
-          }
-          if ('rankView' in patch) {
-            if (patch.rankView === 'curve') next.set('rank', 'curve');
-            else next.delete('rank');
+          if ('view' in patch) {
+            if (patch.view === 'plot' || patch.view === 'curve') next.set('view', patch.view);
+            else next.delete('view');
           }
           if ('wins' in patch) {
             if (patch.wins === 'official') next.set('wins', 'official');

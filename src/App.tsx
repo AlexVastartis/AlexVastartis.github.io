@@ -1,29 +1,27 @@
 import { useMemo } from 'react';
 import {
-  NavLink, Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet, Link,
+  Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet, Link,
 } from 'react-router-dom';
 import { useTeams, useConferences } from './data/useTeams';
-import { useViewState, type Lens, type RankView } from './data/useViewState';
+import { useViewState, type ViewMode } from './data/useViewState';
 import { useTheme, type ThemeMode } from './lib/theme';
 import { useFavorite } from './data/useFavorite';
 import Controls from './components/Controls';
 import TeamCard from './components/TeamCard';
-import type { Team, TeamsPayload } from './types';
-import { CRITERIA_LABEL } from './config/stats';
+import ViewTabs, { type Subject } from './components/ViewTabs';
+import type { CategoryKey, Team, TeamsPayload } from './types';
+import { CATEGORIES } from './config/stats';
 import Ranking from './routes/Ranking';
 import TheChartStandalone from './routes/TheChartStandalone';
 import CriteriaChart from './routes/CriteriaChart';
-import Notes from './routes/Notes';
 
 export interface ChartContext {
   data: TeamsPayload;
   teams: Team[];
   allTeams: Team[];
   marker: 'logo' | 'bubble';
-  lens: Lens;
-  setLens: (l: Lens) => void;
-  rankView: RankView;
-  setRankView: (v: RankView) => void;
+  view: ViewMode;
+  setView: (v: ViewMode) => void;
   favorite: string | null;
   setFavorite: (school: string | null) => void;
 }
@@ -40,12 +38,6 @@ function Layout() {
   const conferences = useConferences(data);
   const { search, pathname } = useLocation();
 
-  const NAV = [
-    { to: { pathname: '/', search }, label: 'Ranking', end: true },
-    { to: { pathname: '/criteria/perception', search }, label: CRITERIA_LABEL, end: false },
-    { to: { pathname: '/notes', search }, label: 'Notes', end: false },
-  ];
-
   const teams = useMemo(() => {
     if (!data) return [];
     if (state.conferences.length === 0) return data.teams;
@@ -53,37 +45,24 @@ function Layout() {
     return data.teams.filter((t) => set.has(t.conference));
   }, [data, state.conferences]);
 
+  const criteriaKey = pathname.match(/^\/criteria\/([A-Za-z]+)/)?.[1];
+  const subject: Subject = criteriaKey && criteriaKey in CATEGORIES ? (criteriaKey as CategoryKey) : 'rating';
+  const view: ViewMode = subject === 'rating' && state.view === 'plot' ? 'list' : state.view;
+
   const favTeam = data && favorite ? data.teams.find((t) => t.school === favorite) ?? null : null;
-  // chart views (a criteria plot/curve) get the panel on top, short, so the chart stays above the
-  // fold; list views (the ranking, a criteria ranked list) get it as a wider side rail
-  const chartView = pathname.startsWith('/criteria') && state.lens !== 'list';
-  const panelMode: 'top' | 'side' | 'none' = favTeam ? (chartView ? 'top' : 'side') : 'none';
+  // a chart view (anything but the ranked list) gets the compact panel on top so the chart stays
+  // near the fold; the ranked list gets the full panel as a wide side rail
+  const panelMode: 'top' | 'side' | 'none' = favTeam ? (view === 'list' ? 'side' : 'top') : 'none';
 
   return (
     <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-6">
-      <header className="flex flex-wrap items-baseline justify-between gap-3">
+      <header>
         <Link to={{ pathname: '/', search }} className="group">
           <h1 className="text-2xl font-black tracking-tight">
             BlueBlood<span className="text-accent">Football</span>
           </h1>
           <p className="text-sm text-muted">A century-long ledger of college football prestige.</p>
         </Link>
-        <nav className="flex gap-1 rounded-lg border border-line bg-panel/40 p-1">
-          {NAV.map((n) => (
-            <NavLink
-              key={n.label}
-              to={n.to}
-              end={n.end}
-              className={({ isActive }) =>
-                `rounded-md px-3 py-1.5 text-sm font-medium ${
-                  isActive ? 'bg-accent text-white' : 'hover:bg-panel'
-                }`
-              }
-            >
-              {n.label}
-            </NavLink>
-          ))}
-        </nav>
       </header>
 
       {loading && <Placeholder>Loading data…</Placeholder>}
@@ -110,21 +89,18 @@ function Layout() {
             wins={state.wins}
             onSetWins={(w) => update({ wins: w })}
           />
-          <div
-            className={
-              panelMode === 'side'
-                ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-6'
-                : ''
-            }
-          >
+
+          <ViewTabs subject={subject} view={view} onSetView={(v) => update({ view: v })} search={search} />
+
+          <div className={panelMode === 'side' ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-6' : ''}>
             {panelMode === 'top' && favTeam && (
-              <aside className="mb-3 max-h-44 overflow-y-auto rounded-xl">
-                <TeamCard team={favTeam} onClear={() => setFavorite(null)} />
+              <aside className="mb-3">
+                <TeamCard team={favTeam} variant="compact" onClear={() => setFavorite(null)} />
               </aside>
             )}
             {panelMode === 'side' && favTeam && (
               <aside className="mb-4 lg:col-start-2 lg:row-start-1 lg:mb-0 lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-2rem)] lg:overflow-auto">
-                <TeamCard team={favTeam} onClear={() => setFavorite(null)} />
+                <TeamCard team={favTeam} variant="full" onClear={() => setFavorite(null)} />
               </aside>
             )}
             <div className="min-w-0 lg:col-start-1 lg:row-start-1">
@@ -135,10 +111,8 @@ function Layout() {
                     teams,
                     allTeams: data.teams,
                     marker: state.marker,
-                    lens: state.lens,
-                    setLens: (l: Lens) => update({ lens: l }),
-                    rankView: state.rankView,
-                    setRankView: (v: RankView) => update({ rankView: v }),
+                    view,
+                    setView: (v: ViewMode) => update({ view: v }),
                     favorite,
                     setFavorite,
                   } satisfies ChartContext
@@ -146,11 +120,13 @@ function Layout() {
               />
             </div>
           </div>
+
           <footer className="mt-2 text-xs text-muted">
             Data generated {new Date(data.meta.generatedAt).toLocaleDateString()} ·{' '}
             AP poll &amp; records via CollegeFootballData · titles &amp; All-Americans hand-maintained ·
             conferences: {data.meta.conferenceYear ?? '—'} alignment · logos are each school’s
-            trademarks, used for identification.
+            trademarks, used for identification ·{' '}
+            <a className="underline hover:text-accent" href="#/the-chart">The Chart</a>
           </footer>
         </>
       )}
@@ -174,10 +150,9 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Ranking />} />
         <Route path="criteria/:key" element={<CriteriaChart />} />
-        <Route path="notes" element={<Notes />} />
         {/* legacy paths */}
         <Route path="category/:key" element={<LegacyCategory />} />
-        <Route path="bell-curves" element={<Navigate to="/criteria/perception?lens=curve" replace />} />
+        <Route path="bell-curves" element={<Navigate to="/criteria/perception?view=curve" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

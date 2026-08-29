@@ -35,10 +35,10 @@ Shared names for the pieces, so feedback can point precisely.
 
 | Term | What it is |
 | --- | --- |
-| **The Chart** | the AP-poll scatter specifically — weeks in the poll vs. weeks in the top 10 — on its own bare page (`/the-chart`), no nav/controls. Not in the site nav; reached by direct link or the small link on the AP Poll Success criterion page. The shareable hook |
-| **The Blue Blood Ranking** | the `/` home: the grouped ranked list (default) with a Bell-curve alternate |
-| **Criteria pages** | `/criteria/:key` — one criterion at a time, as a logo plot, a bell curve, or a plain ranked list |
-| **Team card** | the always-visible highlighted-team panel — a right rail on wide screens, near the top otherwise. Shows the 8 rating stats grouped by criterion (percentile bars, hover for the raw number; a trimmed stat is greyed), trajectory, relative comparison, favourable projection, tagline — `src/components/TeamCard.tsx` |
+| **Subject tabs** | one row of six: **Blue Blood Rating** + the five criteria. Blue Blood Rating is `/`; each criterion is `/criteria/:key`. Always in the same place |
+| **View toggle** | the three visualisations, in a fixed row under the subject tabs: **Ranked list · Logo plot · Bell curve** (`?view=`). Blue Blood Rating offers list + curve only (no two-stat scatter) |
+| **The Chart** | the AP-poll scatter on its own bare full-viewport page (`/the-chart`), no chrome. Reached only by direct link or the small "The Chart" link in the site footer. The shareable hook |
+| **Team card** | the highlighted-team panel. On the **ranked list** it's a wide sticky side rail (`variant="full"`): the 8 rating stats grouped by criterion (percentile bars, raw on hover, trimmed stats greyed + struck), trajectory, relative comparison, favourable projection, tagline. On a **chart view** it's a slim top strip (`variant="compact"`): identity + the five criterion scores only, no scroll — `src/components/TeamCard.tsx` |
 | **Favourite / highlighted team** | the program you pick (or click); it gets a ring + name on every chart and the team card |
 | **Marker** | a logo or a coloured **bubble** on a chart |
 
