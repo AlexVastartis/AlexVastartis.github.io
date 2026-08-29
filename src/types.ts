@@ -16,7 +16,7 @@ export interface Team {
   composite: Record<CategoryKey, number>;
   /** criterion score, 0..100 = mean of the two stats' FBS percentiles */
   critScore: Record<CategoryKey, number>;
-  /** Blue Blood Rating, 0..100 = 40% trimmed mean of the 5 criterion scores */
+  /** Blue Blood Rating, 0..100 = mean of the middle 8 of the 10 stat percentiles */
   rating: number;
   /** z-score of `rating` across FBS — drives the ranking bell curve */
   overall: number;
@@ -26,9 +26,18 @@ export interface Team {
   consistency: number;
   trend: { score: number; dir: TrendDir };
   label: { standard: string; personal: string };
+  /** one concrete decade-scale path into the next grouping up (null at the top) */
+  nextTier: NextTierPath | null;
 }
 
-export type TrendDir = 'up' | 'down' | 'even' | 'emerging';
+export type TrendDir = 'up' | 'down' | 'even';
+
+export interface NextTierPath {
+  label: string;
+  gapPoints: number;
+  moves: { stat: StatKey; phrase: string }[];
+  summary: string;
+}
 
 export type StatKey =
   | 'allTimeWins'
@@ -82,8 +91,14 @@ export interface StatDistribution {
 export interface DataMeta {
   generatedAt: string;
   model: string;
-  trendWindowYears: number;
+  modelBlurb: string;
+  trendRecentYears: number;
+  latestSeason: number;
+  latestChampion: string | null;
+  conferenceYear: number | null;
   sources: { cfbd: boolean; manual: boolean };
+  /** one sentence per criterion on exactly where its numbers come from */
+  provenance: Record<CategoryKey, string>;
   dataRange: string;
   stats: Record<StatKey, StatDistribution>;
   composites: Record<CategoryKey, StatDistribution>;

@@ -1,23 +1,20 @@
 import { useMemo, useState } from 'react';
-import type { DataMeta, StatKey, Team } from '../types';
+import type { StatKey, Team } from '../types';
 import { STATS } from '../config/stats';
 import { DEFAULT_MARGINS, linearScales } from '../lib/scale';
 import type { MarkerMode } from '../data/useViewState';
-import type { ResolvedTheme } from '../lib/theme';
 import TeamMarker from './TeamMarker';
 import FavoriteHalo from './FavoriteHalo';
 
 interface Props {
+  /** the teams to draw (already conference-filtered) — also sets the axis range */
   teams: Team[];
-  allTeams: Team[];
   xStat: StatKey;
   yStat: StatKey;
-  meta: DataMeta;
   marker: MarkerMode;
-  theme: ResolvedTheme;
   favorite?: string | null;
-  /** z-order key — bigger renders on top ("more impressive covers less impressive").
-   *  defaults to the sum of the two plotted stats' z-scores. */
+  onPick?: (school: string) => void;
+  /** z-order key — bigger renders on top. defaults to x-percentile + y-percentile. */
   order?: (t: Team) => number;
   width?: number;
   height?: number;
@@ -26,13 +23,11 @@ interface Props {
 
 export default function ScatterChart({
   teams,
-  allTeams,
   xStat,
   yStat,
-  meta,
   marker,
-  theme,
   favorite,
+  onPick,
   order,
   width = 1000,
   height = 600,
@@ -41,34 +36,27 @@ export default function ScatterChart({
   const m = DEFAULT_MARGINS;
   const [hover, setHover] = useState<Team | null>(null);
 
-  // axis domain is fixed to the full league so conference filtering doesn't rescale
+  // axis range follows the teams actually on screen, so a filtered view isn't
+  // squished against data that's no longer plotted
   const { x, y, xTicks, yTicks } = useMemo(
     () =>
       linearScales(
-        allTeams.map((t) => t.stats[xStat]),
-        allTeams.map((t) => t.stats[yStat]),
+        teams.map((t) => t.stats[xStat]),
+        teams.map((t) => t.stats[yStat]),
         width,
         height,
         m,
       ),
-    [allTeams, xStat, yStat, width, height, m],
+    [teams, xStat, yStat, width, height, m],
   );
 
-  // no de-overlap: overlap is part of the fun. just sort so the best land on top.
+  // no de-overlap: overlap is part of the fun. sort so higher-<criterion> lands on top.
   const placed = useMemo(() => {
-    const rank =
-      order ??
-      ((t: Team) => {
-        const dx = meta.stats[xStat];
-        const dy = meta.stats[yStat];
-        const zx = dx.stddev ? (t.stats[xStat] - dx.mean) / dx.stddev : 0;
-        const zy = dy.stddev ? (t.stats[yStat] - dy.mean) / dy.stddev : 0;
-        return zx + zy;
-      });
+    const rank = order ?? ((t: Team) => t.pct[xStat] + t.pct[yStat]);
     return [...teams]
       .sort((a, b) => rank(a) - rank(b))
       .map((team) => ({ team, x: x(team.stats[xStat]), y: y(team.stats[yStat]) }));
-  }, [teams, x, y, xStat, yStat, meta, order]);
+  }, [teams, x, y, xStat, yStat, order]);
 
   const fmtX = STATS[xStat].format ?? ((v: number) => String(v));
   const fmtY = STATS[yStat].format ?? ((v: number) => String(v));
@@ -132,21 +120,22 @@ export default function ScatterChart({
         {STATS[yStat].axisLabel}
       </text>
 
-      {/* markers */}
-      {placed.map((n) => (
-        <TeamMarker
-          key={n.team.slug || n.team.school}
-          team={n.team}
-          cx={n.x}
-          cy={n.y}
-          size={markerSize}
-          mode={marker}
-          theme={theme}
-          onHover={setHover}
-        />
-      ))}
+      {/* markers — the favourite is drawn once, by FavoriteHalo below */}
+      {placed.map((n) =>
+        n.team.school === favorite ? null : (
+          <TeamMarker
+            key={n.team.slug || n.team.school}
+            team={n.team}
+            cx={n.x}
+            cy={n.y}
+            size={markerSize}
+            mode={marker}
+            onHover={setHover}
+            onPick={onPick}
+          />
+        ),
+      )}
 
-      {/* favourite team, always on top */}
       {favorite &&
         (() => {
           const f = teams.find((t) => t.school === favorite);
@@ -157,8 +146,8 @@ export default function ScatterChart({
               cy={y(f.stats[yStat])}
               size={markerSize + 8}
               marker={marker}
-              theme={theme}
               onHover={setHover}
+              onPick={onPick}
             />
           ) : null;
         })()}

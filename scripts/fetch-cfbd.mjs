@@ -78,6 +78,14 @@ export async function getTeamsMeta(year = CURRENT_SEASON) {
   return out;
 }
 
+/** school -> current conference for a given year (defaults to the upcoming season) */
+export async function getConferences(year = CURRENT_YEAR) {
+  const meta = await getTeamsMeta(year);
+  const out = new Map();
+  for (const [school, m] of meta) out.set(school, m.conference);
+  return out;
+}
+
 /**
  * Weekly AP Top 25 history. Returns Map<school, {
  *   weeksPoll, weeksTop10, weeksTop5, weeksNo1, perSeason: { [year]: weeks }
@@ -85,10 +93,11 @@ export async function getTeamsMeta(year = CURRENT_SEASON) {
  */
 export async function getApBySeason(fromYear, toYear) {
   const acc = new Map();
+  const finalNo1 = {}; // year -> school ranked #1 in that season's last poll (AP champion)
   const rec = (s) => {
     let e = acc.get(s);
     if (!e) {
-      e = { weeksPoll: 0, weeksTop10: 0, weeksTop5: 0, weeksNo1: 0, perSeason: {}, perSeasonTop10: {} };
+      e = { weeksPoll: 0, weeksTop10: 0, weeksTop5: 0, weeksNo1: 0, perSeason: {}, perSeasonTop10: {}, finalRank: {} };
       acc.set(s, e);
     }
     return e;
@@ -101,7 +110,13 @@ export async function getApBySeason(fromYear, toYear) {
       console.warn(`  rankings ${year}: ${e.message}`);
       continue;
     }
-    for (const wk of weeks) {
+    let lastWeekIdx = -1;
+    weeks.forEach((wk, i) => {
+      const st = wk.seasonType || '';
+      if (/post/i.test(st) || i > lastWeekIdx) lastWeekIdx = i;
+    });
+    for (let i = 0; i < weeks.length; i += 1) {
+      const wk = weeks[i];
       const ap = (wk.polls || []).find((p) => /^AP\b/i.test(p.poll) || /AP Top 25/i.test(p.poll));
       if (!ap) continue;
       for (const r of ap.ranks) {
@@ -114,9 +129,14 @@ export async function getApBySeason(fromYear, toYear) {
         }
         if (r.rank <= 5) e.weeksTop5 += 1;
         if (r.rank === 1) e.weeksNo1 += 1;
+        if (i === lastWeekIdx) {
+          e.finalRank[year] = r.rank;
+          if (r.rank === 1) finalNo1[year] = r.school;
+        }
       }
     }
   }
+  acc.finalNo1 = finalNo1;
   return acc;
 }
 

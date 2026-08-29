@@ -1,11 +1,11 @@
 /**
- * Downloads the full 500px full-colour logo set (light + dark) from
- * CollegeFootballData into public/logos/<slug>.png and public/logos/dark/<slug>.png.
+ * Downloads the 500px full-colour logo set from CollegeFootballData into
+ * public/logos/<slug>.png. One logo per team, used in BOTH light and dark mode —
+ * CFBD's white-knockout "dark" variants are intentionally NOT used.
  *
- * The 108 already-good curated SVGs stay in place and remain the first choice in
- * TeamMarker; this just gives every team a crisp 500px PNG fallback and a real
- * dark-mode variant. For the ~24 white-knockout teams whose recoloured SVG we
- * want to retire, the SVG is deleted so the colour PNG wins the fallback chain.
+ * Curated <slug>.svg files are left in place and stay first choice in
+ * TeamMarker; this gives every team a crisp 500px colour PNG fallback and
+ * replaces the retired white-knockout SVGs outright.
  *
  * `npm run logos:sync`  (needs CFBD_API_KEY)
  */
@@ -36,7 +36,11 @@ const teams = readRecords(fs.readFileSync(path.join(REPO, 'data/manual/teams.csv
 const slugBySchool = new Map(teams.map((t) => [t.school, t.slug]));
 const recolored = new Set(fs.existsSync(BACKUP) ? fs.readdirSync(BACKUP).map((f) => f.replace('.svg', '')) : []);
 
-fs.mkdirSync(DARK, { recursive: true });
+// the old dark/ directory is no longer used
+if (fs.existsSync(DARK)) {
+  fs.rmSync(DARK, { recursive: true, force: true });
+  console.log('removed stale public/logos/dark/');
+}
 
 async function download(url, dest) {
   const res = await fetch(url);
@@ -48,30 +52,24 @@ async function download(url, dest) {
 
 const meta = await getTeamsMeta();
 let ok = 0;
-let miss = 0;
-const unresolved = [];
+const failures = [];
 for (const [cfbdName, m] of meta) {
-  const school = CFBD_ALIAS[cfbdName] || cfbdName;
-  const slug = slugBySchool.get(school);
-  if (!slug) continue; // not one of our 130
+  const slug = slugBySchool.get(CFBD_ALIAS[cfbdName] || cfbdName);
+  if (!slug || !m.logo) continue;
   try {
-    if (m.logo) await download(m.logo, path.join(LOGOS, `${slug}.png`));
-    if (m.logoDark) await download(m.logoDark, path.join(DARK, `${slug}.png`));
-    else if (m.logo) fs.copyFileSync(path.join(LOGOS, `${slug}.png`), path.join(DARK, `${slug}.png`));
+    await download(m.logo, path.join(LOGOS, `${slug}.png`));
     // retire the recoloured white-knockout SVG so the colour PNG wins
     if (recolored.has(slug)) {
-      for (const p of [path.join(LOGOS, `${slug}.svg`), path.join(DARK, `${slug}.svg`)]) {
-        if (fs.existsSync(p)) fs.rmSync(p);
-      }
+      const svg = path.join(LOGOS, `${slug}.svg`);
+      if (fs.existsSync(svg)) fs.rmSync(svg);
     }
     ok += 1;
   } catch (e) {
-    miss += 1;
-    unresolved.push(`${slug} (${e.message})`);
+    failures.push(`${slug} (${e.message})`);
   }
 }
 const covered = new Set([...meta.keys()].map((n) => slugBySchool.get(CFBD_ALIAS[n] || n)).filter(Boolean));
 const ourMissing = teams.filter((t) => !covered.has(t.slug)).map((t) => t.school);
-console.log(`synced ${ok} logo pairs; ${miss} failed.`);
-if (unresolved.length) console.log('  failures:', unresolved.join(', '));
+console.log(`synced ${ok} colour logos.`);
+if (failures.length) console.log('  failures:', failures.join(', '));
 if (ourMissing.length) console.log('  no CFBD match for:', ourMissing.join(', '));

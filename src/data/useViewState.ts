@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 export type MarkerMode = 'logo' | 'bubble';
 export type Lens = 'plot' | 'curve';
+export type RankView = 'list' | 'curve';
 
 export interface ViewState {
   /** selected conferences; empty = all */
@@ -10,6 +11,8 @@ export interface ViewState {
   marker: MarkerMode;
   /** logo scatter vs. bell curve — two views of the same criterion */
   lens: Lens;
+  /** ranked list vs. bell curve — two views of the overall ranking */
+  rankView: RankView;
 }
 
 /** filter/display state, kept in the URL query string so views are shareable */
@@ -21,6 +24,7 @@ export function useViewState() {
       conferences: params.get('conf') ? params.get('conf')!.split('~').filter(Boolean) : [],
       marker: params.get('marker') === 'bubble' ? 'bubble' : 'logo',
       lens: params.get('lens') === 'curve' ? 'curve' : 'plot',
+      rankView: params.get('rank') === 'curve' ? 'curve' : 'list',
     }),
     [params],
   );
@@ -42,6 +46,10 @@ export function useViewState() {
           if ('lens' in patch) {
             if (patch.lens === 'curve') next.set('lens', 'curve');
             else next.delete('lens');
+          }
+          if ('rankView' in patch) {
+            if (patch.rankView === 'curve') next.set('rank', 'curve');
+            else next.delete('rank');
           }
           return next;
         },

@@ -1,13 +1,16 @@
 import { useMemo } from 'react';
-import { NavLink, Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet } from 'react-router-dom';
+import {
+  NavLink, Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet, Link,
+} from 'react-router-dom';
 import { useTeams, useConferences } from './data/useTeams';
-import { useViewState, type Lens } from './data/useViewState';
-import { useTheme, type ResolvedTheme, type ThemeMode } from './lib/theme';
+import { useViewState, type Lens, type RankView } from './data/useViewState';
+import { useTheme, type ThemeMode } from './lib/theme';
 import { useFavorite } from './data/useFavorite';
 import Controls from './components/Controls';
 import type { Team, TeamsPayload } from './types';
 import { CRITERIA_LABEL } from './config/stats';
-import TheChart from './routes/TheChart';
+import Ranking from './routes/Ranking';
+import TheChartPage from './routes/TheChartPage';
 import CriteriaChart from './routes/CriteriaChart';
 import Notes from './routes/Notes';
 
@@ -15,11 +18,13 @@ export interface ChartContext {
   data: TeamsPayload;
   teams: Team[];
   allTeams: Team[];
-  theme: ResolvedTheme;
   marker: 'logo' | 'bubble';
   lens: Lens;
   setLens: (l: Lens) => void;
+  rankView: RankView;
+  setRankView: (v: RankView) => void;
   favorite: string | null;
+  setFavorite: (school: string | null) => void;
 }
 
 export function useChartContext() {
@@ -29,14 +34,14 @@ export function useChartContext() {
 function Layout() {
   const { loading, error, data } = useTeams();
   const { state, update, toggleConference } = useViewState();
-  const { mode, resolved, setMode } = useTheme();
+  const { mode, setMode } = useTheme();
   const [favorite, setFavorite] = useFavorite();
   const conferences = useConferences(data);
   const { search } = useLocation();
 
-  // carry conference / marker / lens across the top-level nav
   const NAV = [
-    { to: { pathname: '/', search }, label: 'The Chart', end: true },
+    { to: { pathname: '/', search }, label: 'Ranking', end: true },
+    { to: { pathname: '/the-chart', search }, label: 'The Chart', end: false },
     { to: { pathname: '/criteria/perception', search }, label: CRITERIA_LABEL, end: false },
     { to: { pathname: '/notes', search }, label: 'Notes', end: false },
   ];
@@ -51,12 +56,12 @@ function Layout() {
   return (
     <div className="mx-auto flex min-h-full max-w-6xl flex-col gap-4 px-4 py-6">
       <header className="flex flex-wrap items-baseline justify-between gap-3">
-        <div>
+        <Link to={{ pathname: '/', search }} className="group">
           <h1 className="text-2xl font-black tracking-tight">
             BlueBlood<span className="text-accent">Football</span>
           </h1>
           <p className="text-sm text-muted">A century-long ledger of college football prestige.</p>
-        </div>
+        </Link>
         <nav className="flex gap-1 rounded-lg border border-line bg-panel/40 p-1">
           {NAV.map((n) => (
             <NavLink
@@ -103,17 +108,21 @@ function Layout() {
                 data,
                 teams,
                 allTeams: data.teams,
-                theme: resolved,
                 marker: state.marker,
                 lens: state.lens,
                 setLens: (l: Lens) => update({ lens: l }),
+                rankView: state.rankView,
+                setRankView: (v: RankView) => update({ rankView: v }),
                 favorite,
+                setFavorite,
               } satisfies ChartContext
             }
           />
           <footer className="mt-2 text-xs text-muted">
-            Data generated {new Date(data.meta.generatedAt).toLocaleDateString()} · {data.meta.dataRange} ·
-            model: {data.meta.model} · logos are each school’s trademarks, used for identification.
+            Data generated {new Date(data.meta.generatedAt).toLocaleDateString()} ·{' '}
+            AP poll &amp; records via CollegeFootballData · titles &amp; All-Americans hand-maintained ·
+            conferences: {data.meta.conferenceYear ?? '—'} alignment · logos are each school’s
+            trademarks, used for identification.
           </footer>
         </>
       )}
@@ -133,7 +142,8 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<TheChart />} />
+        <Route index element={<Ranking />} />
+        <Route path="the-chart" element={<TheChartPage />} />
         <Route path="criteria/:key" element={<CriteriaChart />} />
         <Route path="notes" element={<Notes />} />
         {/* legacy paths */}

@@ -1,14 +1,14 @@
-import type { Lens } from '../data/useViewState';
+interface Props<T extends string> {
+  value: T;
+  onChange: (v: T) => void;
+  options: { value: T; label: string }[];
+}
 
-const OPTIONS: { value: Lens; label: string }[] = [
-  { value: 'plot', label: 'Logo plot' },
-  { value: 'curve', label: 'Bell curve' },
-];
-
-export default function LensToggle({ value, onChange }: { value: Lens; onChange: (l: Lens) => void }) {
+/** small segmented control for switching between two views of the same data */
+export default function LensToggle<T extends string>({ value, onChange, options }: Props<T>) {
   return (
     <div className="flex rounded-md ring-1 ring-line">
-      {OPTIONS.map((o) => (
+      {options.map((o) => (
         <button
           key={o.value}
           onClick={() => onChange(o.value)}

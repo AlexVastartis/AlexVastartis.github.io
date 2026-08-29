@@ -4,9 +4,9 @@ const int = (v: number) => Math.round(v).toLocaleString('en-US');
 const pct3 = (v: number) => (v < 1 ? v.toFixed(3).replace(/^0/, '') : v.toFixed(3));
 
 /**
- * The 10 raw stats (5 categories x 2). `weight` mirrors the "points per unit"
- * column on the `BBR Raw Weighted` tab of Blue Bloods.xlsx and is used only for
- * the optional overall score.
+ * The 10 raw stats (5 criteria x 2). `source` is where each number actually comes
+ * from on a data refresh — `cfbd` = CollegeFootballData API, `manual` =
+ * data/manual/stats_manual.csv. `weight` is legacy (unused by the current model).
  */
 export const STATS: Record<StatKey, StatMeta> = {
   allTimeWins: {
@@ -18,7 +18,7 @@ export const STATS: Record<StatKey, StatMeta> = {
     higherIsBetter: true, source: 'cfbd', weight: 10, format: pct3,
   },
   nationalTitles: {
-    key: 'nationalTitles', label: 'FBS National Championships', axisLabel: 'National Championships',
+    key: 'nationalTitles', label: 'National Championships', axisLabel: 'National Championships',
     higherIsBetter: true, source: 'manual', weight: 1.5, format: int,
   },
   conferenceTitles: {
@@ -42,42 +42,45 @@ export const STATS: Record<StatKey, StatMeta> = {
     higherIsBetter: true, source: 'cfbd', weight: 0.1, format: int,
   },
   weeksApPoll: {
-    key: 'weeksApPoll', label: 'Weeks in the AP Poll', axisLabel: 'Weeks in the Top 25',
+    key: 'weeksApPoll', label: 'Weeks in the AP Poll', axisLabel: 'Weeks in the AP Poll',
     higherIsBetter: true, source: 'cfbd', weight: 0.01, format: int,
   },
   weeksApTop10: {
-    key: 'weeksApTop10', label: 'Weeks in the AP Top 10', axisLabel: 'Weeks in the Top 10',
+    key: 'weeksApTop10', label: 'Weeks in the AP Top 10', axisLabel: 'Weeks in the AP Top 10',
     higherIsBetter: true, source: 'cfbd', weight: 0.02, format: int,
   },
 };
 
 export const CATEGORIES: Record<CategoryKey, CategoryMeta> = {
   perception: {
-    key: 'perception', label: 'Perception Poll',
+    key: 'perception', label: 'AP Poll',
     stats: ['weeksApPoll', 'weeksApTop10'],
-    blurb: 'How often, and how highly, the country has ranked you. "The Chart".',
+    blurb: 'How often, and how highly, the country has ranked you since 1936. "The Chart".',
   },
   wins: {
     key: 'wins', label: 'Wins',
     stats: ['allTimeWins', 'winPct'],
-    blurb: 'Raw accumulated wins against how often you win.',
+    blurb: 'Total wins piled up over a century, against how often the program actually wins.',
   },
   championships: {
     key: 'championships', label: 'Championships',
     stats: ['nationalTitles', 'conferenceTitles'],
-    blurb: 'National titles against league titles.',
+    blurb: 'National titles against league titles. The rarest, noisiest data on the site.',
   },
   allAmericans: {
     key: 'allAmericans', label: 'All-Americans',
     stats: ['consensusAA', 'unanimousAA'],
-    blurb: 'Consensus honorees against unanimous ones.',
+    blurb: 'Consensus honorees against the unanimous ones — a proxy for era-by-era star power.',
   },
   nflDraft: {
-    key: 'nflDraft', label: 'NFL Draft Success',
+    key: 'nflDraft', label: 'NFL Draft',
     stats: ['nflDraftPicks', 'firstRoundPicks'],
-    blurb: 'Total draft picks produced against first-round picks.',
+    blurb: 'Total picks the program has sent to the NFL, against how many went in the first round.',
   },
 };
+
+/** user-facing name for a criterion (the AP Poll criterion is internally "perception") */
+export const criterionName = (k: CategoryKey) => CATEGORIES[k].label;
 
 export const CATEGORY_ORDER: CategoryKey[] = [
   'perception', 'wins', 'championships', 'allAmericans', 'nflDraft',

@@ -15,41 +15,45 @@ export interface RankGroup {
   test: (team: Team) => boolean;
 }
 
-/** blurbs lean on history — this is a century-long ledger, not a power poll */
+/**
+ * Blurbs describe the band as a whole — its rating range and the fact that it
+ * holds both risers and faders. They are deliberately plain; the per-program
+ * trajectory arrow and label carry the specifics.
+ */
 export const RANK_GROUPS: RankGroup[] = [
   {
     key: 'blueblood',
     label: 'Blue Bloods',
     blurb:
-      'Six programs that have mattered in every era of the sport — the leather-helmet 1920s, the wishbone 1970s, the BCS, the Playoff. The list the numbers have never really argued about.',
+      'The top six by rating, and by a clear margin. Every one has been nationally relevant across multiple eras. A couple are near their own historical peak; none is in real decline.',
     test: (t) => t.ratingRank <= 6,
   },
   {
     key: 'debated',
     label: 'Debated',
     blurb:
-      'Decades inside the sport’s biggest moments, then a generation in the cold. The century-long résumé says blue blood; the last twenty years don’t.',
+      'Nebraska and Texas: résumés deep enough for the top tier, recent decades that argue otherwise. Included on some blue-blood lists, left off others. The data splits the difference.',
     test: (t) => DEBATED.includes(t.school),
   },
   {
     key: 'adjacent',
     label: 'Blue Blood Adjacent',
     blurb:
-      'Genuine national programs with a title era or two on the shelf. Close enough to the top that a decade of momentum puts them in the conversation, and a quiet decade drops them out.',
+      'Rating 88+. National-caliber programs — some currently surging toward the top tier, some coasting on a title era two or three decades back.',
     test: (t) => t.rating >= 88,
   },
   {
     key: 'brand',
     label: 'National Brands',
     blurb:
-      'Names the whole country knows, usually for something that happened a while ago. Real trophies in the case; the ceiling is lower than the history suggests.',
+      'Rating 72–88. Names the whole country knows. The band runs from genuine recent risers to former powers living on accumulated history.',
     test: (t) => t.rating >= 72,
   },
   {
     key: 'field',
     label: 'The Field',
     blurb:
-      'The other ninety-odd. Long institutional memories, mostly local legends — where a program goes to wait for its era.',
+      'Everyone else. Mostly regional followings and thin trophy cases, but it also holds the newer programs still accruing the totals the rating rewards.',
     test: () => true,
   },
 ];

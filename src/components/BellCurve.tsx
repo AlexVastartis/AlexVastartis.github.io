@@ -4,7 +4,6 @@ import type { StatDistribution, Team } from '../types';
 import { DEFAULT_MARGINS } from '../lib/scale';
 import { normalPdf } from '../lib/stats';
 import type { MarkerMode } from '../data/useViewState';
-import type { ResolvedTheme } from '../lib/theme';
 import TeamMarker from './TeamMarker';
 import FavoriteHalo from './FavoriteHalo';
 
@@ -16,10 +15,10 @@ interface Props {
   distribution: StatDistribution;
   xLabel: string;
   marker: MarkerMode;
-  theme: ResolvedTheme;
   /** schools to keep at full strength while the rest dim (optional storytelling) */
   highlight?: Set<string>;
   favorite?: string | null;
+  onPick?: (school: string) => void;
   width?: number;
   height?: number;
   markerSize?: number;
@@ -31,9 +30,9 @@ export default function BellCurve({
   distribution,
   xLabel,
   marker,
-  theme,
   highlight,
   favorite,
+  onPick,
   width = 1000,
   height = 460,
   markerSize = 26,
@@ -112,6 +111,7 @@ export default function BellCurve({
       </text>
 
       {ordered.map((t) => {
+        if (t.school === favorite) return null;
         const v = value(t);
         const cx = x(Math.max(lo, Math.min(hi, v)));
         const cy = curveY(v) - markerSize * 0.12;
@@ -121,7 +121,7 @@ export default function BellCurve({
             {highlight?.has(t.school) && (
               <circle cx={cx} cy={cy} r={markerSize * 0.62} fill="none" stroke={t.primary} strokeWidth={2} />
             )}
-            <TeamMarker team={t} cx={cx} cy={cy} size={markerSize} mode={marker} theme={theme} onHover={setHover} />
+            <TeamMarker team={t} cx={cx} cy={cy} size={markerSize} mode={marker} onHover={setHover} onPick={onPick} />
           </g>
         );
       })}
@@ -138,8 +138,8 @@ export default function BellCurve({
               cy={curveY(v) - markerSize * 0.12}
               size={markerSize + 8}
               marker={marker}
-              theme={theme}
               onHover={setHover}
+              onPick={onPick}
             />
           );
         })()}

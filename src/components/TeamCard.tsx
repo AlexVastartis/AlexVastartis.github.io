@@ -1,13 +1,11 @@
 import type { Team } from '../types';
 import { CATEGORIES, CATEGORY_ORDER } from '../config/stats';
-import { tierContext } from '../config/ranking';
 import { TREND_CLASS, TREND_GLYPH, TREND_WORD } from '../config/labels';
 
 const BASE = import.meta.env.BASE_URL;
 
 /** deeper read on the viewer's favourite program */
-export default function TeamCard({ team, allTeams }: { team: Team; allTeams: Team[] }) {
-  const { current, up, gap } = tierContext(team, allTeams);
+export default function TeamCard({ team }: { team: Team; allTeams?: Team[] }) {
   const best = CATEGORY_ORDER.reduce((a, b) => (team.critScore[b] > team.critScore[a] ? b : a));
   const worst = CATEGORY_ORDER.reduce((a, b) => (team.critScore[b] < team.critScore[a] ? b : a));
 
@@ -37,7 +35,7 @@ export default function TeamCard({ team, allTeams }: { team: Team; allTeams: Tea
             </span>
           </div>
           <p className="mt-0.5 text-sm">{team.label.personal}</p>
-          <p className="text-xs text-muted">{team.label.standard} · {current.label}</p>
+          <p className="text-xs text-muted">{team.label.standard}</p>
         </div>
       </div>
 
@@ -61,14 +59,12 @@ export default function TeamCard({ team, allTeams }: { team: Team; allTeams: Tea
       <p className="mt-3 text-xs text-muted">
         Consistency {team.consistency}/100 · strongest {CATEGORIES[best].label.toLowerCase()},
         thinnest {CATEGORIES[worst].label.toLowerCase()}.
-        {up && gap ? (
-          <>
-            {' '}
-            Reaching <strong>{up.label}</strong> means +{gap.ratingPoints.toFixed(1)} rating
-            {gap.ranks > 0 ? ` and passing ${gap.ranks} program${gap.ranks > 1 ? 's' : ''}` : ''}.
-          </>
-        ) : null}
       </p>
+      {team.nextTier && (
+        <p className="mt-1.5 rounded-md bg-panel/70 px-3 py-2 text-xs leading-relaxed">
+          {team.nextTier.summary}
+        </p>
+      )}
     </figure>
   );
 }
