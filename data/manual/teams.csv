@@ -1,0 +1,131 @@
+school,slug,conference,primary_hex,secondary_hex,former_fcs
+Air Force,air-force,Mountain West,#003087,#8a8d8f,0
+Akron,akron,MAC,#00285e,#84754e,0
+Alabama,alabama,SEC,#9e1b32,#828a8f,0
+Appalachian State,appalachian-st,Sun Belt,#000000,#ffcc00,1
+Arizona,arizona,Big 12,#003366,#cc0033,0
+Arizona State,arizona-st,Big 12,#8c1d40,#ffc627,0
+Arkansas,arkansas,SEC,#9d2235,#000000,0
+Arkansas State,arkansas-st,Sun Belt,#cc092f,#000000,0
+Army,army,Independent,#000000,#d4bf91,0
+Auburn,auburn,SEC,#0c2340,#e87722,0
+Ball State,ball-st,MAC,#ba0c2f,#000000,0
+Baylor,baylor,Big 12,#154734,#ffb81c,0
+Boise State,boise-st,Mountain West,#0033a0,#d64309,0
+Boston College,boston-college,ACC,#8a100b,#b29d6c,0
+Bowling Green,bowling-green,MAC,#fe5000,#4f2c1d,0
+Buffalo,buffalo,MAC,#005bbb,#000000,0
+BYU,byu,Big 12,#002e5d,#c5c5c5,0
+California,california,Pac-12,#003262,#fdb515,0
+Central Michigan,central-mich,MAC,#6a0032,#ffc82e,0
+Charlotte,charlotte,American,#046a38,#b9975b,0
+Cincinnati,cincinnati,Big 12,#e00122,#000000,0
+Clemson,clemson,ACC,#f56600,#522d80,0
+Coastal Carolina,coastal-caro,Sun Belt,#006f71,#a27752,0
+Colorado,colorado,Big 12,#cfb87c,#000000,0
+Colorado State,colorado-st,Mountain West,#1e4d2b,#c8c372,0
+Duke,duke,ACC,#001a57,#000000,0
+East Carolina,east-carolina,American,#592a8a,#f0907d,0
+Eastern Michigan,eastern-mich,MAC,#00694e,#000000,0
+FIU,fiu,Conference USA,#081e3f,#b6862c,0
+Florida,florida,SEC,#0021a5,#fa4616,0
+Florida Atlantic,fla-atlantic,American,#003366,#cc0000,0
+Florida State,florida-st,ACC,#782f40,#ceb888,0
+Fresno State,fresno-st,Mountain West,#db0032,#003594,0
+Georgia,georgia,SEC,#ba0c2f,#000000,0
+Georgia Southern,ga-southern,Sun Belt,#00211d,#87714d,0
+Georgia State,georgia-st,Sun Belt,#0039a6,#c60c30,0
+Georgia Tech,georgia-tech,ACC,#b3a369,#003057,0
+Hawaii,hawaii,Mountain West,#024731,#c8c8c8,0
+Houston,houston,Big 12,#c8102e,#a2aaad,0
+Illinois,illinois,Big Ten,#13294b,#e84a27,0
+Indiana,indiana,Big Ten,#990000,#eeedeb,0
+Iowa,iowa,Big Ten,#000000,#ffcd00,0
+Iowa State,iowa-st,Big 12,#c8102e,#f1be48,0
+Kansas,kansas,Big 12,#0051ba,#e8000d,0
+Kansas State,kansas-st,Big 12,#512888,#a7a7a7,0
+Kent State,kent-st,MAC,#002664,#eaab00,0
+Kentucky,kentucky,SEC,#0033a0,#ffffff,0
+Liberty,liberty,Conference USA,#0a254e,#990000,0
+Louisiana,la-lafayette,Sun Belt,#ce181e,#000000,0
+Louisiana Tech,louisiana-tech,Conference USA,#002d72,#e31b23,0
+Louisiana-Monroe,la-monroe,Sun Belt,#840029,#efb700,0
+Louisville,louisville,ACC,#ad0000,#000000,0
+LSU,lsu,SEC,#461d7c,#fdd023,0
+Marshall,marshall,Sun Belt,#00b140,#000000,0
+Maryland,maryland,Big Ten,#e03a3e,#ffd520,0
+Memphis,memphis,American,#003087,#898d8d,0
+Miami (FL),miami-fl,ACC,#f47321,#005030,0
+Miami (OH),miami-oh,MAC,#b61e2e,#000000,0
+Michigan,michigan,Big Ten,#00274c,#ffcb05,0
+Michigan State,michigan-st,Big Ten,#18453b,#ffffff,0
+Middle Tennessee,middle-tenn,Conference USA,#0066cc,#000000,0
+Minnesota,minnesota,Big Ten,#7a0019,#ffcc33,0
+Mississippi State,mississippi-st,SEC,#5d1725,#ffffff,0
+Missouri,missouri,SEC,#f1b82d,#000000,0
+Navy,navy,American,#00205b,#c5b783,0
+Nebraska,nebraska,Big Ten,#e41c38,#000000,0
+Nevada,nevada,Mountain West,#003366,#807f84,0
+New Mexico,new-mexico,Mountain West,#ba0c2f,#63666a,0
+New Mexico State,new-mexico-st,Conference USA,#8b0d0d,#ffffff,0
+North Carolina,north-carolina,ACC,#7bafd4,#13294b,0
+North Carolina State,north-carolina-st,ACC,#cc0000,#000000,0
+North Texas,north-texas,American,#00853e,#000000,0
+Northern Illinois,northern-ill,MAC,#ba0c2f,#000000,0
+Northwestern,northwestern,Big Ten,#4e2a84,#ffffff,0
+Notre Dame,notre-dame,Independent,#0c2340,#c99700,0
+Ohio,ohio,MAC,#00694e,#ffffff,0
+Ohio State,ohio-st,Big Ten,#bb0000,#666666,0
+Oklahoma,oklahoma,SEC,#841617,#fdf9d8,0
+Oklahoma State,oklahoma-st,Big 12,#ff7300,#000000,0
+Old Dominion,old-dominion,Sun Belt,#003057,#a1d2f1,0
+Ole Miss,ole-miss,SEC,#ce1126,#14213d,0
+Oregon,oregon,Big Ten,#154733,#fee123,0
+Oregon State,oregon-st,Pac-12,#dc4405,#000000,0
+Penn State,penn-st,Big Ten,#041e42,#ffffff,0
+Pittsburgh,pittsburgh,ACC,#003594,#ffb81c,0
+Purdue,purdue,Big Ten,#ceb888,#000000,0
+Rice,rice,American,#00205b,#c1c6c8,0
+Rutgers,rutgers,Big Ten,#cc0033,#000000,0
+San Diego State,san-diego-st,Mountain West,#a6192e,#000000,0
+San Jose State,san-jose-st,Mountain West,#0055a2,#e5a823,0
+SMU,smu,American,#354ca1,#c8102e,0
+South Alabama,south-ala,Sun Belt,#00205b,#bf0d3e,0
+South Carolina,south-carolina,SEC,#73000a,#000000,0
+South Florida,south-fla,American,#006747,#cfc493,0
+Southern Miss,southern-miss,Sun Belt,#000000,#ffab00,0
+Stanford,stanford,Pac-12,#8c1515,#ffffff,0
+Syracuse,syracuse,ACC,#f76900,#000e54,0
+TCU,tcu,Big 12,#4d1979,#a3a9ac,0
+Temple,temple,American,#9d2235,#ffffff,0
+Tennessee,tennessee,SEC,#ff8200,#ffffff,0
+Texas,texas,SEC,#bf5700,#ffffff,0
+Texas A&M,texas-am,SEC,#500000,#ffffff,0
+Texas State,texas-st,Sun Belt,#501214,#8d734a,0
+Texas Tech,texas-tech,Big 12,#cc0000,#000000,0
+Toledo,toledo,MAC,#15397f,#ffd600,0
+Troy,troy,Sun Belt,#8a2432,#c1c6c8,0
+Tulane,tulane,American,#006747,#418fde,0
+Tulsa,tulsa,American,#003366,#c5b358,0
+UAB,uab,American,#1e6b52,#f4c300,0
+UCF,ucf,Big 12,#000000,#ba9b37,0
+UCLA,ucla,Big Ten,#2d68c4,#f2a900,0
+UConn,uconn,Independent,#000e2f,#e4002b,0
+UMass,massachusetts,Independent,#881c1c,#000000,0
+UNLV,unlv,Mountain West,#cf0a2c,#666666,0
+USC,southern-california,Big Ten,#990000,#ffc72c,0
+Utah,utah,Big 12,#cc0000,#000000,0
+Utah State,utah-st,Mountain West,#00263a,#8e9089,0
+UTEP,utep,Conference USA,#ff8200,#041e42,0
+UTSA,utsa,American,#0c2340,#f15a22,0
+Vanderbilt,vanderbilt,SEC,#866d4b,#000000,0
+Virginia,virginia,ACC,#232d4b,#f84c1e,0
+Virginia Tech,virginia-tech,ACC,#630031,#cf4420,0
+Wake Forest,wake-forest,ACC,#9e7e38,#000000,0
+Washington,washington,Big Ten,#4b2e83,#e8e3d3,0
+Washington State,washington-st,Pac-12,#981e32,#5e6a71,0
+West Virginia,west-virginia,Big 12,#002855,#eaaa00,0
+Western Kentucky,western-ky,Conference USA,#c60c30,#000000,0
+Western Michigan,western-mich,MAC,#6c4023,#b5a167,0
+Wisconsin,wisconsin,Big Ten,#c5050c,#ffffff,0
+Wyoming,wyoming,Mountain West,#492f24,#ffc425,0

@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.png binary
+*.rar binary
+*.woff binary
+*.woff2 binary
