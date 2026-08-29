@@ -1,13 +1,14 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import {
   Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet, Link,
 } from 'react-router-dom';
 import { useTeams, useConferences } from './data/useTeams';
 import { useViewState, type ViewMode } from './data/useViewState';
-import { useTheme, type ThemeMode } from './lib/theme';
+import { useTheme } from './lib/theme';
 import { useFavorite } from './data/useFavorite';
 import Controls from './components/Controls';
 import TeamCard from './components/TeamCard';
+import ThemeToggle from './components/ThemeToggle';
 import ViewTabs, { type Subject } from './components/ViewTabs';
 import type { CategoryKey, Team, TeamsPayload } from './types';
 import { CATEGORIES } from './config/stats';
@@ -38,6 +39,15 @@ function Layout() {
   const conferences = useConferences(data);
   const { search, pathname } = useLocation();
 
+  // first visit: highlight the #1 program so people see the feature exists
+  const didInit = useRef(false);
+  useEffect(() => {
+    if (data && !didInit.current) {
+      didInit.current = true;
+      if (!favorite) setFavorite(data.teams.find((t) => t.ratingRank === 1)?.school ?? null);
+    }
+  }, [data, favorite, setFavorite]);
+
   const teams = useMemo(() => {
     if (!data) return [];
     if (state.conferences.length === 0) return data.teams;
@@ -47,7 +57,7 @@ function Layout() {
 
   const criteriaKey = pathname.match(/^\/criteria\/([A-Za-z]+)/)?.[1];
   const subject: Subject = criteriaKey && criteriaKey in CATEGORIES ? (criteriaKey as CategoryKey) : 'rating';
-  const view: ViewMode = subject === 'rating' && state.view === 'plot' ? 'list' : state.view;
+  const view: ViewMode = subject === 'rating' ? 'list' : state.view;
 
   const favTeam = data && favorite ? data.teams.find((t) => t.school === favorite) ?? null : null;
   // a chart view (anything but the ranked list) gets the compact panel on top so the chart stays
@@ -56,13 +66,14 @@ function Layout() {
 
   return (
     <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-6">
-      <header>
+      <header className="flex items-start justify-between gap-3">
         <Link to={{ pathname: '/', search }} className="group">
           <h1 className="text-2xl font-black tracking-tight">
             BlueBlood<span className="text-accent">Football</span>
           </h1>
           <p className="text-sm text-muted">A century-long ledger of college football prestige.</p>
         </Link>
+        <ThemeToggle mode={mode} onSetMode={setMode} />
       </header>
 
       {loading && <Placeholder>Loading data…</Placeholder>}
@@ -81,8 +92,6 @@ function Layout() {
             onToggleConference={toggleConference}
             onClearConferences={() => update({ conferences: [] })}
             onSetMarker={(m) => update({ marker: m })}
-            themeMode={mode}
-            onSetThemeMode={(m: ThemeMode) => setMode(m)}
             schools={data.teams.map((t) => t.school).sort()}
             favorite={favorite}
             onSetFavorite={setFavorite}

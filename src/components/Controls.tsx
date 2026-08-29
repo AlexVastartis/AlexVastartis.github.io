@@ -1,5 +1,4 @@
 import type { ViewState, WinsMode } from '../data/useViewState';
-import type { ThemeMode } from '../lib/theme';
 
 interface Props {
   conferences: string[];
@@ -7,8 +6,6 @@ interface Props {
   onToggleConference: (c: string) => void;
   onClearConferences: () => void;
   onSetMarker: (m: 'logo' | 'bubble') => void;
-  themeMode: ThemeMode;
-  onSetThemeMode: (m: ThemeMode) => void;
   schools: string[];
   favorite: string | null;
   onSetFavorite: (s: string | null) => void;
@@ -21,20 +18,12 @@ const WINS: { value: WinsMode; label: string }[] = [
   { value: 'official', label: 'NCAA official' },
 ];
 
-const THEMES: { value: ThemeMode; label: string }[] = [
-  { value: 'system', label: 'Auto' },
-  { value: 'light', label: 'Light' },
-  { value: 'dark', label: 'Dark' },
-];
-
 export default function Controls({
   conferences,
   state,
   onToggleConference,
   onClearConferences,
   onSetMarker,
-  themeMode,
-  onSetThemeMode,
   schools,
   favorite,
   onSetFavorite,
@@ -120,20 +109,6 @@ export default function Controls({
               }`}
             >
               {w.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex rounded-md ring-1 ring-line">
-          {THEMES.map((t) => (
-            <button
-              key={t.value}
-              onClick={() => onSetThemeMode(t.value)}
-              className={`px-3 py-1.5 text-sm font-medium first:rounded-l-md last:rounded-r-md ${
-                themeMode === t.value ? 'bg-accent text-white' : 'hover:bg-panel'
-              }`}
-            >
-              {t.label}
             </button>
           ))}
         </div>

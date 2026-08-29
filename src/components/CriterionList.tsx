@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import type { CategoryKey, Team } from '../types';
 import { CATEGORIES, STATS } from '../config/stats';
 
@@ -16,14 +16,30 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
   const [xk, yk] = CATEGORIES[criterion].stats;
   const fmtX = STATS[xk].format ?? String;
   const fmtY = STATS[yk].format ?? String;
+  const listRef = useRef<HTMLOListElement>(null);
 
   const rows = useMemo(
     () => [...teams].sort((a, b) => b.critScore[criterion] - a.critScore[criterion]),
     [teams, criterion],
   );
 
+  const firstRun = useRef(true);
+  useEffect(() => {
+    if (!favorite) return;
+    const wasFirst = firstRun.current;
+    firstRun.current = false;
+    const id = requestAnimationFrame(() => {
+      const el = listRef.current?.querySelector<HTMLElement>(`[data-school="${CSS.escape(favorite)}"]`);
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      if (wasFirst && r.top >= 0 && r.bottom <= window.innerHeight) return;
+      el.scrollIntoView({ block: 'center', behavior: wasFirst ? 'auto' : 'smooth' });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [favorite, criterion]);
+
   return (
-    <ol className="flex flex-col rounded-xl border border-line">
+    <ol ref={listRef} className="flex flex-col rounded-xl border border-line">
       <li className="grid grid-cols-[2rem_1.75rem_1fr_auto] items-center gap-3 border-b border-line px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted">
         <span className="text-right">#</span>
         <span />
@@ -37,7 +53,7 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
       {rows.map((t, i) => {
         const fav = t.school === favorite;
         return (
-          <li key={t.slug || t.school}>
+          <li key={t.slug || t.school} data-school={t.school}>
             <button
               onClick={() => onPick?.(t.school)}
               className={`grid w-full grid-cols-[2rem_1.75rem_1fr_auto] items-center gap-3 border-l-2 px-2 py-1.5 text-left hover:bg-panel ${

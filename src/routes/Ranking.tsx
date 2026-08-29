@@ -1,50 +1,12 @@
-import { useMemo } from 'react';
 import { useChartContext } from '../App';
-import ChartFrame from '../components/ChartFrame';
-import BellCurve from '../components/BellCurve';
 import RankedList from '../components/RankedList';
 
 export default function Ranking() {
-  const { data, teams, allTeams, marker, favorite, setFavorite, view } = useChartContext();
-
-  const highlight = useMemo(
-    () =>
-      new Set(
-        allTeams
-          .filter((t) => t.grouping === 'Blue Bloods' || t.grouping === 'Blue Blood Fringe')
-          .map((t) => t.school),
-      ),
-    [allTeams],
-  );
+  const { data, teams, favorite, setFavorite } = useChartContext();
 
   return (
     <div className="flex flex-col gap-4">
-      {view === 'curve' ? (
-        <ChartFrame
-          title="Blue Blood Rating — the distribution"
-          subtitle="Every program on the normal curve by its rating (z-score). The six sit alone in the right tail; Texas & Nebraska are the next cluster."
-          filename="blue-blood-rating-curve.png"
-          footer={
-            <>
-              {teams.length === allTeams.length ? `all ${allTeams.length} programs` : `${teams.length} shown`} ·
-              where logos overlap, the higher rating sits on top
-            </>
-          }
-        >
-          <BellCurve
-            teams={teams}
-            value={(t) => t.overall}
-            distribution={data.meta.overall}
-            xLabel="Blue Blood Rating (z-score)"
-            marker={marker}
-            highlight={highlight}
-            favorite={favorite}
-            onPick={setFavorite}
-          />
-        </ChartFrame>
-      ) : (
-        <RankedList teams={teams} favorite={favorite} onPick={(t) => setFavorite(t.school)} />
-      )}
+      <RankedList teams={teams} favorite={favorite} onPick={(t) => setFavorite(t.school)} />
 
       <p className="text-xs leading-relaxed text-muted">
         <strong>How it’s built.</strong> {data.meta.modelBlurb} AP-poll weeks and NFL-draft picks

@@ -6,6 +6,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        hand: ['Caveat', 'Bradley Hand', 'Comic Sans MS', 'cursive'],
       },
       colors: {
         ink: 'rgb(var(--ink) / <alpha-value>)',
