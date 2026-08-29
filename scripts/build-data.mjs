@@ -34,10 +34,14 @@ const SNAP = path.join(REPO, 'data/snapshots');
 
 const AP_FROM = 1936;
 const TREND_RECENT_FRAC = 0.2;
-// which national-title selectors count toward the Championships criterion.
-// data/manual/national_titles.csv also holds 'Coaches' (split-title co-champions) —
-// left out by default as the most disputed. Edit this one line to change the policy.
-const TITLE_SELECTORS = new Set(['AP', 'BCS', 'CFP', 'Historical']);
+// which national-title selectors count toward the Championships criterion. A title
+// YEAR counts when a program has >=1 national_titles.csv row with one of these
+// selectors and a status other than 'not-claimed'. 'claim' rows (a school's own
+// unbacked claim) are never in this set, so they never count. Pre-1936 the major
+// retroactive selectors are CFRA / HAF / NCF.
+const TITLE_SELECTORS = new Set([
+  'AP', 'UPI', 'FWAA', 'NFF', 'USA/CNN', 'USA/ESPN', 'AFCA', 'BCS', 'CFP', 'CFRA', 'HAF', 'NCF',
+]);
 
 const STAT_KEYS = [
   'allTimeWins', 'winPct', 'nationalTitles', 'conferenceTitles', 'consensusAA',
@@ -60,9 +64,9 @@ const GROUPS = ['Blue Bloods', 'Blue Blood Fringe', 'Blue Blood Adjacent', 'Nati
 
 const PROVENANCE = {
   perception: 'Every weekly AP poll ballot, 1936–present (CollegeFootballData → data/api/ap-poll.json).',
-  wins: 'Wins/losses/ties per season (CollegeFootballData 1936+, hand-entered pre-1936 → data/season-records.csv).',
-  championships: 'Hand-curated title list, one row per selector (data/manual/national_titles.csv); conference titles hand-curated / summary.',
-  allAmericans: 'Consensus & unanimous All-America selections — hand-curated per season where available, else summary count (data/manual).',
+  wins: 'Wins/losses/ties per season (CollegeFootballData 1936+; one hand-entered "through 1935" row per program → data/season-records.csv).',
+  championships: 'National-title list, one row per (school, year, selector); AP/UPI/FWAA/NFF/USA + CFRA/HAF/NCF count, "claim"/"not-claimed" do not (data/manual/national_titles.csv).',
+  allAmericans: 'Consensus All-Americans per season 1924–present (data/manual/all_americans.csv); unanimous count from summary (data/manual/stats_summary.csv).',
   nflDraft: 'Every NFL draft pick by school, 1936–present (CollegeFootballData → data/api/draft.json).',
 };
 
@@ -120,7 +124,8 @@ function load() {
 
   const titles = new Map();
   for (const r of csv('national_titles.csv')) {
-    if (!TITLE_SELECTORS.has(r.selector)) continue;
+    if (r.status === 'not-claimed') continue; // a selector named them; the school doesn't claim it
+    if (!TITLE_SELECTORS.has(r.selector)) continue; // excludes 'claim' rows
     if (!titles.has(r.school)) titles.set(r.school, new Set());
     titles.get(r.school).add(r.year); // distinct years
   }
@@ -141,9 +146,16 @@ function load() {
   }
   const heisman = new Map();
   for (const r of csv('heisman.csv')) heisman.set(r.school, (heisman.get(r.school) || 0) + 1);
-  const vacated = new Map();
+  // vacated_wins.csv: one row per (school, season); sum per school for the 'official' variant
+  const vacated = new Map(); // school -> { w, l }
   for (const r of csv('vacated_wins.csv')) {
-    if (Number(r.wins_vacated) > 0) vacated.set(r.school, Number(r.wins_vacated));
+    const w = Number(r.wins_vacated || 0);
+    const l = Number(r.losses_vacated || 0);
+    if (w + l === 0) continue;
+    const e = vacated.get(r.school) || { w: 0, l: 0 };
+    e.w += w;
+    e.l += l;
+    vacated.set(r.school, e);
   }
 
   const apSummary = readJson(path.join(API, 'ap-poll-summary.json'));
@@ -192,20 +204,20 @@ function buildRows(D, mode) {
     let games = rec.games;
     if (mode === 'official' && D.vacated.has(t.school)) {
       const v = D.vacated.get(t.school);
-      wins -= v;
-      games -= v;
+      wins -= v.w;
+      games -= v.w + v.l;
     }
 
+    // consensus AA from the per-season list where a program has one; unanimous is
+    // always the summary count (the per-season list doesn't flag unanimous picks).
     const aaRec = D.aa.get(t.school);
     let consensusAA;
-    let unanimousAA;
+    const unanimousAA = Number(sum.unanimous_aa || 0);
     if (aaRec && Object.keys(aaRec.perYear).length) {
       consensusAA = aaRec.c;
-      unanimousAA = aaRec.u;
       granularAA.consensus += 1;
     } else {
       consensusAA = Number(sum.consensus_aa || 0);
-      unanimousAA = Number(sum.unanimous_aa || 0);
       granularAA.summaryC += 1;
     }
 

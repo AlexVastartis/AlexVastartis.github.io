@@ -82,12 +82,12 @@ export default function Ranking() {
       <p className="text-xs leading-relaxed text-muted">
         <strong>How it’s built.</strong> {data.meta.modelBlurb} AP-poll weeks and NFL-draft picks
         come from CollegeFootballData (1936–{data.meta.latestSeason}); wins/losses are per-season,
-        CollegeFootballData from 1936 and hand-entered before that; national &amp; conference titles,
-        All-America selections and Heismans are hand-maintained
-        ({data.meta.titleSelectors.join(' / ')} title selectors count) and not adjudicated for
-        “claimed vs. consensus”. The trajectory arrow compares a program’s most recent{' '}
-        {Math.round(data.meta.trendRecentFraction * 100)}% of seasons with its whole prior history,
-        across AP standing, win rate, titles and draft output.
+        CollegeFootballData from 1936 and one hand-entered “through 1935” row per program before
+        that; national titles, All-America selections and Heismans are hand-maintained. A national
+        title counts when a major selector (AP, UPI, FWAA, NFF, USA; CFRA/HAF/NCF pre-1936) picked
+        the team — a program’s own unbacked claims do not. The trajectory arrow compares a
+        program’s most recent {Math.round(data.meta.trendRecentFraction * 100)}% of seasons with
+        its whole prior history, across AP standing, win rate, titles and draft output.
       </p>
     </div>
   );

@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-08-29T17:58:54.431Z",
+ "generatedAt": "2026-08-29T18:55:38.329Z",
  "fromYear": 1936,
  "toYear": 2025,
  "finalNo1": {
@@ -50,15 +50,15 @@
   "1980": "Georgia",
   "1981": "Clemson",
   "1982": "Penn State",
-  "1983": "Miami",
+  "1983": "Miami (FL)",
   "1984": "BYU",
   "1985": "Oklahoma",
   "1986": "Penn State",
-  "1987": "Miami",
+  "1987": "Miami (FL)",
   "1988": "Notre Dame",
-  "1989": "Miami",
+  "1989": "Miami (FL)",
   "1990": "Colorado",
-  "1991": "Miami",
+  "1991": "Miami (FL)",
   "1992": "Alabama",
   "1993": "Florida State",
   "1994": "Nebraska",
@@ -68,8 +68,8 @@
   "1998": "Tennessee",
   "1999": "Florida State",
   "2000": "Oklahoma",
-  "2001": "Miami",
-  "2002": "Miami",
+  "2001": "Miami (FL)",
+  "2002": "Miami (FL)",
   "2003": "USC",
   "2004": "USC",
   "2005": "Texas",
@@ -979,42 +979,6 @@
     "2023": 2
    }
   },
-  "Santa Clara": {
-   "weeksPoll": 43,
-   "weeksTop10": 17,
-   "weeksTop5": 2,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 6,
-    "1937": 7,
-    "1938": 6,
-    "1939": 6,
-    "1940": 6,
-    "1941": 2,
-    "1942": 6,
-    "1949": 4
-   },
-   "perSeasonTop10": {
-    "1936": 5,
-    "1937": 5,
-    "1938": 4,
-    "1941": 2,
-    "1942": 1
-   },
-   "perSeasonTop5": {
-    "1936": 1,
-    "1938": 1
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1936": 6,
-    "1937": 9,
-    "1939": 14,
-    "1940": 11,
-    "1942": 15,
-    "1949": 15
-   }
-  },
   "Northwestern": {
    "weeksPoll": 184,
    "weeksTop10": 74,
@@ -1643,58 +1607,6 @@
     "2012": 25
    }
   },
-  "Pennsylvania": {
-   "weeksPoll": 89,
-   "weeksTop10": 45,
-   "weeksTop5": 8,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 6,
-    "1939": 1,
-    "1940": 7,
-    "1941": 8,
-    "1942": 5,
-    "1943": 9,
-    "1944": 3,
-    "1945": 9,
-    "1946": 9,
-    "1947": 10,
-    "1948": 8,
-    "1949": 4,
-    "1950": 4,
-    "1951": 1,
-    "1952": 4,
-    "1953": 1
-   },
-   "perSeasonTop10": {
-    "1936": 2,
-    "1940": 3,
-    "1941": 1,
-    "1942": 2,
-    "1943": 6,
-    "1944": 3,
-    "1945": 7,
-    "1946": 6,
-    "1947": 10,
-    "1948": 4,
-    "1949": 1
-   },
-   "perSeasonTop5": {
-    "1943": 3,
-    "1946": 2,
-    "1947": 3
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1936": 10,
-    "1940": 14,
-    "1941": 15,
-    "1943": 20,
-    "1945": 8,
-    "1946": 13,
-    "1947": 7
-   }
-  },
   "Duke": {
    "weeksPoll": 181,
    "weeksTop10": 57,
@@ -1779,131 +1691,6 @@
     "1960": 10,
     "1961": 20,
     "2013": 23
-   }
-  },
-  "Yale": {
-   "weeksPoll": 30,
-   "weeksTop10": 6,
-   "weeksTop5": 3,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 4,
-    "1937": 7,
-    "1944": 2,
-    "1946": 5,
-    "1947": 3,
-    "1955": 1,
-    "1956": 1,
-    "1959": 2,
-    "1960": 4,
-    "1972": 1
-   },
-   "perSeasonTop10": {
-    "1936": 1,
-    "1937": 5
-   },
-   "perSeasonTop5": {
-    "1937": 3
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1936": 12,
-    "1937": 12,
-    "1946": 12,
-    "1960": 14
-   }
-  },
-  "Dartmouth": {
-   "weeksPoll": 37,
-   "weeksTop10": 10,
-   "weeksTop5": 4,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 5,
-    "1937": 7,
-    "1938": 8,
-    "1939": 2,
-    "1943": 6,
-    "1949": 1,
-    "1957": 1,
-    "1970": 7
-   },
-   "perSeasonTop10": {
-    "1937": 6,
-    "1938": 4
-   },
-   "perSeasonTop5": {
-    "1937": 1,
-    "1938": 3
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1936": 13,
-    "1937": 7,
-    "1938": 20,
-    "1943": 16,
-    "1970": 14
-   }
-  },
-  "Duquesne": {
-   "weeksPoll": 20,
-   "weeksTop10": 8,
-   "weeksTop5": 1,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 4,
-    "1937": 1,
-    "1939": 8,
-    "1941": 6,
-    "1942": 1
-   },
-   "perSeasonTop10": {
-    "1939": 4,
-    "1941": 4
-   },
-   "perSeasonTop5": {
-    "1941": 1
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1936": 14,
-    "1939": 10,
-    "1941": 8
-   }
-  },
-  "Fordham": {
-   "weeksPoll": 40,
-   "weeksTop10": 20,
-   "weeksTop5": 12,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 7,
-    "1937": 7,
-    "1938": 8,
-    "1939": 2,
-    "1940": 7,
-    "1941": 8,
-    "1949": 1
-   },
-   "perSeasonTop10": {
-    "1936": 5,
-    "1937": 7,
-    "1938": 2,
-    "1941": 6
-   },
-   "perSeasonTop5": {
-    "1936": 4,
-    "1937": 5,
-    "1941": 3
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1936": 15,
-    "1937": 3,
-    "1938": 15,
-    "1939": 17,
-    "1940": 12,
-    "1941": 6
    }
   },
   "TCU": {
@@ -2440,25 +2227,6 @@
     "2025": 23
    }
   },
-  "Marquette": {
-   "weeksPoll": 7,
-   "weeksTop10": 4,
-   "weeksTop5": 1,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 7
-   },
-   "perSeasonTop10": {
-    "1936": 4
-   },
-   "perSeasonTop5": {
-    "1936": 1
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1936": 20
-   }
-  },
   "Tulane": {
    "weeksPoll": 86,
    "weeksTop10": 19,
@@ -2729,39 +2497,6 @@
     "2018": 16,
     "2020": 4,
     "2025": 8
-   }
-  },
-  "Holy Cross": {
-   "weeksPoll": 39,
-   "weeksTop10": 5,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 4,
-    "1937": 6,
-    "1938": 7,
-    "1939": 3,
-    "1942": 1,
-    "1945": 8,
-    "1946": 1,
-    "1951": 4,
-    "1952": 1,
-    "1953": 2,
-    "1955": 2
-   },
-   "perSeasonTop10": {
-    "1938": 3,
-    "1939": 1,
-    "1945": 1
-   },
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1937": 14,
-    "1938": 9,
-    "1942": 19,
-    "1945": 16,
-    "1951": 19
    }
   },
   "Ohio State": {
@@ -3745,37 +3480,6 @@
     "2024": 21
    }
   },
-  "Princeton": {
-   "weeksPoll": 29,
-   "weeksTop10": 14,
-   "weeksTop5": 3,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 1,
-    "1939": 1,
-    "1949": 1,
-    "1950": 5,
-    "1951": 11,
-    "1952": 8,
-    "1953": 1,
-    "1956": 1
-   },
-   "perSeasonTop10": {
-    "1950": 5,
-    "1951": 8,
-    "1952": 1
-   },
-   "perSeasonTop5": {
-    "1951": 3
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1949": 18,
-    "1950": 6,
-    "1951": 6,
-    "1952": 19
-   }
-  },
   "Purdue": {
    "weeksPoll": 236,
    "weeksTop10": 83,
@@ -3880,28 +3584,6 @@
     "2003": 18
    }
   },
-  "Saint Mary's (CA)": {
-   "weeksPoll": 13,
-   "weeksTop10": 7,
-   "weeksTop5": 2,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1936": 2,
-    "1939": 1,
-    "1945": 9,
-    "1946": 1
-   },
-   "perSeasonTop10": {
-    "1945": 7
-   },
-   "perSeasonTop5": {
-    "1945": 2
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1945": 7
-   }
-  },
   "California": {
    "weeksPoll": 198,
    "weeksTop10": 91,
@@ -3989,31 +3671,6 @@
     "2004": 9,
     "2005": 25,
     "2006": 14
-   }
-  },
-  "Villanova": {
-   "weeksPoll": 25,
-   "weeksTop10": 5,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1937": 6,
-    "1938": 7,
-    "1941": 1,
-    "1949": 4,
-    "1951": 1,
-    "1952": 6
-   },
-   "perSeasonTop10": {
-    "1937": 4,
-    "1952": 1
-   },
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1937": 6,
-    "1938": 18,
-    "1949": 13
    }
   },
   "Colorado": {
@@ -4601,20 +4258,6 @@
     "2021": 5
    }
   },
-  "Detroit Mercy": {
-   "weeksPoll": 2,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1937": 1,
-    "1940": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
   "Wisconsin": {
    "weeksPoll": 412,
    "weeksTop10": 172,
@@ -4841,43 +4484,6 @@
     "2001": 18,
     "2018": 15,
     "2024": 20
-   }
-  },
-  "Cornell": {
-   "weeksPoll": 47,
-   "weeksTop10": 22,
-   "weeksTop5": 13,
-   "weeksNo1": 4,
-   "perSeason": {
-    "1937": 1,
-    "1938": 7,
-    "1939": 9,
-    "1940": 8,
-    "1948": 4,
-    "1949": 9,
-    "1950": 5,
-    "1951": 4
-   },
-   "perSeasonTop10": {
-    "1938": 2,
-    "1939": 8,
-    "1940": 6,
-    "1949": 4,
-    "1950": 2
-   },
-   "perSeasonTop5": {
-    "1939": 7,
-    "1940": 6
-   },
-   "perSeasonNo1": {
-    "1940": 4
-   },
-   "finalRank": {
-    "1938": 12,
-    "1939": 4,
-    "1940": 15,
-    "1948": 19,
-    "1949": 12
    }
   },
   "Oklahoma": {
@@ -5182,24 +4788,6 @@
     "2021": 10,
     "2023": 15,
     "2025": 13
-   }
-  },
-  "Carnegie Mellon": {
-   "weeksPoll": 9,
-   "weeksTop10": 5,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1938": 8,
-    "1939": 1
-   },
-   "perSeasonTop10": {
-    "1938": 5
-   },
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1938": 6
    }
   },
   "Texas Tech": {
@@ -5562,25 +5150,6 @@
     "2022": 3,
     "2023": 1,
     "2025": 21
-   }
-  },
-  "Georgetown": {
-   "weeksPoll": 11,
-   "weeksTop10": 5,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1938": 1,
-    "1939": 3,
-    "1940": 7
-   },
-   "perSeasonTop10": {
-    "1940": 5
-   },
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1940": 13
    }
   },
   "Iowa State": {
@@ -6400,7 +5969,7 @@
     "2014": 8
    }
   },
-  "San José State": {
+  "San Jose State": {
    "weeksPoll": 7,
    "weeksTop10": 0,
    "weeksTop5": 0,
@@ -6480,19 +6049,6 @@
     "2012": 20,
     "2022": 17
    }
-  },
-  "New York University": {
-   "weeksPoll": 3,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1939": 3
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
   },
   "Kentucky": {
    "weeksPoll": 111,
@@ -6881,37 +6437,6 @@
     "2017": 19,
     "2022": 20,
     "2023": 9
-   }
-  },
-  "Hardin Simmons": {
-   "weeksPoll": 4,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1940": 2,
-    "1942": 2
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1940": 17
-   }
-  },
-  "Lafayette": {
-   "weeksPoll": 3,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1940": 3
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1940": 19
    }
   },
   "Penn State": {
@@ -7403,28 +6928,6 @@
     "2025": 12
    }
   },
-  "Columbia": {
-   "weeksPoll": 16,
-   "weeksTop10": 1,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1940": 1,
-    "1941": 1,
-    "1945": 6,
-    "1946": 2,
-    "1947": 6
-   },
-   "perSeasonTop10": {
-    "1945": 1
-   },
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1945": 20,
-    "1947": 20
-   }
-  },
   "Georgia": {
    "weeksPoll": 686,
    "weeksTop10": 396,
@@ -7638,41 +7141,6 @@
     "2025": 6
    }
   },
-  "Harvard": {
-   "weeksPoll": 5,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1941": 2,
-    "1946": 2,
-    "1948": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
-  "William & Mary": {
-   "weeksPoll": 16,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1942": 6,
-    "1946": 2,
-    "1947": 6,
-    "1948": 2
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1942": 14,
-    "1947": 14,
-    "1948": 17
-   }
-  },
   "Illinois": {
    "weeksPoll": 204,
    "weeksTop10": 79,
@@ -7766,19 +7234,6 @@
     "2024": 16
    }
   },
-  "Williams": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1942": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
   "Fresno State": {
    "weeksPoll": 63,
    "weeksTop10": 3,
@@ -7816,194 +7271,6 @@
     "2022": 24
    }
   },
-  "Colgate": {
-   "weeksPoll": 2,
-   "weeksTop10": 1,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1942": 1,
-    "1977": 1
-   },
-   "perSeasonTop10": {
-    "1942": 1
-   },
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
-  "Iowa Pre-Flight": {
-   "weeksPoll": 18,
-   "weeksTop10": 17,
-   "weeksTop5": 5,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 9,
-    "1944": 9
-   },
-   "perSeasonTop10": {
-    "1943": 9,
-    "1944": 8
-   },
-   "perSeasonTop5": {
-    "1943": 4,
-    "1944": 1
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1943": 2,
-    "1944": 6
-   }
-  },
-  "Great Lakes Navy": {
-   "weeksPoll": 13,
-   "weeksTop10": 3,
-   "weeksTop5": 1,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 4,
-    "1944": 9
-   },
-   "perSeasonTop10": {
-    "1943": 1,
-    "1944": 2
-   },
-   "perSeasonTop5": {
-    "1944": 1
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1943": 6,
-    "1944": 17
-   }
-  },
-  "Del Monte Pre-Flight": {
-   "weeksPoll": 9,
-   "weeksTop10": 2,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 9
-   },
-   "perSeasonTop10": {
-    "1943": 2
-   },
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1943": 8
-   }
-  },
-  "March Field": {
-   "weeksPoll": 15,
-   "weeksTop10": 7,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 7,
-    "1944": 8
-   },
-   "perSeasonTop10": {
-    "1943": 3,
-    "1944": 4
-   },
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1943": 10,
-    "1944": 10
-   }
-  },
-  "Bainbridge NTS": {
-   "weeksPoll": 12,
-   "weeksTop10": 5,
-   "weeksTop5": 3,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 3,
-    "1944": 9
-   },
-   "perSeasonTop10": {
-    "1944": 5
-   },
-   "perSeasonTop5": {
-    "1944": 3
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1943": 17,
-    "1944": 5
-   }
-  },
-  "Colorado College": {
-   "weeksPoll": 5,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 5
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1943": 18
-   }
-  },
-  "Pacific": {
-   "weeksPoll": 14,
-   "weeksTop10": 5,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 8,
-    "1949": 3,
-    "1951": 3
-   },
-   "perSeasonTop10": {
-    "1943": 4,
-    "1949": 1
-   },
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1943": 19,
-    "1949": 10
-   }
-  },
-  "Randolph Field": {
-   "weeksPoll": 10,
-   "weeksTop10": 9,
-   "weeksTop5": 9,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 1,
-    "1944": 9
-   },
-   "perSeasonTop10": {
-    "1944": 9
-   },
-   "perSeasonTop5": {
-    "1944": 9
-   },
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1944": 3
-   }
-  },
-  "San Diego Navy": {
-   "weeksPoll": 2,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 2
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
   "Louisiana": {
    "weeksPoll": 21,
    "weeksTop10": 0,
@@ -8020,133 +7287,6 @@
    "finalRank": {
     "2020": 15,
     "2021": 16
-   }
-  },
-  "Arkansas Monticello": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
-  "Southwestern U": {
-   "weeksPoll": 3,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 3
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
-  "Memphis Navy": {
-   "weeksPoll": 3,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 3
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
-  "Camp Grant": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1943": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
-  "Norman Naval Air Station": {
-   "weeksPoll": 5,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1944": 5
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1944": 13
-   }
-  },
-  "El Toro Marines": {
-   "weeksPoll": 5,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1944": 5
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1944": 16
-   }
-  },
-  "Fort Pierce": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1944": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1944": 18
-   }
-  },
-  "Saint Mary's (CA) Pre-Flight": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1944": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1944": 19
-   }
-  },
-  "Second Air Force": {
-   "weeksPoll": 6,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1944": 6
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1944": 20
    }
   },
   "Oklahoma State": {
@@ -8236,36 +7376,6 @@
     "2023": 16
    }
   },
-  "Camp Peary": {
-   "weeksPoll": 2,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1944": 2
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
-  "North Carolina Pre-Flight": {
-   "weeksPoll": 7,
-   "weeksTop10": 4,
-   "weeksTop5": 1,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1944": 7
-   },
-   "perSeasonTop10": {
-    "1944": 4
-   },
-   "perSeasonTop5": {
-    "1944": 1
-   },
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
   "Wake Forest": {
    "weeksPoll": 68,
    "weeksTop10": 2,
@@ -8302,19 +7412,6 @@
     "2006": 18,
     "2021": 15
    }
-  },
-  "Third Air Force": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1944": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
   },
   "Virginia": {
    "weeksPoll": 183,
@@ -8376,7 +7473,7 @@
     "2025": 16
    }
   },
-  "NC State": {
+  "North Carolina State": {
    "weeksPoll": 189,
    "weeksTop10": 12,
    "weeksTop5": 4,
@@ -8441,50 +7538,6 @@
     "2017": 23,
     "2021": 20,
     "2023": 21
-   }
-  },
-  "Delaware": {
-   "weeksPoll": 3,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1946": 3
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1946": 19
-   }
-  },
-  "Muhlenberg": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1946": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
-  "San Francisco": {
-   "weeksPoll": 8,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1947": 1,
-    "1951": 7
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1951": 14
    }
   },
   "Utah": {
@@ -8600,19 +7653,6 @@
     "2007": 7,
     "2023": 23
    }
-  },
-  "Catawba": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1947": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
   },
   "Michigan State": {
    "weeksPoll": 418,
@@ -8878,23 +7918,7 @@
     "2010": 23
    }
   },
-  "Boston University": {
-   "weeksPoll": 3,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1949": 2,
-    "1951": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1951": 16
-   }
-  },
-  "Miami": {
+  "Miami (FL)": {
    "weeksPoll": 544,
    "weeksTop10": 325,
    "weeksTop5": 210,
@@ -9291,47 +8315,6 @@
     "1996": 22
    }
   },
-  "Lehigh": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1950": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
-  "Washington and Lee": {
-   "weeksPoll": 2,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1950": 2
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1950": 18
-   }
-  },
-  "Loyola Marymount": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1950": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
   "Cincinnati": {
    "weeksPoll": 99,
    "weeksTop10": 39,
@@ -9373,19 +8356,6 @@
     "2020": 8,
     "2021": 4
    }
-  },
-  "Bucknell": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1951": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
   },
   "Houston": {
    "weeksPoll": 206,
@@ -9785,36 +8755,6 @@
     "1974": 10,
     "1975": 12,
     "2003": 10
-   }
-  },
-  "George Washington": {
-   "weeksPoll": 7,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1956": 7
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1956": 17
-   }
-  },
-  "VMI": {
-   "weeksPoll": 5,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1957": 5
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "1957": 20
    }
   },
   "Arizona State": {
@@ -10492,19 +9432,6 @@
     "2003": 23
    }
   },
-  "Richmond": {
-   "weeksPoll": 1,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "1973": 1
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {}
-  },
   "Kent State": {
    "weeksPoll": 5,
    "weeksTop10": 0,
@@ -10630,7 +9557,7 @@
     "1991": 9
    }
   },
-  "Hawai'i": {
+  "Hawaii": {
    "weeksPoll": 27,
    "weeksTop10": 0,
    "weeksTop5": 0,
@@ -10983,7 +9910,7 @@
     "2022": 19
    }
   },
-  "App State": {
+  "Appalachian State": {
    "weeksPoll": 10,
    "weeksTop10": 0,
    "weeksTop5": 0,
@@ -11065,23 +9992,6 @@
    "perSeasonTop5": {},
    "perSeasonNo1": {},
    "finalRank": {}
-  },
-  "James Madison": {
-   "weeksPoll": 14,
-   "weeksTop10": 0,
-   "weeksTop5": 0,
-   "weeksNo1": 0,
-   "perSeason": {
-    "2022": 1,
-    "2023": 7,
-    "2025": 6
-   },
-   "perSeasonTop10": {},
-   "perSeasonTop5": {},
-   "perSeasonNo1": {},
-   "finalRank": {
-    "2025": 19
-   }
   },
   "UNLV": {
    "weeksPoll": 6,

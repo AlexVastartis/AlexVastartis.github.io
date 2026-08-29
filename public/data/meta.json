@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T18:01:54.958Z",
+  "generatedAt": "2026-08-29T18:59:30.538Z",
   "model": "percentile-trimmed-mean",
   "modelBlurb": "Rank each of the ten stats within FBS, drop each program’s single best and single worst percentile, average the other eight.",
   "trendRecentFraction": 0.2,
@@ -8,9 +8,17 @@
   "conferenceYear": 2026,
   "titleSelectors": [
     "AP",
+    "UPI",
+    "FWAA",
+    "NFF",
+    "USA/CNN",
+    "USA/ESPN",
+    "AFCA",
     "BCS",
     "CFP",
-    "Historical"
+    "CFRA",
+    "HAF",
+    "NCF"
   ],
   "sources": {
     "store": "data/api + data/season-records.csv + data/manual",
@@ -18,13 +26,13 @@
   },
   "provenance": {
     "perception": "Every weekly AP poll ballot, 1936–present (CollegeFootballData → data/api/ap-poll.json).",
-    "wins": "Wins/losses/ties per season (CollegeFootballData 1936+, hand-entered pre-1936 → data/season-records.csv).",
-    "championships": "Hand-curated title list, one row per selector (data/manual/national_titles.csv); conference titles hand-curated / summary.",
-    "allAmericans": "Consensus & unanimous All-America selections — hand-curated per season where available, else summary count (data/manual).",
+    "wins": "Wins/losses/ties per season (CollegeFootballData 1936+; one hand-entered \"through 1935\" row per program → data/season-records.csv).",
+    "championships": "National-title list, one row per (school, year, selector); AP/UPI/FWAA/NFF/USA + CFRA/HAF/NCF count, \"claim\"/\"not-claimed\" do not (data/manual/national_titles.csv).",
+    "allAmericans": "Consensus All-Americans per season 1924–present (data/manual/all_americans.csv); unanimous count from summary (data/manual/stats_summary.csv).",
     "nflDraft": "Every NFL draft pick by school, 1936–present (CollegeFootballData → data/api/draft.json)."
   },
   "granular": {
-    "allAmericans": "0/130 programs have per-season rows; the rest use a summary count.",
+    "allAmericans": "84/130 programs have per-season rows; the rest use a summary count.",
     "nationalTitles": "granular (data/manual/national_titles.csv, one row per selector)",
     "conferenceTitles": "granular where filed, else summary"
   },
@@ -40,35 +48,35 @@
   "tierBoundaries": [
     6,
     8,
-    12,
-    26,
-    48
+    14,
+    27,
+    46
   ],
   "tierGaps": [
-    2.788461538461533,
-    1.7307692307692122,
-    1.3942307692307594,
-    2.5961538461538396,
-    2.884615384615387
+    2.3557692307692406,
+    2.019230769230788,
+    1.4903846153846132,
+    3.2211538461538396,
+    2.836538461538467
   ],
   "stats": {
     "allTimeWins": {
-      "mean": 486.9384615384615,
-      "stddev": 266.0478775260097,
-      "min": 0,
+      "mean": 525.2384615384616,
+      "stddev": 240.99775944844714,
+      "min": 48,
       "max": 1013
     },
     "winPct": {
-      "mean": 0.49450052222034147,
-      "stddev": 0.1479377180861213,
-      "min": 0,
+      "mean": 0.5160580440410154,
+      "stddev": 0.09381471682755008,
+      "min": 0.3221476510067114,
       "max": 0.7380952380952381
     },
     "nationalTitles": {
-      "mean": 1.0038461538461538,
-      "stddev": 2.3431538196382227,
+      "mean": 1.0769230769230769,
+      "stddev": 2.4545574083744532,
       "min": 0,
-      "max": 15
+      "max": 16
     },
     "conferenceTitles": {
       "mean": 12.015384615384615,
@@ -77,10 +85,10 @@
       "max": 50
     },
     "consensusAA": {
-      "mean": 15.46923076923077,
-      "stddev": 21.582110990190444,
+      "mean": 5.653846153846154,
+      "stddev": 8.37184984471683,
       "min": 0,
-      "max": 107
+      "max": 42
     },
     "unanimousAA": {
       "mean": 4.930769230769231,
@@ -121,22 +129,22 @@
       "max": 3.6168384107310905
     },
     "wins": {
-      "mean": -4.4755865680201624e-17,
-      "stddev": 0.9268583711592016,
-      "min": -2.5864463452219453,
-      "max": 1.7698807748344383
+      "mean": -2.025516506657473e-15,
+      "stddev": 0.9141879185989906,
+      "min": -2.0236058362022877,
+      "max": 2.1124361265923106
     },
     "championships": {
-      "mean": 1.921539850312771e-17,
-      "stddev": 0.8463465668856319,
-      "min": -0.8169286868850287,
-      "max": 4.039244219742265
+      "mean": 2.5620531337503614e-18,
+      "stddev": 0.8593330013071592,
+      "min": -0.8220925035091654,
+      "max": 4.0925095975794346
     },
     "allAmericans": {
-      "mean": -1.1956247957501686e-17,
-      "stddev": 0.9904010511889428,
-      "min": -0.6639143726262444,
-      "max": 3.983754155812549
+      "mean": -1.1102230246251566e-17,
+      "stddev": 0.9960334940398944,
+      "min": -0.6432035823313753,
+      "max": 4.34603037025987
     },
     "nflDraft": {
       "mean": 3.586874387250506e-17,
@@ -147,8 +155,8 @@
   },
   "overall": {
     "mean": 0,
-    "stddev": 0.9999999999999999,
-    "min": -1.5749119250736119,
-    "max": 1.8854736857464396
+    "stddev": 1,
+    "min": -1.6279179711951433,
+    "max": 1.9059069996993176
   }
 }

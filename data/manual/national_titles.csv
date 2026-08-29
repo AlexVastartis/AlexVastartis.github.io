@@ -1,131 +1,371 @@
-school,year,selector,note,source
-Michigan,1901,Historical,pre-poll era; Helms/NCF retroactive,ncaa-records
-Michigan,1902,Historical,pre-poll era; Helms/NCF retroactive,ncaa-records
-Michigan,1903,Historical,pre-poll era; Helms/NCF retroactive,ncaa-records
-Michigan,1904,Historical,pre-poll era; Helms/NCF retroactive,ncaa-records
-California,1920,Historical,Wonder Teams; consensus,ncaa-records
-California,1921,Historical,claimed; Helms,ncaa-records
-California,1922,Historical,claimed; Helms,ncaa-records
-Pittsburgh,1915,Historical,pre-poll era; consensus,ncaa-records
-Pittsburgh,1916,Historical,pre-poll era; consensus,ncaa-records
-Pittsburgh,1918,Historical,shared; pre-poll era,ncaa-records
-Michigan,1918,Historical,shared; pre-poll era,ncaa-records
-Notre Dame,1919,Historical,pre-poll era; Rockne,ncaa-records
-Georgia Tech,1917,Historical,pre-poll era; consensus,ncaa-records
-Georgia Tech,1928,Historical,Rose Bowl; consensus,ncaa-records
-Notre Dame,1924,Historical,Four Horsemen; consensus,ncaa-records
-Alabama,1925,Historical,Rose Bowl; consensus,ncaa-records
-Alabama,1926,Historical,shared; Rose Bowl,ncaa-records
-Stanford,1926,Historical,shared; Rose Bowl,ncaa-records
-USC,1928,Historical,pre-poll era; consensus,ncaa-records
-Notre Dame,1929,Historical,pre-poll era; Rockne,ncaa-records
-Notre Dame,1930,Historical,pre-poll era; Rockne,ncaa-records
-Alabama,1930,Historical,shared; Rose Bowl,ncaa-records
-USC,1931,Historical,pre-poll era; consensus,ncaa-records
-Michigan,1932,Historical,pre-poll era; consensus,ncaa-records
-Michigan,1933,Historical,shared; pre-poll era,ncaa-records
-USC,1932,Historical,pre-poll era; consensus,ncaa-records
-Minnesota,1934,Historical,pre-poll era; Bierman,ncaa-records
-Minnesota,1935,Historical,pre-poll era; Bierman,ncaa-records
-Pittsburgh,1934,Historical,shared; pre-poll era,ncaa-records
-Minnesota,1936,AP,final AP poll #1,ap-poll
-Pittsburgh,1937,AP,final AP poll #1,ap-poll
-TCU,1938,AP,final AP poll #1,ap-poll
-Texas A&M,1939,AP,final AP poll #1,ap-poll
-Minnesota,1940,AP,final AP poll #1,ap-poll
-Minnesota,1941,AP,final AP poll #1,ap-poll
-Ohio State,1942,AP,final AP poll #1,ap-poll
-Notre Dame,1943,AP,final AP poll #1,ap-poll
-Army,1944,AP,final AP poll #1,ap-poll
-Army,1945,AP,final AP poll #1,ap-poll
-Notre Dame,1946,AP,final AP poll #1,ap-poll
-Notre Dame,1947,AP,final AP poll #1,ap-poll
-Michigan,1948,AP,final AP poll #1,ap-poll
-Notre Dame,1949,AP,final AP poll #1,ap-poll
-Oklahoma,1950,AP,final AP poll #1,ap-poll
-Tennessee,1951,AP,final AP poll #1,ap-poll
-Michigan State,1952,AP,final AP poll #1,ap-poll
-Maryland,1953,AP,final AP poll #1,ap-poll
-Ohio State,1954,AP,final AP poll #1,ap-poll
-UCLA,1954,Coaches,UPI #1; split title,ncaa-records
-Oklahoma,1955,AP,final AP poll #1,ap-poll
-Oklahoma,1956,AP,final AP poll #1,ap-poll
-Auburn,1957,AP,final AP poll #1 (probation),ap-poll
-Ohio State,1957,Coaches,UPI #1; split title,ncaa-records
-LSU,1958,AP,final AP poll #1,ap-poll
-Syracuse,1959,AP,final AP poll #1,ap-poll
-Minnesota,1960,AP,final AP poll #1,ap-poll
-Alabama,1961,AP,final AP poll #1,ap-poll
-USC,1962,AP,final AP poll #1,ap-poll
-Texas,1963,AP,final AP poll #1,ap-poll
-Alabama,1964,AP,final AP poll #1,ap-poll
-Alabama,1965,AP,final AP poll #1,ap-poll
-Michigan State,1965,Coaches,UPI/NFF #1; split title,ncaa-records
-Notre Dame,1966,AP,final AP poll #1,ap-poll
-USC,1967,AP,final AP poll #1,ap-poll
-Ohio State,1968,AP,final AP poll #1,ap-poll
-Texas,1969,AP,final AP poll #1,ap-poll
-Nebraska,1970,AP,final AP poll #1,ap-poll
-Texas,1970,Coaches,UPI #1; split title,ncaa-records
-Nebraska,1971,AP,final AP poll #1,ap-poll
-USC,1972,AP,final AP poll #1,ap-poll
-Notre Dame,1973,AP,final AP poll #1,ap-poll
-Alabama,1973,Coaches,UPI #1; split title,ncaa-records
-Oklahoma,1974,AP,final AP poll #1 (probation),ap-poll
-USC,1974,Coaches,UPI #1; split title,ncaa-records
-Oklahoma,1975,AP,final AP poll #1,ap-poll
-Pittsburgh,1976,AP,final AP poll #1,ap-poll
-Notre Dame,1977,AP,final AP poll #1,ap-poll
-Alabama,1978,AP,final AP poll #1,ap-poll
-USC,1978,Coaches,UPI #1; split title,ncaa-records
-Alabama,1979,AP,final AP poll #1,ap-poll
-Georgia,1980,AP,final AP poll #1,ap-poll
-Clemson,1981,AP,final AP poll #1,ap-poll
-Penn State,1982,AP,final AP poll #1,ap-poll
-Miami (FL),1983,AP,final AP poll #1,ap-poll
-BYU,1984,AP,final AP poll #1,ap-poll
-Oklahoma,1985,AP,final AP poll #1,ap-poll
-Penn State,1986,AP,final AP poll #1,ap-poll
-Miami (FL),1987,AP,final AP poll #1,ap-poll
-Notre Dame,1988,AP,final AP poll #1,ap-poll
-Miami (FL),1989,AP,final AP poll #1,ap-poll
-Colorado,1990,AP,final AP poll #1,ap-poll
-Georgia Tech,1990,Coaches,UPI #1; split title,ncaa-records
-Miami (FL),1991,AP,final AP poll #1,ap-poll
-Washington,1991,Coaches,Coaches #1; split title,ncaa-records
-Alabama,1992,AP,final AP poll #1,ap-poll
-Florida State,1993,AP,final AP poll #1,ap-poll
-Nebraska,1994,AP,final AP poll #1,ap-poll
-Nebraska,1995,AP,final AP poll #1,ap-poll
-Florida,1996,AP,final AP poll #1,ap-poll
-Michigan,1997,AP,final AP poll #1,ap-poll
-Nebraska,1997,Coaches,Coaches #1; split title,ncaa-records
-Tennessee,1998,BCS,BCS champion,bcs
-Florida State,1999,BCS,BCS champion,bcs
-Oklahoma,2000,BCS,BCS champion,bcs
-Miami (FL),2001,BCS,BCS champion,bcs
-Ohio State,2002,BCS,BCS champion (beat Miami in Fiesta),bcs
-LSU,2003,BCS,BCS champion,bcs
-USC,2003,AP,final AP poll #1; split title,ap-poll
-USC,2004,AP,final AP poll #1 (BCS title later vacated),ap-poll
-Texas,2005,BCS,BCS champion,bcs
-Florida,2006,BCS,BCS champion,bcs
-LSU,2007,BCS,BCS champion,bcs
-Florida,2008,BCS,BCS champion,bcs
-Alabama,2009,BCS,BCS champion,bcs
-Auburn,2010,BCS,BCS champion,bcs
-Alabama,2011,BCS,BCS champion,bcs
-Alabama,2012,BCS,BCS champion,bcs
-Florida State,2013,BCS,BCS champion,bcs
-Ohio State,2014,CFP,College Football Playoff champion,cfp
-Alabama,2015,CFP,College Football Playoff champion,cfp
-Clemson,2016,CFP,College Football Playoff champion,cfp
-Alabama,2017,CFP,College Football Playoff champion,cfp
-Clemson,2018,CFP,College Football Playoff champion,cfp
-LSU,2019,CFP,College Football Playoff champion,cfp
-Alabama,2020,CFP,College Football Playoff champion,cfp
-Georgia,2021,CFP,College Football Playoff champion,cfp
-Georgia,2022,CFP,College Football Playoff champion,cfp
-Michigan,2023,CFP,College Football Playoff champion,cfp
-Ohio State,2024,CFP,College Football Playoff champion,cfp
-Indiana,2025,CFP,College Football Playoff champion,cfp
+# College football national titles, one row per (school, year). Source: consolidated championship list (AP/UPI/FWAA/NFF/USA polls; CFRA/HAF/NCF pre-1936).
+# selector "claim" = school claims it with no major selector; status "not-claimed" = selector named them but the school does not claim it; "vacated"/"disputed" as noted.
+# build-data.mjs counts a title YEAR when the school has >=1 row whose selector is in TITLE_SELECTORS and status is not "not-claimed".
+school,year,selector,status,source
+Michigan,1901,HAF,,manual
+Michigan,1901,NCF,,manual
+Michigan,1902,HAF,,manual
+Michigan,1902,NCF,,manual
+Michigan,1903,NCF,,manual
+Michigan,1904,NCF,,manual
+Minnesota,1904,claim,,manual
+LSU,1908,NCF,not-claimed,manual
+Auburn,1910,claim,,manual
+Pittsburgh,1910,NCF,not-claimed,manual
+Penn State,1911,NCF,not-claimed,manual
+Penn State,1912,NCF,not-claimed,manual
+Auburn,1913,claim,disputed,manual
+Army,1914,HAF,,manual
+Army,1914,NCF,,manual
+Auburn,1914,claim,,manual
+Illinois,1914,claim,,manual
+Pittsburgh,1915,claim,disputed,manual
+Army,1916,claim,,manual
+Pittsburgh,1916,HAF,,manual
+Pittsburgh,1916,NCF,,manual
+Georgia Tech,1917,HAF,,manual
+Georgia Tech,1917,NCF,,manual
+Michigan,1918,NCF,,manual
+Pittsburgh,1918,HAF,,manual
+Pittsburgh,1918,NCF,,manual
+Illinois,1919,CFRA,,manual
+Notre Dame,1919,NCF,not-claimed,manual
+Texas A&M,1919,NCF,,manual
+California,1920,CFRA,,manual
+California,1920,HAF,,manual
+California,1920,NCF,,manual
+California,1921,CFRA,,manual
+Iowa,1921,claim,,manual
+California,1922,NCF,,manual
+Iowa,1922,claim,,manual
+California,1923,claim,,manual
+Illinois,1923,CFRA,,manual
+Illinois,1923,HAF,,manual
+Illinois,1923,NCF,,manual
+Michigan,1923,NCF,,manual
+Notre Dame,1924,CFRA,,manual
+Notre Dame,1924,HAF,,manual
+Notre Dame,1924,NCF,,manual
+Alabama,1925,CFRA,,manual
+Alabama,1925,HAF,,manual
+Alabama,1925,NCF,,manual
+Alabama,1926,CFRA,,manual
+Alabama,1926,HAF,,manual
+Alabama,1926,NCF,,manual
+Navy,1926,claim,,manual
+Stanford,1926,HAF,,manual
+Stanford,1926,NCF,,manual
+Illinois,1927,HAF,,manual
+Illinois,1927,NCF,,manual
+Texas A&M,1927,claim,,manual
+Georgia Tech,1928,CFRA,,manual
+Georgia Tech,1928,HAF,,manual
+Georgia Tech,1928,NCF,,manual
+USC,1928,claim,,manual
+Notre Dame,1929,CFRA,,manual
+Notre Dame,1929,HAF,,manual
+Notre Dame,1929,NCF,,manual
+Pittsburgh,1929,claim,,manual
+Alabama,1930,CFRA,,manual
+Notre Dame,1930,HAF,,manual
+Notre Dame,1930,NCF,,manual
+Pittsburgh,1931,claim,,manual
+USC,1931,CFRA,,manual
+USC,1931,HAF,,manual
+USC,1931,NCF,,manual
+Michigan,1932,claim,,manual
+USC,1932,CFRA,,manual
+USC,1932,HAF,,manual
+USC,1932,NCF,,manual
+Michigan,1933,CFRA,,manual
+Michigan,1933,HAF,,manual
+Michigan,1933,NCF,,manual
+Alabama,1934,claim,,manual
+Minnesota,1934,CFRA,,manual
+Minnesota,1934,HAF,,manual
+Minnesota,1934,NCF,,manual
+Pittsburgh,1934,claim,,manual
+Minnesota,1935,CFRA,,manual
+Minnesota,1935,HAF,,manual
+Minnesota,1935,NCF,,manual
+SMU,1935,claim,,manual
+TCU,1935,claim,,manual
+Minnesota,1936,AP,,manual
+Pittsburgh,1936,claim,,manual
+California,1937,claim,,manual
+Pittsburgh,1937,AP,,manual
+TCU,1938,AP,,manual
+Tennessee,1938,claim,,manual
+Texas A&M,1939,AP,,manual
+USC,1939,claim,,manual
+Boston College,1940,claim,,manual
+Minnesota,1940,AP,,manual
+Stanford,1940,claim,,manual
+Tennessee,1940,claim,,manual
+Alabama,1941,claim,,manual
+Minnesota,1941,AP,,manual
+Georgia,1942,claim,,manual
+Ohio State,1942,AP,,manual
+Notre Dame,1943,AP,,manual
+Army,1944,AP,,manual
+Army,1945,AP,,manual
+Oklahoma State,1945,claim,,manual
+Army,1946,claim,,manual
+Notre Dame,1946,AP,,manual
+Michigan,1947,claim,,manual
+Notre Dame,1947,AP,,manual
+Michigan,1948,AP,,manual
+Notre Dame,1949,AP,,manual
+Kentucky,1950,claim,,manual
+Oklahoma,1950,AP,,manual
+Oklahoma,1950,UPI,,manual
+Tennessee,1950,claim,,manual
+Illinois,1951,claim,,manual
+Michigan State,1951,claim,,manual
+Tennessee,1951,AP,,manual
+Tennessee,1951,UPI,,manual
+Georgia Tech,1952,claim,,manual
+Michigan State,1952,AP,,manual
+Michigan State,1952,UPI,,manual
+Maryland,1953,AP,,manual
+Maryland,1953,UPI,,manual
+Ohio State,1954,AP,,manual
+UCLA,1954,FWAA,,manual
+UCLA,1954,UPI,,manual
+Michigan State,1955,claim,,manual
+Oklahoma,1955,AP,,manual
+Oklahoma,1955,FWAA,,manual
+Oklahoma,1955,UPI,,manual
+Iowa,1956,claim,,manual
+Oklahoma,1956,AP,,manual
+Oklahoma,1956,FWAA,,manual
+Oklahoma,1956,UPI,,manual
+Auburn,1957,AP,,manual
+Michigan State,1957,claim,,manual
+Ohio State,1957,FWAA,,manual
+Ohio State,1957,UPI,,manual
+Auburn,1958,claim,,manual
+Iowa,1958,FWAA,,manual
+LSU,1958,AP,,manual
+LSU,1958,UPI,,manual
+Ole Miss,1959,claim,,manual
+Syracuse,1959,AP,,manual
+Syracuse,1959,FWAA,,manual
+Syracuse,1959,NFF,,manual
+Syracuse,1959,UPI,,manual
+Iowa,1960,claim,,manual
+Minnesota,1960,AP,,manual
+Minnesota,1960,NFF,,manual
+Minnesota,1960,UPI,,manual
+Missouri,1960,claim,,manual
+Ole Miss,1960,FWAA,,manual
+Washington,1960,claim,,manual
+Alabama,1961,AP,,manual
+Alabama,1961,NFF,,manual
+Alabama,1961,UPI,,manual
+Ohio State,1961,FWAA,,manual
+Ole Miss,1962,claim,,manual
+USC,1962,AP,,manual
+USC,1962,FWAA,,manual
+USC,1962,NFF,,manual
+USC,1962,UPI,,manual
+Texas,1963,AP,,manual
+Texas,1963,FWAA,,manual
+Texas,1963,NFF,,manual
+Texas,1963,UPI,,manual
+Alabama,1964,AP,,manual
+Alabama,1964,UPI,,manual
+Arkansas,1964,FWAA,,manual
+Notre Dame,1964,NFF,not-claimed,manual
+Alabama,1965,AP,,manual
+Alabama,1965,FWAA,,manual
+Michigan State,1965,FWAA,,manual
+Michigan State,1965,NFF,,manual
+Michigan State,1965,UPI,,manual
+Michigan State,1966,NFF,,manual
+Notre Dame,1966,AP,,manual
+Notre Dame,1966,FWAA,,manual
+Notre Dame,1966,NFF,,manual
+Notre Dame,1966,UPI,,manual
+Tennessee,1967,claim,,manual
+USC,1967,AP,,manual
+USC,1967,FWAA,,manual
+USC,1967,NFF,,manual
+USC,1967,UPI,,manual
+Ohio State,1968,AP,,manual
+Ohio State,1968,FWAA,,manual
+Ohio State,1968,NFF,,manual
+Ohio State,1968,UPI,,manual
+Texas,1969,AP,,manual
+Texas,1969,FWAA,,manual
+Texas,1969,NFF,,manual
+Texas,1969,UPI,,manual
+Nebraska,1970,AP,,manual
+Nebraska,1970,FWAA,,manual
+Ohio State,1970,NFF,,manual
+Texas,1970,NFF,,manual
+Texas,1970,UPI,,manual
+Nebraska,1971,AP,,manual
+Nebraska,1971,FWAA,,manual
+Nebraska,1971,NFF,,manual
+Nebraska,1971,UPI,,manual
+USC,1972,AP,,manual
+USC,1972,FWAA,,manual
+USC,1972,NFF,,manual
+USC,1972,UPI,,manual
+Alabama,1973,UPI,,manual
+Notre Dame,1973,AP,,manual
+Notre Dame,1973,FWAA,,manual
+Notre Dame,1973,NFF,,manual
+Oklahoma,1974,AP,,manual
+USC,1974,FWAA,,manual
+USC,1974,NFF,,manual
+USC,1974,UPI,,manual
+Oklahoma,1975,AP,,manual
+Oklahoma,1975,FWAA,,manual
+Oklahoma,1975,NFF,,manual
+Oklahoma,1975,UPI,,manual
+Pittsburgh,1976,AP,,manual
+Pittsburgh,1976,FWAA,,manual
+Pittsburgh,1976,NFF,,manual
+Pittsburgh,1976,UPI,,manual
+Notre Dame,1977,AP,,manual
+Notre Dame,1977,FWAA,,manual
+Notre Dame,1977,NFF,,manual
+Notre Dame,1977,UPI,,manual
+Alabama,1978,AP,,manual
+Alabama,1978,FWAA,,manual
+Alabama,1978,NFF,,manual
+USC,1978,UPI,,manual
+Alabama,1979,AP,,manual
+Alabama,1979,FWAA,,manual
+Alabama,1979,NFF,,manual
+Alabama,1979,UPI,,manual
+Georgia,1980,AP,,manual
+Georgia,1980,FWAA,,manual
+Georgia,1980,NFF,,manual
+Georgia,1980,UPI,,manual
+Clemson,1981,AP,,manual
+Clemson,1981,FWAA,,manual
+Clemson,1981,NFF,,manual
+Clemson,1981,UPI,,manual
+SMU,1981,claim,,manual
+Penn State,1982,AP,,manual
+Penn State,1982,FWAA,,manual
+Penn State,1982,NFF,,manual
+Penn State,1982,UPI,,manual
+Penn State,1982,USA/CNN,,manual
+SMU,1982,claim,,manual
+Auburn,1983,claim,,manual
+Miami (FL),1983,AP,,manual
+Miami (FL),1983,FWAA,,manual
+Miami (FL),1983,NFF,,manual
+Miami (FL),1983,UPI,,manual
+Miami (FL),1983,USA/CNN,,manual
+BYU,1984,AP,,manual
+BYU,1984,FWAA,,manual
+BYU,1984,NFF,,manual
+BYU,1984,UPI,,manual
+BYU,1984,USA/CNN,,manual
+Oklahoma,1985,AP,,manual
+Oklahoma,1985,FWAA,,manual
+Oklahoma,1985,NFF,,manual
+Oklahoma,1985,UPI,,manual
+Oklahoma,1985,USA/CNN,,manual
+Penn State,1986,AP,,manual
+Penn State,1986,FWAA,,manual
+Penn State,1986,NFF,,manual
+Penn State,1986,UPI,,manual
+Penn State,1986,USA/CNN,,manual
+Miami (FL),1987,AP,,manual
+Miami (FL),1987,FWAA,,manual
+Miami (FL),1987,NFF,,manual
+Miami (FL),1987,UPI,,manual
+Miami (FL),1987,USA/CNN,,manual
+Notre Dame,1988,AP,,manual
+Notre Dame,1988,FWAA,,manual
+Notre Dame,1988,NFF,,manual
+Notre Dame,1988,UPI,,manual
+Notre Dame,1988,USA/CNN,,manual
+Miami (FL),1989,AP,,manual
+Miami (FL),1989,FWAA,,manual
+Miami (FL),1989,NFF,,manual
+Miami (FL),1989,UPI,,manual
+Miami (FL),1989,USA/CNN,,manual
+Colorado,1990,AP,,manual
+Colorado,1990,FWAA,,manual
+Colorado,1990,NFF,,manual
+Colorado,1990,USA/CNN,,manual
+Georgia Tech,1990,UPI,,manual
+Miami (FL),1991,AP,,manual
+Washington,1991,FWAA,,manual
+Washington,1991,NFF,,manual
+Washington,1991,USA/CNN,,manual
+Alabama,1992,AP,,manual
+Alabama,1992,FWAA,,manual
+Alabama,1992,NFF,,manual
+Alabama,1992,UPI,,manual
+Alabama,1992,USA/CNN,,manual
+Auburn,1993,claim,,manual
+Florida State,1993,AP,,manual
+Florida State,1993,FWAA,,manual
+Florida State,1993,NFF,,manual
+Florida State,1993,UPI,,manual
+Florida State,1993,USA/CNN,,manual
+Nebraska,1994,AP,,manual
+Nebraska,1994,FWAA,,manual
+Nebraska,1994,NFF,,manual
+Nebraska,1994,UPI,,manual
+Nebraska,1994,USA/CNN,,manual
+Nebraska,1995,AP,,manual
+Nebraska,1995,FWAA,,manual
+Nebraska,1995,NFF,,manual
+Nebraska,1995,UPI,,manual
+Nebraska,1995,USA/CNN,,manual
+Florida,1996,AP,,manual
+Florida,1996,FWAA,,manual
+Florida,1996,NFF,,manual
+Florida,1996,USA/CNN,,manual
+Michigan,1997,AP,,manual
+Michigan,1997,FWAA,,manual
+Michigan,1997,NFF,,manual
+Nebraska,1997,USA/ESPN,,manual
+Tennessee,1998,BCS,,manual
+Florida State,1999,BCS,,manual
+Oklahoma,2000,BCS,,manual
+Miami (FL),2001,BCS,,manual
+Ohio State,2002,BCS,,manual
+LSU,2003,BCS,,manual
+LSU,2003,NFF,,manual
+LSU,2003,USA/ESPN,,manual
+USC,2003,AP,,manual
+USC,2003,FWAA,,manual
+Auburn,2004,claim,,manual
+USC,2004,AP,vacated,manual
+USC,2004,BCS,vacated,manual
+USC,2004,FWAA,vacated,manual
+USC,2004,NFF,vacated,manual
+USC,2004,USA/ESPN,vacated,manual
+Texas,2005,BCS,,manual
+Florida,2006,BCS,,manual
+LSU,2007,BCS,,manual
+Florida,2008,BCS,,manual
+Alabama,2009,BCS,,manual
+Auburn,2010,BCS,,manual
+Alabama,2011,BCS,,manual
+Alabama,2012,BCS,,manual
+Florida State,2013,BCS,,manual
+Ohio State,2014,CFP,,manual
+Alabama,2015,CFP,,manual
+Clemson,2016,CFP,,manual
+Alabama,2017,AP,,manual
+Alabama,2017,CFP,,manual
+UCF,2017,claim,,manual
+Clemson,2018,CFP,,manual
+LSU,2019,CFP,,manual
+Alabama,2020,CFP,,manual
+Georgia,2021,CFP,,manual
+Georgia,2022,CFP,,manual
+Michigan,2023,CFP,,manual
+Ohio State,2024,CFP,,manual
+Indiana,2025,CFP,,manual

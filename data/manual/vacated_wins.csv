@@ -1,10 +1,46 @@
-school,seasons,wins_vacated,note,source
-# NCAA-vacated wins. CFBD reports games as played, so these are subtracted only
-# in the "official" wins view (toggle). The rating defaults to "as-played" and
-# the trajectory calc always uses as-played wins.
-USC,2004-2005,14,Reggie Bush infractions; 2004 BCS title & 2005 season vacated,ncaa
-Ohio State,2010,12,Tattoo-gate; entire 2010 season vacated,ncaa
-Louisville,2011-2014,15,men's staff misconduct; wins across 2011-2014 vacated,ncaa
-Notre Dame,2012-2013,21,academic misconduct; 2012 & 2013 wins vacated,ncaa
-Missouri,2015-2016,9,tutor misconduct; wins vacated,ncaa
-Baylor,2011-2013,0,see note — some sources cite vacated wins; confirm,manual
+# NCAA-vacated wins (and losses) per (school, season). Source: Wikipedia "Vacated victories in college football".
+# build-data.mjs sums these per school for the "official" wins variant (as-played is the default).
+school,year,wins_vacated,losses_vacated,note,source
+Alabama,2005,10,0,Shula; 9 reg + 2006 Cotton Bowl,wikipedia
+Alabama,2006,6,0,Shula,wikipedia
+Alabama,2007,5,0,Saban,wikipedia
+Arizona State,2021,8,0,Edwards,wikipedia
+Arizona State,2022,2,0,Edwards,wikipedia
+Arkansas State,2005,4,0,Roberts,wikipedia
+Arkansas State,2006,6,0,Roberts,wikipedia
+California,1999,4,0,Holmoe,wikipedia
+FIU,2005,5,0,Strock,wikipedia
+Florida State,2006,5,0,Bowden; 4 reg + 2006 Emerald Bowl,wikipedia
+Florida State,2007,7,0,Bowden,wikipedia
+Georgia Tech,2009,1,0,Johnson; 2009 ACC title game,wikipedia
+Iowa,2023,4,0,Ferentz,wikipedia
+Kentucky,2021,10,0,Stoops; 9 reg + 2022 Citrus Bowl,wikipedia
+Louisiana,2011,8,0,Hudspeth; 7 reg + New Orleans Bowl,wikipedia
+Louisiana,2012,4,0,Hudspeth,wikipedia
+Louisiana,2013,8,0,Hudspeth; 7 reg + New Orleans Bowl,wikipedia
+Louisiana,2014,2,0,Hudspeth,wikipedia
+LSU,2012,10,0,Miles,wikipedia
+LSU,2013,10,0,Miles; 9 reg + 2014 Outback Bowl,wikipedia
+LSU,2014,8,0,Miles,wikipedia
+LSU,2015,9,0,Miles; 8 reg + 2015 Texas Bowl,wikipedia
+Missouri,2015,5,0,Pinkel,wikipedia
+Missouri,2016,4,0,Odom,wikipedia
+North Carolina,2008,8,0,Davis,wikipedia
+North Carolina,2009,8,0,Davis,wikipedia
+Notre Dame,2012,12,1,Kelly; 12 reg + 2013 BCS NCG loss,wikipedia
+Notre Dame,2013,9,0,Kelly; 8 reg + 2013 Pinstripe Bowl,wikipedia
+Ohio State,2010,12,0,Tressel; 11 reg + 2011 Sugar Bowl,wikipedia
+Ole Miss,2010,4,0,Nutt,wikipedia
+Ole Miss,2011,2,0,Nutt,wikipedia
+Ole Miss,2012,7,0,Freeze; 6 reg + 2013 BBVA Compass Bowl,wikipedia
+Ole Miss,2013,7,0,Freeze,wikipedia
+Ole Miss,2014,8,0,Freeze,wikipedia
+Ole Miss,2016,5,0,Freeze,wikipedia
+SMU,1998,4,6,Cavan,wikipedia
+Syracuse,2004,6,0,Pasqualoni,wikipedia
+Syracuse,2005,1,0,Robinson,wikipedia
+Syracuse,2006,4,0,Robinson,wikipedia
+Tennessee,2019,8,0,Pruitt; 7 reg + 2020 Gator Bowl,wikipedia
+Tennessee,2020,3,0,Pruitt,wikipedia
+USC,2004,2,0,Carroll; 1 reg + 2005 Orange Bowl,wikipedia
+USC,2005,12,1,Carroll; 12 reg + 2006 Rose Bowl loss,wikipedia

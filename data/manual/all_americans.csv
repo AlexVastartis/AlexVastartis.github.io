@@ -1,8 +1,604 @@
+# Consensus All-Americans per (school, season). Source: Wikipedia "Consensus All-American" year lists (NCAA-recognized selectors).
+# unanimous left blank — the source list does not flag unanimous selections; build-data falls back to stats_summary.csv for the unanimous stat.
 school,year,consensus,unanimous,source
-# Per-season counts of Consensus and Unanimous All-America selections.
-# One row per (school, year). `consensus` = number of that program's players named
-# consensus All-America that year; `unanimous` = the subset who were unanimous.
-# While a program has NO rows here, build-data falls back to its summary count in
-# data/manual/stats_summary.csv and drops the All-Americans term from its trend.
-# Source ideas: NCAA "Consensus All-America Selections" record book; Wikipedia
-# "List of <team> consensus All-Americans".
+Air Force,1987,1,,wikipedia
+Air Force,1992,1,,wikipedia
+Alabama,1930,1,,wikipedia
+Alabama,1961,1,,wikipedia
+Alabama,1962,1,,wikipedia
+Alabama,1966,1,,wikipedia
+Alabama,1972,1,,wikipedia
+Alabama,1975,1,,wikipedia
+Alabama,1980,1,,wikipedia
+Alabama,1986,1,,wikipedia
+Alabama,1988,1,,wikipedia
+Alabama,1989,1,,wikipedia
+Alabama,1990,1,,wikipedia
+Alabama,1993,1,,wikipedia
+Alabama,1996,1,,wikipedia
+Alabama,1999,1,,wikipedia
+Alabama,2005,1,,wikipedia
+Alabama,2008,1,,wikipedia
+Alabama,2009,2,,wikipedia
+Alabama,2011,3,,wikipedia
+Alabama,2012,2,,wikipedia
+Alabama,2013,1,,wikipedia
+Alabama,2014,2,,wikipedia
+Alabama,2015,2,,wikipedia
+Alabama,2016,3,,wikipedia
+Alabama,2017,1,,wikipedia
+Alabama,2018,2,,wikipedia
+Alabama,2020,5,,wikipedia
+Alabama,2021,1,,wikipedia
+Alabama,2022,1,,wikipedia
+Arizona,1983,1,,wikipedia
+Arizona,1990,1,,wikipedia
+Arizona,1993,1,,wikipedia
+Arizona,1995,1,,wikipedia
+Arizona,1998,1,,wikipedia
+Arizona,2014,1,,wikipedia
+Arizona State,1978,1,,wikipedia
+Arizona State,2002,1,,wikipedia
+Arizona State,2016,1,,wikipedia
+Arkansas,1954,1,,wikipedia
+Arkansas,1966,1,,wikipedia
+Arkansas,1979,1,,wikipedia
+Arkansas,1981,1,,wikipedia
+Arkansas,1982,2,,wikipedia
+Arkansas,2003,1,,wikipedia
+Arkansas,2007,1,,wikipedia
+Arkansas,2015,1,,wikipedia
+Army,1928,1,,wikipedia
+Army,1943,1,,wikipedia
+Army,1945,2,,wikipedia
+Army,1946,2,,wikipedia
+Army,1950,1,,wikipedia
+Army,1958,1,,wikipedia
+Auburn,1957,1,,wikipedia
+Auburn,1971,2,,wikipedia
+Auburn,1985,1,,wikipedia
+Auburn,1986,2,,wikipedia
+Auburn,1988,1,,wikipedia
+Auburn,1990,1,,wikipedia
+Auburn,2019,1,,wikipedia
+Baylor,1956,1,,wikipedia
+Baylor,1980,1,,wikipedia
+Baylor,1986,1,,wikipedia
+Baylor,1991,1,,wikipedia
+Baylor,2006,1,,wikipedia
+Baylor,2012,1,,wikipedia
+Baylor,2013,1,,wikipedia
+Baylor,2015,2,,wikipedia
+Baylor,2019,1,,wikipedia
+Boise State,2024,1,,wikipedia
+Boston College,1984,1,,wikipedia
+Boston College,2010,1,,wikipedia
+Boston College,2013,1,,wikipedia
+BYU,1979,1,,wikipedia
+BYU,1981,1,,wikipedia
+BYU,1982,1,,wikipedia
+BYU,1983,2,,wikipedia
+BYU,1990,1,,wikipedia
+California,1949,1,,wikipedia
+California,2000,1,,wikipedia
+California,2019,1,,wikipedia
+Cincinnati,2022,1,,wikipedia
+Clemson,1982,1,,wikipedia
+Clemson,2006,1,,wikipedia
+Clemson,2009,1,,wikipedia
+Clemson,2010,1,,wikipedia
+Clemson,2018,1,,wikipedia
+Clemson,2019,1,,wikipedia
+Colorado,1990,3,,wikipedia
+Colorado,1991,1,,wikipedia
+Colorado,1994,1,,wikipedia
+Colorado,2024,1,,wikipedia
+Colorado State,2021,1,,wikipedia
+Duke,1989,1,,wikipedia
+Duke,2015,1,,wikipedia
+East Carolina,1991,1,,wikipedia
+Florida,1966,1,,wikipedia
+Florida,1989,1,,wikipedia
+Florida,1995,1,,wikipedia
+Florida,2001,1,,wikipedia
+Florida,2008,1,,wikipedia
+Florida,2009,1,,wikipedia
+Florida,2015,1,,wikipedia
+Florida,2020,1,,wikipedia
+Florida Atlantic,2019,1,,wikipedia
+Florida State,1987,1,,wikipedia
+Florida State,1988,1,,wikipedia
+Florida State,1991,1,,wikipedia
+Florida State,1992,1,,wikipedia
+Florida State,1993,2,,wikipedia
+Florida State,1999,2,,wikipedia
+Florida State,2000,1,,wikipedia
+Florida State,2004,1,,wikipedia
+Florida State,2010,1,,wikipedia
+Florida State,2012,1,,wikipedia
+Florida State,2013,1,,wikipedia
+Florida State,2014,1,,wikipedia
+Florida State,2016,1,,wikipedia
+Fresno State,2012,1,,wikipedia
+Georgia,1942,1,,wikipedia
+Georgia,1946,1,,wikipedia
+Georgia,1971,1,,wikipedia
+Georgia,1980,1,,wikipedia
+Georgia,1981,1,,wikipedia
+Georgia,1982,1,,wikipedia
+Georgia,1992,1,,wikipedia
+Georgia,2009,1,,wikipedia
+Georgia,2012,1,,wikipedia
+Georgia,2017,1,,wikipedia
+Georgia,2019,1,,wikipedia
+Georgia,2021,2,,wikipedia
+Georgia,2022,2,,wikipedia
+Georgia,2023,1,,wikipedia
+Georgia Tech,1990,1,,wikipedia
+Georgia Tech,2006,1,,wikipedia
+Georgia Tech,2020,1,,wikipedia
+Illinois,1924,1,,wikipedia
+Illinois,1963,1,,wikipedia
+Illinois,1965,1,,wikipedia
+Illinois,1984,1,,wikipedia
+Illinois,1985,1,,wikipedia
+Illinois,1989,1,,wikipedia
+Illinois,1994,1,,wikipedia
+Illinois,2011,1,,wikipedia
+Indiana,1989,1,,wikipedia
+Indiana,1991,1,,wikipedia
+Indiana,2014,1,,wikipedia
+Iowa,1958,1,,wikipedia
+Iowa,1985,2,,wikipedia
+Iowa,2002,1,,wikipedia
+Iowa,2003,1,,wikipedia
+Iowa,2008,1,,wikipedia
+Iowa,2014,1,,wikipedia
+Iowa,2015,1,,wikipedia
+Iowa,2017,2,,wikipedia
+Iowa,2020,1,,wikipedia
+Iowa,2021,1,,wikipedia
+Iowa,2022,1,,wikipedia
+Iowa,2023,2,,wikipedia
+Iowa,2024,1,,wikipedia
+Iowa,2025,1,,wikipedia
+Iowa State,2020,1,,wikipedia
+Kansas,2007,1,,wikipedia
+Kansas State,1996,1,,wikipedia
+Kansas State,2002,1,,wikipedia
+Kansas State,2023,1,,wikipedia
+Kentucky,1977,1,,wikipedia
+Kentucky,2018,1,,wikipedia
+Kentucky,2019,1,,wikipedia
+Louisiana Tech,2012,1,,wikipedia
+Louisville,2005,1,,wikipedia
+Louisville,2014,1,,wikipedia
+Louisville,2016,1,,wikipedia
+LSU,1936,1,,wikipedia
+LSU,1958,1,,wikipedia
+LSU,1959,1,,wikipedia
+LSU,1961,1,,wikipedia
+LSU,1962,1,,wikipedia
+LSU,1987,1,,wikipedia
+LSU,2007,1,,wikipedia
+LSU,2010,1,,wikipedia
+LSU,2011,1,,wikipedia
+LSU,2018,1,,wikipedia
+LSU,2019,2,,wikipedia
+LSU,2023,1,,wikipedia
+LSU,2025,1,,wikipedia
+Marshall,1997,1,,wikipedia
+Maryland,1951,1,,wikipedia
+Maryland,1952,1,,wikipedia
+Maryland,1953,1,,wikipedia
+Maryland,1955,1,,wikipedia
+Maryland,1974,1,,wikipedia
+Miami (FL),1967,1,,wikipedia
+Miami (FL),1968,1,,wikipedia
+Miami (FL),1986,2,,wikipedia
+Miami (FL),1987,2,,wikipedia
+Miami (FL),1990,1,,wikipedia
+Miami (FL),1992,1,,wikipedia
+Miami (FL),1994,1,,wikipedia
+Miami (FL),2000,1,,wikipedia
+Miami (FL),2001,2,,wikipedia
+Miami (FL),2003,2,,wikipedia
+Miami (FL),2004,1,,wikipedia
+Miami (FL),2020,1,,wikipedia
+Michigan,1927,1,,wikipedia
+Michigan,1932,1,,wikipedia
+Michigan,1933,1,,wikipedia
+Michigan,1938,1,,wikipedia
+Michigan,1940,1,,wikipedia
+Michigan,1943,1,,wikipedia
+Michigan,1947,1,,wikipedia
+Michigan,1956,1,,wikipedia
+Michigan,1966,1,,wikipedia
+Michigan,1971,1,,wikipedia
+Michigan,1974,1,,wikipedia
+Michigan,1977,1,,wikipedia
+Michigan,1981,1,,wikipedia
+Michigan,1982,1,,wikipedia
+Michigan,1988,1,,wikipedia
+Michigan,1989,1,,wikipedia
+Michigan,1990,1,,wikipedia
+Michigan,1991,2,,wikipedia
+Michigan,1997,1,,wikipedia
+Michigan,2000,1,,wikipedia
+Michigan,2004,1,,wikipedia
+Michigan,2006,1,,wikipedia
+Michigan,2007,1,,wikipedia
+Michigan,2016,1,,wikipedia
+Michigan,2021,1,,wikipedia
+Michigan,2022,1,,wikipedia
+Michigan,2023,1,,wikipedia
+Michigan,2024,1,,wikipedia
+Michigan State,1951,1,,wikipedia
+Michigan State,1966,2,,wikipedia
+Michigan State,1972,1,,wikipedia
+Michigan State,1985,1,,wikipedia
+Michigan State,1988,1,,wikipedia
+Michigan State,1989,1,,wikipedia
+Michigan State,2002,1,,wikipedia
+Michigan State,2010,1,,wikipedia
+Michigan State,2013,1,,wikipedia
+Michigan State,2021,1,,wikipedia
+Minnesota,1936,1,,wikipedia
+Minnesota,1948,1,,wikipedia
+Minnesota,1949,1,,wikipedia
+Minnesota,1953,1,,wikipedia
+Minnesota,1960,1,,wikipedia
+Minnesota,1962,1,,wikipedia
+Minnesota,2005,1,,wikipedia
+Minnesota,2019,1,,wikipedia
+Missouri,1960,1,,wikipedia
+Missouri,2013,1,,wikipedia
+Navy,1926,1,,wikipedia
+Navy,1944,1,,wikipedia
+Navy,1955,1,,wikipedia
+Navy,1960,1,,wikipedia
+Navy,1963,1,,wikipedia
+Navy,1975,1,,wikipedia
+Nebraska,1925,1,,wikipedia
+Nebraska,1936,1,,wikipedia
+Nebraska,1963,1,,wikipedia
+Nebraska,1964,1,,wikipedia
+Nebraska,1972,2,,wikipedia
+Nebraska,1973,1,,wikipedia
+Nebraska,1975,1,,wikipedia
+Nebraska,1979,1,,wikipedia
+Nebraska,1981,1,,wikipedia
+Nebraska,1982,1,,wikipedia
+Nebraska,1983,2,,wikipedia
+Nebraska,1984,1,,wikipedia
+Nebraska,1986,1,,wikipedia
+Nebraska,1988,1,,wikipedia
+Nebraska,1992,1,,wikipedia
+Nebraska,1993,1,,wikipedia
+Nebraska,1994,1,,wikipedia
+Nebraska,1997,1,,wikipedia
+Nebraska,2009,1,,wikipedia
+Nebraska,2010,1,,wikipedia
+North Carolina,1980,1,,wikipedia
+North Carolina,2001,1,,wikipedia
+North Carolina,2012,1,,wikipedia
+North Carolina State,1979,1,,wikipedia
+North Carolina State,2017,1,,wikipedia
+North Carolina State,2021,1,,wikipedia
+North Carolina State,2023,1,,wikipedia
+Northern Illinois,1993,1,,wikipedia
+Northwestern,2022,1,,wikipedia
+Notre Dame,1929,1,,wikipedia
+Notre Dame,1930,1,,wikipedia
+Notre Dame,1931,1,,wikipedia
+Notre Dame,1932,1,,wikipedia
+Notre Dame,1938,1,,wikipedia
+Notre Dame,1946,1,,wikipedia
+Notre Dame,1947,1,,wikipedia
+Notre Dame,1949,2,,wikipedia
+Notre Dame,1952,1,,wikipedia
+Notre Dame,1953,1,,wikipedia
+Notre Dame,1954,1,,wikipedia
+Notre Dame,1965,1,,wikipedia
+Notre Dame,1966,2,,wikipedia
+Notre Dame,1969,1,,wikipedia
+Notre Dame,1971,1,,wikipedia
+Notre Dame,1972,1,,wikipedia
+Notre Dame,1975,1,,wikipedia
+Notre Dame,1976,1,,wikipedia
+Notre Dame,1977,2,,wikipedia
+Notre Dame,1978,1,,wikipedia
+Notre Dame,1980,1,,wikipedia
+Notre Dame,1987,1,,wikipedia
+Notre Dame,1989,1,,wikipedia
+Notre Dame,1990,3,,wikipedia
+Notre Dame,1993,1,,wikipedia
+Notre Dame,2002,1,,wikipedia
+Notre Dame,2009,1,,wikipedia
+Notre Dame,2012,1,,wikipedia
+Notre Dame,2017,1,,wikipedia
+Notre Dame,2020,1,,wikipedia
+Notre Dame,2023,2,,wikipedia
+Notre Dame,2025,2,,wikipedia
+Ohio State,1930,1,,wikipedia
+Ohio State,1944,1,,wikipedia
+Ohio State,1945,1,,wikipedia
+Ohio State,1950,1,,wikipedia
+Ohio State,1954,1,,wikipedia
+Ohio State,1955,1,,wikipedia
+Ohio State,1956,1,,wikipedia
+Ohio State,1960,1,,wikipedia
+Ohio State,1961,1,,wikipedia
+Ohio State,1968,1,,wikipedia
+Ohio State,1970,2,,wikipedia
+Ohio State,1973,2,,wikipedia
+Ohio State,1974,1,,wikipedia
+Ohio State,1975,1,,wikipedia
+Ohio State,1977,1,,wikipedia
+Ohio State,1984,1,,wikipedia
+Ohio State,1987,2,,wikipedia
+Ohio State,1995,2,,wikipedia
+Ohio State,1996,1,,wikipedia
+Ohio State,1998,1,,wikipedia
+Ohio State,2002,1,,wikipedia
+Ohio State,2004,1,,wikipedia
+Ohio State,2005,1,,wikipedia
+Ohio State,2006,1,,wikipedia
+Ohio State,2007,1,,wikipedia
+Ohio State,2014,1,,wikipedia
+Ohio State,2016,2,,wikipedia
+Ohio State,2017,1,,wikipedia
+Ohio State,2019,2,,wikipedia
+Ohio State,2020,1,,wikipedia
+Ohio State,2022,1,,wikipedia
+Ohio State,2023,1,,wikipedia
+Ohio State,2024,1,,wikipedia
+Ohio State,2025,3,,wikipedia
+Oklahoma,1951,1,,wikipedia
+Oklahoma,1956,1,,wikipedia
+Oklahoma,1967,1,,wikipedia
+Oklahoma,1969,1,,wikipedia
+Oklahoma,1971,1,,wikipedia
+Oklahoma,1972,1,,wikipedia
+Oklahoma,1973,1,,wikipedia
+Oklahoma,1974,2,,wikipedia
+Oklahoma,1975,1,,wikipedia
+Oklahoma,1976,1,,wikipedia
+Oklahoma,1977,1,,wikipedia
+Oklahoma,1978,2,,wikipedia
+Oklahoma,1979,2,,wikipedia
+Oklahoma,1983,1,,wikipedia
+Oklahoma,1985,1,,wikipedia
+Oklahoma,1986,2,,wikipedia
+Oklahoma,1987,2,,wikipedia
+Oklahoma,1988,1,,wikipedia
+Oklahoma,2001,1,,wikipedia
+Oklahoma,2003,5,,wikipedia
+Oklahoma,2004,2,,wikipedia
+Oklahoma,2016,1,,wikipedia
+Oklahoma,2017,3,,wikipedia
+Oklahoma State,1977,1,,wikipedia
+Oklahoma State,1985,1,,wikipedia
+Oklahoma State,1988,1,,wikipedia
+Oklahoma State,2009,1,,wikipedia
+Oklahoma State,2010,1,,wikipedia
+Oklahoma State,2011,1,,wikipedia
+Oklahoma State,2017,1,,wikipedia
+Oklahoma State,2019,1,,wikipedia
+Oklahoma State,2023,1,,wikipedia
+Ole Miss,1959,1,,wikipedia
+Ole Miss,1960,1,,wikipedia
+Ole Miss,1998,1,,wikipedia
+Ole Miss,2008,1,,wikipedia
+Ole Miss,2014,1,,wikipedia
+Oregon,2010,1,,wikipedia
+Oregon,2014,1,,wikipedia
+Oregon,2019,1,,wikipedia
+Oregon,2021,1,,wikipedia
+Oregon,2023,1,,wikipedia
+Oregon State,1962,1,,wikipedia
+Oregon State,1968,1,,wikipedia
+Penn State,1968,1,,wikipedia
+Penn State,1969,1,,wikipedia
+Penn State,1973,1,,wikipedia
+Penn State,1978,3,,wikipedia
+Penn State,1981,1,,wikipedia
+Penn State,1986,1,,wikipedia
+Penn State,1994,1,,wikipedia
+Penn State,1999,2,,wikipedia
+Penn State,2002,1,,wikipedia
+Penn State,2005,1,,wikipedia
+Penn State,2015,1,,wikipedia
+Penn State,2024,1,,wikipedia
+Pittsburgh,1927,1,,wikipedia
+Pittsburgh,1929,1,,wikipedia
+Pittsburgh,1932,1,,wikipedia
+Pittsburgh,1938,1,,wikipedia
+Pittsburgh,1956,1,,wikipedia
+Pittsburgh,1960,1,,wikipedia
+Pittsburgh,1976,1,,wikipedia
+Pittsburgh,1979,1,,wikipedia
+Pittsburgh,1980,2,,wikipedia
+Pittsburgh,1983,1,,wikipedia
+Pittsburgh,1984,1,,wikipedia
+Pittsburgh,2003,1,,wikipedia
+Pittsburgh,2013,1,,wikipedia
+Pittsburgh,2022,1,,wikipedia
+Purdue,1932,1,,wikipedia
+Purdue,1967,1,,wikipedia
+Purdue,1968,1,,wikipedia
+Purdue,1969,1,,wikipedia
+Purdue,1980,2,,wikipedia
+Purdue,2010,1,,wikipedia
+Rutgers,1995,1,,wikipedia
+San Diego State,1992,1,,wikipedia
+San Diego State,1993,1,,wikipedia
+San Diego State,2021,1,,wikipedia
+San Jose State,2024,1,,wikipedia
+SMU,1948,1,,wikipedia
+SMU,1982,1,,wikipedia
+SMU,1983,1,,wikipedia
+South Carolina,1980,1,,wikipedia
+South Carolina,2012,1,,wikipedia
+Stanford,1935,1,,wikipedia
+Stanford,1951,1,,wikipedia
+Stanford,1980,1,,wikipedia
+Stanford,1982,1,,wikipedia
+Stanford,2009,1,,wikipedia
+Stanford,2011,1,,wikipedia
+Stanford,2012,1,,wikipedia
+Stanford,2013,1,,wikipedia
+Stanford,2015,1,,wikipedia
+Stanford,2017,1,,wikipedia
+Syracuse,1956,1,,wikipedia
+Syracuse,1959,1,,wikipedia
+Syracuse,1961,1,,wikipedia
+Syracuse,1967,1,,wikipedia
+Syracuse,1985,1,,wikipedia
+Syracuse,1987,1,,wikipedia
+Syracuse,1992,1,,wikipedia
+Syracuse,2001,1,,wikipedia
+Syracuse,2018,1,,wikipedia
+TCU,1938,1,,wikipedia
+TCU,1955,1,,wikipedia
+TCU,1960,1,,wikipedia
+TCU,1984,1,,wikipedia
+TCU,2000,1,,wikipedia
+TCU,2009,1,,wikipedia
+TCU,2015,1,,wikipedia
+Temple,1986,1,,wikipedia
+Tennessee,1940,1,,wikipedia
+Tennessee,1951,1,,wikipedia
+Tennessee,1956,1,,wikipedia
+Tennessee,1967,1,,wikipedia
+Tennessee,1968,1,,wikipedia
+Tennessee,1969,1,,wikipedia
+Tennessee,1970,1,,wikipedia
+Tennessee,1971,1,,wikipedia
+Tennessee,1983,1,,wikipedia
+Tennessee,1989,1,,wikipedia
+Tennessee,1990,1,,wikipedia
+Tennessee,2008,1,,wikipedia
+Tennessee,2009,1,,wikipedia
+Tennessee,2022,1,,wikipedia
+Texas,1950,1,,wikipedia
+Texas,1961,1,,wikipedia
+Texas,1962,1,,wikipedia
+Texas,1963,1,,wikipedia
+Texas,1971,1,,wikipedia
+Texas,1972,1,,wikipedia
+Texas,1973,1,,wikipedia
+Texas,1977,2,,wikipedia
+Texas,1978,1,,wikipedia
+Texas,1979,2,,wikipedia
+Texas,1981,1,,wikipedia
+Texas,1984,1,,wikipedia
+Texas,1997,1,,wikipedia
+Texas,1998,1,,wikipedia
+Texas,2001,1,,wikipedia
+Texas,2004,1,,wikipedia
+Texas,2005,2,,wikipedia
+Texas,2008,1,,wikipedia
+Texas,2009,1,,wikipedia
+Texas,2017,2,,wikipedia
+Texas,2022,1,,wikipedia
+Texas,2023,1,,wikipedia
+Texas,2024,1,,wikipedia
+Texas A&M,1940,1,,wikipedia
+Texas A&M,1957,1,,wikipedia
+Texas A&M,1975,1,,wikipedia
+Texas A&M,1976,1,,wikipedia
+Texas A&M,1992,1,,wikipedia
+Texas A&M,1998,1,,wikipedia
+Texas A&M,2012,1,,wikipedia
+Texas A&M,2013,1,,wikipedia
+Texas A&M,2016,1,,wikipedia
+Texas A&M,2018,1,,wikipedia
+Texas A&M,2025,1,,wikipedia
+Texas Tech,1991,1,,wikipedia
+Texas Tech,1995,1,,wikipedia
+Texas Tech,1996,1,,wikipedia
+Texas Tech,2007,1,,wikipedia
+Texas Tech,2008,1,,wikipedia
+Texas Tech,2013,1,,wikipedia
+Texas Tech,2025,2,,wikipedia
+Tulane,1931,1,,wikipedia
+Tulsa,1965,1,,wikipedia
+Tulsa,2020,1,,wikipedia
+UCLA,1946,1,,wikipedia
+UCLA,1967,1,,wikipedia
+UCLA,1977,1,,wikipedia
+UCLA,1978,1,,wikipedia
+UCLA,1979,1,,wikipedia
+UCLA,1980,1,,wikipedia
+UCLA,1981,1,,wikipedia
+UCLA,1985,1,,wikipedia
+UCLA,1993,1,,wikipedia
+UCLA,1995,1,,wikipedia
+UCLA,2003,1,,wikipedia
+UCLA,2005,1,,wikipedia
+UCLA,2023,1,,wikipedia
+USC,1932,1,,wikipedia
+USC,1933,1,,wikipedia
+USC,1939,1,,wikipedia
+USC,1965,1,,wikipedia
+USC,1967,2,,wikipedia
+USC,1968,1,,wikipedia
+USC,1972,1,,wikipedia
+USC,1974,1,,wikipedia
+USC,1975,1,,wikipedia
+USC,1976,1,,wikipedia
+USC,1977,1,,wikipedia
+USC,1978,2,,wikipedia
+USC,1979,2,,wikipedia
+USC,1980,1,,wikipedia
+USC,1981,1,,wikipedia
+USC,1982,1,,wikipedia
+USC,1989,1,,wikipedia
+USC,1995,1,,wikipedia
+USC,1998,1,,wikipedia
+USC,2005,2,,wikipedia
+USC,2007,1,,wikipedia
+USC,2008,1,,wikipedia
+USC,2012,1,,wikipedia
+USC,2022,2,,wikipedia
+USC,2025,1,,wikipedia
+Utah,2008,1,,wikipedia
+Utah,2015,1,,wikipedia
+Utah,2016,1,,wikipedia
+Utah,2022,1,,wikipedia
+Utah,2025,1,,wikipedia
+UTEP,2000,1,,wikipedia
+Vanderbilt,1982,1,,wikipedia
+Vanderbilt,1984,1,,wikipedia
+Vanderbilt,2016,1,,wikipedia
+Vanderbilt,2025,1,,wikipedia
+Virginia,1985,1,,wikipedia
+Virginia,2004,1,,wikipedia
+Virginia,2007,1,,wikipedia
+Virginia Tech,1993,1,,wikipedia
+Virginia Tech,1999,1,,wikipedia
+Virginia Tech,2003,1,,wikipedia
+Virginia Tech,2005,1,,wikipedia
+Wake Forest,1976,1,,wikipedia
+Wake Forest,2005,1,,wikipedia
+Washington,1982,1,,wikipedia
+Washington,1991,1,,wikipedia
+Washington,1992,1,,wikipedia
+Washington,1995,1,,wikipedia
+Washington,2014,1,,wikipedia
+Washington State,1989,1,,wikipedia
+Washington State,2016,1,,wikipedia
+West Virginia,1982,1,,wikipedia
+West Virginia,1994,1,,wikipedia
+West Virginia,2006,2,,wikipedia
+Wisconsin,1942,1,,wikipedia
+Wisconsin,1954,1,,wikipedia
+Wisconsin,1959,1,,wikipedia
+Wisconsin,1998,1,,wikipedia
+Wisconsin,1999,2,,wikipedia
+Wisconsin,2006,1,,wikipedia
+Wisconsin,2010,1,,wikipedia
+Wisconsin,2014,1,,wikipedia
+Wisconsin,2018,1,,wikipedia
+Wisconsin,2019,2,,wikipedia
