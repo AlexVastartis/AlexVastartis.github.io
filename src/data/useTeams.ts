@@ -10,7 +10,9 @@ function load(): Promise<TeamsPayload> {
   if (cache) return Promise.resolve(cache);
   if (!inflight) {
     const url = `${import.meta.env.BASE_URL}data/teams.json`;
-    inflight = fetch(url)
+    // always fetch fresh — the file is regenerated on every data refresh and a
+    // stale cached copy silently shows old numbers everywhere
+    inflight = fetch(url, { cache: 'no-store' })
       .then((r) => {
         if (!r.ok) throw new Error(`${r.status} ${r.statusText} loading ${url}`);
         return r.json() as Promise<TeamsPayload>;
