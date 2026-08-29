@@ -5,6 +5,7 @@ import ChartFrame from './ChartFrame';
 import ScatterChart from './ScatterChart';
 import BellCurve from './BellCurve';
 import CriterionList from './CriterionList';
+import MarkerToggle from './MarkerToggle';
 
 interface Props {
   criterion: CategoryKey;
@@ -14,7 +15,7 @@ interface Props {
 /** one criterion as the logo scatter, its bell curve, or a plain ranked list —
  *  which one is chosen by the shared view toggle in the layout */
 export default function CriterionView({ criterion, ctx }: Props) {
-  const { data, teams, allTeams, marker, favorite, setFavorite, view } = ctx;
+  const { data, teams, allTeams, marker, setMarker, favorite, setFavorite, view } = ctx;
   const cat = CATEGORIES[criterion];
   const [xk, yk] = cat.stats;
   const scope =
@@ -43,6 +44,7 @@ export default function CriterionView({ criterion, ctx }: Props) {
       title={cat.label}
       subtitle={cat.blurb}
       filename={`${criterion}-${view}.png`}
+      actions={<MarkerToggle marker={marker} onSet={setMarker} />}
       footer={
         <>
           {scope}

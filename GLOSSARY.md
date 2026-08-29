@@ -36,9 +36,11 @@ Shared names for the pieces, so feedback can point precisely.
 | Term | What it is |
 | --- | --- |
 | **Subject tabs** | one fixed row: the prominent **Blue Blood Rating** (the primary view, `/`) then the five criteria (`/criteria/:key`). Never moves |
-| **View toggle** | right-hand end of the subject row: **Ranked list · Logo plot · Bell curve** (`?view=`) — shown only for a criterion. Blue Blood Rating is the ranked list only |
-| **Gap note** | the pen-in-the-margin annotation between two groupings in the ranked list — a hand-drawn arrow and `≈N% gap`, the rating drop from the last team of the upper group to the first of the lower |
-| **Column sort** | every column header in the ranked list sorts (`#`, `Team`, the five criteria, `Rtg`). Sorting by anything other than `#` flattens the tier groupings into one list |
+| **View toggle** | right-hand end of the subject row: **List View · Chart View · Bell Curve** (`?view=`) — shown only for a criterion. Blue Blood Rating is the ranked list only, no toggle |
+| **Gap note** | the pen-in-the-margin annotation between two groupings in the Blue Blood Rating list — a hand-drawn arrow and `≈N% gap`, the rating drop from the last team of the upper group to the first of the lower |
+| **Column sort** | on a criterion's **List View** only, the header cells sort (Program, the two stats, Pctl). The Blue Blood Rating list is not sortable — it keeps its tier groupings and the five-bar criterion strip |
+| **Marker toggle** | Logos vs. coloured bubbles — in the chart's action bar (Chart View / Bell Curve), left of the PNG button |
+| **Jump** | the `⌖ jump` control in the team panel — scrolls the favourite's row to the centre of whatever list is on screen. (Picking a team no longer auto-scrolls.) |
 | **The Chart** | the AP-poll scatter on its own bare full-viewport page (`/the-chart`), no chrome. Reached only by direct link or the small "The Chart" link in the site footer. The shareable hook |
 | **Team card** | the highlighted-team panel. On the **ranked list** it's a wide sticky side rail (`variant="full"`): the 8 rating stats grouped by criterion (percentile bars, raw on hover, trimmed stats greyed + struck), trajectory, relative comparison, favourable projection, tagline. On a **chart view** it's a slim top strip (`variant="compact"`): identity + the five criterion scores only, no scroll — `src/components/TeamCard.tsx` |
 | **Favourite / highlighted team** | the program you pick (or click); it gets a ring + name on every chart and the team card |

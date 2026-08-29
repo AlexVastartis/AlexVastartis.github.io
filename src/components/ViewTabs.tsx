@@ -8,9 +8,9 @@ export type Subject = 'rating' | CategoryKey;
 const CRITERIA = CATEGORY_ORDER.map((k) => ({ key: k as Subject, label: CATEGORIES[k].label, to: `/criteria/${k}` }));
 
 const VIEW_LABEL: Record<ViewMode, string> = {
-  list: 'Ranked list',
-  plot: 'Logo plot',
-  curve: 'Bell curve',
+  list: 'List View',
+  plot: 'Chart View',
+  curve: 'Bell Curve',
 };
 
 interface Props {

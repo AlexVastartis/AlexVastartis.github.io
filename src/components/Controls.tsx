@@ -5,7 +5,6 @@ interface Props {
   state: ViewState;
   onToggleConference: (c: string) => void;
   onClearConferences: () => void;
-  onSetMarker: (m: 'logo' | 'bubble') => void;
   schools: string[];
   favorite: string | null;
   onSetFavorite: (s: string | null) => void;
@@ -23,7 +22,6 @@ export default function Controls({
   state,
   onToggleConference,
   onClearConferences,
-  onSetMarker,
   schools,
   favorite,
   onSetFavorite,
@@ -84,20 +82,6 @@ export default function Controls({
             </button>
           )}
         </label>
-
-        <div className="flex rounded-md ring-1 ring-line">
-          {(['logo', 'bubble'] as const).map((mode) => (
-            <button
-              key={mode}
-              onClick={() => onSetMarker(mode)}
-              className={`px-3 py-1.5 text-sm font-medium capitalize first:rounded-l-md last:rounded-r-md ${
-                state.marker === mode ? 'bg-accent text-white' : 'hover:bg-panel'
-              }`}
-            >
-              {mode}s
-            </button>
-          ))}
-        </div>
 
         <div className="flex rounded-md ring-1 ring-line" title="Count NCAA-vacated wins, or use the official record">
           {WINS.map((w) => (

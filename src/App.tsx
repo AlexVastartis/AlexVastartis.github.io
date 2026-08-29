@@ -21,6 +21,7 @@ export interface ChartContext {
   teams: Team[];
   allTeams: Team[];
   marker: 'logo' | 'bubble';
+  setMarker: (m: 'logo' | 'bubble') => void;
   view: ViewMode;
   setView: (v: ViewMode) => void;
   favorite: string | null;
@@ -60,6 +61,12 @@ function Layout() {
   const view: ViewMode = subject === 'rating' ? 'list' : state.view;
 
   const favTeam = data && favorite ? data.teams.find((t) => t.school === favorite) ?? null : null;
+  const jumpToFavorite = () => {
+    if (!favorite) return;
+    document
+      .querySelector<HTMLElement>(`[data-school="${CSS.escape(favorite)}"]`)
+      ?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  };
   // a chart view (anything but the ranked list) gets the compact panel on top so the chart stays
   // near the fold; the ranked list gets the full panel as a wide side rail
   const panelMode: 'top' | 'side' | 'none' = favTeam ? (view === 'list' ? 'side' : 'top') : 'none';
@@ -91,7 +98,6 @@ function Layout() {
             state={state}
             onToggleConference={toggleConference}
             onClearConferences={() => update({ conferences: [] })}
-            onSetMarker={(m) => update({ marker: m })}
             schools={data.teams.map((t) => t.school).sort()}
             favorite={favorite}
             onSetFavorite={setFavorite}
@@ -104,12 +110,12 @@ function Layout() {
           <div className={panelMode === 'side' ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-6' : ''}>
             {panelMode === 'top' && favTeam && (
               <aside className="mb-3">
-                <TeamCard team={favTeam} variant="compact" onClear={() => setFavorite(null)} />
+                <TeamCard team={favTeam} variant="compact" onClear={() => setFavorite(null)} onJump={jumpToFavorite} />
               </aside>
             )}
             {panelMode === 'side' && favTeam && (
               <aside className="mb-4 lg:col-start-2 lg:row-start-1 lg:mb-0 lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-2rem)] lg:overflow-auto">
-                <TeamCard team={favTeam} variant="full" onClear={() => setFavorite(null)} />
+                <TeamCard team={favTeam} variant="full" onClear={() => setFavorite(null)} onJump={jumpToFavorite} />
               </aside>
             )}
             <div className="min-w-0 lg:col-start-1 lg:row-start-1">
@@ -120,6 +126,7 @@ function Layout() {
                     teams,
                     allTeams: data.teams,
                     marker: state.marker,
+                    setMarker: (m: 'logo' | 'bubble') => update({ marker: m }),
                     view,
                     setView: (v: ViewMode) => update({ view: v }),
                     favorite,

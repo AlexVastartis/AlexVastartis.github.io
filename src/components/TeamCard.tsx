@@ -8,11 +8,13 @@ interface Props {
   team: Team;
   variant?: 'full' | 'compact';
   onClear?: () => void;
+  /** scroll this team's row into view in whatever list is on screen */
+  onJump?: () => void;
 }
 
 /** the viewer's favourite program. `full` = deep read (used on the ranked list);
  *  `compact` = a slim strip for chart views: identity + the five criterion scores */
-export default function TeamCard({ team, variant = 'full', onClear }: Props) {
+export default function TeamCard({ team, variant = 'full', onClear, onJump }: Props) {
   const logo = (
     <img
       src={`${BASE}logos/${team.slug}.svg`}
@@ -40,6 +42,16 @@ export default function TeamCard({ team, variant = 'full', onClear }: Props) {
       ★ clear
     </button>
   );
+  const jumpBtn = onJump && (
+    <button
+      onClick={onJump}
+      title="Jump to this team in the list"
+      aria-label="Jump to this team in the list"
+      className="text-xs text-muted hover:text-accent"
+    >
+      ⌖ jump
+    </button>
+  );
 
   if (variant === 'compact') {
     return (
@@ -52,6 +64,7 @@ export default function TeamCard({ team, variant = 'full', onClear }: Props) {
               <span className="text-xs text-muted">
                 #{team.ratingRank} · {team.rating.toFixed(1)} · {trend} · {team.grouping}
               </span>
+              {jumpBtn}
               {clearBtn}
             </div>
             {team.label.personal && <p className="truncate text-xs text-muted">{team.label.personal}</p>}
@@ -85,6 +98,7 @@ export default function TeamCard({ team, variant = 'full', onClear }: Props) {
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <h2 className="text-xl font-bold tracking-tight">{team.school}</h2>
+            {jumpBtn}
             {clearBtn}
           </div>
           <p className="text-sm text-muted">
