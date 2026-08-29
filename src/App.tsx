@@ -26,6 +26,8 @@ export interface ChartContext {
   setView: (v: ViewMode) => void;
   favorite: string | null;
   setFavorite: (school: string | null) => void;
+  /** show the hand-drawn margin notes on the Blue Blood Rating list */
+  showNotes: boolean;
 }
 
 export function useChartContext() {
@@ -40,15 +42,6 @@ function Layout() {
   const conferences = useConferences(data);
   const { search, pathname } = useLocation();
 
-  // first visit: highlight the #1 program so people see the feature exists
-  const didInit = useRef(false);
-  useEffect(() => {
-    if (data && !didInit.current) {
-      didInit.current = true;
-      if (!favorite) setFavorite(data.teams.find((t) => t.ratingRank === 1)?.school ?? null);
-    }
-  }, [data, favorite, setFavorite]);
-
   const teams = useMemo(() => {
     if (!data) return [];
     if (state.conferences.length === 0) return data.teams;
@@ -59,6 +52,20 @@ function Layout() {
   const criteriaKey = pathname.match(/^\/criteria\/([A-Za-z]+)/)?.[1];
   const subject: Subject = criteriaKey && criteriaKey in CATEGORIES ? (criteriaKey as CategoryKey) : 'rating';
   const view: ViewMode = subject === 'rating' ? 'list' : state.view;
+
+  // the Blue Blood Rating page always keeps a team highlighted — default to #1 whenever it's
+  // empty there; elsewhere, only default it once (so people see the feature exists)
+  const didInit = useRef(false);
+  useEffect(() => {
+    if (!data) return;
+    const firstRun = !didInit.current;
+    didInit.current = true;
+    if (favorite) return;
+    // default to #1 on first load anywhere, and any time the rating page has no team
+    if (firstRun || subject === 'rating') {
+      setFavorite(data.teams.find((t) => t.ratingRank === 1)?.school ?? null);
+    }
+  }, [data, favorite, subject, setFavorite]);
 
   const favTeam = data && favorite ? data.teams.find((t) => t.school === favorite) ?? null : null;
   const jumpToFavorite = () => {
@@ -101,11 +108,19 @@ function Layout() {
             schools={data.teams.map((t) => t.school).sort()}
             favorite={favorite}
             onSetFavorite={setFavorite}
+            canClearFavorite={subject !== 'rating'}
             wins={state.wins}
             onSetWins={(w) => update({ wins: w })}
           />
 
-          <ViewTabs subject={subject} view={view} onSetView={(v) => update({ view: v })} search={search} />
+          <ViewTabs
+            subject={subject}
+            view={view}
+            onSetView={(v) => update({ view: v })}
+            search={search}
+            notesOn={state.notes}
+            onToggleNotes={() => update({ notes: !state.notes })}
+          />
 
           <div className={panelMode === 'side' ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-6' : ''}>
             {panelMode === 'top' && favTeam && (
@@ -115,7 +130,12 @@ function Layout() {
             )}
             {panelMode === 'side' && favTeam && (
               <aside className="mb-4 lg:col-start-2 lg:row-start-1 lg:mb-0 lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-2rem)] lg:overflow-auto">
-                <TeamCard team={favTeam} variant="full" onClear={() => setFavorite(null)} onJump={jumpToFavorite} />
+                <TeamCard
+                  team={favTeam}
+                  variant="full"
+                  onClear={subject === 'rating' ? undefined : () => setFavorite(null)}
+                  onJump={jumpToFavorite}
+                />
               </aside>
             )}
             <div className="min-w-0 lg:col-start-1 lg:row-start-1">
@@ -131,6 +151,7 @@ function Layout() {
                     setView: (v: ViewMode) => update({ view: v }),
                     favorite,
                     setFavorite,
+                    showNotes: state.notes,
                   } satisfies ChartContext
                 }
               />

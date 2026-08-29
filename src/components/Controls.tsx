@@ -8,6 +8,8 @@ interface Props {
   schools: string[];
   favorite: string | null;
   onSetFavorite: (s: string | null) => void;
+  /** the Blue Blood Rating page always keeps a team highlighted */
+  canClearFavorite: boolean;
   wins: WinsMode;
   onSetWins: (w: WinsMode) => void;
 }
@@ -25,6 +27,7 @@ export default function Controls({
   schools,
   favorite,
   onSetFavorite,
+  canClearFavorite,
   wins,
   onSetWins,
 }: Props) {
@@ -64,14 +67,14 @@ export default function Controls({
             onChange={(e) => onSetFavorite(e.target.value || null)}
             className="max-w-[9rem] rounded-md border border-line bg-paper px-2 py-1 text-sm"
           >
-            <option value="">None</option>
+            {(canClearFavorite || !favorite) && <option value="">None</option>}
             {[...schools].sort((a, b) => a.localeCompare(b)).map((s) => (
               <option key={s} value={s}>
                 {s}
               </option>
             ))}
           </select>
-          {favorite && (
+          {favorite && canClearFavorite && (
             <button
               onClick={() => onSetFavorite(null)}
               title="Clear team"

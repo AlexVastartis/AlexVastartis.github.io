@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T21:49:42.409Z",
+  "generatedAt": "2026-08-29T22:20:47.273Z",
   "model": "percentile-trimmed-mean",
   "modelBlurb": "Rank each of the ten stats within FBS, drop each program’s single best and single worst percentile, average the other eight.",
   "trendRecentFraction": 0.2,
@@ -48,16 +48,16 @@
   "tierBoundaries": [
     6,
     8,
-    17,
-    22,
-    27
+    18,
+    30,
+    50
   ],
   "tierGaps": [
     2.211538461538467,
     1.9711538461538396,
-    1.6826923076923066,
-    3.028846153846146,
-    3.17307692307692
+    1.2980769230769198,
+    0.961538461538467,
+    1.1057692307692264
   ],
   "stats": {
     "allTimeWins": {

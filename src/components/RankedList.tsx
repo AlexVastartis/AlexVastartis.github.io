@@ -9,12 +9,14 @@ interface Props {
   teams: Team[];
   favorite?: string | null;
   onPick?: (team: Team) => void;
+  /** show the hand-drawn gap / range margin notes */
+  showNotes?: boolean;
 }
 
 // the rating spread within a grouping is only really interesting for the top of the table
 const RANGE_GROUPS = new Set(['Blue Bloods', 'Blue Blood Contenders']);
 
-export default function RankedList({ teams, favorite, onPick }: Props) {
+export default function RankedList({ teams, favorite, onPick, showNotes }: Props) {
   const groups = groupTeams(teams);
 
   return (
@@ -22,10 +24,10 @@ export default function RankedList({ teams, favorite, onPick }: Props) {
       {groups.map((g, i) => {
         const gap = i > 0 ? groups[i - 1].teams.at(-1)!.rating - g.teams[0].rating : 0;
         const spread = g.teams[0].rating - g.teams.at(-1)!.rating;
-        const showRange = RANGE_GROUPS.has(g.grouping);
+        const showRange = showNotes && RANGE_GROUPS.has(g.grouping);
         return (
           <div key={g.grouping} className="relative">
-            {i > 0 && gap > 0 && <GapNote gap={gap} />}
+            {showNotes && i > 0 && gap > 0 && <GapNote gap={gap} />}
             {showRange && <RangeBrace spread={spread} />}
             <section
               className={
@@ -39,9 +41,6 @@ export default function RankedList({ teams, favorite, onPick }: Props) {
               <header className="mb-1.5 flex items-baseline gap-2 px-1">
                 <h3 className="text-sm font-bold uppercase tracking-wide">{g.grouping}</h3>
                 <span className="text-xs text-muted">{g.teams.length}</span>
-                {showRange && (
-                  <span className="font-hand text-sm text-accent 2xl:hidden">{spread.toFixed(1)}% range</span>
-                )}
               </header>
               <p className="mb-2 px-1 text-xs leading-snug text-muted">{g.blurb}</p>
 
@@ -124,56 +123,40 @@ function CriterionStrip({ team }: { team: Team }) {
   );
 }
 
+/** a hand-drawn arrow that points straight into the gap (not at either corner) */
+function GapArrow({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      width="38"
+      height="12"
+      viewBox="0 0 38 12"
+      className={`shrink-0 ${className}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2 6 C 13 5, 22 7, 32 6" />
+      <path d="M25 2 L 34 6 L 25 10" />
+    </svg>
+  );
+}
+
 /**
- * The rating gap between this group and the one above it. On a wide desktop it
- * hangs in the true left margin (outside the page column) with a little pen
- * flick pointing at the break; on narrower screens it drops between the groups.
+ * The rating gap between this group and the one above it — hand-lettered out in
+ * the true left margin (wide desktop), vertically centred on the gap so the
+ * arrow points straight between the two groupings.
  */
 function GapNote({ gap }: { gap: number }) {
-  const text = `≈${gap.toFixed(1)}% gap`;
   return (
-    <>
-      {/* narrow: between the groupings */}
-      <div className="pointer-events-none relative z-10 -mb-4 -mt-2 ml-1 flex items-center gap-1 font-hand text-accent 2xl:hidden">
-        <svg
-          width="30"
-          height="22"
-          viewBox="0 0 30 22"
-          className="shrink-0 -rotate-3"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M4 18 C 6 8, 14 4, 26 4" />
-          <path d="M19 3 L 27 4 L 24 12" />
-        </svg>
-        <span className="-rotate-3 text-xl leading-none">{text}</span>
-      </div>
-
-      {/* wide desktop: out in the left margin, arrow flicking up at the break */}
-      <div
-        className="pointer-events-none absolute -top-6 hidden -translate-x-full items-end gap-1 whitespace-nowrap pr-2 font-hand text-accent 2xl:flex"
-        style={{ left: '-0.75rem' }}
-      >
-        <span className="-rotate-3 text-xl leading-none">{text}</span>
-        <svg
-          width="34"
-          height="22"
-          viewBox="0 0 34 22"
-          className="shrink-0"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M2 19 C 13 19, 19 7, 31 3" />
-          <path d="M24 3 L 32 2 L 31 10" />
-        </svg>
-      </div>
-    </>
+    <div
+      className="pointer-events-none absolute hidden -translate-x-full -translate-y-1/2 items-center gap-1.5 whitespace-nowrap pr-2 font-hand text-accent 2xl:flex"
+      style={{ left: '-0.75rem', top: '-0.875rem' }}
+    >
+      <span className="-rotate-2 text-xl leading-none">≈{gap.toFixed(1)}% gap</span>
+      <GapArrow className="-rotate-1" />
+    </div>
   );
 }
 

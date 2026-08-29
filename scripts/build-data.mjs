@@ -479,10 +479,28 @@ function derive(rows) {
   return { teams, composites, overall, sorted };
 }
 
-/* ---- groupings from natural gaps ---- */
+/* ---- groupings ----
+ * Blue Bloods and the Fringe fall out of the natural rating gaps (tiers.mjs);
+ * the lower boundaries are hand-anchored to a program because the argued-about
+ * ones ("is Auburn a contender", "where do the Powers end") don't line up with
+ * a clean gap. If an anchor program is missing, that boundary falls back to gap
+ * detection. TIER_LAST_TEAM[i] = the last program in GROUPS[i]. */
+const TIER_LAST_TEAM = {
+  2: 'Auburn', // Blue Blood Contenders
+  3: 'Minnesota', // National Powers
+  4: 'North Carolina State', // National Brands
+};
 function applyGroupings(teams) {
   const desc = [...teams].sort((a, b) => a.ratingRank - b.ratingRank).map((t) => t.rating);
-  const { boundaries, gaps, assign } = detectTiers(desc, { count: 6, minSize: 2, maxBoundaryRank: 60 });
+  const det = detectTiers(desc, { count: 6, minSize: 2, maxBoundaryRank: 60 });
+  const boundaries = det.boundaries.slice();
+  for (const [idx, school] of Object.entries(TIER_LAST_TEAM)) {
+    const r = teams.find((t) => t.school === school)?.ratingRank;
+    if (r != null) boundaries[Number(idx)] = r;
+  }
+  boundaries.sort((a, b) => a - b);
+  const assign = (rank) => boundaries.reduce((t, b) => t + (rank > b ? 1 : 0), 0);
+  const gaps = boundaries.map((b) => desc[b - 1] - desc[b]);
   for (const t of teams) t.grouping = GROUPS[assign(t.ratingRank)] || GROUPS.at(-1);
   const counts = GROUPS.map((g) => teams.filter((t) => t.grouping === g).length);
   return { boundaries, gaps, counts };

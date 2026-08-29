@@ -2,11 +2,11 @@ import { useChartContext } from '../App';
 import RankedList from '../components/RankedList';
 
 export default function Ranking() {
-  const { data, teams, favorite, setFavorite } = useChartContext();
+  const { data, teams, favorite, setFavorite, showNotes } = useChartContext();
 
   return (
     <div className="flex flex-col gap-4">
-      <RankedList teams={teams} favorite={favorite} onPick={(t) => setFavorite(t.school)} />
+      <RankedList teams={teams} favorite={favorite} onPick={(t) => setFavorite(t.school)} showNotes={showNotes} />
 
       <p className="text-xs leading-relaxed text-muted">
         <strong>How it’s built.</strong> {data.meta.modelBlurb} AP-poll weeks and NFL-draft picks

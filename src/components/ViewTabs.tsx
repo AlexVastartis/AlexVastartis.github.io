@@ -18,11 +18,13 @@ interface Props {
   view: ViewMode;
   onSetView: (v: ViewMode) => void;
   search: string;
+  notesOn: boolean;
+  onToggleNotes: () => void;
 }
 
 /** the fixed control row: the primary Blue Blood Rating, the five criteria, and
  *  (for a criterion) the three visualisations. Always in the same place. */
-export default function ViewTabs({ subject, view, onSetView, search }: Props) {
+export default function ViewTabs({ subject, view, onSetView, search, notesOn, onToggleNotes }: Props) {
   // the overall rating has no two-stat scatter and no bell-curve view — list only
   const views: ViewMode[] = subject === 'rating' ? [] : ['list', 'plot', 'curve'];
 
@@ -32,7 +34,21 @@ export default function ViewTabs({ subject, view, onSetView, search }: Props) {
     }`;
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line pb-3">
+    <div className="relative flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line pb-3">
+      {/* margin toggle for the hand-drawn gap / range notes — lives out in the
+          left margin like the notes; never shifts the Blue Blood Rating tab */}
+      <button
+        onClick={onToggleNotes}
+        title={notesOn ? 'Hide margin notes' : 'Show margin notes'}
+        aria-label={notesOn ? 'Hide margin notes' : 'Show margin notes'}
+        aria-pressed={notesOn}
+        className={`absolute left-0 top-1 hidden -translate-x-[calc(100%+0.5rem)] rounded font-hand text-lg leading-none 2xl:block ${
+          notesOn ? 'text-accent' : 'text-muted/60 hover:text-muted'
+        }`}
+      >
+        ✎
+      </button>
+
       <nav className="flex flex-wrap items-center gap-1.5">
         <NavLink
           to={{ pathname: '/', search }}

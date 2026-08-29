@@ -14,6 +14,8 @@ export interface ViewState {
   view: ViewMode;
   /** as-played wins (default) vs. NCAA-official (vacated removed) */
   wins: WinsMode;
+  /** show the hand-drawn gap / range notes in the margin (default off) */
+  notes: boolean;
 }
 
 /** filter/display state, kept in the URL query string so views are shareable */
@@ -26,6 +28,7 @@ export function useViewState() {
       marker: params.get('marker') === 'bubble' ? 'bubble' : 'logo',
       view: params.get('view') === 'plot' ? 'plot' : params.get('view') === 'curve' ? 'curve' : 'list',
       wins: params.get('wins') === 'official' ? 'official' : 'asPlayed',
+      notes: params.get('notes') === '1',
     }),
     [params],
   );
@@ -51,6 +54,10 @@ export function useViewState() {
           if ('wins' in patch) {
             if (patch.wins === 'official') next.set('wins', 'official');
             else next.delete('wins');
+          }
+          if ('notes' in patch) {
+            if (patch.notes) next.set('notes', '1');
+            else next.delete('notes');
           }
           return next;
         },
