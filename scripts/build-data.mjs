@@ -75,7 +75,7 @@ const PROVENANCE = {
   perception: 'Every weekly AP poll ballot, 1936–present (CollegeFootballData → data/api/ap-poll.json).',
   wins: 'Wins/losses/ties per season (CollegeFootballData 1936+; one hand-entered "through 1935" row per program set so the all-time total matches the program’s Wikipedia figure → data/season-records.csv). A tie counts as half a win.',
   championships: 'National-title list, one row per (school, year, selector); AP/UPI/FWAA/NFF/USA + CFRA/HAF/NCF count, "claim"/"not-claimed" do not (data/manual/national_titles.csv).',
-  allAmericans: 'Consensus All-Americans per season 1924–present (data/manual/all_americans.csv); unanimous count from summary (data/manual/stats_summary.csv).',
+  allAmericans: 'Every consensus All-America selection 1889–present, one row per player with a unanimous flag (data/manual/all_americans.csv).',
   nflDraft: 'Every NFL draft pick by school, 1936–present (CollegeFootballData → data/api/draft.json).',
 };
 
@@ -154,15 +154,20 @@ function load() {
   for (const r of csv('conference_titles.csv')) {
     confTitles.set(r.school, (confTitles.get(r.school) || 0) + 1);
   }
-  const aa = new Map(); // school -> { total:{c,u}, perYear:{yr:{c,u}} }
+  // all_americans.csv is one row per consensus selection (Yes/No flags); aggregate
+  // to per-(school) totals and a per-season {c,u} series for the trajectory.
+  const aa = new Map(); // school -> { c, u, perYear:{yr:{c,u}} }
   for (const r of csv('all_americans.csv')) {
-    if (!r.school) continue;
+    if (!r.school || !r.year) continue;
     const e = aa.get(r.school) || { c: 0, u: 0, perYear: {} };
-    const c = Number(r.consensus || 0);
-    const u = Number(r.unanimous || 0);
+    const c = /^y/i.test(r.consensus) ? 1 : Number(r.consensus) || 0;
+    const u = /^y/i.test(r.unanimous) ? 1 : Number(r.unanimous) || 0;
     e.c += c;
     e.u += u;
-    e.perYear[r.year] = { c, u };
+    const py = e.perYear[r.year] || { c: 0, u: 0 };
+    py.c += c;
+    py.u += u;
+    e.perYear[r.year] = py;
     aa.set(r.school, e);
   }
   const heisman = new Map();
@@ -252,16 +257,18 @@ function buildRows(D, mode) {
     // college-football convention: a tie counts as half a win
     const winPct = games ? (wins + 0.5 * ties) / games : 0;
 
-    // consensus AA from the per-season list where a program has one; unanimous is
-    // always the summary count (the per-season list doesn't flag unanimous picks).
+    // consensus & unanimous AA from the per-player list where a program has rows,
+    // else the summary count (a handful of newer programs with no selections).
     const aaRec = D.aa.get(t.school);
     let consensusAA;
-    const unanimousAA = Number(sum.unanimous_aa || 0);
+    let unanimousAA;
     if (aaRec && Object.keys(aaRec.perYear).length) {
       consensusAA = aaRec.c;
+      unanimousAA = aaRec.u;
       granularAA.consensus += 1;
     } else {
       consensusAA = Number(sum.consensus_aa || 0);
+      unanimousAA = Number(sum.unanimous_aa || 0);
       granularAA.summaryC += 1;
     }
 
@@ -353,7 +360,7 @@ function computeTrend(rows, D) {
       const set = new Set(years);
       return years.length ? tYears.filter((y) => set.has(y)).length / years.length : 0;
     };
-    const aaRate = (years) => rate(Object.fromEntries(Object.entries(aaYears).map(([y, v]) => [y, v.c])), years);
+    const aaRate = (years) => rate(Object.fromEntries(Object.entries(aaYears).map(([y, v]) => [y, v.c + v.u])), years);
 
     const F = (years) => ({
       apW: rate(ap.perSeason || {}, years),
@@ -732,7 +739,7 @@ function main() {
     sources: { store: 'data/api + data/season-records.csv + data/manual', network: false },
     provenance: PROVENANCE,
     granular: {
-      allAmericans: `${asPlayed.granularAA.consensus}/${asPlayed.granularAA.consensus + asPlayed.granularAA.summaryC} programs have per-season rows; the rest use a summary count.`,
+      allAmericans: `per-player list 1889–present for ${asPlayed.granularAA.consensus}/${asPlayed.granularAA.consensus + asPlayed.granularAA.summaryC} programs; the rest (no selections) use a summary count.`,
       nationalTitles: 'granular (data/manual/national_titles.csv, one row per selector)',
       conferenceTitles: 'granular where filed, else summary',
     },
