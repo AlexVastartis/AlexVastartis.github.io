@@ -19,6 +19,8 @@ interface Props {
   width?: number;
   height?: number;
   markerSize?: number;
+  /** svg sizing classes — default fills width and keeps aspect ratio */
+  className?: string;
 }
 
 export default function ScatterChart({
@@ -32,6 +34,7 @@ export default function ScatterChart({
   width = 1000,
   height = 600,
   markerSize = 26,
+  className = 'w-full h-auto select-none',
 }: Props) {
   const m = DEFAULT_MARGINS;
   const [hover, setHover] = useState<Team | null>(null);
@@ -64,7 +67,8 @@ export default function ScatterChart({
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
-      className="w-full h-auto select-none"
+      className={className}
+      preserveAspectRatio="xMidYMid meet"
       style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
     >
       {/* gridlines */}

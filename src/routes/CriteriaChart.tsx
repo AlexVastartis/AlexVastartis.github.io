@@ -14,7 +14,7 @@ export default function CriteriaChart() {
 
   return (
     <div className="flex flex-col gap-3">
-      <nav className="flex flex-wrap gap-1.5">
+      <nav className="flex flex-wrap items-center gap-1.5">
         {CATEGORY_ORDER.map((c) => (
           <NavLink
             key={c}
@@ -28,20 +28,12 @@ export default function CriteriaChart() {
             {CATEGORIES[c].label}
           </NavLink>
         ))}
-      </nav>
-
-      <p className="px-1 text-sm text-muted">
-        Pick the criterion that tells your team’s story, then flip between the logo plot, its bell
-        curve, and a plain ranked list — same data, three angles.
         {ck === 'perception' && (
-          <>
-            {' '}
-            <a className="text-accent underline" href="#/the-chart">
-              ↗ Open the shareable AP-poll chart
-            </a>
-          </>
+          <a className="ml-1 text-xs text-accent underline" href="#/the-chart">
+            ↗ shareable AP-poll chart
+          </a>
         )}
-      </p>
+      </nav>
 
       <CriterionView criterion={ck} ctx={ctx} />
     </div>

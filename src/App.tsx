@@ -38,7 +38,7 @@ function Layout() {
   const { mode, setMode } = useTheme();
   const [favorite, setFavorite] = useFavorite();
   const conferences = useConferences(data);
-  const { search } = useLocation();
+  const { search, pathname } = useLocation();
 
   const NAV = [
     { to: { pathname: '/', search }, label: 'Ranking', end: true },
@@ -54,6 +54,10 @@ function Layout() {
   }, [data, state.conferences]);
 
   const favTeam = data && favorite ? data.teams.find((t) => t.school === favorite) ?? null : null;
+  // chart views (a criteria plot/curve) get the panel on top, short, so the chart stays above the
+  // fold; list views (the ranking, a criteria ranked list) get it as a wider side rail
+  const chartView = pathname.startsWith('/criteria') && state.lens !== 'list';
+  const panelMode: 'top' | 'side' | 'none' = favTeam ? (chartView ? 'top' : 'side') : 'none';
 
   return (
     <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-6">
@@ -108,17 +112,22 @@ function Layout() {
           />
           <div
             className={
-              favTeam
-                ? 'xl:grid xl:grid-cols-[minmax(0,1fr)_20rem] xl:gap-6'
+              panelMode === 'side'
+                ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-6'
                 : ''
             }
           >
-            {favTeam && (
-              <aside className="mb-4 xl:col-start-2 xl:row-start-1 xl:mb-0 xl:sticky xl:top-4 xl:self-start xl:max-h-[calc(100vh-2rem)] xl:overflow-auto">
+            {panelMode === 'top' && favTeam && (
+              <aside className="mb-3 max-h-44 overflow-y-auto rounded-xl">
                 <TeamCard team={favTeam} onClear={() => setFavorite(null)} />
               </aside>
             )}
-            <div className="min-w-0 xl:col-start-1 xl:row-start-1">
+            {panelMode === 'side' && favTeam && (
+              <aside className="mb-4 lg:col-start-2 lg:row-start-1 lg:mb-0 lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-2rem)] lg:overflow-auto">
+                <TeamCard team={favTeam} onClear={() => setFavorite(null)} />
+              </aside>
+            )}
+            <div className="min-w-0 lg:col-start-1 lg:row-start-1">
               <Outlet
                 context={
                   {
