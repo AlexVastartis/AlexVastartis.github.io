@@ -37,7 +37,8 @@ Shared names for the pieces, so feedback can point precisely.
 | --- | --- |
 | **Subject tabs** | one fixed row: the prominent **Blue Blood Rating** (the primary view, `/`) then the five criteria (`/criteria/:key`). Never moves |
 | **View toggle** | right-hand end of the subject row: **List View · Chart View · Bell Curve** (`?view=`) — shown only for a criterion. Blue Blood Rating is the ranked list only, no toggle |
-| **Gap note** | the pen-in-the-margin annotation between two groupings in the Blue Blood Rating list — a hand-drawn arrow and `≈N% gap`, the rating drop from the last team of the upper group to the first of the lower |
+| **Gap note** | pen-in-the-margin annotation on the Blue Blood Rating list — `≈N% gap` with a hand-drawn arrow, the rating drop from the bottom of one grouping to the top of the next. On a wide desktop it hangs in the true left page margin; on narrower screens it drops between the two groupings |
+| **Range brace** | pen-in-the-margin annotation beside each grouping — a hand-drawn curly brace spanning the whole section, labelled with its rating range (top team `–` bottom team). Wide-desktop margin only; on narrower screens it collapses to a small note in the grouping header |
 | **Column sort** | on a criterion's **List View** only, the header cells sort (Program, the two stats, Pctl). The Blue Blood Rating list is not sortable — it keeps its tier groupings and the five-bar criterion strip |
 | **Marker toggle** | Logos vs. coloured bubbles — in the chart's action bar (Chart View / Bell Curve), left of the PNG button |
 | **Jump** | the `⌖ jump` control in the team panel — scrolls the favourite's row to the centre of whatever list is on screen. (Picking a team no longer auto-scrolls.) |

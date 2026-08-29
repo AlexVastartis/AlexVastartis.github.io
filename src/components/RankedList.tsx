@@ -18,9 +18,12 @@ export default function RankedList({ teams, favorite, onPick }: Props) {
     <div className="flex flex-col gap-7">
       {groups.map((g, i) => {
         const gap = i > 0 ? groups[i - 1].teams.at(-1)!.rating - g.teams[0].rating : 0;
+        const top = g.teams[0].rating;
+        const bottom = g.teams.at(-1)!.rating;
         return (
-          <div key={g.grouping}>
+          <div key={g.grouping} className="relative">
             {i > 0 && gap > 0 && <GapNote gap={gap} />}
+            <RangeBrace top={top} bottom={bottom} />
             <section
               className={
                 g.grouping === 'Blue Blood Fringe'
@@ -33,6 +36,9 @@ export default function RankedList({ teams, favorite, onPick }: Props) {
               <header className="mb-1.5 flex items-baseline gap-2 px-1">
                 <h3 className="text-sm font-bold uppercase tracking-wide">{g.grouping}</h3>
                 <span className="text-xs text-muted">{g.teams.length}</span>
+                <span className="font-hand text-sm text-accent 2xl:hidden">
+                  {top.toFixed(1)}–{bottom.toFixed(1)}%
+                </span>
               </header>
               <p className="mb-2 px-1 text-xs leading-snug text-muted">{g.blurb}</p>
 
@@ -115,25 +121,86 @@ function CriterionStrip({ team }: { team: Team }) {
   );
 }
 
-/** the pen-in-the-margin note calling out the rating gap between two groups */
+/**
+ * The rating gap between this group and the one above it. On a wide desktop it
+ * hangs in the true left margin (outside the page column) with a little pen
+ * flick pointing at the break; on narrower screens it drops between the groups.
+ */
 function GapNote({ gap }: { gap: number }) {
+  const text = `≈${gap.toFixed(1)}% gap`;
   return (
-    <div className="pointer-events-none relative z-10 -mb-4 -mt-2 ml-1 flex items-center gap-1 font-hand text-accent">
+    <>
+      {/* narrow: between the groupings */}
+      <div className="pointer-events-none relative z-10 -mb-4 -mt-2 ml-1 flex items-center gap-1 font-hand text-accent 2xl:hidden">
+        <svg
+          width="30"
+          height="22"
+          viewBox="0 0 30 22"
+          className="shrink-0 -rotate-3"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M4 18 C 6 8, 14 4, 26 4" />
+          <path d="M19 3 L 27 4 L 24 12" />
+        </svg>
+        <span className="-rotate-3 text-xl leading-none">{text}</span>
+      </div>
+
+      {/* wide desktop: out in the left margin */}
+      <div
+        className="pointer-events-none absolute -top-4 hidden -translate-x-full items-center gap-1 whitespace-nowrap pr-2 font-hand text-accent 2xl:flex"
+        style={{ left: '-0.75rem' }}
+      >
+        <span className="-rotate-3 text-xl leading-none">{text}</span>
+        <svg
+          width="34"
+          height="16"
+          viewBox="0 0 34 16"
+          className="shrink-0"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M2 5 C 12 5, 16 12, 30 12" />
+          <path d="M24 7 L 31 12 L 23 15" />
+        </svg>
+      </div>
+    </>
+  );
+}
+
+/**
+ * Wide-desktop only: a hand-drawn curly brace in the left margin spanning the
+ * whole grouping, labelled with the rating range from its top team to its base.
+ */
+function RangeBrace({ top, bottom }: { top: number; bottom: number }) {
+  return (
+    <div
+      className="pointer-events-none absolute inset-y-1 hidden -translate-x-full items-center gap-1 pr-1 font-hand text-accent/90 2xl:flex"
+      style={{ left: '-0.75rem' }}
+    >
+      <span className="-rotate-2 whitespace-nowrap text-lg leading-none">
+        {top.toFixed(1)}–{bottom.toFixed(1)}%
+      </span>
       <svg
-        width="30"
-        height="22"
-        viewBox="0 0 30 22"
-        className="shrink-0 -rotate-3"
+        className="h-full w-3 shrink-0"
+        viewBox="0 0 12 100"
+        preserveAspectRatio="none"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.6"
         strokeLinecap="round"
-        strokeLinejoin="round"
       >
-        <path d="M4 18 C 6 8, 14 4, 26 4" />
-        <path d="M19 3 L 27 4 L 24 12" />
+        <path
+          d="M10 2 C 6 2, 7 12, 7 26 C 7 40, 5 46, 2 50 C 5 54, 7 60, 7 74 C 7 88, 6 98, 10 98"
+          strokeWidth="2.4"
+          vectorEffect="non-scaling-stroke"
+        />
       </svg>
-      <span className="-rotate-3 text-xl leading-none">≈{gap.toFixed(1)}% gap</span>
     </div>
   );
 }
