@@ -125,7 +125,8 @@ function Layout() {
           <div className={panelMode === 'side' ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-6' : ''}>
             {panelMode === 'top' && favTeam && (
               <aside className="mb-3">
-                <TeamCard team={favTeam} variant="compact" onClear={() => setFavorite(null)} onJump={jumpToFavorite} />
+                {/* jump is only useful next to a ranked list, so it's not offered on chart views */}
+                <TeamCard team={favTeam} variant="compact" onClear={() => setFavorite(null)} />
               </aside>
             )}
             {panelMode === 'side' && favTeam && (

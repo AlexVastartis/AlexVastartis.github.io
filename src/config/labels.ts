@@ -8,8 +8,8 @@ export const TREND_GLYPH: Record<TrendDir, string> = {
 
 export const TREND_WORD: Record<TrendDir, string> = {
   up: 'Ascending',
-  down: 'Receding',
-  even: 'Holding',
+  down: 'Descending',
+  even: 'Maintaining',
 };
 
 export const TREND_CLASS: Record<TrendDir, string> = {
@@ -21,7 +21,9 @@ export const TREND_CLASS: Record<TrendDir, string> = {
 const VERDICT: Record<TrendDir, string> = {
   up: 'ranks higher among all of FBS now than across its prior history',
   down: 'ranks lower among all of FBS now than across its prior history',
-  even: 'holds roughly the same standing now as across its prior history',
+  even:
+    'holds about the same standing among all of FBS now as it did across its prior history — '
+    + 'no era of clear rise or decline, it is keeping pace with itself',
 };
 
 /** the hover text on a program's trajectory — spells out exactly what is being compared */

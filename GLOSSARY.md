@@ -26,9 +26,9 @@ Shared names for the pieces, so feedback can point precisely.
 
 | Term | What it is |
 | --- | --- |
-| **Trajectory** | the arrow: **Ascending ▲** / **Holding –** / **Receding ▼**. Compares a program's most recent ~20% of seasons with its whole history, in cross-program percentile position, across all ten rating stats (eight with a per-season series). The hover names the season counts, the year ranges, and the biggest movers. Overridable in `data/manual/trend_overrides.csv` | `team.trend` |
-| **Trajectory note** | the short pointed phrase after an Ascending/Receding label — *needs the decades*, *a former power*, *still climbing*, *back from the wilderness*, *new money*, *off its peak*, *trading on history*, *a long slide*. Never shown for Holding | `team.note` |
-| **Standard label** | `<Grouping> · <Trajectory>[ · <Trajectory note>]` — the muted line on each ranked-list row | `team.label.standard` |
+| **Trajectory** | the arrow: **Ascending ▲** / **Maintaining –** / **Descending ▼**. Compares a program's most recent ~20% of seasons with its whole history, in cross-program percentile position, across all ten rating stats (eight with a per-season series). *Maintaining* = keeping pace with its own history. The hover names the season counts, year ranges, and biggest movers. Overridable in `data/manual/trend_overrides.csv` | `team.trend` |
+| **Trajectory note** | the short pointed phrase after an Ascending/Descending label — *needs the decades*, *a former power*, *still climbing*, *back from the wilderness*, *new money*, *off its peak*, *trading on history*, *a long slide*. Never shown for Maintaining | `team.note` |
+| **Standard label** | the muted sub-line on each ranked-list row — the trajectory, described (no grouping; the section header already has it) | `team.label.standard` |
 | **Tagline** | the hand-written one-liner about a program's history / peak eras (fan-proud, no disputed claims) | `data/manual/blurbs.csv` → `team.label.personal` |
 
 ## Views & pages

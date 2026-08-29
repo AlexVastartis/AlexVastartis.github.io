@@ -1,6 +1,5 @@
 import type { StatKey, Team } from '../types';
 import { CATEGORIES, CATEGORY_ORDER, STATS } from '../config/stats';
-import { TREND_CLASS, TREND_GLYPH, TREND_WORD, trendTitle } from '../config/labels';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -8,11 +7,14 @@ interface Props {
   team: Team;
   variant?: 'full' | 'compact';
   onClear?: () => void;
-  /** scroll this team's row into view in whatever list is on screen */
+  /** scroll this team's row into view in whatever list is on screen (list views only) */
   onJump?: () => void;
 }
 
-/** the viewer's favourite program. `full` = deep read (used on the ranked list);
+const RATING_HINT =
+  'Blue Blood Rating: rank each of the 10 stats within FBS, drop this program’s single best and single worst percentile, average the other 8.';
+
+/** the viewer's favourite program. `full` = deep read (used beside a ranked list);
  *  `compact` = a slim strip for chart views: identity + the five criterion scores */
 export default function TeamCard({ team, variant = 'full', onClear, onJump }: Props) {
   const logo = (
@@ -28,13 +30,6 @@ export default function TeamCard({ team, variant = 'full', onClear, onJump }: Pr
         }
       }}
     />
-  );
-
-  const trend = (
-    <span className={TREND_CLASS[team.trend.dir]} title={trendTitle(team)}>
-      {TREND_GLYPH[team.trend.dir]} {TREND_WORD[team.trend.dir]}
-      {team.note ? ` · ${team.note}` : ''}
-    </span>
   );
 
   const clearBtn = onClear && (
@@ -61,8 +56,8 @@ export default function TeamCard({ team, variant = 'full', onClear, onJump }: Pr
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
               <h2 className="text-base font-bold tracking-tight">{team.school}</h2>
-              <span className="text-xs text-muted">
-                #{team.ratingRank} · {team.rating.toFixed(1)} · {trend} · {team.grouping}
+              <span className="text-xs text-muted" title={RATING_HINT}>
+                #{team.ratingRank} · {team.rating.toFixed(1)} · {team.grouping}
               </span>
               {jumpBtn}
               {clearBtn}
@@ -72,7 +67,11 @@ export default function TeamCard({ team, variant = 'full', onClear, onJump }: Pr
         </div>
         <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1.5">
           {CATEGORY_ORDER.map((ck) => (
-            <div key={ck} className="flex items-center gap-1.5">
+            <div
+              key={ck}
+              className="flex items-center gap-1.5"
+              title={`${CATEGORIES[ck].label}: ${Math.round(team.critScore[ck])}th percentile — ${CATEGORIES[ck].blurb}`}
+            >
               <span className="w-28 shrink-0 truncate text-[10px] font-semibold uppercase tracking-wide text-muted">
                 {CATEGORIES[ck].label}
               </span>
@@ -101,23 +100,28 @@ export default function TeamCard({ team, variant = 'full', onClear, onJump }: Pr
             {jumpBtn}
             {clearBtn}
           </div>
-          <p className="text-sm text-muted">
-            #{team.ratingRank} · {team.rating.toFixed(1)} rating · {trend}
+          <p className="text-sm text-muted" title={RATING_HINT}>
+            #{team.ratingRank} · {team.rating.toFixed(1)} rating · {team.grouping}
           </p>
           {team.label.personal && <p className="mt-0.5 text-sm">{team.label.personal}</p>}
-          <p className="text-xs text-muted">{team.grouping}</p>
         </div>
       </div>
 
       <div className="mt-4 grid grid-cols-[1fr_2.5rem] items-baseline gap-x-3 text-[10px] font-semibold uppercase tracking-wide text-muted">
-        <span>Stat percentile within FBS</span>
+        <span>Percentile within FBS — criterion, then its stats</span>
         <span className="text-right">Pctl</span>
       </div>
 
       <dl className="mt-1 flex flex-col gap-3">
         {CATEGORY_ORDER.map((ck) => (
           <div key={ck}>
-            <dt className="mb-0.5 text-xs font-semibold">{CATEGORIES[ck].label}</dt>
+            <dt
+              className="mb-0.5 flex items-baseline justify-between gap-2 text-xs font-semibold"
+              title={`${CATEGORIES[ck].label} — ${CATEGORIES[ck].blurb}`}
+            >
+              <span>{CATEGORIES[ck].label}</span>
+              <span className="tabular-nums">{Math.round(team.critScore[ck])}</span>
+            </dt>
             {CATEGORIES[ck].stats.map((sk) => {
               const isTrim = trimmed.has(sk);
               const pctl = team.pct[sk];
@@ -126,7 +130,10 @@ export default function TeamCard({ team, variant = 'full', onClear, onJump }: Pr
                 <div
                   key={sk}
                   className={`flex items-center gap-2 ${isTrim ? 'opacity-40' : ''}`}
-                  title={`${STATS[sk].label}: ${raw}`}
+                  title={
+                    `${STATS[sk].label}: ${raw} — ${Math.round(pctl)}th percentile of 130`
+                    + (isTrim ? ' (this program’s high/low outlier, dropped from its rating)' : '')
+                  }
                 >
                   <span className={`w-40 shrink-0 truncate text-xs text-muted ${isTrim ? 'line-through' : ''}`}>
                     {STATS[sk].label}
@@ -137,7 +144,9 @@ export default function TeamCard({ team, variant = 'full', onClear, onJump }: Pr
                       style={{ width: `${pctl}%`, background: isTrim ? 'rgb(var(--muted))' : team.primary }}
                     />
                   </span>
-                  <span className={`w-10 text-right text-xs tabular-nums ${isTrim ? 'line-through' : ''}`}>
+                  <span
+                    className={`w-10 text-right text-xs tabular-nums text-muted ${isTrim ? 'line-through' : ''}`}
+                  >
                     {Math.round(pctl)}
                   </span>
                 </div>
@@ -147,8 +156,16 @@ export default function TeamCard({ team, variant = 'full', onClear, onJump }: Pr
         ))}
       </dl>
 
-      <p className="mt-3 rounded-md bg-paper/70 px-3 py-2 text-xs leading-relaxed">{team.comparison}</p>
-      <p className="mt-2 rounded-md border border-line px-3 py-2 text-xs leading-relaxed">
+      <p
+        className="mt-3 rounded-md bg-paper/70 px-3 py-2 text-xs leading-relaxed"
+        title="How this program compares with the other teams in its grouping, criterion by criterion"
+      >
+        {team.comparison}
+      </p>
+      <p
+        className="mt-2 rounded-md border border-line px-3 py-2 text-xs leading-relaxed"
+        title="What it would take, in real terms, to reach the middle of the grouping above"
+      >
         <span className="font-semibold">If it wants the next tier: </span>
         {team.projection}
       </p>

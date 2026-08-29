@@ -110,6 +110,7 @@ export default function ScatterChart({
         fontSize={14}
         fontWeight={600}
       >
+        <title>{`${STATS[xStat].label} — raw total across all 130 FBS programs`}</title>
         {STATS[xStat].axisLabel}
       </text>
       <text
@@ -121,6 +122,7 @@ export default function ScatterChart({
         fontWeight={600}
         transform={`rotate(-90 16 ${(m.top + height - m.bottom) / 2})`}
       >
+        <title>{`${STATS[yStat].label} — raw total across all 130 FBS programs`}</title>
         {STATS[yStat].axisLabel}
       </text>
 

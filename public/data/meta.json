@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T22:20:47.273Z",
+  "generatedAt": "2026-08-29T22:45:28.791Z",
   "model": "percentile-trimmed-mean",
   "modelBlurb": "Rank each of the ten stats within FBS, drop each program’s single best and single worst percentile, average the other eight.",
   "trendRecentFraction": 0.2,

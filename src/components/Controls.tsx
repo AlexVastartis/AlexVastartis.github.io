@@ -37,6 +37,7 @@ export default function Controls({
         <span className="mr-1 text-xs font-semibold uppercase tracking-wide text-muted">Conference</span>
         <button
           onClick={onClearConferences}
+          title="Show every FBS program"
           className={`rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-line ${
             state.conferences.length === 0 ? 'bg-accent text-white' : 'hover:bg-panel'
           }`}
@@ -49,6 +50,7 @@ export default function Controls({
             <button
               key={c}
               onClick={() => onToggleConference(c)}
+              title={`${on ? 'Remove' : 'Add'} ${c} — current-alignment members only`}
               className={`rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-line ${
                 on ? 'bg-accent text-white' : 'hover:bg-panel'
               }`}
@@ -60,11 +62,12 @@ export default function Controls({
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <label className="flex items-center gap-1.5 text-sm">
+        <label className="flex items-center gap-1.5 text-sm" title="Highlight one program across every chart and list">
           <span className="text-xs font-semibold uppercase tracking-wide text-muted">★ Team</span>
           <select
             value={favorite ?? ''}
             onChange={(e) => onSetFavorite(e.target.value || null)}
+            title="Highlight one program across every chart and list"
             className="max-w-[9rem] rounded-md border border-line bg-paper px-2 py-1 text-sm"
           >
             {(canClearFavorite || !favorite) && <option value="">None</option>}

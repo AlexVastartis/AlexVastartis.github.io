@@ -73,7 +73,12 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
                 fav ? 'border-accent bg-accent/10' : 'border-transparent'
               }`}
             >
-              <span className="text-right text-sm font-semibold tabular-nums text-muted">{i + 1}</span>
+              <span
+                className="text-right text-sm font-semibold tabular-nums text-muted"
+                title={`#${i + 1} of ${rows.length} on ${CATEGORIES[criterion].label}`}
+              >
+                {i + 1}
+              </span>
               <img
                 src={`${BASE}logos/${t.slug}.svg`}
                 alt=""
@@ -97,7 +102,12 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
                 <span className="hidden w-20 text-right text-muted sm:inline" title={`${STATS[yk].label}: ${fmtY(t.stats[yk])}`}>
                   {fmtY(t.stats[yk])}
                 </span>
-                <span className="w-10 text-right font-bold">{Math.round(t.critScore[criterion])}</span>
+                <span
+                  className="w-10 text-right font-bold"
+                  title={`${CATEGORIES[criterion].label} score ${Math.round(t.critScore[criterion])} — mean of the two stats’ FBS percentiles`}
+                >
+                  {Math.round(t.critScore[criterion])}
+                </span>
               </span>
             </button>
           </li>

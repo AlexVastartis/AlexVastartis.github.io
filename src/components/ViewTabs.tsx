@@ -5,12 +5,22 @@ import type { ViewMode } from '../data/useViewState';
 
 export type Subject = 'rating' | CategoryKey;
 
-const CRITERIA = CATEGORY_ORDER.map((k) => ({ key: k as Subject, label: CATEGORIES[k].label, to: `/criteria/${k}` }));
+const CRITERIA = CATEGORY_ORDER.map((k) => ({
+  key: k as Subject,
+  label: CATEGORIES[k].label,
+  to: `/criteria/${k}`,
+  hint: CATEGORIES[k].blurb,
+}));
 
 const VIEW_LABEL: Record<ViewMode, string> = {
   list: 'List View',
   plot: 'Chart View',
   curve: 'Bell Curve',
+};
+const VIEW_HINT: Record<ViewMode, string> = {
+  list: 'A sortable ranked list of every program on this criterion',
+  plot: 'Each program plotted as a logo on the criterion’s two stats',
+  curve: 'Every program placed on the normal curve by its criterion score',
 };
 
 interface Props {
@@ -53,6 +63,7 @@ export default function ViewTabs({ subject, view, onSetView, search, notesOn, on
         <NavLink
           to={{ pathname: '/', search }}
           end
+          title="The overall Blue Blood Rating — mean of the 8 middle stat percentiles"
           className={({ isActive }) =>
             `rounded-lg px-3.5 py-1.5 text-[15px] font-bold tracking-tight ${
               isActive
@@ -65,7 +76,7 @@ export default function ViewTabs({ subject, view, onSetView, search, notesOn, on
         </NavLink>
         <span className="mx-1 hidden h-5 w-px bg-line sm:block" aria-hidden />
         {CRITERIA.map((s) => (
-          <NavLink key={s.key} to={{ pathname: s.to, search }} className={critClass}>
+          <NavLink key={s.key} to={{ pathname: s.to, search }} title={s.hint} className={critClass}>
             {s.label}
           </NavLink>
         ))}
@@ -77,6 +88,7 @@ export default function ViewTabs({ subject, view, onSetView, search, notesOn, on
             <button
               key={v}
               onClick={() => onSetView(v)}
+              title={VIEW_HINT[v]}
               className={`px-3 py-1.5 text-sm font-medium first:rounded-l-md last:rounded-r-md ${
                 view === v ? 'bg-accent text-white' : 'hover:bg-panel'
               }`}

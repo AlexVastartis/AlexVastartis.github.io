@@ -1,9 +1,12 @@
-import type { CategoryKey, Team } from '../types';
+import type { StatKey, Team } from '../types';
 import { CATEGORIES, CATEGORY_ORDER, STATS } from '../config/stats';
 import { groupTeams } from '../config/ranking';
 import { TREND_CLASS, TREND_GLYPH, trendTitle } from '../config/labels';
 
 const BASE = import.meta.env.BASE_URL;
+
+// the 10 stats in criterion order (2 per criterion)
+const STAT_KEYS = CATEGORY_ORDER.flatMap((c) => CATEGORIES[c].stats) as StatKey[];
 
 interface Props {
   teams: Team[];
@@ -40,7 +43,9 @@ export default function RankedList({ teams, favorite, onPick, showNotes }: Props
             >
               <header className="mb-1.5 flex items-baseline gap-2 px-1">
                 <h3 className="text-sm font-bold uppercase tracking-wide">{g.grouping}</h3>
-                <span className="text-xs text-muted">{g.teams.length}</span>
+                <span className="text-xs text-muted" title={`${g.teams.length} programs`}>
+                  {g.teams.length}
+                </span>
               </header>
               <p className="mb-2 px-1 text-xs leading-snug text-muted">{g.blurb}</p>
 
@@ -55,7 +60,10 @@ export default function RankedList({ teams, favorite, onPick, showNotes }: Props
                           fav ? 'border-accent bg-accent/10' : 'border-transparent'
                         }`}
                       >
-                        <span className="flex items-center justify-end gap-0.5 text-sm font-semibold tabular-nums text-muted">
+                        <span
+                          className="flex items-center justify-end gap-0.5 text-sm font-semibold tabular-nums text-muted"
+                          title={`#${t.ratingRank} of 130 by Blue Blood Rating`}
+                        >
                           <span
                             className={`text-[10px] leading-none ${TREND_CLASS[t.trend.dir]}`}
                             title={trendTitle(t)}
@@ -84,8 +92,11 @@ export default function RankedList({ teams, favorite, onPick, showNotes }: Props
                           <span className="block truncate text-xs text-muted">{t.label.standard}</span>
                         </span>
                         <span className="flex items-center gap-3">
-                          <CriterionStrip team={t} />
-                          <span className="w-12 text-right text-sm font-bold tabular-nums">
+                          <StatStrip team={t} />
+                          <span
+                            className="w-12 text-right text-sm font-bold tabular-nums"
+                            title={`Blue Blood Rating ${t.rating.toFixed(1)} — mean of the 8 middle stat percentiles`}
+                          >
                             {t.rating.toFixed(1)}
                           </span>
                         </span>
@@ -102,21 +113,30 @@ export default function RankedList({ teams, favorite, onPick, showNotes }: Props
   );
 }
 
-/** five bars, one per criterion — darker = higher percentile */
-function CriterionStrip({ team }: { team: Team }) {
+/** ten bars, one per rating stat — darker = higher percentile; the program's own
+ *  high/low outliers (dropped from its rating) are greyed. Hover is instant. */
+function StatStrip({ team }: { team: Team }) {
+  const trimmed = new Set<StatKey>([team.trimmedLow, team.trimmedHigh]);
   return (
-    <span className="hidden gap-1 sm:flex">
-      {CATEGORY_ORDER.map((ck: CategoryKey) => {
-        const [a, b] = CATEGORIES[ck].stats;
-        const fa = (STATS[a].format ?? String)(team.stats[a]);
-        const fb = (STATS[b].format ?? String)(team.stats[b]);
+    <span className="hidden items-center gap-[3px] sm:flex">
+      {STAT_KEYS.map((sk) => {
+        const pctl = team.pct[sk];
+        const isTrim = trimmed.has(sk);
+        const raw = (STATS[sk].format ?? String)(team.stats[sk]);
         return (
-          <span
-            key={ck}
-            title={`${CATEGORIES[ck].label}: ${Math.round(team.critScore[ck])}th percentile · ${STATS[a].label} ${fa} · ${STATS[b].label} ${fb}`}
-            className="h-4 w-2.5 rounded-sm"
-            style={{ background: team.primary, opacity: 0.18 + 0.82 * (team.critScore[ck] / 100) }}
-          />
+          <span key={sk} className="group relative">
+            <span
+              className="block h-4 w-1.5 rounded-sm"
+              style={{
+                background: isTrim ? 'rgb(var(--muted))' : team.primary,
+                opacity: (isTrim ? 0.22 : 0.2) + (isTrim ? 0.4 : 0.8) * (pctl / 100),
+              }}
+            />
+            <span className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-1 hidden -translate-x-1/2 whitespace-nowrap rounded border border-line bg-panel px-1.5 py-0.5 text-[10px] font-normal normal-case tracking-normal text-ink shadow-sm group-hover:block">
+              {STATS[sk].label}: {raw} · {Math.round(pctl)}th pctl
+              {isTrim && ' · outlier, not in rating'}
+            </span>
+          </span>
         );
       })}
     </span>
@@ -170,7 +190,7 @@ function RangeBrace({ spread }: { spread: number }) {
       className="pointer-events-none absolute inset-y-1 hidden -translate-x-full items-center gap-1 pr-1 font-hand text-accent/90 2xl:flex"
       style={{ left: '-0.75rem' }}
     >
-      <span className="-rotate-2 whitespace-nowrap text-lg leading-none">{spread.toFixed(1)}% range</span>
+      <span className="-rotate-2 whitespace-nowrap text-lg leading-none">≈{spread.toFixed(1)}% range</span>
       <svg
         className="h-full w-3 shrink-0"
         viewBox="0 0 12 100"

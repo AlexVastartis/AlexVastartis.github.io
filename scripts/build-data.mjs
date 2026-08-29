@@ -733,7 +733,12 @@ function main() {
       heismans: a.heismans,
       trend: a.trend,
       label: {
-        standard: `${a.grouping} · ${{ up: 'Ascending', down: 'Receding', even: 'Holding' }[a.trend.dir]}${a.note ? ` · ${a.note}` : ''}`,
+        // ranked-list sub-line: the trajectory, described — no grouping (the section header has it)
+        standard: {
+          up: `Ascending${a.note ? ` — ${a.note}` : ''}`,
+          down: `Descending${a.note ? ` — ${a.note}` : ''}`,
+          even: 'Maintaining its standing versus its own history',
+        }[a.trend.dir],
         personal: D.blurbs.get(a.school) || '',
       },
       // default view is asPlayed — mirror onto the top level so components read team.rating directly
@@ -783,7 +788,7 @@ function main() {
   fs.writeFileSync(path.join(SNAP, `data-${new Date().toISOString().slice(0, 10)}.json`), JSON.stringify(payload));
 
   // human-readable dump of every derived string — review here, override in data/manual/*_overrides.csv
-  const dirWord = { up: 'Ascending', down: 'Receding', even: 'Holding' };
+  const dirWord = { up: 'Ascending', down: 'Descending', even: 'Maintaining' };
   fs.writeFileSync(
     path.join(PUBLIC, 'breakdown.csv'),
     writeRecords(
