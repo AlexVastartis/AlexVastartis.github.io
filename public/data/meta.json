@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T21:35:43.383Z",
+  "generatedAt": "2026-08-29T21:49:42.409Z",
   "model": "percentile-trimmed-mean",
   "modelBlurb": "Rank each of the ten stats within FBS, drop each program’s single best and single worst percentile, average the other eight.",
   "trendRecentFraction": 0.2,
@@ -28,11 +28,11 @@
     "perception": "Every weekly AP poll ballot, 1936–present (CollegeFootballData → data/api/ap-poll.json).",
     "wins": "Wins/losses/ties per season (CollegeFootballData 1936+; one hand-entered \"through 1935\" row per program set so the all-time total matches the program’s Wikipedia figure → data/season-records.csv). A tie counts as half a win.",
     "championships": "National-title list, one row per (school, year, selector); AP/UPI/FWAA/NFF/USA + CFRA/HAF/NCF count, \"claim\"/\"not-claimed\" do not (data/manual/national_titles.csv).",
-    "allAmericans": "Every consensus All-America selection 1889–present, one row per player with a unanimous flag (data/manual/all_americans.csv).",
+    "allAmericans": "Every consensus All-America selection from the NCAA \"Football Award Winners\" record book, one row per player; unanimous flagged from 1924 (data/manual/all_americans.csv).",
     "nflDraft": "Every NFL draft pick by school, 1936–present (CollegeFootballData → data/api/draft.json)."
   },
   "granular": {
-    "allAmericans": "per-player list 1889–present for 109/130 programs; the rest (no selections) use a summary count.",
+    "allAmericans": "NCAA record-book per-player list for 109/130 programs; the rest (no consensus selections) use a summary count.",
     "nationalTitles": "granular (data/manual/national_titles.csv, one row per selector)",
     "conferenceTitles": "granular where filed, else summary"
   },
@@ -48,16 +48,16 @@
   "tierBoundaries": [
     6,
     8,
-    18,
+    17,
     22,
     27
   ],
   "tierGaps": [
     2.211538461538467,
-    1.875,
+    1.9711538461538396,
     1.6826923076923066,
-    3.17307692307692,
-    2.980769230769255
+    3.028846153846146,
+    3.17307692307692
   ],
   "stats": {
     "allTimeWins": {
@@ -85,16 +85,16 @@
       "max": 50
     },
     "consensusAA": {
-      "mean": 16.015384615384615,
-      "stddev": 22.29797666411932,
+      "mean": 16.06923076923077,
+      "stddev": 22.374500754735703,
       "min": 0,
       "max": 113
     },
     "unanimousAA": {
-      "mean": 4.815384615384615,
-      "stddev": 7.873797456788718,
+      "mean": 5.207692307692308,
+      "stddev": 8.472304339930332,
       "min": 0,
-      "max": 39
+      "max": 42
     },
     "nflDraftPicks": {
       "mean": 87.61538461538461,
@@ -141,10 +141,10 @@
       "max": 4.0925095975794346
     },
     "allAmericans": {
-      "mean": -1.708035422500241e-17,
-      "stddev": 0.9925491735544651,
-      "min": -0.6649073255622651,
-      "max": 4.2820217626371875
+      "mean": -9.564998366001349e-17,
+      "stddev": 0.9915529524916468,
+      "min": -0.6664332074146894,
+      "max": 4.101364015396605
     },
     "nflDraft": {
       "mean": 3.586874387250506e-17,
@@ -155,8 +155,8 @@
   },
   "overall": {
     "mean": 0,
-    "stddev": 0.9999999999999999,
-    "min": -1.6352721752186863,
-    "max": 1.9000792948222918
+    "stddev": 1.0000000000000002,
+    "min": -1.6347681314385083,
+    "max": 1.8996486349641055
   }
 }

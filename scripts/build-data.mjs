@@ -75,7 +75,7 @@ const PROVENANCE = {
   perception: 'Every weekly AP poll ballot, 1936–present (CollegeFootballData → data/api/ap-poll.json).',
   wins: 'Wins/losses/ties per season (CollegeFootballData 1936+; one hand-entered "through 1935" row per program set so the all-time total matches the program’s Wikipedia figure → data/season-records.csv). A tie counts as half a win.',
   championships: 'National-title list, one row per (school, year, selector); AP/UPI/FWAA/NFF/USA + CFRA/HAF/NCF count, "claim"/"not-claimed" do not (data/manual/national_titles.csv).',
-  allAmericans: 'Every consensus All-America selection 1889–present, one row per player with a unanimous flag (data/manual/all_americans.csv).',
+  allAmericans: 'Every consensus All-America selection from the NCAA "Football Award Winners" record book, one row per player; unanimous flagged from 1924 (data/manual/all_americans.csv).',
   nflDraft: 'Every NFL draft pick by school, 1936–present (CollegeFootballData → data/api/draft.json).',
 };
 
@@ -739,7 +739,7 @@ function main() {
     sources: { store: 'data/api + data/season-records.csv + data/manual', network: false },
     provenance: PROVENANCE,
     granular: {
-      allAmericans: `per-player list 1889–present for ${asPlayed.granularAA.consensus}/${asPlayed.granularAA.consensus + asPlayed.granularAA.summaryC} programs; the rest (no selections) use a summary count.`,
+      allAmericans: `NCAA record-book per-player list for ${asPlayed.granularAA.consensus}/${asPlayed.granularAA.consensus + asPlayed.granularAA.summaryC} programs; the rest (no consensus selections) use a summary count.`,
       nationalTitles: 'granular (data/manual/national_titles.csv, one row per selector)',
       conferenceTitles: 'granular where filed, else summary',
     },
