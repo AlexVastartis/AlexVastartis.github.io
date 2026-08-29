@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T18:59:30.538Z",
+  "generatedAt": "2026-08-29T19:32:49.681Z",
   "model": "percentile-trimmed-mean",
   "modelBlurb": "Rank each of the ten stats within FBS, drop each program’s single best and single worst percentile, average the other eight.",
   "trendRecentFraction": 0.2,
@@ -26,7 +26,7 @@
   },
   "provenance": {
     "perception": "Every weekly AP poll ballot, 1936–present (CollegeFootballData → data/api/ap-poll.json).",
-    "wins": "Wins/losses/ties per season (CollegeFootballData 1936+; one hand-entered \"through 1935\" row per program → data/season-records.csv).",
+    "wins": "Wins/losses/ties per season (CollegeFootballData 1936+; one hand-entered \"through 1935\" row per program set so the all-time total matches the program’s Wikipedia figure → data/season-records.csv). A tie counts as half a win.",
     "championships": "National-title list, one row per (school, year, selector); AP/UPI/FWAA/NFF/USA + CFRA/HAF/NCF count, \"claim\"/\"not-claimed\" do not (data/manual/national_titles.csv).",
     "allAmericans": "Consensus All-Americans per season 1924–present (data/manual/all_americans.csv); unanimous count from summary (data/manual/stats_summary.csv).",
     "nflDraft": "Every NFL draft pick by school, 1936–present (CollegeFootballData → data/api/draft.json)."
@@ -40,7 +40,7 @@
   "groupings": [
     "Blue Bloods",
     "Blue Blood Fringe",
-    "Blue Blood Adjacent",
+    "Blue Blood Contenders",
     "National Powers",
     "National Brands",
     "The Field"
@@ -48,27 +48,27 @@
   "tierBoundaries": [
     6,
     8,
-    14,
-    27,
-    46
+    22,
+    40,
+    50
   ],
   "tierGaps": [
     2.3557692307692406,
-    2.019230769230788,
-    1.4903846153846132,
-    3.2211538461538396,
-    2.836538461538467
+    1.826923076923066,
+    2.451923076923066,
+    2.9807692307692264,
+    2.5
   ],
   "stats": {
     "allTimeWins": {
-      "mean": 525.2384615384616,
-      "stddev": 240.99775944844714,
+      "mean": 540.8692307692307,
+      "stddev": 249.86366708702877,
       "min": 48,
-      "max": 1013
+      "max": 1022
     },
     "winPct": {
-      "mean": 0.5160580440410154,
-      "stddev": 0.09381471682755008,
+      "mean": 0.5279849652021398,
+      "stddev": 0.09400939543363733,
       "min": 0.3221476510067114,
       "max": 0.7380952380952381
     },
@@ -129,10 +129,10 @@
       "max": 3.6168384107310905
     },
     "wins": {
-      "mean": -2.025516506657473e-15,
-      "stddev": 0.9141879185989906,
-      "min": -2.0236058362022877,
-      "max": 2.1124361265923106
+      "mean": -8.785707204485614e-16,
+      "stddev": 0.9253129868381915,
+      "min": -2.081046216245522,
+      "max": 2.0499619595765135
     },
     "championships": {
       "mean": 2.5620531337503614e-18,
@@ -155,8 +155,8 @@
   },
   "overall": {
     "mean": 0,
-    "stddev": 1,
-    "min": -1.6279179711951433,
-    "max": 1.9059069996993176
+    "stddev": 1.0000000000000002,
+    "min": -1.6255725080152754,
+    "max": 1.9127207807863078
   }
 }

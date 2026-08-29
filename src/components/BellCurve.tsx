@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
 import { scaleLinear } from 'd3-scale';
-import type { StatDistribution, Team } from '../types';
+import type { CategoryKey, StatDistribution, Team } from '../types';
 import { DEFAULT_MARGINS } from '../lib/scale';
 import { normalPdf } from '../lib/stats';
+import { CATEGORIES, STATS } from '../config/stats';
 import type { MarkerMode } from '../data/useViewState';
 import TeamMarker from './TeamMarker';
 import FavoriteHalo from './FavoriteHalo';
@@ -19,6 +20,8 @@ interface Props {
   highlight?: Set<string>;
   favorite?: string | null;
   onPick?: (school: string) => void;
+  /** when set, the hover names the criterion's two raw stats */
+  criterion?: CategoryKey;
   width?: number;
   height?: number;
   markerSize?: number;
@@ -33,6 +36,7 @@ export default function BellCurve({
   highlight,
   favorite,
   onPick,
+  criterion,
   width = 1000,
   height = 460,
   markerSize = 26,
@@ -145,9 +149,22 @@ export default function BellCurve({
         })()}
 
       {hover && (
-        <text x={width - m.right} y={m.top + 2} textAnchor="end" fontSize={13} fontWeight={700} fill="rgb(var(--ink))">
-          {hover.school} · {value(hover).toFixed(2)}σ
-        </text>
+        <g textAnchor="end" fill="rgb(var(--ink))">
+          <text x={width - m.right} y={m.top + 2} fontSize={13} fontWeight={700}>
+            {hover.school} · {value(hover).toFixed(2)}σ
+          </text>
+          {criterion
+            ? CATEGORIES[criterion].stats.map((sk, i) => (
+                <text key={sk} x={width - m.right} y={m.top + 20 + i * 15} fontSize={11}>
+                  {STATS[sk].label}: {(STATS[sk].format ?? String)(hover.stats[sk])} ({Math.round(hover.pct[sk])}th pctl)
+                </text>
+              ))
+            : (
+              <text x={width - m.right} y={m.top + 20} fontSize={11}>
+                #{hover.ratingRank} · {hover.rating.toFixed(1)} rating
+              </text>
+            )}
+        </g>
       )}
     </svg>
   );

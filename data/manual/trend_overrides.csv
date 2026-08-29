@@ -1,0 +1,4 @@
+# Override a program's trajectory direction and/or its trajectory note.
+# dir ∈ up | down | even   (blank = keep the computed direction)
+# note = the short suffix after Ascending/Receding (blank = keep the computed note; use a single space to force "no note")
+school,dir,note

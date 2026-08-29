@@ -158,7 +158,7 @@ Akron,2022,2,10,0,cfbd
 Akron,2023,2,10,0,cfbd
 Akron,2024,4,8,0,cfbd
 Akron,2025,5,7,0,cfbd
-Alabama,1935,183,87,18,manual
+Alabama,1935,199,96,18,manual
 Alabama,1936,8,0,1,cfbd
 Alabama,1937,9,1,0,cfbd
 Alabama,1938,7,1,1,cfbd
@@ -337,7 +337,7 @@ Appalachian State,2022,6,6,0,cfbd
 Appalachian State,2023,9,5,0,cfbd
 Appalachian State,2024,5,6,0,cfbd
 Appalachian State,2025,5,8,0,cfbd
-Arizona,1935,28,30,4,manual
+Arizona,1935,153,60,12,manual
 Arizona,1936,5,2,3,cfbd
 Arizona,1937,8,2,0,cfbd
 Arizona,1938,3,6,0,cfbd
@@ -426,7 +426,7 @@ Arizona,2022,5,7,0,cfbd
 Arizona,2023,10,3,0,cfbd
 Arizona,2024,4,8,0,cfbd
 Arizona,2025,9,4,0,cfbd
-Arizona State,1935,19,18,3,manual
+Arizona State,1935,55,61,9,manual
 Arizona State,1936,4,5,0,cfbd
 Arizona State,1937,0,8,1,cfbd
 Arizona State,1938,3,6,0,cfbd
@@ -514,7 +514,7 @@ Arizona State,2022,3,9,0,cfbd
 Arizona State,2023,3,9,0,cfbd
 Arizona State,2024,11,3,0,cfbd
 Arizona State,2025,8,5,0,cfbd
-Arkansas,1935,189,31,21,manual
+Arkansas,1935,177,122,21,manual
 Arkansas,1936,7,3,0,cfbd
 Arkansas,1937,6,2,2,cfbd
 Arkansas,1938,2,7,1,cfbd
@@ -693,7 +693,7 @@ Arkansas State,2022,3,9,0,cfbd
 Arkansas State,2023,6,7,0,cfbd
 Arkansas State,2024,8,5,0,cfbd
 Arkansas State,2025,7,6,0,cfbd
-Army,1935,239,79,27,manual
+Army,1935,266,89,27,manual
 Army,1936,6,3,0,cfbd
 Army,1937,7,2,0,cfbd
 Army,1938,8,2,0,cfbd
@@ -784,7 +784,7 @@ Army,2022,6,6,0,cfbd
 Army,2023,6,6,0,cfbd
 Army,2024,12,2,0,cfbd
 Army,2025,7,6,0,cfbd
-Auburn,1935,180,67,20,manual
+Auburn,1935,190,115,20,manual
 Auburn,1936,7,2,2,cfbd
 Auburn,1937,6,2,3,cfbd
 Auburn,1938,4,5,1,cfbd
@@ -964,7 +964,7 @@ Ball State,2022,5,7,0,cfbd
 Ball State,2023,4,8,0,cfbd
 Ball State,2024,3,9,0,cfbd
 Ball State,2025,4,8,0,cfbd
-Baylor,1935,152,117,23,manual
+Baylor,1935,153,120,26,manual
 Baylor,1936,6,3,1,cfbd
 Baylor,1937,7,3,0,cfbd
 Baylor,1938,7,2,1,cfbd
@@ -1109,7 +1109,7 @@ Boise State,2022,10,4,0,cfbd
 Boise State,2023,8,6,0,cfbd
 Boise State,2024,12,2,0,cfbd
 Boise State,2025,9,5,0,cfbd
-Boston College,1935,20,42,0,manual
+Boston College,1935,171,120,22,manual
 Boston College,1936,2,1,1,cfbd
 Boston College,1937,4,4,1,cfbd
 Boston College,1938,6,1,2,cfbd
@@ -1373,7 +1373,7 @@ Buffalo,2022,7,6,0,cfbd
 Buffalo,2023,3,9,0,cfbd
 Buffalo,2024,9,4,0,cfbd
 Buffalo,2025,5,7,0,cfbd
-BYU,1935,24,0,8,manual
+BYU,1935,43,52,9,manual
 BYU,1936,4,5,0,cfbd
 BYU,1937,6,3,0,cfbd
 BYU,1938,4,3,1,cfbd
@@ -1461,7 +1461,7 @@ BYU,2022,8,5,0,cfbd
 BYU,2023,5,7,0,cfbd
 BYU,2024,11,2,0,cfbd
 BYU,2025,12,2,0,cfbd
-California,1935,193,91,21,manual
+California,1935,233,74,34,manual
 California,1936,6,5,0,cfbd
 California,1937,10,0,1,cfbd
 California,1938,10,1,0,cfbd
@@ -1659,7 +1659,7 @@ Charlotte,2022,3,9,0,cfbd
 Charlotte,2023,3,9,0,cfbd
 Charlotte,2024,5,7,0,cfbd
 Charlotte,2025,1,11,0,cfbd
-Cincinnati,1935,170,170,25,manual
+Cincinnati,1935,241,200,35,manual
 Cincinnati,1936,0,3,0,cfbd
 Cincinnati,1937,0,1,0,cfbd
 Cincinnati,1938,0,0,0,cfbd
@@ -1748,7 +1748,7 @@ Cincinnati,2022,9,4,0,cfbd
 Cincinnati,2023,3,9,0,cfbd
 Cincinnati,2024,5,7,0,cfbd
 Cincinnati,2025,7,6,0,cfbd
-Clemson,1935,132,124,23,manual
+Clemson,1935,160,135,23,manual
 Clemson,1936,5,5,0,cfbd
 Clemson,1937,4,4,1,cfbd
 Clemson,1938,7,1,1,cfbd
@@ -1862,7 +1862,7 @@ Coastal Carolina,2022,9,4,0,cfbd
 Coastal Carolina,2023,8,5,0,cfbd
 Coastal Carolina,2024,6,7,0,cfbd
 Coastal Carolina,2025,6,7,0,cfbd
-Colorado,1935,205,73,18,manual
+Colorado,1935,221,102,18,manual
 Colorado,1936,4,3,0,cfbd
 Colorado,1937,8,1,0,cfbd
 Colorado,1938,3,4,1,cfbd
@@ -1953,7 +1953,7 @@ Colorado,2022,1,11,0,cfbd
 Colorado,2023,4,8,0,cfbd
 Colorado,2024,9,4,0,cfbd
 Colorado,2025,3,9,0,cfbd
-Colorado State,1935,125,58,17,manual
+Colorado State,1935,128,104,17,manual
 Colorado State,1936,4,4,1,cfbd
 Colorado State,1937,1,7,0,cfbd
 Colorado State,1938,1,5,2,cfbd
@@ -2042,7 +2042,7 @@ Colorado State,2022,3,9,0,cfbd
 Colorado State,2023,5,7,0,cfbd
 Colorado State,2024,8,5,0,cfbd
 Colorado State,2025,2,10,0,cfbd
-Duke,1935,56,144,8,manual
+Duke,1935,100,58,8,manual
 Duke,1936,9,1,0,cfbd
 Duke,1937,7,2,1,cfbd
 Duke,1938,9,1,0,cfbd
@@ -2331,7 +2331,7 @@ FIU,2022,4,8,0,cfbd
 FIU,2023,4,8,0,cfbd
 FIU,2024,4,8,0,cfbd
 FIU,2025,7,6,0,cfbd
-Florida,1935,134,57,18,manual
+Florida,1935,143,84,18,manual
 Florida,1936,4,6,0,cfbd
 Florida,1937,4,7,0,cfbd
 Florida,1938,4,6,1,cfbd
@@ -2446,7 +2446,7 @@ Florida Atlantic,2022,5,7,0,cfbd
 Florida Atlantic,2023,4,8,0,cfbd
 Florida Atlantic,2024,3,9,0,cfbd
 Florida Atlantic,2025,4,8,0,cfbd
-Florida State,1935,8,0,1,manual
+Florida State,1935,23,14,1,manual
 Florida State,1947,0,0,0,cfbd
 Florida State,1948,0,0,0,cfbd
 Florida State,1949,0,0,0,cfbd
@@ -2526,7 +2526,7 @@ Florida State,2022,10,3,0,cfbd
 Florida State,2023,13,1,0,cfbd
 Florida State,2024,2,10,0,cfbd
 Florida State,2025,5,7,0,cfbd
-Fresno State,1935,141,45,20,manual
+Fresno State,1935,230,130,22,manual
 Fresno State,1936,1,1,0,cfbd
 Fresno State,1937,0,0,0,cfbd
 Fresno State,1938,0,2,0,cfbd
@@ -2616,7 +2616,7 @@ Fresno State,2022,10,4,0,cfbd
 Fresno State,2023,9,4,0,cfbd
 Fresno State,2024,6,7,0,cfbd
 Fresno State,2025,9,4,0,cfbd
-Georgia,1935,151,106,26,manual
+Georgia,1935,188,119,26,manual
 Georgia,1936,5,4,1,cfbd
 Georgia,1937,6,3,2,cfbd
 Georgia,1938,5,4,1,cfbd
@@ -2773,7 +2773,7 @@ Georgia State,2022,4,8,0,cfbd
 Georgia State,2023,7,6,0,cfbd
 Georgia State,2024,3,9,0,cfbd
 Georgia State,2025,1,11,0,cfbd
-Georgia Tech,1935,180,85,22,manual
+Georgia Tech,1935,191,121,22,manual
 Georgia Tech,1936,5,5,1,cfbd
 Georgia Tech,1937,6,3,1,cfbd
 Georgia Tech,1938,3,4,3,cfbd
@@ -3032,7 +3032,7 @@ Houston,2022,8,5,0,cfbd
 Houston,2023,4,8,0,cfbd
 Houston,2024,4,8,0,cfbd
 Houston,2025,10,3,0,cfbd
-Illinois,1935,206,70,24,manual
+Illinois,1935,235,111,24,manual
 Illinois,1936,4,3,1,cfbd
 Illinois,1937,3,3,2,cfbd
 Illinois,1938,3,5,0,cfbd
@@ -3123,7 +3123,7 @@ Illinois,2022,8,5,0,cfbd
 Illinois,2023,5,7,0,cfbd
 Illinois,2024,10,3,0,cfbd
 Illinois,2025,9,4,0,cfbd
-Indiana,1935,119,139,28,manual
+Indiana,1935,148,158,29,manual
 Indiana,1936,5,2,1,cfbd
 Indiana,1937,5,3,0,cfbd
 Indiana,1938,1,6,1,cfbd
@@ -3214,7 +3214,7 @@ Indiana,2022,4,8,0,cfbd
 Indiana,2023,3,9,0,cfbd
 Indiana,2024,11,2,0,cfbd
 Indiana,2025,16,0,0,cfbd
-Iowa,1935,164,112,17,manual
+Iowa,1935,196,136,16,manual
 Iowa,1936,3,4,1,cfbd
 Iowa,1937,1,7,0,cfbd
 Iowa,1938,1,6,1,cfbd
@@ -3305,7 +3305,7 @@ Iowa,2022,8,5,0,cfbd
 Iowa,2023,10,4,0,cfbd
 Iowa,2024,8,5,0,cfbd
 Iowa,2025,9,4,0,cfbd
-Iowa State,1935,157,133,22,manual
+Iowa State,1935,157,130,21,manual
 Iowa State,1936,3,3,2,cfbd
 Iowa State,1937,3,6,0,cfbd
 Iowa State,1938,7,1,1,cfbd
@@ -3396,7 +3396,7 @@ Iowa State,2022,4,8,0,cfbd
 Iowa State,2023,7,6,0,cfbd
 Iowa State,2024,11,3,0,cfbd
 Iowa State,2025,8,4,0,cfbd
-Kansas,1935,221,128,32,manual
+Kansas,1935,220,118,32,manual
 Kansas,1936,1,6,1,cfbd
 Kansas,1937,3,4,2,cfbd
 Kansas,1938,3,6,0,cfbd
@@ -3487,7 +3487,7 @@ Kansas,2022,6,7,0,cfbd
 Kansas,2023,9,4,0,cfbd
 Kansas,2024,5,7,0,cfbd
 Kansas,2025,5,7,0,cfbd
-Kansas State,1935,128,143,25,manual
+Kansas State,1935,165,120,26,manual
 Kansas State,1936,4,3,2,cfbd
 Kansas State,1937,4,5,0,cfbd
 Kansas State,1938,4,4,1,cfbd
@@ -3665,7 +3665,7 @@ Kent State,2022,5,7,0,cfbd
 Kent State,2023,1,11,0,cfbd
 Kent State,2024,0,12,0,cfbd
 Kent State,2025,5,7,0,cfbd
-Kentucky,1935,178,121,23,manual
+Kentucky,1935,204,142,23,manual
 Kentucky,1936,6,4,0,cfbd
 Kentucky,1937,4,6,0,cfbd
 Kentucky,1938,2,7,0,cfbd
@@ -4139,7 +4139,7 @@ Louisville,2022,8,5,0,cfbd
 Louisville,2023,10,4,0,cfbd
 Louisville,2024,9,4,0,cfbd
 Louisville,2025,9,4,0,cfbd
-LSU,1935,163,84,19,manual
+LSU,1935,158,101,19,manual
 LSU,1936,9,1,1,cfbd
 LSU,1937,9,2,0,cfbd
 LSU,1938,6,4,0,cfbd
@@ -4318,7 +4318,7 @@ Marshall,2022,9,4,0,cfbd
 Marshall,2023,6,7,0,cfbd
 Marshall,2024,10,3,0,cfbd
 Marshall,2025,5,7,0,cfbd
-Maryland,1935,163,131,28,manual
+Maryland,1935,188,162,28,manual
 Maryland,1936,6,5,0,cfbd
 Maryland,1937,8,2,0,cfbd
 Maryland,1938,2,7,0,cfbd
@@ -4496,7 +4496,7 @@ Memphis,2022,7,6,0,cfbd
 Memphis,2023,10,3,0,cfbd
 Memphis,2024,11,2,0,cfbd
 Memphis,2025,8,5,0,cfbd
-Miami (FL),1935,22,1,7,manual
+Miami (FL),1935,49,35,7,manual
 Miami (FL),1936,6,2,2,cfbd
 Miami (FL),1937,4,4,1,cfbd
 Miami (FL),1938,8,2,0,cfbd
@@ -4587,7 +4587,7 @@ Miami (FL),2022,5,7,0,cfbd
 Miami (FL),2023,7,6,0,cfbd
 Miami (FL),2024,10,3,0,cfbd
 Miami (FL),2025,13,3,0,cfbd
-Miami (OH),1935,189,127,27,manual
+Miami (OH),1935,314,163,27,manual
 Miami (OH),1936,0,0,0,cfbd
 Miami (OH),1937,0,0,0,cfbd
 Miami (OH),1938,0,0,0,cfbd
@@ -4678,7 +4678,7 @@ Miami (OH),2022,6,7,0,cfbd
 Miami (OH),2023,11,3,0,cfbd
 Miami (OH),2024,9,5,0,cfbd
 Miami (OH),2025,7,7,0,cfbd
-Michigan,1935,311,74,19,manual
+Michigan,1935,320,83,19,manual
 Michigan,1936,1,7,0,cfbd
 Michigan,1937,4,4,0,cfbd
 Michigan,1938,6,1,1,cfbd
@@ -4769,7 +4769,7 @@ Michigan,2022,13,1,0,cfbd
 Michigan,2023,15,0,0,cfbd
 Michigan,2024,8,5,0,cfbd
 Michigan,2025,9,4,0,cfbd
-Michigan State,1935,167,81,21,manual
+Michigan State,1935,166,116,21,manual
 Michigan State,1936,6,1,2,cfbd
 Michigan State,1937,8,2,0,cfbd
 Michigan State,1938,6,3,0,cfbd
@@ -4947,7 +4947,7 @@ Middle Tennessee,2022,8,5,0,cfbd
 Middle Tennessee,2023,4,8,0,cfbd
 Middle Tennessee,2024,3,9,0,cfbd
 Middle Tennessee,2025,3,9,0,cfbd
-Minnesota,1935,239,24,27,manual
+Minnesota,1935,269,86,27,manual
 Minnesota,1936,7,1,0,cfbd
 Minnesota,1937,6,2,0,cfbd
 Minnesota,1938,6,2,0,cfbd
@@ -5038,7 +5038,7 @@ Minnesota,2022,9,4,0,cfbd
 Minnesota,2023,6,7,0,cfbd
 Minnesota,2024,8,5,0,cfbd
 Minnesota,2025,8,5,0,cfbd
-Mississippi State,1935,97,91,19,manual
+Mississippi State,1935,134,115,17,manual
 Mississippi State,1936,7,3,1,cfbd
 Mississippi State,1937,5,4,1,cfbd
 Mississippi State,1938,4,6,0,cfbd
@@ -5128,7 +5128,7 @@ Mississippi State,2022,9,4,0,cfbd
 Mississippi State,2023,5,7,0,cfbd
 Mississippi State,2024,2,10,0,cfbd
 Mississippi State,2025,5,8,0,cfbd
-Missouri,1935,189,126,28,manual
+Missouri,1935,190,149,28,manual
 Missouri,1936,6,2,1,cfbd
 Missouri,1937,3,6,1,cfbd
 Missouri,1938,6,3,0,cfbd
@@ -5219,7 +5219,7 @@ Missouri,2022,6,7,0,cfbd
 Missouri,2023,11,2,0,cfbd
 Missouri,2024,10,3,0,cfbd
 Missouri,2025,8,5,0,cfbd
-Navy,1935,249,120,32,manual
+Navy,1935,278,129,32,manual
 Navy,1936,6,3,0,cfbd
 Navy,1937,4,4,1,cfbd
 Navy,1938,4,3,2,cfbd
@@ -5310,7 +5310,7 @@ Navy,2022,4,8,0,cfbd
 Navy,2023,5,7,0,cfbd
 Navy,2024,10,3,0,cfbd
 Navy,2025,11,2,0,cfbd
-Nebraska,1935,251,56,26,manual
+Nebraska,1935,264,87,26,manual
 Nebraska,1936,7,2,0,cfbd
 Nebraska,1937,6,1,2,cfbd
 Nebraska,1938,3,5,1,cfbd
@@ -5672,7 +5672,7 @@ New Mexico State,2022,7,6,0,cfbd
 New Mexico State,2023,10,5,0,cfbd
 New Mexico State,2024,3,9,0,cfbd
 New Mexico State,2025,4,8,0,cfbd
-North Carolina,1935,188,128,36,manual
+North Carolina,1935,202,127,36,manual
 North Carolina,1936,8,2,0,cfbd
 North Carolina,1937,7,1,1,cfbd
 North Carolina,1938,6,2,1,cfbd
@@ -5763,7 +5763,7 @@ North Carolina,2022,9,5,0,cfbd
 North Carolina,2023,8,5,0,cfbd
 North Carolina,2024,6,7,0,cfbd
 North Carolina,2025,4,8,0,cfbd
-North Carolina State,1935,109,73,31,manual
+North Carolina State,1935,142,132,31,manual
 North Carolina State,1936,3,7,0,cfbd
 North Carolina State,1937,5,3,1,cfbd
 North Carolina State,1938,3,7,1,cfbd
@@ -6032,7 +6032,7 @@ Northern Illinois,2022,3,9,0,cfbd
 Northern Illinois,2023,7,6,0,cfbd
 Northern Illinois,2024,8,5,0,cfbd
 Northern Illinois,2025,3,9,0,cfbd
-Northwestern,1935,183,157,30,manual
+Northwestern,1935,190,150,30,manual
 Northwestern,1936,7,1,0,cfbd
 Northwestern,1937,4,4,0,cfbd
 Northwestern,1938,4,2,2,cfbd
@@ -6123,7 +6123,7 @@ Northwestern,2022,1,11,0,cfbd
 Northwestern,2023,8,5,0,cfbd
 Northwestern,2024,4,8,0,cfbd
 Northwestern,2025,7,6,0,cfbd
-Notre Dame,1935,230,52,22,manual
+Notre Dame,1935,260,60,22,manual
 Notre Dame,1936,6,2,1,cfbd
 Notre Dame,1937,6,2,1,cfbd
 Notre Dame,1938,8,1,0,cfbd
@@ -6303,7 +6303,7 @@ Ohio,2022,10,4,0,cfbd
 Ohio,2023,10,3,0,cfbd
 Ohio,2024,11,3,0,cfbd
 Ohio,2025,9,4,0,cfbd
-Ohio State,1935,210,112,31,manual
+Ohio State,1935,232,117,31,manual
 Ohio State,1936,5,3,0,cfbd
 Ohio State,1937,6,2,0,cfbd
 Ohio State,1938,4,3,1,cfbd
@@ -6394,7 +6394,7 @@ Ohio State,2022,11,2,0,cfbd
 Ohio State,2023,11,2,0,cfbd
 Ohio State,2024,14,2,0,cfbd
 Ohio State,2025,12,2,0,cfbd
-Oklahoma,1935,181,86,31,manual
+Oklahoma,1935,187,103,31,manual
 Oklahoma,1936,3,3,3,cfbd
 Oklahoma,1937,5,2,2,cfbd
 Oklahoma,1938,10,1,0,cfbd
@@ -6597,7 +6597,7 @@ Old Dominion,2022,3,9,0,cfbd
 Old Dominion,2023,6,7,0,cfbd
 Old Dominion,2024,5,7,0,cfbd
 Old Dominion,2025,10,3,0,cfbd
-Ole Miss,1935,121,141,15,manual
+Ole Miss,1935,119,150,15,manual
 Ole Miss,1936,5,5,2,cfbd
 Ole Miss,1937,4,5,1,cfbd
 Ole Miss,1938,9,2,0,cfbd
@@ -6687,7 +6687,7 @@ Ole Miss,2022,8,5,0,cfbd
 Ole Miss,2023,11,2,0,cfbd
 Ole Miss,2024,10,3,0,cfbd
 Ole Miss,2025,13,2,0,cfbd
-Oregon,1935,149,86,28,manual
+Oregon,1935,180,92,28,manual
 Oregon,1936,2,6,1,cfbd
 Oregon,1937,4,6,0,cfbd
 Oregon,1938,4,5,0,cfbd
@@ -6776,7 +6776,7 @@ Oregon,2022,10,3,0,cfbd
 Oregon,2023,12,2,0,cfbd
 Oregon,2024,13,1,0,cfbd
 Oregon,2025,13,2,0,cfbd
-Oregon State,1935,143,84,28,manual
+Oregon State,1935,162,98,29,manual
 Oregon State,1936,4,6,0,cfbd
 Oregon State,1937,3,3,3,cfbd
 Oregon State,1938,5,3,1,cfbd
@@ -6865,7 +6865,7 @@ Oregon State,2022,10,3,0,cfbd
 Oregon State,2023,8,5,0,cfbd
 Oregon State,2024,5,7,0,cfbd
 Oregon State,2025,2,10,0,cfbd
-Penn State,1935,219,134,27,manual
+Penn State,1935,235,141,26,manual
 Penn State,1936,3,5,0,cfbd
 Penn State,1937,5,3,0,cfbd
 Penn State,1938,3,4,1,cfbd
@@ -6956,7 +6956,7 @@ Penn State,2022,11,2,0,cfbd
 Penn State,2023,10,3,0,cfbd
 Penn State,2024,13,3,0,cfbd
 Penn State,2025,7,6,0,cfbd
-Pittsburgh,1935,241,48,22,manual
+Pittsburgh,1935,263,106,22,manual
 Pittsburgh,1936,8,1,1,cfbd
 Pittsburgh,1937,9,0,1,cfbd
 Pittsburgh,1938,8,2,0,cfbd
@@ -7047,7 +7047,7 @@ Pittsburgh,2022,9,4,0,cfbd
 Pittsburgh,2023,3,9,0,cfbd
 Pittsburgh,2024,7,6,0,cfbd
 Pittsburgh,2025,8,5,0,cfbd
-Purdue,1935,172,113,20,manual
+Purdue,1935,197,132,20,manual
 Purdue,1936,5,2,1,cfbd
 Purdue,1937,4,3,1,cfbd
 Purdue,1938,5,1,2,cfbd
@@ -7138,7 +7138,7 @@ Purdue,2022,8,6,0,cfbd
 Purdue,2023,4,8,0,cfbd
 Purdue,2024,1,11,0,cfbd
 Purdue,2025,2,10,0,cfbd
-Rice,1935,69,27,13,manual
+Rice,1935,112,83,13,manual
 Rice,1936,5,7,0,cfbd
 Rice,1937,6,3,2,cfbd
 Rice,1938,4,6,0,cfbd
@@ -7229,7 +7229,7 @@ Rice,2022,5,8,0,cfbd
 Rice,2023,6,7,0,cfbd
 Rice,2024,4,8,0,cfbd
 Rice,2025,5,8,0,cfbd
-Rutgers,1935,270,236,34,manual
+Rutgers,1935,253,264,34,manual
 Rutgers,1936,0,3,0,cfbd
 Rutgers,1937,0,2,0,cfbd
 Rutgers,1938,2,1,0,cfbd
@@ -7497,7 +7497,7 @@ San Jose State,2022,7,5,0,cfbd
 San Jose State,2023,7,6,0,cfbd
 San Jose State,2024,7,6,0,cfbd
 San Jose State,2025,3,9,0,cfbd
-SMU,1935,58,46,29,manual
+SMU,1935,107,63,29,manual
 SMU,1936,5,4,1,cfbd
 SMU,1937,5,6,0,cfbd
 SMU,1938,6,4,0,cfbd
@@ -7601,7 +7601,7 @@ South Alabama,2022,10,3,0,cfbd
 South Alabama,2023,7,6,0,cfbd
 South Alabama,2024,7,6,0,cfbd
 South Alabama,2025,4,8,0,cfbd
-South Carolina,1935,145,128,18,manual
+South Carolina,1935,161,144,18,manual
 South Carolina,1936,5,7,0,cfbd
 South Carolina,1937,5,6,1,cfbd
 South Carolina,1938,6,4,1,cfbd
@@ -7809,7 +7809,7 @@ Southern Miss,2022,7,6,0,cfbd
 Southern Miss,2023,3,9,0,cfbd
 Southern Miss,2024,1,11,0,cfbd
 Southern Miss,2025,7,6,0,cfbd
-Stanford,1935,171,77,27,manual
+Stanford,1935,193,57,27,manual
 Stanford,1936,2,5,2,cfbd
 Stanford,1937,4,3,2,cfbd
 Stanford,1938,3,6,0,cfbd
@@ -7897,7 +7897,7 @@ Stanford,2022,3,9,0,cfbd
 Stanford,2023,3,9,0,cfbd
 Stanford,2024,3,9,0,cfbd
 Stanford,2025,4,8,0,cfbd
-Syracuse,1935,230,111,35,manual
+Syracuse,1935,255,141,35,manual
 Syracuse,1936,1,7,0,cfbd
 Syracuse,1937,5,2,1,cfbd
 Syracuse,1938,5,3,0,cfbd
@@ -7987,7 +7987,7 @@ Syracuse,2022,7,6,0,cfbd
 Syracuse,2023,6,7,0,cfbd
 Syracuse,2024,10,3,0,cfbd
 Syracuse,2025,3,9,0,cfbd
-TCU,1935,170,94,22,manual
+TCU,1935,188,111,29,manual
 TCU,1936,9,2,2,cfbd
 TCU,1937,4,4,2,cfbd
 TCU,1938,11,0,0,cfbd
@@ -8169,7 +8169,7 @@ Temple,2022,3,9,0,cfbd
 Temple,2023,3,9,0,cfbd
 Temple,2024,3,9,0,cfbd
 Temple,2025,5,7,0,cfbd
-Tennessee,1935,178,91,24,manual
+Tennessee,1935,200,103,24,manual
 Tennessee,1936,6,2,2,cfbd
 Tennessee,1937,6,3,1,cfbd
 Tennessee,1938,11,0,0,cfbd
@@ -8259,7 +8259,7 @@ Tennessee,2022,11,2,0,cfbd
 Tennessee,2023,9,4,0,cfbd
 Tennessee,2024,10,3,0,cfbd
 Tennessee,2025,8,5,0,cfbd
-Texas,1935,244,67,18,manual
+Texas,1935,263,85,18,manual
 Texas,1936,2,6,1,cfbd
 Texas,1937,2,6,1,cfbd
 Texas,1938,1,8,0,cfbd
@@ -8350,7 +8350,7 @@ Texas,2022,8,5,0,cfbd
 Texas,2023,12,2,0,cfbd
 Texas,2024,13,3,0,cfbd
 Texas,2025,10,3,0,cfbd
-Texas A&M,1935,177,62,25,manual
+Texas A&M,1935,212,95,24,manual
 Texas A&M,1936,8,3,1,cfbd
 Texas A&M,1937,5,2,2,cfbd
 Texas A&M,1938,4,4,1,cfbd
@@ -8529,7 +8529,7 @@ Texas State,2022,4,8,0,cfbd
 Texas State,2023,8,5,0,cfbd
 Texas State,2024,8,5,0,cfbd
 Texas State,2025,7,6,0,cfbd
-Texas Tech,1935,15,0,11,manual
+Texas Tech,1935,61,34,11,manual
 Texas Tech,1936,5,4,1,cfbd
 Texas Tech,1937,8,4,0,cfbd
 Texas Tech,1938,10,1,0,cfbd
@@ -8764,7 +8764,7 @@ Troy,2022,12,2,0,cfbd
 Troy,2023,11,3,0,cfbd
 Troy,2024,4,8,0,cfbd
 Troy,2025,8,6,0,cfbd
-Tulane,1935,173,92,21,manual
+Tulane,1935,183,110,20,manual
 Tulane,1936,6,3,1,cfbd
 Tulane,1937,5,4,1,cfbd
 Tulane,1938,7,2,1,cfbd
@@ -8855,7 +8855,7 @@ Tulane,2022,12,2,0,cfbd
 Tulane,2023,11,3,0,cfbd
 Tulane,2024,9,5,0,cfbd
 Tulane,2025,11,3,0,cfbd
-Tulsa,1935,56,26,12,manual
+Tulsa,1935,150,70,12,manual
 Tulsa,1936,5,2,2,cfbd
 Tulsa,1937,6,2,2,cfbd
 Tulsa,1938,4,5,1,cfbd
@@ -9026,7 +9026,7 @@ UCF,2022,9,5,0,cfbd
 UCF,2023,6,7,0,cfbd
 UCF,2024,4,8,0,cfbd
 UCF,2025,5,7,0,cfbd
-UCLA,1935,49,72,9,manual
+UCLA,1935,63,67,9,manual
 UCLA,1936,6,3,1,cfbd
 UCLA,1937,2,6,1,cfbd
 UCLA,1938,7,4,1,cfbd
@@ -9353,7 +9353,7 @@ UNLV,2022,5,7,0,cfbd
 UNLV,2023,9,5,0,cfbd
 UNLV,2024,11,3,0,cfbd
 UNLV,2025,10,4,0,cfbd
-USC,1935,172,30,18,manual
+USC,1935,202,70,18,manual
 USC,1936,4,2,3,cfbd
 USC,1937,4,4,2,cfbd
 USC,1938,9,2,0,cfbd
@@ -9444,7 +9444,7 @@ USC,2022,11,3,0,cfbd
 USC,2023,8,5,0,cfbd
 USC,2024,7,6,0,cfbd
 USC,2025,9,4,0,cfbd
-Utah,1935,140,74,14,manual
+Utah,1935,165,84,13,manual
 Utah,1936,6,3,0,cfbd
 Utah,1937,5,3,0,cfbd
 Utah,1938,7,1,2,cfbd
@@ -9535,7 +9535,7 @@ Utah,2022,10,4,0,cfbd
 Utah,2023,8,5,0,cfbd
 Utah,2024,5,7,0,cfbd
 Utah,2025,11,2,0,cfbd
-Utah State,1935,93,64,16,manual
+Utah State,1935,131,85,15,manual
 Utah State,1936,7,0,1,cfbd
 Utah State,1937,2,4,2,cfbd
 Utah State,1938,4,4,0,cfbd
@@ -9728,7 +9728,7 @@ UTSA,2022,11,3,0,cfbd
 UTSA,2023,9,4,0,cfbd
 UTSA,2024,7,6,0,cfbd
 UTSA,2025,7,6,0,cfbd
-Vanderbilt,1935,269,82,27,manual
+Vanderbilt,1935,284,88,27,manual
 Vanderbilt,1936,3,5,1,cfbd
 Vanderbilt,1937,7,2,0,cfbd
 Vanderbilt,1938,6,3,0,cfbd
@@ -9819,7 +9819,7 @@ Vanderbilt,2022,5,7,0,cfbd
 Vanderbilt,2023,2,10,0,cfbd
 Vanderbilt,2024,7,6,0,cfbd
 Vanderbilt,2025,10,3,0,cfbd
-Virginia,1935,198,139,35,manual
+Virginia,1935,243,136,35,manual
 Virginia,1936,2,7,0,cfbd
 Virginia,1937,2,7,0,cfbd
 Virginia,1938,4,4,1,cfbd
@@ -9910,7 +9910,7 @@ Virginia,2022,3,7,0,cfbd
 Virginia,2023,3,9,0,cfbd
 Virginia,2024,5,7,0,cfbd
 Virginia,2025,11,3,0,cfbd
-Virginia Tech,1935,203,103,25,manual
+Virginia Tech,1935,224,105,25,manual
 Virginia Tech,1936,5,5,0,cfbd
 Virginia Tech,1937,5,5,0,cfbd
 Virginia Tech,1938,3,5,2,cfbd
@@ -9999,7 +9999,7 @@ Virginia Tech,2022,3,8,0,cfbd
 Virginia Tech,2023,7,6,0,cfbd
 Virginia Tech,2024,6,7,0,cfbd
 Virginia Tech,2025,3,9,0,cfbd
-Wake Forest,1935,55,87,16,manual
+Wake Forest,1935,91,143,16,manual
 Wake Forest,1936,5,4,0,cfbd
 Wake Forest,1937,3,6,0,cfbd
 Wake Forest,1938,4,5,1,cfbd
@@ -10090,7 +10090,7 @@ Wake Forest,2022,8,5,0,cfbd
 Wake Forest,2023,4,8,0,cfbd
 Wake Forest,2024,4,8,0,cfbd
 Wake Forest,2025,9,4,0,cfbd
-Washington,1935,198,64,30,manual
+Washington,1935,214,75,30,manual
 Washington,1936,7,2,1,cfbd
 Washington,1937,7,2,2,cfbd
 Washington,1938,3,5,1,cfbd
@@ -10181,7 +10181,7 @@ Washington,2022,11,2,0,cfbd
 Washington,2023,14,1,0,cfbd
 Washington,2024,6,7,0,cfbd
 Washington,2025,9,4,0,cfbd
-Washington State,1935,122,114,19,manual
+Washington State,1935,90,47,12,manual
 Washington State,1936,6,3,1,cfbd
 Washington State,1937,3,3,3,cfbd
 Washington State,1938,2,8,0,cfbd
@@ -10270,7 +10270,7 @@ Washington State,2022,7,6,0,cfbd
 Washington State,2023,5,7,0,cfbd
 Washington State,2024,8,5,0,cfbd
 Washington State,2025,7,6,0,cfbd
-West Virginia,1935,193,91,27,manual
+West Virginia,1935,213,131,27,manual
 West Virginia,1936,6,4,0,cfbd
 West Virginia,1937,8,1,1,cfbd
 West Virginia,1938,4,5,1,cfbd
@@ -10540,7 +10540,7 @@ Western Michigan,2022,5,7,0,cfbd
 Western Michigan,2023,4,8,0,cfbd
 Western Michigan,2024,6,7,0,cfbd
 Western Michigan,2025,10,4,0,cfbd
-Wisconsin,1935,204,56,26,manual
+Wisconsin,1935,225,100,26,manual
 Wisconsin,1936,2,6,0,cfbd
 Wisconsin,1937,4,3,1,cfbd
 Wisconsin,1938,5,3,0,cfbd

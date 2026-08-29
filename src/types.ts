@@ -9,7 +9,14 @@ export interface WinsVariant {
   ratingRank: number;
   grouping: string;
   peer: PeerComparison;
+  /** where the program sits among its grouping peers (prose) */
+  comparison: string;
+  /** what it would take to reach the middle of the next grouping (prose) */
+  projection: string;
   note: string;
+  /** the two stat percentiles trimmed out of this program's rating (1 low + 1 high) */
+  trimmedLow: StatKey;
+  trimmedHigh: StatKey;
 }
 
 export interface PeerComparison {
@@ -31,7 +38,22 @@ export interface Team extends WinsVariant {
   secondary: string;
   formerFcs: boolean;
   heismans: number;
-  trend: { score: number; dir: TrendDir; recentStanding?: number; priorStanding?: number };
+  trend: {
+    score: number;
+    dir: TrendDir;
+    recentStanding?: number;
+    priorStanding?: number;
+    /** how many seasons make up the recent window (the ~20%) */
+    recentSeasons: number;
+    /** total seasons in the program's record used for the comparison */
+    totalSeasons: number;
+    /** e.g. "2008–2025" */
+    recentRange: string;
+    /** e.g. "1936–2025" */
+    fullRange: string;
+    /** the 2–3 criteria whose cross-program standing shifted most */
+    movers: { label: string; dir: 'up' | 'down' }[];
+  };
   label: { standard: string; personal: string };
   variants: { asPlayed: WinsVariant; official: WinsVariant };
 }

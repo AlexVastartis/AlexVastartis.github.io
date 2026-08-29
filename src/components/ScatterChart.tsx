@@ -187,10 +187,10 @@ function Tooltip({
   const lines = [
     team.school,
     team.conference,
-    `${STATS[xStat].label}: ${fmtX(team.stats[xStat])}`,
-    `${STATS[yStat].label}: ${fmtY(team.stats[yStat])}`,
+    `${STATS[xStat].label}: ${fmtX(team.stats[xStat])} (${Math.round(team.pct[xStat])}th pctl)`,
+    `${STATS[yStat].label}: ${fmtY(team.stats[yStat])} (${Math.round(team.pct[yStat])}th pctl)`,
   ];
-  const w = 200;
+  const w = 240;
   const h = 18 + lines.length * 15;
   const bx = Math.min(Math.max(px + 14, 4), width - w - 4);
   const by = Math.max(py - h - 10, 4);

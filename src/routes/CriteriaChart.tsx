@@ -1,7 +1,6 @@
 import { Navigate, NavLink, useLocation, useParams } from 'react-router-dom';
 import { useChartContext } from '../App';
 import CriterionView from '../components/CriterionView';
-import TeamCard from '../components/TeamCard';
 import { CATEGORIES, CATEGORY_ORDER } from '../config/stats';
 import type { CategoryKey } from '../types';
 
@@ -12,7 +11,6 @@ export default function CriteriaChart() {
 
   if (!key || !(key in CATEGORIES)) return <Navigate to="/criteria/perception" replace />;
   const ck = key as CategoryKey;
-  const favTeam = ctx.favorite ? ctx.allTeams.find((t) => t.school === ctx.favorite) : null;
 
   return (
     <div className="flex flex-col gap-3">
@@ -33,13 +31,19 @@ export default function CriteriaChart() {
       </nav>
 
       <p className="px-1 text-sm text-muted">
-        Pick the criterion that tells your team’s story, then flip between the logo plot and its bell
-        curve — same data, two angles.
+        Pick the criterion that tells your team’s story, then flip between the logo plot, its bell
+        curve, and a plain ranked list — same data, three angles.
+        {ck === 'perception' && (
+          <>
+            {' '}
+            <a className="text-accent underline" href="#/the-chart">
+              ↗ Open the shareable AP-poll chart
+            </a>
+          </>
+        )}
       </p>
 
       <CriterionView criterion={ck} ctx={ctx} />
-
-      {favTeam && <TeamCard team={favTeam} />}
     </div>
   );
 }

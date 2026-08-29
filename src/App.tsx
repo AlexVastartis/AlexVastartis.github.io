@@ -7,10 +7,11 @@ import { useViewState, type Lens, type RankView } from './data/useViewState';
 import { useTheme, type ThemeMode } from './lib/theme';
 import { useFavorite } from './data/useFavorite';
 import Controls from './components/Controls';
+import TeamCard from './components/TeamCard';
 import type { Team, TeamsPayload } from './types';
 import { CRITERIA_LABEL } from './config/stats';
 import Ranking from './routes/Ranking';
-import TheChartPage from './routes/TheChartPage';
+import TheChartStandalone from './routes/TheChartStandalone';
 import CriteriaChart from './routes/CriteriaChart';
 import Notes from './routes/Notes';
 
@@ -41,7 +42,6 @@ function Layout() {
 
   const NAV = [
     { to: { pathname: '/', search }, label: 'Ranking', end: true },
-    { to: { pathname: '/the-chart', search }, label: 'The Chart', end: false },
     { to: { pathname: '/criteria/perception', search }, label: CRITERIA_LABEL, end: false },
     { to: { pathname: '/notes', search }, label: 'Notes', end: false },
   ];
@@ -53,8 +53,10 @@ function Layout() {
     return data.teams.filter((t) => set.has(t.conference));
   }, [data, state.conferences]);
 
+  const favTeam = data && favorite ? data.teams.find((t) => t.school === favorite) ?? null : null;
+
   return (
-    <div className="mx-auto flex min-h-full max-w-6xl flex-col gap-4 px-4 py-6">
+    <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-6">
       <header className="flex flex-wrap items-baseline justify-between gap-3">
         <Link to={{ pathname: '/', search }} className="group">
           <h1 className="text-2xl font-black tracking-tight">
@@ -104,22 +106,37 @@ function Layout() {
             wins={state.wins}
             onSetWins={(w) => update({ wins: w })}
           />
-          <Outlet
-            context={
-              {
-                data,
-                teams,
-                allTeams: data.teams,
-                marker: state.marker,
-                lens: state.lens,
-                setLens: (l: Lens) => update({ lens: l }),
-                rankView: state.rankView,
-                setRankView: (v: RankView) => update({ rankView: v }),
-                favorite,
-                setFavorite,
-              } satisfies ChartContext
+          <div
+            className={
+              favTeam
+                ? 'xl:grid xl:grid-cols-[minmax(0,1fr)_20rem] xl:gap-6'
+                : ''
             }
-          />
+          >
+            {favTeam && (
+              <aside className="mb-4 xl:col-start-2 xl:row-start-1 xl:mb-0 xl:sticky xl:top-4 xl:self-start xl:max-h-[calc(100vh-2rem)] xl:overflow-auto">
+                <TeamCard team={favTeam} onClear={() => setFavorite(null)} />
+              </aside>
+            )}
+            <div className="min-w-0 xl:col-start-1 xl:row-start-1">
+              <Outlet
+                context={
+                  {
+                    data,
+                    teams,
+                    allTeams: data.teams,
+                    marker: state.marker,
+                    lens: state.lens,
+                    setLens: (l: Lens) => update({ lens: l }),
+                    rankView: state.rankView,
+                    setRankView: (v: RankView) => update({ rankView: v }),
+                    favorite,
+                    setFavorite,
+                  } satisfies ChartContext
+                }
+              />
+            </div>
+          </div>
           <footer className="mt-2 text-xs text-muted">
             Data generated {new Date(data.meta.generatedAt).toLocaleDateString()} ·{' '}
             AP poll &amp; records via CollegeFootballData · titles &amp; All-Americans hand-maintained ·
@@ -143,9 +160,10 @@ function Placeholder({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <Routes>
+      {/* standalone, no site chrome — the shareable hook */}
+      <Route path="the-chart" element={<TheChartStandalone />} />
       <Route element={<Layout />}>
         <Route index element={<Ranking />} />
-        <Route path="the-chart" element={<TheChartPage />} />
         <Route path="criteria/:key" element={<CriteriaChart />} />
         <Route path="notes" element={<Notes />} />
         {/* legacy paths */}

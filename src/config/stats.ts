@@ -53,9 +53,9 @@ export const STATS: Record<StatKey, StatMeta> = {
 
 export const CATEGORIES: Record<CategoryKey, CategoryMeta> = {
   perception: {
-    key: 'perception', label: 'AP Poll',
+    key: 'perception', label: 'AP Poll Success',
     stats: ['weeksApPoll', 'weeksApTop10'],
-    blurb: 'How often, and how highly, the country has ranked you since 1936. "The Chart".',
+    blurb: 'How often, and how highly, the country has ranked you since 1936 — weeks in the poll against weeks in the top ten.',
   },
   wins: {
     key: 'wins', label: 'Wins',
@@ -73,7 +73,7 @@ export const CATEGORIES: Record<CategoryKey, CategoryMeta> = {
     blurb: 'Consensus honorees against the unanimous ones — a proxy for era-by-era star power.',
   },
   nflDraft: {
-    key: 'nflDraft', label: 'NFL Draft',
+    key: 'nflDraft', label: 'NFL Draft Success',
     stats: ['nflDraftPicks', 'firstRoundPicks'],
     blurb: 'Total picks the program has sent to the NFL, against how many went in the first round.',
   },

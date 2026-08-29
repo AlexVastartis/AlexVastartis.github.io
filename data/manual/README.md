@@ -18,6 +18,14 @@ can be re-run any time (`npm run build:data`). None of this is fetched.
 | `teams.csv` | one program's identity: `school,slug,primary_hex,secondary_hex,former_fcs` | colours, logo filename, FCS flag | **No source** — this is our own identity data. Conference now comes from the API (`data/api/conferences.json`). |
 | `stats_summary.csv` | one program: legacy summary counts | fallback only, where a granular file above has no rows for that team | Trim/replace as the granular files fill in. |
 | `blurbs.csv` | one program: `school,tagline` | the team-card tagline | **No source.** History/peak, fan-proud, ≤ ~12 words. All 130 programs have one. No "winningest" unless true, no figures under a cloud, no "Position U" claims. |
+| `grouping_overrides.csv` | `school,grouping,note` | forces a program's grouping | Optional. Overrides the gap-detected tier. `grouping` must be one of the six exact names. |
+| `trend_overrides.csv` | `school,dir,note` | forces trajectory direction / note | Optional. `dir` ∈ `up`/`down`/`even` (blank = keep computed). `note` blank = keep computed; a single space = force no note. |
+| `relative_comparison.csv` | `school,text` | replaces the peer-comparison sentence | Optional. `text` is shown verbatim on the team card. |
+| `projection_overrides.csv` | `school,text` | replaces the favourable-projection paragraph | Optional. `text` is shown verbatim on the team card. |
+
+`build-data.mjs` also writes **`public/data/breakdown.csv`** on every run — the effective
+grouping / trajectory / note / comparison / projection / tagline for all 130 programs.
+Review it there, then paste rows into the `*_overrides.csv` files above to change them.
 
 ## Adding rows
 

@@ -4,7 +4,6 @@ import { useChartContext } from '../App';
 import ChartFrame from '../components/ChartFrame';
 import BellCurve from '../components/BellCurve';
 import RankedList from '../components/RankedList';
-import TeamCard from '../components/TeamCard';
 import LensToggle from '../components/LensToggle';
 import type { RankView } from '../data/useViewState';
 
@@ -26,7 +25,6 @@ export default function Ranking() {
       ),
     [allTeams],
   );
-  const favTeam = favorite ? allTeams.find((t) => t.school === favorite) : null;
 
   return (
     <div className="flex flex-col gap-6">
@@ -35,13 +33,9 @@ export default function Ranking() {
           <div>
             <h1 className="text-2xl font-black tracking-tight">The Blue Blood Ranking</h1>
             <p className="mt-1 max-w-2xl text-sm text-muted">
-              {data.meta.modelBlurb} A century of data — one season barely moves it.{' '}
-              <Link className="text-accent underline" to={{ pathname: '/the-chart', search }}>
-                The Chart
-              </Link>{' '}
-              and the five{' '}
+              {data.meta.modelBlurb} A century of data — one season barely moves it. The{' '}
               <Link className="text-accent underline" to={{ pathname: '/criteria/perception', search }}>
-                criteria
+                five criteria
               </Link>{' '}
               show the same programs from other angles.
             </p>
@@ -49,8 +43,6 @@ export default function Ranking() {
           <LensToggle value={rankView} onChange={setRankView} options={OPTS} />
         </div>
       </section>
-
-      {favTeam && <TeamCard team={favTeam} />}
 
       {rankView === 'list' ? (
         <RankedList teams={teams} favorite={favorite} onPick={(t) => setFavorite(t.school)} />
@@ -83,11 +75,12 @@ export default function Ranking() {
         <strong>How it’s built.</strong> {data.meta.modelBlurb} AP-poll weeks and NFL-draft picks
         come from CollegeFootballData (1936–{data.meta.latestSeason}); wins/losses are per-season,
         CollegeFootballData from 1936 and one hand-entered “through 1935” row per program before
-        that; national titles, All-America selections and Heismans are hand-maintained. A national
-        title counts when a major selector (AP, UPI, FWAA, NFF, USA; CFRA/HAF/NCF pre-1936) picked
-        the team — a program’s own unbacked claims do not. The trajectory arrow compares a
-        program’s most recent {Math.round(data.meta.trendRecentFraction * 100)}% of seasons with
-        its whole prior history, across AP standing, win rate, titles and draft output.
+        that — set so each program’s all-time total matches its Wikipedia figure (a tie counts as
+        half a win). National titles, All-America selections and Heismans are hand-maintained; a
+        national title counts only when a major selector (AP, UPI, FWAA, NFF, USA; CFRA/HAF/NCF
+        pre-1936) picked the team. The trajectory arrow compares a program’s most recent{' '}
+        {Math.round(data.meta.trendRecentFraction * 100)}% of seasons with its whole prior history,
+        across all ten rating stats.
       </p>
     </div>
   );

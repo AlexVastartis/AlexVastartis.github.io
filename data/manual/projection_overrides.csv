@@ -1,0 +1,3 @@
+# Override the "favourable projection" paragraph on the team card.
+# text = the full paragraph to show instead of the generated one.
+school,text

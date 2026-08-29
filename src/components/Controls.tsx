@@ -53,7 +53,7 @@ export default function Controls({
         >
           All
         </button>
-        {conferences.map((c) => {
+        {[...conferences].sort((a, b) => a.localeCompare(b)).map((c) => {
           const on = state.conferences.includes(c);
           return (
             <button
@@ -75,15 +75,25 @@ export default function Controls({
           <select
             value={favorite ?? ''}
             onChange={(e) => onSetFavorite(e.target.value || null)}
-            className="rounded-md border border-line bg-paper px-2 py-1 text-sm"
+            className="max-w-[9rem] rounded-md border border-line bg-paper px-2 py-1 text-sm"
           >
             <option value="">None</option>
-            {schools.map((s) => (
+            {[...schools].sort((a, b) => a.localeCompare(b)).map((s) => (
               <option key={s} value={s}>
                 {s}
               </option>
             ))}
           </select>
+          {favorite && (
+            <button
+              onClick={() => onSetFavorite(null)}
+              title="Clear team"
+              aria-label="Clear team"
+              className="rounded-md px-1.5 py-1 text-sm text-muted ring-1 ring-line hover:bg-panel hover:text-accent"
+            >
+              ✕
+            </button>
+          )}
         </label>
 
         <div className="flex rounded-md ring-1 ring-line">

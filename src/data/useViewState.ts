@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export type MarkerMode = 'logo' | 'bubble';
-export type Lens = 'plot' | 'curve';
+export type Lens = 'plot' | 'curve' | 'list';
 export type RankView = 'list' | 'curve';
 export type WinsMode = 'asPlayed' | 'official';
 
@@ -26,7 +26,7 @@ export function useViewState() {
     () => ({
       conferences: params.get('conf') ? params.get('conf')!.split('~').filter(Boolean) : [],
       marker: params.get('marker') === 'bubble' ? 'bubble' : 'logo',
-      lens: params.get('lens') === 'curve' ? 'curve' : 'plot',
+      lens: params.get('lens') === 'curve' ? 'curve' : params.get('lens') === 'list' ? 'list' : 'plot',
       rankView: params.get('rank') === 'curve' ? 'curve' : 'list',
       wins: params.get('wins') === 'official' ? 'official' : 'asPlayed',
     }),
@@ -48,7 +48,7 @@ export function useViewState() {
             else next.delete('marker');
           }
           if ('lens' in patch) {
-            if (patch.lens === 'curve') next.set('lens', 'curve');
+            if (patch.lens === 'curve' || patch.lens === 'list') next.set('lens', patch.lens);
             else next.delete('lens');
           }
           if ('rankView' in patch) {

@@ -1,7 +1,7 @@
 import type { CategoryKey, Team } from '../types';
-import { CATEGORIES, CATEGORY_ORDER } from '../config/stats';
+import { CATEGORIES, CATEGORY_ORDER, STATS } from '../config/stats';
 import { groupTeams } from '../config/ranking';
-import { TREND_CLASS, TREND_GLYPH, TREND_TITLE } from '../config/labels';
+import { TREND_CLASS, TREND_GLYPH, trendTitle } from '../config/labels';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -47,7 +47,7 @@ export default function RankedList({ teams, favorite, onPick }: Props) {
                     <span className="flex items-center justify-end gap-0.5 text-sm font-semibold tabular-nums text-muted">
                       <span
                         className={`text-[10px] leading-none ${TREND_CLASS[t.trend.dir]}`}
-                        title={TREND_TITLE[t.trend.dir]}
+                        title={trendTitle(t)}
                       >
                         {TREND_GLYPH[t.trend.dir]}
                       </span>
@@ -91,15 +91,20 @@ export default function RankedList({ teams, favorite, onPick }: Props) {
 
 function CriterionStrip({ team }: { team: Team }) {
   return (
-    <span className="hidden gap-1 sm:flex" aria-hidden>
-      {CATEGORY_ORDER.map((ck: CategoryKey) => (
-        <span
-          key={ck}
-          title={`${CATEGORIES[ck].label}: ${Math.round(team.critScore[ck])}th pct`}
-          className="h-4 w-2.5 rounded-sm"
-          style={{ background: team.primary, opacity: 0.18 + 0.82 * (team.critScore[ck] / 100) }}
-        />
-      ))}
+    <span className="hidden gap-1 sm:flex">
+      {CATEGORY_ORDER.map((ck: CategoryKey) => {
+        const [a, b] = CATEGORIES[ck].stats;
+        const fa = (STATS[a].format ?? String)(team.stats[a]);
+        const fb = (STATS[b].format ?? String)(team.stats[b]);
+        return (
+          <span
+            key={ck}
+            title={`${CATEGORIES[ck].label}: ${Math.round(team.critScore[ck])}th percentile · ${STATS[a].label} ${fa} · ${STATS[b].label} ${fb}`}
+            className="h-4 w-2.5 rounded-sm"
+            style={{ background: team.primary, opacity: 0.18 + 0.82 * (team.critScore[ck] / 100) }}
+          />
+        );
+      })}
     </span>
   );
 }

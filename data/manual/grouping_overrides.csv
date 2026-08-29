@@ -1,0 +1,4 @@
+# Force a program into a grouping, overriding the gap-detected tier in build-data.mjs.
+# grouping ∈ Blue Bloods | Blue Blood Fringe | Blue Blood Contenders | National Powers | National Brands | The Field
+# Leave empty to let the ratings decide. See public/data/breakdown.csv for the current assignment.
+school,grouping,note

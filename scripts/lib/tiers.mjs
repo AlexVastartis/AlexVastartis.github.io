@@ -24,7 +24,7 @@ export function detectTiers(
     structured = [
       { min: 2.0, maxRank: 12 }, // Blue Bloods — the tight elite cluster
       { min: 1.4, maxRank: 12 }, // Blue Blood Fringe — the argued-about programs just outside
-      { min: 1.3, maxRank: 15 }, // the "still knocking on the door" break below the fringe
+      { min: 1.8, maxRank: 24 }, // Blue Blood Contenders — first clear class break below the fringe
     ],
   } = {},
 ) {

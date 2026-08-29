@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  /* light theme tokens (r g b) */
+  /* light theme tokens (r g b) — page is white, content surfaces are light grey */
   --ink: 17 24 39;
   --paper: 255 255 255;
-  --panel: 248 249 250;
-  --line: 209 213 219;
-  --muted: 107 114 128;
+  --panel: 234 237 241;
+  --line: 209 214 221;
+  --muted: 100 108 120;
   --accent: 30 64 175;
 
   /* chart tokens */
-  --chart-grid: 226 232 240;
+  --chart-grid: 222 228 236;
   --chart-axis: 100 116 139;
   --chart-label: 51 65 85;
 }
