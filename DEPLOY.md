@@ -8,44 +8,45 @@ pre-baked `public/data/*.json`). No server, no database, no runtime secret.
 | Piece | Value |
 | --- | --- |
 | Repo | `github.com/AlexVastartis/AlexVastartis.github.io` (the user-site repo) |
-| Live URL (now) | **https://alexvastartis.github.io** — until the domain is re-set-up |
-| Domain (pending) | **bluebloodfootball.com** — being re-registered / moved to Cloudflare; add `public/CNAME` back once DNS resolves (see "Custom domain" below) |
+| Domain | **bluebloodfootball.com** — on Cloudflare (free plan). `public/CNAME` carries it into every build. |
 | Host | **GitHub Pages**, built and published by `.github/workflows/deploy.yml` (Actions → Pages) |
 | Old site | preserved on the **`legacy-static`** branch — 500+ commits of the original hand-built HTML/JS version |
 | Weekly data refresh | `.github/workflows/refresh-data.yml` — needs the `CFBD_API_KEY` repo secret |
 
-**Cost:** $0 hosting (GitHub Pages + Actions). Domain ~$10/yr once re-registered.
+**Cost:** $0 hosting (GitHub Pages + Actions) + ~$10/yr domain.
 
 Everything stays editable from Claude Code: edit → `git push` → the Deploy Action
 runs → live in ~2 min.
 
-### Custom domain — do this once the domain is live on Cloudflare
+### Cloudflare DNS records (add these — `bluebloodfootball.com` has none yet)
 
-1. **Cloudflare DNS** for `bluebloodfootball.com` (all records **DNS only / grey
-   cloud** — let GitHub handle TLS):
+All records **Proxy status = DNS only (grey cloud)** — GitHub Pages issues the
+TLS cert itself; proxying from the start breaks that.
 
-   | Type | Name | Value |
-   | --- | --- | --- |
-   | A | `@` | `185.199.108.153` |
-   | A | `@` | `185.199.109.153` |
-   | A | `@` | `185.199.110.153` |
-   | A | `@` | `185.199.111.153` |
-   | AAAA | `@` | `2606:50c0:8000::153` |
-   | AAAA | `@` | `2606:50c0:8001::153` |
-   | AAAA | `@` | `2606:50c0:8002::153` |
-   | AAAA | `@` | `2606:50c0:8003::153` |
-   | CNAME | `www` | `alexvastartis.github.io` |
+| Type | Name | Content |
+| --- | --- | --- |
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| AAAA | `@` | `2606:50c0:8000::153` |
+| AAAA | `@` | `2606:50c0:8001::153` |
+| AAAA | `@` | `2606:50c0:8002::153` |
+| AAAA | `@` | `2606:50c0:8003::153` |
+| CNAME | `www` | `alexvastartis.github.io` |
 
-2. Recreate the CNAME file so builds keep the domain:
-   ```bash
-   echo bluebloodfootball.com > public/CNAME
-   git add public/CNAME && git commit -m "restore custom domain" && git push
-   ```
-   (or just type `bluebloodfootball.com` into repo → Settings → Pages → Custom domain).
-3. GitHub provisions the HTTPS cert in a few minutes; tick **Enforce HTTPS**.
-4. Optional: verify the domain against your GitHub *account* (Settings → Pages →
-   Add a domain → add the `_github-pages-challenge-alexvastartis` TXT record) to
-   prevent takeover.
+Then in **Cloudflare → SSL/TLS**, set the mode to **Full**. In the **GitHub repo →
+Settings → Pages**, the custom domain should already read `bluebloodfootball.com`
+(from the old config + the `public/CNAME` file); once DNS propagates (minutes)
+GitHub issues the cert — tick **Enforce HTTPS**.
+
+Optional hardening: verify the domain against your GitHub *account* (account
+Settings → Pages → Add a domain → add the `_github-pages-challenge-alexvastartis`
+TXT record Cloudflare shows you).
+
+If you ever want Cloudflare's CDN/caching in front, flip the `@` records to
+**Proxied (orange cloud)** *after* the GitHub cert is live, and keep SSL/TLS on
+**Full**.
 
 ---
 
