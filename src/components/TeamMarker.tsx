@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Team } from '../types';
 import type { MarkerMode } from '../data/useViewState';
 import { abbrev } from '../lib/abbrev';
+import { useIsDark } from '../lib/theme';
+import { logoLightSrc, logoSrc } from '../lib/logoSrc';
 
 interface Props {
   team: Team;
@@ -14,14 +16,15 @@ interface Props {
   onPick?: (school: string) => void;
 }
 
-const BASE = import.meta.env.BASE_URL;
-
 export default function TeamMarker({ team, cx, cy, size, mode, dimmed, onHover, onPick }: Props) {
-  // one full-colour logo per team, used in both themes
-  const candidates = useMemo(
-    () => [`${BASE}logos/${team.slug}.svg`, `${BASE}logos/${team.slug}.png`],
-    [team.slug],
-  );
+  const dark = useIsDark();
+  // resolved asset first (dark-knockout in dark mode, bar the LIGHT_IN_DARK teams),
+  // then the light asset, then a team-colour bubble
+  const candidates = useMemo(() => {
+    const primary = logoSrc(team.slug, dark);
+    const light = logoLightSrc(team.slug);
+    return primary === light ? [light] : [primary, light];
+  }, [team.slug, dark]);
 
   const [idx, setIdx] = useState(0);
   useEffect(() => setIdx(0), [candidates]);
@@ -33,7 +36,7 @@ export default function TeamMarker({ team, cx, cy, size, mode, dimmed, onHover, 
     onMouseLeave: () => onHover?.(null),
     onClick: onPick ? () => onPick(team.school) : undefined,
     style: {
-      opacity: dimmed ? 0.18 : 1,
+      opacity: dimmed ? 0.25 : 1,
       transition: 'opacity 120ms',
       imageRendering: 'auto' as const,
       cursor: onPick ? 'pointer' : 'default',

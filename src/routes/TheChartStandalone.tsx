@@ -8,7 +8,7 @@ import { CATEGORIES } from '../config/stats';
  * direct link (/the-chart).
  */
 export default function TheChartStandalone() {
-  const { loading, error, data } = useTeams('asPlayed');
+  const { loading, error, data } = useTeams();
   const [xk, yk] = CATEGORIES.perception.stats;
 
   return (

@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { CategoryKey, Team } from '../types';
 import { CATEGORIES, STATS } from '../config/stats';
-
-const BASE = import.meta.env.BASE_URL;
+import TeamLogo from './TeamLogo';
 
 type SortCol = 'pctl' | 'team' | 'x' | 'y';
 
@@ -42,8 +41,11 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
     `rounded px-1 py-0.5 hover:bg-panel ${active ? 'text-accent' : 'text-muted'}`;
 
   return (
-    <ol className="flex flex-col rounded-xl border border-line">
-      <li className="grid grid-cols-[2rem_1.75rem_1fr_auto] items-center gap-3 border-b border-line px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted">
+    <ol data-map="the criterion list" className="flex flex-col rounded-xl border border-line">
+      <li
+        data-map="the sortable headers"
+        className="grid grid-cols-[2rem_1.75rem_1fr_auto] items-center gap-3 border-b border-line px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted"
+      >
         <span className="text-right">#</span>
         <span />
         <button className={`${hCls(sort.col === 'team')} text-left`} onClick={() => toggle('team')}>
@@ -79,18 +81,7 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
               >
                 {i + 1}
               </span>
-              <img
-                src={`${BASE}logos/${t.slug}.svg`}
-                alt=""
-                className="h-7 w-7 object-contain"
-                onError={(e) => {
-                  const el = e.currentTarget as HTMLImageElement;
-                  if (!el.dataset.png) {
-                    el.dataset.png = '1';
-                    el.src = `${BASE}logos/${t.slug}.png`;
-                  }
-                }}
-              />
+              <TeamLogo slug={t.slug} className="h-7 w-7" />
               <span className="flex min-w-0 items-center gap-1.5">
                 <span className="truncate text-sm font-medium">{t.school}</span>
                 {fav && <span className="text-xs text-accent">★</span>}

@@ -10,6 +10,8 @@
   --line: 209 214 221;
   --muted: 100 108 120;
   --accent: 30 64 175;
+  /* the "you're editing a what-if scenario" hue — amber, distinct from the accent */
+  --whatif: 180 83 9;
 
   /* chart tokens */
   --chart-grid: 222 228 236;
@@ -24,6 +26,7 @@
   --line: 51 58 71;
   --muted: 148 163 184;
   --accent: 96 165 250;
+  --whatif: 251 191 36;
 
   --chart-grid: 40 46 58;
   --chart-axis: 120 132 150;
@@ -38,4 +41,83 @@ body,
 
 body {
   @apply bg-paper text-ink font-sans antialiased;
+}
+
+/* ---- the element map (?map=1) — a site-wide layer that outlines one of each
+   UI region and labels it with the term we use for it in conversation ---- */
+.map-root {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+}
+.map-outline {
+  position: fixed;
+  border: 2px solid rgb(var(--accent));
+  border-radius: 5px;
+  box-shadow: 0 0 0 3px rgb(var(--accent) / 0.15);
+  transition: opacity 120ms;
+}
+.map-lead {
+  stroke: rgb(var(--accent));
+  stroke-width: 1.25;
+  opacity: 0.4;
+  fill: none;
+}
+.map-lead-dot {
+  fill: rgb(var(--accent));
+}
+.map-chip {
+  position: fixed;
+  width: 196px;
+  box-sizing: border-box;
+  padding: 3px 7px;
+  border: 1px solid rgb(var(--accent));
+  border-radius: 6px;
+  background: rgb(var(--panel));
+  box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.35);
+  font-size: 11px;
+  line-height: 1.3;
+  pointer-events: auto;
+}
+.map-chip:hover {
+  z-index: 5;
+  background: rgb(var(--paper));
+}
+.map-term {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: rgb(var(--accent));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.map-blurb {
+  display: none;
+  margin-top: 2px;
+  color: rgb(var(--muted));
+}
+.map-chip:hover .map-blurb {
+  display: block;
+}
+.map-notice {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 92;
+  padding: 8px 14px;
+  border: 1px solid rgb(var(--line));
+  border-radius: 8px;
+  background: rgb(var(--panel));
+  box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.35);
+  font-size: 13px;
+  color: rgb(var(--ink));
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-outline {
+    transition: none;
+  }
 }

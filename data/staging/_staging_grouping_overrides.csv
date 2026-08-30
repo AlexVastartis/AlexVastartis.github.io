@@ -1,0 +1,3 @@
+# Force a program into a grouping, overriding the gap-detected / anchored tier.
+# grouping must be one of the six exact names.
+school,grouping,note

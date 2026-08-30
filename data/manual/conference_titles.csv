@@ -1,5 +1,0 @@
-school,year,conference,shared,source
-# One row per (school, year) conference championship. `shared` = 1 for a co-championship.
-# While a program has NO rows here, build-data falls back to its summary count in
-# data/manual/stats_summary.csv. Source: conference record books / Wikipedia
-# "List of <conference> champions".

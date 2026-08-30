@@ -12,10 +12,12 @@ export interface ViewState {
   marker: MarkerMode;
   /** ranked list · logo plot · bell curve */
   view: ViewMode;
-  /** as-played wins (default) vs. NCAA-official (vacated removed) */
+  /** NCAA-official wins (default, vacated removed) vs. as-played (vacated counted) */
   wins: WinsMode;
   /** show the hand-drawn gap / range notes in the margin (default off) */
   notes: boolean;
+  /** show the site-wide element map overlay — labels every UI region (default off) */
+  map: boolean;
 }
 
 /** filter/display state, kept in the URL query string so views are shareable */
@@ -27,8 +29,9 @@ export function useViewState() {
       conferences: params.get('conf') ? params.get('conf')!.split('~').filter(Boolean) : [],
       marker: params.get('marker') === 'bubble' ? 'bubble' : 'logo',
       view: params.get('view') === 'plot' ? 'plot' : params.get('view') === 'curve' ? 'curve' : 'list',
-      wins: params.get('wins') === 'official' ? 'official' : 'asPlayed',
+      wins: params.get('wins') === 'asPlayed' ? 'asPlayed' : 'official',
       notes: params.get('notes') === '1',
+      map: params.get('map') === '1',
     }),
     [params],
   );
@@ -52,12 +55,16 @@ export function useViewState() {
             else next.delete('view');
           }
           if ('wins' in patch) {
-            if (patch.wins === 'official') next.set('wins', 'official');
+            if (patch.wins === 'asPlayed') next.set('wins', 'asPlayed');
             else next.delete('wins');
           }
           if ('notes' in patch) {
             if (patch.notes) next.set('notes', '1');
             else next.delete('notes');
+          }
+          if ('map' in patch) {
+            if (patch.map) next.set('map', '1');
+            else next.delete('map');
           }
           return next;
         },

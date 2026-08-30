@@ -15,8 +15,8 @@ interface Props {
 }
 
 const WINS: { value: WinsMode; label: string }[] = [
-  { value: 'asPlayed', label: 'As played' },
   { value: 'official', label: 'NCAA official' },
+  { value: 'asPlayed', label: 'As played' },
 ];
 
 export default function Controls({
@@ -32,8 +32,8 @@ export default function Controls({
   onSetWins,
 }: Props) {
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-line bg-panel/40 p-3">
-      <div className="flex flex-wrap items-center gap-1.5">
+    <div data-map="the filter bar" className="flex flex-col gap-3 rounded-xl border border-line bg-panel/40 p-3">
+      <div data-map="the conference filters" className="flex flex-wrap items-center gap-1.5">
         <span className="mr-1 text-xs font-semibold uppercase tracking-wide text-muted">Conference</span>
         <button
           onClick={onClearConferences}
@@ -62,7 +62,7 @@ export default function Controls({
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <label className="flex items-center gap-1.5 text-sm" title="Highlight one program across every chart and list">
+        <label data-map="the team picker" className="flex items-center gap-1.5 text-sm" title="Highlight one program across every chart and list">
           <span className="text-xs font-semibold uppercase tracking-wide text-muted">★ Team</span>
           <select
             value={favorite ?? ''}
@@ -89,7 +89,7 @@ export default function Controls({
           )}
         </label>
 
-        <div className="flex rounded-md ring-1 ring-line" title="Count NCAA-vacated wins, or use the official record">
+        <div data-map="the vacated wins toggle" className="flex rounded-md ring-1 ring-line" title="NCAA official record (default) — or add back NCAA-vacated wins to see the games as they were played">
           {WINS.map((w) => (
             <button
               key={w.value}

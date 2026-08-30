@@ -1,0 +1,372 @@
+# One title per row. scope=national: `selector` in AP/UPI/FWAA/NFF/USA (CFRA/HAF/NCF pre-1936) counts;
+#   `selector=claim` or `status=not-claimed` never counts. A national title YEAR counts once.
+# scope=conference: `shared=1` for a co-championship (still one). While a program has NO conference
+#   rows here it falls back to the summary count in _staging_summary_fallback.csv.
+school,year,scope,selector,conference,shared,status,source
+Alabama,1925,national,CFRA,,,,manual
+Alabama,1925,national,HAF,,,,manual
+Alabama,1925,national,NCF,,,,manual
+Alabama,1926,national,CFRA,,,,manual
+Alabama,1926,national,HAF,,,,manual
+Alabama,1926,national,NCF,,,,manual
+Alabama,1930,national,CFRA,,,,manual
+Alabama,1934,national,claim,,,,manual
+Alabama,1941,national,claim,,,,manual
+Alabama,1961,national,AP,,,,manual
+Alabama,1961,national,NFF,,,,manual
+Alabama,1961,national,UPI,,,,manual
+Alabama,1964,national,AP,,,,manual
+Alabama,1964,national,UPI,,,,manual
+Alabama,1965,national,AP,,,,manual
+Alabama,1965,national,FWAA,,,,manual
+Alabama,1973,national,UPI,,,,manual
+Alabama,1978,national,AP,,,,manual
+Alabama,1978,national,FWAA,,,,manual
+Alabama,1978,national,NFF,,,,manual
+Alabama,1979,national,AP,,,,manual
+Alabama,1979,national,FWAA,,,,manual
+Alabama,1979,national,NFF,,,,manual
+Alabama,1979,national,UPI,,,,manual
+Alabama,1992,national,AP,,,,manual
+Alabama,1992,national,FWAA,,,,manual
+Alabama,1992,national,NFF,,,,manual
+Alabama,1992,national,UPI,,,,manual
+Alabama,1992,national,USA/CNN,,,,manual
+Alabama,2009,national,BCS,,,,manual
+Alabama,2011,national,BCS,,,,manual
+Alabama,2012,national,BCS,,,,manual
+Alabama,2015,national,CFP,,,,manual
+Alabama,2017,national,AP,,,,manual
+Alabama,2017,national,CFP,,,,manual
+Alabama,2020,national,CFP,,,,manual
+Arkansas,1964,national,FWAA,,,,manual
+Army,1914,national,HAF,,,,manual
+Army,1914,national,NCF,,,,manual
+Army,1916,national,claim,,,,manual
+Army,1944,national,AP,,,,manual
+Army,1945,national,AP,,,,manual
+Army,1946,national,claim,,,,manual
+Auburn,1910,national,claim,,,,manual
+Auburn,1913,national,claim,,,disputed,manual
+Auburn,1914,national,claim,,,,manual
+Auburn,1957,national,AP,,,,manual
+Auburn,1958,national,claim,,,,manual
+Auburn,1983,national,claim,,,,manual
+Auburn,1993,national,claim,,,,manual
+Auburn,2004,national,claim,,,,manual
+Auburn,2010,national,BCS,,,,manual
+Boston College,1940,national,claim,,,,manual
+BYU,1984,national,AP,,,,manual
+BYU,1984,national,FWAA,,,,manual
+BYU,1984,national,NFF,,,,manual
+BYU,1984,national,UPI,,,,manual
+BYU,1984,national,USA/CNN,,,,manual
+California,1920,national,CFRA,,,,manual
+California,1920,national,HAF,,,,manual
+California,1920,national,NCF,,,,manual
+California,1921,national,CFRA,,,,manual
+California,1922,national,NCF,,,,manual
+California,1923,national,claim,,,,manual
+California,1937,national,claim,,,,manual
+Clemson,1981,national,AP,,,,manual
+Clemson,1981,national,FWAA,,,,manual
+Clemson,1981,national,NFF,,,,manual
+Clemson,1981,national,UPI,,,,manual
+Clemson,2016,national,CFP,,,,manual
+Clemson,2018,national,CFP,,,,manual
+Colorado,1990,national,AP,,,,manual
+Colorado,1990,national,FWAA,,,,manual
+Colorado,1990,national,NFF,,,,manual
+Colorado,1990,national,USA/CNN,,,,manual
+Florida,1996,national,AP,,,,manual
+Florida,1996,national,FWAA,,,,manual
+Florida,1996,national,NFF,,,,manual
+Florida,1996,national,USA/CNN,,,,manual
+Florida,2006,national,BCS,,,,manual
+Florida,2008,national,BCS,,,,manual
+Florida State,1993,national,AP,,,,manual
+Florida State,1993,national,FWAA,,,,manual
+Florida State,1993,national,NFF,,,,manual
+Florida State,1993,national,UPI,,,,manual
+Florida State,1993,national,USA/CNN,,,,manual
+Florida State,1999,national,BCS,,,,manual
+Florida State,2013,national,BCS,,,,manual
+Georgia,1942,national,claim,,,,manual
+Georgia,1980,national,AP,,,,manual
+Georgia,1980,national,FWAA,,,,manual
+Georgia,1980,national,NFF,,,,manual
+Georgia,1980,national,UPI,,,,manual
+Georgia,2021,national,CFP,,,,manual
+Georgia,2022,national,CFP,,,,manual
+Georgia Tech,1917,national,HAF,,,,manual
+Georgia Tech,1917,national,NCF,,,,manual
+Georgia Tech,1928,national,CFRA,,,,manual
+Georgia Tech,1928,national,HAF,,,,manual
+Georgia Tech,1928,national,NCF,,,,manual
+Georgia Tech,1952,national,claim,,,,manual
+Georgia Tech,1990,national,UPI,,,,manual
+Illinois,1914,national,claim,,,,manual
+Illinois,1919,national,CFRA,,,,manual
+Illinois,1923,national,CFRA,,,,manual
+Illinois,1923,national,HAF,,,,manual
+Illinois,1923,national,NCF,,,,manual
+Illinois,1927,national,HAF,,,,manual
+Illinois,1927,national,NCF,,,,manual
+Illinois,1951,national,claim,,,,manual
+Indiana,2025,national,CFP,,,,manual
+Iowa,1921,national,claim,,,,manual
+Iowa,1922,national,claim,,,,manual
+Iowa,1956,national,claim,,,,manual
+Iowa,1958,national,FWAA,,,,manual
+Iowa,1960,national,claim,,,,manual
+Kentucky,1950,national,claim,,,,manual
+LSU,1908,national,NCF,,,not-claimed,manual
+LSU,1958,national,AP,,,,manual
+LSU,1958,national,UPI,,,,manual
+LSU,2003,national,BCS,,,,manual
+LSU,2003,national,NFF,,,,manual
+LSU,2003,national,USA/ESPN,,,,manual
+LSU,2007,national,BCS,,,,manual
+LSU,2019,national,CFP,,,,manual
+Maryland,1953,national,AP,,,,manual
+Maryland,1953,national,UPI,,,,manual
+Miami (FL),1983,national,AP,,,,manual
+Miami (FL),1983,national,FWAA,,,,manual
+Miami (FL),1983,national,NFF,,,,manual
+Miami (FL),1983,national,UPI,,,,manual
+Miami (FL),1983,national,USA/CNN,,,,manual
+Miami (FL),1987,national,AP,,,,manual
+Miami (FL),1987,national,FWAA,,,,manual
+Miami (FL),1987,national,NFF,,,,manual
+Miami (FL),1987,national,UPI,,,,manual
+Miami (FL),1987,national,USA/CNN,,,,manual
+Miami (FL),1989,national,AP,,,,manual
+Miami (FL),1989,national,FWAA,,,,manual
+Miami (FL),1989,national,NFF,,,,manual
+Miami (FL),1989,national,UPI,,,,manual
+Miami (FL),1989,national,USA/CNN,,,,manual
+Miami (FL),1991,national,AP,,,,manual
+Miami (FL),2001,national,BCS,,,,manual
+Michigan,1901,national,HAF,,,,manual
+Michigan,1901,national,NCF,,,,manual
+Michigan,1902,national,HAF,,,,manual
+Michigan,1902,national,NCF,,,,manual
+Michigan,1903,national,NCF,,,,manual
+Michigan,1904,national,NCF,,,,manual
+Michigan,1918,national,NCF,,,,manual
+Michigan,1923,national,NCF,,,,manual
+Michigan,1932,national,claim,,,,manual
+Michigan,1933,national,CFRA,,,,manual
+Michigan,1933,national,HAF,,,,manual
+Michigan,1933,national,NCF,,,,manual
+Michigan,1947,national,claim,,,,manual
+Michigan,1948,national,AP,,,,manual
+Michigan,1997,national,AP,,,,manual
+Michigan,1997,national,FWAA,,,,manual
+Michigan,1997,national,NFF,,,,manual
+Michigan,2023,national,CFP,,,,manual
+Michigan State,1951,national,claim,,,,manual
+Michigan State,1952,national,AP,,,,manual
+Michigan State,1952,national,UPI,,,,manual
+Michigan State,1955,national,claim,,,,manual
+Michigan State,1957,national,claim,,,,manual
+Michigan State,1965,national,FWAA,,,,manual
+Michigan State,1965,national,NFF,,,,manual
+Michigan State,1965,national,UPI,,,,manual
+Michigan State,1966,national,NFF,,,,manual
+Minnesota,1904,national,claim,,,,manual
+Minnesota,1934,national,CFRA,,,,manual
+Minnesota,1934,national,HAF,,,,manual
+Minnesota,1934,national,NCF,,,,manual
+Minnesota,1935,national,CFRA,,,,manual
+Minnesota,1935,national,HAF,,,,manual
+Minnesota,1935,national,NCF,,,,manual
+Minnesota,1936,national,AP,,,,manual
+Minnesota,1940,national,AP,,,,manual
+Minnesota,1941,national,AP,,,,manual
+Minnesota,1960,national,AP,,,,manual
+Minnesota,1960,national,NFF,,,,manual
+Minnesota,1960,national,UPI,,,,manual
+Missouri,1960,national,claim,,,,manual
+Navy,1926,national,claim,,,,manual
+Nebraska,1970,national,AP,,,,manual
+Nebraska,1970,national,FWAA,,,,manual
+Nebraska,1971,national,AP,,,,manual
+Nebraska,1971,national,FWAA,,,,manual
+Nebraska,1971,national,NFF,,,,manual
+Nebraska,1971,national,UPI,,,,manual
+Nebraska,1994,national,AP,,,,manual
+Nebraska,1994,national,FWAA,,,,manual
+Nebraska,1994,national,NFF,,,,manual
+Nebraska,1994,national,UPI,,,,manual
+Nebraska,1994,national,USA/CNN,,,,manual
+Nebraska,1995,national,AP,,,,manual
+Nebraska,1995,national,FWAA,,,,manual
+Nebraska,1995,national,NFF,,,,manual
+Nebraska,1995,national,UPI,,,,manual
+Nebraska,1995,national,USA/CNN,,,,manual
+Nebraska,1997,national,USA/ESPN,,,,manual
+Notre Dame,1919,national,NCF,,,not-claimed,manual
+Notre Dame,1924,national,CFRA,,,,manual
+Notre Dame,1924,national,HAF,,,,manual
+Notre Dame,1924,national,NCF,,,,manual
+Notre Dame,1929,national,CFRA,,,,manual
+Notre Dame,1929,national,HAF,,,,manual
+Notre Dame,1929,national,NCF,,,,manual
+Notre Dame,1930,national,HAF,,,,manual
+Notre Dame,1930,national,NCF,,,,manual
+Notre Dame,1943,national,AP,,,,manual
+Notre Dame,1946,national,AP,,,,manual
+Notre Dame,1947,national,AP,,,,manual
+Notre Dame,1949,national,AP,,,,manual
+Notre Dame,1964,national,NFF,,,not-claimed,manual
+Notre Dame,1966,national,AP,,,,manual
+Notre Dame,1966,national,FWAA,,,,manual
+Notre Dame,1966,national,NFF,,,,manual
+Notre Dame,1966,national,UPI,,,,manual
+Notre Dame,1973,national,AP,,,,manual
+Notre Dame,1973,national,FWAA,,,,manual
+Notre Dame,1973,national,NFF,,,,manual
+Notre Dame,1977,national,AP,,,,manual
+Notre Dame,1977,national,FWAA,,,,manual
+Notre Dame,1977,national,NFF,,,,manual
+Notre Dame,1977,national,UPI,,,,manual
+Notre Dame,1988,national,AP,,,,manual
+Notre Dame,1988,national,FWAA,,,,manual
+Notre Dame,1988,national,NFF,,,,manual
+Notre Dame,1988,national,UPI,,,,manual
+Notre Dame,1988,national,USA/CNN,,,,manual
+Ohio State,1942,national,AP,,,,manual
+Ohio State,1954,national,AP,,,,manual
+Ohio State,1957,national,FWAA,,,,manual
+Ohio State,1957,national,UPI,,,,manual
+Ohio State,1961,national,FWAA,,,,manual
+Ohio State,1968,national,AP,,,,manual
+Ohio State,1968,national,FWAA,,,,manual
+Ohio State,1968,national,NFF,,,,manual
+Ohio State,1968,national,UPI,,,,manual
+Ohio State,1970,national,NFF,,,,manual
+Ohio State,2002,national,BCS,,,,manual
+Ohio State,2014,national,CFP,,,,manual
+Ohio State,2024,national,CFP,,,,manual
+Oklahoma,1950,national,AP,,,,manual
+Oklahoma,1950,national,UPI,,,,manual
+Oklahoma,1955,national,AP,,,,manual
+Oklahoma,1955,national,FWAA,,,,manual
+Oklahoma,1955,national,UPI,,,,manual
+Oklahoma,1956,national,AP,,,,manual
+Oklahoma,1956,national,FWAA,,,,manual
+Oklahoma,1956,national,UPI,,,,manual
+Oklahoma,1974,national,AP,,,,manual
+Oklahoma,1975,national,AP,,,,manual
+Oklahoma,1975,national,FWAA,,,,manual
+Oklahoma,1975,national,NFF,,,,manual
+Oklahoma,1975,national,UPI,,,,manual
+Oklahoma,1985,national,AP,,,,manual
+Oklahoma,1985,national,FWAA,,,,manual
+Oklahoma,1985,national,NFF,,,,manual
+Oklahoma,1985,national,UPI,,,,manual
+Oklahoma,1985,national,USA/CNN,,,,manual
+Oklahoma,2000,national,BCS,,,,manual
+Oklahoma State,1945,national,claim,,,,manual
+Ole Miss,1959,national,claim,,,,manual
+Ole Miss,1960,national,FWAA,,,,manual
+Ole Miss,1962,national,claim,,,,manual
+Penn State,1911,national,NCF,,,not-claimed,manual
+Penn State,1912,national,NCF,,,not-claimed,manual
+Penn State,1982,national,AP,,,,manual
+Penn State,1982,national,FWAA,,,,manual
+Penn State,1982,national,NFF,,,,manual
+Penn State,1982,national,UPI,,,,manual
+Penn State,1982,national,USA/CNN,,,,manual
+Penn State,1986,national,AP,,,,manual
+Penn State,1986,national,FWAA,,,,manual
+Penn State,1986,national,NFF,,,,manual
+Penn State,1986,national,UPI,,,,manual
+Penn State,1986,national,USA/CNN,,,,manual
+Pittsburgh,1910,national,NCF,,,not-claimed,manual
+Pittsburgh,1915,national,claim,,,disputed,manual
+Pittsburgh,1916,national,HAF,,,,manual
+Pittsburgh,1916,national,NCF,,,,manual
+Pittsburgh,1918,national,HAF,,,,manual
+Pittsburgh,1918,national,NCF,,,,manual
+Pittsburgh,1929,national,claim,,,,manual
+Pittsburgh,1931,national,claim,,,,manual
+Pittsburgh,1934,national,claim,,,,manual
+Pittsburgh,1936,national,claim,,,,manual
+Pittsburgh,1937,national,AP,,,,manual
+Pittsburgh,1976,national,AP,,,,manual
+Pittsburgh,1976,national,FWAA,,,,manual
+Pittsburgh,1976,national,NFF,,,,manual
+Pittsburgh,1976,national,UPI,,,,manual
+SMU,1935,national,claim,,,,manual
+SMU,1981,national,claim,,,,manual
+SMU,1982,national,claim,,,,manual
+Stanford,1926,national,HAF,,,,manual
+Stanford,1926,national,NCF,,,,manual
+Stanford,1940,national,claim,,,,manual
+Syracuse,1959,national,AP,,,,manual
+Syracuse,1959,national,FWAA,,,,manual
+Syracuse,1959,national,NFF,,,,manual
+Syracuse,1959,national,UPI,,,,manual
+TCU,1935,national,claim,,,,manual
+TCU,1938,national,AP,,,,manual
+Tennessee,1938,national,claim,,,,manual
+Tennessee,1940,national,claim,,,,manual
+Tennessee,1950,national,claim,,,,manual
+Tennessee,1951,national,AP,,,,manual
+Tennessee,1951,national,UPI,,,,manual
+Tennessee,1967,national,claim,,,,manual
+Tennessee,1998,national,BCS,,,,manual
+Texas,1963,national,AP,,,,manual
+Texas,1963,national,FWAA,,,,manual
+Texas,1963,national,NFF,,,,manual
+Texas,1963,national,UPI,,,,manual
+Texas,1969,national,AP,,,,manual
+Texas,1969,national,FWAA,,,,manual
+Texas,1969,national,NFF,,,,manual
+Texas,1969,national,UPI,,,,manual
+Texas,1970,national,NFF,,,,manual
+Texas,1970,national,UPI,,,,manual
+Texas,2005,national,BCS,,,,manual
+Texas A&M,1919,national,NCF,,,,manual
+Texas A&M,1927,national,claim,,,,manual
+Texas A&M,1939,national,AP,,,,manual
+UCF,2017,national,claim,,,,manual
+UCLA,1954,national,FWAA,,,,manual
+UCLA,1954,national,UPI,,,,manual
+USC,1928,national,claim,,,,manual
+USC,1931,national,CFRA,,,,manual
+USC,1931,national,HAF,,,,manual
+USC,1931,national,NCF,,,,manual
+USC,1932,national,CFRA,,,,manual
+USC,1932,national,HAF,,,,manual
+USC,1932,national,NCF,,,,manual
+USC,1939,national,claim,,,,manual
+USC,1962,national,AP,,,,manual
+USC,1962,national,FWAA,,,,manual
+USC,1962,national,NFF,,,,manual
+USC,1962,national,UPI,,,,manual
+USC,1967,national,AP,,,,manual
+USC,1967,national,FWAA,,,,manual
+USC,1967,national,NFF,,,,manual
+USC,1967,national,UPI,,,,manual
+USC,1972,national,AP,,,,manual
+USC,1972,national,FWAA,,,,manual
+USC,1972,national,NFF,,,,manual
+USC,1972,national,UPI,,,,manual
+USC,1974,national,FWAA,,,,manual
+USC,1974,national,NFF,,,,manual
+USC,1974,national,UPI,,,,manual
+USC,1978,national,UPI,,,,manual
+USC,2003,national,AP,,,,manual
+USC,2003,national,FWAA,,,,manual
+USC,2004,national,AP,,,vacated,manual
+USC,2004,national,BCS,,,vacated,manual
+USC,2004,national,FWAA,,,vacated,manual
+USC,2004,national,NFF,,,vacated,manual
+USC,2004,national,USA/ESPN,,,vacated,manual
+Washington,1960,national,claim,,,,manual
+Washington,1991,national,FWAA,,,,manual
+Washington,1991,national,NFF,,,,manual
+Washington,1991,national,USA/CNN,,,,manual

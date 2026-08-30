@@ -34,7 +34,7 @@ export interface TeamsState {
   data: TeamsPayload | null;
 }
 
-export function useTeams(wins: WinsMode = 'asPlayed'): TeamsState {
+export function useTeams(wins: WinsMode = 'official'): TeamsState {
   const [raw, setRaw] = useState<TeamsState>(() => ({
     loading: !cache,
     error: null,
@@ -55,10 +55,11 @@ export function useTeams(wins: WinsMode = 'asPlayed'): TeamsState {
     };
   }, []);
 
-  // merge the chosen wins-variant onto every team so components read team.rating etc. directly
+  // merge the chosen wins-variant onto every team so components read team.rating etc. directly.
+  // `official` is the default — it is already mirrored onto the top level by build-data.
   const data = useMemo<TeamsPayload | null>(() => {
     if (!raw.data) return null;
-    if (wins === 'asPlayed') return raw.data;
+    if (wins === 'official') return raw.data;
     const teams = raw.data.teams.map((t): Team => ({ ...t, ...t.variants[wins] }));
     return { ...raw.data, teams };
   }, [raw.data, wins]);

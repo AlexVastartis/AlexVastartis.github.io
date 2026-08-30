@@ -32,7 +32,7 @@ if (!hasKey()) {
   process.exit(1);
 }
 
-const teams = readRecords(fs.readFileSync(path.join(REPO, 'data/manual/teams.csv'), 'utf8'));
+const teams = readRecords(fs.readFileSync(path.join(REPO, 'data/staging/_staging_identity.csv'), 'utf8'));
 const slugBySchool = new Map(teams.map((t) => [t.school, t.slug]));
 const recolored = new Set(fs.existsSync(BACKUP) ? fs.readdirSync(BACKUP).map((f) => f.replace('.svg', '')) : []);
 

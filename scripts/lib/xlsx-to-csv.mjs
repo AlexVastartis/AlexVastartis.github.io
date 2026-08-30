@@ -1,6 +1,8 @@
 /**
- * ONE-TIME SEED. Converts the source spreadsheets into the editable CSVs that
- * become the repo's source of truth:
+ * ONE-TIME SEED (historical). Converted the source spreadsheets into the first
+ * editable CSVs. SUPERSEDED — inputs now live in data/staging/ (see
+ * data/staging/README.md) and this writes to the old data/manual/ paths. Kept
+ * only for reference; do not run against the current tree.
  *
  *   data/manual/teams.csv         school, slug, conference, primary_hex, secondary_hex, former_fcs
  *   data/manual/stats_manual.csv  school + all 10 raw stats (+ weeks_ap_no1, heismans)

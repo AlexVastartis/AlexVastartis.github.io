@@ -27,7 +27,7 @@ const isWhiteOnly = (svg) => {
   return uniq.length > 0 && uniq.every((c) => /white|#f{3,6}|#fefefe|none|currentcolor/i.test(c));
 };
 
-const teams = readRecords(fs.readFileSync(path.join(REPO, 'data/manual/teams.csv'), 'utf8'));
+const teams = readRecords(fs.readFileSync(path.join(REPO, 'data/staging/_staging_identity.csv'), 'utf8'));
 const primaryBySlug = new Map(teams.map((t) => [t.slug, t.primary_hex]));
 
 fs.mkdirSync(BACKUP, { recursive: true });

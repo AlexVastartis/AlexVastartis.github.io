@@ -1,33 +1,42 @@
 # Logos
 
-One set of marks per program, keyed by the `slug` column in
-`data/manual/teams.csv` (e.g. `southern-california`, `ole-miss`, `miami-fl`).
+**Generated directory.** The PNGs here are downscaled copies of the originals in
+`assets/logos-src/` — do not hand-edit them; edit the source and re-run the
+optimizer.
 
 ```
-public/logos/<slug>.svg        light-theme mark (preferred when present)
-public/logos/<slug>.png        light-theme mark, 500px full-colour (CFBD)
-public/logos/dark/<slug>.svg   dark-theme override (optional)
-public/logos/dark/<slug>.png   dark-theme mark, 500px (CFBD)
+assets/logos-src/<slug>.png        500px original, light mode (full colour / dark ink)
+assets/logos-src/<slug>-dark.png   500px original, dark mode  (knocked-out / light wordmark)
+        │
+        │  scripts/optimize-logos.mjs   (sharp → 160px square, palette PNG)
+        ▼
+public/logos/<slug>.png            shipped, ~2–7 KB
+public/logos/<slug>-dark.png       shipped, ~2–7 KB
 ```
 
-## Fallback order (see `src/components/TeamMarker.tsx`)
+`npm run build` runs the optimizer via `prebuild`, so the shipped set is always
+regenerated from the originals. Run it alone with `npm run logos:optimize`
+(`LOGO_PX=<n>` overrides the 160px edge).
 
-- **dark mode:** `dark/<slug>.svg` → `dark/<slug>.png` → `<slug>.svg` → `<slug>.png`
-- **light mode:** `<slug>.svg` → `<slug>.png` → `dark/<slug>.svg` → `dark/<slug>.png`
+## Which file renders (`src/lib/logoSrc.ts`, used by `TeamLogo` + `TeamMarker`)
 
-If everything 404s, the marker renders as a team-colour bubble.
+- **light mode:** `<slug>.png`
+- **dark mode:** `<slug>-dark.png` → falls back to `<slug>.png` if it 404s
+- **dark mode, `LIGHT_IN_DARK` teams:** `<slug>.png` — these marks read fine on
+  our dark surfaces, so the more familiar full-colour version is kept. Edit that
+  set in `src/lib/logoSrc.ts`.
 
-## Regenerating
+Active theme comes from `useIsDark()` in `src/lib/theme.ts`. In the SVG charts, if
+every candidate fails the marker renders as a team-colour bubble.
 
-- `npm run logos:sync` — downloads the full 500px full-colour set (light + dark)
-  from CollegeFootballData. Needs `CFBD_API_KEY`. Curated `<slug>.svg` files are
-  left in place; only PNGs are (re)written.
-- `npm run logos:recolor` — one-off: repaints any remaining white-knockout SVGs
-  with the team's primary colour (+ a near-white `dark/` copy). Originals are kept
-  in `data/manual/logos-original/`. `logos:sync` retires these once a colour PNG
-  exists.
+## Adding / replacing a team
 
-## Manual overrides
+Drop `<slug>.png` and `<slug>-dark.png` into `assets/logos-src/` (square,
+transparent, ≥ 256px) and run `npm run logos:optimize`. If a program has no
+dark-specific art, copy the light file to `<slug>-dark.png`, or add its slug to
+`LIGHT_IN_DARK`.
 
-Drop a file at any of the paths above and it wins per the fallback order — no code
-change. Prefer a clean SVG or a ≥ 256px transparent PNG.
+## Legacy scripts
+
+`npm run logos:sync` / `logos:recolor` predate this layout (they wrote SVGs and a
+`dark/` subfolder). Not used by the current build.

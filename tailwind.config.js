@@ -15,6 +15,7 @@ export default {
         line: 'rgb(var(--line) / <alpha-value>)',
         muted: 'rgb(var(--muted) / <alpha-value>)',
         accent: 'rgb(var(--accent) / <alpha-value>)',
+        whatif: 'rgb(var(--whatif) / <alpha-value>)',
       },
     },
   },

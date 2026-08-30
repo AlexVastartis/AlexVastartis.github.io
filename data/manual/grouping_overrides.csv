@@ -1,6 +1,0 @@
-# Force a program into a grouping, overriding the tier from build-data.mjs.
-# grouping ∈ Blue Bloods | Blue Blood Fringe | Blue Blood Contenders | National Powers | National Brands | The Field
-# The Contenders/Powers/Brands boundaries are hand-anchored in build-data.mjs
-# (TIER_LAST_TEAM = Auburn / Minnesota / North Carolina State); use this file
-# only for one-off exceptions on top of that. See public/data/breakdown.csv.
-school,grouping,note

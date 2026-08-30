@@ -1,0 +1,7271 @@
+# One (school, season): total NFL/AFL draft picks and how many went in round one.
+# Built by `npm run draft` from _staging_nfl_draft_picks{,_afl}.csv (pro-football-reference).
+# source=sheet / sheet+afl is authoritative for 1936–1994; source=carried are 1995+ rows
+# kept from the old CFBD build until the sheet has colleges for those years.
+# AFL selections included for: 1960 (no round data → picks only).
+school,season,picks,first_round_picks,source
+Air Force,1971,1,0,sheet
+Air Force,1976,1,0,sheet
+Air Force,1988,1,0,sheet
+Air Force,1992,1,0,sheet
+Air Force,1995,1,0,carried
+Air Force,1997,1,0,carried
+Air Force,1999,1,0,carried
+Air Force,2019,1,0,carried
+Air Force,2022,1,0,carried
+Air Force,2024,1,0,carried
+Akron,1941,1,0,sheet
+Akron,1967,2,0,sheet
+Akron,1968,1,0,sheet
+Akron,1969,1,0,sheet
+Akron,1987,1,0,sheet
+Akron,1989,1,0,sheet
+Akron,1993,1,0,sheet
+Akron,1997,1,0,carried
+Akron,2001,1,0,carried
+Akron,2002,1,0,carried
+Akron,2005,1,0,carried
+Akron,2006,1,0,carried
+Akron,2007,1,0,carried
+Akron,2008,1,0,carried
+Akron,2016,1,0,carried
+Akron,2019,1,0,carried
+Alabama,1936,3,1,sheet
+Alabama,1937,1,0,sheet
+Alabama,1938,2,0,sheet
+Alabama,1939,2,0,sheet
+Alabama,1940,4,0,sheet
+Alabama,1941,3,0,sheet
+Alabama,1942,4,0,sheet
+Alabama,1943,8,0,sheet
+Alabama,1944,5,0,sheet
+Alabama,1945,10,0,sheet
+Alabama,1946,4,0,sheet
+Alabama,1947,1,0,sheet
+Alabama,1948,6,3,sheet
+Alabama,1949,5,0,sheet
+Alabama,1950,2,0,sheet
+Alabama,1951,8,1,sheet
+Alabama,1952,3,0,sheet
+Alabama,1953,7,1,sheet
+Alabama,1954,5,0,sheet
+Alabama,1955,5,0,sheet
+Alabama,1956,6,0,sheet
+Alabama,1957,2,0,sheet
+Alabama,1958,1,0,sheet
+Alabama,1959,2,0,sheet
+Alabama,1960,3,0,sheet+afl
+Alabama,1962,4,0,sheet
+Alabama,1963,3,1,sheet
+Alabama,1964,3,0,sheet
+Alabama,1965,5,1,sheet
+Alabama,1966,5,0,sheet
+Alabama,1967,4,1,sheet
+Alabama,1968,3,1,sheet
+Alabama,1969,2,0,sheet
+Alabama,1971,1,0,sheet
+Alabama,1972,5,0,sheet
+Alabama,1973,3,1,sheet
+Alabama,1974,5,1,sheet
+Alabama,1975,2,0,sheet
+Alabama,1976,6,1,sheet
+Alabama,1977,4,0,sheet
+Alabama,1978,4,2,sheet
+Alabama,1979,5,2,sheet
+Alabama,1980,6,1,sheet
+Alabama,1981,5,1,sheet
+Alabama,1982,3,0,sheet
+Alabama,1983,4,1,sheet
+Alabama,1984,2,0,sheet
+Alabama,1985,2,1,sheet
+Alabama,1986,4,1,sheet
+Alabama,1987,8,1,sheet
+Alabama,1988,3,0,sheet
+Alabama,1989,5,1,sheet
+Alabama,1990,3,1,sheet
+Alabama,1991,3,0,sheet
+Alabama,1992,4,0,sheet
+Alabama,1993,6,3,sheet
+Alabama,1994,6,1,sheet
+Alabama,1995,5,0,carried
+Alabama,1997,3,1,carried
+Alabama,1998,4,0,carried
+Alabama,1999,1,1,carried
+Alabama,2000,3,2,carried
+Alabama,2001,3,0,carried
+Alabama,2002,4,0,carried
+Alabama,2003,5,0,carried
+Alabama,2004,4,0,carried
+Alabama,2005,4,0,carried
+Alabama,2006,5,0,carried
+Alabama,2007,3,0,carried
+Alabama,2009,4,1,carried
+Alabama,2010,7,2,carried
+Alabama,2011,5,4,carried
+Alabama,2012,8,4,carried
+Alabama,2013,9,3,carried
+Alabama,2014,8,2,carried
+Alabama,2015,7,1,carried
+Alabama,2016,7,1,carried
+Alabama,2017,10,4,carried
+Alabama,2018,12,4,carried
+Alabama,2019,10,3,carried
+Alabama,2020,9,4,carried
+Alabama,2021,10,6,carried
+Alabama,2022,7,2,carried
+Alabama,2023,10,3,carried
+Alabama,2024,10,3,carried
+Alabama,2025,7,2,carried
+Alabama,2026,10,2,carried
+Appalachian State,1942,1,0,sheet
+Appalachian State,1948,1,0,sheet
+Appalachian State,1949,1,0,sheet
+Appalachian State,1964,1,0,sheet
+Appalachian State,1965,1,0,sheet
+Appalachian State,1984,1,0,sheet
+Appalachian State,1986,1,0,sheet
+Appalachian State,1988,1,0,sheet
+Appalachian State,1990,2,0,sheet
+Appalachian State,1992,2,0,sheet
+Appalachian State,1993,1,0,sheet
+Appalachian State,1997,1,0,carried
+Appalachian State,2001,1,0,carried
+Appalachian State,2008,2,0,carried
+Appalachian State,2010,1,0,carried
+Appalachian State,2011,3,0,carried
+Appalachian State,2012,1,0,carried
+Appalachian State,2013,2,0,carried
+Appalachian State,2016,1,0,carried
+Appalachian State,2018,1,0,carried
+Appalachian State,2020,2,0,carried
+Appalachian State,2021,1,0,carried
+Appalachian State,2022,1,0,carried
+Appalachian State,2023,2,0,carried
+Arizona,1939,2,1,sheet
+Arizona,1941,3,0,sheet
+Arizona,1942,2,0,sheet
+Arizona,1943,3,0,sheet
+Arizona,1946,1,0,sheet
+Arizona,1948,4,0,sheet
+Arizona,1949,2,0,sheet
+Arizona,1950,2,0,sheet
+Arizona,1951,1,0,sheet
+Arizona,1952,1,0,sheet
+Arizona,1953,1,0,sheet
+Arizona,1955,2,0,sheet
+Arizona,1956,3,0,sheet
+Arizona,1957,1,0,sheet
+Arizona,1958,1,0,sheet
+Arizona,1961,1,0,sheet
+Arizona,1962,3,0,sheet
+Arizona,1964,1,0,sheet
+Arizona,1965,2,0,sheet
+Arizona,1966,2,0,sheet
+Arizona,1968,5,1,sheet
+Arizona,1969,1,0,sheet
+Arizona,1970,3,0,sheet
+Arizona,1971,4,0,sheet
+Arizona,1972,4,0,sheet
+Arizona,1973,7,0,sheet
+Arizona,1974,1,0,sheet
+Arizona,1975,5,0,sheet
+Arizona,1976,5,1,sheet
+Arizona,1977,2,0,sheet
+Arizona,1980,3,0,sheet
+Arizona,1981,4,0,sheet
+Arizona,1982,3,0,sheet
+Arizona,1983,3,0,sheet
+Arizona,1984,6,1,sheet
+Arizona,1985,5,0,sheet
+Arizona,1986,2,0,sheet
+Arizona,1987,7,0,sheet
+Arizona,1988,2,0,sheet
+Arizona,1989,5,0,sheet
+Arizona,1990,5,2,sheet
+Arizona,1991,4,0,sheet
+Arizona,1992,2,1,sheet
+Arizona,1993,4,0,sheet
+Arizona,1994,4,0,sheet
+Arizona,1995,4,0,carried
+Arizona,1997,2,0,carried
+Arizona,1998,3,0,carried
+Arizona,1999,4,1,carried
+Arizona,2000,5,1,carried
+Arizona,2001,2,0,carried
+Arizona,2003,3,0,carried
+Arizona,2006,1,0,carried
+Arizona,2007,4,0,carried
+Arizona,2008,4,1,carried
+Arizona,2009,2,0,carried
+Arizona,2010,2,0,carried
+Arizona,2011,3,0,carried
+Arizona,2012,3,0,carried
+Arizona,2014,3,0,carried
+Arizona,2016,2,0,carried
+Arizona,2018,1,0,carried
+Arizona,2019,1,0,carried
+Arizona,2021,2,0,carried
+Arizona,2024,3,1,carried
+Arizona,2025,4,1,carried
+Arizona,2026,4,0,carried
+Arizona State,1941,1,0,sheet
+Arizona State,1943,2,0,sheet
+Arizona State,1948,1,0,sheet
+Arizona State,1951,2,0,sheet
+Arizona State,1952,1,0,sheet
+Arizona State,1953,6,0,sheet
+Arizona State,1954,1,0,sheet
+Arizona State,1955,2,0,sheet
+Arizona State,1956,1,0,sheet
+Arizona State,1957,3,0,sheet
+Arizona State,1958,3,0,sheet
+Arizona State,1959,2,0,sheet
+Arizona State,1961,1,0,sheet
+Arizona State,1962,1,0,sheet
+Arizona State,1963,2,0,sheet
+Arizona State,1964,4,1,sheet
+Arizona State,1965,6,0,sheet
+Arizona State,1966,1,0,sheet
+Arizona State,1967,4,1,sheet
+Arizona State,1968,4,0,sheet
+Arizona State,1969,8,1,sheet
+Arizona State,1970,4,0,sheet
+Arizona State,1971,4,1,sheet
+Arizona State,1972,5,0,sheet
+Arizona State,1973,8,1,sheet
+Arizona State,1974,8,1,sheet
+Arizona State,1975,2,0,sheet
+Arizona State,1976,4,2,sheet
+Arizona State,1977,2,0,sheet
+Arizona State,1978,5,1,sheet
+Arizona State,1979,6,1,sheet
+Arizona State,1980,5,1,sheet
+Arizona State,1981,3,0,sheet
+Arizona State,1982,7,1,sheet
+Arizona State,1983,9,1,sheet
+Arizona State,1984,2,0,sheet
+Arizona State,1985,3,0,sheet
+Arizona State,1986,4,0,sheet
+Arizona State,1987,7,0,sheet
+Arizona State,1988,7,2,sheet
+Arizona State,1989,1,0,sheet
+Arizona State,1990,1,0,sheet
+Arizona State,1991,5,1,sheet
+Arizona State,1992,5,0,sheet
+Arizona State,1993,2,0,sheet
+Arizona State,1994,2,1,sheet
+Arizona State,1995,5,1,carried
+Arizona State,1997,8,0,carried
+Arizona State,1998,5,0,carried
+Arizona State,1999,2,0,carried
+Arizona State,2000,6,1,carried
+Arizona State,2001,3,2,carried
+Arizona State,2002,4,1,carried
+Arizona State,2003,3,1,carried
+Arizona State,2004,2,0,carried
+Arizona State,2005,3,0,carried
+Arizona State,2006,2,0,carried
+Arizona State,2007,2,0,carried
+Arizona State,2008,5,0,carried
+Arizona State,2009,2,0,carried
+Arizona State,2010,4,0,carried
+Arizona State,2011,1,0,carried
+Arizona State,2012,2,0,carried
+Arizona State,2014,3,0,carried
+Arizona State,2015,4,1,carried
+Arizona State,2016,2,0,carried
+Arizona State,2017,1,0,carried
+Arizona State,2018,3,0,carried
+Arizona State,2019,2,1,carried
+Arizona State,2020,2,1,carried
+Arizona State,2021,1,0,carried
+Arizona State,2022,4,0,carried
+Arizona State,2023,1,0,carried
+Arizona State,2025,1,0,carried
+Arizona State,2026,4,2,carried
+Arkansas,1938,4,1,sheet
+Arkansas,1939,1,0,sheet
+Arkansas,1940,4,1,sheet
+Arkansas,1941,4,0,sheet
+Arkansas,1942,2,0,sheet
+Arkansas,1943,4,0,sheet
+Arkansas,1944,3,0,sheet
+Arkansas,1945,8,0,sheet
+Arkansas,1946,2,0,sheet
+Arkansas,1947,3,0,sheet
+Arkansas,1948,6,1,sheet
+Arkansas,1949,4,0,sheet
+Arkansas,1950,6,0,sheet
+Arkansas,1951,7,0,sheet
+Arkansas,1952,7,0,sheet
+Arkansas,1953,3,0,sheet
+Arkansas,1954,6,1,sheet
+Arkansas,1955,2,0,sheet
+Arkansas,1956,5,1,sheet
+Arkansas,1957,3,0,sheet
+Arkansas,1958,1,0,sheet
+Arkansas,1959,2,0,sheet
+Arkansas,1960,4,0,sheet+afl
+Arkansas,1961,2,0,sheet
+Arkansas,1962,4,1,sheet
+Arkansas,1963,4,0,sheet
+Arkansas,1964,3,0,sheet
+Arkansas,1965,2,0,sheet
+Arkansas,1966,6,0,sheet
+Arkansas,1967,3,2,sheet
+Arkansas,1968,2,0,sheet
+Arkansas,1969,3,0,sheet
+Arkansas,1970,6,0,sheet
+Arkansas,1971,5,0,sheet
+Arkansas,1972,4,0,sheet
+Arkansas,1973,7,0,sheet
+Arkansas,1974,3,0,sheet
+Arkansas,1975,4,0,sheet
+Arkansas,1976,5,0,sheet
+Arkansas,1977,5,0,sheet
+Arkansas,1978,2,1,sheet
+Arkansas,1979,5,1,sheet
+Arkansas,1980,4,0,sheet
+Arkansas,1981,5,0,sheet
+Arkansas,1982,1,0,sheet
+Arkansas,1983,4,2,sheet
+Arkansas,1984,2,1,sheet
+Arkansas,1985,1,0,sheet
+Arkansas,1986,5,0,sheet
+Arkansas,1987,2,0,sheet
+Arkansas,1989,7,2,sheet
+Arkansas,1990,4,0,sheet
+Arkansas,1991,1,0,sheet
+Arkansas,1993,1,0,sheet
+Arkansas,1994,2,1,sheet
+Arkansas,1997,1,0,carried
+Arkansas,1998,1,0,carried
+Arkansas,1999,4,0,carried
+Arkansas,2000,5,0,carried
+Arkansas,2001,2,0,carried
+Arkansas,2002,1,0,carried
+Arkansas,2003,1,0,carried
+Arkansas,2004,6,2,carried
+Arkansas,2005,2,1,carried
+Arkansas,2006,1,0,carried
+Arkansas,2007,4,1,carried
+Arkansas,2008,6,2,carried
+Arkansas,2009,1,0,carried
+Arkansas,2010,1,0,carried
+Arkansas,2011,3,0,carried
+Arkansas,2012,4,0,carried
+Arkansas,2013,4,0,carried
+Arkansas,2014,4,0,carried
+Arkansas,2015,5,0,carried
+Arkansas,2016,5,0,carried
+Arkansas,2017,3,0,carried
+Arkansas,2018,2,1,carried
+Arkansas,2019,3,0,carried
+Arkansas,2020,2,0,carried
+Arkansas,2021,1,0,carried
+Arkansas,2022,3,1,carried
+Arkansas,2023,2,0,carried
+Arkansas,2024,2,0,carried
+Arkansas,2025,2,0,carried
+Arkansas,2026,4,0,carried
+Arkansas State,1949,1,0,sheet
+Arkansas State,1954,1,0,sheet
+Arkansas State,1956,1,0,sheet
+Arkansas State,1957,1,0,sheet
+Arkansas State,1968,1,0,sheet
+Arkansas State,1969,2,0,sheet
+Arkansas State,1970,1,0,sheet
+Arkansas State,1972,6,0,sheet
+Arkansas State,1974,2,0,sheet
+Arkansas State,1975,3,0,sheet
+Arkansas State,1976,6,0,sheet
+Arkansas State,1977,5,0,sheet
+Arkansas State,1980,1,0,sheet
+Arkansas State,1983,1,0,sheet
+Arkansas State,1985,1,0,sheet
+Arkansas State,1986,2,0,sheet
+Arkansas State,1987,2,0,sheet
+Arkansas State,1989,1,0,sheet
+Arkansas State,1990,1,0,sheet
+Arkansas State,1991,1,0,sheet
+Arkansas State,2004,1,0,carried
+Arkansas State,2007,1,0,carried
+Arkansas State,2008,1,0,carried
+Arkansas State,2009,1,0,carried
+Arkansas State,2010,1,0,carried
+Arkansas State,2011,1,0,carried
+Arkansas State,2012,1,0,carried
+Arkansas State,2013,1,0,carried
+Arkansas State,2014,1,0,carried
+Army,1945,1,0,sheet
+Army,1946,1,1,sheet
+Army,1947,6,2,sheet
+Army,1948,1,0,sheet
+Army,1950,1,0,sheet
+Army,1951,2,0,sheet
+Army,1952,1,0,sheet
+Army,1954,1,0,sheet
+Army,1955,2,0,sheet
+Army,1956,3,0,sheet
+Army,1958,1,0,sheet
+Army,1959,1,0,sheet
+Army,1960,3,0,sheet
+Army,1969,2,0,sheet
+Army,1997,1,0,carried
+Army,2008,1,0,carried
+Auburn,1937,2,0,sheet
+Auburn,1938,1,0,sheet
+Auburn,1939,1,0,sheet
+Auburn,1940,2,0,sheet
+Auburn,1941,2,0,sheet
+Auburn,1942,2,0,sheet
+Auburn,1943,2,0,sheet
+Auburn,1944,3,0,sheet
+Auburn,1945,3,0,sheet
+Auburn,1946,3,0,sheet
+Auburn,1949,2,0,sheet
+Auburn,1950,3,1,sheet
+Auburn,1951,1,0,sheet
+Auburn,1953,2,0,sheet
+Auburn,1955,6,1,sheet
+Auburn,1956,7,1,sheet
+Auburn,1957,2,0,sheet
+Auburn,1958,8,1,sheet
+Auburn,1959,9,1,sheet
+Auburn,1960,6,0,sheet+afl
+Auburn,1961,5,1,sheet
+Auburn,1962,3,0,sheet
+Auburn,1963,5,0,sheet
+Auburn,1964,2,0,sheet
+Auburn,1965,5,1,sheet
+Auburn,1966,4,0,sheet
+Auburn,1967,3,0,sheet
+Auburn,1968,4,1,sheet
+Auburn,1969,2,0,sheet
+Auburn,1970,5,0,sheet
+Auburn,1971,5,0,sheet
+Auburn,1972,3,1,sheet
+Auburn,1973,3,0,sheet
+Auburn,1974,2,0,sheet
+Auburn,1975,5,0,sheet
+Auburn,1977,2,0,sheet
+Auburn,1978,1,1,sheet
+Auburn,1979,2,0,sheet
+Auburn,1980,1,0,sheet
+Auburn,1981,6,1,sheet
+Auburn,1982,3,0,sheet
+Auburn,1983,1,0,sheet
+Auburn,1984,6,0,sheet
+Auburn,1985,5,0,sheet
+Auburn,1986,7,2,sheet
+Auburn,1987,5,1,sheet
+Auburn,1988,8,1,sheet
+Auburn,1989,10,0,sheet
+Auburn,1990,4,0,sheet
+Auburn,1991,6,0,sheet
+Auburn,1992,3,0,sheet
+Auburn,1993,3,0,sheet
+Auburn,1994,3,1,sheet
+Auburn,1995,3,0,carried
+Auburn,1997,1,0,carried
+Auburn,1998,4,2,carried
+Auburn,1999,2,0,carried
+Auburn,2000,4,0,carried
+Auburn,2001,3,0,carried
+Auburn,2002,3,1,carried
+Auburn,2004,4,0,carried
+Auburn,2005,5,4,carried
+Auburn,2006,4,0,carried
+Auburn,2007,5,1,carried
+Auburn,2008,5,0,carried
+Auburn,2009,3,0,carried
+Auburn,2010,2,0,carried
+Auburn,2011,4,2,carried
+Auburn,2012,1,0,carried
+Auburn,2013,1,0,carried
+Auburn,2014,4,2,carried
+Auburn,2015,5,0,carried
+Auburn,2016,3,0,carried
+Auburn,2017,4,0,carried
+Auburn,2018,4,0,carried
+Auburn,2019,6,0,carried
+Auburn,2020,6,2,carried
+Auburn,2021,4,0,carried
+Auburn,2022,1,0,carried
+Auburn,2023,5,0,carried
+Auburn,2024,5,0,carried
+Auburn,2025,3,0,carried
+Auburn,2026,5,1,carried
+Ball State,1950,1,0,sheet
+Ball State,1955,1,0,sheet
+Ball State,1959,1,0,sheet
+Ball State,1965,1,0,sheet
+Ball State,1966,1,0,sheet
+Ball State,1968,2,0,sheet
+Ball State,1969,1,0,sheet
+Ball State,1971,1,0,sheet
+Ball State,1974,1,0,sheet
+Ball State,1975,1,0,sheet
+Ball State,1976,2,0,sheet
+Ball State,1978,1,0,sheet
+Ball State,1979,1,0,sheet
+Ball State,1980,1,0,sheet
+Ball State,1981,1,0,sheet
+Ball State,1993,1,0,sheet
+Ball State,1997,2,0,carried
+Ball State,2005,3,0,carried
+Ball State,2009,2,0,carried
+Ball State,2014,2,0,carried
+Ball State,2020,1,0,carried
+Ball State,2023,1,0,carried
+Baylor,1937,1,0,sheet
+Baylor,1938,1,0,sheet
+Baylor,1939,2,0,sheet
+Baylor,1940,3,0,sheet
+Baylor,1941,3,0,sheet
+Baylor,1942,3,1,sheet
+Baylor,1943,3,0,sheet
+Baylor,1944,2,0,sheet
+Baylor,1945,2,0,sheet
+Baylor,1946,2,0,sheet
+Baylor,1947,1,0,sheet
+Baylor,1948,1,0,sheet
+Baylor,1949,2,0,sheet
+Baylor,1950,8,1,sheet
+Baylor,1951,3,0,sheet
+Baylor,1952,10,1,sheet
+Baylor,1953,4,0,sheet
+Baylor,1954,6,1,sheet
+Baylor,1955,3,0,sheet
+Baylor,1956,6,0,sheet
+Baylor,1957,5,2,sheet
+Baylor,1958,5,0,sheet
+Baylor,1959,9,1,sheet
+Baylor,1960,4,0,sheet+afl
+Baylor,1961,6,0,sheet
+Baylor,1962,4,1,sheet
+Baylor,1963,3,0,sheet
+Baylor,1964,1,0,sheet
+Baylor,1965,4,1,sheet
+Baylor,1966,2,0,sheet
+Baylor,1967,2,0,sheet
+Baylor,1968,2,0,sheet
+Baylor,1969,1,0,sheet
+Baylor,1970,4,0,sheet
+Baylor,1971,1,0,sheet
+Baylor,1972,1,0,sheet
+Baylor,1973,2,0,sheet
+Baylor,1975,4,0,sheet
+Baylor,1976,4,0,sheet
+Baylor,1977,6,1,sheet
+Baylor,1978,2,0,sheet
+Baylor,1979,4,1,sheet
+Baylor,1980,9,0,sheet
+Baylor,1981,5,0,sheet
+Baylor,1982,3,1,sheet
+Baylor,1983,7,0,sheet
+Baylor,1984,3,0,sheet
+Baylor,1985,3,0,sheet
+Baylor,1986,2,0,sheet
+Baylor,1987,6,0,sheet
+Baylor,1988,1,0,sheet
+Baylor,1989,2,0,sheet
+Baylor,1990,2,1,sheet
+Baylor,1991,1,0,sheet
+Baylor,1992,5,0,sheet
+Baylor,1993,2,0,sheet
+Baylor,1994,1,0,sheet
+Baylor,1995,1,0,carried
+Baylor,1997,1,0,carried
+Baylor,1999,2,0,carried
+Baylor,2001,1,0,carried
+Baylor,2003,1,0,carried
+Baylor,2005,1,0,carried
+Baylor,2006,1,0,carried
+Baylor,2007,2,0,carried
+Baylor,2009,1,1,carried
+Baylor,2010,2,0,carried
+Baylor,2011,4,2,carried
+Baylor,2012,5,2,carried
+Baylor,2013,1,0,carried
+Baylor,2014,5,0,carried
+Baylor,2015,2,0,carried
+Baylor,2016,6,1,carried
+Baylor,2017,1,0,carried
+Baylor,2019,1,0,carried
+Baylor,2020,4,0,carried
+Baylor,2021,1,0,carried
+Baylor,2022,6,0,carried
+Baylor,2023,1,0,carried
+Baylor,2026,2,0,carried
+Boise State,1951,1,0,sheet
+Boise State,1953,1,0,sheet
+Boise State,1970,1,0,sheet
+Boise State,1971,1,0,sheet
+Boise State,1972,2,0,sheet
+Boise State,1973,1,0,sheet
+Boise State,1974,3,0,sheet
+Boise State,1975,3,0,sheet
+Boise State,1976,3,0,sheet
+Boise State,1979,2,0,sheet
+Boise State,1981,1,0,sheet
+Boise State,1982,2,0,sheet
+Boise State,1983,2,0,sheet
+Boise State,1984,1,0,sheet
+Boise State,1986,2,0,sheet
+Boise State,1987,2,0,sheet
+Boise State,1992,2,0,sheet
+Boise State,1994,1,0,sheet
+Boise State,2000,1,0,carried
+Boise State,2001,1,0,carried
+Boise State,2002,2,0,carried
+Boise State,2003,1,0,carried
+Boise State,2006,1,0,carried
+Boise State,2007,4,0,carried
+Boise State,2008,2,1,carried
+Boise State,2010,1,1,carried
+Boise State,2011,3,0,carried
+Boise State,2012,6,2,carried
+Boise State,2013,1,0,carried
+Boise State,2014,3,0,carried
+Boise State,2015,1,0,carried
+Boise State,2016,3,0,carried
+Boise State,2017,2,0,carried
+Boise State,2018,2,1,carried
+Boise State,2019,1,0,carried
+Boise State,2020,3,0,carried
+Boise State,2021,2,0,carried
+Boise State,2022,1,0,carried
+Boise State,2023,2,0,carried
+Boise State,2025,2,1,carried
+Boise State,2026,1,0,carried
+Boston College,1940,2,0,sheet
+Boston College,1941,8,0,sheet
+Boston College,1942,4,0,sheet
+Boston College,1943,7,1,sheet
+Boston College,1944,5,0,sheet
+Boston College,1945,3,0,sheet
+Boston College,1946,3,0,sheet
+Boston College,1947,2,0,sheet
+Boston College,1948,1,0,sheet
+Boston College,1949,2,0,sheet
+Boston College,1950,4,0,sheet
+Boston College,1951,4,0,sheet
+Boston College,1953,2,0,sheet
+Boston College,1955,2,0,sheet
+Boston College,1956,2,0,sheet
+Boston College,1958,2,0,sheet
+Boston College,1959,3,1,sheet
+Boston College,1960,6,0,sheet+afl
+Boston College,1962,2,0,sheet
+Boston College,1963,4,0,sheet
+Boston College,1964,1,0,sheet
+Boston College,1965,2,0,sheet
+Boston College,1966,1,0,sheet
+Boston College,1967,2,1,sheet
+Boston College,1968,5,0,sheet
+Boston College,1969,3,0,sheet
+Boston College,1970,2,0,sheet
+Boston College,1971,4,0,sheet
+Boston College,1972,4,1,sheet
+Boston College,1973,2,0,sheet
+Boston College,1974,8,0,sheet
+Boston College,1975,4,0,sheet
+Boston College,1976,4,0,sheet
+Boston College,1977,8,1,sheet
+Boston College,1979,2,0,sheet
+Boston College,1980,3,0,sheet
+Boston College,1981,3,0,sheet
+Boston College,1982,2,0,sheet
+Boston College,1983,2,0,sheet
+Boston College,1984,3,0,sheet
+Boston College,1985,5,0,sheet
+Boston College,1986,2,0,sheet
+Boston College,1987,4,1,sheet
+Boston College,1988,4,0,sheet
+Boston College,1989,4,1,sheet
+Boston College,1990,1,0,sheet
+Boston College,1991,1,0,sheet
+Boston College,1992,1,0,sheet
+Boston College,1993,1,0,sheet
+Boston College,1994,2,0,sheet
+Boston College,1995,4,1,carried
+Boston College,1997,2,0,carried
+Boston College,1998,2,0,carried
+Boston College,1999,3,1,carried
+Boston College,2000,3,1,carried
+Boston College,2001,1,0,carried
+Boston College,2002,2,2,carried
+Boston College,2003,3,0,carried
+Boston College,2004,2,0,carried
+Boston College,2006,3,1,carried
+Boston College,2007,2,0,carried
+Boston College,2008,3,2,carried
+Boston College,2009,2,1,carried
+Boston College,2010,1,0,carried
+Boston College,2011,1,1,carried
+Boston College,2012,1,1,carried
+Boston College,2014,4,0,carried
+Boston College,2015,3,0,carried
+Boston College,2016,2,0,carried
+Boston College,2017,2,0,carried
+Boston College,2018,3,0,carried
+Boston College,2019,4,1,carried
+Boston College,2020,1,0,carried
+Boston College,2021,2,0,carried
+Boston College,2022,1,1,carried
+Boston College,2023,1,1,carried
+Boston College,2024,2,0,carried
+Boston College,2025,3,0,carried
+Boston College,2026,4,0,carried
+Bowling Green,1949,1,0,sheet
+Bowling Green,1950,2,0,sheet
+Bowling Green,1953,1,0,sheet
+Bowling Green,1954,1,0,sheet
+Bowling Green,1956,1,0,sheet
+Bowling Green,1957,1,0,sheet
+Bowling Green,1958,2,0,sheet
+Bowling Green,1959,2,0,sheet
+Bowling Green,1960,2,0,sheet+afl
+Bowling Green,1961,4,1,sheet
+Bowling Green,1962,3,0,sheet
+Bowling Green,1963,3,0,sheet
+Bowling Green,1964,1,0,sheet
+Bowling Green,1966,3,0,sheet
+Bowling Green,1967,4,0,sheet
+Bowling Green,1969,1,0,sheet
+Bowling Green,1970,3,0,sheet
+Bowling Green,1971,1,0,sheet
+Bowling Green,1973,2,0,sheet
+Bowling Green,1974,6,0,sheet
+Bowling Green,1976,1,0,sheet
+Bowling Green,1977,1,0,sheet
+Bowling Green,1978,2,0,sheet
+Bowling Green,1979,2,0,sheet
+Bowling Green,1980,1,0,sheet
+Bowling Green,1983,1,0,sheet
+Bowling Green,1984,2,0,sheet
+Bowling Green,1986,1,0,sheet
+Bowling Green,1989,1,0,sheet
+Bowling Green,1990,3,0,sheet
+Bowling Green,1991,1,0,sheet
+Bowling Green,1995,1,0,carried
+Bowling Green,2004,1,0,carried
+Bowling Green,2005,1,0,carried
+Bowling Green,2006,1,0,carried
+Bowling Green,2008,1,0,carried
+Bowling Green,2013,1,0,carried
+Bowling Green,2019,1,0,carried
+Bowling Green,2023,1,0,carried
+Bowling Green,2025,1,0,carried
+Buffalo,1952,1,0,sheet
+Buffalo,1958,1,0,sheet
+Buffalo,1959,1,0,sheet
+Buffalo,1960,1,0,sheet+afl
+Buffalo,1964,1,0,sheet
+Buffalo,1997,1,0,carried
+Buffalo,2000,1,0,carried
+Buffalo,2008,2,0,carried
+Buffalo,2010,1,0,carried
+Buffalo,2011,1,0,carried
+Buffalo,2013,1,0,carried
+Buffalo,2014,1,1,carried
+Buffalo,2015,1,0,carried
+Buffalo,2017,1,0,carried
+Buffalo,2021,1,0,carried
+Buffalo,2026,1,0,carried
+BYU,1938,1,0,sheet
+BYU,1939,1,0,sheet
+BYU,1942,2,0,sheet
+BYU,1946,1,0,sheet
+BYU,1947,3,0,sheet
+BYU,1948,1,0,sheet
+BYU,1949,1,0,sheet
+BYU,1951,1,0,sheet
+BYU,1952,1,0,sheet
+BYU,1954,1,0,sheet
+BYU,1955,1,0,sheet
+BYU,1957,1,0,sheet
+BYU,1960,5,0,sheet+afl
+BYU,1962,1,0,sheet
+BYU,1963,1,0,sheet
+BYU,1964,1,0,sheet
+BYU,1966,1,0,sheet
+BYU,1967,4,0,sheet
+BYU,1968,4,0,sheet
+BYU,1969,1,0,sheet
+BYU,1970,1,0,sheet
+BYU,1971,1,0,sheet
+BYU,1972,2,0,sheet
+BYU,1973,4,0,sheet
+BYU,1974,2,0,sheet
+BYU,1975,3,0,sheet
+BYU,1976,5,0,sheet
+BYU,1977,3,0,sheet
+BYU,1978,4,0,sheet
+BYU,1979,2,0,sheet
+BYU,1980,2,1,sheet
+BYU,1981,7,0,sheet
+BYU,1982,2,1,sheet
+BYU,1983,2,0,sheet
+BYU,1984,2,1,sheet
+BYU,1985,5,1,sheet
+BYU,1986,7,0,sheet
+BYU,1987,4,2,sheet
+BYU,1988,3,0,sheet
+BYU,1989,3,0,sheet
+BYU,1990,1,0,sheet
+BYU,1991,3,0,sheet
+BYU,1992,1,0,sheet
+BYU,1993,1,0,sheet
+BYU,1995,5,0,carried
+BYU,1997,1,0,carried
+BYU,1998,3,0,carried
+BYU,1999,3,1,carried
+BYU,2000,3,1,carried
+BYU,2001,2,0,carried
+BYU,2002,5,0,carried
+BYU,2003,2,0,carried
+BYU,2004,1,0,carried
+BYU,2005,3,0,carried
+BYU,2006,1,0,carried
+BYU,2007,1,0,carried
+BYU,2008,1,0,carried
+BYU,2009,2,0,carried
+BYU,2010,1,0,carried
+BYU,2013,1,1,carried
+BYU,2014,1,0,carried
+BYU,2016,1,0,carried
+BYU,2017,1,0,carried
+BYU,2018,1,0,carried
+BYU,2019,1,0,carried
+BYU,2021,5,1,carried
+BYU,2022,1,0,carried
+BYU,2023,3,0,carried
+BYU,2024,1,0,carried
+BYU,2026,2,0,carried
+California,1936,1,0,sheet
+California,1938,4,0,sheet
+California,1939,3,0,sheet
+California,1940,2,0,sheet
+California,1941,1,0,sheet
+California,1942,1,0,sheet
+California,1943,3,0,sheet
+California,1944,1,0,sheet
+California,1945,3,0,sheet
+California,1946,4,0,sheet
+California,1947,4,0,sheet
+California,1948,3,0,sheet
+California,1949,3,0,sheet
+California,1950,5,0,sheet
+California,1951,3,0,sheet
+California,1952,10,1,sheet
+California,1953,4,1,sheet
+California,1954,3,0,sheet
+California,1955,4,0,sheet
+California,1956,2,0,sheet
+California,1957,1,0,sheet
+California,1958,1,0,sheet
+California,1959,2,0,sheet
+California,1960,2,0,sheet+afl
+California,1962,3,0,sheet
+California,1965,3,1,sheet
+California,1966,2,0,sheet
+California,1967,1,0,sheet
+California,1968,1,0,sheet
+California,1969,4,0,sheet
+California,1970,1,0,sheet
+California,1971,3,0,sheet
+California,1972,1,1,sheet
+California,1973,3,0,sheet
+California,1974,2,0,sheet
+California,1975,3,1,sheet
+California,1976,3,1,sheet
+California,1977,6,1,sheet
+California,1978,4,0,sheet
+California,1979,2,0,sheet
+California,1980,4,0,sheet
+California,1981,3,1,sheet
+California,1983,5,0,sheet
+California,1984,2,1,sheet
+California,1985,1,0,sheet
+California,1987,2,0,sheet
+California,1988,3,1,sheet
+California,1989,5,0,sheet
+California,1990,1,0,sheet
+California,1991,5,0,sheet
+California,1992,4,0,sheet
+California,1993,3,1,sheet
+California,1994,5,1,sheet
+California,1995,3,0,carried
+California,1997,3,2,carried
+California,1998,4,0,carried
+California,1999,4,0,carried
+California,2000,4,1,carried
+California,2001,2,1,carried
+California,2002,2,0,carried
+California,2003,4,2,carried
+California,2004,2,0,carried
+California,2005,5,1,carried
+California,2006,3,0,carried
+California,2007,4,1,carried
+California,2008,6,0,carried
+California,2009,3,1,carried
+California,2010,3,2,carried
+California,2011,4,1,carried
+California,2012,6,0,carried
+California,2013,4,0,carried
+California,2014,2,0,carried
+California,2016,4,1,carried
+California,2017,3,0,carried
+California,2018,2,0,carried
+California,2020,3,0,carried
+California,2021,1,0,carried
+California,2022,2,0,carried
+California,2023,1,0,carried
+California,2024,1,0,carried
+California,2025,4,0,carried
+California,2026,1,0,carried
+Central Michigan,1946,1,0,sheet
+Central Michigan,1948,1,0,sheet
+Central Michigan,1952,1,0,sheet
+Central Michigan,1956,2,0,sheet
+Central Michigan,1957,1,0,sheet
+Central Michigan,1958,2,0,sheet
+Central Michigan,1960,2,0,sheet+afl
+Central Michigan,1965,1,0,sheet
+Central Michigan,1968,1,0,sheet
+Central Michigan,1970,1,0,sheet
+Central Michigan,1971,1,0,sheet
+Central Michigan,1972,1,0,sheet
+Central Michigan,1973,1,0,sheet
+Central Michigan,1975,2,0,sheet
+Central Michigan,1976,1,0,sheet
+Central Michigan,1980,1,0,sheet
+Central Michigan,1981,1,0,sheet
+Central Michigan,1982,1,0,sheet
+Central Michigan,1985,2,0,sheet
+Central Michigan,1987,1,0,sheet
+Central Michigan,1990,1,0,sheet
+Central Michigan,1991,1,0,sheet
+Central Michigan,1997,1,0,carried
+Central Michigan,2005,2,0,carried
+Central Michigan,2007,3,1,carried
+Central Michigan,2010,2,0,carried
+Central Michigan,2013,1,1,carried
+Central Michigan,2015,1,0,carried
+Central Michigan,2016,1,0,carried
+Central Michigan,2018,1,0,carried
+Central Michigan,2019,2,0,carried
+Central Michigan,2022,2,0,carried
+Central Michigan,2023,1,0,carried
+Central Michigan,2025,1,0,carried
+Charlotte,2017,1,0,carried
+Charlotte,2019,1,0,carried
+Charlotte,2020,2,0,carried
+Charlotte,2023,1,0,carried
+Cincinnati,1940,1,0,sheet
+Cincinnati,1943,1,0,sheet
+Cincinnati,1944,1,0,sheet
+Cincinnati,1946,1,0,sheet
+Cincinnati,1947,4,0,sheet
+Cincinnati,1948,1,0,sheet
+Cincinnati,1950,2,0,sheet
+Cincinnati,1952,2,0,sheet
+Cincinnati,1953,4,0,sheet
+Cincinnati,1954,1,0,sheet
+Cincinnati,1955,4,0,sheet
+Cincinnati,1956,1,0,sheet
+Cincinnati,1957,1,0,sheet
+Cincinnati,1958,1,0,sheet
+Cincinnati,1959,2,0,sheet
+Cincinnati,1960,11,0,sheet+afl
+Cincinnati,1961,1,0,sheet
+Cincinnati,1962,1,0,sheet
+Cincinnati,1964,1,0,sheet
+Cincinnati,1965,3,0,sheet
+Cincinnati,1967,1,0,sheet
+Cincinnati,1969,3,1,sheet
+Cincinnati,1970,1,0,sheet
+Cincinnati,1971,2,1,sheet
+Cincinnati,1974,4,0,sheet
+Cincinnati,1975,2,0,sheet
+Cincinnati,1976,4,0,sheet
+Cincinnati,1977,2,0,sheet
+Cincinnati,1978,3,0,sheet
+Cincinnati,1979,2,0,sheet
+Cincinnati,1980,1,0,sheet
+Cincinnati,1982,2,0,sheet
+Cincinnati,1987,2,0,sheet
+Cincinnati,1988,1,0,sheet
+Cincinnati,1989,2,0,sheet
+Cincinnati,1993,1,0,sheet
+Cincinnati,1994,2,0,sheet
+Cincinnati,1997,2,0,carried
+Cincinnati,1998,5,0,carried
+Cincinnati,1999,1,0,carried
+Cincinnati,2001,1,0,carried
+Cincinnati,2002,1,0,carried
+Cincinnati,2003,3,0,carried
+Cincinnati,2005,3,0,carried
+Cincinnati,2007,2,0,carried
+Cincinnati,2008,2,0,carried
+Cincinnati,2009,6,0,carried
+Cincinnati,2010,3,0,carried
+Cincinnati,2011,1,0,carried
+Cincinnati,2012,4,0,carried
+Cincinnati,2013,1,0,carried
+Cincinnati,2016,2,0,carried
+Cincinnati,2017,1,0,carried
+Cincinnati,2018,1,0,carried
+Cincinnati,2019,1,0,carried
+Cincinnati,2020,1,0,carried
+Cincinnati,2021,4,0,carried
+Cincinnati,2022,9,1,carried
+Cincinnati,2023,3,0,carried
+Cincinnati,2024,1,0,carried
+Cincinnati,2025,1,0,carried
+Cincinnati,2026,4,0,carried
+Clemson,1939,2,0,sheet
+Clemson,1940,3,1,sheet
+Clemson,1942,1,0,sheet
+Clemson,1943,1,0,sheet
+Clemson,1945,1,0,sheet
+Clemson,1946,3,0,sheet
+Clemson,1947,1,0,sheet
+Clemson,1948,1,0,sheet
+Clemson,1949,2,1,sheet
+Clemson,1951,6,0,sheet
+Clemson,1952,2,0,sheet
+Clemson,1953,4,0,sheet
+Clemson,1954,1,0,sheet
+Clemson,1955,3,0,sheet
+Clemson,1956,3,0,sheet
+Clemson,1957,2,0,sheet
+Clemson,1958,2,0,sheet
+Clemson,1959,5,0,sheet
+Clemson,1960,9,1,sheet+afl
+Clemson,1961,3,0,sheet
+Clemson,1962,1,0,sheet
+Clemson,1963,1,0,sheet
+Clemson,1964,3,0,sheet
+Clemson,1965,1,0,sheet
+Clemson,1966,2,0,sheet
+Clemson,1967,1,0,sheet
+Clemson,1968,4,0,sheet
+Clemson,1969,2,0,sheet
+Clemson,1970,3,0,sheet
+Clemson,1971,1,0,sheet
+Clemson,1972,3,0,sheet
+Clemson,1973,2,0,sheet
+Clemson,1974,1,0,sheet
+Clemson,1976,4,1,sheet
+Clemson,1978,3,0,sheet
+Clemson,1979,6,2,sheet
+Clemson,1980,3,1,sheet
+Clemson,1981,2,0,sheet
+Clemson,1982,6,2,sheet
+Clemson,1983,10,1,sheet
+Clemson,1984,6,0,sheet
+Clemson,1985,6,1,sheet
+Clemson,1987,4,1,sheet
+Clemson,1988,3,0,sheet
+Clemson,1989,5,1,sheet
+Clemson,1990,3,0,sheet
+Clemson,1991,8,0,sheet
+Clemson,1992,4,1,sheet
+Clemson,1993,5,1,sheet
+Clemson,1994,2,0,sheet
+Clemson,1995,1,0,carried
+Clemson,1997,2,1,carried
+Clemson,1998,5,1,carried
+Clemson,1999,6,1,carried
+Clemson,2001,3,1,carried
+Clemson,2003,2,0,carried
+Clemson,2004,2,0,carried
+Clemson,2005,3,0,carried
+Clemson,2006,3,1,carried
+Clemson,2007,5,1,carried
+Clemson,2008,2,0,carried
+Clemson,2009,4,0,carried
+Clemson,2010,5,1,carried
+Clemson,2011,6,0,carried
+Clemson,2012,4,0,carried
+Clemson,2013,4,1,carried
+Clemson,2014,5,1,carried
+Clemson,2015,5,2,carried
+Clemson,2016,9,1,carried
+Clemson,2017,6,2,carried
+Clemson,2018,3,0,carried
+Clemson,2019,6,3,carried
+Clemson,2020,7,2,carried
+Clemson,2021,5,2,carried
+Clemson,2022,2,0,carried
+Clemson,2023,6,2,carried
+Clemson,2024,6,1,carried
+Clemson,2025,3,0,carried
+Clemson,2026,9,2,carried
+Coastal Carolina,2007,1,0,carried
+Coastal Carolina,2008,1,0,carried
+Coastal Carolina,2012,1,0,carried
+Coastal Carolina,2014,2,0,carried
+Coastal Carolina,2017,1,0,carried
+Coastal Carolina,2021,1,0,carried
+Coastal Carolina,2022,2,0,carried
+Colorado,1938,3,1,sheet
+Colorado,1941,2,0,sheet
+Colorado,1942,1,0,sheet
+Colorado,1943,1,0,sheet
+Colorado,1944,3,0,sheet
+Colorado,1945,2,0,sheet
+Colorado,1946,8,0,sheet
+Colorado,1947,2,0,sheet
+Colorado,1948,3,0,sheet
+Colorado,1951,2,0,sheet
+Colorado,1952,3,0,sheet
+Colorado,1953,4,0,sheet
+Colorado,1954,2,0,sheet
+Colorado,1955,2,0,sheet
+Colorado,1956,4,0,sheet
+Colorado,1957,4,0,sheet
+Colorado,1958,1,0,sheet
+Colorado,1959,5,0,sheet
+Colorado,1960,2,0,sheet+afl
+Colorado,1961,2,0,sheet
+Colorado,1962,7,1,sheet
+Colorado,1963,4,0,sheet
+Colorado,1964,2,0,sheet
+Colorado,1965,1,0,sheet
+Colorado,1967,5,0,sheet
+Colorado,1968,7,0,sheet
+Colorado,1969,3,0,sheet
+Colorado,1970,4,1,sheet
+Colorado,1971,4,0,sheet
+Colorado,1972,7,1,sheet
+Colorado,1973,3,0,sheet
+Colorado,1974,10,2,sheet
+Colorado,1975,7,0,sheet
+Colorado,1976,12,3,sheet
+Colorado,1977,9,0,sheet
+Colorado,1978,4,0,sheet
+Colorado,1979,6,0,sheet
+Colorado,1980,7,2,sheet
+Colorado,1981,3,0,sheet
+Colorado,1982,3,0,sheet
+Colorado,1984,4,0,sheet
+Colorado,1985,1,0,sheet
+Colorado,1986,4,0,sheet
+Colorado,1987,2,0,sheet
+Colorado,1988,3,0,sheet
+Colorado,1990,2,0,sheet
+Colorado,1991,9,2,sheet
+Colorado,1992,4,0,sheet
+Colorado,1993,5,2,sheet
+Colorado,1994,6,1,sheet
+Colorado,1995,10,2,carried
+Colorado,1997,6,2,carried
+Colorado,1998,6,0,carried
+Colorado,1999,3,0,carried
+Colorado,2000,4,0,carried
+Colorado,2002,5,1,carried
+Colorado,2003,6,1,carried
+Colorado,2004,2,0,carried
+Colorado,2006,4,0,carried
+Colorado,2007,2,0,carried
+Colorado,2008,2,0,carried
+Colorado,2009,1,0,carried
+Colorado,2011,4,2,carried
+Colorado,2012,2,0,carried
+Colorado,2013,2,0,carried
+Colorado,2014,1,0,carried
+Colorado,2017,4,0,carried
+Colorado,2018,1,0,carried
+Colorado,2019,1,0,carried
+Colorado,2020,3,0,carried
+Colorado,2021,1,0,carried
+Colorado,2025,4,1,carried
+Colorado State,1943,2,0,sheet
+Colorado State,1944,1,0,sheet
+Colorado State,1949,1,0,sheet
+Colorado State,1950,1,0,sheet
+Colorado State,1951,2,0,sheet
+Colorado State,1952,1,0,sheet
+Colorado State,1953,1,0,sheet
+Colorado State,1954,2,0,sheet
+Colorado State,1955,1,0,sheet
+Colorado State,1956,3,1,sheet
+Colorado State,1959,2,0,sheet
+Colorado State,1960,7,0,sheet+afl
+Colorado State,1961,2,0,sheet
+Colorado State,1964,1,0,sheet
+Colorado State,1967,1,0,sheet
+Colorado State,1968,6,0,sheet
+Colorado State,1969,3,0,sheet
+Colorado State,1970,1,0,sheet
+Colorado State,1971,1,0,sheet
+Colorado State,1972,2,0,sheet
+Colorado State,1973,2,0,sheet
+Colorado State,1974,2,0,sheet
+Colorado State,1975,6,1,sheet
+Colorado State,1976,5,1,sheet
+Colorado State,1977,1,0,sheet
+Colorado State,1978,5,0,sheet
+Colorado State,1979,4,1,sheet
+Colorado State,1980,2,0,sheet
+Colorado State,1981,2,0,sheet
+Colorado State,1984,2,0,sheet
+Colorado State,1985,2,0,sheet
+Colorado State,1986,1,0,sheet
+Colorado State,1987,3,1,sheet
+Colorado State,1992,1,0,sheet
+Colorado State,1997,1,0,carried
+Colorado State,1998,1,0,carried
+Colorado State,1999,4,0,carried
+Colorado State,2000,2,0,carried
+Colorado State,2001,2,0,carried
+Colorado State,2004,3,0,carried
+Colorado State,2005,1,0,carried
+Colorado State,2006,1,0,carried
+Colorado State,2007,1,0,carried
+Colorado State,2009,1,0,carried
+Colorado State,2010,1,0,carried
+Colorado State,2014,2,0,carried
+Colorado State,2015,2,0,carried
+Colorado State,2016,2,0,carried
+Colorado State,2018,1,0,carried
+Colorado State,2019,1,0,carried
+Colorado State,2022,1,0,carried
+Colorado State,2024,1,0,carried
+Colorado State,2025,1,0,carried
+Delaware,1943,1,0,sheet
+Delaware,1947,2,0,sheet
+Delaware,1955,1,0,sheet
+Delaware,1960,1,0,sheet+afl
+Delaware,1962,1,0,sheet
+Delaware,1964,1,0,sheet
+Delaware,1967,1,0,sheet
+Delaware,1971,3,0,sheet
+Delaware,1973,2,0,sheet
+Delaware,1976,1,0,sheet
+Delaware,1979,1,0,sheet
+Delaware,1980,1,0,sheet
+Delaware,1981,1,0,sheet
+Delaware,1983,1,0,sheet
+Delaware,1985,1,0,sheet
+Delaware,1987,2,0,sheet
+Duke,1936,1,0,sheet
+Duke,1937,1,0,sheet
+Duke,1938,2,0,sheet
+Duke,1939,3,0,sheet
+Duke,1940,4,1,sheet
+Duke,1941,3,0,sheet
+Duke,1942,4,1,sheet
+Duke,1943,2,0,sheet
+Duke,1944,6,0,sheet
+Duke,1945,5,0,sheet
+Duke,1946,10,0,sheet
+Duke,1947,3,0,sheet
+Duke,1948,2,0,sheet
+Duke,1949,5,0,sheet
+Duke,1950,1,0,sheet
+Duke,1951,2,0,sheet
+Duke,1952,2,0,sheet
+Duke,1953,7,0,sheet
+Duke,1954,5,0,sheet
+Duke,1955,3,0,sheet
+Duke,1956,4,0,sheet
+Duke,1957,7,0,sheet
+Duke,1958,8,0,sheet
+Duke,1959,4,0,sheet
+Duke,1960,7,0,sheet+afl
+Duke,1961,3,0,sheet
+Duke,1962,1,0,sheet
+Duke,1963,1,0,sheet
+Duke,1964,1,0,sheet
+Duke,1965,4,1,sheet
+Duke,1966,2,0,sheet
+Duke,1967,2,1,sheet
+Duke,1968,1,0,sheet
+Duke,1969,2,0,sheet
+Duke,1970,1,0,sheet
+Duke,1971,3,0,sheet
+Duke,1972,1,0,sheet
+Duke,1973,4,0,sheet
+Duke,1974,1,0,sheet
+Duke,1975,1,0,sheet
+Duke,1977,3,0,sheet
+Duke,1978,1,0,sheet
+Duke,1979,1,0,sheet
+Duke,1982,3,0,sheet
+Duke,1983,1,0,sheet
+Duke,1984,1,0,sheet
+Duke,1987,1,1,sheet
+Duke,1988,1,0,sheet
+Duke,1989,1,0,sheet
+Duke,1990,2,0,sheet
+Duke,1998,1,0,carried
+Duke,1999,1,0,carried
+Duke,2000,1,0,carried
+Duke,2004,1,0,carried
+Duke,2013,1,0,carried
+Duke,2014,1,0,carried
+Duke,2015,2,1,carried
+Duke,2019,1,1,carried
+Duke,2021,4,0,carried
+Duke,2024,3,1,carried
+Duke,2026,3,0,carried
+East Carolina,1951,1,0,sheet
+East Carolina,1961,1,0,sheet
+East Carolina,1964,1,0,sheet
+East Carolina,1969,1,0,sheet
+East Carolina,1973,2,0,sheet
+East Carolina,1974,2,0,sheet
+East Carolina,1977,1,0,sheet
+East Carolina,1978,1,0,sheet
+East Carolina,1979,2,0,sheet
+East Carolina,1980,2,0,sheet
+East Carolina,1981,1,0,sheet
+East Carolina,1982,2,0,sheet
+East Carolina,1983,1,0,sheet
+East Carolina,1984,8,0,sheet
+East Carolina,1985,2,0,sheet
+East Carolina,1986,2,0,sheet
+East Carolina,1988,2,0,sheet
+East Carolina,1990,4,0,sheet
+East Carolina,1991,1,0,sheet
+East Carolina,1992,5,1,sheet
+East Carolina,1993,1,0,sheet
+East Carolina,1994,2,0,sheet
+East Carolina,1997,1,0,carried
+East Carolina,1998,1,0,carried
+East Carolina,1999,2,0,carried
+East Carolina,2002,2,0,carried
+East Carolina,2004,1,0,carried
+East Carolina,2006,1,0,carried
+East Carolina,2007,1,0,carried
+East Carolina,2008,1,1,carried
+East Carolina,2009,1,0,carried
+East Carolina,2010,3,0,carried
+East Carolina,2011,1,0,carried
+East Carolina,2015,1,0,carried
+East Carolina,2017,1,0,carried
+East Carolina,2021,1,0,carried
+East Carolina,2025,1,0,carried
+East Carolina,2026,1,0,carried
+Eastern Michigan,1955,1,0,sheet
+Eastern Michigan,1967,1,0,sheet
+Eastern Michigan,1970,1,0,sheet
+Eastern Michigan,1971,1,0,sheet
+Eastern Michigan,1972,4,0,sheet
+Eastern Michigan,1973,2,0,sheet
+Eastern Michigan,1974,4,0,sheet
+Eastern Michigan,1975,1,0,sheet
+Eastern Michigan,1976,1,0,sheet
+Eastern Michigan,1977,2,0,sheet
+Eastern Michigan,1978,1,1,sheet
+Eastern Michigan,1981,1,0,sheet
+Eastern Michigan,1988,1,0,sheet
+Eastern Michigan,1998,1,0,carried
+Eastern Michigan,1999,1,1,carried
+Eastern Michigan,2003,1,0,carried
+Eastern Michigan,2005,1,0,carried
+Eastern Michigan,2008,1,0,carried
+Eastern Michigan,2009,1,0,carried
+Eastern Michigan,2016,1,0,carried
+Eastern Michigan,2017,1,0,carried
+Eastern Michigan,2019,1,0,carried
+Eastern Michigan,2023,2,0,carried
+FIU,2007,2,0,carried
+FIU,2011,1,0,carried
+FIU,2012,1,0,carried
+FIU,2013,2,0,carried
+FIU,2017,1,0,carried
+FIU,2018,1,0,carried
+FIU,2020,2,0,carried
+Florida,1938,1,0,sheet
+Florida,1940,1,0,sheet
+Florida,1941,1,0,sheet
+Florida,1942,1,0,sheet
+Florida,1943,4,0,sheet
+Florida,1945,4,1,sheet
+Florida,1946,3,0,sheet
+Florida,1948,2,0,sheet
+Florida,1950,4,1,sheet
+Florida,1952,3,0,sheet
+Florida,1953,6,0,sheet
+Florida,1954,5,0,sheet
+Florida,1955,4,0,sheet
+Florida,1956,5,0,sheet
+Florida,1957,7,0,sheet
+Florida,1958,6,0,sheet
+Florida,1959,5,0,sheet
+Florida,1960,9,0,sheet+afl
+Florida,1961,3,0,sheet
+Florida,1962,2,0,sheet
+Florida,1963,5,0,sheet
+Florida,1964,3,0,sheet
+Florida,1965,5,0,sheet
+Florida,1966,4,0,sheet
+Florida,1967,4,1,sheet
+Florida,1968,1,0,sheet
+Florida,1969,4,1,sheet
+Florida,1970,2,1,sheet
+Florida,1971,1,1,sheet
+Florida,1972,4,1,sheet
+Florida,1973,2,0,sheet
+Florida,1974,5,0,sheet
+Florida,1975,4,1,sheet
+Florida,1976,8,0,sheet
+Florida,1977,4,0,sheet
+Florida,1978,10,1,sheet
+Florida,1979,2,0,sheet
+Florida,1980,1,0,sheet
+Florida,1981,4,0,sheet
+Florida,1982,3,0,sheet
+Florida,1983,4,1,sheet
+Florida,1984,4,1,sheet
+Florida,1985,6,2,sheet
+Florida,1986,7,2,sheet
+Florida,1987,6,1,sheet
+Florida,1988,4,1,sheet
+Florida,1989,7,3,sheet
+Florida,1990,4,1,sheet
+Florida,1991,5,1,sheet
+Florida,1992,9,0,sheet
+Florida,1993,2,0,sheet
+Florida,1994,4,0,sheet
+Florida,1995,4,2,carried
+Florida,1997,4,2,carried
+Florida,1998,5,2,carried
+Florida,1999,8,2,carried
+Florida,2000,5,1,carried
+Florida,2001,4,2,carried
+Florida,2002,8,1,carried
+Florida,2003,8,1,carried
+Florida,2004,5,0,carried
+Florida,2005,3,0,carried
+Florida,2006,3,0,carried
+Florida,2007,9,2,carried
+Florida,2008,2,1,carried
+Florida,2009,3,1,carried
+Florida,2010,9,3,carried
+Florida,2011,4,1,carried
+Florida,2012,2,0,carried
+Florida,2013,8,2,carried
+Florida,2014,4,1,carried
+Florida,2015,8,2,carried
+Florida,2016,7,2,carried
+Florida,2017,8,1,carried
+Florida,2018,5,1,carried
+Florida,2019,5,0,carried
+Florida,2020,7,1,carried
+Florida,2021,8,2,carried
+Florida,2022,3,1,carried
+Florida,2023,6,1,carried
+Florida,2024,1,1,carried
+Florida,2025,7,0,carried
+Florida,2026,7,1,carried
+Florida Atlantic,2010,1,0,carried
+Florida Atlantic,2011,1,0,carried
+Florida Atlantic,2012,1,0,carried
+Florida Atlantic,2014,2,0,carried
+Florida Atlantic,2015,1,0,carried
+Florida Atlantic,2017,1,0,carried
+Florida Atlantic,2019,2,0,carried
+Florida Atlantic,2020,1,0,carried
+Florida State,1951,3,0,sheet
+Florida State,1952,1,0,sheet
+Florida State,1954,3,0,sheet
+Florida State,1955,2,0,sheet
+Florida State,1956,2,0,sheet
+Florida State,1957,1,0,sheet
+Florida State,1958,2,0,sheet
+Florida State,1961,1,0,sheet
+Florida State,1962,2,0,sheet
+Florida State,1963,1,0,sheet
+Florida State,1964,1,0,sheet
+Florida State,1965,2,0,sheet
+Florida State,1966,2,0,sheet
+Florida State,1967,2,0,sheet
+Florida State,1968,5,0,sheet
+Florida State,1969,5,1,sheet
+Florida State,1970,4,0,sheet
+Florida State,1971,1,0,sheet
+Florida State,1972,3,0,sheet
+Florida State,1973,6,2,sheet
+Florida State,1974,1,0,sheet
+Florida State,1975,1,0,sheet
+Florida State,1976,3,0,sheet
+Florida State,1977,2,0,sheet
+Florida State,1978,4,0,sheet
+Florida State,1979,2,0,sheet
+Florida State,1980,4,0,sheet
+Florida State,1981,5,1,sheet
+Florida State,1982,3,0,sheet
+Florida State,1984,2,1,sheet
+Florida State,1985,4,1,sheet
+Florida State,1986,6,0,sheet
+Florida State,1987,1,0,sheet
+Florida State,1988,4,0,sheet
+Florida State,1989,6,2,sheet
+Florida State,1990,7,1,sheet
+Florida State,1991,5,0,sheet
+Florida State,1992,6,1,sheet
+Florida State,1993,6,1,sheet
+Florida State,1994,6,1,sheet
+Florida State,1995,10,3,carried
+Florida State,1997,7,4,carried
+Florida State,1998,9,2,carried
+Florida State,1999,4,0,carried
+Florida State,2000,7,3,carried
+Florida State,2001,9,2,carried
+Florida State,2002,2,1,carried
+Florida State,2003,6,0,carried
+Florida State,2004,5,0,carried
+Florida State,2005,9,2,carried
+Florida State,2006,8,4,carried
+Florida State,2007,5,1,carried
+Florida State,2008,3,0,carried
+Florida State,2009,1,0,carried
+Florida State,2010,3,1,carried
+Florida State,2011,3,1,carried
+Florida State,2012,4,0,carried
+Florida State,2013,11,3,carried
+Florida State,2014,7,1,carried
+Florida State,2015,11,2,carried
+Florida State,2016,2,1,carried
+Florida State,2017,4,0,carried
+Florida State,2018,6,1,carried
+Florida State,2019,2,1,carried
+Florida State,2020,1,0,carried
+Florida State,2021,4,0,carried
+Florida State,2022,1,1,carried
+Florida State,2023,1,0,carried
+Florida State,2024,10,1,carried
+Florida State,2025,2,0,carried
+Florida State,2026,1,0,carried
+Fresno State,1941,1,0,sheet
+Fresno State,1944,3,0,sheet
+Fresno State,1945,1,0,sheet
+Fresno State,1947,1,0,sheet
+Fresno State,1950,1,0,sheet
+Fresno State,1953,1,0,sheet
+Fresno State,1954,1,0,sheet
+Fresno State,1957,3,0,sheet
+Fresno State,1958,1,0,sheet
+Fresno State,1960,2,0,sheet+afl
+Fresno State,1961,1,0,sheet
+Fresno State,1962,4,0,sheet
+Fresno State,1963,4,0,sheet
+Fresno State,1964,1,0,sheet
+Fresno State,1965,1,0,sheet
+Fresno State,1967,2,0,sheet
+Fresno State,1968,2,0,sheet
+Fresno State,1969,1,0,sheet
+Fresno State,1970,1,0,sheet
+Fresno State,1973,2,0,sheet
+Fresno State,1976,2,0,sheet
+Fresno State,1978,2,0,sheet
+Fresno State,1979,2,0,sheet
+Fresno State,1981,1,0,sheet
+Fresno State,1982,2,0,sheet
+Fresno State,1983,1,0,sheet
+Fresno State,1984,1,0,sheet
+Fresno State,1987,5,0,sheet
+Fresno State,1988,3,0,sheet
+Fresno State,1989,1,0,sheet
+Fresno State,1990,5,1,sheet
+Fresno State,1991,1,0,sheet
+Fresno State,1992,3,0,sheet
+Fresno State,1993,1,0,sheet
+Fresno State,1994,5,1,sheet
+Fresno State,1995,1,0,carried
+Fresno State,1997,2,0,carried
+Fresno State,1998,2,0,carried
+Fresno State,1999,1,0,carried
+Fresno State,2001,1,0,carried
+Fresno State,2002,4,1,carried
+Fresno State,2003,1,0,carried
+Fresno State,2004,1,0,carried
+Fresno State,2005,2,1,carried
+Fresno State,2006,3,0,carried
+Fresno State,2007,4,0,carried
+Fresno State,2008,1,0,carried
+Fresno State,2009,2,0,carried
+Fresno State,2010,1,1,carried
+Fresno State,2011,2,0,carried
+Fresno State,2012,1,0,carried
+Fresno State,2013,1,0,carried
+Fresno State,2014,2,0,carried
+Fresno State,2015,3,0,carried
+Fresno State,2019,1,0,carried
+Fresno State,2020,2,0,carried
+Fresno State,2022,1,0,carried
+Fresno State,2023,1,0,carried
+Georgia,1938,2,0,sheet
+Georgia,1939,2,0,sheet
+Georgia,1940,1,0,sheet
+Georgia,1942,2,0,sheet
+Georgia,1943,7,1,sheet
+Georgia,1944,4,0,sheet
+Georgia,1945,6,1,sheet
+Georgia,1946,7,0,sheet
+Georgia,1947,5,0,sheet
+Georgia,1948,5,1,sheet
+Georgia,1949,5,1,sheet
+Georgia,1950,5,0,sheet
+Georgia,1951,5,0,sheet
+Georgia,1952,6,0,sheet
+Georgia,1953,5,1,sheet
+Georgia,1954,3,0,sheet
+Georgia,1955,4,0,sheet
+Georgia,1956,1,0,sheet
+Georgia,1957,4,0,sheet
+Georgia,1958,3,0,sheet
+Georgia,1959,3,0,sheet
+Georgia,1960,16,0,sheet+afl
+Georgia,1961,2,0,sheet
+Georgia,1962,4,0,sheet
+Georgia,1963,1,0,sheet
+Georgia,1964,5,0,sheet
+Georgia,1965,2,0,sheet
+Georgia,1966,5,0,sheet
+Georgia,1967,2,0,sheet
+Georgia,1968,4,0,sheet
+Georgia,1969,4,1,sheet
+Georgia,1970,2,0,sheet
+Georgia,1971,1,0,sheet
+Georgia,1972,5,1,sheet
+Georgia,1973,1,0,sheet
+Georgia,1974,5,0,sheet
+Georgia,1975,7,0,sheet
+Georgia,1976,5,0,sheet
+Georgia,1977,7,0,sheet
+Georgia,1978,3,0,sheet
+Georgia,1979,3,0,sheet
+Georgia,1980,2,0,sheet
+Georgia,1981,4,0,sheet
+Georgia,1982,1,1,sheet
+Georgia,1983,2,0,sheet
+Georgia,1984,5,0,sheet
+Georgia,1985,7,0,sheet
+Georgia,1986,2,0,sheet
+Georgia,1987,2,0,sheet
+Georgia,1988,2,0,sheet
+Georgia,1989,6,1,sheet
+Georgia,1990,3,2,sheet
+Georgia,1991,2,0,sheet
+Georgia,1993,4,1,sheet
+Georgia,1994,3,1,sheet
+Georgia,1995,3,0,carried
+Georgia,1997,3,0,carried
+Georgia,1998,4,1,carried
+Georgia,1999,6,2,carried
+Georgia,2000,3,0,carried
+Georgia,2001,6,2,carried
+Georgia,2002,8,1,carried
+Georgia,2003,7,2,carried
+Georgia,2004,4,1,carried
+Georgia,2005,6,2,carried
+Georgia,2006,7,0,carried
+Georgia,2007,4,0,carried
+Georgia,2008,4,0,carried
+Georgia,2009,6,2,carried
+Georgia,2010,5,0,carried
+Georgia,2011,6,1,carried
+Georgia,2012,7,0,carried
+Georgia,2013,8,2,carried
+Georgia,2014,2,0,carried
+Georgia,2015,5,1,carried
+Georgia,2016,5,1,carried
+Georgia,2017,1,0,carried
+Georgia,2018,6,3,carried
+Georgia,2019,7,1,carried
+Georgia,2020,7,2,carried
+Georgia,2021,9,1,carried
+Georgia,2022,15,5,carried
+Georgia,2023,10,3,carried
+Georgia,2024,8,2,carried
+Georgia,2025,13,3,carried
+Georgia,2026,8,1,carried
+Georgia Southern,1987,2,0,sheet
+Georgia Southern,1988,1,0,sheet
+Georgia Southern,1989,1,0,sheet
+Georgia Southern,1990,1,0,sheet
+Georgia Southern,2000,1,0,carried
+Georgia Southern,2002,1,0,carried
+Georgia Southern,2003,1,0,carried
+Georgia Southern,2013,1,0,carried
+Georgia Southern,2014,2,0,carried
+Georgia Southern,2016,1,0,carried
+Georgia Southern,2017,1,0,carried
+Georgia Southern,2020,2,0,carried
+Georgia State,2017,1,0,carried
+Georgia State,2024,1,0,carried
+Georgia State,2026,1,0,carried
+Georgia Tech,1937,1,0,sheet
+Georgia Tech,1938,2,0,sheet
+Georgia Tech,1940,1,0,sheet
+Georgia Tech,1943,1,0,sheet
+Georgia Tech,1944,2,0,sheet
+Georgia Tech,1945,1,1,sheet
+Georgia Tech,1946,9,0,sheet
+Georgia Tech,1947,2,0,sheet
+Georgia Tech,1948,4,0,sheet
+Georgia Tech,1949,4,0,sheet
+Georgia Tech,1951,4,0,sheet
+Georgia Tech,1952,3,0,sheet
+Georgia Tech,1953,6,0,sheet
+Georgia Tech,1954,10,0,sheet
+Georgia Tech,1955,4,1,sheet
+Georgia Tech,1956,2,0,sheet
+Georgia Tech,1957,6,0,sheet
+Georgia Tech,1958,5,0,sheet
+Georgia Tech,1959,4,0,sheet
+Georgia Tech,1960,10,0,sheet+afl
+Georgia Tech,1961,5,0,sheet
+Georgia Tech,1962,2,0,sheet
+Georgia Tech,1963,6,1,sheet
+Georgia Tech,1964,4,0,sheet
+Georgia Tech,1965,4,0,sheet
+Georgia Tech,1966,3,0,sheet
+Georgia Tech,1967,2,0,sheet
+Georgia Tech,1968,3,0,sheet
+Georgia Tech,1969,4,0,sheet
+Georgia Tech,1971,1,0,sheet
+Georgia Tech,1972,1,0,sheet
+Georgia Tech,1973,2,0,sheet
+Georgia Tech,1975,4,0,sheet
+Georgia Tech,1976,4,0,sheet
+Georgia Tech,1977,3,0,sheet
+Georgia Tech,1978,3,0,sheet
+Georgia Tech,1979,7,2,sheet
+Georgia Tech,1980,3,0,sheet
+Georgia Tech,1982,1,0,sheet
+Georgia Tech,1983,3,0,sheet
+Georgia Tech,1984,1,0,sheet
+Georgia Tech,1985,2,0,sheet
+Georgia Tech,1986,3,0,sheet
+Georgia Tech,1987,4,0,sheet
+Georgia Tech,1988,2,0,sheet
+Georgia Tech,1989,2,0,sheet
+Georgia Tech,1990,1,0,sheet
+Georgia Tech,1991,2,0,sheet
+Georgia Tech,1992,5,1,sheet
+Georgia Tech,1993,2,0,sheet
+Georgia Tech,1994,2,0,sheet
+Georgia Tech,1995,3,0,carried
+Georgia Tech,1998,2,1,carried
+Georgia Tech,1999,3,0,carried
+Georgia Tech,2000,3,0,carried
+Georgia Tech,2002,2,0,carried
+Georgia Tech,2004,5,0,carried
+Georgia Tech,2006,3,0,carried
+Georgia Tech,2007,2,1,carried
+Georgia Tech,2008,3,0,carried
+Georgia Tech,2009,4,0,carried
+Georgia Tech,2010,4,2,carried
+Georgia Tech,2011,1,0,carried
+Georgia Tech,2012,1,0,carried
+Georgia Tech,2014,3,0,carried
+Georgia Tech,2015,3,0,carried
+Georgia Tech,2016,2,0,carried
+Georgia Tech,2017,1,0,carried
+Georgia Tech,2020,1,0,carried
+Georgia Tech,2021,2,0,carried
+Georgia Tech,2022,1,0,carried
+Georgia Tech,2023,1,0,carried
+Georgia Tech,2025,2,0,carried
+Georgia Tech,2026,2,1,carried
+Hawaii,1968,1,0,sheet
+Hawaii,1969,2,0,sheet
+Hawaii,1970,1,0,sheet
+Hawaii,1971,2,0,sheet
+Hawaii,1972,2,0,sheet
+Hawaii,1973,1,0,sheet
+Hawaii,1974,2,0,sheet
+Hawaii,1976,2,0,sheet
+Hawaii,1977,1,0,sheet
+Hawaii,1979,1,0,sheet
+Hawaii,1980,2,0,sheet
+Hawaii,1982,4,0,sheet
+Hawaii,1983,3,0,sheet
+Hawaii,1984,2,0,sheet
+Hawaii,1985,3,0,sheet
+Hawaii,1986,3,0,sheet
+Hawaii,1987,4,0,sheet
+Hawaii,1988,2,0,sheet
+Hawaii,1990,1,0,sheet
+Hawaii,1992,1,0,sheet
+Hawaii,1993,3,0,sheet
+Hawaii,1994,1,0,sheet
+Hawaii,2000,3,0,carried
+Hawaii,2001,1,0,carried
+Hawaii,2002,1,1,carried
+Hawaii,2003,3,0,carried
+Hawaii,2004,2,0,carried
+Hawaii,2005,1,0,carried
+Hawaii,2007,5,0,carried
+Hawaii,2008,1,0,carried
+Hawaii,2009,3,0,carried
+Hawaii,2011,3,0,carried
+Hawaii,2012,1,0,carried
+Hawaii,2015,1,0,carried
+Hawaii,2019,2,0,carried
+Hawaii,2020,1,0,carried
+Houston,1951,1,0,sheet
+Houston,1952,3,0,sheet
+Houston,1953,4,0,sheet
+Houston,1954,6,0,sheet
+Houston,1955,1,0,sheet
+Houston,1956,3,0,sheet
+Houston,1957,9,0,sheet
+Houston,1958,4,0,sheet
+Houston,1959,6,0,sheet
+Houston,1960,5,0,sheet+afl
+Houston,1961,1,0,sheet
+Houston,1962,4,0,sheet
+Houston,1963,1,0,sheet
+Houston,1967,7,0,sheet
+Houston,1968,9,0,sheet
+Houston,1969,6,0,sheet
+Houston,1970,3,0,sheet
+Houston,1971,10,1,sheet
+Houston,1972,5,1,sheet
+Houston,1974,1,0,sheet
+Houston,1975,9,1,sheet
+Houston,1976,2,0,sheet
+Houston,1977,4,1,sheet
+Houston,1978,2,0,sheet
+Houston,1979,4,1,sheet
+Houston,1980,3,0,sheet
+Houston,1981,2,1,sheet
+Houston,1982,3,0,sheet
+Houston,1983,3,0,sheet
+Houston,1984,5,0,sheet
+Houston,1985,3,0,sheet
+Houston,1986,4,0,sheet
+Houston,1989,3,0,sheet
+Houston,1990,7,2,sheet
+Houston,1991,2,0,sheet
+Houston,1992,5,1,sheet
+Houston,1994,3,0,sheet
+Houston,1995,1,1,carried
+Houston,1997,4,1,carried
+Houston,1998,2,0,carried
+Houston,2000,1,0,carried
+Houston,2003,1,0,carried
+Houston,2004,1,0,carried
+Houston,2005,1,0,carried
+Houston,2007,1,0,carried
+Houston,2008,1,0,carried
+Houston,2009,1,0,carried
+Houston,2010,1,0,carried
+Houston,2013,1,1,carried
+Houston,2016,3,1,carried
+Houston,2017,3,0,carried
+Houston,2018,1,0,carried
+Houston,2019,3,1,carried
+Houston,2020,1,0,carried
+Houston,2021,3,1,carried
+Houston,2022,3,0,carried
+Houston,2023,4,0,carried
+Houston,2024,1,0,carried
+Houston,2026,1,0,carried
+Illinois,1937,1,0,sheet
+Illinois,1939,1,0,sheet
+Illinois,1940,2,0,sheet
+Illinois,1941,1,0,sheet
+Illinois,1943,1,0,sheet
+Illinois,1944,6,1,sheet
+Illinois,1945,2,0,sheet
+Illinois,1946,7,0,sheet
+Illinois,1947,6,0,sheet
+Illinois,1948,5,0,sheet
+Illinois,1949,5,0,sheet
+Illinois,1950,4,0,sheet
+Illinois,1951,7,0,sheet
+Illinois,1952,9,0,sheet
+Illinois,1953,3,0,sheet
+Illinois,1954,6,2,sheet
+Illinois,1955,2,0,sheet
+Illinois,1956,4,0,sheet
+Illinois,1957,4,0,sheet
+Illinois,1958,4,0,sheet
+Illinois,1959,5,1,sheet
+Illinois,1960,4,0,sheet+afl
+Illinois,1961,7,1,sheet
+Illinois,1962,3,0,sheet
+Illinois,1963,2,0,sheet
+Illinois,1965,5,2,sheet
+Illinois,1966,7,1,sheet
+Illinois,1967,2,0,sheet
+Illinois,1968,5,0,sheet
+Illinois,1969,3,0,sheet
+Illinois,1971,2,0,sheet
+Illinois,1973,5,0,sheet
+Illinois,1974,2,0,sheet
+Illinois,1975,3,0,sheet
+Illinois,1976,4,0,sheet
+Illinois,1977,2,0,sheet
+Illinois,1978,1,0,sheet
+Illinois,1979,3,0,sheet
+Illinois,1980,1,0,sheet
+Illinois,1981,2,0,sheet
+Illinois,1982,3,0,sheet
+Illinois,1983,5,1,sheet
+Illinois,1984,9,0,sheet
+Illinois,1985,3,0,sheet
+Illinois,1986,9,0,sheet
+Illinois,1987,2,0,sheet
+Illinois,1988,5,1,sheet
+Illinois,1989,1,0,sheet
+Illinois,1990,2,1,sheet
+Illinois,1991,6,1,sheet
+Illinois,1992,3,0,sheet
+Illinois,1993,1,1,sheet
+Illinois,1994,1,0,sheet
+Illinois,1995,4,0,carried
+Illinois,1997,1,0,carried
+Illinois,1998,1,0,carried
+Illinois,1999,1,0,carried
+Illinois,2000,2,0,carried
+Illinois,2001,2,0,carried
+Illinois,2002,1,0,carried
+Illinois,2003,5,0,carried
+Illinois,2004,2,0,carried
+Illinois,2005,2,0,carried
+Illinois,2007,1,0,carried
+Illinois,2008,1,1,carried
+Illinois,2009,3,1,carried
+Illinois,2010,3,0,carried
+Illinois,2011,4,1,carried
+Illinois,2012,4,2,carried
+Illinois,2013,4,0,carried
+Illinois,2016,3,0,carried
+Illinois,2017,1,0,carried
+Illinois,2019,1,0,carried
+Illinois,2021,2,0,carried
+Illinois,2022,3,0,carried
+Illinois,2023,4,1,carried
+Illinois,2024,4,0,carried
+Illinois,2025,1,0,carried
+Illinois,2026,3,0,carried
+Indiana,1936,1,0,sheet
+Indiana,1937,2,0,sheet
+Indiana,1938,4,1,sheet
+Indiana,1939,3,0,sheet
+Indiana,1941,3,0,sheet
+Indiana,1942,1,0,sheet
+Indiana,1943,1,0,sheet
+Indiana,1944,6,1,sheet
+Indiana,1945,3,0,sheet
+Indiana,1946,2,0,sheet
+Indiana,1947,5,0,sheet
+Indiana,1948,3,0,sheet
+Indiana,1949,4,0,sheet
+Indiana,1950,1,0,sheet
+Indiana,1952,5,0,sheet
+Indiana,1953,2,0,sheet
+Indiana,1954,1,0,sheet
+Indiana,1955,1,0,sheet
+Indiana,1956,1,0,sheet
+Indiana,1957,5,0,sheet
+Indiana,1958,3,0,sheet
+Indiana,1959,4,0,sheet
+Indiana,1960,4,0,sheet+afl
+Indiana,1961,5,0,sheet
+Indiana,1963,3,0,sheet
+Indiana,1964,1,1,sheet
+Indiana,1965,2,1,sheet
+Indiana,1966,4,1,sheet
+Indiana,1967,1,0,sheet
+Indiana,1968,3,1,sheet
+Indiana,1969,3,0,sheet
+Indiana,1970,3,0,sheet
+Indiana,1971,2,0,sheet
+Indiana,1972,1,0,sheet
+Indiana,1973,5,0,sheet
+Indiana,1974,2,1,sheet
+Indiana,1975,1,0,sheet
+Indiana,1976,7,0,sheet
+Indiana,1977,1,0,sheet
+Indiana,1978,1,0,sheet
+Indiana,1979,1,0,sheet
+Indiana,1980,1,0,sheet
+Indiana,1981,3,0,sheet
+Indiana,1983,2,0,sheet
+Indiana,1984,1,0,sheet
+Indiana,1985,2,1,sheet
+Indiana,1986,2,0,sheet
+Indiana,1987,2,0,sheet
+Indiana,1988,4,1,sheet
+Indiana,1989,2,0,sheet
+Indiana,1990,2,0,sheet
+Indiana,1991,3,0,sheet
+Indiana,1992,2,1,sheet
+Indiana,1993,2,0,sheet
+Indiana,1994,1,1,sheet
+Indiana,1995,2,0,carried
+Indiana,1997,2,0,carried
+Indiana,1998,2,0,carried
+Indiana,2002,1,0,carried
+Indiana,2003,1,0,carried
+Indiana,2005,1,0,carried
+Indiana,2006,2,0,carried
+Indiana,2008,2,0,carried
+Indiana,2010,3,0,carried
+Indiana,2011,2,0,carried
+Indiana,2014,2,0,carried
+Indiana,2015,1,0,carried
+Indiana,2016,3,0,carried
+Indiana,2017,1,0,carried
+Indiana,2018,2,0,carried
+Indiana,2019,1,0,carried
+Indiana,2020,1,0,carried
+Indiana,2021,1,0,carried
+Indiana,2022,1,0,carried
+Indiana,2025,2,0,carried
+Indiana,2026,8,2,carried
+Iowa,1936,1,1,sheet
+Iowa,1938,1,0,sheet
+Iowa,1939,1,0,sheet
+Iowa,1940,3,0,sheet
+Iowa,1941,1,0,sheet
+Iowa,1942,3,0,sheet
+Iowa,1943,3,0,sheet
+Iowa,1945,7,0,sheet
+Iowa,1946,1,0,sheet
+Iowa,1947,4,0,sheet
+Iowa,1948,3,0,sheet
+Iowa,1949,4,0,sheet
+Iowa,1950,1,0,sheet
+Iowa,1951,2,0,sheet
+Iowa,1952,2,0,sheet
+Iowa,1954,4,0,sheet
+Iowa,1955,4,0,sheet
+Iowa,1956,5,0,sheet
+Iowa,1957,4,0,sheet
+Iowa,1958,7,1,sheet
+Iowa,1959,4,1,sheet
+Iowa,1960,12,0,sheet+afl
+Iowa,1961,2,0,sheet
+Iowa,1962,4,0,sheet
+Iowa,1963,4,0,sheet
+Iowa,1964,6,0,sheet
+Iowa,1965,1,0,sheet
+Iowa,1966,6,1,sheet
+Iowa,1967,2,0,sheet
+Iowa,1969,2,0,sheet
+Iowa,1970,4,0,sheet
+Iowa,1971,3,0,sheet
+Iowa,1972,3,1,sheet
+Iowa,1973,4,0,sheet
+Iowa,1974,1,0,sheet
+Iowa,1975,1,0,sheet
+Iowa,1976,5,1,sheet
+Iowa,1978,2,0,sheet
+Iowa,1979,2,0,sheet
+Iowa,1980,2,0,sheet
+Iowa,1981,3,0,sheet
+Iowa,1982,2,1,sheet
+Iowa,1983,3,0,sheet
+Iowa,1984,5,1,sheet
+Iowa,1985,4,0,sheet
+Iowa,1986,5,3,sheet
+Iowa,1987,4,0,sheet
+Iowa,1988,4,0,sheet
+Iowa,1989,4,0,sheet
+Iowa,1990,2,0,sheet
+Iowa,1991,4,0,sheet
+Iowa,1992,5,0,sheet
+Iowa,1993,3,0,sheet
+Iowa,1994,1,0,sheet
+Iowa,1995,1,0,carried
+Iowa,1997,4,2,carried
+Iowa,1998,4,0,carried
+Iowa,1999,2,0,carried
+Iowa,2000,2,0,carried
+Iowa,2001,1,0,carried
+Iowa,2002,3,0,carried
+Iowa,2003,5,1,carried
+Iowa,2004,5,1,carried
+Iowa,2005,5,0,carried
+Iowa,2006,2,1,carried
+Iowa,2007,3,0,carried
+Iowa,2008,3,0,carried
+Iowa,2009,4,0,carried
+Iowa,2010,6,1,carried
+Iowa,2011,6,1,carried
+Iowa,2012,6,1,carried
+Iowa,2013,1,0,carried
+Iowa,2014,3,0,carried
+Iowa,2015,3,1,carried
+Iowa,2016,1,0,carried
+Iowa,2017,4,0,carried
+Iowa,2018,3,0,carried
+Iowa,2019,4,2,carried
+Iowa,2020,5,1,carried
+Iowa,2021,4,0,carried
+Iowa,2022,2,1,carried
+Iowa,2023,4,2,carried
+Iowa,2024,4,0,carried
+Iowa,2025,5,0,carried
+Iowa,2026,7,0,carried
+Iowa State,1939,6,0,sheet
+Iowa State,1941,1,0,sheet
+Iowa State,1943,2,0,sheet
+Iowa State,1944,1,0,sheet
+Iowa State,1945,1,0,sheet
+Iowa State,1947,1,0,sheet
+Iowa State,1948,1,0,sheet
+Iowa State,1949,1,0,sheet
+Iowa State,1950,3,0,sheet
+Iowa State,1951,3,0,sheet
+Iowa State,1952,3,0,sheet
+Iowa State,1953,2,0,sheet
+Iowa State,1955,1,0,sheet
+Iowa State,1956,1,0,sheet
+Iowa State,1957,1,0,sheet
+Iowa State,1958,2,0,sheet
+Iowa State,1959,1,0,sheet
+Iowa State,1960,2,0,sheet+afl
+Iowa State,1961,1,0,sheet
+Iowa State,1963,2,0,sheet
+Iowa State,1964,2,0,sheet
+Iowa State,1965,2,0,sheet
+Iowa State,1966,2,0,sheet
+Iowa State,1967,4,0,sheet
+Iowa State,1968,3,0,sheet
+Iowa State,1969,1,0,sheet
+Iowa State,1971,5,0,sheet
+Iowa State,1972,1,0,sheet
+Iowa State,1973,5,1,sheet
+Iowa State,1974,6,0,sheet
+Iowa State,1975,5,0,sheet
+Iowa State,1976,4,0,sheet
+Iowa State,1977,4,0,sheet
+Iowa State,1978,1,0,sheet
+Iowa State,1979,1,0,sheet
+Iowa State,1981,1,0,sheet
+Iowa State,1982,2,0,sheet
+Iowa State,1983,1,0,sheet
+Iowa State,1984,3,0,sheet
+Iowa State,1985,1,0,sheet
+Iowa State,1986,1,0,sheet
+Iowa State,1987,3,0,sheet
+Iowa State,1989,1,0,sheet
+Iowa State,1990,2,0,sheet
+Iowa State,1991,3,0,sheet
+Iowa State,1997,2,0,carried
+Iowa State,1998,1,0,carried
+Iowa State,2001,3,0,carried
+Iowa State,2002,1,0,carried
+Iowa State,2003,1,0,carried
+Iowa State,2005,1,0,carried
+Iowa State,2006,1,0,carried
+Iowa State,2007,1,0,carried
+Iowa State,2008,2,0,carried
+Iowa State,2010,1,0,carried
+Iowa State,2012,1,0,carried
+Iowa State,2013,2,0,carried
+Iowa State,2014,1,0,carried
+Iowa State,2019,2,0,carried
+Iowa State,2021,1,0,carried
+Iowa State,2022,4,0,carried
+Iowa State,2023,3,1,carried
+Iowa State,2024,1,0,carried
+Iowa State,2025,4,0,carried
+Iowa State,2026,1,0,carried
+Jacksonville State,1957,1,0,sheet
+Jacksonville State,1958,1,0,sheet
+Jacksonville State,1960,1,0,sheet
+Jacksonville State,1966,1,0,sheet
+Jacksonville State,1971,1,0,sheet
+Jacksonville State,1979,1,0,sheet
+Jacksonville State,1987,1,0,sheet
+Jacksonville State,1990,2,0,sheet
+Jacksonville State,1991,2,0,sheet
+James Madison,1986,1,0,sheet
+James Madison,1987,1,0,sheet
+James Madison,1988,1,0,sheet
+James Madison,1989,1,0,sheet
+James Madison,1990,1,0,sheet
+Kansas,1938,1,0,sheet
+Kansas,1939,2,0,sheet
+Kansas,1940,1,0,sheet
+Kansas,1942,2,0,sheet
+Kansas,1944,4,1,sheet
+Kansas,1945,1,0,sheet
+Kansas,1947,2,0,sheet
+Kansas,1948,2,0,sheet
+Kansas,1949,2,0,sheet
+Kansas,1950,4,0,sheet
+Kansas,1951,3,0,sheet
+Kansas,1952,2,0,sheet
+Kansas,1953,6,0,sheet
+Kansas,1954,4,0,sheet
+Kansas,1955,1,0,sheet
+Kansas,1956,2,0,sheet
+Kansas,1957,7,0,sheet
+Kansas,1958,2,0,sheet
+Kansas,1959,2,0,sheet
+Kansas,1960,6,0,sheet+afl
+Kansas,1961,1,0,sheet
+Kansas,1962,3,1,sheet
+Kansas,1963,1,0,sheet
+Kansas,1965,3,1,sheet
+Kansas,1967,2,0,sheet
+Kansas,1968,1,0,sheet
+Kansas,1969,7,0,sheet
+Kansas,1970,5,0,sheet
+Kansas,1971,4,1,sheet
+Kansas,1972,5,0,sheet
+Kansas,1973,4,0,sheet
+Kansas,1974,5,1,sheet
+Kansas,1975,5,0,sheet
+Kansas,1976,5,0,sheet
+Kansas,1977,7,1,sheet
+Kansas,1978,4,0,sheet
+Kansas,1979,1,0,sheet
+Kansas,1980,4,0,sheet
+Kansas,1981,2,1,sheet
+Kansas,1982,2,0,sheet
+Kansas,1983,2,0,sheet
+Kansas,1984,3,0,sheet
+Kansas,1986,4,0,sheet
+Kansas,1987,1,0,sheet
+Kansas,1991,1,0,sheet
+Kansas,1992,2,0,sheet
+Kansas,1993,2,1,sheet
+Kansas,1994,1,0,sheet
+Kansas,1995,2,0,carried
+Kansas,1997,3,0,carried
+Kansas,1998,1,0,carried
+Kansas,2001,1,0,carried
+Kansas,2002,2,0,carried
+Kansas,2004,1,0,carried
+Kansas,2005,1,0,carried
+Kansas,2008,4,1,carried
+Kansas,2010,3,0,carried
+Kansas,2013,1,0,carried
+Kansas,2015,3,0,carried
+Kansas,2018,1,0,carried
+Kansas,2020,1,0,carried
+Kansas,2022,1,0,carried
+Kansas,2024,2,0,carried
+Kansas,2025,2,0,carried
+Kansas,2026,2,0,carried
+Kansas State,1937,3,0,sheet
+Kansas State,1940,3,0,sheet
+Kansas State,1941,1,0,sheet
+Kansas State,1944,2,0,sheet
+Kansas State,1945,3,0,sheet
+Kansas State,1946,1,0,sheet
+Kansas State,1950,1,0,sheet
+Kansas State,1954,1,1,sheet
+Kansas State,1955,4,0,sheet
+Kansas State,1956,4,0,sheet
+Kansas State,1958,4,0,sheet
+Kansas State,1959,1,0,sheet
+Kansas State,1960,4,0,sheet+afl
+Kansas State,1961,1,0,sheet
+Kansas State,1963,1,0,sheet
+Kansas State,1964,1,0,sheet
+Kansas State,1965,2,0,sheet
+Kansas State,1966,2,0,sheet
+Kansas State,1968,1,0,sheet
+Kansas State,1969,4,0,sheet
+Kansas State,1970,6,0,sheet
+Kansas State,1971,7,1,sheet
+Kansas State,1972,5,0,sheet
+Kansas State,1973,2,0,sheet
+Kansas State,1974,7,0,sheet
+Kansas State,1975,3,0,sheet
+Kansas State,1978,1,0,sheet
+Kansas State,1979,2,0,sheet
+Kansas State,1980,1,0,sheet
+Kansas State,1981,1,0,sheet
+Kansas State,1982,1,0,sheet
+Kansas State,1986,2,0,sheet
+Kansas State,1988,1,0,sheet
+Kansas State,1990,1,0,sheet
+Kansas State,1992,3,0,sheet
+Kansas State,1994,2,0,sheet
+Kansas State,1995,2,0,carried
+Kansas State,1997,2,1,carried
+Kansas State,1998,1,0,carried
+Kansas State,1999,6,0,carried
+Kansas State,2000,5,0,carried
+Kansas State,2001,6,0,carried
+Kansas State,2002,6,0,carried
+Kansas State,2003,4,1,carried
+Kansas State,2004,2,0,carried
+Kansas State,2005,1,0,carried
+Kansas State,2006,1,0,carried
+Kansas State,2007,3,0,carried
+Kansas State,2008,2,0,carried
+Kansas State,2009,1,1,carried
+Kansas State,2010,1,0,carried
+Kansas State,2011,1,0,carried
+Kansas State,2012,1,0,carried
+Kansas State,2013,3,0,carried
+Kansas State,2014,1,0,carried
+Kansas State,2015,2,0,carried
+Kansas State,2016,1,0,carried
+Kansas State,2017,2,0,carried
+Kansas State,2018,1,0,carried
+Kansas State,2019,2,0,carried
+Kansas State,2021,1,0,carried
+Kansas State,2022,2,0,carried
+Kansas State,2023,4,1,carried
+Kansas State,2024,3,0,carried
+Kansas State,2025,3,0,carried
+Kansas State,2026,2,0,carried
+Kent State,1954,2,0,sheet
+Kent State,1956,1,0,sheet
+Kent State,1957,1,0,sheet
+Kent State,1959,1,0,sheet
+Kent State,1960,4,0,sheet+afl
+Kent State,1964,1,0,sheet
+Kent State,1966,1,0,sheet
+Kent State,1967,4,0,sheet
+Kent State,1968,4,0,sheet
+Kent State,1969,1,0,sheet
+Kent State,1970,1,0,sheet
+Kent State,1971,1,0,sheet
+Kent State,1974,2,0,sheet
+Kent State,1975,1,0,sheet
+Kent State,1976,4,0,sheet
+Kent State,1977,1,0,sheet
+Kent State,1978,1,0,sheet
+Kent State,1979,1,0,sheet
+Kent State,1989,1,0,sheet
+Kent State,1991,1,0,sheet
+Kent State,1997,1,0,carried
+Kent State,1998,1,0,carried
+Kent State,1999,1,0,carried
+Kent State,2000,1,0,carried
+Kent State,2007,1,0,carried
+Kent State,2008,1,0,carried
+Kent State,2009,1,0,carried
+Kent State,2010,1,0,carried
+Kent State,2013,1,0,carried
+Kent State,2014,1,0,carried
+Kentucky,1937,3,0,sheet
+Kentucky,1939,1,0,sheet
+Kentucky,1940,2,0,sheet
+Kentucky,1941,4,0,sheet
+Kentucky,1942,1,0,sheet
+Kentucky,1943,2,0,sheet
+Kentucky,1944,3,0,sheet
+Kentucky,1945,3,0,sheet
+Kentucky,1946,1,0,sheet
+Kentucky,1947,2,0,sheet
+Kentucky,1948,1,0,sheet
+Kentucky,1949,3,0,sheet
+Kentucky,1950,7,0,sheet
+Kentucky,1951,9,1,sheet
+Kentucky,1952,6,1,sheet
+Kentucky,1953,5,0,sheet
+Kentucky,1954,3,1,sheet
+Kentucky,1955,1,0,sheet
+Kentucky,1956,6,0,sheet
+Kentucky,1957,2,0,sheet
+Kentucky,1958,2,1,sheet
+Kentucky,1959,1,0,sheet
+Kentucky,1960,5,0,sheet+afl
+Kentucky,1961,2,0,sheet
+Kentucky,1962,3,1,sheet
+Kentucky,1963,1,1,sheet
+Kentucky,1964,1,0,sheet
+Kentucky,1966,5,1,sheet
+Kentucky,1967,2,0,sheet
+Kentucky,1968,1,0,sheet
+Kentucky,1969,2,0,sheet
+Kentucky,1970,2,0,sheet
+Kentucky,1971,4,0,sheet
+Kentucky,1972,2,0,sheet
+Kentucky,1973,2,0,sheet
+Kentucky,1974,4,0,sheet
+Kentucky,1975,3,0,sheet
+Kentucky,1976,3,0,sheet
+Kentucky,1977,2,2,sheet
+Kentucky,1978,6,1,sheet
+Kentucky,1979,7,0,sheet
+Kentucky,1980,3,0,sheet
+Kentucky,1981,1,0,sheet
+Kentucky,1982,1,0,sheet
+Kentucky,1984,1,0,sheet
+Kentucky,1985,4,1,sheet
+Kentucky,1986,3,0,sheet
+Kentucky,1987,3,0,sheet
+Kentucky,1988,4,0,sheet
+Kentucky,1989,4,0,sheet
+Kentucky,1990,3,0,sheet
+Kentucky,1991,2,0,sheet
+Kentucky,1993,4,0,sheet
+Kentucky,1994,3,0,sheet
+Kentucky,1995,1,0,carried
+Kentucky,1997,2,0,carried
+Kentucky,1998,1,0,carried
+Kentucky,1999,2,1,carried
+Kentucky,2000,1,0,carried
+Kentucky,2001,3,0,carried
+Kentucky,2002,1,0,carried
+Kentucky,2003,2,1,carried
+Kentucky,2004,1,0,carried
+Kentucky,2005,1,0,carried
+Kentucky,2008,4,0,carried
+Kentucky,2009,1,0,carried
+Kentucky,2010,3,0,carried
+Kentucky,2011,1,0,carried
+Kentucky,2012,2,0,carried
+Kentucky,2013,1,0,carried
+Kentucky,2014,1,0,carried
+Kentucky,2015,2,1,carried
+Kentucky,2016,1,0,carried
+Kentucky,2019,5,1,carried
+Kentucky,2020,2,0,carried
+Kentucky,2021,6,1,carried
+Kentucky,2022,4,0,carried
+Kentucky,2023,3,0,carried
+Kentucky,2024,4,0,carried
+Kentucky,2025,2,1,carried
+Kentucky,2026,4,0,carried
+Liberty,1985,1,0,sheet
+Liberty,1986,1,0,sheet
+Liberty,1989,1,0,sheet
+Liberty,1990,2,1,sheet
+Liberty,2009,1,0,carried
+Liberty,2014,1,0,carried
+Liberty,2020,1,0,carried
+Liberty,2022,1,0,carried
+Liberty,2023,1,0,carried
+Louisiana,1943,1,0,sheet
+Louisiana,1945,2,0,sheet
+Louisiana,1948,1,0,sheet
+Louisiana,1950,1,0,sheet
+Louisiana,1951,1,0,sheet
+Louisiana,1960,1,0,sheet
+Louisiana,1965,1,0,sheet
+Louisiana,1967,1,0,sheet
+Louisiana,1972,1,0,sheet
+Louisiana,1974,1,0,sheet
+Louisiana,1976,2,0,sheet
+Louisiana,1977,1,0,sheet
+Louisiana,1985,1,0,sheet
+Louisiana,1988,1,0,sheet
+Louisiana,1989,3,0,sheet
+Louisiana,1990,1,0,sheet
+Louisiana,1991,1,0,sheet
+Louisiana,1992,1,0,sheet
+Louisiana,1995,1,0,carried
+Louisiana,1998,1,0,carried
+Louisiana,1999,1,0,carried
+Louisiana,2002,1,0,carried
+Louisiana,2003,2,0,carried
+Louisiana,2005,1,0,carried
+Louisiana,2010,1,0,carried
+Louisiana,2012,2,0,carried
+Louisiana,2015,1,0,carried
+Louisiana,2017,1,0,carried
+Louisiana,2018,2,0,carried
+Louisiana,2020,3,0,carried
+Louisiana,2021,1,0,carried
+Louisiana,2022,2,0,carried
+Louisiana,2023,1,0,carried
+Louisiana,2024,1,0,carried
+Louisiana,2026,1,0,carried
+Louisiana Tech,1944,1,0,sheet
+Louisiana Tech,1948,1,0,sheet
+Louisiana Tech,1951,1,0,sheet
+Louisiana Tech,1954,1,0,sheet
+Louisiana Tech,1955,1,0,sheet
+Louisiana Tech,1956,1,0,sheet
+Louisiana Tech,1957,1,0,sheet
+Louisiana Tech,1958,1,0,sheet
+Louisiana Tech,1960,1,0,sheet
+Louisiana Tech,1961,1,0,sheet
+Louisiana Tech,1964,1,0,sheet
+Louisiana Tech,1966,1,0,sheet
+Louisiana Tech,1967,1,0,sheet
+Louisiana Tech,1968,2,0,sheet
+Louisiana Tech,1969,1,0,sheet
+Louisiana Tech,1970,3,1,sheet
+Louisiana Tech,1974,1,1,sheet
+Louisiana Tech,1975,3,0,sheet
+Louisiana Tech,1976,2,0,sheet
+Louisiana Tech,1977,1,0,sheet
+Louisiana Tech,1978,2,0,sheet
+Louisiana Tech,1981,1,0,sheet
+Louisiana Tech,1982,2,0,sheet
+Louisiana Tech,1983,2,0,sheet
+Louisiana Tech,1984,1,0,sheet
+Louisiana Tech,1986,1,0,sheet
+Louisiana Tech,1987,1,0,sheet
+Louisiana Tech,1990,2,0,sheet
+Louisiana Tech,1991,1,0,sheet
+Louisiana Tech,1992,1,0,sheet
+Louisiana Tech,1993,4,1,sheet
+Louisiana Tech,1999,1,1,carried
+Louisiana Tech,2000,2,0,carried
+Louisiana Tech,2002,1,0,carried
+Louisiana Tech,2004,2,0,carried
+Louisiana Tech,2005,1,0,carried
+Louisiana Tech,2007,1,0,carried
+Louisiana Tech,2010,2,0,carried
+Louisiana Tech,2013,2,0,carried
+Louisiana Tech,2014,2,0,carried
+Louisiana Tech,2016,3,1,carried
+Louisiana Tech,2017,3,0,carried
+Louisiana Tech,2018,1,0,carried
+Louisiana Tech,2019,1,0,carried
+Louisiana Tech,2020,2,0,carried
+Louisiana Tech,2021,1,0,carried
+Louisiana-Monroe,1961,1,0,sheet
+Louisiana-Monroe,1967,1,0,sheet
+Louisiana-Monroe,1968,1,0,sheet
+Louisiana-Monroe,1971,2,1,sheet
+Louisiana-Monroe,1972,1,0,sheet
+Louisiana-Monroe,1974,1,0,sheet
+Louisiana-Monroe,1975,1,0,sheet
+Louisiana-Monroe,1976,2,0,sheet
+Louisiana-Monroe,1979,1,0,sheet
+Louisiana-Monroe,1980,2,0,sheet
+Louisiana-Monroe,1981,1,0,sheet
+Louisiana-Monroe,1982,1,0,sheet
+Louisiana-Monroe,1983,1,0,sheet
+Louisiana-Monroe,1984,1,0,sheet
+Louisiana-Monroe,1985,1,0,sheet
+Louisiana-Monroe,1986,1,0,sheet
+Louisiana-Monroe,1987,1,0,sheet
+Louisiana-Monroe,1988,2,0,sheet
+Louisiana-Monroe,1990,1,0,sheet
+Louisiana-Monroe,1993,4,0,sheet
+Louisiana-Monroe,1994,2,0,sheet
+Louisiana-Monroe,1995,1,0,carried
+Louisiana-Monroe,1998,1,0,carried
+Louisiana-Monroe,1999,2,0,carried
+Louisiana-Monroe,2000,1,0,carried
+Louisiana-Monroe,2005,1,0,carried
+Louisiana-Monroe,2007,1,0,carried
+Louisiana-Monroe,2016,1,0,carried
+Louisiana-Monroe,2019,1,0,carried
+Louisville,1942,1,0,sheet
+Louisville,1949,1,0,sheet
+Louisville,1950,1,0,sheet
+Louisville,1952,1,0,sheet
+Louisville,1953,1,0,sheet
+Louisville,1955,1,0,sheet
+Louisville,1956,1,0,sheet
+Louisville,1957,1,0,sheet
+Louisville,1958,2,1,sheet
+Louisville,1959,1,0,sheet
+Louisville,1960,4,0,sheet+afl
+Louisville,1961,2,0,sheet
+Louisville,1962,1,0,sheet
+Louisville,1964,2,1,sheet
+Louisville,1965,1,0,sheet
+Louisville,1966,3,0,sheet
+Louisville,1967,3,0,sheet
+Louisville,1968,4,0,sheet
+Louisville,1969,1,0,sheet
+Louisville,1970,3,0,sheet
+Louisville,1971,1,0,sheet
+Louisville,1972,2,0,sheet
+Louisville,1973,3,0,sheet
+Louisville,1974,1,0,sheet
+Louisville,1975,2,0,sheet
+Louisville,1976,1,0,sheet
+Louisville,1978,1,0,sheet
+Louisville,1979,2,0,sheet
+Louisville,1980,2,1,sheet
+Louisville,1981,1,0,sheet
+Louisville,1982,1,0,sheet
+Louisville,1983,2,0,sheet
+Louisville,1984,2,0,sheet
+Louisville,1985,1,0,sheet
+Louisville,1986,1,0,sheet
+Louisville,1987,1,1,sheet
+Louisville,1990,1,0,sheet
+Louisville,1991,4,1,sheet
+Louisville,1992,1,0,sheet
+Louisville,1993,2,0,sheet
+Louisville,1994,1,1,sheet
+Louisville,1995,1,0,carried
+Louisville,1997,4,0,carried
+Louisville,2000,2,0,carried
+Louisville,2001,1,0,carried
+Louisville,2002,1,0,carried
+Louisville,2003,4,0,carried
+Louisville,2005,6,0,carried
+Louisville,2006,4,0,carried
+Louisville,2007,4,1,carried
+Louisville,2008,5,0,carried
+Louisville,2009,2,1,carried
+Louisville,2011,3,0,carried
+Louisville,2012,1,0,carried
+Louisville,2014,4,3,carried
+Louisville,2015,10,1,carried
+Louisville,2016,1,1,carried
+Louisville,2017,2,0,carried
+Louisville,2018,4,2,carried
+Louisville,2020,1,1,carried
+Louisville,2021,2,0,carried
+Louisville,2023,3,0,carried
+Louisville,2024,4,0,carried
+Louisville,2025,3,0,carried
+Louisville,2026,1,0,carried
+LSU,1936,1,0,sheet
+LSU,1937,2,0,sheet
+LSU,1939,3,0,sheet
+LSU,1940,2,0,sheet
+LSU,1941,2,0,sheet
+LSU,1943,4,0,sheet
+LSU,1944,6,1,sheet
+LSU,1945,6,0,sheet
+LSU,1946,4,1,sheet
+LSU,1947,7,0,sheet
+LSU,1948,8,1,sheet
+LSU,1949,1,0,sheet
+LSU,1950,5,0,sheet
+LSU,1951,7,3,sheet
+LSU,1952,6,0,sheet
+LSU,1953,3,0,sheet
+LSU,1954,3,0,sheet
+LSU,1955,4,0,sheet
+LSU,1956,3,0,sheet
+LSU,1957,4,1,sheet
+LSU,1958,1,0,sheet
+LSU,1959,2,0,sheet
+LSU,1960,10,2,sheet+afl
+LSU,1961,2,0,sheet
+LSU,1962,7,2,sheet
+LSU,1963,5,1,sheet
+LSU,1964,4,0,sheet
+LSU,1965,2,0,sheet
+LSU,1966,1,1,sheet
+LSU,1967,3,0,sheet
+LSU,1968,3,0,sheet
+LSU,1969,4,0,sheet
+LSU,1970,3,0,sheet
+LSU,1971,3,0,sheet
+LSU,1972,4,0,sheet
+LSU,1973,2,1,sheet
+LSU,1974,2,0,sheet
+LSU,1975,6,1,sheet
+LSU,1976,4,0,sheet
+LSU,1977,3,1,sheet
+LSU,1978,2,0,sheet
+LSU,1979,3,1,sheet
+LSU,1980,4,0,sheet
+LSU,1981,5,0,sheet
+LSU,1982,2,0,sheet
+LSU,1983,6,0,sheet
+LSU,1984,3,0,sheet
+LSU,1985,5,0,sheet
+LSU,1986,3,0,sheet
+LSU,1987,6,0,sheet
+LSU,1988,7,1,sheet
+LSU,1989,6,1,sheet
+LSU,1990,7,0,sheet
+LSU,1991,3,1,sheet
+LSU,1992,2,0,sheet
+LSU,1994,2,0,sheet
+LSU,1995,2,0,carried
+LSU,1997,3,1,carried
+LSU,1998,3,1,carried
+LSU,1999,3,1,carried
+LSU,2000,2,0,carried
+LSU,2001,3,0,carried
+LSU,2002,5,0,carried
+LSU,2003,4,0,carried
+LSU,2004,7,1,carried
+LSU,2005,3,1,carried
+LSU,2006,7,1,carried
+LSU,2007,5,4,carried
+LSU,2008,7,1,carried
+LSU,2009,6,1,carried
+LSU,2010,6,0,carried
+LSU,2011,6,1,carried
+LSU,2012,5,2,carried
+LSU,2013,9,2,carried
+LSU,2014,9,1,carried
+LSU,2015,4,0,carried
+LSU,2016,5,0,carried
+LSU,2017,8,3,carried
+LSU,2018,7,0,carried
+LSU,2019,3,1,carried
+LSU,2020,14,5,carried
+LSU,2021,7,1,carried
+LSU,2022,10,1,carried
+LSU,2023,6,0,carried
+LSU,2024,6,3,carried
+LSU,2025,7,1,carried
+LSU,2026,7,1,carried
+Marshall,1939,2,0,sheet
+Marshall,1940,1,0,sheet
+Marshall,1941,1,0,sheet
+Marshall,1942,1,0,sheet
+Marshall,1948,1,0,sheet
+Marshall,1950,1,0,sheet
+Marshall,1954,1,0,sheet
+Marshall,1955,1,0,sheet
+Marshall,1956,1,0,sheet
+Marshall,1958,2,0,sheet
+Marshall,1959,1,0,sheet
+Marshall,1962,1,0,sheet
+Marshall,1964,1,0,sheet
+Marshall,1965,1,0,sheet
+Marshall,1967,1,0,sheet
+Marshall,1983,1,0,sheet
+Marshall,1989,2,0,sheet
+Marshall,1993,1,0,sheet
+Marshall,1998,2,1,carried
+Marshall,2000,4,1,carried
+Marshall,2001,1,0,carried
+Marshall,2002,1,0,carried
+Marshall,2003,3,1,carried
+Marshall,2004,1,0,carried
+Marshall,2005,1,0,carried
+Marshall,2007,1,0,carried
+Marshall,2011,1,0,carried
+Marshall,2012,1,0,carried
+Marshall,2013,1,0,carried
+Marshall,2014,1,0,carried
+Marshall,2015,1,0,carried
+Marshall,2020,2,0,carried
+Marshall,2021,1,0,carried
+Marshall,2022,1,0,carried
+Marshall,2024,2,0,carried
+Marshall,2025,1,0,carried
+Maryland,1937,1,0,sheet
+Maryland,1944,1,0,sheet
+Maryland,1945,2,0,sheet
+Maryland,1946,1,0,sheet
+Maryland,1947,1,0,sheet
+Maryland,1948,1,0,sheet
+Maryland,1950,3,0,sheet
+Maryland,1951,4,0,sheet
+Maryland,1952,12,1,sheet
+Maryland,1953,10,1,sheet
+Maryland,1954,8,1,sheet
+Maryland,1955,11,1,sheet
+Maryland,1956,5,2,sheet
+Maryland,1957,8,0,sheet
+Maryland,1958,4,0,sheet
+Maryland,1959,2,0,sheet
+Maryland,1960,2,0,sheet+afl
+Maryland,1961,2,0,sheet
+Maryland,1962,4,1,sheet
+Maryland,1963,4,0,sheet
+Maryland,1964,2,0,sheet
+Maryland,1965,2,0,sheet
+Maryland,1966,1,0,sheet
+Maryland,1967,2,0,sheet
+Maryland,1968,1,0,sheet
+Maryland,1969,3,0,sheet
+Maryland,1970,2,0,sheet
+Maryland,1972,2,0,sheet
+Maryland,1974,2,0,sheet
+Maryland,1975,11,1,sheet
+Maryland,1976,1,0,sheet
+Maryland,1977,5,1,sheet
+Maryland,1978,3,0,sheet
+Maryland,1979,2,0,sheet
+Maryland,1980,1,0,sheet
+Maryland,1981,4,0,sheet
+Maryland,1982,1,0,sheet
+Maryland,1983,3,0,sheet
+Maryland,1984,6,2,sheet
+Maryland,1985,3,0,sheet
+Maryland,1986,6,0,sheet
+Maryland,1987,4,0,sheet
+Maryland,1988,5,0,sheet
+Maryland,1989,4,0,sheet
+Maryland,1990,2,0,sheet
+Maryland,1991,3,0,sheet
+Maryland,1992,2,0,sheet
+Maryland,1993,1,0,sheet
+Maryland,1995,1,0,carried
+Maryland,1997,1,1,carried
+Maryland,1998,1,0,carried
+Maryland,1999,2,0,carried
+Maryland,2000,2,0,carried
+Maryland,2001,2,0,carried
+Maryland,2002,3,0,carried
+Maryland,2003,1,0,carried
+Maryland,2004,5,0,carried
+Maryland,2005,2,1,carried
+Maryland,2006,3,1,carried
+Maryland,2007,2,0,carried
+Maryland,2008,1,0,carried
+Maryland,2009,5,1,carried
+Maryland,2010,2,0,carried
+Maryland,2011,2,0,carried
+Maryland,2013,1,0,carried
+Maryland,2014,1,0,carried
+Maryland,2015,2,0,carried
+Maryland,2016,3,0,carried
+Maryland,2018,2,1,carried
+Maryland,2019,4,1,carried
+Maryland,2020,2,0,carried
+Maryland,2021,1,0,carried
+Maryland,2022,2,0,carried
+Maryland,2023,5,1,carried
+Maryland,2024,2,0,carried
+Maryland,2025,6,0,carried
+Maryland,2026,1,0,carried
+Memphis,1951,1,0,sheet
+Memphis,1953,1,0,sheet
+Memphis,1954,1,0,sheet
+Memphis,1956,1,0,sheet
+Memphis,1957,2,0,sheet
+Memphis,1958,2,0,sheet
+Memphis,1961,2,0,sheet
+Memphis,1962,2,0,sheet
+Memphis,1963,3,0,sheet
+Memphis,1964,3,0,sheet
+Memphis,1965,2,0,sheet
+Memphis,1966,3,0,sheet
+Memphis,1968,6,0,sheet
+Memphis,1969,1,0,sheet
+Memphis,1970,5,0,sheet
+Memphis,1971,3,0,sheet
+Memphis,1972,3,0,sheet
+Memphis,1973,2,0,sheet
+Memphis,1974,1,0,sheet
+Memphis,1975,2,0,sheet
+Memphis,1976,2,0,sheet
+Memphis,1977,5,1,sheet
+Memphis,1978,3,1,sheet
+Memphis,1979,3,0,sheet
+Memphis,1980,1,0,sheet
+Memphis,1981,1,0,sheet
+Memphis,1983,1,0,sheet
+Memphis,1985,6,1,sheet
+Memphis,1986,4,0,sheet
+Memphis,1987,1,0,sheet
+Memphis,1988,2,0,sheet
+Memphis,1989,4,0,sheet
+Memphis,1990,2,0,sheet
+Memphis,1991,3,0,sheet
+Memphis,1993,2,0,sheet
+Memphis,1994,3,0,sheet
+Memphis,1995,1,0,carried
+Memphis,1997,3,0,carried
+Memphis,1999,1,0,carried
+Memphis,2001,3,0,carried
+Memphis,2003,2,0,carried
+Memphis,2004,1,0,carried
+Memphis,2006,2,1,carried
+Memphis,2007,1,0,carried
+Memphis,2009,1,0,carried
+Memphis,2012,1,1,carried
+Memphis,2014,1,0,carried
+Memphis,2015,2,0,carried
+Memphis,2016,1,1,carried
+Memphis,2017,1,0,carried
+Memphis,2018,2,0,carried
+Memphis,2019,2,0,carried
+Memphis,2020,3,0,carried
+Memphis,2021,1,0,carried
+Memphis,2022,2,0,carried
+Memphis,2025,1,0,carried
+Memphis,2026,1,0,carried
+Miami (FL),1938,1,0,sheet
+Miami (FL),1940,2,0,sheet
+Miami (FL),1941,1,0,sheet
+Miami (FL),1942,2,0,sheet
+Miami (FL),1944,2,0,sheet
+Miami (FL),1945,1,0,sheet
+Miami (FL),1946,1,0,sheet
+Miami (FL),1947,3,0,sheet
+Miami (FL),1949,1,0,sheet
+Miami (FL),1951,5,0,sheet
+Miami (FL),1952,2,1,sheet
+Miami (FL),1953,2,0,sheet
+Miami (FL),1954,1,0,sheet
+Miami (FL),1955,3,0,sheet
+Miami (FL),1956,4,1,sheet
+Miami (FL),1957,5,1,sheet
+Miami (FL),1958,1,0,sheet
+Miami (FL),1960,3,0,sheet+afl
+Miami (FL),1961,4,0,sheet
+Miami (FL),1962,4,0,sheet
+Miami (FL),1963,7,0,sheet
+Miami (FL),1964,2,0,sheet
+Miami (FL),1965,2,0,sheet
+Miami (FL),1967,5,1,sheet
+Miami (FL),1968,9,0,sheet
+Miami (FL),1969,1,0,sheet
+Miami (FL),1970,3,0,sheet
+Miami (FL),1971,2,0,sheet
+Miami (FL),1972,2,0,sheet
+Miami (FL),1973,5,2,sheet
+Miami (FL),1975,7,1,sheet
+Miami (FL),1976,6,0,sheet
+Miami (FL),1977,3,1,sheet
+Miami (FL),1978,6,1,sheet
+Miami (FL),1979,4,2,sheet
+Miami (FL),1980,1,0,sheet
+Miami (FL),1981,3,0,sheet
+Miami (FL),1982,8,1,sheet
+Miami (FL),1983,7,1,sheet
+Miami (FL),1984,7,0,sheet
+Miami (FL),1985,5,1,sheet
+Miami (FL),1986,3,0,sheet
+Miami (FL),1987,7,3,sheet
+Miami (FL),1988,12,2,sheet
+Miami (FL),1989,6,2,sheet
+Miami (FL),1990,9,1,sheet
+Miami (FL),1991,11,2,sheet
+Miami (FL),1992,6,2,sheet
+Miami (FL),1993,9,0,sheet
+Miami (FL),1994,2,0,sheet
+Miami (FL),1995,7,1,carried
+Miami (FL),1997,8,3,carried
+Miami (FL),1998,2,1,carried
+Miami (FL),1999,3,1,carried
+Miami (FL),2000,5,1,carried
+Miami (FL),2001,7,4,carried
+Miami (FL),2002,11,5,carried
+Miami (FL),2003,8,4,carried
+Miami (FL),2004,9,6,carried
+Miami (FL),2005,5,1,carried
+Miami (FL),2006,9,1,carried
+Miami (FL),2007,5,3,carried
+Miami (FL),2008,3,1,carried
+Miami (FL),2009,1,0,carried
+Miami (FL),2010,4,0,carried
+Miami (FL),2011,8,0,carried
+Miami (FL),2012,6,0,carried
+Miami (FL),2013,2,0,carried
+Miami (FL),2014,3,0,carried
+Miami (FL),2015,7,2,carried
+Miami (FL),2016,2,1,carried
+Miami (FL),2017,9,1,carried
+Miami (FL),2018,6,0,carried
+Miami (FL),2019,5,0,carried
+Miami (FL),2020,4,0,carried
+Miami (FL),2021,4,2,carried
+Miami (FL),2022,1,0,carried
+Miami (FL),2023,3,0,carried
+Miami (FL),2024,4,0,carried
+Miami (FL),2025,7,1,carried
+Miami (FL),2026,9,3,carried
+Miami (OH),1945,1,0,sheet
+Miami (OH),1946,4,0,sheet
+Miami (OH),1947,1,0,sheet
+Miami (OH),1948,2,0,sheet
+Miami (OH),1950,2,0,sheet
+Miami (OH),1952,2,0,sheet
+Miami (OH),1953,3,0,sheet
+Miami (OH),1954,3,0,sheet
+Miami (OH),1955,3,0,sheet
+Miami (OH),1956,3,0,sheet
+Miami (OH),1957,4,0,sheet
+Miami (OH),1958,2,0,sheet
+Miami (OH),1959,2,0,sheet
+Miami (OH),1960,4,0,sheet+afl
+Miami (OH),1962,2,0,sheet
+Miami (OH),1963,5,0,sheet
+Miami (OH),1965,1,0,sheet
+Miami (OH),1967,3,0,sheet
+Miami (OH),1968,1,0,sheet
+Miami (OH),1969,2,1,sheet
+Miami (OH),1970,2,0,sheet
+Miami (OH),1971,1,0,sheet
+Miami (OH),1973,1,0,sheet
+Miami (OH),1975,1,0,sheet
+Miami (OH),1976,3,0,sheet
+Miami (OH),1977,2,0,sheet
+Miami (OH),1979,1,0,sheet
+Miami (OH),1980,1,0,sheet
+Miami (OH),1987,1,0,sheet
+Miami (OH),1988,2,0,sheet
+Miami (OH),1998,1,0,carried
+Miami (OH),1999,2,0,carried
+Miami (OH),2000,2,0,carried
+Miami (OH),2001,1,0,carried
+Miami (OH),2004,2,1,carried
+Miami (OH),2005,1,0,carried
+Miami (OH),2006,1,0,carried
+Miami (OH),2007,1,0,carried
+Miami (OH),2009,1,0,carried
+Miami (OH),2012,1,0,carried
+Miami (OH),2013,1,0,carried
+Miami (OH),2015,1,0,carried
+Miami (OH),2020,1,0,carried
+Miami (OH),2021,1,0,carried
+Miami (OH),2022,1,0,carried
+Miami (OH),2026,1,0,carried
+Michigan,1937,1,0,sheet
+Michigan,1939,2,0,sheet
+Michigan,1940,1,0,sheet
+Michigan,1941,4,2,sheet
+Michigan,1942,3,1,sheet
+Michigan,1943,3,0,sheet
+Michigan,1944,8,1,sheet
+Michigan,1945,5,2,sheet
+Michigan,1946,4,0,sheet
+Michigan,1947,8,0,sheet
+Michigan,1948,8,0,sheet
+Michigan,1949,7,0,sheet
+Michigan,1950,2,0,sheet
+Michigan,1951,6,0,sheet
+Michigan,1952,2,0,sheet
+Michigan,1953,4,0,sheet
+Michigan,1954,3,0,sheet
+Michigan,1955,4,0,sheet
+Michigan,1956,3,0,sheet
+Michigan,1957,7,1,sheet
+Michigan,1958,3,1,sheet
+Michigan,1959,5,0,sheet
+Michigan,1960,4,0,sheet+afl
+Michigan,1961,1,0,sheet
+Michigan,1962,7,0,sheet
+Michigan,1963,1,0,sheet
+Michigan,1964,3,0,sheet
+Michigan,1965,4,0,sheet
+Michigan,1966,4,1,sheet
+Michigan,1967,6,1,sheet
+Michigan,1968,3,0,sheet
+Michigan,1969,3,1,sheet
+Michigan,1970,6,0,sheet
+Michigan,1971,7,0,sheet
+Michigan,1972,11,2,sheet
+Michigan,1973,6,1,sheet
+Michigan,1974,10,1,sheet
+Michigan,1975,9,1,sheet
+Michigan,1976,7,0,sheet
+Michigan,1977,6,0,sheet
+Michigan,1978,5,2,sheet
+Michigan,1979,7,1,sheet
+Michigan,1980,6,1,sheet
+Michigan,1981,4,1,sheet
+Michigan,1982,7,1,sheet
+Michigan,1983,7,0,sheet
+Michigan,1984,2,0,sheet
+Michigan,1985,1,1,sheet
+Michigan,1986,4,0,sheet
+Michigan,1987,5,1,sheet
+Michigan,1988,3,0,sheet
+Michigan,1989,3,0,sheet
+Michigan,1990,5,0,sheet
+Michigan,1991,7,1,sheet
+Michigan,1992,6,1,sheet
+Michigan,1993,6,1,sheet
+Michigan,1994,1,1,sheet
+Michigan,1995,5,3,carried
+Michigan,1997,3,0,carried
+Michigan,1998,5,1,carried
+Michigan,1999,4,0,carried
+Michigan,2000,6,0,carried
+Michigan,2001,5,3,carried
+Michigan,2002,4,0,carried
+Michigan,2003,6,0,carried
+Michigan,2004,4,1,carried
+Michigan,2005,3,2,carried
+Michigan,2006,3,0,carried
+Michigan,2007,7,1,carried
+Michigan,2008,6,1,carried
+Michigan,2009,2,0,carried
+Michigan,2010,3,1,carried
+Michigan,2011,2,0,carried
+Michigan,2012,3,0,carried
+Michigan,2013,2,0,carried
+Michigan,2014,3,1,carried
+Michigan,2015,3,0,carried
+Michigan,2016,3,0,carried
+Michigan,2017,11,2,carried
+Michigan,2018,2,0,carried
+Michigan,2019,5,2,carried
+Michigan,2020,10,1,carried
+Michigan,2021,8,1,carried
+Michigan,2022,5,2,carried
+Michigan,2023,9,1,carried
+Michigan,2024,13,1,carried
+Michigan,2025,7,3,carried
+Michigan,2026,6,0,carried
+Michigan State,1936,2,1,sheet
+Michigan State,1937,1,0,sheet
+Michigan State,1939,2,1,sheet
+Michigan State,1941,1,0,sheet
+Michigan State,1942,1,0,sheet
+Michigan State,1943,2,0,sheet
+Michigan State,1944,3,0,sheet
+Michigan State,1945,2,0,sheet
+Michigan State,1946,1,0,sheet
+Michigan State,1947,2,0,sheet
+Michigan State,1948,3,0,sheet
+Michigan State,1949,1,0,sheet
+Michigan State,1950,5,1,sheet
+Michigan State,1951,6,0,sheet
+Michigan State,1952,10,1,sheet
+Michigan State,1953,4,0,sheet
+Michigan State,1954,6,0,sheet
+Michigan State,1955,6,0,sheet
+Michigan State,1956,8,1,sheet
+Michigan State,1957,7,1,sheet
+Michigan State,1958,11,2,sheet
+Michigan State,1959,6,0,sheet
+Michigan State,1960,8,0,sheet+afl
+Michigan State,1961,6,1,sheet
+Michigan State,1962,4,0,sheet
+Michigan State,1963,9,2,sheet
+Michigan State,1964,5,0,sheet
+Michigan State,1965,3,0,sheet
+Michigan State,1966,1,0,sheet
+Michigan State,1967,8,4,sheet
+Michigan State,1968,6,0,sheet
+Michigan State,1969,1,0,sheet
+Michigan State,1970,5,0,sheet
+Michigan State,1971,9,0,sheet
+Michigan State,1972,2,0,sheet
+Michigan State,1973,10,2,sheet
+Michigan State,1974,3,0,sheet
+Michigan State,1975,2,0,sheet
+Michigan State,1976,2,0,sheet
+Michigan State,1977,2,1,sheet
+Michigan State,1978,3,1,sheet
+Michigan State,1979,5,0,sheet
+Michigan State,1980,5,0,sheet
+Michigan State,1981,1,0,sheet
+Michigan State,1982,5,0,sheet
+Michigan State,1983,4,0,sheet
+Michigan State,1984,3,1,sheet
+Michigan State,1985,5,0,sheet
+Michigan State,1986,3,1,sheet
+Michigan State,1987,2,1,sheet
+Michigan State,1988,5,1,sheet
+Michigan State,1989,4,2,sheet
+Michigan State,1990,6,1,sheet
+Michigan State,1991,8,1,sheet
+Michigan State,1992,6,0,sheet
+Michigan State,1993,2,0,sheet
+Michigan State,1994,4,1,sheet
+Michigan State,1995,2,0,carried
+Michigan State,1997,2,0,carried
+Michigan State,1998,3,0,carried
+Michigan State,1999,2,1,carried
+Michigan State,2000,7,2,carried
+Michigan State,2001,3,0,carried
+Michigan State,2002,5,1,carried
+Michigan State,2003,1,1,carried
+Michigan State,2004,2,0,carried
+Michigan State,2005,4,0,carried
+Michigan State,2006,3,0,carried
+Michigan State,2007,3,0,carried
+Michigan State,2008,3,0,carried
+Michigan State,2009,1,0,carried
+Michigan State,2010,1,0,carried
+Michigan State,2011,2,0,carried
+Michigan State,2012,6,0,carried
+Michigan State,2013,3,0,carried
+Michigan State,2014,1,1,carried
+Michigan State,2015,4,1,carried
+Michigan State,2016,5,1,carried
+Michigan State,2017,2,0,carried
+Michigan State,2018,1,0,carried
+Michigan State,2019,2,0,carried
+Michigan State,2020,2,0,carried
+Michigan State,2022,4,0,carried
+Michigan State,2023,3,0,carried
+Michigan State,2024,1,0,carried
+Michigan State,2025,1,0,carried
+Michigan State,2026,2,0,carried
+Middle Tennessee,1954,1,0,sheet
+Middle Tennessee,1956,2,0,sheet
+Middle Tennessee,1957,2,0,sheet
+Middle Tennessee,1958,2,0,sheet
+Middle Tennessee,1968,1,0,sheet
+Middle Tennessee,1973,2,0,sheet
+Middle Tennessee,1975,1,0,sheet
+Middle Tennessee,1976,2,0,sheet
+Middle Tennessee,1978,1,0,sheet
+Middle Tennessee,1983,1,0,sheet
+Middle Tennessee,1986,1,0,sheet
+Middle Tennessee,1987,1,0,sheet
+Middle Tennessee,1991,1,0,sheet
+Middle Tennessee,1992,2,0,sheet
+Middle Tennessee,1993,2,0,sheet
+Middle Tennessee,1998,1,0,carried
+Middle Tennessee,1999,1,0,carried
+Middle Tennessee,2002,1,0,carried
+Middle Tennessee,2003,1,0,carried
+Middle Tennessee,2008,1,0,carried
+Middle Tennessee,2010,1,0,carried
+Middle Tennessee,2011,1,0,carried
+Middle Tennessee,2014,1,0,carried
+Middle Tennessee,2016,1,0,carried
+Middle Tennessee,2018,1,0,carried
+Middle Tennessee,2026,1,0,carried
+Minnesota,1936,6,0,sheet
+Minnesota,1937,5,1,sheet
+Minnesota,1938,4,0,sheet
+Minnesota,1939,6,1,sheet
+Minnesota,1940,3,1,sheet
+Minnesota,1941,5,1,sheet
+Minnesota,1942,8,1,sheet
+Minnesota,1943,7,1,sheet
+Minnesota,1944,9,0,sheet
+Minnesota,1945,6,0,sheet
+Minnesota,1946,4,0,sheet
+Minnesota,1947,2,0,sheet
+Minnesota,1948,1,0,sheet
+Minnesota,1949,2,0,sheet
+Minnesota,1950,13,3,sheet
+Minnesota,1951,1,0,sheet
+Minnesota,1952,4,0,sheet
+Minnesota,1953,5,0,sheet
+Minnesota,1954,3,0,sheet
+Minnesota,1955,3,0,sheet
+Minnesota,1956,3,0,sheet
+Minnesota,1957,8,0,sheet
+Minnesota,1958,8,0,sheet
+Minnesota,1959,4,0,sheet
+Minnesota,1960,5,0,sheet+afl
+Minnesota,1961,2,0,sheet
+Minnesota,1962,3,0,sheet
+Minnesota,1963,3,0,sheet
+Minnesota,1964,2,1,sheet
+Minnesota,1965,3,0,sheet
+Minnesota,1966,4,1,sheet
+Minnesota,1967,2,0,sheet
+Minnesota,1968,5,1,sheet
+Minnesota,1969,9,0,sheet
+Minnesota,1970,2,0,sheet
+Minnesota,1971,5,0,sheet
+Minnesota,1972,6,0,sheet
+Minnesota,1973,5,0,sheet
+Minnesota,1974,4,0,sheet
+Minnesota,1975,3,0,sheet
+Minnesota,1976,4,0,sheet
+Minnesota,1977,2,0,sheet
+Minnesota,1978,5,0,sheet
+Minnesota,1979,3,0,sheet
+Minnesota,1980,2,0,sheet
+Minnesota,1981,3,0,sheet
+Minnesota,1982,4,0,sheet
+Minnesota,1983,2,0,sheet
+Minnesota,1984,3,0,sheet
+Minnesota,1985,3,0,sheet
+Minnesota,1986,1,0,sheet
+Minnesota,1987,3,0,sheet
+Minnesota,1988,5,0,sheet
+Minnesota,1989,1,1,sheet
+Minnesota,1990,5,1,sheet
+Minnesota,1991,3,0,sheet
+Minnesota,1992,1,0,sheet
+Minnesota,1998,2,0,carried
+Minnesota,2000,2,0,carried
+Minnesota,2001,4,1,carried
+Minnesota,2002,3,0,carried
+Minnesota,2003,1,0,carried
+Minnesota,2004,1,0,carried
+Minnesota,2005,1,0,carried
+Minnesota,2006,4,1,carried
+Minnesota,2007,1,0,carried
+Minnesota,2008,1,0,carried
+Minnesota,2010,2,0,carried
+Minnesota,2014,2,0,carried
+Minnesota,2015,4,0,carried
+Minnesota,2016,2,0,carried
+Minnesota,2017,1,0,carried
+Minnesota,2019,1,0,carried
+Minnesota,2020,5,0,carried
+Minnesota,2021,2,1,carried
+Minnesota,2022,4,0,carried
+Minnesota,2023,3,0,carried
+Minnesota,2024,1,0,carried
+Minnesota,2025,3,0,carried
+Minnesota,2026,1,0,carried
+Mississippi State,1937,1,0,sheet
+Mississippi State,1938,1,0,sheet
+Mississippi State,1940,2,0,sheet
+Mississippi State,1941,6,0,sheet
+Mississippi State,1943,2,0,sheet
+Mississippi State,1944,11,0,sheet
+Mississippi State,1945,2,0,sheet
+Mississippi State,1946,3,0,sheet
+Mississippi State,1947,1,0,sheet
+Mississippi State,1948,2,0,sheet
+Mississippi State,1949,2,0,sheet
+Mississippi State,1950,4,0,sheet
+Mississippi State,1951,3,0,sheet
+Mississippi State,1952,4,0,sheet
+Mississippi State,1953,3,0,sheet
+Mississippi State,1954,4,0,sheet
+Mississippi State,1956,2,1,sheet
+Mississippi State,1957,1,0,sheet
+Mississippi State,1958,1,0,sheet
+Mississippi State,1959,2,1,sheet
+Mississippi State,1961,2,0,sheet
+Mississippi State,1962,2,0,sheet
+Mississippi State,1963,3,0,sheet
+Mississippi State,1964,1,0,sheet
+Mississippi State,1965,2,0,sheet
+Mississippi State,1966,3,0,sheet
+Mississippi State,1967,3,0,sheet
+Mississippi State,1968,2,0,sheet
+Mississippi State,1970,1,0,sheet
+Mississippi State,1971,3,0,sheet
+Mississippi State,1973,2,0,sheet
+Mississippi State,1974,3,0,sheet
+Mississippi State,1975,3,1,sheet
+Mississippi State,1976,3,0,sheet
+Mississippi State,1977,4,0,sheet
+Mississippi State,1978,3,0,sheet
+Mississippi State,1979,3,0,sheet
+Mississippi State,1980,2,0,sheet
+Mississippi State,1981,4,0,sheet
+Mississippi State,1982,3,2,sheet
+Mississippi State,1983,2,1,sheet
+Mississippi State,1984,1,0,sheet
+Mississippi State,1986,2,0,sheet
+Mississippi State,1987,4,0,sheet
+Mississippi State,1988,1,0,sheet
+Mississippi State,1989,2,0,sheet
+Mississippi State,1990,2,0,sheet
+Mississippi State,1991,2,0,sheet
+Mississippi State,1992,2,0,sheet
+Mississippi State,1993,4,0,sheet
+Mississippi State,1994,1,0,sheet
+Mississippi State,1995,6,0,carried
+Mississippi State,1997,2,0,carried
+Mississippi State,1998,3,0,carried
+Mississippi State,1999,4,0,carried
+Mississippi State,2000,4,0,carried
+Mississippi State,2001,4,0,carried
+Mississippi State,2002,1,0,carried
+Mississippi State,2003,3,0,carried
+Mississippi State,2005,2,0,carried
+Mississippi State,2006,1,0,carried
+Mississippi State,2007,1,0,carried
+Mississippi State,2010,2,0,carried
+Mississippi State,2011,4,1,carried
+Mississippi State,2012,3,1,carried
+Mississippi State,2013,3,0,carried
+Mississippi State,2014,1,0,carried
+Mississippi State,2015,5,0,carried
+Mississippi State,2016,3,0,carried
+Mississippi State,2017,1,0,carried
+Mississippi State,2018,4,0,carried
+Mississippi State,2019,5,3,carried
+Mississippi State,2020,5,0,carried
+Mississippi State,2021,2,0,carried
+Mississippi State,2022,2,1,carried
+Mississippi State,2023,2,1,carried
+Mississippi State,2024,3,0,carried
+Mississippi State,2026,2,0,carried
+Missouri,1937,1,0,sheet
+Missouri,1939,1,0,sheet
+Missouri,1940,5,0,sheet
+Missouri,1941,2,0,sheet
+Missouri,1942,4,0,sheet
+Missouri,1943,6,0,sheet
+Missouri,1944,3,0,sheet
+Missouri,1945,4,0,sheet
+Missouri,1946,2,1,sheet
+Missouri,1947,2,0,sheet
+Missouri,1948,5,0,sheet
+Missouri,1949,2,0,sheet
+Missouri,1950,4,0,sheet
+Missouri,1951,4,0,sheet
+Missouri,1952,2,0,sheet
+Missouri,1953,1,0,sheet
+Missouri,1954,1,0,sheet
+Missouri,1955,4,0,sheet
+Missouri,1956,3,0,sheet
+Missouri,1957,3,0,sheet
+Missouri,1958,1,0,sheet
+Missouri,1959,1,0,sheet
+Missouri,1960,6,0,sheet+afl
+Missouri,1961,3,0,sheet
+Missouri,1962,2,0,sheet
+Missouri,1963,4,0,sheet
+Missouri,1964,4,0,sheet
+Missouri,1965,2,0,sheet
+Missouri,1966,3,1,sheet
+Missouri,1967,6,0,sheet
+Missouri,1968,4,1,sheet
+Missouri,1969,4,1,sheet
+Missouri,1970,4,0,sheet
+Missouri,1971,6,1,sheet
+Missouri,1972,2,0,sheet
+Missouri,1973,1,0,sheet
+Missouri,1974,5,0,sheet
+Missouri,1975,2,0,sheet
+Missouri,1976,3,0,sheet
+Missouri,1977,5,2,sheet
+Missouri,1978,3,0,sheet
+Missouri,1979,4,1,sheet
+Missouri,1980,2,0,sheet
+Missouri,1981,7,1,sheet
+Missouri,1982,2,0,sheet
+Missouri,1983,3,0,sheet
+Missouri,1984,5,0,sheet
+Missouri,1985,3,0,sheet
+Missouri,1986,1,0,sheet
+Missouri,1987,2,1,sheet
+Missouri,1988,3,0,sheet
+Missouri,1989,2,0,sheet
+Missouri,1990,1,0,sheet
+Missouri,1991,4,0,sheet
+Missouri,1992,1,0,sheet
+Missouri,1993,1,0,sheet
+Missouri,1994,1,0,sheet
+Missouri,1998,2,0,carried
+Missouri,1999,1,0,carried
+Missouri,2000,1,0,carried
+Missouri,2001,1,1,carried
+Missouri,2003,2,0,carried
+Missouri,2005,3,0,carried
+Missouri,2006,2,0,carried
+Missouri,2007,1,0,carried
+Missouri,2008,2,0,carried
+Missouri,2009,6,2,carried
+Missouri,2010,1,1,carried
+Missouri,2011,3,2,carried
+Missouri,2012,1,0,carried
+Missouri,2013,2,1,carried
+Missouri,2014,4,0,carried
+Missouri,2015,6,1,carried
+Missouri,2016,3,0,carried
+Missouri,2017,1,1,carried
+Missouri,2018,1,0,carried
+Missouri,2019,2,0,carried
+Missouri,2020,2,0,carried
+Missouri,2021,5,0,carried
+Missouri,2022,2,0,carried
+Missouri,2023,1,0,carried
+Missouri,2024,6,1,carried
+Missouri,2025,3,1,carried
+Missouri,2026,6,0,carried
+Missouri State,1951,1,0,sheet
+Missouri State,1952,1,0,sheet
+Missouri State,1956,1,0,sheet
+Missouri State,1958,1,0,sheet
+Missouri State,1968,2,0,sheet
+Missouri State,1974,2,0,sheet
+Missouri State,1978,1,0,sheet
+Missouri State,1979,2,0,sheet
+Missouri State,1983,1,0,sheet
+Missouri State,1985,1,0,sheet
+Missouri State,1986,1,0,sheet
+Navy,1947,3,0,sheet
+Navy,1948,1,0,sheet
+Navy,1956,2,0,sheet
+Navy,1958,1,0,sheet
+Navy,1959,1,0,sheet
+Navy,1961,1,0,sheet
+Navy,1962,1,0,sheet
+Navy,1964,1,0,sheet
+Navy,1973,1,0,sheet
+Navy,1986,1,0,sheet
+Navy,1993,1,0,sheet
+Navy,1994,1,0,sheet
+Navy,1995,1,0,carried
+Navy,2015,1,0,carried
+Navy,2016,1,0,carried
+Navy,2020,1,0,carried
+Navy,2025,1,0,carried
+Navy,2026,2,0,carried
+Nebraska,1936,1,0,sheet
+Nebraska,1937,3,3,sheet
+Nebraska,1938,4,0,sheet
+Nebraska,1939,3,0,sheet
+Nebraska,1940,1,0,sheet
+Nebraska,1941,6,0,sheet
+Nebraska,1942,3,0,sheet
+Nebraska,1943,2,0,sheet
+Nebraska,1944,3,0,sheet
+Nebraska,1945,3,0,sheet
+Nebraska,1947,1,0,sheet
+Nebraska,1948,2,0,sheet
+Nebraska,1949,1,0,sheet
+Nebraska,1950,2,0,sheet
+Nebraska,1951,2,0,sheet
+Nebraska,1952,1,0,sheet
+Nebraska,1953,3,0,sheet
+Nebraska,1954,3,0,sheet
+Nebraska,1955,4,0,sheet
+Nebraska,1957,2,0,sheet
+Nebraska,1960,1,0,sheet+afl
+Nebraska,1961,2,0,sheet
+Nebraska,1963,3,0,sheet
+Nebraska,1964,9,2,sheet
+Nebraska,1965,3,0,sheet
+Nebraska,1966,8,0,sheet
+Nebraska,1967,5,0,sheet
+Nebraska,1968,3,0,sheet
+Nebraska,1969,2,0,sheet
+Nebraska,1970,8,0,sheet
+Nebraska,1971,4,0,sheet
+Nebraska,1972,6,3,sheet
+Nebraska,1973,10,1,sheet
+Nebraska,1974,7,1,sheet
+Nebraska,1975,12,1,sheet
+Nebraska,1976,11,0,sheet
+Nebraska,1977,6,0,sheet
+Nebraska,1978,8,0,sheet
+Nebraska,1979,8,2,sheet
+Nebraska,1980,10,1,sheet
+Nebraska,1981,7,0,sheet
+Nebraska,1982,5,1,sheet
+Nebraska,1983,7,1,sheet
+Nebraska,1984,3,2,sheet
+Nebraska,1985,6,0,sheet
+Nebraska,1986,4,0,sheet
+Nebraska,1987,4,1,sheet
+Nebraska,1988,7,1,sheet
+Nebraska,1989,7,1,sheet
+Nebraska,1990,5,0,sheet
+Nebraska,1991,6,2,sheet
+Nebraska,1992,7,1,sheet
+Nebraska,1993,6,0,sheet
+Nebraska,1994,5,1,sheet
+Nebraska,1995,7,0,carried
+Nebraska,1997,8,1,carried
+Nebraska,1998,6,2,carried
+Nebraska,1999,7,0,carried
+Nebraska,2000,3,0,carried
+Nebraska,2001,7,0,carried
+Nebraska,2002,4,0,carried
+Nebraska,2003,4,0,carried
+Nebraska,2004,5,0,carried
+Nebraska,2005,4,1,carried
+Nebraska,2006,4,0,carried
+Nebraska,2007,4,1,carried
+Nebraska,2008,3,0,carried
+Nebraska,2009,3,0,carried
+Nebraska,2010,3,1,carried
+Nebraska,2011,7,1,carried
+Nebraska,2012,4,0,carried
+Nebraska,2013,2,0,carried
+Nebraska,2014,3,0,carried
+Nebraska,2015,3,0,carried
+Nebraska,2016,4,0,carried
+Nebraska,2017,1,0,carried
+Nebraska,2018,1,0,carried
+Nebraska,2020,2,0,carried
+Nebraska,2021,2,0,carried
+Nebraska,2022,3,0,carried
+Nebraska,2023,2,0,carried
+Nebraska,2025,2,0,carried
+Nebraska,2026,1,0,carried
+Nevada,1945,2,0,sheet
+Nevada,1946,2,0,sheet
+Nevada,1947,2,0,sheet
+Nevada,1948,3,0,sheet
+Nevada,1949,2,1,sheet
+Nevada,1950,3,0,sheet
+Nevada,1951,2,0,sheet
+Nevada,1952,2,0,sheet
+Nevada,1962,1,0,sheet
+Nevada,1966,1,0,sheet
+Nevada,1978,1,0,sheet
+Nevada,1981,2,0,sheet
+Nevada,1983,1,0,sheet
+Nevada,1986,1,0,sheet
+Nevada,1987,1,0,sheet
+Nevada,1989,2,0,sheet
+Nevada,1990,1,0,sheet
+Nevada,1991,2,0,sheet
+Nevada,1993,2,0,sheet
+Nevada,1998,3,0,carried
+Nevada,2003,1,0,carried
+Nevada,2004,2,0,carried
+Nevada,2006,1,0,carried
+Nevada,2007,1,0,carried
+Nevada,2009,1,0,carried
+Nevada,2011,3,0,carried
+Nevada,2012,4,0,carried
+Nevada,2013,2,0,carried
+Nevada,2014,1,0,carried
+Nevada,2018,1,0,carried
+Nevada,2022,2,0,carried
+Nevada,2025,1,0,carried
+New Mexico,1939,2,0,sheet
+New Mexico,1945,1,0,sheet
+New Mexico,1946,1,0,sheet
+New Mexico,1948,1,0,sheet
+New Mexico,1949,1,0,sheet
+New Mexico,1952,1,0,sheet
+New Mexico,1953,2,0,sheet
+New Mexico,1955,2,0,sheet
+New Mexico,1958,1,0,sheet
+New Mexico,1960,6,0,sheet+afl
+New Mexico,1963,1,0,sheet
+New Mexico,1964,1,0,sheet
+New Mexico,1965,1,0,sheet
+New Mexico,1966,1,0,sheet
+New Mexico,1967,1,0,sheet
+New Mexico,1968,2,0,sheet
+New Mexico,1969,1,0,sheet
+New Mexico,1970,1,0,sheet
+New Mexico,1971,2,0,sheet
+New Mexico,1973,2,0,sheet
+New Mexico,1974,1,0,sheet
+New Mexico,1976,2,0,sheet
+New Mexico,1977,4,1,sheet
+New Mexico,1979,1,0,sheet
+New Mexico,1980,2,0,sheet
+New Mexico,1981,3,0,sheet
+New Mexico,1984,2,0,sheet
+New Mexico,1985,1,0,sheet
+New Mexico,1990,1,0,sheet
+New Mexico,1991,1,0,sheet
+New Mexico,1995,2,0,carried
+New Mexico,1998,2,0,carried
+New Mexico,2000,2,1,carried
+New Mexico,2001,1,0,carried
+New Mexico,2002,1,0,carried
+New Mexico,2005,2,0,carried
+New Mexico,2006,2,0,carried
+New Mexico,2007,1,0,carried
+New Mexico,2008,1,0,carried
+New Mexico,2009,2,0,carried
+New Mexico,2010,1,0,carried
+New Mexico,2018,1,0,carried
+New Mexico,2023,1,0,carried
+New Mexico,2026,1,0,carried
+New Mexico State,1948,1,0,sheet
+New Mexico State,1954,1,0,sheet
+New Mexico State,1959,1,0,sheet
+New Mexico State,1960,6,0,sheet+afl
+New Mexico State,1961,3,0,sheet
+New Mexico State,1962,1,0,sheet
+New Mexico State,1963,1,0,sheet
+New Mexico State,1965,1,0,sheet
+New Mexico State,1966,2,0,sheet
+New Mexico State,1967,1,0,sheet
+New Mexico State,1968,3,0,sheet
+New Mexico State,1969,5,0,sheet
+New Mexico State,1971,1,0,sheet
+New Mexico State,1972,3,0,sheet
+New Mexico State,1973,1,0,sheet
+New Mexico State,1975,1,0,sheet
+New Mexico State,1976,2,0,sheet
+New Mexico State,1977,2,0,sheet
+New Mexico State,1978,2,0,sheet
+New Mexico State,1982,2,0,sheet
+New Mexico State,1983,1,0,sheet
+New Mexico State,1984,2,0,sheet
+New Mexico State,1985,2,0,sheet
+New Mexico State,1988,1,0,sheet
+New Mexico State,1991,1,0,sheet
+New Mexico State,1994,1,0,sheet
+New Mexico State,1995,1,0,carried
+New Mexico State,2001,1,0,carried
+New Mexico State,2003,1,0,carried
+New Mexico State,2011,1,0,carried
+New Mexico State,2012,1,0,carried
+New Mexico State,2013,1,0,carried
+New Mexico State,2018,1,0,carried
+New Mexico State,2020,1,0,carried
+North Carolina,1938,3,0,sheet
+North Carolina,1939,4,0,sheet
+North Carolina,1940,2,0,sheet
+North Carolina,1941,3,0,sheet
+North Carolina,1942,1,0,sheet
+North Carolina,1943,1,0,sheet
+North Carolina,1944,2,0,sheet
+North Carolina,1945,2,0,sheet
+North Carolina,1946,5,0,sheet
+North Carolina,1947,5,0,sheet
+North Carolina,1948,2,0,sheet
+North Carolina,1949,7,0,sheet
+North Carolina,1950,3,0,sheet
+North Carolina,1951,2,0,sheet
+North Carolina,1953,2,0,sheet
+North Carolina,1954,2,0,sheet
+North Carolina,1955,1,0,sheet
+North Carolina,1956,3,0,sheet
+North Carolina,1957,3,0,sheet
+North Carolina,1958,3,0,sheet
+North Carolina,1959,7,0,sheet
+North Carolina,1960,10,0,sheet+afl
+North Carolina,1961,3,0,sheet
+North Carolina,1964,2,0,sheet
+North Carolina,1965,2,1,sheet
+North Carolina,1967,2,0,sheet
+North Carolina,1968,1,0,sheet
+North Carolina,1969,1,0,sheet
+North Carolina,1971,2,1,sheet
+North Carolina,1972,2,0,sheet
+North Carolina,1973,1,0,sheet
+North Carolina,1974,3,0,sheet
+North Carolina,1975,3,1,sheet
+North Carolina,1976,2,0,sheet
+North Carolina,1977,4,0,sheet
+North Carolina,1978,3,0,sheet
+North Carolina,1979,3,0,sheet
+North Carolina,1980,3,0,sheet
+North Carolina,1981,6,2,sheet
+North Carolina,1982,3,0,sheet
+North Carolina,1983,3,0,sheet
+North Carolina,1984,4,1,sheet
+North Carolina,1985,4,1,sheet
+North Carolina,1986,4,0,sheet
+North Carolina,1987,1,1,sheet
+North Carolina,1988,3,0,sheet
+North Carolina,1989,3,0,sheet
+North Carolina,1990,2,0,sheet
+North Carolina,1991,1,0,sheet
+North Carolina,1992,6,0,sheet
+North Carolina,1993,4,1,sheet
+North Carolina,1994,4,0,sheet
+North Carolina,1995,5,0,carried
+North Carolina,1997,5,0,carried
+North Carolina,1998,7,3,carried
+North Carolina,1999,6,1,carried
+North Carolina,2000,1,0,carried
+North Carolina,2001,4,0,carried
+North Carolina,2002,6,2,carried
+North Carolina,2003,1,0,carried
+North Carolina,2004,3,0,carried
+North Carolina,2005,3,0,carried
+North Carolina,2006,1,0,carried
+North Carolina,2008,2,1,carried
+North Carolina,2009,5,1,carried
+North Carolina,2010,2,0,carried
+North Carolina,2011,9,1,carried
+North Carolina,2012,2,1,carried
+North Carolina,2013,5,2,carried
+North Carolina,2014,5,1,carried
+North Carolina,2017,6,1,carried
+North Carolina,2018,3,0,carried
+North Carolina,2019,1,0,carried
+North Carolina,2020,2,0,carried
+North Carolina,2021,5,0,carried
+North Carolina,2022,4,0,carried
+North Carolina,2023,4,0,carried
+North Carolina,2024,3,1,carried
+North Carolina,2025,1,1,carried
+North Carolina State,1937,1,0,sheet
+North Carolina State,1938,1,0,sheet
+North Carolina State,1940,2,0,sheet
+North Carolina State,1943,2,0,sheet
+North Carolina State,1944,2,0,sheet
+North Carolina State,1947,3,0,sheet
+North Carolina State,1948,2,0,sheet
+North Carolina State,1950,1,0,sheet
+North Carolina State,1952,3,0,sheet
+North Carolina State,1953,1,0,sheet
+North Carolina State,1954,1,0,sheet
+North Carolina State,1956,1,0,sheet
+North Carolina State,1957,1,0,sheet
+North Carolina State,1958,3,0,sheet
+North Carolina State,1959,3,0,sheet
+North Carolina State,1960,3,0,sheet+afl
+North Carolina State,1961,3,0,sheet
+North Carolina State,1962,2,1,sheet
+North Carolina State,1965,1,0,sheet
+North Carolina State,1966,2,0,sheet
+North Carolina State,1967,4,0,sheet
+North Carolina State,1968,3,1,sheet
+North Carolina State,1969,2,0,sheet
+North Carolina State,1970,1,0,sheet
+North Carolina State,1971,1,0,sheet
+North Carolina State,1972,1,0,sheet
+North Carolina State,1974,4,1,sheet
+North Carolina State,1975,3,0,sheet
+North Carolina State,1976,2,0,sheet
+North Carolina State,1978,3,0,sheet
+North Carolina State,1979,2,1,sheet
+North Carolina State,1980,5,1,sheet
+North Carolina State,1981,2,0,sheet
+North Carolina State,1982,4,1,sheet
+North Carolina State,1983,2,0,sheet
+North Carolina State,1985,2,0,sheet
+North Carolina State,1986,4,0,sheet
+North Carolina State,1987,2,1,sheet
+North Carolina State,1988,1,0,sheet
+North Carolina State,1989,2,0,sheet
+North Carolina State,1990,2,1,sheet
+North Carolina State,1991,5,0,sheet
+North Carolina State,1992,4,0,sheet
+North Carolina State,1993,3,0,sheet
+North Carolina State,1994,3,1,sheet
+North Carolina State,1995,4,0,carried
+North Carolina State,1997,1,0,carried
+North Carolina State,1998,2,0,carried
+North Carolina State,1999,2,1,carried
+North Carolina State,2000,2,0,carried
+North Carolina State,2001,2,1,carried
+North Carolina State,2002,2,0,carried
+North Carolina State,2003,2,0,carried
+North Carolina State,2004,3,1,carried
+North Carolina State,2005,3,0,carried
+North Carolina State,2006,6,3,carried
+North Carolina State,2007,3,0,carried
+North Carolina State,2008,2,0,carried
+North Carolina State,2009,2,0,carried
+North Carolina State,2010,2,0,carried
+North Carolina State,2011,1,0,carried
+North Carolina State,2012,5,0,carried
+North Carolina State,2013,3,0,carried
+North Carolina State,2014,1,0,carried
+North Carolina State,2016,3,0,carried
+North Carolina State,2017,3,0,carried
+North Carolina State,2018,7,1,carried
+North Carolina State,2019,4,1,carried
+North Carolina State,2020,2,0,carried
+North Carolina State,2021,1,0,carried
+North Carolina State,2022,2,1,carried
+North Carolina State,2023,1,0,carried
+North Carolina State,2024,2,0,carried
+North Carolina State,2025,1,0,carried
+North Carolina State,2026,2,0,carried
+North Texas,1948,2,0,sheet
+North Texas,1949,3,0,sheet
+North Texas,1950,1,0,sheet
+North Texas,1951,2,0,sheet
+North Texas,1952,3,0,sheet
+North Texas,1953,3,0,sheet
+North Texas,1954,4,0,sheet
+North Texas,1955,4,0,sheet
+North Texas,1956,2,0,sheet
+North Texas,1958,3,0,sheet
+North Texas,1959,2,0,sheet
+North Texas,1960,6,0,sheet+afl
+North Texas,1962,2,0,sheet
+North Texas,1963,1,0,sheet
+North Texas,1964,3,0,sheet
+North Texas,1965,2,0,sheet
+North Texas,1966,2,0,sheet
+North Texas,1967,2,0,sheet
+North Texas,1968,4,0,sheet
+North Texas,1969,4,1,sheet
+North Texas,1970,5,1,sheet
+North Texas,1971,5,1,sheet
+North Texas,1972,1,0,sheet
+North Texas,1973,1,0,sheet
+North Texas,1975,1,0,sheet
+North Texas,1976,2,0,sheet
+North Texas,1979,1,0,sheet
+North Texas,1981,1,0,sheet
+North Texas,1982,2,0,sheet
+North Texas,1983,1,0,sheet
+North Texas,1989,1,0,sheet
+North Texas,1991,2,0,sheet
+North Texas,1995,1,0,carried
+North Texas,2004,1,0,carried
+North Texas,2021,1,0,carried
+Northern Illinois,1948,1,0,sheet
+Northern Illinois,1952,1,0,sheet
+Northern Illinois,1967,1,0,sheet
+Northern Illinois,1968,1,0,sheet
+Northern Illinois,1969,1,0,sheet
+Northern Illinois,1972,1,0,sheet
+Northern Illinois,1973,3,0,sheet
+Northern Illinois,1974,2,0,sheet
+Northern Illinois,1975,1,0,sheet
+Northern Illinois,1976,3,0,sheet
+Northern Illinois,1977,1,0,sheet
+Northern Illinois,1980,1,0,sheet
+Northern Illinois,1981,1,0,sheet
+Northern Illinois,1984,1,0,sheet
+Northern Illinois,1986,3,0,sheet
+Northern Illinois,1987,3,0,sheet
+Northern Illinois,1990,1,0,sheet
+Northern Illinois,1994,1,0,sheet
+Northern Illinois,2001,2,0,carried
+Northern Illinois,2002,1,0,carried
+Northern Illinois,2004,1,0,carried
+Northern Illinois,2007,2,0,carried
+Northern Illinois,2009,1,1,carried
+Northern Illinois,2012,1,0,carried
+Northern Illinois,2014,2,1,carried
+Northern Illinois,2015,1,0,carried
+Northern Illinois,2017,1,0,carried
+Northern Illinois,2019,2,0,carried
+Northwestern,1936,2,0,sheet
+Northwestern,1937,3,0,sheet
+Northwestern,1938,2,0,sheet
+Northwestern,1939,1,0,sheet
+Northwestern,1940,3,0,sheet
+Northwestern,1941,3,0,sheet
+Northwestern,1942,4,0,sheet
+Northwestern,1943,3,0,sheet
+Northwestern,1944,7,1,sheet
+Northwestern,1945,4,0,sheet
+Northwestern,1946,5,0,sheet
+Northwestern,1947,8,1,sheet
+Northwestern,1948,1,0,sheet
+Northwestern,1949,1,0,sheet
+Northwestern,1950,8,0,sheet
+Northwestern,1951,4,0,sheet
+Northwestern,1952,2,0,sheet
+Northwestern,1953,4,0,sheet
+Northwestern,1954,2,0,sheet
+Northwestern,1955,1,0,sheet
+Northwestern,1956,2,0,sheet
+Northwestern,1957,2,0,sheet
+Northwestern,1958,2,0,sheet
+Northwestern,1959,2,0,sheet
+Northwestern,1960,9,1,sheet+afl
+Northwestern,1961,7,0,sheet
+Northwestern,1962,3,1,sheet
+Northwestern,1963,3,0,sheet
+Northwestern,1964,3,0,sheet
+Northwestern,1965,4,0,sheet
+Northwestern,1966,2,0,sheet
+Northwestern,1967,7,1,sheet
+Northwestern,1968,1,0,sheet
+Northwestern,1969,2,0,sheet
+Northwestern,1971,4,0,sheet
+Northwestern,1972,2,0,sheet
+Northwestern,1973,2,0,sheet
+Northwestern,1974,3,0,sheet
+Northwestern,1975,1,0,sheet
+Northwestern,1976,1,0,sheet
+Northwestern,1977,3,0,sheet
+Northwestern,1978,1,0,sheet
+Northwestern,1980,1,0,sheet
+Northwestern,1982,1,0,sheet
+Northwestern,1983,1,1,sheet
+Northwestern,1984,2,0,sheet
+Northwestern,1985,4,0,sheet
+Northwestern,1986,1,0,sheet
+Northwestern,1987,1,0,sheet
+Northwestern,1989,3,0,sheet
+Northwestern,1991,1,0,sheet
+Northwestern,1992,1,0,sheet
+Northwestern,1994,2,0,sheet
+Northwestern,1995,2,0,carried
+Northwestern,1997,3,0,carried
+Northwestern,1998,2,0,carried
+Northwestern,1999,3,0,carried
+Northwestern,2000,1,0,carried
+Northwestern,2001,2,0,carried
+Northwestern,2002,3,1,carried
+Northwestern,2003,1,0,carried
+Northwestern,2005,3,1,carried
+Northwestern,2006,3,0,carried
+Northwestern,2010,3,0,carried
+Northwestern,2012,2,0,carried
+Northwestern,2015,2,0,carried
+Northwestern,2016,2,0,carried
+Northwestern,2017,2,0,carried
+Northwestern,2018,1,0,carried
+Northwestern,2019,1,0,carried
+Northwestern,2021,3,2,carried
+Northwestern,2023,4,1,carried
+Northwestern,2026,2,0,carried
+Notre Dame,1936,5,1,sheet
+Notre Dame,1938,3,0,sheet
+Notre Dame,1939,7,0,sheet
+Notre Dame,1940,3,0,sheet
+Notre Dame,1941,3,0,sheet
+Notre Dame,1942,2,0,sheet
+Notre Dame,1943,8,0,sheet
+Notre Dame,1944,13,2,sheet
+Notre Dame,1945,15,2,sheet
+Notre Dame,1946,16,4,sheet
+Notre Dame,1947,5,0,sheet
+Notre Dame,1948,10,0,sheet
+Notre Dame,1949,8,2,sheet
+Notre Dame,1950,13,1,sheet
+Notre Dame,1951,5,2,sheet
+Notre Dame,1952,7,0,sheet
+Notre Dame,1953,3,0,sheet
+Notre Dame,1954,12,3,sheet
+Notre Dame,1955,9,3,sheet
+Notre Dame,1956,10,0,sheet
+Notre Dame,1957,4,1,sheet
+Notre Dame,1958,3,0,sheet
+Notre Dame,1959,11,1,sheet
+Notre Dame,1960,10,2,sheet+afl
+Notre Dame,1961,3,0,sheet
+Notre Dame,1962,5,0,sheet
+Notre Dame,1963,3,0,sheet
+Notre Dame,1964,7,0,sheet
+Notre Dame,1965,9,1,sheet
+Notre Dame,1966,7,0,sheet
+Notre Dame,1967,8,3,sheet
+Notre Dame,1968,8,1,sheet
+Notre Dame,1969,11,2,sheet
+Notre Dame,1970,5,1,sheet
+Notre Dame,1971,5,0,sheet
+Notre Dame,1972,8,3,sheet
+Notre Dame,1973,6,0,sheet
+Notre Dame,1974,8,0,sheet
+Notre Dame,1975,10,1,sheet
+Notre Dame,1976,2,1,sheet
+Notre Dame,1978,8,3,sheet
+Notre Dame,1979,10,0,sheet
+Notre Dame,1980,6,1,sheet
+Notre Dame,1981,6,0,sheet
+Notre Dame,1982,3,1,sheet
+Notre Dame,1983,6,1,sheet
+Notre Dame,1984,5,1,sheet
+Notre Dame,1985,5,0,sheet
+Notre Dame,1986,4,1,sheet
+Notre Dame,1987,4,0,sheet
+Notre Dame,1988,5,1,sheet
+Notre Dame,1989,5,1,sheet
+Notre Dame,1990,9,0,sheet
+Notre Dame,1991,10,1,sheet
+Notre Dame,1992,8,1,sheet
+Notre Dame,1993,9,4,sheet
+Notre Dame,1994,10,3,sheet
+Notre Dame,1995,5,0,carried
+Notre Dame,1997,5,1,carried
+Notre Dame,1998,1,0,carried
+Notre Dame,1999,7,1,carried
+Notre Dame,2000,1,0,carried
+Notre Dame,2001,6,0,carried
+Notre Dame,2002,6,0,carried
+Notre Dame,2003,7,1,carried
+Notre Dame,2004,5,0,carried
+Notre Dame,2005,2,0,carried
+Notre Dame,2006,3,0,carried
+Notre Dame,2007,7,1,carried
+Notre Dame,2008,4,0,carried
+Notre Dame,2009,1,0,carried
+Notre Dame,2010,4,0,carried
+Notre Dame,2011,1,0,carried
+Notre Dame,2012,4,2,carried
+Notre Dame,2013,6,1,carried
+Notre Dame,2014,8,1,carried
+Notre Dame,2015,1,0,carried
+Notre Dame,2016,7,2,carried
+Notre Dame,2017,2,0,carried
+Notre Dame,2018,4,2,carried
+Notre Dame,2019,6,1,carried
+Notre Dame,2020,6,0,carried
+Notre Dame,2021,9,0,carried
+Notre Dame,2022,2,1,carried
+Notre Dame,2023,3,0,carried
+Notre Dame,2024,7,1,carried
+Notre Dame,2025,6,0,carried
+Notre Dame,2026,6,2,carried
+Ohio,1936,1,1,sheet
+Ohio,1939,2,0,sheet
+Ohio,1943,2,0,sheet
+Ohio,1948,1,0,sheet
+Ohio,1954,1,0,sheet
+Ohio,1958,1,0,sheet
+Ohio,1960,2,0,sheet+afl
+Ohio,1961,1,0,sheet
+Ohio,1962,2,0,sheet
+Ohio,1963,2,0,sheet
+Ohio,1965,1,0,sheet
+Ohio,1969,2,0,sheet
+Ohio,1970,2,0,sheet
+Ohio,1972,2,0,sheet
+Ohio,1973,1,0,sheet
+Ohio,1976,1,0,sheet
+Ohio,2002,1,0,carried
+Ohio,2008,1,0,carried
+Ohio,2009,1,0,carried
+Ohio,2010,1,0,carried
+Ohio,2012,1,0,carried
+Ohio,2013,1,0,carried
+Ohio,2014,1,0,carried
+Ohio,2017,2,0,carried
+Ohio,2018,1,0,carried
+Ohio State,1936,2,0,sheet
+Ohio State,1937,3,0,sheet
+Ohio State,1938,5,1,sheet
+Ohio State,1939,3,0,sheet
+Ohio State,1940,3,0,sheet
+Ohio State,1941,4,1,sheet
+Ohio State,1942,4,0,sheet
+Ohio State,1943,3,0,sheet
+Ohio State,1944,4,0,sheet
+Ohio State,1945,7,0,sheet
+Ohio State,1946,6,0,sheet
+Ohio State,1947,5,0,sheet
+Ohio State,1948,5,0,sheet
+Ohio State,1949,2,0,sheet
+Ohio State,1950,7,1,sheet
+Ohio State,1951,2,0,sheet
+Ohio State,1952,8,0,sheet
+Ohio State,1953,6,0,sheet
+Ohio State,1954,4,0,sheet
+Ohio State,1955,8,0,sheet
+Ohio State,1956,4,1,sheet
+Ohio State,1957,11,1,sheet
+Ohio State,1958,3,0,sheet
+Ohio State,1959,8,2,sheet
+Ohio State,1960,8,1,sheet+afl
+Ohio State,1961,6,1,sheet
+Ohio State,1962,5,1,sheet
+Ohio State,1963,6,2,sheet
+Ohio State,1964,4,1,sheet
+Ohio State,1965,2,0,sheet
+Ohio State,1966,3,0,sheet
+Ohio State,1967,3,0,sheet
+Ohio State,1968,1,0,sheet
+Ohio State,1969,3,2,sheet
+Ohio State,1970,4,0,sheet
+Ohio State,1971,13,4,sheet
+Ohio State,1972,6,0,sheet
+Ohio State,1973,5,0,sheet
+Ohio State,1974,8,3,sheet
+Ohio State,1975,13,3,sheet
+Ohio State,1976,11,2,sheet
+Ohio State,1977,5,1,sheet
+Ohio State,1978,6,1,sheet
+Ohio State,1979,4,1,sheet
+Ohio State,1980,3,0,sheet
+Ohio State,1981,8,0,sheet
+Ohio State,1982,3,1,sheet
+Ohio State,1983,4,0,sheet
+Ohio State,1984,6,1,sheet
+Ohio State,1985,3,1,sheet
+Ohio State,1986,4,1,sheet
+Ohio State,1987,4,0,sheet
+Ohio State,1988,8,1,sheet
+Ohio State,1989,4,0,sheet
+Ohio State,1990,3,0,sheet
+Ohio State,1991,3,1,sheet
+Ohio State,1992,3,1,sheet
+Ohio State,1993,4,1,sheet
+Ohio State,1994,5,1,sheet
+Ohio State,1995,8,3,carried
+Ohio State,1997,7,2,carried
+Ohio State,1999,8,3,carried
+Ohio State,2000,6,1,carried
+Ohio State,2001,6,2,carried
+Ohio State,2002,8,0,carried
+Ohio State,2003,5,0,carried
+Ohio State,2004,14,3,carried
+Ohio State,2005,3,0,carried
+Ohio State,2006,9,5,carried
+Ohio State,2007,8,2,carried
+Ohio State,2008,3,1,carried
+Ohio State,2009,7,2,carried
+Ohio State,2010,4,0,carried
+Ohio State,2011,5,1,carried
+Ohio State,2012,4,0,carried
+Ohio State,2013,3,0,carried
+Ohio State,2014,6,2,carried
+Ohio State,2015,5,0,carried
+Ohio State,2016,12,5,carried
+Ohio State,2017,7,3,carried
+Ohio State,2018,7,2,carried
+Ohio State,2019,9,2,carried
+Ohio State,2020,10,3,carried
+Ohio State,2021,10,1,carried
+Ohio State,2022,6,2,carried
+Ohio State,2023,6,3,carried
+Ohio State,2024,4,1,carried
+Ohio State,2025,14,4,carried
+Ohio State,2026,11,4,carried
+Oklahoma,1936,1,0,sheet
+Oklahoma,1937,3,0,sheet
+Oklahoma,1938,2,0,sheet
+Oklahoma,1939,5,0,sheet
+Oklahoma,1940,9,0,sheet
+Oklahoma,1941,2,0,sheet
+Oklahoma,1942,4,0,sheet
+Oklahoma,1943,4,0,sheet
+Oklahoma,1944,5,0,sheet
+Oklahoma,1945,4,0,sheet
+Oklahoma,1946,6,0,sheet
+Oklahoma,1947,7,0,sheet
+Oklahoma,1948,2,0,sheet
+Oklahoma,1949,2,0,sheet
+Oklahoma,1950,6,2,sheet
+Oklahoma,1951,6,1,sheet
+Oklahoma,1952,2,0,sheet
+Oklahoma,1953,6,1,sheet
+Oklahoma,1954,5,0,sheet
+Oklahoma,1955,6,2,sheet
+Oklahoma,1956,4,0,sheet
+Oklahoma,1957,7,1,sheet
+Oklahoma,1958,5,0,sheet
+Oklahoma,1959,3,1,sheet
+Oklahoma,1960,9,0,sheet+afl
+Oklahoma,1961,3,0,sheet
+Oklahoma,1963,3,0,sheet
+Oklahoma,1964,3,1,sheet
+Oklahoma,1965,6,0,sheet
+Oklahoma,1966,2,1,sheet
+Oklahoma,1967,5,0,sheet
+Oklahoma,1968,3,0,sheet
+Oklahoma,1969,1,1,sheet
+Oklahoma,1970,6,3,sheet
+Oklahoma,1971,3,0,sheet
+Oklahoma,1972,4,0,sheet
+Oklahoma,1973,11,0,sheet
+Oklahoma,1974,7,0,sheet
+Oklahoma,1975,10,0,sheet
+Oklahoma,1976,7,3,sheet
+Oklahoma,1977,5,0,sheet
+Oklahoma,1978,4,1,sheet
+Oklahoma,1979,10,0,sheet
+Oklahoma,1980,9,2,sheet
+Oklahoma,1981,8,2,sheet
+Oklahoma,1982,4,0,sheet
+Oklahoma,1983,3,0,sheet
+Oklahoma,1984,6,2,sheet
+Oklahoma,1985,5,1,sheet
+Oklahoma,1986,3,1,sheet
+Oklahoma,1987,3,0,sheet
+Oklahoma,1988,13,2,sheet
+Oklahoma,1989,4,0,sheet
+Oklahoma,1990,3,0,sheet
+Oklahoma,1991,5,0,sheet
+Oklahoma,1992,9,0,sheet
+Oklahoma,1993,2,0,sheet
+Oklahoma,1994,2,0,sheet
+Oklahoma,1997,2,0,carried
+Oklahoma,1998,4,0,carried
+Oklahoma,1999,3,0,carried
+Oklahoma,2000,2,1,carried
+Oklahoma,2001,2,0,carried
+Oklahoma,2002,2,1,carried
+Oklahoma,2003,4,1,carried
+Oklahoma,2004,3,1,carried
+Oklahoma,2005,11,2,carried
+Oklahoma,2006,6,1,carried
+Oklahoma,2007,3,1,carried
+Oklahoma,2008,4,0,carried
+Oklahoma,2009,5,0,carried
+Oklahoma,2010,7,4,carried
+Oklahoma,2011,4,0,carried
+Oklahoma,2012,7,0,carried
+Oklahoma,2013,5,1,carried
+Oklahoma,2014,4,0,carried
+Oklahoma,2015,6,0,carried
+Oklahoma,2016,4,0,carried
+Oklahoma,2017,4,0,carried
+Oklahoma,2018,4,1,carried
+Oklahoma,2019,8,2,carried
+Oklahoma,2020,4,2,carried
+Oklahoma,2021,5,0,carried
+Oklahoma,2022,7,0,carried
+Oklahoma,2023,5,1,carried
+Oklahoma,2024,3,1,carried
+Oklahoma,2025,2,0,carried
+Oklahoma,2026,7,0,carried
+Oklahoma State,1939,1,0,sheet
+Oklahoma State,1940,1,0,sheet
+Oklahoma State,1942,1,0,sheet
+Oklahoma State,1943,4,0,sheet
+Oklahoma State,1945,6,0,sheet
+Oklahoma State,1946,3,0,sheet
+Oklahoma State,1947,4,2,sheet
+Oklahoma State,1948,4,1,sheet
+Oklahoma State,1949,4,0,sheet
+Oklahoma State,1950,7,0,sheet
+Oklahoma State,1951,3,1,sheet
+Oklahoma State,1952,2,0,sheet
+Oklahoma State,1954,2,0,sheet
+Oklahoma State,1955,3,0,sheet
+Oklahoma State,1956,3,0,sheet
+Oklahoma State,1957,1,0,sheet
+Oklahoma State,1958,1,0,sheet
+Oklahoma State,1959,3,0,sheet
+Oklahoma State,1960,3,0,sheet+afl
+Oklahoma State,1961,2,0,sheet
+Oklahoma State,1962,2,0,sheet
+Oklahoma State,1965,1,0,sheet
+Oklahoma State,1966,2,0,sheet
+Oklahoma State,1967,5,0,sheet
+Oklahoma State,1969,2,0,sheet
+Oklahoma State,1970,4,1,sheet
+Oklahoma State,1971,1,0,sheet
+Oklahoma State,1972,1,0,sheet
+Oklahoma State,1974,4,1,sheet
+Oklahoma State,1975,1,0,sheet
+Oklahoma State,1976,3,1,sheet
+Oklahoma State,1977,5,1,sheet
+Oklahoma State,1978,3,1,sheet
+Oklahoma State,1979,2,0,sheet
+Oklahoma State,1980,2,0,sheet
+Oklahoma State,1981,3,0,sheet
+Oklahoma State,1982,2,0,sheet
+Oklahoma State,1983,3,0,sheet
+Oklahoma State,1984,5,0,sheet
+Oklahoma State,1985,5,0,sheet
+Oklahoma State,1986,3,1,sheet
+Oklahoma State,1987,1,0,sheet
+Oklahoma State,1988,2,0,sheet
+Oklahoma State,1989,2,2,sheet
+Oklahoma State,1991,2,0,sheet
+Oklahoma State,1992,1,0,sheet
+Oklahoma State,1994,2,0,sheet
+Oklahoma State,1995,1,0,carried
+Oklahoma State,1998,3,1,carried
+Oklahoma State,2000,2,0,carried
+Oklahoma State,2003,1,1,carried
+Oklahoma State,2004,3,1,carried
+Oklahoma State,2005,3,0,carried
+Oklahoma State,2006,1,0,carried
+Oklahoma State,2007,2,0,carried
+Oklahoma State,2009,1,1,carried
+Oklahoma State,2010,4,2,carried
+Oklahoma State,2011,1,0,carried
+Oklahoma State,2012,3,2,carried
+Oklahoma State,2013,1,0,carried
+Oklahoma State,2014,1,1,carried
+Oklahoma State,2015,1,0,carried
+Oklahoma State,2016,1,0,carried
+Oklahoma State,2017,2,0,carried
+Oklahoma State,2018,4,0,carried
+Oklahoma State,2019,2,0,carried
+Oklahoma State,2021,4,0,carried
+Oklahoma State,2022,3,0,carried
+Oklahoma State,2023,2,0,carried
+Oklahoma State,2025,4,0,carried
+Old Dominion,2019,2,0,carried
+Old Dominion,2023,3,0,carried
+Ole Miss,1937,1,0,sheet
+Ole Miss,1938,1,0,sheet
+Ole Miss,1939,2,1,sheet
+Ole Miss,1940,1,0,sheet
+Ole Miss,1941,2,0,sheet
+Ole Miss,1942,2,1,sheet
+Ole Miss,1943,2,0,sheet
+Ole Miss,1944,2,0,sheet
+Ole Miss,1945,1,0,sheet
+Ole Miss,1946,3,0,sheet
+Ole Miss,1947,1,0,sheet
+Ole Miss,1948,2,0,sheet
+Ole Miss,1949,4,0,sheet
+Ole Miss,1950,4,0,sheet
+Ole Miss,1951,1,0,sheet
+Ole Miss,1952,6,0,sheet
+Ole Miss,1953,6,0,sheet
+Ole Miss,1954,4,1,sheet
+Ole Miss,1955,3,0,sheet
+Ole Miss,1956,8,0,sheet
+Ole Miss,1957,3,0,sheet
+Ole Miss,1958,8,0,sheet
+Ole Miss,1959,5,0,sheet
+Ole Miss,1960,18,0,sheet+afl
+Ole Miss,1961,7,1,sheet
+Ole Miss,1962,7,0,sheet
+Ole Miss,1963,4,1,sheet
+Ole Miss,1964,6,0,sheet
+Ole Miss,1965,5,0,sheet
+Ole Miss,1966,4,1,sheet
+Ole Miss,1967,4,0,sheet
+Ole Miss,1968,9,0,sheet
+Ole Miss,1970,5,0,sheet
+Ole Miss,1971,9,1,sheet
+Ole Miss,1972,3,0,sheet
+Ole Miss,1973,1,0,sheet
+Ole Miss,1974,2,0,sheet
+Ole Miss,1975,1,0,sheet
+Ole Miss,1976,3,0,sheet
+Ole Miss,1978,2,0,sheet
+Ole Miss,1979,2,0,sheet
+Ole Miss,1980,1,0,sheet
+Ole Miss,1981,2,0,sheet
+Ole Miss,1983,2,0,sheet
+Ole Miss,1984,2,0,sheet
+Ole Miss,1985,5,1,sheet
+Ole Miss,1986,2,0,sheet
+Ole Miss,1987,3,0,sheet
+Ole Miss,1988,3,0,sheet
+Ole Miss,1989,4,0,sheet
+Ole Miss,1990,3,1,sheet
+Ole Miss,1991,2,1,sheet
+Ole Miss,1992,2,0,sheet
+Ole Miss,1993,3,0,sheet
+Ole Miss,1994,2,1,sheet
+Ole Miss,1995,4,0,carried
+Ole Miss,1997,1,0,carried
+Ole Miss,1998,2,1,carried
+Ole Miss,2000,3,0,carried
+Ole Miss,2001,3,1,carried
+Ole Miss,2002,1,0,carried
+Ole Miss,2003,1,0,carried
+Ole Miss,2004,4,1,carried
+Ole Miss,2005,3,1,carried
+Ole Miss,2006,1,0,carried
+Ole Miss,2007,2,1,carried
+Ole Miss,2009,4,2,carried
+Ole Miss,2010,4,0,carried
+Ole Miss,2011,1,0,carried
+Ole Miss,2012,1,0,carried
+Ole Miss,2014,1,0,carried
+Ole Miss,2015,1,0,carried
+Ole Miss,2016,5,3,carried
+Ole Miss,2017,4,1,carried
+Ole Miss,2018,4,0,carried
+Ole Miss,2019,6,0,carried
+Ole Miss,2021,2,0,carried
+Ole Miss,2022,6,0,carried
+Ole Miss,2023,4,0,carried
+Ole Miss,2024,3,0,carried
+Ole Miss,2025,8,2,carried
+Ole Miss,2026,2,0,carried
+Oregon,1936,2,0,sheet
+Oregon,1937,1,0,sheet
+Oregon,1939,1,0,sheet
+Oregon,1940,6,0,sheet
+Oregon,1941,4,0,sheet
+Oregon,1942,2,0,sheet
+Oregon,1943,6,0,sheet
+Oregon,1944,2,0,sheet
+Oregon,1945,5,0,sheet
+Oregon,1946,2,0,sheet
+Oregon,1947,3,0,sheet
+Oregon,1948,3,0,sheet
+Oregon,1949,1,0,sheet
+Oregon,1950,6,0,sheet
+Oregon,1951,3,0,sheet
+Oregon,1952,1,0,sheet
+Oregon,1953,2,0,sheet
+Oregon,1954,1,0,sheet
+Oregon,1955,5,1,sheet
+Oregon,1956,2,0,sheet
+Oregon,1958,2,0,sheet
+Oregon,1959,3,0,sheet
+Oregon,1960,8,0,sheet+afl
+Oregon,1961,2,0,sheet
+Oregon,1963,2,0,sheet
+Oregon,1964,4,0,sheet
+Oregon,1965,1,0,sheet
+Oregon,1966,2,0,sheet
+Oregon,1967,2,0,sheet
+Oregon,1968,1,1,sheet
+Oregon,1969,1,0,sheet
+Oregon,1970,3,0,sheet
+Oregon,1971,4,0,sheet
+Oregon,1972,6,2,sheet
+Oregon,1973,3,0,sheet
+Oregon,1974,2,0,sheet
+Oregon,1975,2,1,sheet
+Oregon,1976,5,1,sheet
+Oregon,1978,2,0,sheet
+Oregon,1979,1,0,sheet
+Oregon,1980,2,0,sheet
+Oregon,1981,2,0,sheet
+Oregon,1982,3,0,sheet
+Oregon,1983,2,0,sheet
+Oregon,1984,2,0,sheet
+Oregon,1986,3,0,sheet
+Oregon,1987,2,1,sheet
+Oregon,1988,3,0,sheet
+Oregon,1989,3,0,sheet
+Oregon,1990,4,0,sheet
+Oregon,1991,2,0,sheet
+Oregon,1992,2,0,sheet
+Oregon,1993,1,0,sheet
+Oregon,1994,2,0,sheet
+Oregon,1995,3,0,carried
+Oregon,1997,3,0,carried
+Oregon,1998,2,0,carried
+Oregon,1999,3,1,carried
+Oregon,2000,2,0,carried
+Oregon,2001,1,0,carried
+Oregon,2002,6,1,carried
+Oregon,2003,3,0,carried
+Oregon,2004,4,0,carried
+Oregon,2005,2,0,carried
+Oregon,2006,4,1,carried
+Oregon,2007,3,0,carried
+Oregon,2008,3,1,carried
+Oregon,2009,6,0,carried
+Oregon,2010,3,0,carried
+Oregon,2011,1,0,carried
+Oregon,2012,4,0,carried
+Oregon,2013,5,2,carried
+Oregon,2014,4,0,carried
+Oregon,2015,5,2,carried
+Oregon,2016,2,1,carried
+Oregon,2018,2,0,carried
+Oregon,2019,4,0,carried
+Oregon,2020,4,1,carried
+Oregon,2021,5,1,carried
+Oregon,2022,1,1,carried
+Oregon,2023,6,1,carried
+Oregon,2024,8,1,carried
+Oregon,2025,10,2,carried
+Oregon,2026,7,2,carried
+Oregon State,1938,3,1,sheet
+Oregon State,1939,2,0,sheet
+Oregon State,1940,3,0,sheet
+Oregon State,1941,4,0,sheet
+Oregon State,1942,3,0,sheet
+Oregon State,1943,4,0,sheet
+Oregon State,1944,4,0,sheet
+Oregon State,1946,5,0,sheet
+Oregon State,1947,2,0,sheet
+Oregon State,1949,2,0,sheet
+Oregon State,1950,4,1,sheet
+Oregon State,1951,1,0,sheet
+Oregon State,1952,4,0,sheet
+Oregon State,1953,1,0,sheet
+Oregon State,1954,3,0,sheet
+Oregon State,1955,2,0,sheet
+Oregon State,1957,2,0,sheet
+Oregon State,1958,1,0,sheet
+Oregon State,1959,1,0,sheet
+Oregon State,1960,2,0,sheet+afl
+Oregon State,1961,2,0,sheet
+Oregon State,1962,3,0,sheet
+Oregon State,1963,2,1,sheet
+Oregon State,1964,1,0,sheet
+Oregon State,1965,4,0,sheet
+Oregon State,1966,3,0,sheet
+Oregon State,1967,6,0,sheet
+Oregon State,1968,3,0,sheet
+Oregon State,1969,5,0,sheet
+Oregon State,1970,4,0,sheet
+Oregon State,1971,1,0,sheet
+Oregon State,1972,4,0,sheet
+Oregon State,1973,2,0,sheet
+Oregon State,1975,4,0,sheet
+Oregon State,1976,2,0,sheet
+Oregon State,1977,1,0,sheet
+Oregon State,1978,1,0,sheet
+Oregon State,1979,1,0,sheet
+Oregon State,1980,1,0,sheet
+Oregon State,1982,1,0,sheet
+Oregon State,1986,1,0,sheet
+Oregon State,1987,1,0,sheet
+Oregon State,1988,1,0,sheet
+Oregon State,1989,3,0,sheet
+Oregon State,1990,2,0,sheet
+Oregon State,1991,1,0,sheet
+Oregon State,1994,1,0,sheet
+Oregon State,1999,3,0,carried
+Oregon State,2001,4,0,carried
+Oregon State,2002,1,0,carried
+Oregon State,2003,3,1,carried
+Oregon State,2004,4,1,carried
+Oregon State,2005,3,0,carried
+Oregon State,2006,2,0,carried
+Oregon State,2007,2,0,carried
+Oregon State,2008,2,0,carried
+Oregon State,2009,7,0,carried
+Oregon State,2010,1,0,carried
+Oregon State,2011,3,0,carried
+Oregon State,2012,1,0,carried
+Oregon State,2013,2,0,carried
+Oregon State,2014,2,1,carried
+Oregon State,2015,5,0,carried
+Oregon State,2016,1,0,carried
+Oregon State,2017,2,0,carried
+Oregon State,2020,3,0,carried
+Oregon State,2021,2,0,carried
+Oregon State,2022,1,0,carried
+Oregon State,2023,2,0,carried
+Oregon State,2024,3,1,carried
+Penn State,1940,1,0,sheet
+Penn State,1941,4,0,sheet
+Penn State,1942,2,0,sheet
+Penn State,1943,3,0,sheet
+Penn State,1944,1,0,sheet
+Penn State,1946,4,0,sheet
+Penn State,1947,5,0,sheet
+Penn State,1948,3,0,sheet
+Penn State,1949,4,0,sheet
+Penn State,1950,4,0,sheet
+Penn State,1952,1,0,sheet
+Penn State,1953,5,0,sheet
+Penn State,1954,1,0,sheet
+Penn State,1955,4,0,sheet
+Penn State,1956,2,1,sheet
+Penn State,1957,2,0,sheet
+Penn State,1958,3,0,sheet
+Penn State,1959,1,0,sheet
+Penn State,1960,9,1,sheet+afl
+Penn State,1961,5,0,sheet
+Penn State,1962,7,0,sheet
+Penn State,1963,6,1,sheet
+Penn State,1964,3,0,sheet
+Penn State,1965,1,0,sheet
+Penn State,1966,3,0,sheet
+Penn State,1967,3,0,sheet
+Penn State,1968,3,0,sheet
+Penn State,1969,5,1,sheet
+Penn State,1970,8,1,sheet
+Penn State,1971,4,0,sheet
+Penn State,1972,4,1,sheet
+Penn State,1973,5,0,sheet
+Penn State,1974,10,2,sheet
+Penn State,1975,10,0,sheet
+Penn State,1976,4,0,sheet
+Penn State,1977,4,0,sheet
+Penn State,1978,7,0,sheet
+Penn State,1979,9,1,sheet
+Penn State,1980,7,1,sheet
+Penn State,1981,7,1,sheet
+Penn State,1982,10,2,sheet
+Penn State,1983,9,2,sheet
+Penn State,1984,8,1,sheet
+Penn State,1985,4,0,sheet
+Penn State,1986,3,0,sheet
+Penn State,1987,13,2,sheet
+Penn State,1988,4,0,sheet
+Penn State,1989,6,0,sheet
+Penn State,1990,4,1,sheet
+Penn State,1991,6,0,sheet
+Penn State,1992,9,0,sheet
+Penn State,1993,8,1,sheet
+Penn State,1994,4,0,sheet
+Penn State,1995,5,3,carried
+Penn State,1997,3,0,carried
+Penn State,1998,3,1,carried
+Penn State,1999,2,0,carried
+Penn State,2000,4,2,carried
+Penn State,2001,4,0,carried
+Penn State,2002,2,0,carried
+Penn State,2003,6,4,carried
+Penn State,2004,4,0,carried
+Penn State,2006,6,1,carried
+Penn State,2007,5,1,carried
+Penn State,2008,2,0,carried
+Penn State,2009,5,1,carried
+Penn State,2010,6,1,carried
+Penn State,2011,2,0,carried
+Penn State,2012,4,0,carried
+Penn State,2013,4,0,carried
+Penn State,2014,3,0,carried
+Penn State,2015,3,0,carried
+Penn State,2016,5,0,carried
+Penn State,2017,1,0,carried
+Penn State,2018,6,1,carried
+Penn State,2019,6,0,carried
+Penn State,2020,5,0,carried
+Penn State,2021,6,2,carried
+Penn State,2022,8,1,carried
+Penn State,2023,6,0,carried
+Penn State,2024,8,2,carried
+Penn State,2025,5,2,carried
+Penn State,2026,8,1,carried
+Pittsburgh,1937,3,0,sheet
+Pittsburgh,1938,4,0,sheet
+Pittsburgh,1939,8,0,sheet
+Pittsburgh,1940,2,0,sheet
+Pittsburgh,1941,1,0,sheet
+Pittsburgh,1942,2,0,sheet
+Pittsburgh,1943,4,0,sheet
+Pittsburgh,1945,5,0,sheet
+Pittsburgh,1946,2,0,sheet
+Pittsburgh,1948,2,0,sheet
+Pittsburgh,1949,1,0,sheet
+Pittsburgh,1950,5,0,sheet
+Pittsburgh,1951,2,0,sheet
+Pittsburgh,1952,2,0,sheet
+Pittsburgh,1953,2,0,sheet
+Pittsburgh,1954,4,0,sheet
+Pittsburgh,1955,6,0,sheet
+Pittsburgh,1956,6,0,sheet
+Pittsburgh,1957,8,0,sheet
+Pittsburgh,1958,4,0,sheet
+Pittsburgh,1959,5,0,sheet
+Pittsburgh,1960,3,0,sheet+afl
+Pittsburgh,1961,8,1,sheet
+Pittsburgh,1962,3,0,sheet
+Pittsburgh,1963,6,0,sheet
+Pittsburgh,1964,5,1,sheet
+Pittsburgh,1965,2,0,sheet
+Pittsburgh,1966,6,0,sheet
+Pittsburgh,1967,1,0,sheet
+Pittsburgh,1968,2,0,sheet
+Pittsburgh,1969,1,0,sheet
+Pittsburgh,1970,2,0,sheet
+Pittsburgh,1971,6,0,sheet
+Pittsburgh,1972,5,0,sheet
+Pittsburgh,1973,2,0,sheet
+Pittsburgh,1974,3,0,sheet
+Pittsburgh,1975,2,0,sheet
+Pittsburgh,1976,3,0,sheet
+Pittsburgh,1977,6,1,sheet
+Pittsburgh,1978,8,1,sheet
+Pittsburgh,1979,5,0,sheet
+Pittsburgh,1980,2,0,sheet
+Pittsburgh,1981,12,3,sheet
+Pittsburgh,1982,3,0,sheet
+Pittsburgh,1983,9,3,sheet
+Pittsburgh,1984,6,1,sheet
+Pittsburgh,1985,5,2,sheet
+Pittsburgh,1986,2,1,sheet
+Pittsburgh,1987,4,1,sheet
+Pittsburgh,1988,7,1,sheet
+Pittsburgh,1989,6,2,sheet
+Pittsburgh,1990,7,0,sheet
+Pittsburgh,1991,4,0,sheet
+Pittsburgh,1992,6,1,sheet
+Pittsburgh,1993,1,0,sheet
+Pittsburgh,1995,3,1,carried
+Pittsburgh,2000,1,0,carried
+Pittsburgh,2001,1,0,carried
+Pittsburgh,2002,3,0,carried
+Pittsburgh,2003,3,0,carried
+Pittsburgh,2004,6,1,carried
+Pittsburgh,2005,1,0,carried
+Pittsburgh,2006,2,0,carried
+Pittsburgh,2007,3,1,carried
+Pittsburgh,2008,3,1,carried
+Pittsburgh,2009,4,0,carried
+Pittsburgh,2010,2,0,carried
+Pittsburgh,2011,5,1,carried
+Pittsburgh,2014,3,1,carried
+Pittsburgh,2015,1,0,carried
+Pittsburgh,2016,1,0,carried
+Pittsburgh,2017,5,0,carried
+Pittsburgh,2018,3,0,carried
+Pittsburgh,2019,1,0,carried
+Pittsburgh,2020,1,0,carried
+Pittsburgh,2021,6,0,carried
+Pittsburgh,2022,2,1,carried
+Pittsburgh,2023,6,1,carried
+Pittsburgh,2024,3,0,carried
+Pittsburgh,2025,3,0,carried
+Pittsburgh,2026,1,0,carried
+Purdue,1936,2,0,sheet
+Purdue,1937,2,1,sheet
+Purdue,1938,3,1,sheet
+Purdue,1939,3,0,sheet
+Purdue,1940,5,0,sheet
+Purdue,1941,2,0,sheet
+Purdue,1942,2,0,sheet
+Purdue,1943,1,0,sheet
+Purdue,1944,5,0,sheet
+Purdue,1945,5,0,sheet
+Purdue,1946,4,0,sheet
+Purdue,1947,2,0,sheet
+Purdue,1948,7,0,sheet
+Purdue,1949,4,0,sheet
+Purdue,1950,6,0,sheet
+Purdue,1951,7,0,sheet
+Purdue,1952,4,0,sheet
+Purdue,1953,4,0,sheet
+Purdue,1954,5,0,sheet
+Purdue,1955,8,1,sheet
+Purdue,1956,5,0,sheet
+Purdue,1957,4,1,sheet
+Purdue,1958,5,0,sheet
+Purdue,1959,7,0,sheet
+Purdue,1960,20,0,sheet+afl
+Purdue,1961,1,0,sheet
+Purdue,1962,6,0,sheet
+Purdue,1963,3,1,sheet
+Purdue,1964,2,0,sheet
+Purdue,1965,4,0,sheet
+Purdue,1966,5,1,sheet
+Purdue,1967,5,2,sheet
+Purdue,1968,2,0,sheet
+Purdue,1969,7,1,sheet
+Purdue,1970,6,1,sheet
+Purdue,1971,5,0,sheet
+Purdue,1972,4,0,sheet
+Purdue,1973,8,3,sheet
+Purdue,1974,4,0,sheet
+Purdue,1975,4,1,sheet
+Purdue,1976,6,2,sheet
+Purdue,1977,6,0,sheet
+Purdue,1978,2,0,sheet
+Purdue,1979,1,0,sheet
+Purdue,1980,3,0,sheet
+Purdue,1981,4,0,sheet
+Purdue,1982,3,0,sheet
+Purdue,1983,2,0,sheet
+Purdue,1984,3,0,sheet
+Purdue,1985,2,0,sheet
+Purdue,1986,6,1,sheet
+Purdue,1987,1,1,sheet
+Purdue,1988,2,0,sheet
+Purdue,1989,1,0,sheet
+Purdue,1990,4,0,sheet
+Purdue,1991,2,0,sheet
+Purdue,1992,1,0,sheet
+Purdue,1993,1,0,sheet
+Purdue,1995,1,0,carried
+Purdue,1998,3,0,carried
+Purdue,1999,2,0,carried
+Purdue,2000,2,0,carried
+Purdue,2001,5,0,carried
+Purdue,2002,2,0,carried
+Purdue,2003,1,0,carried
+Purdue,2004,9,0,carried
+Purdue,2005,1,0,carried
+Purdue,2006,4,0,carried
+Purdue,2007,3,1,carried
+Purdue,2008,3,1,carried
+Purdue,2009,2,0,carried
+Purdue,2010,1,0,carried
+Purdue,2011,1,1,carried
+Purdue,2012,2,0,carried
+Purdue,2013,1,0,carried
+Purdue,2014,2,0,carried
+Purdue,2015,1,0,carried
+Purdue,2016,1,0,carried
+Purdue,2017,1,0,carried
+Purdue,2018,1,0,carried
+Purdue,2020,2,0,carried
+Purdue,2021,2,0,carried
+Purdue,2022,3,1,carried
+Purdue,2023,5,0,carried
+Purdue,2024,2,0,carried
+Purdue,2025,1,0,carried
+Rice,1936,3,0,sheet
+Rice,1937,1,0,sheet
+Rice,1939,1,0,sheet
+Rice,1940,3,1,sheet
+Rice,1941,2,0,sheet
+Rice,1942,1,0,sheet
+Rice,1943,2,0,sheet
+Rice,1944,3,0,sheet
+Rice,1945,3,0,sheet
+Rice,1946,3,0,sheet
+Rice,1947,3,0,sheet
+Rice,1948,6,0,sheet
+Rice,1949,4,0,sheet
+Rice,1950,6,1,sheet
+Rice,1951,2,0,sheet
+Rice,1952,4,0,sheet
+Rice,1953,3,0,sheet
+Rice,1954,7,1,sheet
+Rice,1955,2,1,sheet
+Rice,1956,4,0,sheet
+Rice,1957,1,0,sheet
+Rice,1958,3,1,sheet
+Rice,1959,5,0,sheet
+Rice,1960,5,0,sheet+afl
+Rice,1962,3,0,sheet
+Rice,1964,2,0,sheet
+Rice,1965,2,0,sheet
+Rice,1966,1,0,sheet
+Rice,1969,1,0,sheet
+Rice,1970,2,0,sheet
+Rice,1971,3,0,sheet
+Rice,1972,3,0,sheet
+Rice,1973,3,0,sheet
+Rice,1974,4,0,sheet
+Rice,1975,3,0,sheet
+Rice,1976,2,0,sheet
+Rice,1977,2,1,sheet
+Rice,1979,1,0,sheet
+Rice,1980,1,1,sheet
+Rice,1981,3,0,sheet
+Rice,1982,1,0,sheet
+Rice,1983,1,0,sheet
+Rice,1986,1,0,sheet
+Rice,1989,1,0,sheet
+Rice,1991,1,0,sheet
+Rice,1992,1,0,sheet
+Rice,1994,1,0,sheet
+Rice,1997,1,0,carried
+Rice,2003,2,0,carried
+Rice,2009,2,0,carried
+Rice,2011,1,0,carried
+Rice,2012,1,0,carried
+Rice,2013,2,0,carried
+Rice,2014,1,0,carried
+Rice,2015,1,0,carried
+Rice,2024,1,0,carried
+Rutgers,1940,1,0,sheet
+Rutgers,1943,1,0,sheet
+Rutgers,1945,1,0,sheet
+Rutgers,1949,1,0,sheet
+Rutgers,1950,1,0,sheet
+Rutgers,1951,1,0,sheet
+Rutgers,1952,1,0,sheet
+Rutgers,1959,2,0,sheet
+Rutgers,1960,2,0,sheet+afl
+Rutgers,1962,1,0,sheet
+Rutgers,1963,1,0,sheet
+Rutgers,1967,1,0,sheet
+Rutgers,1970,1,0,sheet
+Rutgers,1974,1,0,sheet
+Rutgers,1975,1,0,sheet
+Rutgers,1977,2,0,sheet
+Rutgers,1978,1,0,sheet
+Rutgers,1981,1,0,sheet
+Rutgers,1982,1,0,sheet
+Rutgers,1983,2,0,sheet
+Rutgers,1984,1,0,sheet
+Rutgers,1985,1,0,sheet
+Rutgers,1987,1,0,sheet
+Rutgers,1992,1,0,sheet
+Rutgers,1994,1,0,sheet
+Rutgers,1995,1,0,carried
+Rutgers,2001,1,0,carried
+Rutgers,2003,1,0,carried
+Rutgers,2004,2,0,carried
+Rutgers,2007,3,0,carried
+Rutgers,2008,2,0,carried
+Rutgers,2009,5,1,carried
+Rutgers,2010,3,2,carried
+Rutgers,2012,1,0,carried
+Rutgers,2013,7,0,carried
+Rutgers,2015,2,0,carried
+Rutgers,2016,1,0,carried
+Rutgers,2018,2,0,carried
+Rutgers,2019,2,0,carried
+Rutgers,2022,2,0,carried
+Rutgers,2023,1,0,carried
+Rutgers,2024,1,0,carried
+Rutgers,2025,3,0,carried
+Rutgers,2026,1,0,carried
+Sam Houston,1942,2,0,sheet
+Sam Houston,1950,1,0,sheet
+Sam Houston,1954,2,0,sheet
+Sam Houston,1955,2,0,sheet
+Sam Houston,1956,1,0,sheet
+Sam Houston,1958,3,0,sheet
+Sam Houston,1969,1,0,sheet
+Sam Houston,1971,1,0,sheet
+Sam Houston,1973,1,0,sheet
+Sam Houston,1979,1,0,sheet
+Sam Houston,1983,1,0,sheet
+Sam Houston,1985,1,0,sheet
+Sam Houston,1988,1,0,sheet
+Sam Houston,1989,1,0,sheet
+Sam Houston,1992,1,0,sheet
+San Diego State,1952,2,0,sheet
+San Diego State,1953,1,0,sheet
+San Diego State,1954,1,0,sheet
+San Diego State,1955,1,0,sheet
+San Diego State,1963,2,0,sheet
+San Diego State,1964,2,0,sheet
+San Diego State,1965,2,0,sheet
+San Diego State,1966,2,0,sheet
+San Diego State,1967,8,1,sheet
+San Diego State,1968,4,1,sheet
+San Diego State,1969,4,1,sheet
+San Diego State,1970,4,0,sheet
+San Diego State,1971,6,0,sheet
+San Diego State,1972,7,1,sheet
+San Diego State,1973,4,1,sheet
+San Diego State,1974,2,0,sheet
+San Diego State,1975,1,0,sheet
+San Diego State,1976,6,0,sheet
+San Diego State,1977,1,0,sheet
+San Diego State,1978,6,0,sheet
+San Diego State,1979,3,0,sheet
+San Diego State,1980,2,0,sheet
+San Diego State,1981,2,0,sheet
+San Diego State,1982,2,0,sheet
+San Diego State,1983,5,0,sheet
+San Diego State,1984,2,0,sheet
+San Diego State,1985,4,0,sheet
+San Diego State,1986,3,0,sheet
+San Diego State,1987,1,0,sheet
+San Diego State,1988,5,0,sheet
+San Diego State,1989,1,0,sheet
+San Diego State,1990,2,0,sheet
+San Diego State,1991,3,1,sheet
+San Diego State,1992,3,0,sheet
+San Diego State,1994,3,1,sheet
+San Diego State,1995,1,0,carried
+San Diego State,1997,4,0,carried
+San Diego State,1998,3,1,carried
+San Diego State,2000,3,0,carried
+San Diego State,2002,3,0,carried
+San Diego State,2003,1,0,carried
+San Diego State,2004,1,0,carried
+San Diego State,2005,3,0,carried
+San Diego State,2006,2,0,carried
+San Diego State,2008,4,0,carried
+San Diego State,2009,1,0,carried
+San Diego State,2011,2,0,carried
+San Diego State,2012,4,0,carried
+San Diego State,2013,3,0,carried
+San Diego State,2014,2,0,carried
+San Diego State,2015,1,0,carried
+San Diego State,2017,3,0,carried
+San Diego State,2018,2,1,carried
+San Diego State,2019,1,0,carried
+San Diego State,2020,1,0,carried
+San Diego State,2021,1,0,carried
+San Diego State,2022,4,0,carried
+San Diego State,2026,1,1,carried
+San Jose State,1940,1,0,sheet
+San Jose State,1941,2,0,sheet
+San Jose State,1946,1,0,sheet
+San Jose State,1947,1,0,sheet
+San Jose State,1949,1,0,sheet
+San Jose State,1950,4,0,sheet
+San Jose State,1951,1,0,sheet
+San Jose State,1953,3,0,sheet
+San Jose State,1954,1,0,sheet
+San Jose State,1955,2,0,sheet
+San Jose State,1956,4,0,sheet
+San Jose State,1957,1,0,sheet
+San Jose State,1958,2,0,sheet
+San Jose State,1959,2,0,sheet
+San Jose State,1960,4,0,sheet+afl
+San Jose State,1961,2,0,sheet
+San Jose State,1962,4,0,sheet
+San Jose State,1965,3,0,sheet
+San Jose State,1966,4,0,sheet
+San Jose State,1967,3,0,sheet
+San Jose State,1968,4,0,sheet
+San Jose State,1969,2,0,sheet
+San Jose State,1970,1,0,sheet
+San Jose State,1972,2,0,sheet
+San Jose State,1973,1,0,sheet
+San Jose State,1974,2,0,sheet
+San Jose State,1975,3,1,sheet
+San Jose State,1976,3,1,sheet
+San Jose State,1977,5,1,sheet
+San Jose State,1978,2,0,sheet
+San Jose State,1979,1,0,sheet
+San Jose State,1980,2,0,sheet
+San Jose State,1981,1,1,sheet
+San Jose State,1982,2,1,sheet
+San Jose State,1983,5,1,sheet
+San Jose State,1984,2,0,sheet
+San Jose State,1985,1,0,sheet
+San Jose State,1988,2,0,sheet
+San Jose State,1989,1,0,sheet
+San Jose State,1990,2,0,sheet
+San Jose State,1991,1,0,sheet
+San Jose State,1999,2,0,carried
+San Jose State,2001,1,0,carried
+San Jose State,2003,1,0,carried
+San Jose State,2004,1,0,carried
+San Jose State,2007,2,0,carried
+San Jose State,2008,1,0,carried
+San Jose State,2009,3,0,carried
+San Jose State,2013,1,0,carried
+San Jose State,2014,2,0,carried
+San Jose State,2015,1,0,carried
+San Jose State,2016,2,0,carried
+San Jose State,2018,1,0,carried
+San Jose State,2019,1,0,carried
+San Jose State,2023,1,0,carried
+SMU,1936,5,0,sheet
+SMU,1937,2,0,sheet
+SMU,1939,3,0,sheet
+SMU,1941,3,0,sheet
+SMU,1942,2,0,sheet
+SMU,1943,3,0,sheet
+SMU,1944,4,0,sheet
+SMU,1945,6,0,sheet
+SMU,1946,1,0,sheet
+SMU,1947,3,0,sheet
+SMU,1948,2,0,sheet
+SMU,1949,7,2,sheet
+SMU,1950,4,0,sheet
+SMU,1951,5,1,sheet
+SMU,1952,6,0,sheet
+SMU,1953,1,0,sheet
+SMU,1954,5,0,sheet
+SMU,1955,5,0,sheet
+SMU,1956,5,0,sheet
+SMU,1957,2,0,sheet
+SMU,1958,4,0,sheet
+SMU,1959,6,0,sheet
+SMU,1960,10,0,sheet+afl
+SMU,1961,3,0,sheet
+SMU,1962,1,0,sheet
+SMU,1963,1,0,sheet
+SMU,1964,1,0,sheet
+SMU,1966,1,0,sheet
+SMU,1967,4,0,sheet
+SMU,1968,3,0,sheet
+SMU,1969,3,0,sheet
+SMU,1971,1,0,sheet
+SMU,1972,2,0,sheet
+SMU,1973,2,0,sheet
+SMU,1974,3,0,sheet
+SMU,1975,4,0,sheet
+SMU,1976,4,0,sheet
+SMU,1978,1,0,sheet
+SMU,1979,1,0,sheet
+SMU,1980,2,0,sheet
+SMU,1981,4,0,sheet
+SMU,1982,3,0,sheet
+SMU,1983,4,1,sheet
+SMU,1984,4,1,sheet
+SMU,1985,4,0,sheet
+SMU,1986,3,2,sheet
+SMU,1987,3,0,sheet
+SMU,1993,1,0,sheet
+SMU,1998,1,0,carried
+SMU,1999,2,0,carried
+SMU,2003,1,0,carried
+SMU,2007,1,0,carried
+SMU,2009,1,0,carried
+SMU,2010,1,0,carried
+SMU,2011,1,0,carried
+SMU,2012,4,0,carried
+SMU,2013,1,0,carried
+SMU,2014,2,0,carried
+SMU,2018,3,0,carried
+SMU,2020,1,0,carried
+SMU,2021,2,0,carried
+SMU,2022,2,0,carried
+SMU,2023,1,0,carried
+SMU,2025,2,0,carried
+SMU,2026,1,0,carried
+South Alabama,2017,1,0,carried
+South Alabama,2021,1,0,carried
+South Alabama,2022,1,0,carried
+South Alabama,2023,1,0,carried
+South Carolina,1939,2,0,sheet
+South Carolina,1942,2,0,sheet
+South Carolina,1943,2,0,sheet
+South Carolina,1944,2,0,sheet
+South Carolina,1945,4,0,sheet
+South Carolina,1946,1,0,sheet
+South Carolina,1947,5,0,sheet
+South Carolina,1948,1,0,sheet
+South Carolina,1950,1,0,sheet
+South Carolina,1951,4,0,sheet
+South Carolina,1952,3,0,sheet
+South Carolina,1953,1,0,sheet
+South Carolina,1954,9,0,sheet
+South Carolina,1955,3,0,sheet
+South Carolina,1956,1,0,sheet
+South Carolina,1957,5,0,sheet
+South Carolina,1958,5,0,sheet
+South Carolina,1959,5,0,sheet
+South Carolina,1960,10,0,sheet+afl
+South Carolina,1961,2,0,sheet
+South Carolina,1962,2,0,sheet
+South Carolina,1963,2,0,sheet
+South Carolina,1964,1,0,sheet
+South Carolina,1965,3,0,sheet
+South Carolina,1966,2,0,sheet
+South Carolina,1967,3,0,sheet
+South Carolina,1968,1,0,sheet
+South Carolina,1969,1,0,sheet
+South Carolina,1970,1,0,sheet
+South Carolina,1971,2,0,sheet
+South Carolina,1972,3,0,sheet
+South Carolina,1973,4,0,sheet
+South Carolina,1974,2,0,sheet
+South Carolina,1975,1,0,sheet
+South Carolina,1976,4,0,sheet
+South Carolina,1977,4,0,sheet
+South Carolina,1979,2,1,sheet
+South Carolina,1980,1,0,sheet
+South Carolina,1981,2,2,sheet
+South Carolina,1982,3,0,sheet
+South Carolina,1983,1,0,sheet
+South Carolina,1984,2,0,sheet
+South Carolina,1985,4,0,sheet
+South Carolina,1986,3,0,sheet
+South Carolina,1987,1,0,sheet
+South Carolina,1988,5,1,sheet
+South Carolina,1989,2,0,sheet
+South Carolina,1990,2,0,sheet
+South Carolina,1991,4,0,sheet
+South Carolina,1992,3,0,sheet
+South Carolina,1993,1,1,sheet
+South Carolina,1994,1,0,sheet
+South Carolina,1997,2,0,carried
+South Carolina,1998,2,0,carried
+South Carolina,2000,2,1,carried
+South Carolina,2002,5,0,carried
+South Carolina,2003,3,0,carried
+South Carolina,2004,3,1,carried
+South Carolina,2005,3,1,carried
+South Carolina,2006,2,1,carried
+South Carolina,2007,2,0,carried
+South Carolina,2008,1,0,carried
+South Carolina,2009,7,0,carried
+South Carolina,2010,2,0,carried
+South Carolina,2011,2,0,carried
+South Carolina,2012,6,2,carried
+South Carolina,2013,7,0,carried
+South Carolina,2014,2,1,carried
+South Carolina,2015,4,0,carried
+South Carolina,2016,3,0,carried
+South Carolina,2018,1,1,carried
+South Carolina,2019,3,0,carried
+South Carolina,2020,4,1,carried
+South Carolina,2021,4,1,carried
+South Carolina,2022,3,0,carried
+South Carolina,2023,5,0,carried
+South Carolina,2024,4,1,carried
+South Carolina,2025,5,0,carried
+South Carolina,2026,3,0,carried
+South Florida,2001,3,0,carried
+South Florida,2003,3,0,carried
+South Florida,2004,1,0,carried
+South Florida,2007,1,0,carried
+South Florida,2008,2,1,carried
+South Florida,2009,1,0,carried
+South Florida,2010,5,1,carried
+South Florida,2011,3,0,carried
+South Florida,2013,3,0,carried
+South Florida,2014,1,0,carried
+South Florida,2015,2,0,carried
+South Florida,2017,3,0,carried
+South Florida,2018,2,0,carried
+Southern Miss,1942,1,0,sheet
+Southern Miss,1947,1,0,sheet
+Southern Miss,1948,4,0,sheet
+Southern Miss,1949,2,0,sheet
+Southern Miss,1950,1,0,sheet
+Southern Miss,1951,1,0,sheet
+Southern Miss,1952,3,0,sheet
+Southern Miss,1953,3,0,sheet
+Southern Miss,1954,1,0,sheet
+Southern Miss,1955,2,0,sheet
+Southern Miss,1956,3,0,sheet
+Southern Miss,1957,3,0,sheet
+Southern Miss,1958,2,0,sheet
+Southern Miss,1959,2,0,sheet
+Southern Miss,1960,5,0,sheet+afl
+Southern Miss,1961,2,0,sheet
+Southern Miss,1962,1,0,sheet
+Southern Miss,1963,3,0,sheet
+Southern Miss,1964,2,0,sheet
+Southern Miss,1966,1,0,sheet
+Southern Miss,1967,1,0,sheet
+Southern Miss,1968,2,0,sheet
+Southern Miss,1969,2,0,sheet
+Southern Miss,1973,1,1,sheet
+Southern Miss,1974,5,0,sheet
+Southern Miss,1975,1,0,sheet
+Southern Miss,1976,2,0,sheet
+Southern Miss,1977,2,0,sheet
+Southern Miss,1978,3,0,sheet
+Southern Miss,1981,3,1,sheet
+Southern Miss,1982,2,0,sheet
+Southern Miss,1983,1,0,sheet
+Southern Miss,1984,4,1,sheet
+Southern Miss,1985,1,0,sheet
+Southern Miss,1986,2,0,sheet
+Southern Miss,1988,1,0,sheet
+Southern Miss,1989,1,0,sheet
+Southern Miss,1990,2,0,sheet
+Southern Miss,1991,3,0,sheet
+Southern Miss,1992,3,1,sheet
+Southern Miss,1994,1,0,sheet
+Southern Miss,1998,4,0,carried
+Southern Miss,2000,4,0,carried
+Southern Miss,2001,4,0,carried
+Southern Miss,2002,2,0,carried
+Southern Miss,2003,1,0,carried
+Southern Miss,2004,3,0,carried
+Southern Miss,2005,2,0,carried
+Southern Miss,2008,1,0,carried
+Southern Miss,2009,2,0,carried
+Southern Miss,2012,1,0,carried
+Southern Miss,2013,1,0,carried
+Southern Miss,2014,1,0,carried
+Southern Miss,2015,1,0,carried
+Southern Miss,2016,2,0,carried
+Southern Miss,2018,3,0,carried
+Southern Miss,2020,1,0,carried
+Southern Miss,2023,1,0,carried
+Stanford,1936,7,0,sheet
+Stanford,1939,3,0,sheet
+Stanford,1940,2,0,sheet
+Stanford,1941,2,1,sheet
+Stanford,1942,5,2,sheet
+Stanford,1943,6,0,sheet
+Stanford,1944,8,0,sheet
+Stanford,1945,4,0,sheet
+Stanford,1946,1,0,sheet
+Stanford,1947,4,0,sheet
+Stanford,1948,3,0,sheet
+Stanford,1950,2,0,sheet
+Stanford,1951,3,0,sheet
+Stanford,1952,5,0,sheet
+Stanford,1953,1,0,sheet
+Stanford,1954,4,1,sheet
+Stanford,1955,1,0,sheet
+Stanford,1956,2,0,sheet
+Stanford,1957,3,1,sheet
+Stanford,1959,1,0,sheet
+Stanford,1960,5,0,sheet+afl
+Stanford,1963,3,0,sheet
+Stanford,1964,4,0,sheet
+Stanford,1965,2,0,sheet
+Stanford,1966,2,0,sheet
+Stanford,1967,3,0,sheet
+Stanford,1968,1,0,sheet
+Stanford,1969,5,1,sheet
+Stanford,1970,4,0,sheet
+Stanford,1971,5,1,sheet
+Stanford,1972,6,2,sheet
+Stanford,1973,3,0,sheet
+Stanford,1974,6,0,sheet
+Stanford,1975,6,0,sheet
+Stanford,1976,2,0,sheet
+Stanford,1977,5,0,sheet
+Stanford,1978,4,2,sheet
+Stanford,1979,2,0,sheet
+Stanford,1980,3,0,sheet
+Stanford,1981,3,1,sheet
+Stanford,1982,4,1,sheet
+Stanford,1983,5,1,sheet
+Stanford,1984,1,0,sheet
+Stanford,1985,6,0,sheet
+Stanford,1986,1,0,sheet
+Stanford,1987,5,0,sheet
+Stanford,1988,2,1,sheet
+Stanford,1989,1,0,sheet
+Stanford,1990,3,0,sheet
+Stanford,1991,2,0,sheet
+Stanford,1992,4,2,sheet
+Stanford,1993,5,1,sheet
+Stanford,1994,1,0,sheet
+Stanford,1995,4,0,carried
+Stanford,1997,4,0,carried
+Stanford,1998,5,0,carried
+Stanford,2000,2,0,carried
+Stanford,2001,2,0,carried
+Stanford,2002,6,0,carried
+Stanford,2003,4,1,carried
+Stanford,2004,3,0,carried
+Stanford,2005,6,0,carried
+Stanford,2006,4,0,carried
+Stanford,2007,3,0,carried
+Stanford,2010,3,0,carried
+Stanford,2011,4,0,carried
+Stanford,2012,4,2,carried
+Stanford,2013,3,0,carried
+Stanford,2014,6,0,carried
+Stanford,2015,6,1,carried
+Stanford,2016,5,1,carried
+Stanford,2017,2,2,carried
+Stanford,2018,4,0,carried
+Stanford,2019,5,0,carried
+Stanford,2020,2,0,carried
+Stanford,2021,5,0,carried
+Stanford,2022,1,0,carried
+Stanford,2023,5,0,carried
+Stanford,2024,1,0,carried
+Stanford,2025,1,0,carried
+Stanford,2026,2,0,carried
+Syracuse,1936,1,0,sheet
+Syracuse,1943,2,0,sheet
+Syracuse,1944,1,0,sheet
+Syracuse,1945,3,0,sheet
+Syracuse,1946,1,0,sheet
+Syracuse,1947,1,0,sheet
+Syracuse,1950,1,0,sheet
+Syracuse,1951,1,0,sheet
+Syracuse,1953,6,0,sheet
+Syracuse,1954,5,0,sheet
+Syracuse,1955,1,0,sheet
+Syracuse,1956,1,0,sheet
+Syracuse,1957,4,1,sheet
+Syracuse,1958,6,0,sheet
+Syracuse,1959,6,0,sheet
+Syracuse,1960,10,1,sheet+afl
+Syracuse,1961,7,1,sheet
+Syracuse,1962,6,1,sheet
+Syracuse,1963,4,0,sheet
+Syracuse,1964,6,0,sheet
+Syracuse,1965,3,0,sheet
+Syracuse,1966,3,0,sheet
+Syracuse,1967,3,1,sheet
+Syracuse,1968,3,1,sheet
+Syracuse,1969,2,1,sheet
+Syracuse,1970,2,0,sheet
+Syracuse,1971,1,0,sheet
+Syracuse,1972,3,0,sheet
+Syracuse,1973,3,1,sheet
+Syracuse,1974,2,0,sheet
+Syracuse,1976,3,0,sheet
+Syracuse,1977,2,0,sheet
+Syracuse,1978,1,0,sheet
+Syracuse,1979,1,0,sheet
+Syracuse,1980,3,1,sheet
+Syracuse,1981,2,0,sheet
+Syracuse,1982,3,0,sheet
+Syracuse,1983,1,0,sheet
+Syracuse,1984,2,0,sheet
+Syracuse,1985,3,0,sheet
+Syracuse,1986,5,1,sheet
+Syracuse,1987,3,0,sheet
+Syracuse,1988,6,1,sheet
+Syracuse,1989,6,0,sheet
+Syracuse,1990,5,0,sheet
+Syracuse,1991,3,0,sheet
+Syracuse,1992,1,0,sheet
+Syracuse,1993,2,0,sheet
+Syracuse,1994,2,0,sheet
+Syracuse,1995,2,0,carried
+Syracuse,1997,2,0,carried
+Syracuse,1998,5,2,carried
+Syracuse,1999,3,1,carried
+Syracuse,2000,2,1,carried
+Syracuse,2001,4,1,carried
+Syracuse,2002,2,1,carried
+Syracuse,2003,2,0,carried
+Syracuse,2004,3,0,carried
+Syracuse,2005,1,0,carried
+Syracuse,2006,4,0,carried
+Syracuse,2007,2,0,carried
+Syracuse,2009,2,0,carried
+Syracuse,2010,2,0,carried
+Syracuse,2011,2,0,carried
+Syracuse,2012,2,1,carried
+Syracuse,2013,3,1,carried
+Syracuse,2014,2,0,carried
+Syracuse,2016,1,0,carried
+Syracuse,2018,1,0,carried
+Syracuse,2019,1,0,carried
+Syracuse,2020,2,0,carried
+Syracuse,2021,2,0,carried
+Syracuse,2023,2,0,carried
+Syracuse,2025,4,0,carried
+TCU,1936,3,1,sheet
+TCU,1937,5,1,sheet
+TCU,1939,6,3,sheet
+TCU,1940,3,0,sheet
+TCU,1941,1,0,sheet
+TCU,1942,2,0,sheet
+TCU,1943,2,0,sheet
+TCU,1944,3,0,sheet
+TCU,1945,2,0,sheet
+TCU,1946,1,0,sheet
+TCU,1947,4,0,sheet
+TCU,1948,1,0,sheet
+TCU,1949,3,0,sheet
+TCU,1950,6,0,sheet
+TCU,1951,1,0,sheet
+TCU,1952,5,0,sheet
+TCU,1953,5,0,sheet
+TCU,1954,4,0,sheet
+TCU,1955,4,0,sheet
+TCU,1956,3,0,sheet
+TCU,1957,8,0,sheet
+TCU,1958,4,1,sheet
+TCU,1959,3,0,sheet
+TCU,1960,15,1,sheet+afl
+TCU,1961,2,1,sheet
+TCU,1962,2,0,sheet
+TCU,1963,1,0,sheet
+TCU,1964,2,0,sheet
+TCU,1965,1,0,sheet
+TCU,1967,2,0,sheet
+TCU,1968,1,0,sheet
+TCU,1969,3,0,sheet
+TCU,1970,3,1,sheet
+TCU,1971,2,0,sheet
+TCU,1973,2,0,sheet
+TCU,1974,4,0,sheet
+TCU,1975,2,0,sheet
+TCU,1976,1,0,sheet
+TCU,1978,2,0,sheet
+TCU,1979,1,0,sheet
+TCU,1980,2,0,sheet
+TCU,1982,1,0,sheet
+TCU,1983,3,0,sheet
+TCU,1984,3,0,sheet
+TCU,1985,3,0,sheet
+TCU,1986,2,0,sheet
+TCU,1988,3,0,sheet
+TCU,1989,4,0,sheet
+TCU,1990,3,0,sheet
+TCU,1991,2,0,sheet
+TCU,1992,1,0,sheet
+TCU,1995,2,0,carried
+TCU,1997,1,0,carried
+TCU,1998,2,0,carried
+TCU,2001,6,1,carried
+TCU,2002,1,0,carried
+TCU,2003,2,0,carried
+TCU,2004,1,0,carried
+TCU,2005,1,0,carried
+TCU,2006,3,0,carried
+TCU,2007,2,0,carried
+TCU,2009,5,0,carried
+TCU,2010,3,1,carried
+TCU,2011,5,0,carried
+TCU,2012,2,0,carried
+TCU,2013,2,0,carried
+TCU,2014,1,1,carried
+TCU,2015,2,0,carried
+TCU,2016,5,1,carried
+TCU,2017,1,0,carried
+TCU,2018,3,0,carried
+TCU,2019,3,1,carried
+TCU,2020,5,2,carried
+TCU,2021,2,0,carried
+TCU,2023,8,1,carried
+TCU,2024,3,0,carried
+TCU,2025,2,0,carried
+TCU,2026,3,0,carried
+Temple,1937,1,0,sheet
+Temple,1940,2,0,sheet
+Temple,1942,1,0,sheet
+Temple,1943,2,0,sheet
+Temple,1944,1,0,sheet
+Temple,1945,1,0,sheet
+Temple,1946,3,0,sheet
+Temple,1948,1,0,sheet
+Temple,1952,1,0,sheet
+Temple,1953,1,0,sheet
+Temple,1954,1,0,sheet
+Temple,1955,2,0,sheet
+Temple,1958,1,0,sheet
+Temple,1966,1,0,sheet
+Temple,1967,1,0,sheet
+Temple,1969,1,0,sheet
+Temple,1970,1,0,sheet
+Temple,1973,2,0,sheet
+Temple,1975,3,0,sheet
+Temple,1976,1,0,sheet
+Temple,1977,2,0,sheet
+Temple,1979,2,0,sheet
+Temple,1980,3,0,sheet
+Temple,1981,1,0,sheet
+Temple,1982,1,0,sheet
+Temple,1983,1,0,sheet
+Temple,1984,1,0,sheet
+Temple,1985,1,0,sheet
+Temple,1986,2,1,sheet
+Temple,1987,3,1,sheet
+Temple,1988,2,0,sheet
+Temple,1989,1,0,sheet
+Temple,1994,1,0,sheet
+Temple,1997,1,0,carried
+Temple,2001,1,0,carried
+Temple,2002,1,0,carried
+Temple,2003,2,0,carried
+Temple,2005,1,0,carried
+Temple,2009,1,0,carried
+Temple,2011,2,1,carried
+Temple,2012,3,0,carried
+Temple,2016,3,0,carried
+Temple,2017,3,1,carried
+Temple,2018,2,0,carried
+Temple,2019,3,0,carried
+Temple,2020,4,0,carried
+Temple,2024,1,0,carried
+Tennessee,1936,1,0,sheet
+Tennessee,1937,1,0,sheet
+Tennessee,1939,2,0,sheet
+Tennessee,1940,5,1,sheet
+Tennessee,1941,4,0,sheet
+Tennessee,1942,4,0,sheet
+Tennessee,1943,1,0,sheet
+Tennessee,1944,4,0,sheet
+Tennessee,1945,8,0,sheet
+Tennessee,1946,4,0,sheet
+Tennessee,1947,4,0,sheet
+Tennessee,1948,1,0,sheet
+Tennessee,1949,2,0,sheet
+Tennessee,1950,1,0,sheet
+Tennessee,1951,6,0,sheet
+Tennessee,1952,8,1,sheet
+Tennessee,1953,7,1,sheet
+Tennessee,1954,2,0,sheet
+Tennessee,1955,5,0,sheet
+Tennessee,1956,2,0,sheet
+Tennessee,1957,2,0,sheet
+Tennessee,1958,5,0,sheet
+Tennessee,1959,2,0,sheet
+Tennessee,1960,2,0,sheet+afl
+Tennessee,1961,3,0,sheet
+Tennessee,1962,1,0,sheet
+Tennessee,1964,3,1,sheet
+Tennessee,1965,2,1,sheet
+Tennessee,1966,6,0,sheet
+Tennessee,1967,5,0,sheet
+Tennessee,1968,7,1,sheet
+Tennessee,1969,6,0,sheet
+Tennessee,1970,6,1,sheet
+Tennessee,1971,3,0,sheet
+Tennessee,1972,7,0,sheet
+Tennessee,1973,4,0,sheet
+Tennessee,1974,5,0,sheet
+Tennessee,1975,4,0,sheet
+Tennessee,1976,2,0,sheet
+Tennessee,1977,4,1,sheet
+Tennessee,1978,5,0,sheet
+Tennessee,1979,3,1,sheet
+Tennessee,1980,2,1,sheet
+Tennessee,1981,5,0,sheet
+Tennessee,1982,4,1,sheet
+Tennessee,1983,6,1,sheet
+Tennessee,1984,6,1,sheet
+Tennessee,1985,7,1,sheet
+Tennessee,1986,5,1,sheet
+Tennessee,1987,4,0,sheet
+Tennessee,1988,6,2,sheet
+Tennessee,1989,2,1,sheet
+Tennessee,1990,6,0,sheet
+Tennessee,1991,9,3,sheet
+Tennessee,1992,9,2,sheet
+Tennessee,1993,2,1,sheet
+Tennessee,1994,5,1,sheet
+Tennessee,1995,6,1,carried
+Tennessee,1997,3,0,carried
+Tennessee,1998,8,3,carried
+Tennessee,1999,6,1,carried
+Tennessee,2000,9,2,carried
+Tennessee,2001,5,0,carried
+Tennessee,2002,10,3,carried
+Tennessee,2003,8,0,carried
+Tennessee,2004,4,0,carried
+Tennessee,2005,3,0,carried
+Tennessee,2006,5,1,carried
+Tennessee,2007,6,2,carried
+Tennessee,2008,3,1,carried
+Tennessee,2009,1,1,carried
+Tennessee,2010,6,2,carried
+Tennessee,2011,2,0,carried
+Tennessee,2012,1,0,carried
+Tennessee,2013,4,1,carried
+Tennessee,2014,3,1,carried
+Tennessee,2017,6,1,carried
+Tennessee,2018,3,0,carried
+Tennessee,2020,2,0,carried
+Tennessee,2021,2,0,carried
+Tennessee,2022,5,0,carried
+Tennessee,2023,5,1,carried
+Tennessee,2024,3,0,carried
+Tennessee,2025,4,1,carried
+Tennessee,2026,5,0,carried
+Texas,1938,1,0,sheet
+Texas,1939,1,0,sheet
+Texas,1940,1,0,sheet
+Texas,1941,2,0,sheet
+Texas,1942,10,1,sheet
+Texas,1943,9,0,sheet
+Texas,1944,12,0,sheet
+Texas,1945,4,0,sheet
+Texas,1946,1,0,sheet
+Texas,1947,9,0,sheet
+Texas,1948,11,2,sheet
+Texas,1949,2,1,sheet
+Texas,1950,8,0,sheet
+Texas,1951,7,1,sheet
+Texas,1952,11,0,sheet
+Texas,1953,6,2,sheet
+Texas,1954,3,0,sheet
+Texas,1955,6,0,sheet
+Texas,1956,4,1,sheet
+Texas,1957,1,0,sheet
+Texas,1958,2,0,sheet
+Texas,1959,2,0,sheet
+Texas,1960,12,0,sheet+afl
+Texas,1961,1,0,sheet
+Texas,1962,3,0,sheet
+Texas,1963,4,0,sheet
+Texas,1964,3,1,sheet
+Texas,1965,2,0,sheet
+Texas,1966,4,1,sheet
+Texas,1967,3,0,sheet
+Texas,1968,2,0,sheet
+Texas,1969,4,0,sheet
+Texas,1970,3,1,sheet
+Texas,1971,9,0,sheet
+Texas,1972,2,0,sheet
+Texas,1973,4,1,sheet
+Texas,1974,2,0,sheet
+Texas,1975,3,0,sheet
+Texas,1976,4,0,sheet
+Texas,1977,4,1,sheet
+Texas,1978,4,1,sheet
+Texas,1979,2,1,sheet
+Texas,1980,7,3,sheet
+Texas,1981,3,0,sheet
+Texas,1982,12,1,sheet
+Texas,1983,2,0,sheet
+Texas,1984,17,1,sheet
+Texas,1985,4,1,sheet
+Texas,1986,6,0,sheet
+Texas,1987,5,0,sheet
+Texas,1988,2,0,sheet
+Texas,1989,3,1,sheet
+Texas,1990,2,0,sheet
+Texas,1991,8,2,sheet
+Texas,1992,7,0,sheet
+Texas,1993,1,0,sheet
+Texas,1994,2,0,sheet
+Texas,1995,2,1,carried
+Texas,1997,6,1,carried
+Texas,1998,1,0,carried
+Texas,1999,3,1,carried
+Texas,2000,1,0,carried
+Texas,2001,3,2,carried
+Texas,2002,2,2,carried
+Texas,2003,4,0,carried
+Texas,2004,4,2,carried
+Texas,2005,3,2,carried
+Texas,2006,6,2,carried
+Texas,2007,7,2,carried
+Texas,2008,5,0,carried
+Texas,2009,4,1,carried
+Texas,2010,6,1,carried
+Texas,2011,4,0,carried
+Texas,2012,3,0,carried
+Texas,2013,3,1,carried
+Texas,2015,5,1,carried
+Texas,2016,1,0,carried
+Texas,2017,1,0,carried
+Texas,2018,4,0,carried
+Texas,2019,2,0,carried
+Texas,2020,3,0,carried
+Texas,2021,5,0,carried
+Texas,2023,5,1,carried
+Texas,2024,11,2,carried
+Texas,2025,12,3,carried
+Texas,2026,6,0,carried
+Texas A&M,1938,2,0,sheet
+Texas A&M,1939,4,0,sheet
+Texas A&M,1940,1,0,sheet
+Texas A&M,1941,7,2,sheet
+Texas A&M,1942,1,0,sheet
+Texas A&M,1943,5,0,sheet
+Texas A&M,1944,2,0,sheet
+Texas A&M,1945,3,0,sheet
+Texas A&M,1946,6,0,sheet
+Texas A&M,1947,4,0,sheet
+Texas A&M,1948,2,0,sheet
+Texas A&M,1949,3,1,sheet
+Texas A&M,1950,1,0,sheet
+Texas A&M,1951,2,0,sheet
+Texas A&M,1952,6,0,sheet
+Texas A&M,1953,3,0,sheet
+Texas A&M,1954,1,0,sheet
+Texas A&M,1955,3,0,sheet
+Texas A&M,1956,1,0,sheet
+Texas A&M,1957,2,0,sheet
+Texas A&M,1958,6,2,sheet
+Texas A&M,1959,2,0,sheet
+Texas A&M,1960,4,0,sheet+afl
+Texas A&M,1961,1,0,sheet
+Texas A&M,1963,1,0,sheet
+Texas A&M,1964,1,0,sheet
+Texas A&M,1966,2,0,sheet
+Texas A&M,1967,4,0,sheet
+Texas A&M,1968,1,1,sheet
+Texas A&M,1969,9,0,sheet
+Texas A&M,1970,4,1,sheet
+Texas A&M,1971,2,0,sheet
+Texas A&M,1972,4,0,sheet
+Texas A&M,1973,4,0,sheet
+Texas A&M,1975,4,1,sheet
+Texas A&M,1976,10,1,sheet
+Texas A&M,1977,6,1,sheet
+Texas A&M,1978,3,0,sheet
+Texas A&M,1979,3,0,sheet
+Texas A&M,1980,5,2,sheet
+Texas A&M,1981,2,0,sheet
+Texas A&M,1982,2,0,sheet
+Texas A&M,1983,3,0,sheet
+Texas A&M,1984,5,1,sheet
+Texas A&M,1985,6,1,sheet
+Texas A&M,1986,6,0,sheet
+Texas A&M,1987,8,2,sheet
+Texas A&M,1988,4,0,sheet
+Texas A&M,1989,5,0,sheet
+Texas A&M,1990,8,1,sheet
+Texas A&M,1991,7,0,sheet
+Texas A&M,1992,8,2,sheet
+Texas A&M,1993,3,1,sheet
+Texas A&M,1994,6,3,sheet
+Texas A&M,1995,2,0,carried
+Texas A&M,1997,4,0,carried
+Texas A&M,1998,2,0,carried
+Texas A&M,1999,6,0,carried
+Texas A&M,2000,4,0,carried
+Texas A&M,2001,6,0,carried
+Texas A&M,2002,2,0,carried
+Texas A&M,2003,6,2,carried
+Texas A&M,2004,1,0,carried
+Texas A&M,2005,3,0,carried
+Texas A&M,2006,2,0,carried
+Texas A&M,2008,5,0,carried
+Texas A&M,2009,2,0,carried
+Texas A&M,2010,1,0,carried
+Texas A&M,2011,1,1,carried
+Texas A&M,2012,4,1,carried
+Texas A&M,2013,5,1,carried
+Texas A&M,2014,3,3,carried
+Texas A&M,2015,2,1,carried
+Texas A&M,2016,3,1,carried
+Texas A&M,2017,5,1,carried
+Texas A&M,2018,3,0,carried
+Texas A&M,2019,7,0,carried
+Texas A&M,2020,2,0,carried
+Texas A&M,2021,4,0,carried
+Texas A&M,2022,4,1,carried
+Texas A&M,2023,3,0,carried
+Texas A&M,2024,4,0,carried
+Texas A&M,2025,3,1,carried
+Texas A&M,2026,10,1,carried
+Texas State,1953,1,0,sheet
+Texas State,1954,1,0,sheet
+Texas State,1956,2,0,sheet
+Texas State,1964,1,0,sheet
+Texas State,1965,1,0,sheet
+Texas State,1966,1,0,sheet
+Texas State,1968,3,0,sheet
+Texas State,1969,2,0,sheet
+Texas State,1971,1,0,sheet
+Texas State,1973,2,0,sheet
+Texas State,1974,2,0,sheet
+Texas State,1975,1,0,sheet
+Texas State,1976,1,0,sheet
+Texas State,1979,1,0,sheet
+Texas State,1982,3,0,sheet
+Texas State,1984,2,0,sheet
+Texas State,1989,3,0,sheet
+Texas State,1990,1,0,sheet
+Texas State,1991,1,0,sheet
+Texas State,2000,3,0,carried
+Texas State,2002,1,0,carried
+Texas State,2006,1,0,carried
+Texas State,2015,2,0,carried
+Texas Tech,1938,1,0,sheet
+Texas Tech,1939,1,0,sheet
+Texas Tech,1940,2,0,sheet
+Texas Tech,1941,1,0,sheet
+Texas Tech,1942,1,0,sheet
+Texas Tech,1943,1,0,sheet
+Texas Tech,1944,1,0,sheet
+Texas Tech,1945,2,1,sheet
+Texas Tech,1946,3,0,sheet
+Texas Tech,1947,5,1,sheet
+Texas Tech,1948,2,0,sheet
+Texas Tech,1949,4,0,sheet
+Texas Tech,1950,1,0,sheet
+Texas Tech,1951,3,0,sheet
+Texas Tech,1952,2,0,sheet
+Texas Tech,1953,1,0,sheet
+Texas Tech,1954,3,0,sheet
+Texas Tech,1955,4,0,sheet
+Texas Tech,1956,6,0,sheet
+Texas Tech,1957,2,0,sheet
+Texas Tech,1958,4,0,sheet
+Texas Tech,1960,1,0,sheet+afl
+Texas Tech,1961,1,0,sheet
+Texas Tech,1962,2,0,sheet
+Texas Tech,1963,2,0,sheet
+Texas Tech,1964,1,1,sheet
+Texas Tech,1965,5,1,sheet
+Texas Tech,1966,1,0,sheet
+Texas Tech,1967,1,0,sheet
+Texas Tech,1968,2,0,sheet
+Texas Tech,1969,5,0,sheet
+Texas Tech,1970,3,0,sheet
+Texas Tech,1972,1,0,sheet
+Texas Tech,1973,2,0,sheet
+Texas Tech,1974,2,0,sheet
+Texas Tech,1975,2,0,sheet
+Texas Tech,1976,2,0,sheet
+Texas Tech,1977,2,0,sheet
+Texas Tech,1978,5,0,sheet
+Texas Tech,1979,1,0,sheet
+Texas Tech,1980,5,0,sheet
+Texas Tech,1981,1,1,sheet
+Texas Tech,1982,3,0,sheet
+Texas Tech,1983,3,1,sheet
+Texas Tech,1984,1,0,sheet
+Texas Tech,1985,3,0,sheet
+Texas Tech,1986,3,0,sheet
+Texas Tech,1987,3,0,sheet
+Texas Tech,1988,3,0,sheet
+Texas Tech,1989,1,0,sheet
+Texas Tech,1990,1,0,sheet
+Texas Tech,1991,1,0,sheet
+Texas Tech,1992,2,0,sheet
+Texas Tech,1994,3,0,sheet
+Texas Tech,1997,1,0,carried
+Texas Tech,1998,1,0,carried
+Texas Tech,1999,2,0,carried
+Texas Tech,2000,2,0,carried
+Texas Tech,2001,1,0,carried
+Texas Tech,2002,1,0,carried
+Texas Tech,2003,2,0,carried
+Texas Tech,2004,2,0,carried
+Texas Tech,2005,3,0,carried
+Texas Tech,2006,1,0,carried
+Texas Tech,2007,3,0,carried
+Texas Tech,2009,4,1,carried
+Texas Tech,2010,1,0,carried
+Texas Tech,2011,1,0,carried
+Texas Tech,2014,2,0,carried
+Texas Tech,2016,3,0,carried
+Texas Tech,2017,1,1,carried
+Texas Tech,2018,2,0,carried
+Texas Tech,2019,1,0,carried
+Texas Tech,2020,2,1,carried
+Texas Tech,2021,2,0,carried
+Texas Tech,2022,2,0,carried
+Texas Tech,2023,1,1,carried
+Texas Tech,2024,2,0,carried
+Texas Tech,2025,2,0,carried
+Texas Tech,2026,9,1,carried
+Toledo,1939,1,0,sheet
+Toledo,1940,1,0,sheet
+Toledo,1941,2,0,sheet
+Toledo,1948,2,0,sheet
+Toledo,1950,1,0,sheet
+Toledo,1953,1,0,sheet
+Toledo,1954,2,0,sheet
+Toledo,1955,2,0,sheet
+Toledo,1958,1,0,sheet
+Toledo,1960,2,0,sheet+afl
+Toledo,1963,4,0,sheet
+Toledo,1964,1,0,sheet
+Toledo,1965,2,0,sheet
+Toledo,1966,1,0,sheet
+Toledo,1968,4,0,sheet
+Toledo,1969,1,0,sheet
+Toledo,1970,3,0,sheet
+Toledo,1971,2,0,sheet
+Toledo,1972,2,0,sheet
+Toledo,1973,1,0,sheet
+Toledo,1976,1,0,sheet
+Toledo,1982,1,0,sheet
+Toledo,1983,1,0,sheet
+Toledo,1984,1,0,sheet
+Toledo,1986,1,0,sheet
+Toledo,1991,1,0,sheet
+Toledo,1992,2,0,sheet
+Toledo,1993,1,1,sheet
+Toledo,1998,1,0,carried
+Toledo,2002,1,0,carried
+Toledo,2003,1,0,carried
+Toledo,2005,1,0,carried
+Toledo,2006,1,0,carried
+Toledo,2008,2,0,carried
+Toledo,2017,3,0,carried
+Toledo,2018,1,0,carried
+Toledo,2019,2,0,carried
+Toledo,2022,2,0,carried
+Toledo,2023,1,0,carried
+Toledo,2024,1,1,carried
+Toledo,2025,1,0,carried
+Toledo,2026,2,0,carried
+Troy,1969,1,0,sheet
+Troy,1970,1,0,sheet
+Troy,1971,1,0,sheet
+Troy,1973,1,0,sheet
+Troy,1977,1,0,sheet
+Troy,1978,1,0,sheet
+Troy,1980,1,0,sheet
+Troy,1981,1,0,sheet
+Troy,1982,1,0,sheet
+Troy,1985,1,0,sheet
+Troy,1986,1,0,sheet
+Troy,1988,1,0,sheet
+Troy,1989,1,0,sheet
+Troy,1992,2,0,sheet
+Troy,1994,1,0,sheet
+Troy,1997,1,0,carried
+Troy,1998,1,0,carried
+Troy,1999,1,0,carried
+Troy,2000,2,0,carried
+Troy,2001,1,0,carried
+Troy,2003,2,0,carried
+Troy,2005,1,1,carried
+Troy,2007,1,0,carried
+Troy,2008,1,1,carried
+Troy,2009,1,0,carried
+Troy,2010,3,0,carried
+Troy,2011,1,0,carried
+Troy,2012,1,0,carried
+Troy,2017,1,0,carried
+Troy,2023,1,0,carried
+Troy,2024,2,0,carried
+Tulane,1937,1,0,sheet
+Tulane,1939,2,0,sheet
+Tulane,1940,4,0,sheet
+Tulane,1941,1,0,sheet
+Tulane,1942,4,0,sheet
+Tulane,1943,5,0,sheet
+Tulane,1944,1,0,sheet
+Tulane,1945,4,1,sheet
+Tulane,1946,2,0,sheet
+Tulane,1947,1,0,sheet
+Tulane,1948,1,0,sheet
+Tulane,1949,1,0,sheet
+Tulane,1950,6,0,sheet
+Tulane,1951,9,0,sheet
+Tulane,1952,3,0,sheet
+Tulane,1953,3,0,sheet
+Tulane,1954,3,0,sheet
+Tulane,1955,2,0,sheet
+Tulane,1956,2,0,sheet
+Tulane,1957,4,0,sheet
+Tulane,1958,1,0,sheet
+Tulane,1959,4,0,sheet
+Tulane,1960,3,0,sheet+afl
+Tulane,1961,3,1,sheet
+Tulane,1962,5,0,sheet
+Tulane,1963,2,0,sheet
+Tulane,1966,1,0,sheet
+Tulane,1967,1,0,sheet
+Tulane,1968,2,0,sheet
+Tulane,1969,1,0,sheet
+Tulane,1971,4,0,sheet
+Tulane,1972,4,0,sheet
+Tulane,1973,2,0,sheet
+Tulane,1974,2,0,sheet
+Tulane,1975,3,0,sheet
+Tulane,1976,3,0,sheet
+Tulane,1977,1,0,sheet
+Tulane,1978,1,0,sheet
+Tulane,1979,2,0,sheet
+Tulane,1980,2,0,sheet
+Tulane,1981,2,0,sheet
+Tulane,1982,3,0,sheet
+Tulane,1983,1,0,sheet
+Tulane,1984,2,0,sheet
+Tulane,1985,2,0,sheet
+Tulane,1986,1,0,sheet
+Tulane,1987,1,0,sheet
+Tulane,1988,2,0,sheet
+Tulane,1989,2,0,sheet
+Tulane,1990,1,0,sheet
+Tulane,1991,1,0,sheet
+Tulane,1994,1,0,sheet
+Tulane,1997,1,0,carried
+Tulane,1999,1,0,carried
+Tulane,2000,1,0,carried
+Tulane,2001,1,0,carried
+Tulane,2002,1,1,carried
+Tulane,2004,2,1,carried
+Tulane,2005,1,0,carried
+Tulane,2006,1,0,carried
+Tulane,2008,1,0,carried
+Tulane,2009,1,0,carried
+Tulane,2014,1,0,carried
+Tulane,2015,2,0,carried
+Tulane,2017,1,0,carried
+Tulane,2018,2,0,carried
+Tulane,2019,1,0,carried
+Tulane,2020,2,0,carried
+Tulane,2021,2,0,carried
+Tulane,2023,2,0,carried
+Tulane,2024,2,0,carried
+Tulane,2025,2,0,carried
+Tulsa,1936,1,0,sheet
+Tulsa,1937,2,0,sheet
+Tulsa,1939,1,0,sheet
+Tulsa,1940,2,0,sheet
+Tulsa,1941,2,0,sheet
+Tulsa,1942,3,0,sheet
+Tulsa,1943,4,1,sheet
+Tulsa,1944,7,0,sheet
+Tulsa,1945,8,0,sheet
+Tulsa,1946,5,0,sheet
+Tulsa,1947,5,0,sheet
+Tulsa,1948,3,0,sheet
+Tulsa,1949,3,0,sheet
+Tulsa,1950,1,0,sheet
+Tulsa,1951,4,0,sheet
+Tulsa,1952,3,0,sheet
+Tulsa,1953,9,0,sheet
+Tulsa,1954,4,0,sheet
+Tulsa,1957,2,0,sheet
+Tulsa,1959,1,0,sheet
+Tulsa,1960,1,0,sheet+afl
+Tulsa,1961,1,0,sheet
+Tulsa,1963,3,0,sheet
+Tulsa,1964,3,0,sheet
+Tulsa,1965,5,0,sheet
+Tulsa,1966,5,0,sheet
+Tulsa,1967,4,0,sheet
+Tulsa,1968,8,0,sheet
+Tulsa,1969,4,0,sheet
+Tulsa,1970,1,0,sheet
+Tulsa,1971,2,0,sheet
+Tulsa,1972,4,0,sheet
+Tulsa,1973,3,0,sheet
+Tulsa,1974,3,0,sheet
+Tulsa,1975,3,0,sheet
+Tulsa,1976,8,0,sheet
+Tulsa,1977,4,1,sheet
+Tulsa,1979,4,0,sheet
+Tulsa,1980,1,0,sheet
+Tulsa,1981,2,0,sheet
+Tulsa,1982,2,0,sheet
+Tulsa,1983,2,0,sheet
+Tulsa,1984,2,0,sheet
+Tulsa,1985,3,0,sheet
+Tulsa,1986,1,0,sheet
+Tulsa,1987,4,0,sheet
+Tulsa,1988,1,0,sheet
+Tulsa,1989,2,0,sheet
+Tulsa,1992,4,0,sheet
+Tulsa,1993,1,0,sheet
+Tulsa,1994,2,0,sheet
+Tulsa,1997,1,0,carried
+Tulsa,2000,1,0,carried
+Tulsa,2002,1,0,carried
+Tulsa,2005,1,0,carried
+Tulsa,2006,1,0,carried
+Tulsa,2008,1,0,carried
+Tulsa,2011,1,0,carried
+Tulsa,2020,2,0,carried
+Tulsa,2021,1,1,carried
+Tulsa,2022,2,1,carried
+UAB,1998,2,0,carried
+UAB,1999,1,0,carried
+UAB,2000,1,0,carried
+UAB,2001,1,0,carried
+UAB,2002,2,1,carried
+UAB,2005,1,1,carried
+UAB,2010,1,0,carried
+UAB,2012,1,0,carried
+UAB,2015,2,0,carried
+UAB,2021,1,0,carried
+UAB,2022,1,0,carried
+UAB,2023,1,0,carried
+UAB,2024,1,0,carried
+UCF,1987,2,0,sheet
+UCF,1988,2,0,sheet
+UCF,1991,2,0,sheet
+UCF,1992,1,0,sheet
+UCF,1993,1,0,sheet
+UCF,1995,1,0,carried
+UCF,1999,2,1,carried
+UCF,2000,1,0,carried
+UCF,2002,1,0,carried
+UCF,2003,4,0,carried
+UCF,2004,1,0,carried
+UCF,2006,1,0,carried
+UCF,2007,1,0,carried
+UCF,2008,3,0,carried
+UCF,2009,1,0,carried
+UCF,2010,1,0,carried
+UCF,2011,2,0,carried
+UCF,2012,1,0,carried
+UCF,2013,2,0,carried
+UCF,2014,2,1,carried
+UCF,2015,2,1,carried
+UCF,2017,1,0,carried
+UCF,2018,4,1,carried
+UCF,2019,1,0,carried
+UCF,2020,1,0,carried
+UCF,2021,5,0,carried
+UCF,2022,1,0,carried
+UCF,2024,2,0,carried
+UCF,2025,2,0,carried
+UCF,2026,1,1,carried
+UCLA,1936,1,0,sheet
+UCLA,1937,1,0,sheet
+UCLA,1939,1,0,sheet
+UCLA,1941,2,0,sheet
+UCLA,1943,3,0,sheet
+UCLA,1944,5,0,sheet
+UCLA,1945,5,0,sheet
+UCLA,1946,7,1,sheet
+UCLA,1947,9,2,sheet
+UCLA,1948,1,0,sheet
+UCLA,1949,1,0,sheet
+UCLA,1950,2,0,sheet
+UCLA,1951,3,0,sheet
+UCLA,1952,2,0,sheet
+UCLA,1953,6,1,sheet
+UCLA,1954,4,0,sheet
+UCLA,1955,3,0,sheet
+UCLA,1956,11,0,sheet
+UCLA,1957,4,0,sheet
+UCLA,1958,4,0,sheet
+UCLA,1959,5,0,sheet
+UCLA,1960,5,0,sheet+afl
+UCLA,1961,3,2,sheet
+UCLA,1962,3,0,sheet
+UCLA,1963,2,1,sheet
+UCLA,1964,2,0,sheet
+UCLA,1965,1,0,sheet
+UCLA,1966,1,0,sheet
+UCLA,1967,3,1,sheet
+UCLA,1968,3,0,sheet
+UCLA,1969,3,0,sheet
+UCLA,1970,8,0,sheet
+UCLA,1971,2,0,sheet
+UCLA,1972,4,0,sheet
+UCLA,1973,6,0,sheet
+UCLA,1974,12,2,sheet
+UCLA,1975,4,0,sheet
+UCLA,1976,8,0,sheet
+UCLA,1977,3,0,sheet
+UCLA,1978,4,0,sheet
+UCLA,1979,7,2,sheet
+UCLA,1980,1,0,sheet
+UCLA,1981,7,2,sheet
+UCLA,1982,5,1,sheet
+UCLA,1983,7,0,sheet
+UCLA,1984,5,1,sheet
+UCLA,1985,6,0,sheet
+UCLA,1986,7,1,sheet
+UCLA,1987,4,0,sheet
+UCLA,1988,10,1,sheet
+UCLA,1989,7,1,sheet
+UCLA,1990,5,0,sheet
+UCLA,1991,5,1,sheet
+UCLA,1992,6,1,sheet
+UCLA,1993,4,0,sheet
+UCLA,1994,5,1,sheet
+UCLA,1995,2,1,carried
+UCLA,1998,3,1,carried
+UCLA,1999,3,1,carried
+UCLA,2000,1,0,carried
+UCLA,2001,1,1,carried
+UCLA,2002,6,1,carried
+UCLA,2003,2,0,carried
+UCLA,2004,4,0,carried
+UCLA,2005,4,0,carried
+UCLA,2006,3,1,carried
+UCLA,2007,1,0,carried
+UCLA,2008,3,0,carried
+UCLA,2010,3,0,carried
+UCLA,2011,3,0,carried
+UCLA,2013,4,1,carried
+UCLA,2014,5,1,carried
+UCLA,2015,3,0,carried
+UCLA,2016,8,1,carried
+UCLA,2017,5,1,carried
+UCLA,2018,5,2,carried
+UCLA,2019,1,0,carried
+UCLA,2020,3,0,carried
+UCLA,2021,2,0,carried
+UCLA,2022,6,0,carried
+UCLA,2023,4,0,carried
+UCLA,2024,2,1,carried
+UCLA,2025,5,0,carried
+UConn,1946,2,0,sheet
+UConn,1947,2,0,sheet
+UConn,1958,1,0,sheet
+UConn,1962,2,0,sheet
+UConn,1971,1,0,sheet
+UConn,1974,1,0,sheet
+UConn,1980,1,0,sheet
+UConn,1984,1,0,sheet
+UConn,1989,1,0,sheet
+UConn,1992,1,0,sheet
+UConn,1994,1,0,sheet
+UConn,2005,2,0,carried
+UConn,2007,1,0,carried
+UConn,2008,2,0,carried
+UConn,2009,4,1,carried
+UConn,2010,2,0,carried
+UConn,2011,4,0,carried
+UConn,2012,1,0,carried
+UConn,2013,5,0,carried
+UConn,2014,2,0,carried
+UConn,2015,2,1,carried
+UConn,2017,1,0,carried
+UConn,2018,1,0,carried
+UConn,2020,1,0,carried
+UConn,2022,1,0,carried
+UConn,2024,1,0,carried
+UConn,2025,1,0,carried
+UConn,2026,1,0,carried
+UMass,1965,1,0,sheet
+UMass,1966,4,1,sheet
+UMass,1968,1,1,sheet
+UMass,1970,1,0,sheet
+UMass,1971,2,0,sheet
+UMass,1972,2,0,sheet
+UMass,1973,1,0,sheet
+UMass,1974,2,0,sheet
+UMass,1975,1,0,sheet
+UMass,1976,1,0,sheet
+UMass,1979,1,0,sheet
+UMass,1980,1,0,sheet
+UMass,1999,1,0,carried
+UMass,2010,1,0,carried
+UMass,2013,1,0,carried
+UMass,2014,1,0,carried
+UMass,2016,1,0,carried
+UMass,2019,1,0,carried
+UMass,2020,1,0,carried
+UMass,2021,1,0,carried
+UNLV,1949,1,0,sheet
+UNLV,1972,1,0,sheet
+UNLV,1975,2,0,sheet
+UNLV,1976,1,0,sheet
+UNLV,1977,3,0,sheet
+UNLV,1978,1,0,sheet
+UNLV,1979,3,0,sheet
+UNLV,1980,3,0,sheet
+UNLV,1981,3,0,sheet
+UNLV,1982,3,0,sheet
+UNLV,1984,1,0,sheet
+UNLV,1985,2,0,sheet
+UNLV,1988,3,0,sheet
+UNLV,1990,1,0,sheet
+UNLV,1991,1,0,sheet
+UNLV,1993,1,0,sheet
+UNLV,1994,1,0,sheet
+UNLV,1995,1,0,carried
+UNLV,1997,1,0,carried
+UNLV,1999,1,0,carried
+UNLV,2000,1,0,carried
+UNLV,2002,4,0,carried
+UNLV,2004,1,0,carried
+UNLV,2005,2,0,carried
+UNLV,2007,1,0,carried
+UNLV,2008,1,0,carried
+UNLV,2009,1,0,carried
+UNLV,2010,1,0,carried
+UNLV,2025,1,0,carried
+USC,1937,1,0,sheet
+USC,1939,4,0,sheet
+USC,1940,9,2,sheet
+USC,1941,4,0,sheet
+USC,1942,2,1,sheet
+USC,1943,3,0,sheet
+USC,1944,12,0,sheet
+USC,1945,9,1,sheet
+USC,1946,10,1,sheet
+USC,1947,4,0,sheet
+USC,1948,5,0,sheet
+USC,1949,4,0,sheet
+USC,1950,7,0,sheet
+USC,1951,5,0,sheet
+USC,1952,5,1,sheet
+USC,1953,15,1,sheet
+USC,1954,6,0,sheet
+USC,1955,7,0,sheet
+USC,1956,3,0,sheet
+USC,1957,5,1,sheet
+USC,1958,6,0,sheet
+USC,1959,3,0,sheet
+USC,1960,13,1,sheet+afl
+USC,1961,4,1,sheet
+USC,1962,4,0,sheet
+USC,1963,2,0,sheet
+USC,1964,4,1,sheet
+USC,1965,6,0,sheet
+USC,1966,7,0,sheet
+USC,1967,5,0,sheet
+USC,1968,11,5,sheet
+USC,1969,8,2,sheet
+USC,1970,9,2,sheet
+USC,1971,10,2,sheet
+USC,1972,6,0,sheet
+USC,1973,10,3,sheet
+USC,1974,9,2,sheet
+USC,1975,14,0,sheet
+USC,1976,4,0,sheet
+USC,1977,14,3,sheet
+USC,1978,9,1,sheet
+USC,1979,8,0,sheet
+USC,1980,9,3,sheet
+USC,1981,9,3,sheet
+USC,1982,5,3,sheet
+USC,1983,11,3,sheet
+USC,1984,4,0,sheet
+USC,1985,5,2,sheet
+USC,1986,9,1,sheet
+USC,1987,4,0,sheet
+USC,1988,2,1,sheet
+USC,1989,5,0,sheet
+USC,1990,10,2,sheet
+USC,1991,8,2,sheet
+USC,1992,5,0,sheet
+USC,1993,3,1,sheet
+USC,1994,4,2,sheet
+USC,1995,6,1,carried
+USC,1997,4,1,carried
+USC,1998,1,0,carried
+USC,1999,5,1,carried
+USC,2000,5,1,carried
+USC,2001,3,0,carried
+USC,2002,2,0,carried
+USC,2003,5,2,carried
+USC,2004,4,1,carried
+USC,2005,5,2,carried
+USC,2006,11,2,carried
+USC,2007,5,0,carried
+USC,2008,10,4,carried
+USC,2009,11,3,carried
+USC,2010,7,0,carried
+USC,2011,9,1,carried
+USC,2012,3,2,carried
+USC,2013,4,0,carried
+USC,2014,3,0,carried
+USC,2015,6,2,carried
+USC,2016,4,0,carried
+USC,2017,5,1,carried
+USC,2018,4,1,carried
+USC,2019,4,0,carried
+USC,2020,2,1,carried
+USC,2021,5,1,carried
+USC,2022,3,1,carried
+USC,2023,4,1,carried
+USC,2024,7,1,carried
+USC,2025,3,0,carried
+USC,2026,3,1,carried
+Utah,1938,2,0,sheet
+Utah,1939,1,0,sheet
+Utah,1940,3,0,sheet
+Utah,1942,2,0,sheet
+Utah,1943,2,0,sheet
+Utah,1944,2,0,sheet
+Utah,1945,1,0,sheet
+Utah,1946,5,0,sheet
+Utah,1947,1,0,sheet
+Utah,1948,3,0,sheet
+Utah,1949,2,0,sheet
+Utah,1950,1,0,sheet
+Utah,1951,1,0,sheet
+Utah,1952,2,0,sheet
+Utah,1953,3,0,sheet
+Utah,1954,4,0,sheet
+Utah,1955,2,0,sheet
+Utah,1956,2,0,sheet
+Utah,1958,3,0,sheet
+Utah,1959,1,1,sheet
+Utah,1960,5,0,sheet+afl
+Utah,1961,2,0,sheet
+Utah,1962,1,0,sheet
+Utah,1963,3,0,sheet
+Utah,1964,2,0,sheet
+Utah,1965,4,0,sheet
+Utah,1966,1,0,sheet
+Utah,1967,2,0,sheet
+Utah,1968,4,0,sheet
+Utah,1969,3,0,sheet
+Utah,1970,2,0,sheet
+Utah,1971,3,1,sheet
+Utah,1972,2,0,sheet
+Utah,1973,1,0,sheet
+Utah,1974,4,0,sheet
+Utah,1975,2,0,sheet
+Utah,1976,1,0,sheet
+Utah,1979,1,0,sheet
+Utah,1980,1,0,sheet
+Utah,1981,3,0,sheet
+Utah,1982,5,0,sheet
+Utah,1984,1,0,sheet
+Utah,1986,2,0,sheet
+Utah,1990,1,0,sheet
+Utah,1992,1,0,sheet
+Utah,1994,2,0,sheet
+Utah,1995,4,1,carried
+Utah,1998,2,1,carried
+Utah,1999,1,0,carried
+Utah,2000,3,0,carried
+Utah,2001,2,0,carried
+Utah,2002,2,0,carried
+Utah,2003,3,1,carried
+Utah,2005,5,1,carried
+Utah,2006,2,0,carried
+Utah,2007,2,0,carried
+Utah,2009,4,0,carried
+Utah,2010,6,0,carried
+Utah,2011,2,0,carried
+Utah,2012,1,0,carried
+Utah,2013,2,1,carried
+Utah,2014,2,0,carried
+Utah,2015,4,0,carried
+Utah,2016,1,0,carried
+Utah,2017,8,1,carried
+Utah,2018,1,0,carried
+Utah,2019,5,0,carried
+Utah,2020,7,0,carried
+Utah,2022,1,1,carried
+Utah,2023,3,1,carried
+Utah,2024,5,0,carried
+Utah,2025,1,0,carried
+Utah,2026,3,2,carried
+Utah State,1937,1,0,sheet
+Utah State,1944,1,0,sheet
+Utah State,1945,2,0,sheet
+Utah State,1946,1,0,sheet
+Utah State,1947,1,0,sheet
+Utah State,1948,2,0,sheet
+Utah State,1949,1,0,sheet
+Utah State,1950,1,0,sheet
+Utah State,1952,1,0,sheet
+Utah State,1954,1,0,sheet
+Utah State,1955,2,0,sheet
+Utah State,1956,2,0,sheet
+Utah State,1957,3,0,sheet
+Utah State,1958,1,0,sheet
+Utah State,1959,3,0,sheet
+Utah State,1960,5,0,sheet+afl
+Utah State,1961,2,0,sheet
+Utah State,1962,4,1,sheet
+Utah State,1963,4,0,sheet
+Utah State,1964,2,1,sheet
+Utah State,1965,3,0,sheet
+Utah State,1966,1,0,sheet
+Utah State,1967,5,0,sheet
+Utah State,1968,5,1,sheet
+Utah State,1969,4,0,sheet
+Utah State,1970,2,1,sheet
+Utah State,1971,3,0,sheet
+Utah State,1972,1,0,sheet
+Utah State,1973,2,0,sheet
+Utah State,1974,1,0,sheet
+Utah State,1975,1,0,sheet
+Utah State,1976,6,0,sheet
+Utah State,1978,2,0,sheet
+Utah State,1979,3,0,sheet
+Utah State,1980,5,0,sheet
+Utah State,1981,2,0,sheet
+Utah State,1982,2,0,sheet
+Utah State,1983,1,0,sheet
+Utah State,1984,3,0,sheet
+Utah State,1985,2,0,sheet
+Utah State,1986,2,0,sheet
+Utah State,1987,2,0,sheet
+Utah State,1989,2,0,sheet
+Utah State,1990,1,0,sheet
+Utah State,1999,1,0,carried
+Utah State,2003,1,0,carried
+Utah State,2004,1,0,carried
+Utah State,2008,2,0,carried
+Utah State,2011,1,0,carried
+Utah State,2012,3,0,carried
+Utah State,2013,2,0,carried
+Utah State,2014,2,0,carried
+Utah State,2016,2,0,carried
+Utah State,2017,1,0,carried
+Utah State,2019,1,0,carried
+Utah State,2020,1,1,carried
+Utah State,2025,1,0,carried
+UTEP,1940,1,0,sheet
+UTEP,1941,2,0,sheet
+UTEP,1942,1,0,sheet
+UTEP,1944,1,0,sheet
+UTEP,1945,2,0,sheet
+UTEP,1946,1,0,sheet
+UTEP,1948,2,0,sheet
+UTEP,1949,2,0,sheet
+UTEP,1950,2,0,sheet
+UTEP,1953,1,0,sheet
+UTEP,1954,1,0,sheet
+UTEP,1956,1,0,sheet
+UTEP,1957,1,0,sheet
+UTEP,1959,2,0,sheet
+UTEP,1962,1,0,sheet
+UTEP,1963,1,0,sheet
+UTEP,1964,1,0,sheet
+UTEP,1965,1,0,sheet
+UTEP,1967,4,0,sheet
+UTEP,1968,7,2,sheet
+UTEP,1969,6,0,sheet
+UTEP,1970,5,0,sheet
+UTEP,1971,2,0,sheet
+UTEP,1972,7,0,sheet
+UTEP,1973,3,0,sheet
+UTEP,1974,1,0,sheet
+UTEP,1980,2,0,sheet
+UTEP,1982,2,0,sheet
+UTEP,1983,2,0,sheet
+UTEP,1985,3,0,sheet
+UTEP,1986,3,0,sheet
+UTEP,1987,2,0,sheet
+UTEP,1989,2,0,sheet
+UTEP,1991,1,0,sheet
+UTEP,1992,1,0,sheet
+UTEP,1993,1,0,sheet
+UTEP,1994,1,0,sheet
+UTEP,1998,1,0,carried
+UTEP,2000,3,0,carried
+UTEP,2001,1,0,carried
+UTEP,2002,1,0,carried
+UTEP,2004,1,0,carried
+UTEP,2005,1,0,carried
+UTEP,2006,1,0,carried
+UTEP,2007,2,0,carried
+UTEP,2008,3,0,carried
+UTEP,2017,1,0,carried
+UTEP,2018,1,0,carried
+UTEP,2024,2,0,carried
+UTSA,2016,1,0,carried
+UTSA,2018,1,1,carried
+UTSA,2022,2,0,carried
+UTSA,2025,1,0,carried
+Vanderbilt,1937,1,0,sheet
+Vanderbilt,1938,2,0,sheet
+Vanderbilt,1940,1,0,sheet
+Vanderbilt,1941,1,0,sheet
+Vanderbilt,1942,1,0,sheet
+Vanderbilt,1943,1,1,sheet
+Vanderbilt,1944,1,0,sheet
+Vanderbilt,1945,3,0,sheet
+Vanderbilt,1947,4,0,sheet
+Vanderbilt,1949,4,0,sheet
+Vanderbilt,1950,2,0,sheet
+Vanderbilt,1951,3,0,sheet
+Vanderbilt,1952,3,1,sheet
+Vanderbilt,1953,1,0,sheet
+Vanderbilt,1955,3,0,sheet
+Vanderbilt,1956,6,1,sheet
+Vanderbilt,1957,2,0,sheet
+Vanderbilt,1958,3,1,sheet
+Vanderbilt,1959,6,0,sheet
+Vanderbilt,1960,4,1,sheet+afl
+Vanderbilt,1961,1,0,sheet
+Vanderbilt,1963,1,0,sheet
+Vanderbilt,1965,2,0,sheet
+Vanderbilt,1966,1,0,sheet
+Vanderbilt,1968,2,0,sheet
+Vanderbilt,1969,1,0,sheet
+Vanderbilt,1970,2,0,sheet
+Vanderbilt,1971,1,0,sheet
+Vanderbilt,1973,3,0,sheet
+Vanderbilt,1974,2,0,sheet
+Vanderbilt,1975,1,0,sheet
+Vanderbilt,1976,3,0,sheet
+Vanderbilt,1978,1,0,sheet
+Vanderbilt,1979,2,0,sheet
+Vanderbilt,1980,3,0,sheet
+Vanderbilt,1982,2,0,sheet
+Vanderbilt,1983,2,0,sheet
+Vanderbilt,1984,1,1,sheet
+Vanderbilt,1985,4,0,sheet
+Vanderbilt,1986,3,1,sheet
+Vanderbilt,1988,2,0,sheet
+Vanderbilt,1990,2,0,sheet
+Vanderbilt,1992,1,0,sheet
+Vanderbilt,1998,3,0,carried
+Vanderbilt,1999,1,0,carried
+Vanderbilt,2001,4,0,carried
+Vanderbilt,2003,1,0,carried
+Vanderbilt,2005,2,0,carried
+Vanderbilt,2006,1,1,carried
+Vanderbilt,2008,3,1,carried
+Vanderbilt,2009,1,0,carried
+Vanderbilt,2010,2,0,carried
+Vanderbilt,2012,2,0,carried
+Vanderbilt,2013,2,0,carried
+Vanderbilt,2014,3,0,carried
+Vanderbilt,2016,1,0,carried
+Vanderbilt,2017,2,0,carried
+Vanderbilt,2018,1,0,carried
+Vanderbilt,2019,2,0,carried
+Vanderbilt,2020,1,0,carried
+Vanderbilt,2021,1,0,carried
+Vanderbilt,2025,1,0,carried
+Vanderbilt,2026,1,0,carried
+Virginia,1940,1,0,sheet
+Virginia,1942,1,1,sheet
+Virginia,1945,1,0,sheet
+Virginia,1946,2,0,sheet
+Virginia,1947,1,0,sheet
+Virginia,1948,6,0,sheet
+Virginia,1949,1,0,sheet
+Virginia,1950,1,0,sheet
+Virginia,1951,3,1,sheet
+Virginia,1952,3,0,sheet
+Virginia,1953,2,0,sheet
+Virginia,1954,1,0,sheet
+Virginia,1956,2,0,sheet
+Virginia,1957,2,0,sheet
+Virginia,1958,4,0,sheet
+Virginia,1960,2,0,sheet+afl
+Virginia,1962,1,0,sheet
+Virginia,1963,2,0,sheet
+Virginia,1964,1,0,sheet
+Virginia,1965,1,0,sheet
+Virginia,1966,2,0,sheet
+Virginia,1967,5,0,sheet
+Virginia,1968,1,0,sheet
+Virginia,1969,5,0,sheet
+Virginia,1971,1,0,sheet
+Virginia,1972,1,0,sheet
+Virginia,1973,1,0,sheet
+Virginia,1974,3,0,sheet
+Virginia,1975,2,0,sheet
+Virginia,1976,2,1,sheet
+Virginia,1977,1,0,sheet
+Virginia,1978,1,0,sheet
+Virginia,1979,1,0,sheet
+Virginia,1980,2,0,sheet
+Virginia,1981,1,0,sheet
+Virginia,1982,2,0,sheet
+Virginia,1984,2,0,sheet
+Virginia,1985,3,0,sheet
+Virginia,1986,3,1,sheet
+Virginia,1987,1,0,sheet
+Virginia,1988,1,0,sheet
+Virginia,1989,3,1,sheet
+Virginia,1990,3,0,sheet
+Virginia,1991,4,1,sheet
+Virginia,1992,3,1,sheet
+Virginia,1993,4,0,sheet
+Virginia,1994,2,0,sheet
+Virginia,1995,3,0,carried
+Virginia,1997,6,2,carried
+Virginia,1998,2,0,carried
+Virginia,1999,6,1,carried
+Virginia,2000,4,1,carried
+Virginia,2001,1,0,carried
+Virginia,2002,3,0,carried
+Virginia,2003,2,0,carried
+Virginia,2004,1,0,carried
+Virginia,2005,7,1,carried
+Virginia,2006,5,1,carried
+Virginia,2007,2,0,carried
+Virginia,2008,3,2,carried
+Virginia,2009,4,1,carried
+Virginia,2010,1,0,carried
+Virginia,2011,1,0,carried
+Virginia,2012,1,0,carried
+Virginia,2013,1,0,carried
+Virginia,2014,3,0,carried
+Virginia,2015,2,0,carried
+Virginia,2016,1,0,carried
+Virginia,2018,2,0,carried
+Virginia,2019,2,0,carried
+Virginia,2020,2,0,carried
+Virginia,2022,1,0,carried
+Virginia,2023,1,0,carried
+Virginia,2024,1,0,carried
+Virginia,2025,1,0,carried
+Virginia Tech,1937,1,0,sheet
+Virginia Tech,1944,1,0,sheet
+Virginia Tech,1951,1,0,sheet
+Virginia Tech,1953,1,0,sheet
+Virginia Tech,1954,1,0,sheet
+Virginia Tech,1955,5,0,sheet
+Virginia Tech,1957,3,0,sheet
+Virginia Tech,1958,1,0,sheet
+Virginia Tech,1959,1,0,sheet
+Virginia Tech,1960,2,0,sheet+afl
+Virginia Tech,1961,3,0,sheet
+Virginia Tech,1963,1,0,sheet
+Virginia Tech,1964,1,0,sheet
+Virginia Tech,1965,2,0,sheet
+Virginia Tech,1967,3,0,sheet
+Virginia Tech,1968,2,0,sheet
+Virginia Tech,1969,2,0,sheet
+Virginia Tech,1970,1,0,sheet
+Virginia Tech,1971,1,0,sheet
+Virginia Tech,1973,1,0,sheet
+Virginia Tech,1975,2,0,sheet
+Virginia Tech,1976,1,0,sheet
+Virginia Tech,1977,1,0,sheet
+Virginia Tech,1980,2,0,sheet
+Virginia Tech,1982,1,0,sheet
+Virginia Tech,1984,1,0,sheet
+Virginia Tech,1985,5,1,sheet
+Virginia Tech,1987,2,0,sheet
+Virginia Tech,1988,3,0,sheet
+Virginia Tech,1990,2,0,sheet
+Virginia Tech,1991,1,0,sheet
+Virginia Tech,1992,5,1,sheet
+Virginia Tech,1994,3,0,sheet
+Virginia Tech,1995,2,0,carried
+Virginia Tech,1997,4,1,carried
+Virginia Tech,1998,4,0,carried
+Virginia Tech,1999,2,0,carried
+Virginia Tech,2000,5,0,carried
+Virginia Tech,2001,3,1,carried
+Virginia Tech,2002,8,0,carried
+Virginia Tech,2003,2,0,carried
+Virginia Tech,2004,5,2,carried
+Virginia Tech,2005,3,0,carried
+Virginia Tech,2006,9,0,carried
+Virginia Tech,2007,3,0,carried
+Virginia Tech,2008,8,1,carried
+Virginia Tech,2009,1,0,carried
+Virginia Tech,2010,5,0,carried
+Virginia Tech,2011,3,0,carried
+Virginia Tech,2012,3,1,carried
+Virginia Tech,2013,2,0,carried
+Virginia Tech,2014,3,1,carried
+Virginia Tech,2015,2,0,carried
+Virginia Tech,2016,2,0,carried
+Virginia Tech,2017,4,0,carried
+Virginia Tech,2018,5,2,carried
+Virginia Tech,2020,1,0,carried
+Virginia Tech,2021,4,2,carried
+Virginia Tech,2022,4,0,carried
+Virginia Tech,2023,1,0,carried
+Virginia Tech,2025,5,0,carried
+Wake Forest,1939,1,0,sheet
+Wake Forest,1940,1,0,sheet
+Wake Forest,1941,4,0,sheet
+Wake Forest,1942,3,0,sheet
+Wake Forest,1944,3,0,sheet
+Wake Forest,1945,4,1,sheet
+Wake Forest,1946,4,0,sheet
+Wake Forest,1947,5,0,sheet
+Wake Forest,1948,3,0,sheet
+Wake Forest,1949,4,0,sheet
+Wake Forest,1950,3,0,sheet
+Wake Forest,1951,3,0,sheet
+Wake Forest,1952,3,0,sheet
+Wake Forest,1953,7,0,sheet
+Wake Forest,1955,3,0,sheet
+Wake Forest,1956,4,0,sheet
+Wake Forest,1957,3,0,sheet
+Wake Forest,1958,3,0,sheet
+Wake Forest,1960,5,0,sheet+afl
+Wake Forest,1961,3,1,sheet
+Wake Forest,1962,2,0,sheet
+Wake Forest,1965,1,0,sheet
+Wake Forest,1967,2,0,sheet
+Wake Forest,1968,2,0,sheet
+Wake Forest,1969,1,0,sheet
+Wake Forest,1970,1,0,sheet
+Wake Forest,1971,1,0,sheet
+Wake Forest,1972,1,0,sheet
+Wake Forest,1973,1,0,sheet
+Wake Forest,1974,2,0,sheet
+Wake Forest,1977,2,0,sheet
+Wake Forest,1978,2,0,sheet
+Wake Forest,1980,1,0,sheet
+Wake Forest,1981,2,0,sheet
+Wake Forest,1982,2,0,sheet
+Wake Forest,1985,2,0,sheet
+Wake Forest,1986,3,0,sheet
+Wake Forest,1987,2,0,sheet
+Wake Forest,1988,2,0,sheet
+Wake Forest,1989,3,0,sheet
+Wake Forest,1990,2,0,sheet
+Wake Forest,1993,3,0,sheet
+Wake Forest,1999,1,0,carried
+Wake Forest,2000,3,0,carried
+Wake Forest,2003,3,1,carried
+Wake Forest,2005,1,0,carried
+Wake Forest,2006,1,0,carried
+Wake Forest,2007,2,0,carried
+Wake Forest,2008,3,0,carried
+Wake Forest,2009,4,1,carried
+Wake Forest,2010,2,0,carried
+Wake Forest,2012,4,0,carried
+Wake Forest,2013,1,0,carried
+Wake Forest,2014,1,0,carried
+Wake Forest,2015,1,1,carried
+Wake Forest,2017,1,0,carried
+Wake Forest,2018,2,0,carried
+Wake Forest,2019,1,0,carried
+Wake Forest,2020,2,0,carried
+Wake Forest,2021,1,0,carried
+Wake Forest,2022,2,0,carried
+Wake Forest,2023,2,0,carried
+Wake Forest,2024,3,0,carried
+Wake Forest,2026,2,0,carried
+Washington,1937,6,0,sheet
+Washington,1938,2,0,sheet
+Washington,1939,7,0,sheet
+Washington,1940,1,0,sheet
+Washington,1941,3,2,sheet
+Washington,1942,5,0,sheet
+Washington,1943,5,0,sheet
+Washington,1944,3,0,sheet
+Washington,1945,4,0,sheet
+Washington,1946,6,0,sheet
+Washington,1947,4,0,sheet
+Washington,1948,3,0,sheet
+Washington,1950,2,0,sheet
+Washington,1951,1,0,sheet
+Washington,1952,2,1,sheet
+Washington,1953,3,0,sheet
+Washington,1954,4,0,sheet
+Washington,1955,1,0,sheet
+Washington,1956,1,0,sheet
+Washington,1957,4,0,sheet
+Washington,1958,2,0,sheet
+Washington,1959,4,0,sheet
+Washington,1961,6,0,sheet
+Washington,1962,2,0,sheet
+Washington,1963,4,0,sheet
+Washington,1964,2,0,sheet
+Washington,1965,5,0,sheet
+Washington,1966,3,0,sheet
+Washington,1967,5,1,sheet
+Washington,1968,5,0,sheet
+Washington,1969,2,0,sheet
+Washington,1970,2,0,sheet
+Washington,1971,4,0,sheet
+Washington,1972,1,0,sheet
+Washington,1973,7,0,sheet
+Washington,1974,1,0,sheet
+Washington,1975,3,0,sheet
+Washington,1976,7,0,sheet
+Washington,1977,3,0,sheet
+Washington,1978,2,1,sheet
+Washington,1979,5,0,sheet
+Washington,1980,8,1,sheet
+Washington,1981,5,1,sheet
+Washington,1982,2,0,sheet
+Washington,1983,11,0,sheet
+Washington,1984,3,0,sheet
+Washington,1985,7,1,sheet
+Washington,1986,4,1,sheet
+Washington,1987,9,1,sheet
+Washington,1988,5,0,sheet
+Washington,1989,5,0,sheet
+Washington,1990,6,1,sheet
+Washington,1991,5,0,sheet
+Washington,1992,11,2,sheet
+Washington,1993,6,1,sheet
+Washington,1994,1,0,sheet
+Washington,1995,5,2,carried
+Washington,1997,3,0,carried
+Washington,1998,10,0,carried
+Washington,1999,2,0,carried
+Washington,2000,2,0,carried
+Washington,2001,5,0,carried
+Washington,2002,3,1,carried
+Washington,2004,4,1,carried
+Washington,2005,2,0,carried
+Washington,2006,1,0,carried
+Washington,2007,2,0,carried
+Washington,2010,2,0,carried
+Washington,2011,2,1,carried
+Washington,2012,2,0,carried
+Washington,2013,1,1,carried
+Washington,2014,2,0,carried
+Washington,2015,4,3,carried
+Washington,2016,2,0,carried
+Washington,2017,5,1,carried
+Washington,2018,5,1,carried
+Washington,2019,8,1,carried
+Washington,2020,2,0,carried
+Washington,2021,4,1,carried
+Washington,2022,4,1,carried
+Washington,2024,10,3,carried
+Washington,2025,1,0,carried
+Washington,2026,7,0,carried
+Washington State,1936,2,0,sheet
+Washington State,1937,3,1,sheet
+Washington State,1938,2,0,sheet
+Washington State,1939,2,0,sheet
+Washington State,1941,1,0,sheet
+Washington State,1942,1,0,sheet
+Washington State,1943,6,0,sheet
+Washington State,1944,4,0,sheet
+Washington State,1945,2,0,sheet
+Washington State,1946,1,0,sheet
+Washington State,1947,4,0,sheet
+Washington State,1949,2,0,sheet
+Washington State,1950,5,0,sheet
+Washington State,1951,2,0,sheet
+Washington State,1952,2,0,sheet
+Washington State,1953,6,1,sheet
+Washington State,1954,4,0,sheet
+Washington State,1955,4,0,sheet
+Washington State,1956,2,0,sheet
+Washington State,1957,1,0,sheet
+Washington State,1958,4,0,sheet
+Washington State,1959,1,0,sheet
+Washington State,1960,4,0,sheet+afl
+Washington State,1961,1,0,sheet
+Washington State,1962,3,0,sheet
+Washington State,1963,2,0,sheet
+Washington State,1964,2,0,sheet
+Washington State,1965,2,1,sheet
+Washington State,1967,3,0,sheet
+Washington State,1968,1,0,sheet
+Washington State,1969,1,0,sheet
+Washington State,1970,3,0,sheet
+Washington State,1972,2,0,sheet
+Washington State,1973,1,0,sheet
+Washington State,1974,3,0,sheet
+Washington State,1975,3,0,sheet
+Washington State,1976,4,0,sheet
+Washington State,1978,8,1,sheet
+Washington State,1979,1,1,sheet
+Washington State,1980,4,0,sheet
+Washington State,1981,5,0,sheet
+Washington State,1982,4,0,sheet
+Washington State,1983,2,0,sheet
+Washington State,1984,3,1,sheet
+Washington State,1985,2,0,sheet
+Washington State,1986,4,0,sheet
+Washington State,1987,4,0,sheet
+Washington State,1988,3,0,sheet
+Washington State,1989,3,0,sheet
+Washington State,1990,6,1,sheet
+Washington State,1992,4,0,sheet
+Washington State,1993,3,1,sheet
+Washington State,1995,4,1,carried
+Washington State,1997,3,0,carried
+Washington State,1998,4,1,carried
+Washington State,1999,1,0,carried
+Washington State,2000,1,0,carried
+Washington State,2001,1,0,carried
+Washington State,2002,2,0,carried
+Washington State,2003,2,1,carried
+Washington State,2004,3,0,carried
+Washington State,2005,3,0,carried
+Washington State,2006,1,0,carried
+Washington State,2007,2,0,carried
+Washington State,2008,1,0,carried
+Washington State,2009,1,0,carried
+Washington State,2011,1,0,carried
+Washington State,2013,1,0,carried
+Washington State,2014,1,1,carried
+Washington State,2015,2,0,carried
+Washington State,2016,1,0,carried
+Washington State,2017,1,0,carried
+Washington State,2018,2,0,carried
+Washington State,2019,2,1,carried
+Washington State,2020,1,0,carried
+Washington State,2022,2,0,carried
+Washington State,2023,1,0,carried
+Washington State,2024,3,0,carried
+Washington State,2025,1,0,carried
+West Virginia,1936,1,1,sheet
+West Virginia,1937,1,0,sheet
+West Virginia,1938,1,0,sheet
+West Virginia,1939,1,0,sheet
+West Virginia,1940,2,0,sheet
+West Virginia,1941,1,0,sheet
+West Virginia,1943,2,0,sheet
+West Virginia,1944,2,0,sheet
+West Virginia,1945,1,0,sheet
+West Virginia,1946,1,0,sheet
+West Virginia,1948,3,0,sheet
+West Virginia,1949,3,0,sheet
+West Virginia,1950,5,0,sheet
+West Virginia,1951,2,0,sheet
+West Virginia,1952,1,0,sheet
+West Virginia,1954,8,0,sheet
+West Virginia,1955,4,0,sheet
+West Virginia,1956,6,1,sheet
+West Virginia,1957,4,0,sheet
+West Virginia,1958,5,1,sheet
+West Virginia,1959,4,0,sheet
+West Virginia,1960,5,0,sheet+afl
+West Virginia,1962,2,0,sheet
+West Virginia,1963,3,0,sheet
+West Virginia,1964,2,0,sheet
+West Virginia,1965,1,0,sheet
+West Virginia,1966,3,1,sheet
+West Virginia,1968,4,0,sheet
+West Virginia,1970,1,0,sheet
+West Virginia,1971,3,0,sheet
+West Virginia,1972,1,0,sheet
+West Virginia,1973,1,0,sheet
+West Virginia,1975,6,0,sheet
+West Virginia,1976,6,0,sheet
+West Virginia,1978,2,0,sheet
+West Virginia,1981,3,0,sheet
+West Virginia,1982,1,0,sheet
+West Virginia,1983,2,0,sheet
+West Virginia,1984,3,0,sheet
+West Virginia,1985,3,0,sheet
+West Virginia,1986,3,1,sheet
+West Virginia,1987,1,0,sheet
+West Virginia,1988,1,0,sheet
+West Virginia,1989,8,0,sheet
+West Virginia,1990,7,1,sheet
+West Virginia,1992,2,0,sheet
+West Virginia,1993,2,0,sheet
+West Virginia,1994,3,0,sheet
+West Virginia,1995,1,0,carried
+West Virginia,1997,2,0,carried
+West Virginia,1998,1,0,carried
+West Virginia,1999,6,0,carried
+West Virginia,2000,4,1,carried
+West Virginia,2003,2,0,carried
+West Virginia,2004,1,0,carried
+West Virginia,2005,3,1,carried
+West Virginia,2006,1,0,carried
+West Virginia,2008,3,0,carried
+West Virginia,2009,3,0,carried
+West Virginia,2010,1,0,carried
+West Virginia,2011,4,0,carried
+West Virginia,2012,3,1,carried
+West Virginia,2013,3,1,carried
+West Virginia,2014,2,0,carried
+West Virginia,2015,4,1,carried
+West Virginia,2016,5,1,carried
+West Virginia,2017,2,0,carried
+West Virginia,2018,1,0,carried
+West Virginia,2019,5,0,carried
+West Virginia,2020,2,0,carried
+West Virginia,2021,1,0,carried
+West Virginia,2023,1,0,carried
+West Virginia,2024,1,0,carried
+West Virginia,2025,1,0,carried
+Western Kentucky,1950,1,0,sheet
+Western Kentucky,1956,1,0,sheet
+Western Kentucky,1958,1,0,sheet
+Western Kentucky,1965,2,0,sheet
+Western Kentucky,1971,3,0,sheet
+Western Kentucky,1973,1,0,sheet
+Western Kentucky,1974,2,0,sheet
+Western Kentucky,1975,2,0,sheet
+Western Kentucky,1976,1,0,sheet
+Western Kentucky,1977,1,0,sheet
+Western Kentucky,1980,1,0,sheet
+Western Kentucky,1982,1,0,sheet
+Western Kentucky,1983,1,0,sheet
+Western Kentucky,1984,1,0,sheet
+Western Kentucky,1988,1,0,sheet
+Western Kentucky,1990,2,0,sheet
+Western Kentucky,1992,1,0,sheet
+Western Kentucky,2002,2,0,carried
+Western Kentucky,2003,1,0,carried
+Western Kentucky,2013,1,0,carried
+Western Kentucky,2014,2,0,carried
+Western Kentucky,2016,3,0,carried
+Western Kentucky,2017,2,0,carried
+Western Kentucky,2018,2,0,carried
+Western Kentucky,2022,2,0,carried
+Western Kentucky,2023,1,0,carried
+Western Kentucky,2024,1,0,carried
+Western Kentucky,2025,1,0,carried
+Western Michigan,1943,2,0,sheet
+Western Michigan,1945,1,0,sheet
+Western Michigan,1950,1,0,sheet
+Western Michigan,1960,2,0,sheet+afl
+Western Michigan,1962,2,0,sheet
+Western Michigan,1963,2,0,sheet
+Western Michigan,1964,1,0,sheet
+Western Michigan,1967,2,0,sheet
+Western Michigan,1968,1,0,sheet
+Western Michigan,1970,1,0,sheet
+Western Michigan,1971,1,0,sheet
+Western Michigan,1972,4,0,sheet
+Western Michigan,1973,2,0,sheet
+Western Michigan,1974,1,0,sheet
+Western Michigan,1977,1,0,sheet
+Western Michigan,1982,1,0,sheet
+Western Michigan,1985,1,0,sheet
+Western Michigan,1986,1,0,sheet
+Western Michigan,1987,1,0,sheet
+Western Michigan,1989,1,0,sheet
+Western Michigan,1990,1,0,sheet
+Western Michigan,1991,1,0,sheet
+Western Michigan,1993,1,0,sheet
+Western Michigan,1994,1,0,sheet
+Western Michigan,1995,1,0,carried
+Western Michigan,2004,1,1,carried
+Western Michigan,2006,2,0,carried
+Western Michigan,2009,2,0,carried
+Western Michigan,2012,2,0,carried
+Western Michigan,2016,2,0,carried
+Western Michigan,2017,3,1,carried
+Western Michigan,2018,2,0,carried
+Western Michigan,2021,2,0,carried
+Western Michigan,2022,1,0,carried
+Western Michigan,2023,1,0,carried
+Western Michigan,2024,1,0,carried
+Western Michigan,2025,1,0,carried
+Wisconsin,1937,2,1,sheet
+Wisconsin,1939,4,0,sheet
+Wisconsin,1940,1,0,sheet
+Wisconsin,1941,2,1,sheet
+Wisconsin,1942,1,0,sheet
+Wisconsin,1943,9,0,sheet
+Wisconsin,1944,4,1,sheet
+Wisconsin,1945,5,0,sheet
+Wisconsin,1946,2,0,sheet
+Wisconsin,1947,4,1,sheet
+Wisconsin,1948,3,1,sheet
+Wisconsin,1949,2,0,sheet
+Wisconsin,1950,4,0,sheet
+Wisconsin,1951,5,0,sheet
+Wisconsin,1952,6,0,sheet
+Wisconsin,1953,4,0,sheet
+Wisconsin,1954,4,0,sheet
+Wisconsin,1955,7,1,sheet
+Wisconsin,1956,6,0,sheet
+Wisconsin,1957,2,0,sheet
+Wisconsin,1958,3,0,sheet
+Wisconsin,1959,5,0,sheet
+Wisconsin,1960,10,0,sheet+afl
+Wisconsin,1961,2,0,sheet
+Wisconsin,1962,2,0,sheet
+Wisconsin,1963,2,1,sheet
+Wisconsin,1964,4,0,sheet
+Wisconsin,1965,5,0,sheet
+Wisconsin,1966,2,0,sheet
+Wisconsin,1968,2,0,sheet
+Wisconsin,1969,2,0,sheet
+Wisconsin,1970,3,0,sheet
+Wisconsin,1971,2,0,sheet
+Wisconsin,1972,8,0,sheet
+Wisconsin,1973,2,0,sheet
+Wisconsin,1974,2,0,sheet
+Wisconsin,1975,1,0,sheet
+Wisconsin,1976,4,1,sheet
+Wisconsin,1977,1,0,sheet
+Wisconsin,1979,2,0,sheet
+Wisconsin,1980,3,1,sheet
+Wisconsin,1981,1,0,sheet
+Wisconsin,1982,4,0,sheet
+Wisconsin,1983,6,0,sheet
+Wisconsin,1984,1,0,sheet
+Wisconsin,1985,11,3,sheet
+Wisconsin,1986,1,0,sheet
+Wisconsin,1987,8,0,sheet
+Wisconsin,1988,4,1,sheet
+Wisconsin,1989,1,0,sheet
+Wisconsin,1990,1,0,sheet
+Wisconsin,1991,2,0,sheet
+Wisconsin,1992,1,1,sheet
+Wisconsin,1993,1,0,sheet
+Wisconsin,1994,2,0,sheet
+Wisconsin,1995,7,0,carried
+Wisconsin,1997,3,0,carried
+Wisconsin,1998,2,0,carried
+Wisconsin,1999,3,1,carried
+Wisconsin,2000,4,2,carried
+Wisconsin,2001,8,2,carried
+Wisconsin,2002,4,1,carried
+Wisconsin,2003,4,0,carried
+Wisconsin,2004,3,1,carried
+Wisconsin,2005,7,1,carried
+Wisconsin,2006,5,0,carried
+Wisconsin,2007,1,1,carried
+Wisconsin,2008,4,0,carried
+Wisconsin,2009,4,0,carried
+Wisconsin,2010,2,0,carried
+Wisconsin,2011,5,2,carried
+Wisconsin,2012,6,1,carried
+Wisconsin,2013,3,1,carried
+Wisconsin,2014,5,0,carried
+Wisconsin,2015,2,1,carried
+Wisconsin,2016,2,0,carried
+Wisconsin,2017,3,2,carried
+Wisconsin,2018,5,0,carried
+Wisconsin,2019,4,0,carried
+Wisconsin,2020,4,0,carried
+Wisconsin,2021,3,0,carried
+Wisconsin,2022,5,0,carried
+Wisconsin,2023,3,0,carried
+Wisconsin,2024,2,0,carried
+Wisconsin,2025,2,0,carried
+Wyoming,1947,2,0,sheet
+Wyoming,1950,1,0,sheet
+Wyoming,1951,2,0,sheet
+Wyoming,1952,2,0,sheet
+Wyoming,1953,1,0,sheet
+Wyoming,1955,2,0,sheet
+Wyoming,1956,1,0,sheet
+Wyoming,1957,1,0,sheet
+Wyoming,1959,2,0,sheet
+Wyoming,1960,2,0,sheet+afl
+Wyoming,1961,3,0,sheet
+Wyoming,1964,1,0,sheet
+Wyoming,1966,2,0,sheet
+Wyoming,1967,4,1,sheet
+Wyoming,1968,5,0,sheet
+Wyoming,1969,3,0,sheet
+Wyoming,1970,3,0,sheet
+Wyoming,1971,1,0,sheet
+Wyoming,1972,1,0,sheet
+Wyoming,1973,3,0,sheet
+Wyoming,1975,2,0,sheet
+Wyoming,1976,2,2,sheet
+Wyoming,1978,1,0,sheet
+Wyoming,1979,1,0,sheet
+Wyoming,1980,1,0,sheet
+Wyoming,1981,2,0,sheet
+Wyoming,1982,2,0,sheet
+Wyoming,1983,2,0,sheet
+Wyoming,1984,1,0,sheet
+Wyoming,1985,1,0,sheet
+Wyoming,1986,1,0,sheet
+Wyoming,1988,1,0,sheet
+Wyoming,1989,3,0,sheet
+Wyoming,1990,1,0,sheet
+Wyoming,1991,2,0,sheet
+Wyoming,1992,1,0,sheet
+Wyoming,1994,1,0,sheet
+Wyoming,1995,2,0,carried
+Wyoming,1997,3,0,carried
+Wyoming,2001,1,0,carried
+Wyoming,2004,1,0,carried
+Wyoming,2006,1,0,carried
+Wyoming,2007,1,0,carried
+Wyoming,2011,1,0,carried
+Wyoming,2014,2,0,carried
+Wyoming,2015,1,0,carried
+Wyoming,2017,2,0,carried
+Wyoming,2018,1,1,carried
+Wyoming,2019,1,0,carried
+Wyoming,2020,2,0,carried
+Wyoming,2022,1,0,carried

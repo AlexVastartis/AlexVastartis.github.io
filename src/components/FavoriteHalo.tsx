@@ -22,9 +22,13 @@ export default function FavoriteHalo({ team, cx, cy, size, marker, onHover, onPi
   const w = team.school.length * 6.4 + 14;
   return (
     <g>
-      <circle cx={cx} cy={cy} r={r} fill="none" stroke={team.primary} strokeWidth={2.5} />
-      <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgb(var(--paper))" strokeWidth={1} />
-      <g transform={`translate(${cx}, ${cy + r + 11})`} style={{ pointerEvents: 'none' }}>
+      {/* opaque disc so any markers behind the favourite are fully masked out */}
+      <circle cx={cx} cy={cy} r={r - 1} fill="rgb(var(--paper))" />
+      {/* team-colour ring, doubled with a paper ring so it reads on a busy field */}
+      <circle cx={cx} cy={cy} r={r + 1.5} fill="none" stroke="rgb(var(--paper))" strokeWidth={3} />
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke={team.primary} strokeWidth={3} />
+      <g transform={`translate(${cx}, ${cy + r + 12})`} style={{ pointerEvents: 'none' }}>
+        <rect x={-w / 2 - 1} y={-10} width={w + 2} height={18} rx={9} fill="rgb(var(--paper))" />
         <rect x={-w / 2} y={-9} width={w} height={16} rx={8} fill={team.primary} />
         <text x={0} y={2} textAnchor="middle" fontSize={10} fontWeight={700} fill="#fff">
           {team.school}

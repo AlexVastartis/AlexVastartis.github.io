@@ -9,10 +9,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readRecords } from './csv.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const IDENTITY = path.join(REPO, 'data/staging/_staging_identity.csv');
 
-/** CFBD spelling -> our canonical school (data/manual/teams.csv) */
+/** CFBD spelling -> our canonical school (data/staging/_staging_identity.csv) */
 export const CANON = {
   Miami: 'Miami (FL)',
   'Southern California': 'USC',
@@ -47,8 +49,7 @@ let _fbs = null;
 /** the Set of the 130 canonical FBS school names */
 export function fbsSet() {
   if (_fbs) return _fbs;
-  const csv = fs.readFileSync(path.join(REPO, 'data/manual/teams.csv'), 'utf8').trim().split(/\r?\n/);
-  _fbs = new Set(csv.slice(1).map((l) => l.split(',')[0]).filter(Boolean));
+  _fbs = new Set(readRecords(fs.readFileSync(IDENTITY, 'utf8')).map((r) => r.school).filter(Boolean));
   return _fbs;
 }
 

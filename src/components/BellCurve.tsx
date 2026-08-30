@@ -43,6 +43,11 @@ export default function BellCurve({
 }: Props) {
   const m = { ...DEFAULT_MARGINS, left: 44, right: 44 };
   const [hover, setHover] = useState<Team | null>(null);
+  // the picked marker unmounts (moves into/out of FavoriteHalo) with no mouseleave —
+  // clear the hover readout by hand so it doesn't stick after a click
+  const pick = onPick ? (school: string) => { setHover(null); onPick(school); } : undefined;
+  // the readout defaults to the highlighted team and is replaced while hovering another
+  const readout = hover ?? teams.find((t) => t.school === favorite) ?? null;
 
   const mu = distribution.mean;
   const sd = distribution.stddev || 1;
@@ -89,6 +94,7 @@ export default function BellCurve({
 
   return (
     <svg
+      data-map="the bell curve"
       viewBox={`0 0 ${width} ${height}`}
       className="w-full h-auto select-none"
       style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
@@ -119,13 +125,15 @@ export default function BellCurve({
         const v = value(t);
         const cx = x(Math.max(lo, Math.min(hi, v)));
         const cy = curveY(v) - markerSize * 0.12;
-        const dim = highlight ? (highlight.has(t.school) ? 1 : 0.45) : 1;
+        const dim = highlight
+          ? (highlight.has(t.school) ? 1 : 0.45)
+          : (favorite ? 0.3 : 1);
         return (
           <g key={t.slug || t.school} opacity={dim} style={{ transition: 'opacity 120ms' }}>
             {highlight?.has(t.school) && (
               <circle cx={cx} cy={cy} r={markerSize * 0.62} fill="none" stroke={t.primary} strokeWidth={2} />
             )}
-            <TeamMarker team={t} cx={cx} cy={cy} size={markerSize} mode={marker} onHover={setHover} onPick={onPick} />
+            <TeamMarker team={t} cx={cx} cy={cy} size={markerSize} mode={marker} onHover={setHover} onPick={pick} />
           </g>
         );
       })}
@@ -143,25 +151,25 @@ export default function BellCurve({
               size={markerSize + 8}
               marker={marker}
               onHover={setHover}
-              onPick={onPick}
+              onPick={pick}
             />
           );
         })()}
 
-      {hover && (
+      {readout && (
         <g textAnchor="end" fill="rgb(var(--ink))">
           <text x={width - m.right} y={m.top + 2} fontSize={13} fontWeight={700}>
-            {hover.school} · {value(hover).toFixed(2)}σ
+            {readout.school} · {value(readout).toFixed(2)}σ
           </text>
           {criterion
             ? CATEGORIES[criterion].stats.map((sk, i) => (
                 <text key={sk} x={width - m.right} y={m.top + 20 + i * 15} fontSize={11}>
-                  {STATS[sk].label}: {(STATS[sk].format ?? String)(hover.stats[sk])} ({Math.round(hover.pct[sk])}th pctl)
+                  {STATS[sk].label}: {(STATS[sk].format ?? String)(readout.stats[sk])} ({Math.round(readout.pct[sk])}th pctl)
                 </text>
               ))
             : (
               <text x={width - m.right} y={m.top + 20} fontSize={11}>
-                #{hover.ratingRank} · {hover.rating.toFixed(1)} rating
+                #{readout.ratingRank} · {readout.rating.toFixed(1)} rating
               </text>
             )}
         </g>

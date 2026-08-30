@@ -1,0 +1,46 @@
+# NCAA official all-time won-loss records — "FBS Records" book (current edition),
+# section "All-Time Won-Loss Records" (p.110). Records are OFFICIAL: adjusted for
+# NCAA Committee on Infractions vacations, ties count half, bowls/playoffs included,
+# senior-college seasons only. Figures are current through the completed 2025 season.
+#
+# Used by `npm run wins:pre1936`: for every school listed here it drops the
+# per-season pre-1936 rows and writes ONE source=ncaa row (season 1935) sized so
+# that (sum of ALL as-played rows through `through`) - (sum of wins_vacated) == ncaa_wins.
+# i.e. the program's all-time OFFICIAL total equals this book exactly (Ohio State
+# 990-337-53; 1002 as-played with the vacated 2010 wins added back).
+# Schools not in our 130 (Delaware, James Madison) are ignored.
+#
+# Only ~33 programs are published in the book; the rest of FBS keeps its
+# game-derived per-season rows. Replace this file if a full NCAA list is sourced.
+school,ncaa_wins,ncaa_losses,ncaa_ties,ncaa_pct,through
+Michigan,1022,362,36,.732,2025
+Ohio State,990,337,53,.737,2025
+Alabama,985,345,43,.733,2025
+Notre Dame,972,341,42,.733,2025
+Texas,971,398,33,.704,2025
+Oklahoma,960,351,53,.723,2025
+Penn State,950,418,41,.689,2025
+Nebraska,931,436,40,.676,2025
+Georgia,904,434,54,.669,2025
+USC,891,378,54,.694,2025
+Tennessee,883,422,53,.670,2025
+LSU,822,444,47,.644,2025
+Clemson,815,482,45,.624,2025
+Auburn,809,485,47,.621,2025
+Texas A&M,797,511,48,.605,2025
+West Virginia,791,541,45,.574,2025
+Washington,790,477,50,.619,2025
+Virginia Tech,781,521,46,.596,2025
+Pittsburgh,776,571,42,.574,2025
+Georgia Tech,772,550,43,.581,2025
+Florida,770,458,40,.623,2025
+Wisconsin,751,533,53,.582,2025
+Minnesota,749,553,44,.573,2025
+Arkansas,749,555,40,.572,2025
+Army,746,553,51,.571,2025
+Boise State,511,194,2,.724,2025
+Appalachian State,674,368,29,.643,2025
+Miami (FL),686,394,19,.633,2025
+Georgia Southern,432,264,10,.619,2025
+Florida State,588,298,17,.661,2025
+Arizona State,647,432,24,.597,2025

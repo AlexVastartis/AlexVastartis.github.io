@@ -1,0 +1,25 @@
+# The Blue Blood Rating knobs (were constants in build-data.mjs).
+# tier_anchor_N = the last program in grouping #N (1-based): #3 Blue Blood Contenders, #4 National Powers, #5 National Brands.
+# title_selectors = space-separated national-title selectors that count.
+# trend_recent_years = seasons the trajectory weighs as "recent" (default 10).
+# trend_delta_points = how far a program's recent-decade rating must sit from its
+#   all-time baseline (0-100 scale) to count as Ascending / Descending (default 8).
+# trend_surge_points = the same distance that earns the emphatic stacked marker
+#   (⏫ / ⏬) — a recent decade a whole class from the résumé (default 25).
+# trend_min_history = a program with fewer FBS-era seasons on record than this gets
+#   no arrow at all ("too new to chart"); default 30.
+# tier_max_span = no grouping may span more than this many rating points; a wider
+#   one is split at its largest interior gap (default 12).
+key,value
+trim_fraction,0.2
+trend_recent_fraction,0.2
+trend_recent_years,10
+trend_delta_points,8
+trend_surge_points,25
+trend_min_history,30
+tier_max_span,12
+ap_from,1936
+title_selectors,AP UPI FWAA NFF USA/CNN USA/ESPN AFCA BCS CFP CFRA HAF NCF
+tier_anchor_3,Auburn
+tier_anchor_4,Minnesota
+tier_anchor_5,North Carolina State

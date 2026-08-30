@@ -16,6 +16,8 @@ interface Props {
  *  which one is chosen by the shared view toggle in the layout */
 export default function CriterionView({ criterion, ctx }: Props) {
   const { data, teams, allTeams, marker, setMarker, favorite, setFavorite, view } = ctx;
+  // on a criterion view, clicking the already-highlighted program clears it
+  const pick = (school: string) => setFavorite(school === favorite ? null : school);
   const cat = CATEGORIES[criterion];
   const [xk, yk] = cat.stats;
   const scope =
@@ -30,7 +32,7 @@ export default function CriterionView({ criterion, ctx }: Props) {
           <h2 className="text-lg font-bold tracking-tight">{cat.label}</h2>
           <p className="text-sm text-muted">{cat.blurb}</p>
         </div>
-        <CriterionList criterion={criterion} teams={teams} favorite={favorite} onPick={setFavorite} />
+        <CriterionList criterion={criterion} teams={teams} favorite={favorite} onPick={pick} />
         <p className="text-xs text-muted">
           {scope} · ranked by criterion percentile (mean of the two stats’ FBS percentiles) ·{' '}
           <span className="italic">{data.meta.provenance[criterion]}</span>
@@ -63,7 +65,7 @@ export default function CriterionView({ criterion, ctx }: Props) {
           yStat={yk}
           marker={marker}
           favorite={favorite}
-          onPick={setFavorite}
+          onPick={pick}
           order={(t) => t.critScore[criterion]}
         />
       ) : (
@@ -74,7 +76,7 @@ export default function CriterionView({ criterion, ctx }: Props) {
           xLabel={`${cat.label} — criterion score (z)`}
           marker={marker}
           favorite={favorite}
-          onPick={setFavorite}
+          onPick={pick}
           criterion={criterion}
         />
       )}

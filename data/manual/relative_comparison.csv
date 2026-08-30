@@ -1,3 +1,0 @@
-# Override the "where they sit among peers" sentence on the team card.
-# text = the full sentence to show instead of the generated one.
-school,text

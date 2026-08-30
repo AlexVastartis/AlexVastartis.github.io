@@ -38,6 +38,11 @@ export default function ScatterChart({
 }: Props) {
   const m = DEFAULT_MARGINS;
   const [hover, setHover] = useState<Team | null>(null);
+  // picking a team unmounts the marker under the cursor (it moves into FavoriteHalo,
+  // or back out on deselect), so no mouseleave fires — drop the hover readout by hand
+  const pick = onPick ? (school: string) => { setHover(null); onPick(school); } : undefined;
+  // the readout defaults to the highlighted team and is replaced while hovering another
+  const readout = hover ?? teams.find((t) => t.school === favorite) ?? null;
 
   // axis range follows the teams actually on screen, so a filtered view isn't
   // squished against data that's no longer plotted
@@ -66,6 +71,7 @@ export default function ScatterChart({
 
   return (
     <svg
+      data-map="the scatter"
       viewBox={`0 0 ${width} ${height}`}
       className={className}
       preserveAspectRatio="xMidYMid meet"
@@ -136,8 +142,9 @@ export default function ScatterChart({
             cy={n.y}
             size={markerSize}
             mode={marker}
+            dimmed={favorite != null}
             onHover={setHover}
-            onPick={onPick}
+            onPick={pick}
           />
         ),
       )}
@@ -153,22 +160,14 @@ export default function ScatterChart({
               size={markerSize + 8}
               marker={marker}
               onHover={setHover}
-              onPick={onPick}
+              onPick={pick}
             />
           ) : null;
         })()}
 
-      {/* hover tooltip */}
-      {hover && (
-        <Tooltip
-          team={hover}
-          xStat={xStat}
-          yStat={yStat}
-          px={x(hover.stats[xStat])}
-          py={y(hover.stats[yStat])}
-          width={width}
-        />
-      )}
+      {/* readout — pinned top-left, shows the highlighted team by default and swaps to
+          whichever team is hovered; never covers the point (busy corner is the diagonal) */}
+      {readout && <Tooltip team={readout} xStat={xStat} yStat={yStat} left={m.left + 12} top={m.top + 16} />}
     </svg>
   );
 }
@@ -177,41 +176,29 @@ function Tooltip({
   team,
   xStat,
   yStat,
-  px,
-  py,
-  width,
+  left,
+  top,
 }: {
   team: Team;
   xStat: StatKey;
   yStat: StatKey;
-  px: number;
-  py: number;
-  width: number;
+  left: number;
+  top: number;
 }) {
   const fmtX = STATS[xStat].format ?? String;
   const fmtY = STATS[yStat].format ?? String;
   const lines = [
-    team.school,
-    team.conference,
     `${STATS[xStat].label}: ${fmtX(team.stats[xStat])} (${Math.round(team.pct[xStat])}th pctl)`,
     `${STATS[yStat].label}: ${fmtY(team.stats[yStat])} (${Math.round(team.pct[yStat])}th pctl)`,
   ];
-  const w = 240;
-  const h = 18 + lines.length * 15;
-  const bx = Math.min(Math.max(px + 14, 4), width - w - 4);
-  const by = Math.max(py - h - 10, 4);
   return (
     <g pointerEvents="none">
-      <rect x={bx} y={by} width={w} height={h} rx={6} fill="rgb(var(--panel))" stroke="rgb(var(--line))" />
+      <rect x={left - 7} y={top - 16} width={400} height={20 + lines.length * 17} rx={5} fill="rgb(var(--paper))" opacity={0.86} />
+      <text x={left} y={top} fontSize={14} fontWeight={700} fill="rgb(var(--ink))">
+        {team.school} · {team.conference}
+      </text>
       {lines.map((ln, i) => (
-        <text
-          key={i}
-          x={bx + 10}
-          y={by + 18 + i * 15}
-          fontSize={i === 0 ? 13 : 11}
-          fontWeight={i === 0 ? 700 : 400}
-          fill="rgb(var(--ink))"
-        >
+        <text key={i} x={left} y={top + 19 + i * 17} fontSize={12} fill="rgb(var(--ink))">
           {ln}
         </text>
       ))}

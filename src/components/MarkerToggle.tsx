@@ -9,7 +9,7 @@ export default function MarkerToggle({
   onSet: (m: MarkerMode) => void;
 }) {
   return (
-    <div className="flex rounded-md ring-1 ring-line">
+    <div data-map="the marker toggle" className="flex rounded-md ring-1 ring-line">
       {(['logo', 'bubble'] as const).map((m) => (
         <button
           key={m}

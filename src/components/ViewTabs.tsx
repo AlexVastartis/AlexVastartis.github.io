@@ -44,10 +44,11 @@ export default function ViewTabs({ subject, view, onSetView, search, notesOn, on
     }`;
 
   return (
-    <div className="relative flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line pb-3">
+    <div data-map="the tab row" className="relative flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-line pb-3">
       {/* margin toggle for the hand-drawn gap / range notes — lives out in the
           left margin like the notes; never shifts the Blue Blood Rating tab */}
       <button
+        data-map="the notes toggle"
         onClick={onToggleNotes}
         title={notesOn ? 'Hide margin notes' : 'Show margin notes'}
         aria-label={notesOn ? 'Hide margin notes' : 'Show margin notes'}
@@ -63,6 +64,7 @@ export default function ViewTabs({ subject, view, onSetView, search, notesOn, on
         <NavLink
           to={{ pathname: '/', search }}
           end
+          data-map="the Rating tab"
           title="The overall Blue Blood Rating — mean of the 8 middle stat percentiles"
           className={({ isActive }) =>
             `rounded-lg px-3.5 py-1.5 text-[15px] font-bold tracking-tight ${
@@ -76,14 +78,20 @@ export default function ViewTabs({ subject, view, onSetView, search, notesOn, on
         </NavLink>
         <span className="mx-1 hidden h-5 w-px bg-line sm:block" aria-hidden />
         {CRITERIA.map((s) => (
-          <NavLink key={s.key} to={{ pathname: s.to, search }} title={s.hint} className={critClass}>
+          <NavLink
+            key={s.key}
+            to={{ pathname: s.to, search }}
+            data-map="the criteria tabs"
+            title={s.hint}
+            className={critClass}
+          >
             {s.label}
           </NavLink>
         ))}
       </nav>
 
       {views.length > 0 && (
-        <div className="flex w-fit rounded-md ring-1 ring-line">
+        <div data-map="the view switch" className="flex w-fit rounded-md ring-1 ring-line">
           {views.map((v) => (
             <button
               key={v}

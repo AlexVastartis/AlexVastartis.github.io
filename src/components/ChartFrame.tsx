@@ -30,13 +30,13 @@ export default function ChartFrame({ title, subtitle, footer, actions, filename,
   }
 
   return (
-    <figure className="rounded-xl border border-line bg-panel/40 p-4 sm:p-6">
+    <figure data-map="the chart frame" className="rounded-xl border border-line bg-panel/40 p-4 sm:p-6">
       <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <h2 className="text-xl font-bold tracking-tight">{title}</h2>
           {subtitle && <p className="mt-0.5 text-sm text-muted">{subtitle}</p>}
         </div>
-        <div className="flex shrink-0 items-center gap-3">
+        <div data-map="the chart action bar" className="flex shrink-0 items-center gap-3">
           {actions}
           <button
             onClick={save}

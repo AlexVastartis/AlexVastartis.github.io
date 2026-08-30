@@ -16,7 +16,11 @@ export const GROUPING_ORDER = [
 
 export type Grouping = (typeof GROUPING_ORDER)[number];
 
-/** blurbs describe the band as a whole — its range, and that it holds risers and faders */
+/**
+ * Fallback tier descriptions. The live copy is authored in
+ * data/staging/_blurb_tier_descriptions.csv and arrives on `meta.tierDescriptions`;
+ * this is only used if that's somehow absent.
+ */
 export const GROUPING_BLURB: Record<string, string> = {
   'Blue Bloods':
     'The top six by rating, and by a clear margin. Every one has been nationally relevant across multiple eras. None is in real decline.',
@@ -32,8 +36,12 @@ export const GROUPING_BLURB: Record<string, string> = {
     'Everyone else — mostly regional followings and thin résumés, plus the young programs whose ceilings haven’t been tested by the counting stats.',
 };
 
-/** group the (already-filtered) teams by their assigned grouping, in display order */
-export function groupTeams(teams: Team[]): { grouping: string; blurb: string; teams: Team[] }[] {
+/** group the (already-filtered) teams by their assigned grouping, in display order.
+ *  `descriptions` comes from meta.tierDescriptions; falls back to GROUPING_BLURB. */
+export function groupTeams(
+  teams: Team[],
+  descriptions: Record<string, string> = {},
+): { grouping: string; blurb: string; teams: Team[] }[] {
   const by = new Map<string, Team[]>();
   for (const t of [...teams].sort((a, b) => a.ratingRank - b.ratingRank)) {
     if (!by.has(t.grouping)) by.set(t.grouping, []);
@@ -41,7 +49,7 @@ export function groupTeams(teams: Team[]): { grouping: string; blurb: string; te
   }
   return GROUPING_ORDER.filter((g) => by.has(g)).map((g) => ({
     grouping: g,
-    blurb: GROUPING_BLURB[g] ?? '',
+    blurb: descriptions[g] ?? GROUPING_BLURB[g] ?? '',
     teams: by.get(g)!,
   }));
 }
