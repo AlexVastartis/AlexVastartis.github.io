@@ -36,27 +36,18 @@ Everything stays editable from Claude Code: edit → `git push` → live in ~90s
 
 ---
 
-## Pre-flight — do these once before the first deploy
+## Pre-flight status
 
-### 1. Commit the working tree
+### 1. Working tree committed — DONE
 
-A large amount of work is currently uncommitted (trajectory/Standing/Path
-Forward rewrites, the new FBS programs, the draft rebuild, the logo, the
-`assets/` source dir, `src/lib/logoSrc.ts`, `scripts/optimize-logos.mjs`,
-`scripts/build-logo.mjs`, every `public/logos/*-dark.png`, `public/logo.png` and
-the favicons). **Some committed code imports files that aren't committed yet**, so
-a fresh `git clone` will not build until this lands.
+Commit `441f9fd` ("Slice 2f: …") landed the whole backlog on `main`: the
+trajectory / Standing / Path Forward rewrite, the six new FBS programs, the draft
+rebuild, the logo + favicons, the `assets/` source dir (~16 MB, needed so
+`prebuild` can regenerate logos), and this deploy prep. A fresh `git clone` +
+`npm ci && npm run build` produces a working `dist/` — verified.
 
-```bash
-git add -A
-git status                # review — expect a big diff, that's correct
-git commit -m "Slice 2f: trajectory/standing/path-forward rewrite, new programs, logo, deploy prep"
-git push origin main
-```
-
-`assets/` (~16 MB of source logos + coach headshots) **should be committed** — it
-is the source `prebuild` regenerates `public/logos/` and the favicons from.
-16 MB is nothing for GitHub.
+**The repo has no `git remote` yet.** Adding one and pushing is the first thing
+you do below.
 
 ### 2. Node version — already pinned
 
@@ -81,16 +72,25 @@ Cloudflare Pages project settings, set the environment variable
 
 ### A. Push to GitHub
 
-If the repo isn't on GitHub yet:
+The `gh` CLI isn't installed here, so create the repo yourself:
 
-```bash
-gh repo create bluebloodfootball --private --source . --remote origin --push
-```
+- **GitHub UI:** New repository → name `bluebloodfootball` → **empty** (no README /
+  .gitignore / license) → Create. Then locally:
 
-(or make the repo in the GitHub UI and `git remote add origin … && git push -u origin main`).
+  ```bash
+  git remote add origin https://github.com/<you>/bluebloodfootball.git
+  git push -u origin main
+  ```
 
-Public vs private is your call — nothing sensitive is in the repo. Private is
-fine; Cloudflare Pages reads it through the GitHub App either way.
+- **or** install the CLI (`winget install GitHub.cli`, then `gh auth login`) and:
+
+  ```bash
+  gh repo create bluebloodfootball --private --source . --remote origin --push
+  ```
+
+Public or private is your call — nothing sensitive is in the repo. Cloudflare
+Pages reads it through the GitHub App either way. The first push is ~16 MB
+(the `assets/` source images); a minute or two.
 
 ### B. Create the Cloudflare Pages project
 
