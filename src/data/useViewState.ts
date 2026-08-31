@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { SHOW_ELEMENT_MAP, SHOW_TIMEPOINTS } from '../config/flags';
 
 export type MarkerMode = 'logo' | 'bubble';
 /** the three visualisation types, shared by the ranking and every criterion */
@@ -35,11 +36,12 @@ export function useViewState() {
       marker: params.get('marker') === 'bubble' ? 'bubble' : 'logo',
       view: params.get('view') === 'plot' ? 'plot' : params.get('view') === 'curve' ? 'curve' : 'list',
       wins: params.get('wins') === 'asPlayed' ? 'asPlayed' : 'official',
-      year: (TIMEPOINT_YEARS as readonly number[]).includes(Number(params.get('year')))
+      year: SHOW_TIMEPOINTS
+        && (TIMEPOINT_YEARS as readonly number[]).includes(Number(params.get('year')))
         ? Number(params.get('year'))
         : null,
       notes: params.get('notes') === '1',
-      map: params.get('map') === '1',
+      map: SHOW_ELEMENT_MAP && params.get('map') === '1',
     }),
     [params],
   );

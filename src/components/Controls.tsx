@@ -1,4 +1,5 @@
 import { TIMEPOINT_YEARS, type ViewState, type WinsMode } from '../data/useViewState';
+import { SHOW_TIMEPOINTS } from '../config/flags';
 
 interface Props {
   conferences: string[];
@@ -121,35 +122,37 @@ export default function Controls({
           ))}
         </div>
 
-        <label
-          data-map="the year picker"
-          className="flex items-center gap-1.5 text-sm"
-          title="View the site as a point in time — every stat re-totalled from seasons through that off-season, tiers re-drawn"
-        >
-          <span className="text-xs font-semibold uppercase tracking-wide text-muted">As of</span>
-          <select
-            value={year ?? ''}
-            onChange={(e) => onSetYear(e.target.value ? Number(e.target.value) : null)}
-            className={`rounded-md border px-2 py-1 text-sm ${
-              year ? 'border-accent bg-accent/10 font-semibold text-accent' : 'border-line bg-paper'
-            }`}
+        {SHOW_TIMEPOINTS && (
+          <label
+            data-map="the year picker"
+            className="flex items-center gap-1.5 text-sm"
+            title="View the site as a point in time — every stat re-totalled from seasons through that off-season, tiers re-drawn"
           >
-            <option value="">Now</option>
-            {TIMEPOINT_YEARS.map((y) => (
-              <option key={y} value={y}>{y} off-season</option>
-            ))}
-          </select>
-          {year && (
-            <button
-              onClick={() => onSetYear(null)}
-              title="Back to the present day"
-              aria-label="Back to the present day"
-              className="rounded-md px-1.5 py-1 text-sm text-muted ring-1 ring-line hover:bg-panel hover:text-accent"
+            <span className="text-xs font-semibold uppercase tracking-wide text-muted">As of</span>
+            <select
+              value={year ?? ''}
+              onChange={(e) => onSetYear(e.target.value ? Number(e.target.value) : null)}
+              className={`rounded-md border px-2 py-1 text-sm ${
+                year ? 'border-accent bg-accent/10 font-semibold text-accent' : 'border-line bg-paper'
+              }`}
             >
-              ✕
-            </button>
-          )}
-        </label>
+              <option value="">Now</option>
+              {TIMEPOINT_YEARS.map((y) => (
+                <option key={y} value={y}>{y} off-season</option>
+              ))}
+            </select>
+            {year && (
+              <button
+                onClick={() => onSetYear(null)}
+                title="Back to the present day"
+                aria-label="Back to the present day"
+                className="rounded-md px-1.5 py-1 text-sm text-muted ring-1 ring-line hover:bg-panel hover:text-accent"
+              >
+                ✕
+              </button>
+            )}
+          </label>
+        )}
       </div>
     </div>
   );

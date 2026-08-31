@@ -15,6 +15,7 @@ import MapLayer from './map/MapLayer';
 import ViewTabs, { type Subject } from './components/ViewTabs';
 import type { BlueBloodBenchmark, CategoryKey, StatKey, Team, TeamsPayload } from './types';
 import { CATEGORIES } from './config/stats';
+import { SHOW_ELEMENT_MAP, SHOW_TIMEPOINTS } from './config/flags';
 import { CONF_GROUPS, confGroup } from './config/conferences';
 import { deriveScenario, statSliderMax } from './lib/scenario';
 import Ranking from './routes/Ranking';
@@ -45,8 +46,8 @@ export function useChartContext() {
 
 function Layout() {
   const { state, update, toggleConference } = useViewState();
-  const { loading, error, data } = useTeams(state.wins, state.year);
-  const snapshot = data?.meta.timepoint ?? null;
+  const { loading, error, data } = useTeams(state.wins, SHOW_TIMEPOINTS ? state.year : null);
+  const snapshot = SHOW_TIMEPOINTS ? (data?.meta.timepoint ?? null) : null;
   const { mode, setMode } = useTheme();
   const [favorite, setFavorite] = useFavorite();
   const { search, pathname } = useLocation();
@@ -129,10 +130,10 @@ function Layout() {
   // near the fold; the ranked list gets the full panel as a wide side rail
   const panelMode: 'top' | 'side' | 'none' = favTeam ? (view === 'list' ? 'side' : 'top') : 'none';
 
-  // The element map is a developer inspection tool. Its toggle button is hidden in
-  // production; the layer still honours ?map=1 in the URL, so it can be summoned
-  // on the live site by anyone who knows the trick.
-  const mapDev = import.meta.env.DEV;
+  // The element map is a developer inspection tool. It is gated on SHOW_ELEMENT_MAP
+  // (dev builds only) — the toggle button, the ?map=1 URL param, and the overlay
+  // are all off in the production bundle. See src/config/flags.ts.
+  const mapDev = SHOW_ELEMENT_MAP;
 
   return (
     <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-6">
@@ -304,7 +305,7 @@ function Layout() {
         </>
       )}
 
-      <MapLayer on={state.map} />
+      <MapLayer on={mapDev && state.map} />
     </div>
   );
 }

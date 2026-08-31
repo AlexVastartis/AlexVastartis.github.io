@@ -102,11 +102,16 @@ the workflow's `run: npm run build` to `run: npm run build:data && npm run build
 
 ## Developer-only items, sectioned off
 
+Feature flags live in **`src/config/flags.ts`** — each is `import.meta.env.DEV`, so
+on under `npm run dev` / `vite preview` and **off in the production bundle**. Flip a
+line to a bare `true` to ship one.
+
 | Item | In production |
 | --- | --- |
-| **Element map** (the "Map" button, `?map=1`) | Button hidden — `import.meta.env.DEV` gate, tree-shaken out of the prod bundle. `?map=1` in the URL still activates the overlay, so *you* can inspect the live site; visitors never see the control. |
-| `data-map="…"` attributes | Kept (a few hundred bytes) — read by `?map=1`. |
-| Gap/range **margin notes** (`?notes=1`, ✎) | Left as-is — a real off-by-default feature, not debug. Gate it like the map if it's clutter. |
+| **"As of" point-in-time snapshots** (the year picker, `?year=`, the snapshot banner) | `SHOW_TIMEPOINTS` — off. The picker isn't rendered, `?year=` is ignored, and `useTeams` always loads present-day data. The `public/data/timepoints/*.json` files still ship but nothing fetches them. |
+| **Element map** (the "Map" button, `?map=1`) | `SHOW_ELEMENT_MAP` — off. The button isn't rendered, `?map=1` is ignored, and the overlay never mounts. |
+| `data-map="…"` attributes | Kept (a few hundred bytes) — read only by the element map, which is off. |
+| Gap/range **margin notes** (`?notes=1`, ✎) | Left as-is — a real off-by-default feature, not debug. Add a flag if it's clutter. |
 | `src/routes/Notes.tsx` | Orphaned, not routed → not in the bundle. |
 
 ---
