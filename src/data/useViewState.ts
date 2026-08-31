@@ -6,6 +6,9 @@ export type MarkerMode = 'logo' | 'bubble';
 export type ViewMode = 'list' | 'plot' | 'curve';
 export type WinsMode = 'asPlayed' | 'official';
 
+/** point-in-time snapshot years; null = present day */
+export const TIMEPOINT_YEARS = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020] as const;
+
 export interface ViewState {
   /** selected conferences; empty = all */
   conferences: string[];
@@ -14,6 +17,8 @@ export interface ViewState {
   view: ViewMode;
   /** NCAA-official wins (default, vacated removed) vs. as-played (vacated counted) */
   wins: WinsMode;
+  /** point-in-time snapshot; null = present day */
+  year: number | null;
   /** show the hand-drawn gap / range notes in the margin (default off) */
   notes: boolean;
   /** show the site-wide element map overlay — labels every UI region (default off) */
@@ -30,6 +35,9 @@ export function useViewState() {
       marker: params.get('marker') === 'bubble' ? 'bubble' : 'logo',
       view: params.get('view') === 'plot' ? 'plot' : params.get('view') === 'curve' ? 'curve' : 'list',
       wins: params.get('wins') === 'asPlayed' ? 'asPlayed' : 'official',
+      year: (TIMEPOINT_YEARS as readonly number[]).includes(Number(params.get('year')))
+        ? Number(params.get('year'))
+        : null,
       notes: params.get('notes') === '1',
       map: params.get('map') === '1',
     }),
@@ -57,6 +65,10 @@ export function useViewState() {
           if ('wins' in patch) {
             if (patch.wins === 'asPlayed') next.set('wins', 'asPlayed');
             else next.delete('wins');
+          }
+          if ('year' in patch) {
+            if (patch.year) next.set('year', String(patch.year));
+            else next.delete('year');
           }
           if ('notes' in patch) {
             if (patch.notes) next.set('notes', '1');

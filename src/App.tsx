@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet, Link,
 } from 'react-router-dom';
-import { useTeams, useConferences } from './data/useTeams';
+import { useTeams } from './data/useTeams';
 import { useViewState, type ViewMode } from './data/useViewState';
 import { useTheme } from './lib/theme';
 import { useFavorite } from './data/useFavorite';
@@ -15,6 +15,7 @@ import MapLayer from './map/MapLayer';
 import ViewTabs, { type Subject } from './components/ViewTabs';
 import type { BlueBloodBenchmark, CategoryKey, StatKey, Team, TeamsPayload } from './types';
 import { CATEGORIES } from './config/stats';
+import { CONF_GROUPS, confGroup } from './config/conferences';
 import { deriveScenario, statSliderMax } from './lib/scenario';
 import Ranking from './routes/Ranking';
 import TheChartStandalone from './routes/TheChartStandalone';
@@ -44,10 +45,10 @@ export function useChartContext() {
 
 function Layout() {
   const { state, update, toggleConference } = useViewState();
-  const { loading, error, data } = useTeams(state.wins);
+  const { loading, error, data } = useTeams(state.wins, state.year);
+  const snapshot = data?.meta.timepoint ?? null;
   const { mode, setMode } = useTheme();
   const [favorite, setFavorite] = useFavorite();
-  const conferences = useConferences(data);
   const { search, pathname } = useLocation();
 
   // what-if editor: edited raw stats for the highlighted team (reset whenever it changes)
@@ -56,7 +57,7 @@ function Layout() {
   useEffect(() => {
     setWhatIf({});
     setWhatIfOpen(false);
-  }, [favorite, state.wins]);
+  }, [favorite, state.wins, state.year]);
 
   const scenario = useMemo(() => {
     if (!data || !favorite || Object.keys(whatIf).length === 0) return null;
@@ -84,7 +85,7 @@ function Layout() {
     if (baseTeams.length === 0) return [];
     if (state.conferences.length === 0) return baseTeams;
     const set = new Set(state.conferences);
-    return baseTeams.filter((t) => set.has(t.conference));
+    return baseTeams.filter((t) => set.has(confGroup(t.conference)));
   }, [baseTeams, state.conferences]);
 
   const criteriaKey = pathname.match(/^\/criteria\/([A-Za-z]+)/)?.[1];
@@ -106,15 +107,23 @@ function Layout() {
   }, [data, favorite, subject, setFavorite]);
 
   const favTeam = favorite ? baseTeams.find((t) => t.school === favorite) ?? null : null;
+  // the program's REAL, unedited line — coach-run "preview" always builds from this
+  // (base + coach), never from the already-edited scenario stats
+  const favBase = favorite ? data?.teams.find((t) => t.school === favorite) ?? null : null;
   const statMax = useMemo(
     () => (data ? statSliderMax(data.teams) : null),
     [data],
   );
   const jumpToFavorite = () => {
     if (!favorite) return;
-    document
-      .querySelector<HTMLElement>(`[data-school="${CSS.escape(favorite)}"]`)
-      ?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    const el = document.querySelector<HTMLElement>(`[data-school="${CSS.escape(favorite)}"]`);
+    if (!el) return;
+    el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    // brief flare so the action reads even when the row was already centred
+    el.classList.remove('row-flare');
+    void el.offsetWidth; // restart the animation
+    el.classList.add('row-flare');
+    window.setTimeout(() => el.classList.remove('row-flare'), 1100);
   };
   // a chart view (anything but the ranked list) gets the compact panel on top so the chart stays
   // near the fold; the ranked list gets the full panel as a wide side rail
@@ -155,31 +164,17 @@ function Layout() {
 
       {data && (
         <>
-          <Controls
-            conferences={conferences}
-            state={state}
-            onToggleConference={toggleConference}
-            onClearConferences={() => update({ conferences: [] })}
-            schools={data.teams.map((t) => t.school).sort()}
-            favorite={favorite}
-            onSetFavorite={setFavorite}
-            canClearFavorite={subject !== 'rating'}
-            wins={state.wins}
-            onSetWins={(w) => update({ wins: w })}
+          {/* the tab row leads — full width, same in every view, so the
+              List / Chart / Bell buttons never move; the filter bar drops into
+              the content column below so the team panel can rise level with it */}
+          <ViewTabs
+            subject={subject}
+            view={view}
+            onSetView={(v) => update({ view: v })}
+            search={search}
+            notesOn={state.notes}
+            onToggleNotes={() => update({ notes: !state.notes })}
           />
-
-          {/* on list views the tabs live inside the list column so the team panel
-              (right rail) can rise level with them; elsewhere they span the page */}
-          {panelMode !== 'side' && (
-            <ViewTabs
-              subject={subject}
-              view={view}
-              onSetView={(v) => update({ view: v })}
-              search={search}
-              notesOn={state.notes}
-              onToggleNotes={() => update({ notes: !state.notes })}
-            />
-          )}
 
           <div className={panelMode === 'side' ? 'lg:grid lg:grid-cols-[minmax(0,1fr)_27rem] lg:gap-6' : ''}>
             {panelMode === 'top' && favTeam && (
@@ -194,15 +189,19 @@ function Layout() {
               >
                 <TeamCard
                   team={favTeam}
+                  runBase={favBase ?? favTeam}
                   variant="panel"
                   statMax={statMax}
                   onClear={subject === 'rating' ? undefined : () => setFavorite(null)}
                   onJump={jumpToFavorite}
-                  onOpenWhatIf={() => setWhatIfOpen(true)}
+                  onOpenWhatIf={snapshot ? undefined : () => setWhatIfOpen(true)}
                   onPreviewProjection={(targets) => {
+                    // targets are computed from the REAL line (runBase), so diffing
+                    // against that real line gives base+coach, not a compounding stack
+                    const ref = favBase ?? favTeam;
                     const diff: Partial<Record<StatKey, number>> = {};
                     for (const [k, v] of Object.entries(targets) as [StatKey, number][]) {
-                      if (Math.abs(v - favTeam.stats[k]) > (k === 'winPct' ? 0.0005 : 0.5)) diff[k] = v;
+                      if (Math.abs(v - ref.stats[k]) > (k === 'winPct' ? 0.0005 : 0.5)) diff[k] = v;
                     }
                     setWhatIf(diff);
                     setWhatIfOpen(true);
@@ -224,17 +223,38 @@ function Layout() {
                 />
               </aside>
             )}
-            <div className="min-w-0 lg:col-start-1 lg:row-start-1">
-              {panelMode === 'side' && (
-                <div className="mb-4">
-                  <ViewTabs
-                    subject={subject}
-                    view={view}
-                    onSetView={(v) => update({ view: v })}
-                    search={search}
-                    notesOn={state.notes}
-                    onToggleNotes={() => update({ notes: !state.notes })}
-                  />
+            <div className="flex min-w-0 flex-col gap-3 lg:col-start-1 lg:row-start-1">
+              <Controls
+                conferences={[...CONF_GROUPS]}
+                state={state}
+                onToggleConference={toggleConference}
+                onClearConferences={() => update({ conferences: [] })}
+                schools={data.teams.map((t) => t.school).sort()}
+                favorite={favorite}
+                onSetFavorite={setFavorite}
+                canClearFavorite={subject !== 'rating'}
+                wins={state.wins}
+                onSetWins={(w) => update({ wins: w })}
+                year={state.year}
+                onSetYear={(y) => update({ year: y })}
+              />
+
+              {snapshot && (
+                <div
+                  data-map="the snapshot banner"
+                  className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-md border border-dashed border-accent/50 bg-accent/10 px-2.5 py-1.5 text-[11px] text-ink"
+                >
+                  <span className="font-semibold uppercase tracking-wide text-accent">Snapshot · {snapshot} off-season</span>
+                  <span className="min-w-0">
+                    the Blue Blood Rating as it would have stood after the {snapshot - 1}–{snapshot} season.
+                    {' '}{data.meta.timepointNote}
+                  </span>
+                  <button
+                    onClick={() => update({ year: null })}
+                    className="ml-auto shrink-0 rounded border border-accent/50 px-1.5 py-0.5 font-semibold uppercase tracking-wide text-accent hover:bg-accent/15"
+                  >
+                    Back to now
+                  </button>
                 </div>
               )}
               {scenarioActive && (
@@ -276,11 +296,9 @@ function Layout() {
             </div>
           </div>
 
-          <footer data-map="the footer" className="mt-2 text-xs text-muted">
-            Data generated {new Date(data.meta.generatedAt).toLocaleDateString()} ·{' '}
-            AP poll &amp; records via CollegeFootballData · titles &amp; All-Americans hand-maintained ·
-            conferences: {data.meta.conferenceYear ?? '—'} alignment · logos are each school’s
-            trademarks, used for identification ·{' '}
+          <footer data-map="the footer" className="mt-2 text-xs leading-relaxed text-muted">
+            Current through the 2026 off-season · vibecoded in a weekend with Claude · logos are each
+            school’s trademarks, used for identification ·{' '}
             <a className="underline hover:text-accent" href="#/the-chart">The Chart</a>
           </footer>
         </>

@@ -1,9 +1,24 @@
 import { useMemo, useState } from 'react';
-import type { CategoryKey, Team } from '../types';
+import type { CategoryKey, StatKey, Team } from '../types';
 import { CATEGORIES, STATS } from '../config/stats';
 import TeamLogo from './TeamLogo';
 
 type SortCol = 'pctl' | 'team' | 'x' | 'y';
+
+/** column headers are always two lines tall (so the row height never changes
+ *  between criteria) — spell the break out rather than leave it to wrap */
+const HDR: Record<StatKey, [string, string]> = {
+  weeksApPoll: ['Weeks in the', 'AP Poll'],
+  weeksApTop10: ['Weeks in the', 'AP Top 10'],
+  consensusAA: ['Consensus', 'All-Americans'],
+  unanimousAA: ['Unanimous', 'All-Americans'],
+  nationalTitles: ['National', 'Championships'],
+  conferenceTitles: ['Conference', 'Championships'],
+  nflDraftPicks: ['NFL Draft', 'Picks'],
+  firstRoundPicks: ['First-Round', 'NFL Draft Picks'],
+  allTimeWins: ['All-Time', 'Wins'],
+  winPct: ['All-Time', 'Winning %'],
+};
 
 interface Props {
   criterion: CategoryKey;
@@ -44,24 +59,32 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
     <ol data-map="the criterion list" className="flex flex-col rounded-xl border border-line">
       <li
         data-map="the sortable headers"
-        className="grid grid-cols-[2rem_1.75rem_1fr_auto] items-center gap-3 border-b border-line px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted"
+        className="grid grid-cols-[2rem_1.75rem_minmax(0,10rem)_1fr_auto] items-center gap-3 border-b border-line px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted"
       >
         <span className="text-right">#</span>
         <span />
-        <button className={`${hCls(sort.col === 'team')} text-left`} onClick={() => toggle('team')}>
+        <button className={`${hCls(sort.col === 'team')} self-center text-left`} onClick={() => toggle('team')}>
           Program{ind('team')}
         </button>
-        <span className="flex items-center gap-4">
-          <button className={`${hCls(sort.col === 'x')} hidden w-20 text-right sm:inline`} onClick={() => toggle('x')}>
-            {STATS[xk].label}
-            {ind('x')}
-          </button>
-          <button className={`${hCls(sort.col === 'y')} hidden w-20 text-right sm:inline`} onClick={() => toggle('y')}>
-            {STATS[yk].label}
-            {ind('y')}
-          </button>
-          <button className={`${hCls(sort.col === 'pctl')} w-10 text-right`} onClick={() => toggle('pctl')}>
-            Pctl{ind('pctl')}
+        <span />
+        <span className="flex items-stretch gap-3">
+          {([['x', xk], ['y', yk]] as const).map(([col, sk]) => (
+            <button
+              key={col}
+              className={`${hCls(sort.col === col)} hidden h-9 w-28 flex-col items-center justify-center leading-tight sm:flex`}
+              onClick={() => toggle(col)}
+            >
+              <span className="block">{HDR[sk][0]}</span>
+              <span className="block">{HDR[sk][1]}{ind(col)}</span>
+            </button>
+          ))}
+          <button
+            className={`${hCls(sort.col === 'pctl')} flex h-9 w-20 items-center justify-center`}
+            onClick={() => toggle('pctl')}
+          >
+            <span className="hidden sm:inline">Percentile</span>
+            <span className="sm:hidden">Pctl</span>
+            {ind('pctl')}
           </button>
         </span>
       </li>
@@ -71,7 +94,7 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
           <li key={t.slug || t.school} data-school={t.school}>
             <button
               onClick={() => onPick?.(t.school)}
-              className={`grid w-full grid-cols-[2rem_1.75rem_1fr_auto] items-center gap-3 border-l-2 px-2 py-1.5 text-left hover:bg-panel ${
+              className={`grid w-full grid-cols-[2rem_1.75rem_minmax(0,10rem)_1fr_auto] items-center gap-3 border-l-2 px-2 py-1.5 text-left hover:bg-panel ${
                 fav ? 'border-accent bg-accent/10' : 'border-transparent'
               }`}
             >
@@ -86,15 +109,16 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
                 <span className="truncate text-sm font-medium">{t.school}</span>
                 {fav && <span className="text-xs text-accent">★</span>}
               </span>
-              <span className="flex items-center gap-4 text-sm tabular-nums">
-                <span className="hidden w-20 text-right text-muted sm:inline" title={`${STATS[xk].label}: ${fmtX(t.stats[xk])}`}>
+              <span />
+              <span className="flex items-center gap-3 text-sm tabular-nums">
+                <span className="hidden w-28 text-center text-muted sm:inline" title={`${STATS[xk].label}: ${fmtX(t.stats[xk])}`}>
                   {fmtX(t.stats[xk])}
                 </span>
-                <span className="hidden w-20 text-right text-muted sm:inline" title={`${STATS[yk].label}: ${fmtY(t.stats[yk])}`}>
+                <span className="hidden w-28 text-center text-muted sm:inline" title={`${STATS[yk].label}: ${fmtY(t.stats[yk])}`}>
                   {fmtY(t.stats[yk])}
                 </span>
                 <span
-                  className="w-10 text-right font-bold"
+                  className="w-20 text-center font-bold"
                   title={`${CATEGORIES[criterion].label} score ${Math.round(t.critScore[criterion])} — mean of the two stats’ FBS percentiles`}
                 >
                   {Math.round(t.critScore[criterion])}

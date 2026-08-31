@@ -1,35 +1,32 @@
 # The staging layer
 
-Every input the site is built from. `scripts/build-data.mjs` reads **only** this
-folder (plus `data/api/conferences.json`) and never touches the network. Re-run it
-any time with `npm run build:data`.
+Every input the site is built from — hand-maintained CSVs, committed to the repo.
+`scripts/build-data.mjs` reads **only** this folder and never touches the network.
+There is no fetch step and no API key: to change a number, edit the CSV and re-run
+`npm run build:data`.
 
 ```
-_staging_*  raw inputs / API landing spots      (numbers)
-_blurb_*    the narrative text on the site      (words)
+_staging_*        raw inputs      (numbers)
+_blurb_*          narrative text  (words)
+conferences.json  current conference per school (year + bySchool map)
 ```
-
-`_staging_` files fed by the API (`_staging_ap_poll_success.csv`,
-`_staging_nfl_draft_success.csv`, and the `source=cfbd` rows of `_staging_wins.csv`)
-are **rebuilt by `npm run data:api`** from the committed CFBD cache in `data/api/cfbd/`.
-Hand edits to those rows are overwritten on the next refresh — edit the manual rows
-(`source=manual`) or the other files, which are never touched by the API step.
 
 `#`-prefixed lines are comments. Most files carry a `source` column — cite it
-(a URL, `ncaa-records`, `heisman.com`, …).
+(a URL, `ncaa-records`, `heisman.com`, …). The frozen raw dumps these were
+originally compiled from live in `data/archive/` and are read by nothing.
 
 ## Inputs — one per Tab Row entry
 
 | File | One row is | Feeds | Filled by |
 | --- | --- | --- | --- |
 | `_staging_blue_blood_rating.csv` | `key,value` | the rating knobs: trim fraction, trend window, `ap_from`, `title_selectors`, the three `tier_anchor_N` (last program in grouping N, 1-based) | hand |
-| `_staging_ap_poll_success.csv` | `school,season` → weeks in poll / top-10 / top-5 / at #1, and `final_rank` | **AP Poll Success** + trajectory | `npm run data:api`; hand between refreshes |
-| `_staging_wins.csv` | `school,season` → `wins,losses,ties,wins_vacated,losses_vacated,vacated_note,source` | **Wins** + trajectory; `wins_vacated`/`losses_vacated` feed the **NCAA official** toggle only | `data:api` (`source=cfbd`, 1936→present). Pre-1936 rebuilt by `npm run wins:pre1936`: one `source=ncaa` row per program in `_staging_wins_ncaa.csv` (all-time calibrated to the NCAA FBS Records book), `source=cfbref` per-season 1869–1935 game logs for everyone else. `source=cfbd` and `source=ncaa`/`cfbref`/`manual` rows are both left alone by the refresh; the `*_vacated` columns are carried forward by (school, season) |
-| `_staging_wins_ncaa.csv` | `school` → `ncaa_wins,ncaa_losses,ncaa_ties,ncaa_pct,through` | the pre-1936 `source=ncaa` calibration rows in `_staging_wins.csv` (the ~31 programs the book lists) | hand — NCAA "FBS Records" book, "All-Time Won-Loss Records" (official, through 2024) |
+| `_staging_ap_poll_success.csv` | `school,season` → weeks in poll / top-10 / top-5 / at #1, and `final_rank` | **AP Poll Success** + trajectory | hand |
+| `_staging_wins.csv` | `school,season` → `wins,losses,ties,wins_vacated,losses_vacated,vacated_note,source` | **Wins** + trajectory; `wins_vacated`/`losses_vacated` feed the **NCAA official** toggle only | hand. `source=history` per-season W-L-T (1936→present for all; 1869–1935 where game-level records survive). `source=ncaa` = one calibration row per program in `_staging_wins_ncaa.csv` (all-time matched to the NCAA FBS Records book). `source=ncaa-history` = per-season rows for programs with no game data and no book line. `source=manual` = hand lumps / corrections |
+| `_staging_wins_ncaa.csv` | `school` → `ncaa_wins,ncaa_losses,ncaa_ties,ncaa_pct,through` | the pre-1936 `source=ncaa` calibration rows in `_staging_wins.csv` (the ~33 programs the book lists) | hand — NCAA "FBS Records" book, "All-Time Won-Loss Records" (official, through 2024) |
 | `_staging_championships.csv` | one title: `school,year,scope,selector,conference,shared,status,source` | **Championships** + trajectory | hand |
 | `_staging_all_americans.csv` | one consensus selection: `year,school,player,pos,consensus,unanimous,source` | **All-Americans** + trajectory | hand (NCAA record book) |
-| `_staging_nfl_draft_success.csv` | `school,season` → `picks,first_round_picks` | **NFL Draft Success** + trajectory | `npm run data:api`; hand between refreshes |
-| `_staging_identity.csv` | `school,slug,conference,primary_hex,secondary_hex,former_fcs` | colours, logo filename, FCS flag; `conference` is a fallback (API wins) | hand |
+| `_staging_nfl_draft_success.csv` | `school,season` → `picks,first_round_picks` | **NFL Draft Success** + trajectory | `npm run draft` from `_staging_nfl_draft_picks.csv`; hand between |
+| `_staging_identity.csv` | `school,slug,conference,primary_hex,secondary_hex,former_fcs` | colours, logo filename, FCS flag; `conference` is a fallback (`conferences.json` wins) | hand |
 | `_staging_heisman.csv` | one winner: `year,player,school,source` | shown on the team panel (not a rating stat) | hand |
 | `_staging_summary_fallback.csv` | one program: legacy totals | fallback **only** where a granular file above has no rows (mostly conference titles; All-Americans for ~21 newer programs) | hand; shrinks over time |
 | `_staging_grouping_overrides.csv` | `school,grouping,note` | forces a program's grouping | optional |
@@ -64,25 +61,19 @@ Re-seed all of them from the current build with
 
 ## Game-level sources
 
-`_staging_games_cfbref.csv` — 20,841 games, seasons **1869–1935** (1871/1873 n/a — no
-games played), from a College Football Reference season-page export
-(`season,week,date,winner,winner_pts,loser,loser_pts,winner_venue,notes`; `winner_venue`
-∈ home/away/neutral, Jan bowls fold into the prior season). Built by
-`npm run games:cfbref` from `Book 2.xlsx` plus any single-season `*.csv` fills in
-`cfbref-supplemental/` (1934 lives there — it was missing from the workbook export).
-**Pre-1936 wins source for programs the NCAA book doesn't list:** `npm run wins:pre1936`
-sums every game in which one side maps to a current FBS program (opponent caliber
-irrelevant, per project rule) into the `source=cfbref` rows of `_staging_wins.csv`.
-Coverage is complete ~1905→1935 but thin before that and light on small-college opponents
-throughout — Ohio State shows ~126 pre-1936 wins here vs. 244 in the NCAA book — which is
-why the ~31 programs the book does list are calibrated from `_staging_wins_ncaa.csv`
-instead. This file is a College Football Reference scrape (`All College Football Games
-Scrape.xlsx` also has 1936→present but is the same source with the same pre-1913 gap, so
-it isn't wired in). Also usable for head-to-head and margins.
+The pre-1936 per-season `source=history` rows in `_staging_wins.csv` were compiled
+from a game-level export now frozen at `data/archive/games-pre1936.csv` (~20,800
+games, seasons **1869–1935**; every game in which one side maps to a current FBS
+program contributes a W / L / T, opponent caliber irrelevant per project rule).
+Coverage is complete ~1905→1935 but thin before that — Ohio State's game-level
+pre-1936 total (~126 wins) runs well below the NCAA book's 244 — which is why the
+~33 programs the book lists carry a `source=ncaa` calibration row instead. Nothing
+in the build reads the archived game file; to revise a pre-1936 total, edit the
+rows in `_staging_wins.csv` directly.
 
-`_staging_games.csv` — every game result 1869–2025 (`season,date,team1,score1,team2,score2`),
-a separate CFBD-derived dump. **Not fed into anything.** Superseded pre-1936 by the cfbref
-file above; kept only as raw material for a future head-to-head / margins feature.
+`_staging_games.csv` — every game result 1869–2025 (`season,date,team1,score1,team2,score2`).
+**Not fed into anything.** Kept only as raw material for a future head-to-head /
+margins feature; safe to delete otherwise.
 
 ## Reviewing the output
 

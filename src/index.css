@@ -3,20 +3,21 @@
 @tailwind utilities;
 
 :root {
-  /* light theme tokens (r g b) — page is white, content surfaces are light grey */
-  --ink: 17 24 39;
-  --paper: 255 255 255;
-  --panel: 234 237 241;
-  --line: 209 214 221;
-  --muted: 100 108 120;
-  --accent: 30 64 175;
+  /* light theme — a soft blue-grey paper, not white; surfaces sit a shade below it.
+     Neutrals carry a slight bias toward the blue accent so they read as chosen. */
+  --ink: 26 32 46;
+  --paper: 235 238 243;
+  --panel: 224 228 236;
+  --line: 199 205 216;
+  --muted: 92 101 118;
+  --accent: 40 74 165;
   /* the "you're editing a what-if scenario" hue — amber, distinct from the accent */
-  --whatif: 180 83 9;
+  --whatif: 165 82 20;
 
   /* chart tokens */
-  --chart-grid: 222 228 236;
-  --chart-axis: 100 116 139;
-  --chart-label: 51 65 85;
+  --chart-grid: 210 216 226;
+  --chart-axis: 108 120 140;
+  --chart-label: 58 70 92;
 }
 
 :root.dark {
@@ -119,5 +120,26 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .map-outline {
     transition: none;
+  }
+}
+
+/* brief highlight when "Jump" lands on a row (esp. when it was already in view) */
+@keyframes row-flare {
+  0% {
+    background-color: rgb(var(--accent) / 0.28);
+    box-shadow: inset 3px 0 0 0 rgb(var(--accent));
+  }
+  100% {
+    background-color: rgb(var(--accent) / 0);
+    box-shadow: inset 3px 0 0 0 rgb(var(--accent) / 0);
+  }
+}
+.row-flare {
+  animation: row-flare 1.1s ease-out;
+  border-radius: 6px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .row-flare {
+    animation: row-flare 0.01s steps(1) forwards;
   }
 }

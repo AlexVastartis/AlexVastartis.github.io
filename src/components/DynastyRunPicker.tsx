@@ -16,7 +16,7 @@ interface Props {
 
 /**
  * A row of dynasty head coaches. Click one to load "today + that coach's exact
- * tenure" into the what-if editor; hover for the run and what it would add.
+ * tenure (in seasons)" into the what-if editor; hover for the run and what it adds.
  */
 export default function DynastyRunPicker({ team, statMax, onApply }: Props) {
   const [hovered, setHovered] = useState<DynastyRun | null>(null);
@@ -36,7 +36,7 @@ export default function DynastyRunPicker({ team, statMax, onApply }: Props) {
             onMouseLeave={() => setHovered((h) => (h === run ? null : h))}
             onFocus={() => setHovered(run)}
             onBlur={() => setHovered((h) => (h === run ? null : h))}
-            aria-label={`Load ${run.coach}'s ${run.program} run (${run.years}) for ${team.school}`}
+            aria-label={`Add ${run.coach}'s ${run.seasons}-season ${run.program} run to ${team.school}`}
             className="block h-9 w-9 overflow-hidden rounded-full border border-line bg-paper/60 transition hover:border-accent hover:ring-2 hover:ring-accent/30"
           >
             <CoachAvatar run={run} />
@@ -44,8 +44,8 @@ export default function DynastyRunPicker({ team, statMax, onApply }: Props) {
         ))}
         {hovered && <RunCard run={hovered} team={team} />}
       </div>
-      <p className="mt-1.5 text-[10px] leading-snug text-muted">
-        Click to load that coach&rsquo;s run into the what-if editor.
+      <p className="mt-1.5 truncate text-[10px] leading-snug text-muted">
+        Click one to see where {team.school} lands with that coach&rsquo;s tenure added on.
       </p>
     </div>
   );
@@ -78,7 +78,7 @@ function RunCard({ run, team }: { run: DynastyRun; team: Team }) {
     <div className="pointer-events-none absolute bottom-full left-0 right-0 z-40 mb-2 rounded-md border border-line bg-panel p-2.5 text-left shadow-lg">
       <div className="text-xs font-bold">{run.coach} — {run.program}</div>
       <div className="text-[10px] text-muted">
-        {run.years} · {run.seasons} years
+        {run.seasons} seasons coached ({run.years})
       </div>
       <p className="mt-1 text-[10px] italic leading-snug text-muted">{run.shape}</p>
       <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-wide text-muted">

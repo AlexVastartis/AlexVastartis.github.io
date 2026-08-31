@@ -8,6 +8,6 @@ dist-ssr
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
-data/snapshots/cfbd-*.json
 scripts/tmp/
-# data/api/ (the consolidated CFBD store + raw per-year cache) IS committed on purpose
+# data/staging/ (the hand-maintained data store) and data/archive/ (frozen raw
+# source dumps) are BOTH committed on purpose — the build reads staging, never the network

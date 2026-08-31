@@ -5,8 +5,7 @@
  * (TeamMarker prefers the dark/ copy in dark mode).
  *
  * Originals are backed up to data/manual/logos-original/ once. Idempotent.
- * `npm run logos:recolor` — safe to re-run; a later `npm run logos:sync` replaces
- * these with full-colour CFBD PNGs and removes the recoloured SVGs.
+ * `npm run logos:recolor` — safe to re-run against the committed logo set.
  */
 import fs from 'node:fs';
 import path from 'node:path';

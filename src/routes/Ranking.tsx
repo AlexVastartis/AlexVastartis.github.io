@@ -16,25 +16,39 @@ export default function Ranking() {
         scenarioSchool={scenarioSchool}
       />
 
-      <p className="text-xs leading-relaxed text-muted">
-        <strong>How it’s built.</strong> {data.meta.modelBlurb} The default view uses each
-        program’s <em>NCAA official</em> record (vacated wins removed); the toggle adds them back.
-        AP-poll weeks and NFL-draft picks come from CollegeFootballData (1936–{data.meta.latestSeason});
-        wins/losses are per-season from CollegeFootballData 1936 on, and before that the NCAA “FBS
-        Records” all-time line where the book publishes one (Ohio State 990-337-53), else 1869–1935
-        game logs (a tie counts as half a win). National titles, All-America selections and Heismans
-        are hand-maintained; a
-        national title counts only when a major selector (AP, UPI, FWAA, NFF, USA; CFRA/HAF/NCF
-        pre-1936) picked the team. The trajectory arrow runs the rating formula twice — once on all-time totals, once on the last{' '}
-        {data.meta.trendRecentYears ?? 10} seasons alone (every program ranked against every other
-        program’s last decade). It uses the five stats that spread teams out over a decade — wins,
-        win rate, AP-poll weeks, AP-top-10 weeks, draft picks; titles, All-Americans and first-round
-        picks are too rare in ten years to rank cleanly. Programs with fewer than{' '}
-        {data.meta.trendMinHistory ?? 30} seasons on record get no arrow — not enough past to judge.
-        ▲ if the last-decade rating runs well ahead of the all-time one, ▼ if it lags well behind,
-        – if they’re about level (or too new to judge); a doubled, stacked arrow when the gap is at
-        least {data.meta.trendSurgePoints ?? 25} points on the 0–100 scale.
-      </p>
+      <div data-map="the method & data notes" className="flex flex-col gap-3 text-xs leading-relaxed text-muted">
+        <p>
+          <strong className="text-ink">The method.</strong> Ten stats, in five pairs. Each stat
+          becomes a percentile among all 136 FBS programs; we drop each program’s single highest and
+          single lowest percentile and average the other eight. That average, on a 0–100 scale, is
+          the Blue Blood Rating. The default view uses <em>NCAA-official</em> win totals; the
+          “As played” toggle adds NCAA-vacated wins back — for USC that’s the 14 wins struck from
+          Pete Carroll’s 2005 season and 2004 bowl.
+        </p>
+        <p>
+          <strong className="text-ink">The trajectory arrow</strong> runs the same formula a second
+          time on the last {data.meta.trendRecentYears ?? 10} seasons alone — every program ranked
+          against every other program’s last decade — and sets that against the same five stats
+          all-time. ▲ ahead, ▼ behind, – level; a stacked arrow when the gap tops{' '}
+          {data.meta.trendSurgePoints ?? 25} points. It uses the five stats that separate teams over
+          a decade — wins, win rate, AP weeks, AP top-10 weeks, draft picks; the rarer counters don’t
+          rank cleanly in ten years.
+        </p>
+        <div>
+          <p className="mb-1">
+            <strong className="text-ink">The data</strong> is compiled here, record by record. Each
+            series reaches back as far as the thing itself does:
+          </p>
+          <ul className="ml-4 list-disc space-y-0.5">
+            <li><strong className="font-medium text-ink">AP Poll weeks</strong> and <strong className="font-medium text-ink">weeks in the top 10</strong> — every AP poll ever published; the poll began in 1936 (preseason ballots included).</li>
+            <li><strong className="font-medium text-ink">Consensus All-Americans</strong> — every selection since the first teams in 1898; the unanimous flag from 1924, when the selectors started marking it.</li>
+            <li><strong className="font-medium text-ink">National titles</strong> — from 1901, the first year a recognized selector named one. A season counts only where a recognized selector picked the team (AP, UPI, FWAA, NFF, USA; CFRA / HAF / NCF before the AP) — a banner without one doesn’t. Shared titles count in full.</li>
+            <li><strong className="font-medium text-ink">Conference titles</strong> — year by year: the regular-season champion, or the title-game winner where a league staged one. Co-champions count in full.</li>
+            <li><strong className="font-medium text-ink">NFL Draft picks</strong> and <strong className="font-medium text-ink">first-round picks</strong> — every NFL draft since the first in 1936, plus the separate AFL drafts of 1960–66.</li>
+            <li><strong className="font-medium text-ink">All-time wins</strong> and <strong className="font-medium text-ink">win pct</strong> — season by season from 1869, the first year anyone played; a tie is half a win.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

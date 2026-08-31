@@ -3,29 +3,39 @@ import type { Team, TeamsPayload } from '../types';
 
 export type WinsMode = 'asPlayed' | 'official';
 
-let cache: TeamsPayload | null = null;
-let inflight: Promise<TeamsPayload> | null = null;
+/** the point-in-time snapshot years shipped under public/data/timepoints/ */
+export const TIMEPOINT_YEARS = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020] as const;
+export type TimepointYear = (typeof TIMEPOINT_YEARS)[number];
 
-function load(): Promise<TeamsPayload> {
-  if (cache) return Promise.resolve(cache);
-  if (!inflight) {
-    const url = `${import.meta.env.BASE_URL}data/teams.json`;
-    // always fetch fresh — the file is regenerated on every data refresh and a
-    // stale cached copy silently shows old numbers everywhere
-    inflight = fetch(url, { cache: 'no-store' })
+const cache = new Map<string, TeamsPayload>();
+const inflight = new Map<string, Promise<TeamsPayload>>();
+
+function urlFor(year: number | null): string {
+  const base = import.meta.env.BASE_URL;
+  return year ? `${base}data/timepoints/${year}.json` : `${base}data/teams.json`;
+}
+
+function load(year: number | null): Promise<TeamsPayload> {
+  const url = urlFor(year);
+  const hit = cache.get(url);
+  if (hit) return Promise.resolve(hit);
+  let p = inflight.get(url);
+  if (!p) {
+    p = fetch(url, { cache: 'no-store' })
       .then((r) => {
         if (!r.ok) throw new Error(`${r.status} ${r.statusText} loading ${url}`);
         return r.json() as Promise<TeamsPayload>;
       })
-      .then((p) => {
-        cache = p;
-        return p;
+      .then((payload) => {
+        cache.set(url, payload);
+        return payload;
       })
       .finally(() => {
-        inflight = null;
+        inflight.delete(url);
       });
+    inflight.set(url, p);
   }
-  return inflight;
+  return p;
 }
 
 export interface TeamsState {
@@ -34,17 +44,28 @@ export interface TeamsState {
   data: TeamsPayload | null;
 }
 
-export function useTeams(wins: WinsMode = 'official'): TeamsState {
+/**
+ * The team dataset. `year` (a TIMEPOINT_YEARS value) swaps in the point-in-time
+ * snapshot built as of that off-season; `null` is the present day. The `wins`
+ * toggle only applies to the present day — snapshots carry a single record.
+ */
+export function useTeams(wins: WinsMode = 'official', year: number | null = null): TeamsState {
+  const url = urlFor(year);
   const [raw, setRaw] = useState<TeamsState>(() => ({
-    loading: !cache,
+    loading: !cache.has(url),
     error: null,
-    data: cache,
+    data: cache.get(url) ?? null,
   }));
 
   useEffect(() => {
-    if (cache) return;
+    const cached = cache.get(url);
+    if (cached) {
+      setRaw({ loading: false, error: null, data: cached });
+      return;
+    }
     let alive = true;
-    load()
+    setRaw((s) => ({ ...s, loading: true, error: null }));
+    load(year)
       .then((data) => alive && setRaw({ loading: false, error: null, data }))
       .catch((e: unknown) =>
         alive &&
@@ -53,16 +74,16 @@ export function useTeams(wins: WinsMode = 'official'): TeamsState {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [url, year]);
 
-  // merge the chosen wins-variant onto every team so components read team.rating etc. directly.
-  // `official` is the default — it is already mirrored onto the top level by build-data.
+  // merge the chosen wins-variant onto every team (present-day only; snapshots
+  // mirror the same record onto both variants, so this is a no-op there).
   const data = useMemo<TeamsPayload | null>(() => {
     if (!raw.data) return null;
-    if (wins === 'official') return raw.data;
+    if (wins === 'official' || year) return raw.data;
     const teams = raw.data.teams.map((t): Team => ({ ...t, ...t.variants[wins] }));
     return { ...raw.data, teams };
-  }, [raw.data, wins]);
+  }, [raw.data, wins, year]);
 
   return { ...raw, data };
 }

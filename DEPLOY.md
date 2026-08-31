@@ -11,7 +11,7 @@ pre-baked `public/data/*.json`). No server, no database, no runtime secret.
 | Domain | **bluebloodfootball.com** — on Cloudflare (free plan). `public/CNAME` carries it into every build. |
 | Host | **GitHub Pages**, built and published by `.github/workflows/deploy.yml` (Actions → Pages) |
 | Old site | preserved on the **`legacy-static`** branch — 500+ commits of the original hand-built HTML/JS version |
-| Weekly data refresh | `.github/workflows/refresh-data.yml` — needs the `CFBD_API_KEY` repo secret |
+| Data | hand-maintained CSVs in `data/staging/`, committed. No fetch step, no API key, no scheduled job. |
 
 **Cost:** $0 hosting (GitHub Pages + Actions) + ~$10/yr domain.
 
@@ -66,17 +66,14 @@ to trigger the first build. Watch it go green, then load `https://bluebloodfootb
 
 ---
 
-## The weekly data refresh (optional but recommended)
+## Updating the data
 
-`.github/workflows/refresh-data.yml` re-pulls CollegeFootballData every Sunday,
-rebuilds `public/data/*.json`, and commits + pushes if anything changed — which
-then triggers the Deploy Action.
+There is no scheduled job and no external API. The data store is the set of
+hand-maintained CSVs in `data/staging/`. To refresh the site's numbers:
 
-To enable: **Settings → Secrets and variables → Actions → New repository secret**
-→ `CFBD_API_KEY` = a free key from <https://collegefootballdata.com/key>.
-
-Without it the workflow just no-ops each week; the site keeps serving the last
-committed data. You can always run `npm run build:data` locally and commit.
+1. Edit the relevant `data/staging/_staging_*.csv` file(s).
+2. `npm run build:data` — recomputes `public/data/*.json` offline.
+3. Commit `data/staging/` + `public/data/` and push. The Deploy Action does the rest.
 
 ---
 
@@ -97,10 +94,9 @@ git add -A && git commit -m "…" && git push
 ```
 
 The Deploy Action runs `npm ci && npm run build` — it serves the **committed**
-`public/data/*.json`, so `npm run build:data` is a local step. To skip it, change
+`public/data/*.json`, so `npm run build:data` is a local step. To fold it in, change
 the workflow's `run: npm run build` to `run: npm run build:data && npm run build`
-(`build:data` is fully offline; it only needs the committed `data/staging` +
-`data/api` caches).
+(`build:data` is fully offline; it only reads the committed `data/staging/`).
 
 ---
 
@@ -117,8 +113,8 @@ the workflow's `run: npm run build` to `run: npm run build:data && npm run build
 
 ## Node version
 
-`.nvmrc` = `20`; both workflows pin `node-version: 20`. Keep them in sync if you
-bump it.
+`.nvmrc` = `20`; the deploy workflow pins `node-version: 20`. Keep them in sync if
+you bump it.
 
 ---
 

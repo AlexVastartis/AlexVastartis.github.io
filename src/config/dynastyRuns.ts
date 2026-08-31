@@ -25,14 +25,15 @@ export interface DynastyRun {
 }
 
 /**
- * Head-coach tenures. Wins / titles / All-Americans / AP weeks are summed from the
- * site's own staging data over the exact seasons coached (Leahy's 1944–45 Navy
- * years excluded; Alabama's vacated 2007 wins removed). NFL-draft counts come
- * from the project draft sheet (nfl-draft-clean.csv) over the same seasons; the
- * AFL's parallel 1960–66 drafts are not included, so Bryant's / Hayes's figures
- * are a slight undercount. Conference titles are hand-counted (the granular file
- * doesn't itemise them for these programs). Clicking a coach loads "today + this
- * exact run" into the what-if editor.
+ * Head-coach tenures, ordered roughly by how much résumé a run would move the
+ * average program. Each `tenure` is the coach's FULL record over the exact seasons
+ * coached — NCAA vacations are not applied here, and the runs are entirely
+ * independent of the site's "As played" wins toggle (Leahy's 1944–45 Navy years
+ * are still skipped — he didn't coach them). NFL-draft counts come from the
+ * project draft sheet; the AFL's parallel 1960–66 drafts are not included, so
+ * Bryant's / Hayes's figures are a slight undercount. Conference titles are
+ * hand-counted. Clicking a coach loads "today + this exact run" into the what-if
+ * editor.
  */
 export const DYNASTY_RUNS: DynastyRun[] = [
   {
@@ -50,21 +51,6 @@ export const DYNASTY_RUNS: DynastyRun[] = [
     tenureWinPct: 0.874,
   },
   {
-    id: 'bryant',
-    coach: 'Bear Bryant',
-    program: 'Alabama',
-    years: '1958–82',
-    seasons: 25,
-    shape: 'A quarter-century at the top — six titles across three decades',
-    tenure: {
-      allTimeWins: 232, nationalTitles: 6, conferenceTitles: 13,
-      consensusAA: 19, unanimousAA: 6, nflDraftPicks: 81, firstRoundPicks: 13,
-      weeksApPoll: 279, weeksApTop10: 238,
-    },
-    tenureWinPct: 0.824,
-    note: 'NFL-draft only for now — the AFL’s parallel 1960–66 drafts aren’t in the data yet.',
-  },
-  {
     id: 'hayes',
     coach: 'Woody Hayes',
     program: 'Ohio State',
@@ -78,50 +64,6 @@ export const DYNASTY_RUNS: DynastyRun[] = [
     },
     tenureWinPct: 0.761,
     note: 'NFL-draft only for now — the AFL’s parallel 1960–66 drafts aren’t in the data yet.',
-  },
-  {
-    id: 'bierman',
-    coach: 'Bernie Bierman',
-    program: 'Minnesota',
-    years: '1932–41',
-    seasons: 10,
-    shape: 'The Golden Gophers — five national titles in eight seasons',
-    tenure: {
-      allTimeWins: 63, nationalTitles: 5, conferenceTitles: 7,
-      consensusAA: 9, unanimousAA: 1, nflDraftPicks: 29, firstRoundPicks: 4,
-      weeksApPoll: 38, weeksApTop10: 34,
-    },
-    tenureWinPct: 0.802,
-    note: 'AP-poll weeks count from 1936, the poll’s first year.',
-  },
-  {
-    id: 'leahy',
-    coach: 'Frank Leahy',
-    program: 'Notre Dame',
-    years: '1941–53',
-    seasons: 11,
-    shape: 'Eleven seasons, four national titles, one loss a decade',
-    tenure: {
-      allTimeWins: 87, nationalTitles: 4, conferenceTitles: 0,
-      consensusAA: 22, unanimousAA: 6, nflDraftPicks: 80, firstRoundPicks: 9,
-      weeksApPoll: 92, weeksApTop10: 84,
-    },
-    tenureWinPct: 0.855,
-    note: 'Excludes the 1944–45 Navy years.',
-  },
-  {
-    id: 'switzer',
-    coach: 'Barry Switzer',
-    program: 'Oklahoma',
-    years: '1973–88',
-    seasons: 16,
-    shape: 'The wishbone years — All-Americans by the dozen',
-    tenure: {
-      allTimeWins: 157, nationalTitles: 3, conferenceTitles: 12,
-      consensusAA: 28, unanimousAA: 17, nflDraftPicks: 66, firstRoundPicks: 12,
-      weeksApPoll: 232, weeksApTop10: 198,
-    },
-    tenureWinPct: 0.837,
   },
   {
     id: 'osborne',
@@ -138,6 +80,50 @@ export const DYNASTY_RUNS: DynastyRun[] = [
     tenureWinPct: 0.836,
   },
   {
+    id: 'bryant',
+    coach: 'Bear Bryant',
+    program: 'Alabama',
+    years: '1958–82',
+    seasons: 25,
+    shape: 'A quarter-century at the top — six titles across three decades',
+    tenure: {
+      allTimeWins: 232, nationalTitles: 6, conferenceTitles: 13,
+      consensusAA: 19, unanimousAA: 6, nflDraftPicks: 81, firstRoundPicks: 13,
+      weeksApPoll: 279, weeksApTop10: 238,
+    },
+    tenureWinPct: 0.824,
+    note: 'NFL-draft only for now — the AFL’s parallel 1960–66 drafts aren’t in the data yet.',
+  },
+  {
+    id: 'switzer',
+    coach: 'Barry Switzer',
+    program: 'Oklahoma',
+    years: '1973–88',
+    seasons: 16,
+    shape: 'The wishbone years — All-Americans by the dozen',
+    tenure: {
+      allTimeWins: 157, nationalTitles: 3, conferenceTitles: 12,
+      consensusAA: 28, unanimousAA: 17, nflDraftPicks: 66, firstRoundPicks: 12,
+      weeksApPoll: 232, weeksApTop10: 198,
+    },
+    tenureWinPct: 0.837,
+  },
+  {
+    id: 'leahy',
+    coach: 'Frank Leahy',
+    program: 'Notre Dame',
+    years: '1941–43, 1946–53',
+    seasons: 11,
+    shape: 'Eleven seasons, four national titles, one loss a decade',
+    tenure: {
+      allTimeWins: 87, nationalTitles: 4, conferenceTitles: 0,
+      consensusAA: 22, unanimousAA: 6, nflDraftPicks: 80, firstRoundPicks: 9,
+      weeksApPoll: 92, weeksApTop10: 84,
+    },
+    tenureWinPct: 0.855,
+    note: 'Leahy left for U.S. Navy service in 1944–45 — Notre Dame kept playing, so this run skips that two-year gap and counts only the 11 seasons he coached.',
+  },
+  {
     id: 'swinney',
     coach: 'Dabo Swinney',
     program: 'Clemson',
@@ -150,6 +136,37 @@ export const DYNASTY_RUNS: DynastyRun[] = [
       weeksApPoll: 208, weeksApTop10: 140,
     },
     tenureWinPct: 0.785,
+  },
+  {
+    id: 'carroll',
+    coach: 'Pete Carroll',
+    program: 'USC',
+    years: '2001–09',
+    seasons: 9,
+    shape: 'The Coliseum’s golden decade — a first-rounder a year, a Heisman every other',
+    tenure: {
+      allTimeWins: 97, nationalTitles: 2, conferenceTitles: 7,
+      consensusAA: 18, unanimousAA: 6, nflDraftPicks: 56, firstRoundPicks: 13,
+      weeksApPoll: 116, weeksApTop10: 92,
+    },
+    tenureWinPct: 0.836,
+    note: 'Credited in full — the NCAA later vacated USC’s 2005 season and 2004 title, but this run counts them regardless (the coach runs are independent of the “As played” toggle).',
+  },
+  {
+    id: 'bierman',
+    coach: 'Bernie Bierman',
+    program: 'Minnesota',
+    years: '1932–41',
+    seasons: 10,
+    shape: 'The Golden Gophers — five national titles in eight seasons',
+    tenure: {
+      allTimeWins: 63, nationalTitles: 5, conferenceTitles: 7,
+      consensusAA: 9, unanimousAA: 1, nflDraftPicks: 29, firstRoundPicks: 4,
+      weeksApPoll: 38, weeksApTop10: 34,
+    },
+    tenureWinPct: 0.802,
+    note: 'AP-poll weeks count from 1936, the poll’s first year.',
+    hidden: true,
   },
   {
     id: 'smart',
@@ -183,7 +200,7 @@ export const DYNASTY_RUNS: DynastyRun[] = [
   },
 ];
 
-/** the runs shown in the picker (Kirby Smart & Urban Meyer are kept but hidden for now) */
+/** the runs shown in the picker (Bierman, Kirby Smart & Urban Meyer kept but hidden) */
 export const VISIBLE_RUNS = DYNASTY_RUNS.filter((r) => !r.hidden);
 
 const COUNTING_KEYS = Object.keys(DYNASTY_RUNS[0].tenure) as CountingKey[];

@@ -1,8 +1,8 @@
 name: Deploy to Pages
 
-# Builds the Vite app and publishes dist/ to GitHub Pages on every push to main
-# (including the weekly data-refresh bot's commits). Pages "Source" must be set to
-# "GitHub Actions" in repo Settings for this to take effect.
+# Builds the Vite app and publishes dist/ to GitHub Pages on every push to main.
+# Pages "Source" must be set to "GitHub Actions" in repo Settings for this to take
+# effect.
 
 on:
   push:

@@ -1,0 +1,208 @@
+# The 10 rating stats — where they live, what feeds them, how to change them
+
+`scripts/build-data.mjs` reads **only** `data/staging/`, never the network, and
+emits `public/data/teams.json`. The whole store is hand-maintained CSVs committed
+to the repo — there is no fetch step and no API key. Everything below is about
+what goes *into* that.
+
+## The 10 stats and their 5 criteria
+
+| Criterion | Stat (`raw` key) | Comes from | Granularity | Update |
+| --- | --- | --- | --- | --- |
+| **Wins** | `allTimeWins` | `_staging_wins.csv` | one row / (school, season): W-L-T | hand-edit the CSV |
+| | `winPct` | same | `(wins + 0.5·ties) / games` | — |
+| **Championships** | `nationalTitles` | `_staging_championships.csv` | one row / (school, year, selector) | hand-edit |
+| | `conferenceTitles` | **`_staging_summary_fallback.csv`** | one number / school — **no record behind it** | hand-edit the number |
+| **All-Americans** | `consensusAA` | `_staging_all_americans.csv` | one row / selection (player, year, pos) | hand-edit |
+| | `unanimousAA` | same (the `unanimous` flag) | — | — |
+| **NFL Draft** | `nflDraftPicks` | `_staging_nfl_draft_success.csv` | one row / (school, season): picks, 1st-rd | edit `_staging_nfl_draft_picks.csv`, then `npm run draft` |
+| | `firstRoundPicks` | same | — | — |
+| **AP Poll** | `weeksApPoll` | `_staging_ap_poll_success.csv` | one row / (school, season): weeks ranked / top-10 / top-5 / #1 / final rank | hand-edit the CSV |
+| | `weeksApTop10` | same | — | — |
+
+`heismans` (shown on the panel, **not** a rating stat) → `_staging_heisman.csv`,
+one row per winner, from heisman.com.
+
+---
+
+## Per-domain detail
+
+### Wins & win % — `_staging_wins.csv`
+
+One row per (school, season): `wins,losses,ties,wins_vacated,losses_vacated,vacated_note,source`.
+`build-data.mjs` sums it; a tie counts as half a win. The **"NCAA official"** toggle
+subtracts `wins_vacated`; **"As played"** ignores it.
+
+Sources stitched into the one file (`source` column), all hand-maintained:
+
+| `source` | rows | what |
+| --- | --- | --- |
+| `history` | ~12,360 | per-season W-L-T. 1936→present for every program, plus 1869–1935 wherever game-level records survive (every game where one side maps to a current FBS program). Sparse before ~1905, so early totals run below the book. |
+| `ncaa` | 33 | one calibration row (season 1935) per program the NCAA "FBS Records" book publishes an all-time line for, sized so the program's official total *equals the book* (Ohio State 990-337-53). Mirrors `_staging_wins_ncaa.csv`. |
+| `ncaa-history` | 277 | per-season rows from a program's NCAA stats.org history page, for programs with no game-level data and no book line (Jacksonville St., Sam Houston, Missouri St.). |
+| `manual` | 126 | hand lumps — new programs' pre-2003 records, odd corrections. |
+
+Every FBS program has wins rows; none fall back to the summary file. The archived
+raw dumps the `history` rows were originally compiled from sit in `data/archive/`
+(read by nothing).
+
+### National titles — `_staging_championships.csv`
+
+One row per *selector claiming a title for a school in a year*:
+`school,year,scope,selector,conference,shared,status,source`. All 372 rows are
+`source=manual` (hand-curated).
+
+A title **year** counts once when the school has ≥1 row with:
+- `scope=national`, **and**
+- `selector` in the counting set — `AP UPI FWAA NFF USA/CNN USA/ESPN AFCA BCS CFP` +
+  `CFRA HAF NCF` pre-1936 (configurable via `title_selectors` in
+  `_staging_blue_blood_rating.csv`), **and**
+- `status` ≠ `not-claimed`.
+
+`selector=claim` rows (a school's own unbacked claim) and `not-claimed` rows never
+count. 44 programs have counting titles; the other 92 resolve to 0 (the summary
+fallback for national titles is currently supplying **0 non-zero numbers** — it's
+dead).
+
+### Conference titles — `_staging_summary_fallback.csv` only
+
+**There is no granular conference-title record.** `_staging_championships.csv` has
+zero `scope=conference` rows. All 136 programs — 1,624 titles total — come from the
+single `conference_titles` number in `_staging_summary_fallback.csv`, hand-kept.
+This is the one stat that does not fit the "records → aggregate" model.
+
+### All-Americans — `_staging_all_americans.csv`
+
+One row per consensus selection: `year,school,player,pos,consensus,unanimous,source`.
+All 2,089 rows are `source=ncaa-record-book` (hand-transcribed from the NCAA
+"Football Award Winners" book). `consensusAA` = count of rows; `unanimousAA` =
+count where `unanimous=Yes`.
+
+109 of 136 programs have rows. The 27 without (Appalachian State, Arkansas State,
+Charlotte, Delaware, Eastern Michigan, …) fall back to `_staging_summary_fallback.csv`
+— but every one of those 27 genuinely has **0** consensus AAs, so the fallback is
+also supplying 0. Dead in practice.
+
+### NFL Draft — `_staging_nfl_draft_success.csv` (built, don't hand-edit)
+
+One row per (school, season): `picks,first_round_picks,source`. **Generated by
+`npm run draft`** from:
+
+| input | covers | `source` |
+| --- | --- | --- |
+| `_staging_nfl_draft_picks.csv` | 1936–1994, one row per pick (Year,Rnd,Pick,Tm,Player,Pos,College/Univ) — a Pro-Football-Reference scrape | `sheet` |
+| `_staging_nfl_draft_picks_afl.csv` | AFL 1960 only (no round column → picks-only) | `sheet+afl` |
+| whatever was already in `_staging_nfl_draft_success.csv` for 1995+ | 1995–2026 | `carried` |
+
+The 1936–1994 pick sheet is authoritative. 1995–2026 is **`carried`** — the PFR
+scrape lost the `College/Univ` column for those years, so those seasons keep the
+older per-school totals as-is. Re-scrape the 1995+ year pages with the college
+column and the whole domain becomes "count the sheet." Fallback to summary if a
+team has 0 (currently 0 teams).
+
+### AP poll — `_staging_ap_poll_success.csv`
+
+One row per (school, season): `weeks_poll,weeks_top10,weeks_top5,weeks_no1,final_rank`,
+covering every weekly poll 1936→latest. Hand-maintained; the full weekly ballot
+archive it was compiled from is frozen at `data/archive/ap-poll.json` (read by
+nothing). `weeksApPoll`/`weeksApTop10` are plain sums. `final_rank` feeds the
+trajectory's "top-10 finish" count. 114 programs have rows; the 22 that were never
+ranked resolve to 0.
+
+---
+
+## Supporting / archive files
+
+| File | Rows | Feeds | Notes |
+| --- | --- | --- | --- |
+| `_staging_games.csv` | 75,964 | **nothing** | a dump of every game 1869–2025. Unreferenced dead weight — safe to delete (3.6 MB). |
+| `data/archive/ap-poll.json` | every weekly ballot | nothing (archive) | full-granularity AP history, frozen. |
+| `data/archive/games-pre1936.csv` | ~20,800 | nothing (archive) | every game 1869–1935 the pre-1936 `history` rows were compiled from. Thin before ~1905. |
+| `data/archive/*.json` | per-year | nothing (archive) | frozen raw source dumps the `history` rows and AP/draft sheets were originally built from. Kept for provenance; no build reads them. |
+| `_staging_summary_fallback.csv` | 136 | conference titles (all), + dead fallbacks | see below. |
+| `_staging_blue_blood_rating.csv` | ~15 | the rating knobs | `trim_fraction`, `trend_*`, `tier_max_span`, `title_selectors`, … |
+| `_staging_identity.csv` | 136 | slug, colours, conference fallback, `former_fcs` | hand. |
+| `conferences.json` | 136 | current conference per school (overrides identity) | hand-maintained JSON in `data/staging/`. |
+
+---
+
+## How to update — quick reference
+
+| To change… | Do this | Then |
+| --- | --- | --- |
+| current-season wins or AP weeks | edit the row in `_staging_wins.csv` / `_staging_ap_poll_success.csv` | `npm run build:data`, commit `public/data/*` + the CSV |
+| a national title | add a row to `_staging_championships.csv` | `npm run build:data` |
+| a conference-title count | edit `conference_titles` in `_staging_summary_fallback.csv` | `npm run build:data` |
+| an All-American | add a row to `_staging_all_americans.csv` | `npm run build:data` |
+| draft picks (any year ≤ 1994) | edit `_staging_nfl_draft_picks.csv` | `npm run draft` → `npm run build:data` |
+| pre-1936 wins for a "book" program | edit `_staging_wins_ncaa.csv` and the matching `source=ncaa` row of `_staging_wins.csv` | `npm run build:data` |
+| a pre-1936 / new-program lump | edit the `source=manual` rows of `_staging_wins.csv` directly | `npm run build:data` |
+| a rating knob (trim, trend thresholds, tier span) | edit `_staging_blue_blood_rating.csv` | `npm run build:data` |
+| colours / slug / conference default | edit `_staging_identity.csv` | `npm run build:data` |
+| the current conference alignment | edit `data/staging/conferences.json` | `npm run build:data` |
+
+Every change is a hand-edit to a committed CSV followed by an offline
+`npm run build:data`. Nothing fetches.
+
+---
+
+## Simplifying toward "comprehensive record → aggregate down"
+
+**You are ~90% there already.** Four of the five domains already work exactly that
+way, and `_staging_summary_fallback.csv` — the "vibe number" file — is supplying a
+non-zero value for **exactly one stat**:
+
+| Domain | Comprehensive record exists? | Fallback still doing work? |
+| --- | --- | --- |
+| Wins / win % | yes — per-season W-L-T (ideally the game log itself) | no |
+| National titles | yes — one row per selector-claim | no (0 non-zero fallbacks) |
+| All-Americans | yes — one row per selection | no (the 27 fallback teams all have 0) |
+| NFL draft | yes for 1936–94; 1995+ is `carried` totals | no |
+| **Conference titles** | **no** | **yes — all 136 teams, 1,624 titles** |
+
+### The target end state
+
+Delete `_staging_summary_fallback.csv` and `_staging_games.csv`. Keep **one
+comprehensive, `source`-tagged record per domain**, and have `build-data.mjs`
+aggregate each straight to the two numbers — no fallbacks, no hand totals:
+
+```
+data/records/games.csv              every game            -> allTimeWins, winPct
+data/records/ap_weeks.csv           every (school,season) poll line, or read data/archive/ap-poll.json directly
+                                                          -> weeksApPoll, weeksApTop10
+data/records/draft_picks.csv        every pick            -> nflDraftPicks, firstRoundPicks
+data/records/all_americans.csv      every selection       -> consensusAA, unanimousAA
+data/records/national_titles.csv    every selector-claim  -> nationalTitles   (rename of _staging_championships.csv)
+data/records/conference_titles.csv  every (school,year,conference) title  -> conferenceTitles   (NEW — must be built)
+```
+
+Per-season intermediates (`_staging_wins.csv`, `_staging_ap_poll_success.csv`) can
+stay as committed rollups, or be dropped and computed in memory — the trajectory
+needs per-season series, but that can be a projection of the record, not a
+committed file.
+
+### Order of work — lowest effort first
+
+1. **Delete `_staging_games.csv`** — unreferenced, 3.6 MB. Zero risk.
+2. **AP poll** — already fully granular. Remove the AP columns from
+   `_staging_summary_fallback.csv`; optionally aggregate from
+   `data/archive/ap-poll.json` and drop `_staging_ap_poll_success.csv` too. Low risk.
+3. **All-Americans** — transcribe the 27 missing programs (mostly a handful of
+   rows each, several genuinely zero). Then delete the AA columns from the
+   summary file and the fallback branch in `buildRows()`.
+4. **NFL draft** — re-scrape Pro-Football-Reference 1995–2026 *with* the
+   `College/Univ` column, append to `_staging_nfl_draft_picks.csv`, move
+   `SHEET_THROUGH` in `build-draft.mjs` up to 2026. Kills the `carried` rows.
+5. **Wins** — decide the one open question: the NCAA record book (Ohio State 990
+   pre-2025) vs the raw game log (~126 pre-1936 wins for the same program, because
+   the log is thin before ~1913). Either keep the ~31 book-calibration rows as the
+   one blessed exception, or accept the game-log totals. Plus: pull `wins_vacated`
+   into its own tiny `vacated.csv` instead of columns on every row.
+6. **Conference titles** — the real build. Compile one row per school-year
+   conference championship (co-champs flagged) back through the poll era. This is
+   transcription work — no clean API — but once it exists, `_staging_summary_fallback.csv`
+   can be deleted entirely and every stat is `record → count`.
+
+Do them in any order; each is independent and each shrinks the hand-maintained
+surface. After #6 there is no "summary number" anywhere — every one of the 10
+stats is a query over a record you can point at a source for.

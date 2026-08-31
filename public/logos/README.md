@@ -38,5 +38,5 @@ dark-specific art, copy the light file to `<slug>-dark.png`, or add its slug to
 
 ## Legacy scripts
 
-`npm run logos:sync` / `logos:recolor` predate this layout (they wrote SVGs and a
-`dark/` subfolder). Not used by the current build.
+`npm run logos:recolor` predates this layout (it wrote SVGs and a `dark/`
+subfolder). Not used by the current build.

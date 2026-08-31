@@ -159,7 +159,10 @@ export default function RankedList({
                     >
                       <button
                         onClick={() => onPick?.(t)}
+                        title={t.trend.insufficient ? 'Too few seasons on record to weigh with the rest — shown for completeness' : undefined}
                         className={`flex w-full items-stretch rounded-md border-l-2 text-left hover:bg-panel ${
+                          t.trend.insufficient && !fav && !edited ? 'opacity-60' : ''
+                        } ${
                           edited
                             ? 'border-whatif bg-whatif/10'
                             : fav
@@ -266,7 +269,7 @@ function BenchmarkRule({ benchmark }: { benchmark: BlueBloodBenchmark }) {
           </span>
         </div>
         <p className="mb-2 text-[10px] leading-snug text-muted">
-          The six-team average, stat by stat — {benchmark.members.join(', ')}. Same trimmed-mean
+          The Blue Bloods’ average, stat by stat — {benchmark.members.join(', ')}. Same trimmed-mean
           formula every program uses; the greyed rows are its own high/low outliers, dropped from
           the rating.
         </p>

@@ -4,50 +4,50 @@ const int = (v: number) => Math.round(v).toLocaleString('en-US');
 const pct3 = (v: number) => (v < 1 ? v.toFixed(3).replace(/^0/, '') : v.toFixed(3));
 
 /**
- * The 10 raw stats (5 criteria x 2). `source` is where each number actually comes
- * from on a data refresh — `cfbd` = CollegeFootballData API, `manual` =
- * data/manual/stats_manual.csv. `weight` is legacy (unused by the current model).
+ * The 10 raw stats (5 criteria x 2). Every value is compiled in the committed
+ * data store under data/staging/ and recomputed offline by scripts/build-data.mjs.
+ * `weight` is legacy (unused by the current model).
  */
 export const STATS: Record<StatKey, StatMeta> = {
   allTimeWins: {
     key: 'allTimeWins', label: 'All-Time Wins', axisLabel: 'All-Time Wins',
-    higherIsBetter: true, source: 'cfbd', weight: 0.01, format: int,
+    higherIsBetter: true, weight: 0.01, format: int,
   },
   winPct: {
     key: 'winPct', label: 'All-Time Winning %', axisLabel: 'All-Time Winning %',
-    higherIsBetter: true, source: 'cfbd', weight: 10, format: pct3,
+    higherIsBetter: true, weight: 10, format: pct3,
   },
   nationalTitles: {
     key: 'nationalTitles', label: 'National Championships', axisLabel: 'National Championships',
-    higherIsBetter: true, source: 'manual', weight: 1.5, format: int,
+    higherIsBetter: true, weight: 1.5, format: int,
   },
   conferenceTitles: {
     key: 'conferenceTitles', label: 'Conference Championships', axisLabel: 'Conference Championships',
-    higherIsBetter: true, source: 'manual', weight: 0.25, format: int,
+    higherIsBetter: true, weight: 0.25, format: int,
   },
   consensusAA: {
     key: 'consensusAA', label: 'Consensus All-Americans', axisLabel: 'Consensus All-Americans',
-    higherIsBetter: true, source: 'manual', weight: 0.1, format: int,
+    higherIsBetter: true, weight: 0.1, format: int,
   },
   unanimousAA: {
     key: 'unanimousAA', label: 'Unanimous All-Americans', axisLabel: 'Unanimous All-Americans',
-    higherIsBetter: true, source: 'manual', weight: 0.2, format: int,
+    higherIsBetter: true, weight: 0.2, format: int,
   },
   nflDraftPicks: {
     key: 'nflDraftPicks', label: 'NFL Draft Picks', axisLabel: 'NFL Draft Picks',
-    higherIsBetter: true, source: 'cfbd', weight: 0.02, format: int,
+    higherIsBetter: true, weight: 0.02, format: int,
   },
   firstRoundPicks: {
     key: 'firstRoundPicks', label: 'First-Round NFL Draft Picks', axisLabel: 'First-Round NFL Draft Picks',
-    higherIsBetter: true, source: 'cfbd', weight: 0.1, format: int,
+    higherIsBetter: true, weight: 0.1, format: int,
   },
   weeksApPoll: {
     key: 'weeksApPoll', label: 'Weeks in the AP Poll', axisLabel: 'Weeks in the AP Poll',
-    higherIsBetter: true, source: 'cfbd', weight: 0.01, format: int,
+    higherIsBetter: true, weight: 0.01, format: int,
   },
   weeksApTop10: {
     key: 'weeksApTop10', label: 'Weeks in the AP Top 10', axisLabel: 'Weeks in the AP Top 10',
-    higherIsBetter: true, source: 'cfbd', weight: 0.02, format: int,
+    higherIsBetter: true, weight: 0.02, format: int,
   },
 };
 

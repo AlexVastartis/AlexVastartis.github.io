@@ -19,15 +19,14 @@ Static SPA — deploys to any static host with no server.
 
 ```bash
 npm install
-cp .env.example .env      # add CFBD_API_KEY (free: collegefootballdata.com/key)
-npm run data:api          # consolidate the CFBD store  (first run fetches ~250 years, then it's committed)
-npm run logos:sync        # 128px full-colour logos
-npm run build:data        # data/api + data/manual  ->  public/data/teams.json   (no network)
+npm run build:data        # data/staging  ->  public/data/teams.json   (no network)
 npm run dev
 ```
 
-`build:data` **never hits the network** — it reads the committed store. `data:api`
-is the only script that fetches, and only to fill gaps in `data/api/cfbd/`.
+**Nothing in this project touches the network.** The entire data store lives in
+`data/staging/` as hand-maintained CSVs, committed to the repo. `build:data` reads
+those, recomputes every rating and derived string offline, and writes
+`public/data/`. To update the numbers, edit the CSVs and re-run `build:data`.
 
 ## The Blue Blood Rating
 
@@ -37,13 +36,13 @@ percentiles in each criterion. Then take a program's **ten stat percentiles, dro
 single highest and single lowest, and average the other eight** — that's the Rating,
 0–100. `team.overall` is its z-score (drives the bell curve).
 
-| Criterion    | Stat A                | Stat B                     | Source |
-| ------------ | --------------------- | -------------------------- | ------ |
-| AP Poll      | Weeks in the AP Poll  | Weeks in the AP Top 10     | CFBD (`data/api/ap-poll*`) |
-| Wins         | All-Time Wins         | All-Time Winning %         | per-season records (`data/season-records.csv`) |
-| Championships| National Championships| Conference Championships   | hand-curated (`data/manual/national_titles.csv`, `conference_titles.csv`) |
-| All-Americans| Consensus AA          | Unanimous AA               | hand-curated per season, else summary (`data/manual/all_americans.csv`, `stats_summary.csv`) |
-| NFL Draft    | Draft Picks           | First-Round Picks          | CFBD (`data/api/draft.json`) |
+| Criterion    | Stat A                | Stat B                     | Source file |
+| ------------ | --------------------- | -------------------------- | ----------- |
+| AP Poll      | Weeks in the AP Poll  | Weeks in the AP Top 10     | `data/staging/_staging_ap_poll_success.csv` |
+| Wins         | All-Time Wins         | All-Time Winning %         | `data/staging/_staging_wins.csv` |
+| Championships| National Championships| Conference Championships   | `data/staging/_staging_championships.csv` |
+| All-Americans| Consensus AA          | Unanimous AA               | `data/staging/_staging_all_americans.csv` |
+| NFL Draft    | Draft Picks           | First-Round Picks          | `data/staging/_staging_nfl_draft_picks{,_afl}.csv` |
 
 **Groupings** are placed at natural gaps in the Rating list (`scripts/lib/tiers.mjs`),
 not round-number thresholds: Blue Bloods · Blue Blood Fringe · Blue Blood Adjacent ·
@@ -61,25 +60,29 @@ programs get none.
 ## Data layer
 
 ```
-data/api/                consolidated CFBD store — committed, self-sufficient
-  ap-poll.json           every weekly AP ranking row, 1936+
-  ap-poll-summary.json   per-team / per-season weeks ranked / top-10 / #1
-  draft.json             every NFL draft pick
-  conferences.json       current conference per school
-  cfbd/…                 raw per-year responses (the cache)
-data/season-records.csv  wins/losses/ties per (school, season); source=cfbd 1936+, source=manual before
-data/manual/…            hand-curated, one fact per row, every row cites a source — see its README
-public/data/teams.json   the built output; each team carries variants: { asPlayed, official }
+data/staging/            the whole store — hand-maintained CSVs, committed
+  _staging_wins.csv        wins/losses/ties per (school, season), 1869→present
+  _staging_ap_poll_success.csv   AP weeks / top-10 / final rank per (school, season)
+  _staging_championships.csv     one national/conference title per row
+  _staging_all_americans.csv     one consensus All-America selection per row
+  _staging_nfl_draft_picks.csv   one NFL draft pick per row (+ _afl.csv for 1960–66)
+  _staging_*.csv            identity, heisman, rating knobs, grouping overrides
+  _blurb_*.csv             the site's narrative text
+  conferences.json         current conference per school (year + bySchool map)
+data/archive/             frozen raw source dumps the CSVs were originally built from —
+                          read by nothing; kept for provenance and the odd recompute
+public/data/teams.json    the built output; each team carries variants: { asPlayed, official }
 ```
 
-Vacated wins (`data/manual/vacated_wins.csv`) are subtracted only in the **NCAA
-official** view; the trajectory always uses as-played wins.
+`build:data` reads only `data/staging/` and never the network. Vacated wins
+(`wins_vacated`/`losses_vacated` columns in `_staging_wins.csv`) are subtracted only
+in the **NCAA official** view; the trajectory always uses as-played wins.
 
-## Scheduled refresh
+## Updating the data
 
-`.github/workflows/refresh-data.yml` runs `data:api` then `build:data` weekly and
-commits the changes. Add `CFBD_API_KEY` as a repo secret. **Rotate the key** if it's
-been shared.
+Edit the CSVs in `data/staging/` by hand and re-run `npm run build:data`. There is
+no fetch step and no API key. `npm run draft` and `npm run archive` are optional
+offline helpers that recompute derived sheets / `PROGRAMS.md` from the staging CSVs.
 
 ## Roadmap
 

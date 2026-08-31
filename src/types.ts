@@ -113,8 +113,6 @@ export interface StatMeta {
   axisLabel: string;
   /** true if a higher value is "better" (affects tier/echelon direction) */
   higherIsBetter: boolean;
-  /** where the value comes from during a data refresh */
-  source: 'cfbd' | 'manual';
   /** points-per-unit weight from the "BBR Raw Weighted" sheet, for the overall score */
   weight: number;
   /** number formatting for tooltips */
@@ -172,6 +170,9 @@ export interface DataMeta {
   overall: StatDistribution;
   /** prior-snapshot rank/rating per school, for the year-over-year note */
   previous?: Record<string, { ratingRank: number; rating: number }>;
+  /** set only on a point-in-time snapshot: the off-season the site is frozen to */
+  timepoint?: number;
+  timepointNote?: string;
 }
 
 export interface BlueBloodBenchmark {

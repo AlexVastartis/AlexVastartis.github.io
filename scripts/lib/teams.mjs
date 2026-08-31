@@ -1,10 +1,10 @@
 /**
- * Canonical school-name mapping, shared by build-api-store.mjs and build-data.mjs.
+ * Canonical school-name mapping for the occasional data-recompile helpers.
  *
- * CollegeFootballData uses its own spellings ("Miami", "NC State", "Hawai'i", …).
- * We store everything under the names in data/manual/teams.csv. Anything that does
- * not resolve to one of those 130 names is not an FBS program we track and is
- * dropped from the store.
+ * Outside sources use their own spellings ("Miami", "NC State", "Hawai'i", …).
+ * We store everything under the names in data/staging/_staging_identity.csv.
+ * Anything that does not resolve to one of those names is not an FBS program we
+ * track and is dropped.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -14,7 +14,7 @@ import { readRecords } from './csv.mjs';
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const IDENTITY = path.join(REPO, 'data/staging/_staging_identity.csv');
 
-/** CFBD spelling -> our canonical school (data/staging/_staging_identity.csv) */
+/** outside-source spelling -> our canonical school (data/staging/_staging_identity.csv) */
 export const CANON = {
   Miami: 'Miami (FL)',
   'Southern California': 'USC',

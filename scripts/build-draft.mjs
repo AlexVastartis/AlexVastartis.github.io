@@ -3,17 +3,15 @@
  * data/staging/_staging_nfl_draft_picks.csv (one row per pick, 1936–2026, from a
  * pro-football-reference scrape of the per-year draft pages).
  *
- *   1936–1994 : counted straight from the sheet (`source=sheet`). This is now the
- *               authority — it covers the whole era, not just 1967-on like CFBD.
- *   1995–2026 : the sheet's scrape lost the college column for these years, so
- *               those rows are carried over unchanged from whatever is already in
- *               _staging_nfl_draft_success.csv (`source=carried`). Re-scrape the
- *               1995–2026 year pages WITH College/Univ and this cutoff moves up.
+ * The whole sheet is now counted straight (`source=sheet`). 1936–1994 came from
+ * the PFR per-year pages; the College/Univ column for 1995–2026 was backfilled by
+ * joining nflverse `draft_picks.csv` on (season, round, pick) — see
+ * scripts/tmp/merge-modern-draft.mjs.
  *
  * The AFL ran its own draft 1960–66. _staging_nfl_draft_picks_afl.csv holds those
  * selections (no round column, so they add to `picks` only, not first-round). A
  * player taken by both leagues counts once per league, matching how the per-school
- * lists tally. Currently that file only has 1960 — add 1961–66 to close the rest.
+ * lists tally.
  *
  *   node scripts/build-draft.mjs      (or: npm run draft)
  * Then: npm run build:data
@@ -28,7 +26,7 @@ const STAGING = path.join(REPO, 'data/staging');
 const PICKS = path.join(STAGING, '_staging_nfl_draft_picks.csv');
 const AFL = path.join(STAGING, '_staging_nfl_draft_picks_afl.csv');
 const OUT = path.join(STAGING, '_staging_nfl_draft_success.csv');
-const SHEET_THROUGH = 1994; // last year the sheet has colleges for
+const SHEET_THROUGH = 2026; // sheet now has colleges for every draft year
 
 const fbs = new Set(
   readRecords(fs.readFileSync(path.join(STAGING, '_staging_identity.csv'), 'utf8'))
@@ -57,6 +55,9 @@ const ALIAS = {
   'La-Monroe': 'Louisiana-Monroe',
   'Sam Houston St.': 'Sam Houston',
   'Sam Houston State': 'Sam Houston',
+  'Ala-Birmingham': 'UAB',
+  'Alabama-Birmingham': 'UAB',
+  'Florida International': 'FIU',
 };
 function canon(col) {
   if (!col) return null;
@@ -104,31 +105,14 @@ if (fs.existsSync(AFL)) {
   aflYears = [...aflSet].sort();
 }
 
-/* ---- 1995–2026 carried over from the existing file ---- */
-let carried = 0;
-if (fs.existsSync(OUT)) {
-  for (const r of readRecords(fs.readFileSync(OUT, 'utf8'))) {
-    const year = Number(r.season);
-    if (!r.school || !year || year <= SHEET_THROUGH) continue;
-    agg.set(`${r.school}|${year}`, {
-      school: r.school,
-      season: year,
-      picks: Number(r.picks || 0),
-      first_round_picks: Number(r.first_round_picks || 0),
-      source: 'carried',
-    });
-    carried += 1;
-  }
-}
-
 const rows = [...agg.values()].sort(
   (a, b) => a.school.localeCompare(b.school) || a.season - b.season,
 );
 const banner = [
   'One (school, season): total NFL/AFL draft picks and how many went in round one.',
-  'Built by `npm run draft` from _staging_nfl_draft_picks{,_afl}.csv (pro-football-reference).',
-  'source=sheet / sheet+afl is authoritative for 1936–1994; source=carried are 1995+ rows',
-  'kept from the old CFBD build until the sheet has colleges for those years.',
+  'Built by `npm run draft` from _staging_nfl_draft_picks{,_afl}.csv.',
+  'source=sheet covers 1936–2026 (PFR per-year pages; 1995+ colleges backfilled from',
+  'nflverse draft_picks.csv). source=sheet+afl marks school-years that also drew AFL picks.',
   `AFL selections included for: ${aflYears.join(', ') || '(none)'} (no round data → picks only).`,
 ].map((l) => `# ${l}`).join('\n') + '\n';
 
@@ -140,6 +124,6 @@ fs.writeFileSync(
 const total = rows.reduce((s, r) => s + r.picks, 0);
 console.log(
   `wrote ${path.relative(REPO, OUT)} — ${rows.length} rows (sheet 1936–${SHEET_THROUGH} + `
-  + `${aflPicks} AFL picks [${aflYears.join(',') || 'none'}] + ${carried} carried 1995+), `
+  + `${aflPicks} AFL picks [${aflYears.join(',') || 'none'}]), `
   + `${total} picks total. ${dropped} picks dropped (non-FBS schools).`,
 );

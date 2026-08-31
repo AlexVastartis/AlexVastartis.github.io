@@ -7,6 +7,7 @@ import { CATEGORIES, STATS } from '../config/stats';
 import type { MarkerMode } from '../data/useViewState';
 import TeamMarker from './TeamMarker';
 import FavoriteHalo from './FavoriteHalo';
+import ChartReadout from './ChartReadout';
 
 interface Props {
   teams: Team[];
@@ -25,6 +26,8 @@ interface Props {
   width?: number;
   height?: number;
   markerSize?: number;
+  /** svg sizing classes — default fills width and keeps aspect ratio */
+  className?: string;
 }
 
 export default function BellCurve({
@@ -40,6 +43,7 @@ export default function BellCurve({
   width = 1000,
   height = 460,
   markerSize = 26,
+  className = 'w-full h-auto select-none',
 }: Props) {
   const m = { ...DEFAULT_MARGINS, left: 44, right: 44 };
   const [hover, setHover] = useState<Team | null>(null);
@@ -91,12 +95,33 @@ export default function BellCurve({
   const b1 = band(-1, 1);
   const b2a = band(-2, -1);
   const b2b = band(1, 2);
+  const fill = className.includes('h-full');
 
   return (
+   <div className={`relative ${fill ? 'h-full w-full' : 'w-full'}`}>
+    {readout && (
+      <ChartReadout
+        team={readout}
+        corner="tr"
+        rows={
+          criterion
+            ? CATEGORIES[criterion].stats.map((sk) => ({
+                label: STATS[sk].label,
+                value: `${(STATS[sk].format ?? String)(readout.stats[sk])} · ${Math.round(readout.pct[sk])}th`,
+              }))
+            : [
+                { label: 'Rank', value: `#${readout.ratingRank}` },
+                { label: 'Rating', value: readout.rating.toFixed(1) },
+                { label: 'On the curve', value: `${value(readout).toFixed(2)}σ` },
+              ]
+        }
+      />
+    )}
     <svg
       data-map="the bell curve"
       viewBox={`0 0 ${width} ${height}`}
-      className="w-full h-auto select-none"
+      preserveAspectRatio="xMidYMid meet"
+      className={className}
       style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
     >
       <g>
@@ -156,24 +181,7 @@ export default function BellCurve({
           );
         })()}
 
-      {readout && (
-        <g textAnchor="end" fill="rgb(var(--ink))">
-          <text x={width - m.right} y={m.top + 2} fontSize={13} fontWeight={700}>
-            {readout.school} · {value(readout).toFixed(2)}σ
-          </text>
-          {criterion
-            ? CATEGORIES[criterion].stats.map((sk, i) => (
-                <text key={sk} x={width - m.right} y={m.top + 20 + i * 15} fontSize={11}>
-                  {STATS[sk].label}: {(STATS[sk].format ?? String)(readout.stats[sk])} ({Math.round(readout.pct[sk])}th pctl)
-                </text>
-              ))
-            : (
-              <text x={width - m.right} y={m.top + 20} fontSize={11}>
-                #{readout.ratingRank} · {readout.rating.toFixed(1)} rating
-              </text>
-            )}
-        </g>
-      )}
     </svg>
+   </div>
   );
 }

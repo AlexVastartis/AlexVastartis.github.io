@@ -1,9 +1,11 @@
 # One program per row: display identity. No source — this is our own data.
 # former_fcs=1 for programs whose FBS (Div I-A) membership began in 1996 or later —
 # their century-ledger totals include a substantial FCS / lower-division past.
-# conference is a FALLBACK only — data/api/conferences.json wins when it has the school
-# (8 programs whose CFBD name differs still rely on this column).
-school,slug,conference,primary_hex,secondary_hex,former_fcs
+# conference is the 2026 FBS football alignment; data/api/conferences.json carries the
+# same mapping (keyed to these names) and wins at build time. Keep the two in sync.
+# active=0 → carried for a future season but not built or shown yet (new FBS members
+# whose ledger won't be meaningful until their first FBS year is on record).
+school,slug,conference,primary_hex,secondary_hex,former_fcs,active
 Air Force,air-force,Mountain West,#003087,#8a8d8f,0
 Akron,akron,MAC,#00285e,#84754e,0
 Alabama,alabama,SEC,#9e1b32,#828a8f,0
@@ -12,23 +14,23 @@ Arizona,arizona,Big 12,#003366,#cc0033,0
 Arizona State,arizona-st,Big 12,#8c1d40,#ffc627,0
 Arkansas,arkansas,SEC,#9d2235,#000000,0
 Arkansas State,arkansas-st,Sun Belt,#cc092f,#000000,0
-Army,army,Independent,#000000,#d4bf91,0
+Army,army,American,#000000,#d4bf91,0
 Auburn,auburn,SEC,#0c2340,#e87722,0
 Ball State,ball-st,MAC,#ba0c2f,#000000,0
 Baylor,baylor,Big 12,#154734,#ffb81c,0
-Boise State,boise-st,Mountain West,#0033a0,#d64309,1
+Boise State,boise-st,Pac-12,#0033a0,#d64309,1
 Boston College,boston-college,ACC,#8a100b,#b29d6c,0
 Bowling Green,bowling-green,MAC,#fe5000,#4f2c1d,0
 Buffalo,buffalo,MAC,#005bbb,#000000,1
 BYU,byu,Big 12,#002e5d,#c5c5c5,0
-California,california,Pac-12,#003262,#fdb515,0
+California,california,ACC,#003262,#fdb515,0
 Central Michigan,central-mich,MAC,#6a0032,#ffc82e,0
 Charlotte,charlotte,American,#046a38,#b9975b,1
 Cincinnati,cincinnati,Big 12,#e00122,#000000,0
 Clemson,clemson,ACC,#f56600,#522d80,0
 Coastal Carolina,coastal-caro,Sun Belt,#006f71,#a27752,1
 Colorado,colorado,Big 12,#cfb87c,#000000,0
-Colorado State,colorado-st,Mountain West,#1e4d2b,#c8c372,0
+Colorado State,colorado-st,Pac-12,#1e4d2b,#c8c372,0
 Delaware,delaware,Conference USA,#00539f,#ffd200,1
 Duke,duke,ACC,#001a57,#000000,0
 East Carolina,east-carolina,American,#592a8a,#f0907d,0
@@ -37,7 +39,7 @@ FIU,fiu,Conference USA,#081e3f,#b6862c,1
 Florida,florida,SEC,#0021a5,#fa4616,0
 Florida Atlantic,fla-atlantic,American,#003366,#cc0000,1
 Florida State,florida-st,ACC,#782f40,#ceb888,0
-Fresno State,fresno-st,Mountain West,#db0032,#003594,0
+Fresno State,fresno-st,Pac-12,#db0032,#003594,0
 Georgia,georgia,SEC,#ba0c2f,#000000,0
 Georgia Southern,ga-southern,Sun Belt,#00211d,#87714d,1
 Georgia State,georgia-st,Sun Belt,#0039a6,#c60c30,1
@@ -57,7 +59,7 @@ Kent State,kent-st,MAC,#002664,#eaab00,0
 Kentucky,kentucky,SEC,#0033a0,#ffffff,0
 Liberty,liberty,Conference USA,#0a254e,#990000,1
 Louisiana,la-lafayette,Sun Belt,#ce181e,#000000,0
-Louisiana Tech,louisiana-tech,Conference USA,#002d72,#e31b23,0
+Louisiana Tech,louisiana-tech,Sun Belt,#002d72,#e31b23,0
 Louisiana-Monroe,la-monroe,Sun Belt,#840029,#efb700,0
 Louisville,louisville,ACC,#ad0000,#000000,0
 LSU,lsu,SEC,#461d7c,#fdd023,0
@@ -81,7 +83,7 @@ New Mexico State,new-mexico-st,Conference USA,#8b0d0d,#ffffff,0
 North Carolina,north-carolina,ACC,#7bafd4,#13294b,0
 North Carolina State,north-carolina-st,ACC,#cc0000,#000000,0
 North Texas,north-texas,American,#00853e,#000000,0
-Northern Illinois,northern-ill,MAC,#ba0c2f,#000000,0
+Northern Illinois,northern-ill,Mountain West,#ba0c2f,#000000,0
 Northwestern,northwestern,Big Ten,#4e2a84,#ffffff,0
 Notre Dame,notre-dame,Independent,#0c2340,#c99700,0
 Ohio,ohio,MAC,#00694e,#ffffff,0
@@ -98,21 +100,21 @@ Purdue,purdue,Big Ten,#ceb888,#000000,0
 Rice,rice,American,#00205b,#c1c6c8,0
 Rutgers,rutgers,Big Ten,#cc0033,#000000,0
 Sam Houston,sam-houston,Conference USA,#f15a22,#333f48,1
-San Diego State,san-diego-st,Mountain West,#a6192e,#000000,0
+San Diego State,san-diego-st,Pac-12,#a6192e,#000000,0
 San Jose State,san-jose-st,Mountain West,#0055a2,#e5a823,0
-SMU,smu,American,#354ca1,#c8102e,0
+SMU,smu,ACC,#354ca1,#c8102e,0
 South Alabama,south-ala,Sun Belt,#00205b,#bf0d3e,1
 South Carolina,south-carolina,SEC,#73000a,#000000,0
 South Florida,south-fla,American,#006747,#cfc493,0
 Southern Miss,southern-miss,Sun Belt,#000000,#ffab00,0
-Stanford,stanford,Pac-12,#8c1515,#ffffff,0
+Stanford,stanford,ACC,#8c1515,#ffffff,0
 Syracuse,syracuse,ACC,#f76900,#000e54,0
 TCU,tcu,Big 12,#4d1979,#a3a9ac,0
 Temple,temple,American,#9d2235,#ffffff,0
 Tennessee,tennessee,SEC,#ff8200,#ffffff,0
 Texas,texas,SEC,#bf5700,#ffffff,0
 Texas A&M,texas-am,SEC,#500000,#ffffff,0
-Texas State,texas-st,Sun Belt,#501214,#8d734a,1
+Texas State,texas-st,Pac-12,#501214,#8d734a,1
 Texas Tech,texas-tech,Big 12,#cc0000,#000000,0
 Toledo,toledo,MAC,#15397f,#ffd600,0
 Troy,troy,Sun Belt,#8a2432,#c1c6c8,0
@@ -122,12 +124,12 @@ UAB,uab,American,#1e6b52,#f4c300,1
 UCF,ucf,Big 12,#000000,#ba9b37,0
 UCLA,ucla,Big Ten,#2d68c4,#f2a900,0
 UConn,uconn,Independent,#000e2f,#e4002b,1
-UMass,massachusetts,Independent,#881c1c,#000000,1
+UMass,massachusetts,MAC,#881c1c,#000000,1
 UNLV,unlv,Mountain West,#cf0a2c,#666666,0
 USC,southern-california,Big Ten,#990000,#ffc72c,0
 Utah,utah,Big 12,#cc0000,#000000,0
-Utah State,utah-st,Mountain West,#00263a,#8e9089,0
-UTEP,utep,Conference USA,#ff8200,#041e42,0
+Utah State,utah-st,Pac-12,#00263a,#8e9089,0
+UTEP,utep,Mountain West,#ff8200,#041e42,0
 UTSA,utsa,American,#0c2340,#f15a22,1
 Vanderbilt,vanderbilt,SEC,#866d4b,#000000,0
 Virginia,virginia,ACC,#232d4b,#f84c1e,0
@@ -140,3 +142,5 @@ Western Kentucky,western-ky,Conference USA,#c60c30,#000000,1
 Western Michigan,western-mich,MAC,#6c4023,#b5a167,0
 Wisconsin,wisconsin,Big Ten,#c5050c,#ffffff,0
 Wyoming,wyoming,Mountain West,#492f24,#ffc425,0
+North Dakota State,north-dakota-st,Mountain West,#005643,#ffc72c,1,0
+Sacramento State,sacramento-st,MAC,#00563f,#c4b581,1,0

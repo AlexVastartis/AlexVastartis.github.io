@@ -1,5 +1,5 @@
 # One (school, season): weeks in the AP poll / top-10 / top-5 / at #1, and the final rank that year.
-# Rebuilt from the CFBD cache by `npm run data:api`; hand-editable between refreshes.
+# Hand-maintained; covers every weekly poll 1936->present. Edit and re-run `npm run build:data`.
 # final_rank=1 rows define that season’s AP champion.
 school,season,weeks_poll,weeks_top10,weeks_top5,weeks_no1,final_rank
 Air Force,1958,7,5,0,0,6

@@ -25,17 +25,17 @@ const cfg = Object.fromEntries(stg('_staging_blue_blood_rating').map((r) => [r.k
 const TITLE_SELECTORS = new Set((cfg.title_selectors || '').split(/\s+/).filter(Boolean));
 const AP_FROM = Number(cfg.ap_from) || 1936;
 
-const CFBD_ALIAS = {
+const SCHOOL_ALIAS = {
   'NC State': 'North Carolina State', 'App State': 'Appalachian State', Massachusetts: 'UMass',
   Connecticut: 'UConn', 'Louisiana Monroe': 'Louisiana-Monroe', 'UL Monroe': 'Louisiana-Monroe',
   'Southern Mississippi': 'Southern Miss', Miami: 'Miami (FL)', "Hawai'i": 'Hawaii',
   'San José State': 'San Jose State', 'Florida International': 'FIU',
 };
 const revAlias = (school) => {
-  for (const [k, v] of Object.entries(CFBD_ALIAS)) if (v === school) return k;
+  for (const [k, v] of Object.entries(SCHOOL_ALIAS)) if (v === school) return k;
   return null;
 };
-/** pick the row-map value for a program, tolerating the CFBD spelling */
+/** pick the row-map value for a program, tolerating an outside-source spelling */
 const pick = (map, school) => map.get(school) || (revAlias(school) && map.get(revAlias(school))) || null;
 
 const teams = JSON.parse(fs.readFileSync(path.join(REPO, 'public/data/teams.json'), 'utf8')).teams;

@@ -5,6 +5,7 @@ import { DEFAULT_MARGINS, linearScales } from '../lib/scale';
 import type { MarkerMode } from '../data/useViewState';
 import TeamMarker from './TeamMarker';
 import FavoriteHalo from './FavoriteHalo';
+import ChartReadout from './ChartReadout';
 
 interface Props {
   /** the teams to draw (already conference-filtered) — also sets the axis range */
@@ -68,8 +69,19 @@ export default function ScatterChart({
 
   const fmtX = STATS[xStat].format ?? ((v: number) => String(v));
   const fmtY = STATS[yStat].format ?? ((v: number) => String(v));
+  const fill = className.includes('h-full');
 
   return (
+   <div className={`relative ${fill ? 'h-full w-full' : 'w-full'}`}>
+    {readout && (
+      <ChartReadout
+        team={readout}
+        rows={[
+          { label: STATS[xStat].label, value: `${fmtX(readout.stats[xStat])} · ${Math.round(readout.pct[xStat])}th` },
+          { label: STATS[yStat].label, value: `${fmtY(readout.stats[yStat])} · ${Math.round(readout.pct[yStat])}th` },
+        ]}
+      />
+    )}
     <svg
       data-map="the scatter"
       viewBox={`0 0 ${width} ${height}`}
@@ -165,43 +177,7 @@ export default function ScatterChart({
           ) : null;
         })()}
 
-      {/* readout — pinned top-left, shows the highlighted team by default and swaps to
-          whichever team is hovered; never covers the point (busy corner is the diagonal) */}
-      {readout && <Tooltip team={readout} xStat={xStat} yStat={yStat} left={m.left + 12} top={m.top + 16} />}
     </svg>
-  );
-}
-
-function Tooltip({
-  team,
-  xStat,
-  yStat,
-  left,
-  top,
-}: {
-  team: Team;
-  xStat: StatKey;
-  yStat: StatKey;
-  left: number;
-  top: number;
-}) {
-  const fmtX = STATS[xStat].format ?? String;
-  const fmtY = STATS[yStat].format ?? String;
-  const lines = [
-    `${STATS[xStat].label}: ${fmtX(team.stats[xStat])} (${Math.round(team.pct[xStat])}th pctl)`,
-    `${STATS[yStat].label}: ${fmtY(team.stats[yStat])} (${Math.round(team.pct[yStat])}th pctl)`,
-  ];
-  return (
-    <g pointerEvents="none">
-      <rect x={left - 7} y={top - 16} width={400} height={20 + lines.length * 17} rx={5} fill="rgb(var(--paper))" opacity={0.86} />
-      <text x={left} y={top} fontSize={14} fontWeight={700} fill="rgb(var(--ink))">
-        {team.school} · {team.conference}
-      </text>
-      {lines.map((ln, i) => (
-        <text key={i} x={left} y={top + 19 + i * 17} fontSize={12} fill="rgb(var(--ink))">
-          {ln}
-        </text>
-      ))}
-    </g>
+   </div>
   );
 }

@@ -3,15 +3,20 @@
 # NCAA Committee on Infractions vacations, ties count half, bowls/playoffs included,
 # senior-college seasons only. Figures are current through the completed 2025 season.
 #
-# Used by `npm run wins:pre1936`: for every school listed here it drops the
-# per-season pre-1936 rows and writes ONE source=ncaa row (season 1935) sized so
-# that (sum of ALL as-played rows through `through`) - (sum of wins_vacated) == ncaa_wins.
+# Reference for the `source=ncaa` rows of `_staging_wins.csv`: for every school
+# listed here, that file carries ONE `source=ncaa` row (season 1935) in place of
+# per-season pre-1936 rows, sized so that
+#   (sum of ALL as-played rows through `through`) - (sum of wins_vacated) == ncaa_wins
 # i.e. the program's all-time OFFICIAL total equals this book exactly (Ohio State
-# 990-337-53; 1002 as-played with the vacated 2010 wins added back).
-# Schools not in our 130 (Delaware, James Madison) are ignored.
+# 990-337-53; 1002 as-played with the vacated 2010 wins added back). Edit both files
+# together by hand, then re-run `npm run build:data`.
 #
-# Only ~33 programs are published in the book; the rest of FBS keeps its
-# game-derived per-season rows. Replace this file if a full NCAA list is sourced.
+# The book publishes a ranked all-time line for ~32 programs (its "By Victories" /
+# "By Percentage" lists) — that's every school below. Programs it does NOT list
+# keep their game-derived per-season rows; where we have no pre-modern game data
+# for one (e.g. Jacksonville St., Sam Houston, Missouri St.) its total reflects
+# only the seasons we actually hold — no hand estimate. Replace this file if a
+# full NCAA all-time list is sourced.
 school,ncaa_wins,ncaa_losses,ncaa_ties,ncaa_pct,through
 Michigan,1022,362,36,.732,2025
 Ohio State,990,337,53,.737,2025
@@ -44,3 +49,5 @@ Miami (FL),686,394,19,.633,2025
 Georgia Southern,432,264,10,.619,2025
 Florida State,588,298,17,.661,2025
 Arizona State,647,432,24,.597,2025
+James Madison,390,227,4,.631,2025
+Delaware,746,491,43,.600,2025

@@ -36,9 +36,9 @@ export default function WhatIfEditor({
   return (
     <section
       data-map="the what-if editor"
-      className="mt-3 rounded-md border border-dashed border-whatif/60 bg-whatif/[0.05] p-2.5"
+      className="mt-3 rounded-md border border-dashed border-whatif/60 bg-whatif/[0.05] p-2"
     >
-      <header className="mb-1.5 flex items-center justify-between gap-2">
+      <header className="mb-1 flex items-center justify-between gap-2">
         <h4 className="min-w-0 truncate text-[11px] font-bold uppercase tracking-wide text-whatif">
           ⚡ What if — {base.school}
         </h4>
@@ -62,7 +62,7 @@ export default function WhatIfEditor({
         </div>
       </header>
 
-      <div className="mb-2 flex items-center justify-between gap-1 rounded-md bg-paper/70 px-2 py-1 text-[11px]">
+      <div className="mb-1.5 flex items-center justify-between gap-1 rounded-md bg-paper/70 px-2 py-1 text-[11px]">
         <span className="text-muted">
           #{base.ratingRank} · {base.rating.toFixed(1)} · {base.grouping}
         </span>
@@ -79,7 +79,7 @@ export default function WhatIfEditor({
         </span>
       </div>
 
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-1">
         {STAT_KEYS.map((k) => {
           const cur = overrides[k] ?? base.stats[k];
           const isWinPct = k === 'winPct';
@@ -114,18 +114,18 @@ export default function WhatIfEditor({
                   )}
                 </span>
               </span>
-              <span className="relative mt-1 block h-4">
+              <span className="relative mt-0.5 block h-3.5">
                 {/* benchmark tick (accent) */}
                 {bench != null && (
                   <span
-                    className="pointer-events-none absolute top-0 z-10 h-4 w-[3px] -translate-x-1/2 rounded-sm bg-accent"
+                    className="pointer-events-none absolute top-0 z-10 h-3.5 w-[3px] -translate-x-1/2 rounded-sm bg-accent"
                     style={{ left: pos(bench) }}
                     title={`Blue Blood benchmark: ${fmt(k, bench)}`}
                   />
                 )}
                 {/* current-value tick (bold, dark) */}
                 <span
-                  className="pointer-events-none absolute top-0 z-10 h-4 w-[3px] -translate-x-1/2 rounded-sm bg-ink"
+                  className="pointer-events-none absolute top-0 z-10 h-3.5 w-[3px] -translate-x-1/2 rounded-sm bg-ink"
                   style={{ left: pos(base.stats[k]) }}
                   title={`${base.school} now: ${fmt(k, base.stats[k])}`}
                 />
@@ -144,11 +144,16 @@ export default function WhatIfEditor({
         })}
       </div>
 
-      <p className="mt-2 text-[10px] leading-snug text-muted">
-        Sliders run to 1.5× the current FBS leader in each stat (win % to 1.000). The dark tick is
-        {' '}{base.school}&rsquo;s real value, the <span className="text-accent">◆ accent tick</span> the
-        Blue Blood benchmark — click the ◆ chip to snap a stat to it. Ranks, tiers and charts
-        recompute live from the edited line.
+      <p
+        className="mt-1.5 cursor-help text-[10px] leading-snug text-muted"
+        title={
+          `Sliders run to 1.5× the current FBS leader in each stat (win % to 1.000). `
+          + `The dark tick is ${base.school}'s real value; the accent tick is the Blue Blood `
+          + `benchmark — click the ◆ chip to snap a stat to it.`
+        }
+      >
+        <span className="text-ink">■</span> real value ·{' '}
+        <span className="text-accent">◆</span> Blue Blood benchmark · ranks &amp; tiers recompute live.
       </p>
     </section>
   );

@@ -11,15 +11,11 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "logos:optimize": "node scripts/optimize-logos.mjs",
-    "data:api": "node scripts/build-api-store.mjs",
-    "games:cfbref": "node scripts/build-games-cfbref.mjs",
-    "wins:pre1936": "node scripts/rebuild-wins-pre1936.mjs",
     "build:data": "node scripts/build-data.mjs",
     "draft": "node scripts/build-draft.mjs",
     "archive": "node scripts/build-program-archive.mjs",
     "blurbs:seed": "node scripts/seed-blurbs.mjs",
-    "logos:recolor": "node scripts/recolor-logos.mjs",
-    "logos:sync": "node scripts/sync-logos.mjs"
+    "logos:recolor": "node scripts/recolor-logos.mjs"
   },
   "dependencies": {
     "d3-array": "^3.2.4",

@@ -8,10 +8,12 @@ interface Props {
   /** controls shown to the left of the Save-PNG button (e.g. a lens toggle) */
   actions?: ReactNode;
   filename: string;
+  /** blow the plot area up to near-viewport height (like "The Chart") */
+  expanded?: boolean;
   children: ReactNode;
 }
 
-export default function ChartFrame({ title, subtitle, footer, actions, filename, children }: Props) {
+export default function ChartFrame({ title, subtitle, footer, actions, filename, expanded, children }: Props) {
   const wrap = useRef<HTMLDivElement>(null);
   const [busy, setBusy] = useState(false);
 
@@ -52,7 +54,10 @@ export default function ChartFrame({ title, subtitle, footer, actions, filename,
           </button>
         </div>
       </div>
-      <div ref={wrap} className="rounded-lg bg-paper">
+      <div
+        ref={wrap}
+        className={`rounded-lg bg-paper ${expanded ? 'flex h-[82vh] min-h-0 flex-col [&>*]:min-h-0 [&>*]:flex-1' : ''}`}
+      >
         {children}
       </div>
       {footer && <figcaption className="mt-2 text-xs text-muted">{footer}</figcaption>}
