@@ -24,6 +24,8 @@ export interface ViewState {
   notes: boolean;
   /** show the site-wide element map overlay — labels every UI region (default off) */
   map: boolean;
+  /** the highlighted program (school name or slug) — in the URL so a link can point at one team */
+  team: string | null;
 }
 
 /** filter/display state, kept in the URL query string so views are shareable */
@@ -43,6 +45,7 @@ export function useViewState() {
         : null,
       notes: params.get('notes') === '1',
       map: SHOW_ELEMENT_MAP && params.get('map') === '1',
+      team: params.get('team') || null,
     }),
     [params],
   );
@@ -76,6 +79,10 @@ export function useViewState() {
           if ('notes' in patch) {
             if (patch.notes) next.set('notes', '1');
             else next.delete('notes');
+          }
+          if ('team' in patch) {
+            if (patch.team) next.set('team', patch.team);
+            else next.delete('team');
           }
           if ('map' in patch) {
             if (patch.map) next.set('map', '1');

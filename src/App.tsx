@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet, Link,
 } from 'react-router-dom';
@@ -50,6 +50,12 @@ export function useChartContext() {
   return useOutletContext<ChartContext>();
 }
 
+/** a program by school name, matched loosely (any casing, or its slug) — for hand-typed links */
+function findTeam(data: TeamsPayload, name: string) {
+  const q = name.toLowerCase();
+  return data.teams.find((t) => t.school.toLowerCase() === q || t.slug.toLowerCase() === q);
+}
+
 function Layout() {
   const { state, update, toggleConference } = useViewState();
   const { search, pathname } = useLocation();
@@ -69,7 +75,18 @@ function Layout() {
   const snapshot = SHOW_TIMEPOINTS ? (data?.meta.timepoint ?? null) : null;
   const { mode, setMode } = useTheme();
   const [logoVariant, setLogoVariant] = useLogoVariant();
-  const [favorite, setFavorite] = useFavorite();
+  // The highlighted team lives in the URL (?team=Ohio+State) so a link can point at one program.
+  // The URL wins; the saved local pick is the fallback for a bare URL, and only an explicit
+  // choice is saved — opening someone's link never overwrites your own favourite.
+  const [storedFavorite, storeFavorite] = useFavorite();
+  const favorite = state.team ?? storedFavorite;
+  const setFavorite = useCallback(
+    (school: string | null) => {
+      update({ team: school });
+      storeFavorite(school);
+    },
+    [update, storeFavorite],
+  );
 
   // what-if editor: edited raw stats for the highlighted team (reset whenever it changes)
   const [whatIf, setWhatIf] = useState<Partial<Record<StatKey, number>>>({});
@@ -110,6 +127,20 @@ function Layout() {
     return baseTeams.filter((t) => set.has(confGroup(t.conference)));
   }, [baseTeams, state.conferences]);
 
+  // keep ?team= honest: accept a slug or any casing and rewrite it to the school's canonical
+  // name, drop an unknown one (the default below then applies), and echo a saved pick into a
+  // bare URL — so the address bar always names the team on screen and can be copied as a link
+  useEffect(() => {
+    if (!data || activeYear != null) return;
+    if (!state.team) {
+      if (storedFavorite && findTeam(data, storedFavorite)) update({ team: storedFavorite });
+      return;
+    }
+    const hit = findTeam(data, state.team);
+    if (hit && hit.school !== state.team) update({ team: hit.school });
+    else if (!hit) update({ team: null });
+  }, [data, activeYear, state.team, storedFavorite, update]);
+
   // the Blue Blood Rating page always keeps a team highlighted — default to #1 whenever it's
   // empty there; elsewhere, only default it once (so people see the feature exists)
   const didInit = useRef(false);
@@ -117,12 +148,12 @@ function Layout() {
     if (!data) return;
     const firstRun = !didInit.current;
     didInit.current = true;
-    if (favorite) return;
+    if (favorite && !(activeYear == null && !findTeam(data, favorite))) return;
     // default to #1 on first load anywhere, and any time the rating page has no team
     if (firstRun || subject === 'rating') {
       setFavorite(data.teams.find((t) => t.ratingRank === 1)?.school ?? null);
     }
-  }, [data, favorite, subject, setFavorite]);
+  }, [data, favorite, subject, setFavorite, activeYear]);
 
   const favTeam = favorite ? baseTeams.find((t) => t.school === favorite) ?? null : null;
   // the program's REAL, unedited line — coach-run "preview" always builds from this
