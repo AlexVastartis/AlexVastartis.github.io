@@ -77,8 +77,8 @@ export default function ScatterChart({
       <ChartReadout
         team={readout}
         rows={[
-          { label: STATS[xStat].label, value: `${fmtX(readout.stats[xStat])} · ${Math.round(readout.pct[xStat])}th` },
-          { label: STATS[yStat].label, value: `${fmtY(readout.stats[yStat])} · ${Math.round(readout.pct[yStat])}th` },
+          { label: STATS[xStat].label, value: `${fmtX(readout.stats[xStat])} · ${readout.pct[xStat].toFixed(1)}` },
+          { label: STATS[yStat].label, value: `${fmtY(readout.stats[yStat])} · ${readout.pct[yStat].toFixed(1)}` },
         ]}
       />
     )}

@@ -36,8 +36,8 @@ export function StatRow({ label, pct, raw, trimmed, color, dense }: RowProps) {
       <span className={`${dense ? 'w-14' : 'w-16'} shrink-0 text-right tabular-nums text-muted ${trimmed ? 'line-through' : ''}`}>
         {raw}
       </span>
-      <span className={`${dense ? 'w-7' : 'w-9'} shrink-0 text-right font-medium tabular-nums ${trimmed ? 'line-through' : ''}`}>
-        {Math.round(pct)}
+      <span className={`${dense ? 'w-9' : 'w-11'} shrink-0 text-right font-medium tabular-nums ${trimmed ? 'line-through' : ''}`}>
+        {pct.toFixed(1)}
       </span>
     </div>
   );

@@ -119,9 +119,9 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
                 </span>
                 <span
                   className="w-20 text-center font-bold"
-                  title={`${CATEGORIES[criterion].label} score ${Math.round(t.critScore[criterion])} — mean of the two stats’ FBS percentiles`}
+                  title={`${CATEGORIES[criterion].label} score ${t.critScore[criterion].toFixed(1)} — mean of the two stats’ FBS percentiles`}
                 >
-                  {Math.round(t.critScore[criterion])}
+                  {t.critScore[criterion].toFixed(1)}
                 </span>
               </span>
             </button>

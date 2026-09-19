@@ -15,7 +15,10 @@ function urlFor(year: number | null): string {
   return year ? `${base}data/timepoints/${year}.json` : `${base}data/teams.json`;
 }
 
-function load(year: number | null): Promise<TeamsPayload> {
+/** fetch (or reuse the cached) payload for a given year — exported so callers
+ *  that need more than one snapshot at once (the rating-math audit view) can
+ *  share this module's cache instead of re-fetching. */
+export function loadTimepoint(year: number | null): Promise<TeamsPayload> {
   const url = urlFor(year);
   const hit = cache.get(url);
   if (hit) return Promise.resolve(hit);
@@ -38,6 +41,13 @@ function load(year: number | null): Promise<TeamsPayload> {
   return p;
 }
 
+/** a team under the chosen wins mode: the default (NCAA official) is the top level,
+ *  so only `asPlayed` needs merging on. Works for the present day and every snapshot. */
+export function withWins(t: Team, wins: WinsMode): Team {
+  const v = wins === 'official' ? undefined : t.variants?.[wins];
+  return v ? { ...t, ...v } : t;
+}
+
 export interface TeamsState {
   loading: boolean;
   error: string | null;
@@ -47,7 +57,8 @@ export interface TeamsState {
 /**
  * The team dataset. `year` (a TIMEPOINT_YEARS value) swaps in the point-in-time
  * snapshot built as of that off-season; `null` is the present day. The `wins`
- * toggle only applies to the present day — snapshots carry a single record.
+ * toggle applies everywhere — a snapshot carries both records, so the NCAA-vacated
+ * wins and titles are struck (official) or counted (as played) as of that year.
  */
 export function useTeams(wins: WinsMode = 'official', year: number | null = null): TeamsState {
   const url = urlFor(year);
@@ -65,7 +76,7 @@ export function useTeams(wins: WinsMode = 'official', year: number | null = null
     }
     let alive = true;
     setRaw((s) => ({ ...s, loading: true, error: null }));
-    load(year)
+    loadTimepoint(year)
       .then((data) => alive && setRaw({ loading: false, error: null, data }))
       .catch((e: unknown) =>
         alive &&
@@ -76,14 +87,12 @@ export function useTeams(wins: WinsMode = 'official', year: number | null = null
     };
   }, [url, year]);
 
-  // merge the chosen wins-variant onto every team (present-day only; snapshots
-  // mirror the same record onto both variants, so this is a no-op there).
+  // merge the chosen wins-variant onto every team
   const data = useMemo<TeamsPayload | null>(() => {
     if (!raw.data) return null;
-    if (wins === 'official' || year) return raw.data;
-    const teams = raw.data.teams.map((t): Team => ({ ...t, ...t.variants[wins] }));
-    return { ...raw.data, teams };
-  }, [raw.data, wins, year]);
+    if (wins === 'official') return raw.data;
+    return { ...raw.data, teams: raw.data.teams.map((t) => withWins(t, wins)) };
+  }, [raw.data, wins]);
 
   return { ...raw, data };
 }

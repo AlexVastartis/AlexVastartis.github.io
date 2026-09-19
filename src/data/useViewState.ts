@@ -4,7 +4,7 @@ import { SHOW_ELEMENT_MAP, SHOW_TIMEPOINTS } from '../config/flags';
 
 export type MarkerMode = 'logo' | 'bubble';
 /** the three visualisation types, shared by the ranking and every criterion */
-export type ViewMode = 'list' | 'plot' | 'curve';
+export type ViewMode = 'list' | 'plot' | 'curve' | 'decades';
 export type WinsMode = 'asPlayed' | 'official';
 
 /** point-in-time snapshot years; null = present day */
@@ -34,7 +34,8 @@ export function useViewState() {
     () => ({
       conferences: params.get('conf') ? params.get('conf')!.split('~').filter(Boolean) : [],
       marker: params.get('marker') === 'bubble' ? 'bubble' : 'logo',
-      view: params.get('view') === 'plot' ? 'plot' : params.get('view') === 'curve' ? 'curve' : 'list',
+      view: params.get('view') === 'plot' ? 'plot' : params.get('view') === 'curve' ? 'curve'
+        : SHOW_TIMEPOINTS && params.get('view') === 'decades' ? 'decades' : 'list',
       wins: params.get('wins') === 'asPlayed' ? 'asPlayed' : 'official',
       year: SHOW_TIMEPOINTS
         && (TIMEPOINT_YEARS as readonly number[]).includes(Number(params.get('year')))
@@ -61,7 +62,7 @@ export function useViewState() {
             else next.delete('marker');
           }
           if ('view' in patch) {
-            if (patch.view === 'plot' || patch.view === 'curve') next.set('view', patch.view);
+            if (patch.view === 'plot' || patch.view === 'curve' || patch.view === 'decades') next.set('view', patch.view);
             else next.delete('view');
           }
           if ('wins' in patch) {

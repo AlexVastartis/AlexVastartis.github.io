@@ -7,6 +7,7 @@ import { groupTeams } from '../config/ranking';
 import { TREND_CLASS, TREND_GLYPH } from '../config/labels';
 import { StatBreakdownList, STAT_KEYS } from './StatBreakdown';
 import TeamLogo from './TeamLogo';
+import { useCanHover } from '../lib/useMedia';
 
 type HoverState = { team: Team; side: 'blurb' | 'stats' } | null;
 
@@ -50,6 +51,8 @@ export default function RankedList({
   teams, favorite, onPick, showNotes, descriptions, benchmark, scenarioSchool,
 }: Props) {
   const groups = groupTeams(teams, descriptions);
+  // touch screens have no hover — the cards are off there (a tap would leave one stuck open)
+  const canHover = useCanHover();
 
   // ONE hover card for the whole list — a single element that follows the cursor
   // and swaps content as you cross rows. Nothing mounts/unmounts per row, so
@@ -72,6 +75,7 @@ export default function RankedList({
     el.style.transform = `translate(${x}px, ${y}px)`;
   };
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!canHover) return;
     lastPos.current = { x: e.clientX, y: e.clientY };
     const zone = (e.target as HTMLElement).closest<HTMLElement>('[data-row-zone]');
     const school = zone?.closest<HTMLElement>('[data-school]')?.dataset.school;
@@ -99,7 +103,7 @@ export default function RankedList({
       onMouseMove={onMove}
       onMouseLeave={() => setHover(null)}
     >
-      {hover && (
+      {canHover && hover && (
         <div
           ref={cardRef}
           className="pointer-events-none fixed left-0 top-0 z-50 rounded-md border border-line bg-panel text-left font-normal normal-case tracking-normal shadow-xl"
@@ -138,7 +142,7 @@ export default function RankedList({
               </header>
               <p
                 data-map={i === 0 ? 'the tier description' : undefined}
-                className="mb-2 px-1 text-xs leading-snug text-muted"
+                className="mb-2 hidden px-1 text-xs leading-snug text-muted md:block"
               >
                 {g.blurb}
               </p>
@@ -261,7 +265,7 @@ function BenchmarkRule({ benchmark }: { benchmark: BlueBloodBenchmark }) {
         </span>
         <span className="h-px flex-1 border-t border-dashed border-accent/50" />
       </div>
-      <div className="pointer-events-none absolute left-1/2 top-full z-30 mt-1 hidden w-80 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-md border border-line bg-panel p-2.5 text-left shadow-lg group-hover:block">
+      <div className="pointer-events-none absolute left-1/2 top-full z-30 mt-1 hidden w-80 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-md border border-line bg-panel p-2.5 text-left shadow-lg [@media(hover:hover)]:group-hover:block">
         <div className="mb-1 flex items-baseline justify-between">
           <span className="text-xs font-bold">Blue Blood benchmark</span>
           <span className="text-xs font-bold tabular-nums text-accent">

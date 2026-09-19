@@ -3,19 +3,23 @@ import {
   Route, Routes, Navigate, useLocation, useOutletContext, useParams, Outlet, Link,
 } from 'react-router-dom';
 import { useTeams } from './data/useTeams';
-import { useViewState, type ViewMode } from './data/useViewState';
+import { useViewState, type ViewMode, type WinsMode } from './data/useViewState';
 import { useTheme } from './lib/theme';
 import { useFavorite } from './data/useFavorite';
 import Controls from './components/Controls';
 import TeamCard from './components/TeamCard';
 import WhatIfEditor from './components/WhatIfEditor';
+import RatingMathModal from './components/RatingMathModal';
 import ThemeToggle from './components/ThemeToggle';
 import MapToggle from './components/MapToggle';
+import LogoToggle from './components/LogoToggle';
+import { useLogoVariant } from './lib/logoVariant';
+import { useIsMobile } from './lib/useMedia';
 import MapLayer from './map/MapLayer';
 import ViewTabs, { type Subject } from './components/ViewTabs';
 import type { BlueBloodBenchmark, CategoryKey, StatKey, Team, TeamsPayload } from './types';
 import { CATEGORIES } from './config/stats';
-import { SHOW_ELEMENT_MAP, SHOW_TIMEPOINTS } from './config/flags';
+import { SHOW_ELEMENT_MAP, SHOW_LOGO_TOGGLE, SHOW_TIMEPOINTS } from './config/flags';
 import { CONF_GROUPS, confGroup } from './config/conferences';
 import { deriveScenario, statSliderMax } from './lib/scenario';
 import Ranking from './routes/Ranking';
@@ -38,6 +42,8 @@ export interface ChartContext {
   benchmark: BlueBloodBenchmark | null;
   /** the program whose stats are being edited in a live what-if scenario (else null) */
   scenarioSchool: string | null;
+  /** NCAA-official vs. as-played wins — the By Decade chart's Now column follows it */
+  wins: WinsMode;
 }
 
 export function useChartContext() {
@@ -46,19 +52,34 @@ export function useChartContext() {
 
 function Layout() {
   const { state, update, toggleConference } = useViewState();
-  const { loading, error, data } = useTeams(state.wins, SHOW_TIMEPOINTS ? state.year : null);
+  const { search, pathname } = useLocation();
+  const criteriaKey = pathname.match(/^\/criteria\/([A-Za-z]+)/)?.[1];
+  const subject: Subject = criteriaKey && criteriaKey in CATEGORIES ? (criteriaKey as CategoryKey) : 'rating';
+  // a phone has no room for the team panel, the As Of picker or the vacated-wins mode — they're
+  // dropped there (and their URL state ignored). The charts aren't OFFERED there either (see
+  // ViewTabs), but a direct link to one still opens it.
+  const mobile = useIsMobile();
+  const wins = mobile ? 'official' : state.wins;
+  const view: ViewMode = subject === 'rating'
+    ? (state.view === 'decades' ? 'decades' : 'list')
+    : (state.view === 'decades' ? 'list' : state.view);
+  // By Decade already shows every point in time, so the As Of snapshot does not apply there
+  const activeYear = view === 'decades' || mobile ? null : state.year;
+  const { loading, error, data } = useTeams(wins, SHOW_TIMEPOINTS ? activeYear : null);
   const snapshot = SHOW_TIMEPOINTS ? (data?.meta.timepoint ?? null) : null;
   const { mode, setMode } = useTheme();
+  const [logoVariant, setLogoVariant] = useLogoVariant();
   const [favorite, setFavorite] = useFavorite();
-  const { search, pathname } = useLocation();
 
   // what-if editor: edited raw stats for the highlighted team (reset whenever it changes)
   const [whatIf, setWhatIf] = useState<Partial<Record<StatKey, number>>>({});
   const [whatIfOpen, setWhatIfOpen] = useState(false);
+  const [ratingMathOpen, setRatingMathOpen] = useState(false);
   useEffect(() => {
     setWhatIf({});
     setWhatIfOpen(false);
-  }, [favorite, state.wins, state.year]);
+    setRatingMathOpen(false);
+  }, [favorite, wins, activeYear]);
 
   const scenario = useMemo(() => {
     if (!data || !favorite || Object.keys(whatIf).length === 0) return null;
@@ -88,10 +109,6 @@ function Layout() {
     const set = new Set(state.conferences);
     return baseTeams.filter((t) => set.has(confGroup(t.conference)));
   }, [baseTeams, state.conferences]);
-
-  const criteriaKey = pathname.match(/^\/criteria\/([A-Za-z]+)/)?.[1];
-  const subject: Subject = criteriaKey && criteriaKey in CATEGORIES ? (criteriaKey as CategoryKey) : 'rating';
-  const view: ViewMode = subject === 'rating' ? 'list' : state.view;
 
   // the Blue Blood Rating page always keeps a team highlighted — default to #1 whenever it's
   // empty there; elsewhere, only default it once (so people see the feature exists)
@@ -128,7 +145,7 @@ function Layout() {
   };
   // a chart view (anything but the ranked list) gets the compact panel on top so the chart stays
   // near the fold; the ranked list gets the full panel as a wide side rail
-  const panelMode: 'top' | 'side' | 'none' = favTeam ? (view === 'list' ? 'side' : 'top') : 'none';
+  const panelMode: 'top' | 'side' | 'none' = !favTeam || view === 'decades' || mobile ? 'none' : view === 'list' ? 'side' : 'top';
 
   // The element map is a developer inspection tool. It is gated on SHOW_ELEMENT_MAP
   // (dev builds only) — the toggle button, the ?map=1 URL param, and the overlay
@@ -137,18 +154,23 @@ function Layout() {
 
   return (
     <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-6">
-      <header data-map="the masthead" className="flex items-start justify-between gap-3">
+      <header data-map="the masthead" className="flex items-start justify-between gap-2 sm:gap-3">
         <Link to={{ pathname: '/', search }} className="group flex items-center gap-2.5">
-          <img src="/logo.png" alt="" className="-my-1 h-16 w-auto shrink-0" />
+          <img
+            src={logoVariant === 'alt' ? '/logo-alt.png' : '/logo.png'}
+            alt=""
+            className="-my-1 h-14 w-auto shrink-0 sm:-mb-1 sm:-mt-5 sm:h-20"
+          />
           <div>
-            <h1 className="text-2xl font-black leading-none tracking-tight">
+            <h1 className="text-xl font-black leading-none tracking-tight sm:text-2xl">
               BlueBlood<span className="text-accent">Football</span>
             </h1>
-            <p className="mt-1 text-sm text-muted">A century-long ledger of college football prestige.</p>
+            <p className="mt-1 hidden text-sm text-muted sm:block">A century-long ledger of college football prestige.</p>
           </div>
         </Link>
         <div className="flex shrink-0 items-center gap-2">
-          {mapDev && <MapToggle on={state.map} onToggle={() => update({ map: !state.map })} />}
+          {SHOW_LOGO_TOGGLE && !mobile && <LogoToggle variant={logoVariant} onSetVariant={setLogoVariant} />}
+          {mapDev && !mobile && <MapToggle on={state.map} onToggle={() => update({ map: !state.map })} />}
           <div data-map="the theme buttons">
             <ThemeToggle mode={mode} onSetMode={setMode} />
           </div>
@@ -174,6 +196,7 @@ function Layout() {
             onSetView={(v) => update({ view: v })}
             search={search}
             notesOn={state.notes}
+            mobile={mobile}
             onToggleNotes={() => update({ notes: !state.notes })}
           />
 
@@ -196,6 +219,7 @@ function Layout() {
                   onClear={subject === 'rating' ? undefined : () => setFavorite(null)}
                   onJump={jumpToFavorite}
                   onOpenWhatIf={snapshot ? undefined : () => setWhatIfOpen(true)}
+                  onOpenRatingMath={snapshot ? undefined : () => setRatingMathOpen(true)}
                   onPreviewProjection={(targets) => {
                     // targets are computed from the REAL line (runBase), so diffing
                     // against that real line gives base+coach, not a compounding stack
@@ -234,28 +258,32 @@ function Layout() {
                 favorite={favorite}
                 onSetFavorite={setFavorite}
                 canClearFavorite={subject !== 'rating'}
-                wins={state.wins}
+                wins={wins}
+                compact={mobile}
                 onSetWins={(w) => update({ wins: w })}
-                year={state.year}
+                year={activeYear}
                 onSetYear={(y) => update({ year: y })}
+                hideYear={view === 'decades'}
               />
 
               {snapshot && (
                 <div
                   data-map="the snapshot banner"
-                  className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-md border border-dashed border-accent/50 bg-accent/10 px-2.5 py-1.5 text-[11px] text-ink"
+                  className="flex flex-col gap-0.5 rounded-md border border-dashed border-accent/50 bg-accent/10 px-2.5 py-1.5 text-[11px] text-ink"
                 >
-                  <span className="font-semibold uppercase tracking-wide text-accent">Snapshot · {snapshot} off-season</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-semibold uppercase tracking-wide text-accent">Snapshot · {snapshot} off-season</span>
+                    <button
+                      onClick={() => update({ year: null })}
+                      className="shrink-0 rounded border border-accent/50 px-1.5 py-0.5 font-semibold uppercase tracking-wide text-accent hover:bg-accent/15"
+                    >
+                      Back to now
+                    </button>
+                  </div>
                   <span className="min-w-0">
                     the Blue Blood Rating as it would have stood after the {snapshot - 1}–{snapshot} season.
                     {' '}{data.meta.timepointNote}
                   </span>
-                  <button
-                    onClick={() => update({ year: null })}
-                    className="ml-auto shrink-0 rounded border border-accent/50 px-1.5 py-0.5 font-semibold uppercase tracking-wide text-accent hover:bg-accent/15"
-                  >
-                    Back to now
-                  </button>
                 </div>
               )}
               {scenarioActive && (
@@ -291,6 +319,7 @@ function Layout() {
                     showNotes: state.notes,
                     benchmark,
                     scenarioSchool: scenarioActive ? favorite : null,
+                    wins,
                   } satisfies ChartContext
                 }
               />
@@ -306,6 +335,10 @@ function Layout() {
       )}
 
       <MapLayer on={mapDev && state.map} />
+
+      {ratingMathOpen && favTeam && (
+        <RatingMathModal team={favTeam} wins={wins} onClose={() => setRatingMathOpen(false)} />
+      )}
     </div>
   );
 }

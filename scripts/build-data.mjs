@@ -109,7 +109,7 @@ const TARGET_GROUP = {
 const PROVENANCE = {
   perception: 'Weeks in the AP poll and weeks in the AP top 10, every poll since it began in 1936, preseason polls included (data/staging/_staging_ap_poll_success.csv).',
   wins: 'Wins/losses/ties season by season from 1869; a tie is half a win. A few pre-modern programs carry one lump total for the years before ~1936 where game-level records don’t survive — anchored to the NCAA "FBS Records" all-time line where the book publishes one (data/staging/_staging_wins.csv, _staging_wins_ncaa.csv).',
-  championships: 'One row per (school, year, selector) from 1901. A year counts only when a recognized selector picked the team — AP, UPI, FWAA, NFF, USA (CFRA/HAF/NCF before 1936); "claim"/"not-claimed" never count. Shared titles count in full (data/staging/_staging_championships.csv).',
+  championships: 'One row per (school, year, selector) from 1901. A year counts only when a recognized selector picked the team — AP, UPI, FWAA, NFF, USA (CFRA/HAF/NCF before 1936); "claim"/"not-claimed" never count. Shared titles count in full; a title the NCAA vacated (USC 2004) counts only in the as-played view (data/staging/_staging_championships.csv).',
   allAmericans: 'Every consensus All-America selection, one row per player, since 1898; unanimous flagged since 1924 (data/staging/_staging_all_americans.csv).',
   nflDraft: 'Every NFL Draft pick by school since 1936, plus the separate AFL drafts of 1960–66; a player taken by both leagues counts once per league (data/staging/_staging_nfl_draft_picks{,_afl}.csv → _staging_nfl_draft_success.csv).',
 };
@@ -186,12 +186,17 @@ function load() {
   //                scope=conference → a count (fallback to summary while empty)
   const champ = stg('_staging_championships.csv');
   const titles = new Map();
+  const titlesOfficial = new Map(); // same, minus titles the NCAA vacated (status=vacated)
   for (const r of champ) {
     if (r.scope !== 'national') continue;
     if (r.status === 'not-claimed') continue; // a selector named them; the school doesn't claim it
     if (!TITLE_SELECTORS.has(r.selector)) continue; // excludes 'claim' rows
     if (!titles.has(r.school)) titles.set(r.school, new Set());
     titles.get(r.school).add(r.year); // distinct years
+    if (r.status !== 'vacated') {
+      if (!titlesOfficial.has(r.school)) titlesOfficial.set(r.school, new Set());
+      titlesOfficial.get(r.school).add(r.year);
+    }
   }
   // conference titles: one row per (school, year) from _staging_conference_titles.csv
   // (parsed from the NCAA "Conference Standings & Champions" book — regular-season
@@ -263,17 +268,27 @@ function load() {
   }
   const apSummary = { fromYear: apMin, toYear: apMax, finalNo1, teams: apTeams };
 
-  // NFL draft: per-(school, season) totals → per-team totals + per-season series
+  // NFL draft: per-(school, season) totals → per-team totals + per-season series.
+  // _staging_nfl_draft_success.csv's `season` is the DRAFT year (it's a straight
+  // copy of the PFR page year, e.g. the "1950 NFL Draft"), but that draft is held
+  // in the winter/spring *after* the season it actually draws from — the 1950
+  // draft picked players from the 1949 college season, months before the 1950
+  // season ever kicked off. Every cutoff in this file (asOfRaw, recentRaw) is
+  // keyed by season-just-played, so we shift the draft year back one to match:
+  // a pick has "already happened" by the {S}-cutoff as soon as S >= draftYear-1,
+  // i.e. as of the very next off-season, not the one after. Unbounded totals
+  // (e.picks/e.firstRound) are order-independent and unaffected either way.
   const draft = new Map();
   for (const r of stg('_staging_nfl_draft_success.csv')) {
     if (!r.school || !r.season) continue;
+    const season = Number(r.season) - 1;
     const picks = Number(r.picks || 0);
     const fr = Number(r.first_round_picks || 0);
     const e = draft.get(r.school) || { picks: 0, firstRound: 0, perSeason: {}, firstBySeason: {} };
     e.picks += picks;
     e.firstRound += fr;
-    if (picks) e.perSeason[r.season] = picks;
-    if (fr) e.firstBySeason[r.season] = fr;
+    if (picks) e.perSeason[season] = picks;
+    if (fr) e.firstBySeason[season] = fr;
     draft.set(r.school, e);
   }
 
@@ -300,8 +315,9 @@ function load() {
 
     const y = Number(r.season) || 0;
     const rf = recFull.get(r.school) || { perYear: {} };
-    const cur = rf.perYear[y] || { w: 0, l: 0, t: 0 };
+    const cur = rf.perYear[y] || { w: 0, l: 0, t: 0, vw: 0, vl: 0 };
     cur.w += w; cur.l += l; cur.t += ti;
+    cur.vw += Number(r.wins_vacated || 0); cur.vl += Number(r.losses_vacated || 0); // NCAA-vacated, dated to the season
     rf.perYear[y] = cur;
     recFull.set(r.school, rf);
 
@@ -318,6 +334,8 @@ function load() {
   // counting title years per program (filtered national rows) — for the trajectory
   const titleYears = new Map();
   for (const [school, yrs] of titles) titleYears.set(school, [...yrs].map(Number).sort((a, b) => a - b));
+  const titleYearsOfficial = new Map();
+  for (const [school, yrs] of titlesOfficial) titleYearsOfficial.set(school, [...yrs].map(Number).sort((a, b) => a - b));
 
   const overrides = {
     grouping: overrideMap('_staging_grouping_overrides.csv'),
@@ -329,7 +347,7 @@ function load() {
   };
 
   return {
-    teams, summary, blurbs, tierDesc, titles, titleYears, confTitles, confTitleYears,
+    teams, summary, blurbs, tierDesc, titles, titlesOfficial, titleYears, titleYearsOfficial, confTitles, confTitleYears,
     aa, heisman, heismanYears, vacated,
     apSummary, conferences, records, recFull, draft, overrides,
   };
@@ -388,7 +406,8 @@ function buildRows(D, mode) {
         winPct,
         // _staging_championships.csv is the complete record: no counting row → genuinely 0.
         // (No summary fallback — that only ever mis-fired, e.g. Navy's stray 0.5.)
-        nationalTitles: D.titles.has(t.school) ? D.titles.get(t.school).size : 0,
+        // 'official' drops titles the NCAA vacated (USC 2004); 'asPlayed' keeps them
+        nationalTitles: (mode === 'official' ? D.titlesOfficial : D.titles).get(t.school)?.size ?? 0,
         conferenceTitles: confT,
         consensusAA,
         unanimousAA,
@@ -493,13 +512,14 @@ function recentRaw(D, school, FROM, TO) {
   };
 }
 
-/** per-school season-count metadata (variant-independent) */
-function trendMeta(D) {
+/** per-school season-count metadata (variant-independent, bar the title tally the
+ *  blurbs quote — which follows the wins mode so it matches the rating stat) */
+function trendMeta(D, mode = 'official') {
   const TO = D.apSummary.toYear;
   const FROM = TO - TREND_RECENT_YEARS + 1;
   return new Map(D.teams.map((t) => {
     const rr = recentRaw(D, t.school, FROM, TO);
-    const tYears = (D.titleYears.get(t.school) || []).slice().sort((a, b) => a - b);
+    const tYears = ((mode === 'official' ? D.titleYearsOfficial : D.titleYears).get(t.school) || []).slice().sort((a, b) => a - b);
     return [t.school, {
       recentSeasons: rr.recentN,
       totalSeasons: rr.totalN,
@@ -1096,31 +1116,36 @@ const TIMEPOINT_YEARS = [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020];
 // a rank or two off where the era's actually sat. Each array = the rank AFTER
 // which a new tier starts (Blue Bloods, Fringe, Contenders, Powers, Brands).
 const TIMEPOINT_TIERS = {
+  1960: [2, 6, 19, 24, 30], // Blue Bloods 2 · Fringe = Ohio State…USC · Contenders run through UCLA (#19)
   1970: [4, 9, 20, 30, 47], // Blue Bloods 4 · Fringe = Texas, Oklahoma, Minnesota, Alabama, Tennessee
-  2000: [8, 10, 22, 32, 50], // Blue Bloods 8 · Fringe = Penn State, Tennessee
+  1980: [7, 10, 17, 35, 38], // Blue Bloods 7 · Fringe = Nebraska, Minnesota, Tennessee
+  2000: [7, 10, 22, 32, 50], // Blue Bloods 7 · Fringe = Texas, Penn State, Tennessee
+  2020: [6, 8, 23, 36, 47], // Blue Bloods 6 · Fringe = Nebraska, Texas
 };
 
 /** the ten rating stats as of the YEAR off-season — i.e. every season through
  *  YEAR-1 (the 1960 off-season = everything up to and including the 1959 season) */
-function asOfRaw(D, school, Y) {
+function asOfRaw(D, school, Y, mode = 'official') {
   const S = Y - 1; // last season included
   const ap = D.apSummary.teams[school] || D.apSummary.teams[revAlias(school)] || {};
   const dr = D.draft.get(school) || { perSeason: {}, firstBySeason: {} };
   const rf = D.recFull.get(school) || { perYear: {} };
   const A = D.aa.get(school) || { perYear: {} };
-  const tY = D.titleYears.get(school) || [];
+  const tY = (mode === 'official' ? D.titleYearsOfficial : D.titleYears).get(school) || [];
   const cY = D.confTitleYears.get(school) || [];
   const le = (obj) => Object.entries(obj || {})
     .reduce((s, [y, v]) => s + (Number(y) <= S ? Number(v || 0) : 0), 0);
   const leAA = (key) => Object.entries(A.perYear)
     .reduce((s, [y, v]) => s + (Number(y) <= S ? (v[key] || 0) : 0), 0);
 
-  let w = 0; let l = 0; let t = 0;
+  let w = 0; let l = 0; let t = 0; let vw = 0; let vl = 0;
   for (const [y, s] of Object.entries(rf.perYear)) {
     if (Number(y) > S) continue;
-    w += s.w; l += s.l; t += s.t;
+    w += s.w; l += s.l; t += s.t; vw += s.vw || 0; vl += s.vl || 0;
   }
-  const g = w + l + t;
+  let g = w + l + t;
+  // NCAA official: strike the wins/games vacated in seasons through S (same rule as buildRows)
+  if (mode === 'official') { w -= vw; g -= vw + vl; }
   return {
     allTimeWins: w,
     winPct: g ? (w + 0.5 * t) / g : 0,
@@ -1150,20 +1175,64 @@ function firstSeasonOf(rf) {
   return Number.isFinite(min) ? min : null;
 }
 
-/** a full { meta, teams } payload for the site as of the YEAR off-season
- *  (every season through YEAR-1) */
-function buildTimepoint(D, Y) {
-  const S = Y - 1; // last season included — "the {S}–{Y} season"
-  // a program is only in the snapshot if we hold at least one season of record
-  // for it before YEAR — otherwise it either didn't exist yet (South Alabama,
-  // Charlotte, …) or we have nothing to rate it on, and a "tied at zero"
-  // percentile would hand it a phantom mid-pack rating.
-  const eligible = D.teams.filter((t) => {
-    const fs = firstSeasonOf(D.recFull.get(t.school));
-    return fs != null && fs < Y;
-  });
-  const omitted = D.teams.length - eligible.length;
+/** the "10 years prior" trajectory for a point-in-time snapshot — same 5-stat
+ *  method as attachTrend() (rank → mean the five decade-scale stats), except the
+ *  recent window ends at S = Y-1 instead of the latest season, and BOTH the
+ *  recent and the baseline percentiles are ranked only among this snapshot's own
+ *  eligible field (not the full 136) — exactly like the snapshot's Rating is.
+ *  Sets `t.decadeTrend`; leaves `t.trend` (the live As-Of arrow, hardcoded
+ *  neutral) untouched — this is audit data for the rating-math view only. */
+function attachHistoricalTrend(teams, D, Y) {
+  const S = Y - 1;
+  const FROM = S - TREND_RECENT_YEARS + 1;
+  const recBy = new Map(teams.map((t) => [t.school, recentRaw(D, t.school, FROM, S)]));
 
+  const recPctByKey = {};
+  for (const k of TREND_KEYS) {
+    recPctByKey[k] = pctFn([...teams.map((t) => recBy.get(t.school).raw[k])].sort((a, b) => a - b));
+  }
+
+  for (const t of teams) {
+    const rr = recBy.get(t.school);
+    const recPct = {};
+    for (const k of TREND_KEYS) recPct[k] = recPctByKey[k](rr.raw[k]) * 100;
+    const recentRating = trimmean(TREND_KEYS.map((k) => recPct[k]), TRIM_FRAC);
+    const baseline = rate5(t.pct);
+    const rec = D.records.get(t.school) || { perSeason: {} };
+    const totalSeasons = Object.keys(rec.perSeason).map(Number).filter((y) => y <= S).length;
+    const insufficient = totalSeasons < TREND_MIN_HISTORY || rr.recentN < 5;
+    const delta = recentRating - baseline;
+    let dir = 'even';
+    if (!insufficient) {
+      if (delta >= TREND_DELTA_POINTS) dir = 'up';
+      else if (delta <= -TREND_DELTA_POINTS) dir = 'down';
+    }
+    const strong = dir !== 'even' && Math.abs(delta) >= TREND_SURGE_POINTS;
+    t.decadeTrend = {
+      dir,
+      strong,
+      insufficient,
+      delta: Number(delta.toFixed(1)),
+      recentRating: Number(recentRating.toFixed(1)),
+      baselineRating: Number(baseline.toFixed(1)),
+      recentSeasons: rr.recentN,
+      totalSeasons,
+      recentRange: `${FROM}–${S}`,
+      fullRange: `through ${S}`,
+      detail: TREND_KEYS.map((k) => ({
+        key: k,
+        allRaw: t.raw[k],
+        allPct: Math.round(t.pct[k]),
+        recRaw: rr.raw[k],
+        recPct: Math.round(recPct[k]),
+      })),
+    };
+  }
+}
+
+/** one wins-mode's snapshot computation: raw stats → percentiles → rating → tiers */
+function timepointRun(D, Y, eligible, mode) {
+  const S = Y - 1;
   const rows = eligible.map((t) => ({
     school: t.school,
     slug: t.slug,
@@ -1175,11 +1244,12 @@ function buildTimepoint(D, Y) {
       return CONF_DISPLAY[c] || c;
     })(),
     heismans: (D.heismanYears.get(t.school) || []).filter((y) => y <= S).length,
-    raw: asOfRaw(D, t.school, Y),
+    raw: asOfRaw(D, t.school, Y, mode),
   }));
 
   const d = derive(rows);
   const teams = d.teams;
+  attachHistoricalTrend(teams, D, Y);
   let gi;
   if (TIMEPOINT_TIERS[Y]) {
     // fixed rank boundaries → rating thresholds (midpoint of the gap at each rank)
@@ -1198,6 +1268,27 @@ function buildTimepoint(D, Y) {
     gi = applyGroupings(teams); // mutates teams[].grouping
   }
   const benchmark = computeBenchmark(teams);
+  return { rows, d, teams, gi, benchmark };
+}
+
+/** a full { meta, teams } payload for the site as of the YEAR off-season
+ *  (every season through YEAR-1) */
+function buildTimepoint(D, Y) {
+  const S = Y - 1; // last season included — "the {S}–{Y} season"
+  // a program is only in the snapshot if we hold at least one season of record
+  // for it before YEAR — otherwise it either didn't exist yet (South Alabama,
+  // Charlotte, …) or we have nothing to rate it on, and a "tied at zero"
+  // percentile would hand it a phantom mid-pack rating.
+  const eligible = D.teams.filter((t) => {
+    const fs = firstSeasonOf(D.recFull.get(t.school));
+    return fs != null && fs < Y;
+  });
+  const omitted = D.teams.length - eligible.length;
+
+  const off = timepointRun(D, Y, eligible, 'official');
+  const played = timepointRun(D, Y, eligible, 'asPlayed');
+  const { rows, d, teams, gi, benchmark } = off; // the default view is NCAA official
+  const playedBy = new Map(played.teams.map((t) => [t.school, t]));
 
   const outTeams = [...teams]
     .sort((a, b) => a.ratingRank - b.ratingRank)
@@ -1211,15 +1302,25 @@ function buildTimepoint(D, Y) {
       // conversation. (Season counts can't be used — the lump is a single row.)
       const thin = t.raw.allTimeWins < 40
         || (t.raw.weeksApPoll === 0 && t.raw.nflDraftPicks === 0 && t.raw.nationalTitles === 0);
+      // everything the wins mode can move — the default (NCAA official) is mirrored onto
+      // the top level; `variants.asPlayed` carries the same fields with vacated wins and
+      // titles counted. (`variants.official` is omitted: it is the top level.)
+      const fields = (x) => ({
+        stats: x.raw, pct: x.pct, critScore: x.critScore, composite: x.composite,
+        rating: x.rating, overall: x.overall, ratingRank: x.ratingRank, grouping: x.grouping,
+        trimmedLow: x.trimmedLow, trimmedHigh: x.trimmedHigh,
+        // the twin-rating slots the panel/blurbs expect — a snapshot has no "recent"
+        // window, so they mirror the snapshot itself
+        recentRating: x.rating, recentPct: x.pct, recentCritScore: x.critScore, recentStats: x.raw,
+        // the real "10 years prior" trajectory for this point in time — audit-only,
+        // not read by the live As-Of arrow (which stays neutral, below)
+        decadeTrend: x.decadeTrend,
+        identity: `#${x.ratingRank} · ${x.rating.toFixed(1)} rating · ${x.grouping} · ${Y} off-season`,
+      });
       return {
       school: t.school, slug: t.slug, conference: t.conference,
       primary: t.primary, secondary: t.secondary, formerFcs: t.formerFcs, heismans: t.heismans,
-      stats: t.raw, pct: t.pct, critScore: t.critScore, composite: t.composite,
-      rating: t.rating, overall: t.overall, ratingRank: t.ratingRank, grouping: t.grouping,
-      trimmedLow: t.trimmedLow, trimmedHigh: t.trimmedHigh,
-      // the twin-rating slots the panel/blurbs expect — a snapshot has no "recent"
-      // window, so they mirror the snapshot itself
-      recentRating: t.rating, recentPct: t.pct, recentCritScore: t.critScore, recentStats: t.raw,
+      ...fields(t),
       // a barely-there program at this point is greyed, not trusted
       trend: {
         score: 0, dir: 'even', recentSeasons: 0, totalSeasons: 0,
@@ -1228,15 +1329,13 @@ function buildTimepoint(D, Y) {
       standing: `A point-in-time view — where ${t.school} stood after the ${S}–${Y} season, `
         + 'computed only from what had happened by then.',
       pathForward: 'Pick “Now” in the year selector for the present-day rating, trajectory and path forward.',
-      identity: `#${t.ratingRank} · ${t.rating.toFixed(1)} rating · ${t.grouping} · ${Y} off-season`,
       label: {
         standard: `As of the ${Y} off-season`,
         trajectoryTooltip: `A static snapshot after the ${S}–${Y} season — trajectory isn’t computed for historical points in time.`,
         personal: D.blurbs.get(t.school) || '',
       },
       projectionScenario: null,
-      // wins toggle is inert in a snapshot; keep the shape the client type expects
-      variants: {},
+      variants: { asPlayed: fields(playedBy.get(t.school)) },
       };
     });
 
@@ -1292,11 +1391,12 @@ function buildTimepoint(D, Y) {
 function main() {
   loadConfig();
   const D = load();
-  const tmeta = trendMeta(D); // season-count metadata; the 10-year twin rating is built per variant
+  const tmetaOfficial = trendMeta(D, 'official'); // season-count metadata; the 10-year twin rating is built per variant
+  const tmetaPlayed = trendMeta(D, 'asPlayed');
   const dirOverride = D.overrides.trend; // _blurb_trajectory.csv dir column
 
-  const asPlayed = computeVariant(D, 'asPlayed', tmeta, dirOverride);
-  const official = computeVariant(D, 'official', tmeta, dirOverride);
+  const asPlayed = computeVariant(D, 'asPlayed', tmetaPlayed, dirOverride);
+  const official = computeVariant(D, 'official', tmetaOfficial, dirOverride);
 
   const benchmark = official.benchmark;
   const sliderMax = Object.fromEntries(STAT_KEYS.map((k) => [
@@ -1306,9 +1406,37 @@ function main() {
   // per-team payload: shared fields top-level, wins-dependent fields per variant.
   // the DEFAULT view is `official` — it is what gets mirrored onto the top level.
   const asPlayedBy = new Map(asPlayed.teams.map((t) => [t.school, t]));
+  // everything the wins mode can move that ISN'T a plain stat: the trajectory, the row
+  // sub-line + hover (they quote the title tally — "no title since 2003" vs 2004), and the
+  // projection numbers (each variant against its own Blue Blood benchmark)
+  const extrasFor = (t, bench) => ({
+    trend: t.trend,
+    label: {
+      // ranked-list sub-line: the trajectory, described — no grouping (the section header has it).
+      // Overridable in _blurb_ranking_row_subline.csv.
+      standard: D.overrides.subline.get(t.school)?.text || (t.trend.insufficient
+        ? 'Too new to chart — under 30 seasons on record'
+        : {
+          // a doubled-arrow (emphatic) move reads as Surging / Collapsing
+          up: `${t.trend.strong ? 'Surging' : 'Ascending'}${t.note ? ` — ${t.note}` : ''}`,
+          down: `${t.trend.strong ? 'Collapsing' : 'Descending'}${t.note ? ` — ${t.note}` : ''}`,
+          even: 'Level with its all-time standing',
+        }[t.trend.dir]),
+      // trajectory hover — overridable in _blurb_trajectory.csv (tooltip column)
+      trajectoryTooltip: t.trajectoryTooltip,
+      personal: D.blurbs.get(t.school) || '',
+    },
+    // the concrete numbers behind the projection blurb + the what-if "Preview" run
+    // (only for programs in the interesting band)
+    projectionScenario: t.rating >= TIER_MIN_RATING
+      ? projectionScenario(t.raw, bench, sliderMax)
+      : null,
+  });
+
   const teams = official.teams.map((o) => {
     const a = asPlayedBy.get(o.school);
-    const variantFields = (t) => ({
+    const variantFields = (t, bench) => ({
+      ...extrasFor(t, bench),
       stats: t.raw,
       pct: t.pct,
       critScore: t.critScore,
@@ -1339,30 +1467,9 @@ function main() {
       secondary: o.secondary,
       formerFcs: o.formerFcs,
       heismans: o.heismans,
-      trend: o.trend,
-      label: {
-        // ranked-list sub-line: the trajectory, described — no grouping (the section header has it).
-        // Overridable in _blurb_ranking_row_subline.csv.
-        standard: D.overrides.subline.get(o.school)?.text || (o.trend.insufficient
-          ? 'Too new to chart — under 30 seasons on record'
-          : {
-            // a doubled-arrow (emphatic) move reads as Surging / Collapsing
-            up: `${o.trend.strong ? 'Surging' : 'Ascending'}${o.note ? ` — ${o.note}` : ''}`,
-            down: `${o.trend.strong ? 'Collapsing' : 'Descending'}${o.note ? ` — ${o.note}` : ''}`,
-            even: 'Level with its all-time standing',
-          }[o.trend.dir]),
-        // trajectory hover — overridable in _blurb_trajectory.csv (tooltip column)
-        trajectoryTooltip: o.trajectoryTooltip,
-        personal: D.blurbs.get(o.school) || '',
-      },
-      // the concrete numbers behind the projection blurb + the what-if "Preview" run
-      // (from the official view; only for programs in the interesting band)
-      projectionScenario: o.rating >= TIER_MIN_RATING
-        ? projectionScenario(o.raw, benchmark, sliderMax)
-        : null,
       // default view is `official` — mirror onto the top level so components read team.rating directly
-      ...variantFields(o),
-      variants: { official: variantFields(o), asPlayed: variantFields(a) },
+      ...variantFields(o, benchmark),
+      variants: { official: variantFields(o, benchmark), asPlayed: variantFields(a, asPlayed.benchmark) },
     };
   });
 

@@ -101,7 +101,7 @@ export default function WhatIfEditor({
                     </span>
                   )}
                   {' · '}
-                  <span title="percentile in this scenario">{Math.round(edited.pct[k])}p</span>
+                  <span title="percentile in this scenario">{edited.pct[k].toFixed(1)}p</span>
                   {bench != null && (
                     <button
                       type="button"

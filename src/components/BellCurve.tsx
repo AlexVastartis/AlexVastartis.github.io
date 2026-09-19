@@ -107,7 +107,7 @@ export default function BellCurve({
           criterion
             ? CATEGORIES[criterion].stats.map((sk) => ({
                 label: STATS[sk].label,
-                value: `${(STATS[sk].format ?? String)(readout.stats[sk])} · ${Math.round(readout.pct[sk])}th`,
+                value: `${(STATS[sk].format ?? String)(readout.stats[sk])} · ${readout.pct[sk].toFixed(1)}`,
               }))
             : [
                 { label: 'Rank', value: `#${readout.ratingRank}` },

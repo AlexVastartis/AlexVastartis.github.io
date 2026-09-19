@@ -21,7 +21,7 @@ originally compiled from live in `data/archive/` and are read by nothing.
 | --- | --- | --- | --- |
 | `_staging_blue_blood_rating.csv` | `key,value` | the rating knobs: trim fraction, trend window, `ap_from`, `title_selectors`, the three `tier_anchor_N` (last program in grouping N, 1-based) | hand |
 | `_staging_ap_poll_success.csv` | `school,season` → weeks in poll / top-10 / top-5 / at #1, and `final_rank` | **AP Poll Success** + trajectory | hand |
-| `_staging_wins.csv` | `school,season` → `wins,losses,ties,wins_vacated,losses_vacated,vacated_note,source` | **Wins** + trajectory; `wins_vacated`/`losses_vacated` feed the **NCAA official** toggle only | hand. `source=history` per-season W-L-T (1936→present for all; 1869–1935 where game-level records survive). `source=ncaa` = one calibration row per program in `_staging_wins_ncaa.csv` (all-time matched to the NCAA FBS Records book). `source=ncaa-history` = per-season rows for programs with no game data and no book line. `source=manual` = hand lumps / corrections |
+| `_staging_wins.csv` | `school,season` → `wins,losses,ties,wins_vacated,losses_vacated,vacated_note,source` | **Wins** + trajectory; `wins_vacated`/`losses_vacated` feed the **NCAA official** toggle only (dated to their season, so the As Of snapshots and By Decade columns honor it too) | hand. `source=history` per-season W-L-T (1936→present for all; 1869–1935 where game-level records survive). `source=ncaa` = one calibration row per program in `_staging_wins_ncaa.csv` (all-time matched to the NCAA FBS Records book). `source=ncaa-history` = per-season rows for programs with no game data and no book line. `source=manual` = hand lumps / corrections |
 | `_staging_wins_ncaa.csv` | `school` → `ncaa_wins,ncaa_losses,ncaa_ties,ncaa_pct,through` | the pre-1936 `source=ncaa` calibration rows in `_staging_wins.csv` (the ~33 programs the book lists) | hand — NCAA "FBS Records" book, "All-Time Won-Loss Records" (official, through 2024) |
 | `_staging_championships.csv` | one title: `school,year,scope,selector,conference,shared,status,source` | **Championships** + trajectory | hand |
 | `_staging_all_americans.csv` | one consensus selection: `year,school,player,pos,consensus,unanimous,source` | **All-Americans** + trajectory | hand (NCAA record book) |
@@ -36,6 +36,9 @@ originally compiled from live in `data/archive/` and are read by nothing.
 `scope=national`: a title **year** counts once when the school has ≥1 row whose
 `selector` is in `title_selectors` and `status` is not `not-claimed`. `selector=claim`
 (a school's own unbacked claim) never counts.
+`status=vacated` (USC 2004): counts in the **as played** view only — the **NCAA official** toggle
+strikes it, in the present day and in every point-in-time snapshot. A year is struck only if
+EVERY counting row for it is vacated.
 `scope=conference`: `shared=1` for a co-championship (still one). While a program has
 **no** conference rows it falls back to its `conference_titles` in the summary file.
 

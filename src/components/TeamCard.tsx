@@ -35,10 +35,13 @@ interface Props {
   statMax?: Record<StatKey, number> | null;
   /** panel/what-if: the editor, rendered in place of the stats-mode body */
   whatIf?: ReactNode;
+  /** panel: open the full-screen rating-math audit view */
+  onOpenRatingMath?: () => void;
 }
 
 export default function TeamCard({
   team, runBase, variant = 'panel', onClear, onJump, onOpenWhatIf, onPreviewProjection, statMax, whatIf,
+  onOpenRatingMath,
 }: Props) {
   const [tab, setTab] = useState<'stats' | 'analysis'>('stats');
 
@@ -67,18 +70,30 @@ export default function TeamCard({
       <PanelHeader team={team} size="full" onClear={onClear} onJump={onJump} />
 
       {!inWhatIf && (
-        <div data-map="the panel view toggle" className="mt-3 flex rounded-md text-[11px] font-semibold ring-1 ring-line">
-          {(['stats', 'analysis'] as const).map((t) => (
+        <div className="mt-3 flex items-center gap-2">
+          <div data-map="the panel view toggle" className="flex flex-1 rounded-md text-[11px] font-semibold ring-1 ring-line">
+            {(['stats', 'analysis'] as const).map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`flex-1 rounded-[5px] px-2 py-1 capitalize ${
+                  tab === t ? 'bg-accent text-white' : 'text-muted hover:bg-paper/60'
+                }`}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+          {onOpenRatingMath && (
             <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`flex-1 rounded-[5px] px-2 py-1 capitalize ${
-                tab === t ? 'bg-accent text-white' : 'text-muted hover:bg-paper/60'
-              }`}
+              data-map="the show-the-math button"
+              onClick={onOpenRatingMath}
+              title="Open the full rating-math breakdown — every stat, every percentile, every decade"
+              className="shrink-0 rounded-md px-2 py-1 text-[11px] font-semibold text-muted ring-1 ring-line hover:bg-paper/60 hover:text-accent"
             >
-              {t}
+              Show the math
             </button>
-          ))}
+          )}
         </div>
       )}
 

@@ -1,5 +1,5 @@
 import { TIMEPOINT_YEARS, type ViewState, type WinsMode } from '../data/useViewState';
-import { SHOW_TIMEPOINTS } from '../config/flags';
+import { SHOW_TIMEPOINTS, SHOW_WINS_TOGGLE } from '../config/flags';
 
 interface Props {
   conferences: string[];
@@ -16,6 +16,10 @@ interface Props {
   /** point-in-time snapshot year; null = present day */
   year: number | null;
   onSetYear: (y: number | null) => void;
+  /** the By Decade view already spans every point in time — no As Of picker there */
+  hideYear?: boolean;
+  /** a phone: conference chips and the team picker only — no wins toggle, no As Of */
+  compact?: boolean;
 }
 
 const WINS: { value: WinsMode; label: string }[] = [
@@ -36,6 +40,8 @@ export default function Controls({
   onSetWins,
   year,
   onSetYear,
+  hideYear,
+  compact,
 }: Props) {
   return (
     <div
@@ -43,7 +49,7 @@ export default function Controls({
       className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-line bg-panel/40 px-3 py-2"
     >
       <div data-map="the conference filters" className="flex flex-wrap items-center gap-1.5">
-        <span className="mr-1 text-xs font-semibold uppercase tracking-wide text-muted">Conference</span>
+        <span className="mr-1 hidden text-xs font-semibold uppercase tracking-wide text-muted sm:inline">Conference</span>
         <button
           onClick={onClearConferences}
           title="Show every FBS program"
@@ -104,10 +110,11 @@ export default function Controls({
           )}
         </label>
 
+        {SHOW_WINS_TOGGLE && !compact && (
         <div
           data-map="the vacated wins toggle"
-          className={`flex rounded-md ring-1 ring-line ${year ? 'pointer-events-none opacity-40' : ''}`}
-          title={year ? 'Not adjustable in a point-in-time snapshot' : 'NCAA official record (default) — or add back NCAA-vacated wins to see the games as they were played'}
+          className="flex rounded-md ring-1 ring-line"
+          title="NCAA official record (default) — or add back the wins and national titles the NCAA vacated, to see the games as they were played. Applies to every As Of year too."
         >
           {WINS.map((w) => (
             <button
@@ -121,8 +128,23 @@ export default function Controls({
             </button>
           ))}
         </div>
+        )}
 
-        {SHOW_TIMEPOINTS && (
+        {/* the switch is hidden, but ?wins=asPlayed still works — so the mode is never invisible */}
+        {!SHOW_WINS_TOGGLE && !compact && wins === 'asPlayed' && (
+          <span
+            data-map="the as played chip"
+            className="inline-flex items-center gap-1 rounded-md border border-accent bg-accent/10 px-2 py-1 text-xs font-semibold text-accent"
+            title="Counting the wins and national titles the NCAA vacated, as they were played. Click ✕ for the NCAA official record."
+          >
+            As played
+            <button onClick={() => onSetWins('official')} aria-label="Back to the NCAA official record" className="text-muted hover:text-accent">
+              ✕
+            </button>
+          </span>
+        )}
+
+        {SHOW_TIMEPOINTS && !hideYear && !compact && (
           <label
             data-map="the year picker"
             className="flex items-center gap-1.5 text-sm"
@@ -137,7 +159,7 @@ export default function Controls({
               }`}
             >
               <option value="">Now</option>
-              {TIMEPOINT_YEARS.map((y) => (
+              {[...TIMEPOINT_YEARS].reverse().map((y) => (
                 <option key={y} value={y}>{y} off-season</option>
               ))}
             </select>

@@ -65,6 +65,23 @@ export interface Team extends WinsVariant {
       allRaw?: number; recRaw?: number; allPct?: number; recPct?: number;
     }[];
   };
+  /** point-in-time snapshots only: the real "10 years prior" trajectory for that
+   *  off-season — same 5-stat method as `trend`, computed as of that year, ranked
+   *  only among that snapshot's own eligible field. Audit data for the rating-math
+   *  view; `trend` above (the live As-Of arrow) stays neutral regardless. */
+  decadeTrend?: {
+    dir: TrendDir;
+    strong: boolean;
+    insufficient: boolean;
+    delta: number;
+    recentRating: number;
+    baselineRating: number;
+    recentSeasons: number;
+    totalSeasons: number;
+    recentRange: string;
+    fullRange: string;
+    detail: { key: StatKey; allRaw: number; allPct: number; recRaw: number; recPct: number }[];
+  };
   label: {
     /** ranked-list row sub-line — the trajectory, described (overridable) */
     standard: string;
@@ -73,7 +90,11 @@ export interface Team extends WinsVariant {
     /** the hand-written tagline */
     personal: string;
   };
-  variants: { asPlayed: WinsVariant; official: WinsVariant };
+  /** `official` is absent in a point-in-time snapshot — there it IS the top level */
+  variants: {
+    asPlayed: WinsVariant & Partial<Pick<Team, 'trend' | 'label' | 'projectionScenario'>>;
+    official?: WinsVariant & Partial<Pick<Team, 'trend' | 'label' | 'projectionScenario'>>;
+  };
   /** concrete numbers behind the projection blurb + the what-if "Preview" run */
   projectionScenario: ProjectionScenario | null;
 }

@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { CATEGORIES, CATEGORY_ORDER } from '../config/stats';
 import type { CategoryKey } from '../types';
 import type { ViewMode } from '../data/useViewState';
+import { SHOW_TIMEPOINTS } from '../config/flags';
 
 export type Subject = 'rating' | CategoryKey;
 
@@ -16,11 +17,13 @@ const VIEW_LABEL: Record<ViewMode, string> = {
   list: 'List View',
   plot: 'Chart View',
   curve: 'Bell Curve',
+  decades: 'By Decade',
 };
 const VIEW_HINT: Record<ViewMode, string> = {
   list: 'A sortable ranked list of every program on this criterion',
   plot: 'Each program plotted as a logo on the criterion’s two stats',
   curve: 'Every program placed on the normal curve by its criterion score',
+  decades: 'The top 25 programs at every point in time, by Blue Blood Rating rank',
 };
 
 interface Props {
@@ -30,13 +33,20 @@ interface Props {
   search: string;
   notesOn: boolean;
   onToggleNotes: () => void;
+  /** a phone — the chart views aren't offered there (a direct link still opens one) */
+  mobile?: boolean;
 }
 
 /** the fixed control row: the primary Blue Blood Rating, the five criteria, and
  *  (for a criterion) the three visualisations. Always in the same place. */
-export default function ViewTabs({ subject, view, onSetView, search, notesOn, onToggleNotes }: Props) {
-  // the overall rating has no two-stat scatter and no bell-curve view — list only
-  const views: ViewMode[] = subject === 'rating' ? [] : ['list', 'plot', 'curve'];
+export default function ViewTabs({ subject, view, onSetView, search, notesOn, onToggleNotes, mobile }: Props) {
+  // the overall rating has no two-stat scatter and no bell-curve view — the list, plus
+  // (with the As Of snapshots on) the top 25 through the decades
+  // On a phone the charts aren't offered (they don't read well that small) — but if a direct link
+  // landed on one, keep the switch so there's a way back to the list.
+  const offerCharts = !mobile || view !== 'list';
+  const views: ViewMode[] = !offerCharts ? []
+    : subject === 'rating' ? (SHOW_TIMEPOINTS ? ['list', 'decades'] : []) : ['list', 'plot', 'curve'];
 
   const critClass = ({ isActive }: { isActive: boolean }) =>
     `rounded-full px-3 py-1 text-sm font-medium ring-1 ring-line ${
@@ -60,7 +70,8 @@ export default function ViewTabs({ subject, view, onSetView, search, notesOn, on
         ✎
       </button>
 
-      <nav className="flex flex-wrap items-center gap-1.5">
+      {/* one swipeable row on a phone (saves two lines of height), wrapping from sm up */}
+      <nav className="flex min-w-0 max-w-full flex-nowrap items-center gap-1.5 overflow-x-auto whitespace-nowrap [scrollbar-width:none] sm:flex-wrap sm:overflow-visible sm:whitespace-normal">
         <NavLink
           to={{ pathname: '/', search }}
           end

@@ -28,7 +28,7 @@ export function PanelStatsFull({ team }: { team: Team }) {
               title={`${CATEGORIES[ck].label} — ${CATEGORIES[ck].blurb}`}
             >
               <span>{CATEGORIES[ck].label}</span>
-              <span className="tabular-nums">{Math.round(team.critScore[ck])}</span>
+              <span className="tabular-nums">{team.critScore[ck].toFixed(1)}</span>
             </dt>
             {CATEGORIES[ck].stats.map((sk) => {
               const isTrim = trimmed.has(sk);
@@ -39,7 +39,7 @@ export function PanelStatsFull({ team }: { team: Team }) {
                   key={sk}
                   className={`flex items-center gap-2 ${isTrim ? 'opacity-40' : ''}`}
                   title={
-                    `${STATS[sk].label}: ${raw} — ${Math.round(pctl)}th percentile of 136`
+                    `${STATS[sk].label}: ${raw} — ${pctl.toFixed(1)} percentile of 136`
                     + (isTrim ? ' (this program’s high/low outlier, dropped from its rating)' : '')
                   }
                 >
@@ -55,8 +55,8 @@ export function PanelStatsFull({ team }: { team: Team }) {
                   <span className={`w-14 shrink-0 text-right text-xs tabular-nums text-muted ${isTrim ? 'line-through' : ''}`}>
                     {raw}
                   </span>
-                  <span className={`w-9 shrink-0 text-right text-xs font-medium tabular-nums ${isTrim ? 'line-through' : ''}`}>
-                    {Math.round(pctl)}
+                  <span className={`w-11 shrink-0 text-right text-xs tabular-nums text-muted ${isTrim ? 'line-through' : ''}`}>
+                    {pctl.toFixed(1)}
                   </span>
                 </div>
               );
@@ -74,7 +74,7 @@ function MiniStat({ team, sk, trimmed }: { team: Team; sk: StatKey; trimmed: boo
   return (
     <span
       className={`flex min-w-0 items-center gap-1.5 ${trimmed ? 'opacity-50' : ''}`}
-      title={`${STATS[sk].label}: ${(STATS[sk].format ?? String)(team.stats[sk])} — ${Math.round(pctl)}th percentile`}
+      title={`${STATS[sk].label}: ${(STATS[sk].format ?? String)(team.stats[sk])} — ${pctl.toFixed(1)} percentile`}
     >
       <span className={`min-w-0 flex-1 truncate text-muted ${trimmed ? 'line-through' : ''}`}>{STATS[sk].label}</span>
       <span className="h-1 w-8 shrink-0 overflow-hidden rounded-full bg-line/60">
@@ -83,7 +83,7 @@ function MiniStat({ team, sk, trimmed }: { team: Team; sk: StatKey; trimmed: boo
           style={{ width: `${pctl}%`, background: trimmed ? 'rgb(var(--muted))' : team.primary }}
         />
       </span>
-      <span className="w-4 shrink-0 text-right tabular-nums">{Math.round(pctl)}</span>
+      <span className="w-8 shrink-0 text-right tabular-nums">{pctl.toFixed(1)}</span>
     </span>
   );
 }
@@ -126,7 +126,7 @@ export function PanelStatsStrip({ team }: { team: Team }) {
             <div
               key={sk}
               className={`min-w-0 ${isTrim ? 'opacity-50' : ''}`}
-              title={`${STATS[sk].label}: ${(STATS[sk].format ?? String)(team.stats[sk])} — ${Math.round(pctl)}th percentile`}
+              title={`${STATS[sk].label}: ${(STATS[sk].format ?? String)(team.stats[sk])} — ${pctl.toFixed(1)} percentile`}
             >
               <span className={`block truncate text-muted ${isTrim ? 'line-through' : ''}`}>{STATS[sk].label}</span>
               <span className="mt-0.5 flex items-center gap-1.5">
@@ -136,7 +136,7 @@ export function PanelStatsStrip({ team }: { team: Team }) {
                     style={{ width: `${pctl}%`, background: isTrim ? 'rgb(var(--muted))' : team.primary }}
                   />
                 </span>
-                <span className="w-4 shrink-0 text-right tabular-nums">{Math.round(pctl)}</span>
+                <span className="w-8 shrink-0 text-right tabular-nums">{pctl.toFixed(1)}</span>
               </span>
             </div>
           );
