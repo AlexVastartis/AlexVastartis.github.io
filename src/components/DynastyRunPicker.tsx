@@ -11,7 +11,7 @@ interface Props {
   team: Team;
   statMax: Record<StatKey, number>;
   /** load these what-if targets (same shape the "preview" button uses) */
-  onApply: (targets: Partial<Record<StatKey, number>>) => void;
+  onApply: (targets: Partial<Record<StatKey, number>>, coachId: string) => void;
 }
 
 /**
@@ -31,7 +31,7 @@ export default function DynastyRunPicker({ team, statMax, onApply }: Props) {
           <button
             key={run.id}
             type="button"
-            onClick={() => onApply(runTargets(team, run, statMax))}
+            onClick={() => onApply(runTargets(team, run, statMax), run.id)}
             onMouseEnter={() => setHovered(run)}
             onMouseLeave={() => setHovered((h) => (h === run ? null : h))}
             onFocus={() => setHovered(run)}

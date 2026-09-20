@@ -26,6 +26,9 @@ export interface ViewState {
   map: boolean;
   /** the highlighted program (school name or slug) — in the URL so a link can point at one team */
   team: string | null;
+  /** a dynasty coach's run applied to that team (id from config/dynastyRuns, e.g. `saban`) —
+   *  in the URL so a link can say "Indiana with Saban" */
+  coach: string | null;
 }
 
 /** filter/display state, kept in the URL query string so views are shareable */
@@ -46,6 +49,7 @@ export function useViewState() {
       notes: params.get('notes') === '1',
       map: SHOW_ELEMENT_MAP && params.get('map') === '1',
       team: params.get('team') || null,
+      coach: params.get('coach') || null,
     }),
     [params],
   );
@@ -83,6 +87,10 @@ export function useViewState() {
           if ('team' in patch) {
             if (patch.team) next.set('team', patch.team);
             else next.delete('team');
+          }
+          if ('coach' in patch) {
+            if (patch.coach) next.set('coach', patch.coach);
+            else next.delete('coach');
           }
           if ('map' in patch) {
             if (patch.map) next.set('map', '1');

@@ -22,6 +22,7 @@ import { CATEGORIES } from './config/stats';
 import { SHOW_ELEMENT_MAP, SHOW_LOGO_TOGGLE, SHOW_TIMEPOINTS } from './config/flags';
 import { CONF_GROUPS, confGroup } from './config/conferences';
 import { deriveScenario, statSliderMax } from './lib/scenario';
+import { DYNASTY_RUNS, runTargets } from './config/dynastyRuns';
 import Ranking from './routes/Ranking';
 import TheChartStandalone from './routes/TheChartStandalone';
 import CriteriaChart from './routes/CriteriaChart';
@@ -80,12 +81,22 @@ function Layout() {
   // choice is saved — opening someone's link never overwrites your own favourite.
   const [storedFavorite, storeFavorite] = useFavorite();
   const favorite = state.team ?? storedFavorite;
-  const setFavorite = useCallback(
+  // (used where the app itself picks the team — the default, and echoing a saved pick)
+  const assignFavorite = useCallback(
     (school: string | null) => {
       update({ team: school });
       storeFavorite(school);
     },
     [update, storeFavorite],
+  );
+  // (a user's pick — a different team starts clean, so any coach in the URL is dropped)
+  const setFavorite = useCallback(
+    (school: string | null) => {
+      if (school === favorite) return;
+      update({ team: school, coach: null });
+      storeFavorite(school);
+    },
+    [update, storeFavorite, favorite],
   );
 
   // what-if editor: edited raw stats for the highlighted team (reset whenever it changes)
@@ -151,9 +162,9 @@ function Layout() {
     if (favorite && !(activeYear == null && !findTeam(data, favorite))) return;
     // default to #1 on first load anywhere, and any time the rating page has no team
     if (firstRun || subject === 'rating') {
-      setFavorite(data.teams.find((t) => t.ratingRank === 1)?.school ?? null);
+      assignFavorite(data.teams.find((t) => t.ratingRank === 1)?.school ?? null);
     }
-  }, [data, favorite, subject, setFavorite, activeYear]);
+  }, [data, favorite, subject, assignFavorite, activeYear]);
 
   const favTeam = favorite ? baseTeams.find((t) => t.school === favorite) ?? null : null;
   // the program's REAL, unedited line — coach-run "preview" always builds from this
@@ -163,6 +174,47 @@ function Layout() {
     () => (data ? statSliderMax(data.teams) : null),
     [data],
   );
+  // ---- coach runs: ?coach=saban lays that coach's tenure onto the highlighted team ----
+  const coachRun = state.coach ? DYNASTY_RUNS.find((r) => r.id === state.coach) : undefined;
+  // preview a set of targets as a what-if on the highlighted team. Targets are built from the
+  // REAL line (favBase), so diffing against it gives base + coach, never a compounding stack
+  const previewTargets = (targets: Partial<Record<StatKey, number>>) => {
+    const ref = favBase ?? favTeam;
+    if (!ref) return;
+    const diff: Partial<Record<StatKey, number>> = {};
+    for (const [k, v] of Object.entries(targets) as [StatKey, number][]) {
+      if (Math.abs(v - ref.stats[k]) > (k === 'winPct' ? 0.0005 : 0.5)) diff[k] = v;
+    }
+    setWhatIf(diff);
+    setWhatIfOpen(true);
+  };
+  // apply a coach named in the URL once the data is in (a link opened cold), and again if the
+  // team / record / year under it changes. Skipped on a phone (no panel) and in a snapshot.
+  const appliedCoach = useRef<string | null>(null);
+  useEffect(() => {
+    if (!state.coach) {
+      appliedCoach.current = null;
+      return;
+    }
+    if (!data) return;
+    if (!coachRun) {
+      update({ coach: null }); // an unknown coach id — drop it
+      return;
+    }
+    if (!favBase || !statMax || snapshot || mobile) return;
+    const key = [favBase.school, coachRun.id, wins, activeYear].join('|');
+    if (appliedCoach.current === key) return;
+    appliedCoach.current = key;
+    previewTargets(runTargets(favBase, coachRun, statMax));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.coach, coachRun, data, favBase, statMax, snapshot, mobile, wins, activeYear]);
+  // leaving the what-if (reset / close / a manual slider edit) leaves the coach too — the URL
+  // only ever names a coach when the scenario on screen IS that coach's run
+  const resetWhatIf = () => {
+    setWhatIf({});
+    if (state.coach) update({ coach: null });
+  };
+
   const jumpToFavorite = () => {
     if (!favorite) return;
     const el = document.querySelector<HTMLElement>(`[data-school="${CSS.escape(favorite)}"]`);
@@ -251,16 +303,9 @@ function Layout() {
                   onJump={jumpToFavorite}
                   onOpenWhatIf={snapshot ? undefined : () => setWhatIfOpen(true)}
                   onOpenRatingMath={snapshot ? undefined : () => setRatingMathOpen(true)}
-                  onPreviewProjection={snapshot ? undefined : (targets) => {
-                    // targets are computed from the REAL line (runBase), so diffing
-                    // against that real line gives base+coach, not a compounding stack
-                    const ref = favBase ?? favTeam;
-                    const diff: Partial<Record<StatKey, number>> = {};
-                    for (const [k, v] of Object.entries(targets) as [StatKey, number][]) {
-                      if (Math.abs(v - ref.stats[k]) > (k === 'winPct' ? 0.0005 : 0.5)) diff[k] = v;
-                    }
-                    setWhatIf(diff);
-                    setWhatIfOpen(true);
+                  onPreviewProjection={snapshot ? undefined : (targets, coachId) => {
+                    previewTargets(targets);
+                    update({ coach: coachId ?? null });
                   }}
                   whatIf={
                     whatIfOpen && statMax ? (
@@ -270,9 +315,9 @@ function Layout() {
                         overrides={scenario ? whatIf : {}}
                         statMax={statMax}
                         benchmark={benchmark}
-                        onChange={setWhatIf}
-                        onReset={() => setWhatIf({})}
-                        onClose={() => { setWhatIfOpen(false); setWhatIf({}); }}
+                        onChange={(v) => { setWhatIf(v); if (state.coach) update({ coach: null }); }}
+                        onReset={resetWhatIf}
+                        onClose={() => { setWhatIfOpen(false); resetWhatIf(); }}
                       />
                     ) : undefined
                   }
@@ -328,7 +373,7 @@ function Layout() {
                     live re-ranking
                   </span>
                   <button
-                    onClick={() => setWhatIf({})}
+                    onClick={resetWhatIf}
                     className="ml-auto shrink-0 rounded border border-whatif/50 px-1.5 py-0.5 uppercase tracking-wide hover:bg-whatif/20"
                   >
                     Reset

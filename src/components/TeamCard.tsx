@@ -28,7 +28,8 @@ interface Props {
   /** panel/default: show the "What if?" button, which calls this */
   onOpenWhatIf?: () => void;
   /** panel: load a set of what-if targets (from the coach-run row) */
-  onPreviewProjection?: (targets: Partial<Record<StatKey, number>>) => void;
+  /** `coachId` is set when the targets are a coach's run (so it can go in the URL) */
+  onPreviewProjection?: (targets: Partial<Record<StatKey, number>>, coachId?: string) => void;
   /** the program's REAL line — a coach run is always base + coach, never a compounding stack */
   runBase?: Team;
   /** slider ceilings — needed to size a coach run's targets */
