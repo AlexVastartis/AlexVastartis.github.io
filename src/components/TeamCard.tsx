@@ -58,7 +58,9 @@ export default function TeamCard({
   }
 
   const inWhatIf = whatIf != null;
-  const coachRuns = team.projectionScenario && onPreviewProjection && statMax
+  // any program can take a coach's run — it only needs the team's own stats. (This used to
+  // require `projectionScenario`, which only exists at 60+ rating, so The Field had no coaches.)
+  const coachRuns = onPreviewProjection && statMax
     ? <DynastyRunPicker team={runBase ?? team} statMax={statMax} onApply={onPreviewProjection} />
     : null;
 

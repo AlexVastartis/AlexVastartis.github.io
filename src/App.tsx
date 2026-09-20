@@ -251,7 +251,7 @@ function Layout() {
                   onJump={jumpToFavorite}
                   onOpenWhatIf={snapshot ? undefined : () => setWhatIfOpen(true)}
                   onOpenRatingMath={snapshot ? undefined : () => setRatingMathOpen(true)}
-                  onPreviewProjection={(targets) => {
+                  onPreviewProjection={snapshot ? undefined : (targets) => {
                     // targets are computed from the REAL line (runBase), so diffing
                     // against that real line gives base+coach, not a compounding stack
                     const ref = favBase ?? favTeam;
