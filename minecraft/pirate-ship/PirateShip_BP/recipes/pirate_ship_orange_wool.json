@@ -1,0 +1,27 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "pirate:pirate_ship_from_orange_wool"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      " W ",
+      "WWW",
+      "PPP"
+    ],
+    "key": {
+      "W": {
+        "item": "minecraft:orange_wool"
+      },
+      "P": {
+        "tag": "minecraft:planks"
+      }
+    },
+    "result": {
+      "item": "pirate:pirate_ship"
+    }
+  }
+}

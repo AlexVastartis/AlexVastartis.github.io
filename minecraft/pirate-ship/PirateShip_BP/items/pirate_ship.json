@@ -1,0 +1,16 @@
+{
+  "format_version": "1.21.40",
+  "minecraft:item": {
+    "description": {
+      "identifier": "pirate:pirate_ship",
+      "menu_category": { "category": "items" }
+    },
+    "components": {
+      "minecraft:display_name": { "value": "Pirate Ship" },
+      "minecraft:icon": "pirate_ship",
+      "minecraft:max_stack_size": 1,
+      "minecraft:liquid_clipped": true,
+      "minecraft:entity_placer": { "entity": "pirate:ship" }
+    }
+  }
+}

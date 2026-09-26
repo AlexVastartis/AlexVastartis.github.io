@@ -1,0 +1,60 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.pirate_ship": {
+      "geometry": "Geometry.hull",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.hull"
+      ]
+    },
+    "controller.render.pirate_ship_sails": {
+      "arrays": {
+        "textures": {
+          "Array.sails": [
+            "Texture.sail_white",
+            "Texture.sail_orange",
+            "Texture.sail_magenta",
+            "Texture.sail_light_blue",
+            "Texture.sail_yellow",
+            "Texture.sail_lime",
+            "Texture.sail_pink",
+            "Texture.sail_gray",
+            "Texture.sail_light_gray",
+            "Texture.sail_cyan",
+            "Texture.sail_purple",
+            "Texture.sail_blue",
+            "Texture.sail_brown",
+            "Texture.sail_green",
+            "Texture.sail_red",
+            "Texture.sail_black"
+          ]
+        }
+      },
+      "geometry": "Geometry.sails",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Array.sails[query.property('pirate:sail_color')]"
+      ]
+    },
+    "controller.render.pirate_ship_part": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ]
+    }
+  }
+}

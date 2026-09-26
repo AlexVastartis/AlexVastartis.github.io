@@ -1,0 +1,7 @@
+{
+  "resource_pack_name": "pirate_ship",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "pirate_ship": { "textures": "textures/items/pirate_ship" }
+  }
+}

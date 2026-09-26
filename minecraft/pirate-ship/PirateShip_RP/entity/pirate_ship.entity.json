@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "pirate:ship",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "hull": "textures/entity/pirate_ship/hull",
+        "sail_white": "textures/entity/pirate_ship/sail_white",
+        "sail_orange": "textures/entity/pirate_ship/sail_orange",
+        "sail_magenta": "textures/entity/pirate_ship/sail_magenta",
+        "sail_light_blue": "textures/entity/pirate_ship/sail_light_blue",
+        "sail_yellow": "textures/entity/pirate_ship/sail_yellow",
+        "sail_lime": "textures/entity/pirate_ship/sail_lime",
+        "sail_pink": "textures/entity/pirate_ship/sail_pink",
+        "sail_gray": "textures/entity/pirate_ship/sail_gray",
+        "sail_light_gray": "textures/entity/pirate_ship/sail_light_gray",
+        "sail_cyan": "textures/entity/pirate_ship/sail_cyan",
+        "sail_purple": "textures/entity/pirate_ship/sail_purple",
+        "sail_blue": "textures/entity/pirate_ship/sail_blue",
+        "sail_brown": "textures/entity/pirate_ship/sail_brown",
+        "sail_green": "textures/entity/pirate_ship/sail_green",
+        "sail_red": "textures/entity/pirate_ship/sail_red",
+        "sail_black": "textures/entity/pirate_ship/sail_black"
+      },
+      "geometry": {
+        "hull": "geometry.pirate_ship",
+        "sails": "geometry.pirate_ship_sails"
+      },
+      "render_controllers": [
+        "controller.render.pirate_ship",
+        "controller.render.pirate_ship_sails"
+      ]
+    }
+  }
+}

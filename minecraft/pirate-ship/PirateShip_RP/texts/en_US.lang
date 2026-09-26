@@ -1,0 +1,6 @@
+pack.name=Pirate Ship
+pack.description=A sailable pirate ship with a captain's chest and dyeable sails.
+entity.pirate:ship.name=Pirate Ship
+entity.pirate:ship_helm.name=Ship's Wheel
+entity.pirate:ship_chest.name=Captain's Chest
+item.pirate:pirate_ship=Pirate Ship

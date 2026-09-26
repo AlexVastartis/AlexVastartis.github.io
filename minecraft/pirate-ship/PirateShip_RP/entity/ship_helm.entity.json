@@ -1,0 +1,12 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "pirate:ship_helm",
+      "materials": { "default": "entity_alphatest" },
+      "textures": { "default": "textures/entity/pirate_ship/hull" },
+      "geometry": { "default": "geometry.pirate_ship_helm" },
+      "render_controllers": ["controller.render.pirate_ship_part"]
+    }
+  }
+}

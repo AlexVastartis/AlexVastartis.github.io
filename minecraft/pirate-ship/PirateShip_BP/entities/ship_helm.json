@@ -1,0 +1,520 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "pirate:ship_helm",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "pirate_ship_helm",
+          "inanimate"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 1.2,
+        "height": 1.8
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1
+      },
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "is_riding",
+                    "subject": "other",
+                    "value": false
+                  }
+                ]
+              }
+            },
+            "deals_damage": true
+          },
+          {
+            "cause": "all",
+            "deals_damage": false
+          }
+        ]
+      },
+      "minecraft:breathable": {
+        "breathes_air": true,
+        "breathes_water": true
+      },
+      "minecraft:fire_immune": {},
+      "minecraft:persistent": {},
+      "minecraft:rideable": {
+        "seat_count": 1,
+        "family_types": [
+          "player"
+        ],
+        "interact_text": "Take the Helm",
+        "pull_in_entities": false,
+        "seats": [
+          {
+            "position": [
+              0,
+              0.3,
+              -1.0
+            ]
+          }
+        ]
+      },
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:white_dye"
+                  },
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:bone_meal"
+                  }
+                ]
+              },
+              "event": "pirate:dye_0",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:orange_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_1",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:magenta_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_2",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:light_blue_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_3",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:yellow_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_4",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:lime_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_5",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:pink_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_6",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:gray_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_7",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:light_gray_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_8",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:cyan_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_9",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:purple_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_10",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:blue_dye"
+                  },
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:lapis_lazuli"
+                  }
+                ]
+              },
+              "event": "pirate:dye_11",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:brown_dye"
+                  },
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:cocoa_beans"
+                  }
+                ]
+              },
+              "event": "pirate:dye_12",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:green_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_13",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:red_dye"
+                  }
+                ]
+              },
+              "event": "pirate:dye_14",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          },
+          {
+            "on_interact": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:black_dye"
+                  },
+                  {
+                    "test": "has_equipment",
+                    "domain": "hand",
+                    "subject": "other",
+                    "value": "minecraft:ink_sac"
+                  }
+                ]
+              },
+              "event": "pirate:dye_15",
+              "target": "self"
+            },
+            "use_item": true,
+            "interact_text": "Dye Sails"
+          }
+        ]
+      }
+    },
+    "component_groups": {
+      "pirate:dyed": {}
+    },
+    "events": {
+      "pirate:dye_0": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_1": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_2": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_3": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_4": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_5": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_6": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_7": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_8": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_9": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_10": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_11": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_12": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_13": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_14": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      },
+      "pirate:dye_15": {
+        "add": {
+          "component_groups": [
+            "pirate:dyed"
+          ]
+        }
+      }
+    }
+  }
+}

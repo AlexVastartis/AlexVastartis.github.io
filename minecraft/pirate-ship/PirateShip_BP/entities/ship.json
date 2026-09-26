@@ -1,0 +1,25 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "pirate:ship",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "properties": {
+        "pirate:sail_color": { "type": "int", "range": [0, 15], "default": 0, "client_sync": true }
+      }
+    },
+    "components": {
+      "minecraft:type_family": { "family": ["pirate_ship", "inanimate"] },
+      "minecraft:collision_box": { "width": 1, "height": 1 },
+      "minecraft:physics": { "has_gravity": false, "has_collision": false },
+      "minecraft:pushable": { "is_pushable": false, "is_pushable_by_piston": false },
+      "minecraft:knockback_resistance": { "value": 1 },
+      "minecraft:damage_sensor": { "triggers": { "cause": "all", "deals_damage": false } },
+      "minecraft:health": { "value": 100, "max": 100 },
+      "minecraft:breathable": { "breathes_air": true, "breathes_water": true },
+      "minecraft:fire_immune": {},
+      "minecraft:persistent": {}
+    }
+  }
+}
