@@ -9,8 +9,11 @@ roger. Anyone standing on deck sails along with it.
 
 ## Install
 
-1. Download **`PirateShip.mcaddon`** from this folder's `dist/` directory (or
-   from `/minecraft/PirateShip.mcaddon` on the website once it's deployed).
+1. Download **`PirateShip.mcaddon`**:
+   <https://github.com/AlexVastartis/AlexVastartis.github.io/raw/claude/sweet-knuth-kz4a3i/public/minecraft/PirateShip.mcaddon>
+   (after this branch is merged, it's also at `/minecraft/PirateShip.mcaddon` on
+   the website). Running `build.py` also writes a copy to `dist/`, which isn't
+   saved to git.
 2. Open the file on the device running Minecraft (double-click it on Windows,
    or tap it and choose "Open in Minecraft" on a phone or tablet). Minecraft
    imports both packs.
