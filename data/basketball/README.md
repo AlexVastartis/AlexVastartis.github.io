@@ -64,9 +64,21 @@ mapping (`nflDraftPicks` = Sweet 16s, `firstRoundPicks` = Final Fours, …).
   game logs start in 1950. They count in full; the As-Of snapshots date them all to 1949.
 - The Sports-Reference win totals are its own; they can differ by a few from each school's
   media guide (exhibition and pre-Division I games).
-- **Logos**: the 136 programs also on BlueBloodFootball reuse those logos. The other 229
-  get monogram badges in their team colours — drop real art into
-  `assets/logos-src-basketball/<slug>.png` (and `-dark.png`) and rebuild.
+- **Logos**: the 136 programs also on BlueBloodFootball reuse those logos; 221 more come
+  from FantasyData's public logo CDN (`scripts/basketball/fetch_logos.py` →
+  `assets/logos-src-basketball/`). Eight have no logo anywhere reachable (Le Moyne,
+  Mercyhurst, New Haven, West Georgia, Lindenwood, Queens, Southern Indiana, Stonehill)
+  and show a monogram badge in their team colours — drop art into
+  `assets/logos-src-basketball/<slug>.png` and rebuild.
+
+### Sources searched that didn't pan out
+
+All-Americans, players of the year and vacated games exist only on sites this environment
+can't reach (sports-reference.com, ncaa.org / fs.ncaa.org, wikipedia/wikidata, espn.com,
+kaggle, collegebasketballdata.com). GitHub, GitLab, npm and PyPI were searched for mirrors:
+the Sports-Reference scrape (octonion/basketball) has no award tables; the Kaggle March
+Madness mirrors carry AP ranks only through 2019 and never the final poll; no public repo
+of consensus All-Americans, award winners or vacated games turned up.
 
 ## Refreshing
 
