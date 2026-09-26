@@ -366,15 +366,17 @@ def detail_cubes():
     # ship's wheel on the quarterdeck, facing the captain (stern side)
     wz = -HELM["a"] * 16
     floor = (HELM["h"] + 1) * 16
-    cs.append(cube(M_TRIM, [-2, floor, wz - 2], [4, 16, 4]))
+    # Every piece sits at its own depth so no two faces share a plane (shared
+    # planes flicker in game).
+    cs.append(cube(M_TRIM, [-2, floor, wz - 2], [4, 18, 4.5]))
     hub_y = floor + 20
-    cs.append(cube(M_GOLD, [-2, hub_y - 2, wz + 2], [4, 4, 3]))
-    for rot in (0, 45, 90, 135):
-        cs.append(cube(M_YARD, [-11, hub_y - 1, wz + 3], [22, 2, 2],
-                       pivot=[0, hub_y, wz + 4], rotation=[0, 0, rot]))
+    cs.append(cube(M_GOLD, [-2.5, hub_y - 2.5, wz + 2], [5, 5, 4.5]))
+    for i, rot in enumerate((0, 45, 90, 135)):
+        cs.append(cube(M_YARD, [-11, hub_y - 1, wz + 3 + 0.5 * i], [22, 2, 1],
+                       pivot=[0, hub_y, wz + 3.5 + 0.5 * i], rotation=[0, 0, rot]))
     for x0, y0, sx, sy in ((-9, hub_y + 7, 18, 2), (-9, hub_y - 9, 18, 2),
                            (-9, hub_y - 7, 2, 14), (7, hub_y - 7, 2, 14)):
-        cs.append(cube(M_TRIM, [x0, y0, wz + 3], [sx, sy, 2]))
+        cs.append(cube(M_TRIM, [x0, y0, wz + 3.25], [sx, sy, 2]))
     # cannons poking out of the bulwarks
     for a in CANNONS:
         z = -a * 16

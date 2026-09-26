@@ -224,7 +224,7 @@ function readHelm(captain, st) {
 
 function isRiding(player) {
   try {
-    return !!player.getComponent("minecraft:riding");
+    return !!player.getComponent("minecraft:riding")?.entityRidingOn;
   } catch {
     return false;
   }
@@ -291,28 +291,34 @@ function tickShip(ship, dim, desired) {
   const newPos = new Map();
 
   if (next) {
-    const turned = next.yaw - old.yaw;
     Object.assign(st, { x: next.x, z: next.z, yaw: next.yaw, yawDirty: true });
     ship.teleport({ x: st.x, y: st.y, z: st.z }, { rotation: { x: 0, y: st.yaw } });
-    // carry everyone on deck along
-    for (const p of players) {
-      if (isRiding(p)) continue;
-      const on = aboard(old, p.location);
-      if (!on) continue;
-      const w = toWorld(st, on.local.a, on.local.b);
-      const pos = { x: w.x, y: p.location.y, z: w.z };
-      const opts = { keepVelocity: true };
-      if (turned !== 0) {
-        const r = p.getRotation();
-        opts.rotation = { x: r.x, y: r.y + turned };
-      }
-      p.teleport(pos, opts);
-      newPos.set(p.id, pos);
-    }
   }
   if (next || tickCount % 20 === 0) {
     helm?.teleport(partPos(st, HELM), { rotation: { x: 0, y: st.yaw } });
     chest?.teleport(partPos(st, CHEST), { rotation: { x: 0, y: st.yaw } });
+  }
+  if (next) {
+    // carry everyone on deck along; one player's failure must not stop the rest
+    const turned = next.yaw - old.yaw;
+    for (const p of players) {
+      try {
+        if (isRiding(p)) continue;
+        const on = aboard(old, p.location);
+        if (!on) continue;
+        const w = toWorld(st, on.local.a, on.local.b);
+        const pos = { x: w.x, y: p.location.y, z: w.z };
+        if (turned !== 0) {
+          const r = p.getRotation();
+          p.teleport(pos, { rotation: { x: r.x, y: r.y + turned } });
+        } else {
+          p.teleport(pos);
+        }
+        newPos.set(p.id, pos);
+      } catch (e) {
+        report(e);
+      }
+    }
   }
   if (st.yawDirty && (tickCount % 20 === 0 || !next)) {
     ship.setDynamicProperty("pirate:yaw", st.yaw);
@@ -322,16 +328,18 @@ function tickShip(ship, dim, desired) {
   // --- the invisible deck
   const deckY = st.y + 1;
   for (const p of players) {
-    if (isRiding(p)) continue;
     const loc = newPos.get(p.id) ?? p.location;
     const on = aboard(st, loc);
     if (!on) continue;
     const { feet, levels } = on;
+    // The captain gets a floor too, so there's one waiting when they let go.
+    const riding = isRiding(p);
 
     // Climb aboard from the water, or step out of a wall the ship turned into.
     let lift;
     const inside = Math.floor(feet + 0.05);
-    if (feet < -1) lift = surfaceFrom(levels, -1);
+    if (riding) lift = undefined;
+    else if (feet < -1) lift = surfaceFrom(levels, -1);
     else if (levels.includes(inside) && feet - inside < 0.9) lift = surfaceFrom(levels, inside);
     if (lift !== undefined) {
       p.teleport({ x: loc.x, y: deckY + lift, z: loc.z });
