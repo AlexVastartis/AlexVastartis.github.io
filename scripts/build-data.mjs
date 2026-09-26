@@ -29,7 +29,7 @@
  * computed once (from asPlayed rows) and shared by both.
  *
  * Run: npm run build:data            (BlueBloodFootball: data/staging → public/data)
- *      npm run build:data:bb         (BlueBloodBasketball: SPORT=basketball,
+ *      npm run build:data:bb         (BlueBloodBasketball: `build-data.mjs basketball`,
  *                                     data/basketball/staging → sites/basketball/public/data)
  */
 import fs from 'node:fs';
@@ -45,7 +45,8 @@ const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
  *   nflDraftPicks → Sweet 16s · firstRoundPicks → Final Fours ·
  *   consensusAA → consensus first-team All-Americans · unanimousAA → national players of the year ·
  *   heismans (panel only) → NCAA tournament appearances. ---- */
-const SPORT = process.env.SPORT === 'basketball' ? 'basketball' : 'football';
+// `node scripts/build-data.mjs basketball` (works on Windows too) or SPORT=basketball
+const SPORT = process.argv.includes('basketball') || process.env.SPORT === 'basketball' ? 'basketball' : 'football';
 const BB = SPORT === 'basketball';
 const STAGING = path.join(REPO, BB ? 'data/basketball/staging' : 'data/staging');
 const PUBLIC = path.join(REPO, BB ? 'sites/basketball/public/data' : 'public/data');

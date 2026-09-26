@@ -6,7 +6,7 @@
   "description": "BlueBloodFootball.com + BlueBloodBasketball.com \u2014 data-driven college football and basketball blue-blood charts",
   "scripts": {
     "dev": "vite",
-    "dev:bb": "vite --mode basketball",
+    "dev:bb": "node scripts/basketball/build-site-assets.mjs && vite --mode basketball",
     "prebuild": "node scripts/build-logo.mjs && node scripts/optimize-logos.mjs",
     "logo": "node scripts/build-logo.mjs",
     "build": "tsc --noEmit && vite build",
@@ -15,7 +15,7 @@
     "preview:bb": "vite preview --mode basketball",
     "logos:optimize": "node scripts/optimize-logos.mjs",
     "build:data": "node scripts/build-data.mjs",
-    "build:data:bb": "SPORT=basketball node scripts/build-data.mjs",
+    "build:data:bb": "node scripts/build-data.mjs basketball",
     "coach-runs:bb": "node scripts/basketball/build-coach-runs.mjs",
     "draft": "node scripts/build-draft.mjs",
     "archive": "node scripts/build-program-archive.mjs",

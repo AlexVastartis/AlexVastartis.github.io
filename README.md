@@ -91,6 +91,25 @@ Edit the CSVs in `data/staging/` by hand and re-run `npm run build:data`. There 
 no fetch step and no API key. `npm run draft` and `npm run archive` are optional
 offline helpers that recompute derived sheets / `PROGRAMS.md` from the staging CSVs.
 
+## Run both sites on a Windows PC
+
+One-time: install **Node.js 20 LTS** (nodejs.org) and **Git for Windows** (git-scm.com).
+Then in PowerShell:
+
+```powershell
+cd $HOME\Desktop
+git clone https://github.com/AlexVastartis/AlexVastartis.github.io.git BlueBloodSites
+cd BlueBloodSites
+git checkout claude/zen-wozniak-hnmi7s
+npm install
+npm run dev:bb      # BlueBloodBasketball → http://localhost:5175
+```
+
+In a second PowerShell window, `npm run dev` serves BlueBloodFootball at
+http://localhost:5174. Stop either with Ctrl+C. The basketball masthead logo is
+`assets\logo-src-basketball.png` — replace that file and restart `npm run dev:bb`.
+When you're ready to publish: `git add -A`, `git commit -m "…"`, `git push`.
+
 ## Two sites
 
 | | Football | Basketball |
