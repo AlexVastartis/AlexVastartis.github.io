@@ -243,7 +243,7 @@ function Layout() {
         <div className="flex min-w-0 flex-col gap-1.5">
         <Link to={{ pathname: '/', search }} className="group flex items-center gap-2.5">
           <img
-            src={logoVariant === 'alt' ? '/logo-alt.png' : '/logo.png'}
+            src={`${import.meta.env.BASE_URL}${logoVariant === 'alt' ? 'logo-alt.png' : 'logo.png'}`}
             alt=""
             className="-my-1 h-14 w-auto shrink-0 sm:-mb-1 sm:-mt-5 sm:h-20"
           />
