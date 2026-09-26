@@ -1,6 +1,7 @@
 import type { BlueBloodBenchmark, StatKey, Team } from '../types';
 import { STATS } from '../config/stats';
 import { STAT_KEYS } from '../lib/scenario';
+import { SITE } from '../config/site';
 
 interface Props {
   /** the program's real, unedited line */
@@ -147,7 +148,7 @@ export default function WhatIfEditor({
       <p
         className="mt-1.5 cursor-help text-[10px] leading-snug text-muted"
         title={
-          `Sliders run to 1.5× the current FBS leader in each stat (win % to 1.000). `
+          `Sliders run to 1.5× the current ${SITE.field} leader in each stat (win % to 1.000). `
           + `The dark tick is ${base.school}'s real value; the accent tick is the Blue Blood `
           + `benchmark — click the ◆ chip to snap a stat to it.`
         }

@@ -6,6 +6,7 @@ import { TIMEPOINT_YEARS, type WinsMode } from '../data/useTeams';
 import { useAllSnapshots } from '../data/useRatingMath';
 import { logoSrc } from '../lib/logoSrc';
 import { useIsDark } from '../lib/theme';
+import { IS_BASKETBALL as BB, SITE } from '../config/site';
 
 interface Props {
   team: Team;
@@ -35,12 +36,12 @@ interface PeriodRow {
 const SHORT_LABEL: Record<StatKey, string> = {
   weeksApPoll: 'AP Poll Wks',
   weeksApTop10: 'AP Top 10',
-  consensusAA: 'Consensus',
-  unanimousAA: 'Unanimous',
-  nationalTitles: 'Nat’l Titles',
+  consensusAA: BB ? '1st-Team AA' : 'Consensus',
+  unanimousAA: BB ? 'Nat’l POY' : 'Unanimous',
+  nationalTitles: BB ? 'NCAA Titles' : 'Nat’l Titles',
   conferenceTitles: 'Conf. Titles',
-  nflDraftPicks: 'Draft Picks',
-  firstRoundPicks: '1st-Rd Picks',
+  nflDraftPicks: BB ? 'Sweet 16s' : 'Draft Picks',
+  firstRoundPicks: BB ? 'Final Fours' : '1st-Rd Picks',
   allTimeWins: 'Wins',
   winPct: 'Win %',
 };
@@ -49,7 +50,7 @@ const SHORT_CRIT_LABEL: Record<CategoryKey, string> = {
   perception: 'AP Poll',
   allAmericans: 'All-Americans',
   championships: 'Titles',
-  nflDraft: 'NFL Draft',
+  nflDraft: BB ? 'NCAA Tourney' : 'NFL Draft',
   wins: 'Wins',
 };
 
@@ -133,7 +134,7 @@ export default function RatingMathModal({ team, wins, onClose }: Props) {
               <p className="mb-1 text-[10px] font-semibold uppercase tracking-wide text-ink">The Method</p>
               <p>
                 Ten stats, in five pairs. Each stat becomes a <strong className="text-ink">percentile</strong> among
-                the FBS field at that point in time; drop the single highest and single lowest, and average the
+                the {SITE.field} field at that point in time; drop the single highest and single lowest, and average the
                 other eight. That average, on a 0–100 scale, is the <strong className="text-ink">Rating</strong>.
               </p>
               <p className="mt-2">
@@ -146,12 +147,12 @@ export default function RatingMathModal({ team, wins, onClose }: Props) {
               <p className="mb-1 text-[10px] font-semibold uppercase tracking-wide text-ink">Definitions</p>
               <p>
                 <strong className="text-ink">Rating</strong> — the average of eight stat percentiles (the highest
-                and lowest are dropped), 0–100. It’s relative to the rest of FBS at that moment, not a fixed bar —
+                and lowest are dropped), 0–100. It’s relative to the rest of {SITE.field} at that moment, not a fixed bar —
                 100 would mean leading the country in almost everything.
               </p>
               <p className="mt-2">
                 <strong className="text-ink">Percentile</strong> — where one stat’s raw total ranks against every
-                one of the 136 FBS programs, from 0 (dead last) to 100 (best in the country), shown to the tenth for
+                one of the {SITE.fieldCount} {SITE.field} programs, from 0 (dead last) to 100 (best in the country), shown to the tenth for
                 precision. A percentile of 92.3 means the total is higher than 92.3% of the field — a rank, not a
                 grade — and the field it’s measured against is different at every point in time below.
               </p>

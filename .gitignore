@@ -11,3 +11,4 @@ dist-ssr
 scripts/tmp/
 # data/staging/ (the hand-maintained data store) and data/archive/ (frozen raw
 # source dumps) are BOTH committed on purpose — the build reads staging, never the network
+dist-basketball

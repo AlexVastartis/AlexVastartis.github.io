@@ -1,0 +1,400 @@
+# One consensus FIRST-TEAM All-America selection per row, 1949-50 -> 2024-25 (year = season end).
+# source=memory-unverified: compiled from memory of the NCAA record book's consensus list because
+# every online source (sports-reference.com, ncaa.org, wikipedia.org) was blocked when this was built.
+# VERIFY against the NCAA record book, fill 2025-26 and pre-1950, then flip source to ncaa-record-book.
+# consensus is always Yes; unanimous is unused for basketball (the NPOY file fills that slot).
+year,school,player,pos,consensus,unanimous,source
+1950,Villanova,Paul Arizin,,Yes,No,memory-unverified
+1950,Holy Cross,Bob Cousy,,Yes,No,memory-unverified
+1950,Ohio State,Dick Schnittker,,Yes,No,memory-unverified
+1950,Bradley,Paul Unruh,,Yes,No,memory-unverified
+1950,USC,Bill Sharman,,Yes,No,memory-unverified
+1951,Kansas,Clyde Lovellette,,Yes,No,memory-unverified
+1951,Bradley,Gene Melchiorre,,Yes,No,memory-unverified
+1951,Temple,Bill Mlkvy,,Yes,No,memory-unverified
+1951,Kentucky,Bill Spivey,,Yes,No,memory-unverified
+1951,NC State,Sam Ranzino,,Yes,No,memory-unverified
+1952,Iowa,Chuck Darling,,Yes,No,memory-unverified
+1952,Illinois,Rod Fletcher,,Yes,No,memory-unverified
+1952,Duke,Dick Groat,,Yes,No,memory-unverified
+1952,Kentucky,Cliff Hagan,,Yes,No,memory-unverified
+1952,Kansas,Clyde Lovellette,,Yes,No,memory-unverified
+1953,Pennsylvania,Ernie Beck,,Yes,No,memory-unverified
+1953,Seton Hall,Walter Dukes,,Yes,No,memory-unverified
+1953,La Salle,Tom Gola,,Yes,No,memory-unverified
+1953,Washington,Bob Houbregs,,Yes,No,memory-unverified
+1953,Seattle,Johnny O'Brien,,Yes,No,memory-unverified
+1954,La Salle,Tom Gola,,Yes,No,memory-unverified
+1954,Kentucky,Cliff Hagan,,Yes,No,memory-unverified
+1954,LSU,Bob Pettit,,Yes,No,memory-unverified
+1954,Indiana,Don Schlundt,,Yes,No,memory-unverified
+1954,Furman,Frank Selvy,,Yes,No,memory-unverified
+1955,Minnesota,Dick Garmaker,,Yes,No,memory-unverified
+1955,La Salle,Tom Gola,,Yes,No,memory-unverified
+1955,Duquesne,Si Green,,Yes,No,memory-unverified
+1955,Duquesne,Dick Ricketts,,Yes,No,memory-unverified
+1955,San Francisco,Bill Russell,,Yes,No,memory-unverified
+1956,Ohio State,Robin Freeman,,Yes,No,memory-unverified
+1956,Duquesne,Si Green,,Yes,No,memory-unverified
+1956,Holy Cross,Tom Heinsohn,,Yes,No,memory-unverified
+1956,San Francisco,Bill Russell,,Yes,No,memory-unverified
+1956,NC State,Ron Shavlik,,Yes,No,memory-unverified
+1957,Kansas,Wilt Chamberlain,,Yes,No,memory-unverified
+1957,Columbia,Chet Forte,,Yes,No,memory-unverified
+1957,SMU,Jim Krebs,,Yes,No,memory-unverified
+1957,North Carolina,Lennie Rosenbluth,,Yes,No,memory-unverified
+1957,Louisville,Charlie Tyra,,Yes,No,memory-unverified
+1958,Seattle,Elgin Baylor,,Yes,No,memory-unverified
+1958,Kansas State,Bob Boozer,,Yes,No,memory-unverified
+1958,Kansas,Wilt Chamberlain,,Yes,No,memory-unverified
+1958,Pittsburgh,Don Hennon,,Yes,No,memory-unverified
+1958,Cincinnati,Oscar Robertson,,Yes,No,memory-unverified
+1958,Temple,Guy Rodgers,,Yes,No,memory-unverified
+1959,Kansas State,Bob Boozer,,Yes,No,memory-unverified
+1959,Kentucky,Johnny Cox,,Yes,No,memory-unverified
+1959,Mississippi State,Bailey Howell,,Yes,No,memory-unverified
+1959,Cincinnati,Oscar Robertson,,Yes,No,memory-unverified
+1959,West Virginia,Jerry West,,Yes,No,memory-unverified
+1960,California,Darrall Imhoff,,Yes,No,memory-unverified
+1960,Ohio State,Jerry Lucas,,Yes,No,memory-unverified
+1960,Cincinnati,Oscar Robertson,,Yes,No,memory-unverified
+1960,St. Bonaventure,Tom Stith,,Yes,No,memory-unverified
+1960,West Virginia,Jerry West,,Yes,No,memory-unverified
+1961,Purdue,Terry Dischinger,,Yes,No,memory-unverified
+1961,Georgia Tech,Roger Kaiser,,Yes,No,memory-unverified
+1961,Ohio State,Jerry Lucas,,Yes,No,memory-unverified
+1961,St. Bonaventure,Tom Stith,,Yes,No,memory-unverified
+1961,Bradley,Chet Walker,,Yes,No,memory-unverified
+1962,Wake Forest,Len Chappell,,Yes,No,memory-unverified
+1962,Purdue,Terry Dischinger,,Yes,No,memory-unverified
+1962,Ohio State,Jerry Lucas,,Yes,No,memory-unverified
+1962,Utah,Billy McGill,,Yes,No,memory-unverified
+1962,Bradley,Chet Walker,,Yes,No,memory-unverified
+1963,Cincinnati,Ron Bonham,,Yes,No,memory-unverified
+1963,Loyola Chicago,Jerry Harkness,,Yes,No,memory-unverified
+1963,Duke,Art Heyman,,Yes,No,memory-unverified
+1963,NYU,Barry Kramer,,Yes,No,memory-unverified
+1963,Cincinnati,Tom Thacker,,Yes,No,memory-unverified
+1964,Ohio State,Gary Bradds,,Yes,No,memory-unverified
+1964,Princeton,Bill Bradley,,Yes,No,memory-unverified
+1964,UCLA,Walt Hazzard,,Yes,No,memory-unverified
+1964,Kentucky,Cotton Nash,,Yes,No,memory-unverified
+1964,Wichita State,Dave Stallworth,,Yes,No,memory-unverified
+1965,Miami (FL),Rick Barry,,Yes,No,memory-unverified
+1965,Princeton,Bill Bradley,,Yes,No,memory-unverified
+1965,UCLA,Gail Goodrich,,Yes,No,memory-unverified
+1965,Davidson,Fred Hetzel,,Yes,No,memory-unverified
+1965,Michigan,Cazzie Russell,,Yes,No,memory-unverified
+1966,Syracuse,Dave Bing,,Yes,No,memory-unverified
+1966,Vanderbilt,Clyde Lee,,Yes,No,memory-unverified
+1966,Michigan,Cazzie Russell,,Yes,No,memory-unverified
+1966,Purdue,Dave Schellhase,,Yes,No,memory-unverified
+1966,Providence,Jimmy Walker,,Yes,No,memory-unverified
+1967,UCLA,Lew Alcindor,,Yes,No,memory-unverified
+1967,Western Kentucky,Clem Haskins,,Yes,No,memory-unverified
+1967,Houston,Elvin Hayes,,Yes,No,memory-unverified
+1967,Rutgers,Bob Lloyd,,Yes,No,memory-unverified
+1967,Louisville,Wes Unseld,,Yes,No,memory-unverified
+1967,Duke,Bob Verga,,Yes,No,memory-unverified
+1967,Providence,Jimmy Walker,,Yes,No,memory-unverified
+1968,UCLA,Lew Alcindor,,Yes,No,memory-unverified
+1968,Houston,Elvin Hayes,,Yes,No,memory-unverified
+1968,LSU,Pete Maravich,,Yes,No,memory-unverified
+1968,North Carolina,Larry Miller,,Yes,No,memory-unverified
+1968,Louisville,Wes Unseld,,Yes,No,memory-unverified
+1969,UCLA,Lew Alcindor,,Yes,No,memory-unverified
+1969,Detroit Mercy,Spencer Haywood,,Yes,No,memory-unverified
+1969,LSU,Pete Maravich,,Yes,No,memory-unverified
+1969,Purdue,Rick Mount,,Yes,No,memory-unverified
+1969,Niagara,Calvin Murphy,,Yes,No,memory-unverified
+1970,Notre Dame,Austin Carr,,Yes,No,memory-unverified
+1970,Kentucky,Dan Issel,,Yes,No,memory-unverified
+1970,St. Bonaventure,Bob Lanier,,Yes,No,memory-unverified
+1970,LSU,Pete Maravich,,Yes,No,memory-unverified
+1970,Purdue,Rick Mount,,Yes,No,memory-unverified
+1971,Notre Dame,Austin Carr,,Yes,No,memory-unverified
+1971,Jacksonville,Artis Gilmore,,Yes,No,memory-unverified
+1971,Western Kentucky,Jim McDaniels,,Yes,No,memory-unverified
+1971,Ole Miss,Johnny Neumann,,Yes,No,memory-unverified
+1971,UCLA,Sidney Wicks,,Yes,No,memory-unverified
+1972,UCLA,Henry Bibby,,Yes,No,memory-unverified
+1972,Marquette,Jim Chones,,Yes,No,memory-unverified
+1972,Louisiana,Dwight Lamar,,Yes,No,memory-unverified
+1972,Long Beach State,Ed Ratleff,,Yes,No,memory-unverified
+1972,South Carolina,Tom Riker,,Yes,No,memory-unverified
+1972,UCLA,Bill Walton,,Yes,No,memory-unverified
+1973,Illinois State,Doug Collins,,Yes,No,memory-unverified
+1973,Providence,Ernie DiGregorio,,Yes,No,memory-unverified
+1973,Louisiana,Dwight Lamar,,Yes,No,memory-unverified
+1973,Long Beach State,Ed Ratleff,,Yes,No,memory-unverified
+1973,NC State,David Thompson,,Yes,No,memory-unverified
+1973,UCLA,Bill Walton,,Yes,No,memory-unverified
+1974,Providence,Marvin Barnes,,Yes,No,memory-unverified
+1974,Notre Dame,John Shumate,,Yes,No,memory-unverified
+1974,NC State,David Thompson,,Yes,No,memory-unverified
+1974,UCLA,Bill Walton,,Yes,No,memory-unverified
+1974,UCLA,Keith Wilkes,,Yes,No,memory-unverified
+1975,Notre Dame,Adrian Dantley,,Yes,No,memory-unverified
+1975,Maryland,John Lucas,,Yes,No,memory-unverified
+1975,Indiana,Scott May,,Yes,No,memory-unverified
+1975,UCLA,Dave Meyers,,Yes,No,memory-unverified
+1975,NC State,David Thompson,,Yes,No,memory-unverified
+1976,Indiana,Kent Benson,,Yes,No,memory-unverified
+1976,Notre Dame,Adrian Dantley,,Yes,No,memory-unverified
+1976,Maryland,John Lucas,,Yes,No,memory-unverified
+1976,Indiana,Scott May,,Yes,No,memory-unverified
+1976,UCLA,Richard Washington,,Yes,No,memory-unverified
+1977,Indiana,Kent Benson,,Yes,No,memory-unverified
+1977,Houston,Otis Birdsong,,Yes,No,memory-unverified
+1977,North Carolina,Phil Ford,,Yes,No,memory-unverified
+1977,Michigan,Rickey Green,,Yes,No,memory-unverified
+1977,UCLA,Marques Johnson,,Yes,No,memory-unverified
+1977,Tennessee,Bernard King,,Yes,No,memory-unverified
+1978,Indiana State,Larry Bird,,Yes,No,memory-unverified
+1978,North Carolina,Phil Ford,,Yes,No,memory-unverified
+1978,UCLA,David Greenwood,,Yes,No,memory-unverified
+1978,Marquette,Butch Lee,,Yes,No,memory-unverified
+1978,Minnesota,Mychal Thompson,,Yes,No,memory-unverified
+1979,Indiana State,Larry Bird,,Yes,No,memory-unverified
+1979,Duke,Mike Gminski,,Yes,No,memory-unverified
+1979,UCLA,David Greenwood,,Yes,No,memory-unverified
+1979,Michigan State,Magic Johnson,,Yes,No,memory-unverified
+1979,Arkansas,Sidney Moncrief,,Yes,No,memory-unverified
+1980,DePaul,Mark Aguirre,,Yes,No,memory-unverified
+1980,La Salle,Michael Brooks,,Yes,No,memory-unverified
+1980,Purdue,Joe Barry Carroll,,Yes,No,memory-unverified
+1980,Louisville,Darrell Griffith,,Yes,No,memory-unverified
+1980,Kentucky,Kyle Macy,,Yes,No,memory-unverified
+1981,DePaul,Mark Aguirre,,Yes,No,memory-unverified
+1981,BYU,Danny Ainge,,Yes,No,memory-unverified
+1981,Oregon State,Steve Johnson,,Yes,No,memory-unverified
+1981,Virginia,Ralph Sampson,,Yes,No,memory-unverified
+1981,Indiana,Isiah Thomas,,Yes,No,memory-unverified
+1982,DePaul,Terry Cummings,,Yes,No,memory-unverified
+1982,San Francisco,Quintin Dailey,,Yes,No,memory-unverified
+1982,Georgetown,Eric Floyd,,Yes,No,memory-unverified
+1982,Virginia,Ralph Sampson,,Yes,No,memory-unverified
+1982,North Carolina,James Worthy,,Yes,No,memory-unverified
+1983,Tennessee,Dale Ellis,,Yes,No,memory-unverified
+1983,Georgetown,Patrick Ewing,,Yes,No,memory-unverified
+1983,North Carolina,Michael Jordan,,Yes,No,memory-unverified
+1983,Memphis,Keith Lee,,Yes,No,memory-unverified
+1983,North Carolina,Sam Perkins,,Yes,No,memory-unverified
+1983,Virginia,Ralph Sampson,,Yes,No,memory-unverified
+1983,Oklahoma,Wayman Tisdale,,Yes,No,memory-unverified
+1984,Georgetown,Patrick Ewing,,Yes,No,memory-unverified
+1984,North Carolina,Michael Jordan,,Yes,No,memory-unverified
+1984,Houston,Akeem Olajuwon,,Yes,No,memory-unverified
+1984,North Carolina,Sam Perkins,,Yes,No,memory-unverified
+1984,Oklahoma,Wayman Tisdale,,Yes,No,memory-unverified
+1985,Duke,Johnny Dawkins,,Yes,No,memory-unverified
+1985,Georgetown,Patrick Ewing,,Yes,No,memory-unverified
+1985,Memphis,Keith Lee,,Yes,No,memory-unverified
+1985,Wichita State,Xavier McDaniel,,Yes,No,memory-unverified
+1985,St. John's,Chris Mullin,,Yes,No,memory-unverified
+1985,Oklahoma,Wayman Tisdale,,Yes,No,memory-unverified
+1986,St. John's,Walter Berry,,Yes,No,memory-unverified
+1986,Maryland,Len Bias,,Yes,No,memory-unverified
+1986,Duke,Johnny Dawkins,,Yes,No,memory-unverified
+1986,Michigan State,Scott Skiles,,Yes,No,memory-unverified
+1986,Kentucky,Kenny Walker,,Yes,No,memory-unverified
+1987,Indiana,Steve Alford,,Yes,No,memory-unverified
+1987,Kansas,Danny Manning,,Yes,No,memory-unverified
+1987,Navy,David Robinson,,Yes,No,memory-unverified
+1987,North Carolina,Kenny Smith,,Yes,No,memory-unverified
+1987,Georgetown,Reggie Williams,,Yes,No,memory-unverified
+1988,Arizona,Sean Elliott,,Yes,No,memory-unverified
+1988,Michigan,Gary Grant,,Yes,No,memory-unverified
+1988,Bradley,Hersey Hawkins,,Yes,No,memory-unverified
+1988,Kansas,Danny Manning,,Yes,No,memory-unverified
+1988,North Carolina,J.R. Reid,,Yes,No,memory-unverified
+1989,Arizona,Sean Elliott,,Yes,No,memory-unverified
+1989,Louisville,Pervis Ellison,,Yes,No,memory-unverified
+1989,Duke,Danny Ferry,,Yes,No,memory-unverified
+1989,LSU,Chris Jackson,,Yes,No,memory-unverified
+1989,Oklahoma,Stacey King,,Yes,No,memory-unverified
+1990,Syracuse,Derrick Coleman,,Yes,No,memory-unverified
+1990,LSU,Chris Jackson,,Yes,No,memory-unverified
+1990,UNLV,Larry Johnson,,Yes,No,memory-unverified
+1990,Oregon State,Gary Payton,,Yes,No,memory-unverified
+1990,La Salle,Lionel Simmons,,Yes,No,memory-unverified
+1991,Georgia Tech,Kenny Anderson,,Yes,No,memory-unverified
+1991,Ohio State,Jim Jackson,,Yes,No,memory-unverified
+1991,UNLV,Larry Johnson,,Yes,No,memory-unverified
+1991,LSU,Shaquille O'Neal,,Yes,No,memory-unverified
+1991,Syracuse,Billy Owens,,Yes,No,memory-unverified
+1992,Ohio State,Jim Jackson,,Yes,No,memory-unverified
+1992,Duke,Christian Laettner,,Yes,No,memory-unverified
+1992,USC,Harold Miner,,Yes,No,memory-unverified
+1992,Georgetown,Alonzo Mourning,,Yes,No,memory-unverified
+1992,LSU,Shaquille O'Neal,,Yes,No,memory-unverified
+1993,Indiana,Calbert Cheaney,,Yes,No,memory-unverified
+1993,Memphis,Anfernee Hardaway,,Yes,No,memory-unverified
+1993,Duke,Bobby Hurley,,Yes,No,memory-unverified
+1993,Kentucky,Jamal Mashburn,,Yes,No,memory-unverified
+1993,Michigan,Chris Webber,,Yes,No,memory-unverified
+1994,Duke,Grant Hill,,Yes,No,memory-unverified
+1994,California,Jason Kidd,,Yes,No,memory-unverified
+1994,UConn,Donyell Marshall,,Yes,No,memory-unverified
+1994,Purdue,Glenn Robinson,,Yes,No,memory-unverified
+1994,Louisville,Clifford Rozier,,Yes,No,memory-unverified
+1995,UCLA,Ed O'Bannon,,Yes,No,memory-unverified
+1995,Michigan State,Shawn Respert,,Yes,No,memory-unverified
+1995,Maryland,Joe Smith,,Yes,No,memory-unverified
+1995,North Carolina,Jerry Stackhouse,,Yes,No,memory-unverified
+1995,Arizona,Damon Stoudamire,,Yes,No,memory-unverified
+1996,UConn,Ray Allen,,Yes,No,memory-unverified
+1996,UMass,Marcus Camby,,Yes,No,memory-unverified
+1996,Kentucky,Tony Delk,,Yes,No,memory-unverified
+1996,Wake Forest,Tim Duncan,,Yes,No,memory-unverified
+1996,Georgetown,Allen Iverson,,Yes,No,memory-unverified
+1996,Villanova,Kerry Kittles,,Yes,No,memory-unverified
+1997,Wake Forest,Tim Duncan,,Yes,No,memory-unverified
+1997,Cincinnati,Danny Fortson,,Yes,No,memory-unverified
+1997,Kansas,Raef LaFrentz,,Yes,No,memory-unverified
+1997,Kentucky,Ron Mercer,,Yes,No,memory-unverified
+1997,Utah,Keith Van Horn,,Yes,No,memory-unverified
+1998,Arizona,Mike Bibby,,Yes,No,memory-unverified
+1998,North Carolina,Antawn Jamison,,Yes,No,memory-unverified
+1998,Kansas,Raef LaFrentz,,Yes,No,memory-unverified
+1998,Kansas,Paul Pierce,,Yes,No,memory-unverified
+1998,Arizona,Miles Simon,,Yes,No,memory-unverified
+1999,Duke,Elton Brand,,Yes,No,memory-unverified
+1999,Michigan State,Mateen Cleaves,,Yes,No,memory-unverified
+1999,UConn,Richard Hamilton,,Yes,No,memory-unverified
+1999,Utah,Andre Miller,,Yes,No,memory-unverified
+1999,Arizona,Jason Terry,,Yes,No,memory-unverified
+2000,Duke,Chris Carrawell,,Yes,No,memory-unverified
+2000,Iowa State,Marcus Fizer,,Yes,No,memory-unverified
+2000,Indiana,A.J. Guyton,,Yes,No,memory-unverified
+2000,Cincinnati,Kenyon Martin,,Yes,No,memory-unverified
+2000,Texas,Chris Mihm,,Yes,No,memory-unverified
+2000,Notre Dame,Troy Murphy,,Yes,No,memory-unverified
+2001,Duke,Shane Battier,,Yes,No,memory-unverified
+2001,North Carolina,Joseph Forte,,Yes,No,memory-unverified
+2001,Stanford,Casey Jacobsen,,Yes,No,memory-unverified
+2001,Notre Dame,Troy Murphy,,Yes,No,memory-unverified
+2001,Duke,Jason Williams,,Yes,No,memory-unverified
+2002,Gonzaga,Dan Dickau,,Yes,No,memory-unverified
+2002,Maryland,Juan Dixon,,Yes,No,memory-unverified
+2002,Kansas,Drew Gooden,,Yes,No,memory-unverified
+2002,Cincinnati,Steve Logan,,Yes,No,memory-unverified
+2002,Duke,Jason Williams,,Yes,No,memory-unverified
+2003,Kansas,Nick Collison,,Yes,No,memory-unverified
+2003,Texas,T.J. Ford,,Yes,No,memory-unverified
+2003,Wake Forest,Josh Howard,,Yes,No,memory-unverified
+2003,Marquette,Dwyane Wade,,Yes,No,memory-unverified
+2003,Xavier,David West,,Yes,No,memory-unverified
+2004,Texas Tech,Andre Emmett,,Yes,No,memory-unverified
+2004,Providence,Ryan Gomes,,Yes,No,memory-unverified
+2004,Saint Joseph's,Jameer Nelson,,Yes,No,memory-unverified
+2004,UConn,Emeka Okafor,,Yes,No,memory-unverified
+2004,Gonzaga,Blake Stepp,,Yes,No,memory-unverified
+2005,Utah,Andrew Bogut,,Yes,No,memory-unverified
+2005,Illinois,Dee Brown,,Yes,No,memory-unverified
+2005,Duke,J.J. Redick,,Yes,No,memory-unverified
+2005,Kansas,Wayne Simien,,Yes,No,memory-unverified
+2005,Syracuse,Hakim Warrick,,Yes,No,memory-unverified
+2006,Villanova,Randy Foye,,Yes,No,memory-unverified
+2006,Gonzaga,Adam Morrison,,Yes,No,memory-unverified
+2006,Duke,J.J. Redick,,Yes,No,memory-unverified
+2006,Washington,Brandon Roy,,Yes,No,memory-unverified
+2006,Duke,Shelden Williams,,Yes,No,memory-unverified
+2007,UCLA,Arron Afflalo,,Yes,No,memory-unverified
+2007,Texas,Kevin Durant,,Yes,No,memory-unverified
+2007,North Carolina,Tyler Hansbrough,,Yes,No,memory-unverified
+2007,Texas A&M,Acie Law,,Yes,No,memory-unverified
+2007,Wisconsin,Alando Tucker,,Yes,No,memory-unverified
+2008,Texas,D.J. Augustin,,Yes,No,memory-unverified
+2008,Kansas State,Michael Beasley,,Yes,No,memory-unverified
+2008,Memphis,Chris Douglas-Roberts,,Yes,No,memory-unverified
+2008,North Carolina,Tyler Hansbrough,,Yes,No,memory-unverified
+2008,UCLA,Kevin Love,,Yes,No,memory-unverified
+2009,Pittsburgh,DeJuan Blair,,Yes,No,memory-unverified
+2009,Davidson,Stephen Curry,,Yes,No,memory-unverified
+2009,Oklahoma,Blake Griffin,,Yes,No,memory-unverified
+2009,North Carolina,Tyler Hansbrough,,Yes,No,memory-unverified
+2009,Arizona State,James Harden,,Yes,No,memory-unverified
+2009,UConn,Hasheem Thabeet,,Yes,No,memory-unverified
+2010,Kentucky,DeMarcus Cousins,,Yes,No,memory-unverified
+2010,Syracuse,Wesley Johnson,,Yes,No,memory-unverified
+2010,Villanova,Scottie Reynolds,,Yes,No,memory-unverified
+2010,Ohio State,Evan Turner,,Yes,No,memory-unverified
+2010,Kentucky,John Wall,,Yes,No,memory-unverified
+2011,BYU,Jimmer Fredette,,Yes,No,memory-unverified
+2011,Purdue,JaJuan Johnson,,Yes,No,memory-unverified
+2011,Duke,Nolan Smith,,Yes,No,memory-unverified
+2011,Ohio State,Jared Sullinger,,Yes,No,memory-unverified
+2011,UConn,Kemba Walker,,Yes,No,memory-unverified
+2012,Kentucky,Anthony Davis,,Yes,No,memory-unverified
+2012,Michigan State,Draymond Green,,Yes,No,memory-unverified
+2012,Creighton,Doug McDermott,,Yes,No,memory-unverified
+2012,Kansas,Thomas Robinson,,Yes,No,memory-unverified
+2012,Ohio State,Jared Sullinger,,Yes,No,memory-unverified
+2013,Michigan,Trey Burke,,Yes,No,memory-unverified
+2013,Creighton,Doug McDermott,,Yes,No,memory-unverified
+2013,Gonzaga,Kelly Olynyk,,Yes,No,memory-unverified
+2013,Indiana,Victor Oladipo,,Yes,No,memory-unverified
+2013,Georgetown,Otto Porter,,Yes,No,memory-unverified
+2014,Arizona,Nick Johnson,,Yes,No,memory-unverified
+2014,Creighton,Doug McDermott,,Yes,No,memory-unverified
+2014,UConn,Shabazz Napier,,Yes,No,memory-unverified
+2014,Duke,Jabari Parker,,Yes,No,memory-unverified
+2014,Louisville,Russ Smith,,Yes,No,memory-unverified
+2015,Kentucky,Willie Cauley-Stein,,Yes,No,memory-unverified
+2015,Notre Dame,Jerian Grant,,Yes,No,memory-unverified
+2015,Wisconsin,Frank Kaminsky,,Yes,No,memory-unverified
+2015,Duke,Jahlil Okafor,,Yes,No,memory-unverified
+2015,Ohio State,D'Angelo Russell,,Yes,No,memory-unverified
+2016,Virginia,Malcolm Brogdon,,Yes,No,memory-unverified
+2016,Providence,Kris Dunn,,Yes,No,memory-unverified
+2016,Oklahoma,Buddy Hield,,Yes,No,memory-unverified
+2016,North Carolina,Brice Johnson,,Yes,No,memory-unverified
+2016,Kentucky,Tyler Ulis,,Yes,No,memory-unverified
+2016,Michigan State,Denzel Valentine,,Yes,No,memory-unverified
+2017,UCLA,Lonzo Ball,,Yes,No,memory-unverified
+2017,Villanova,Josh Hart,,Yes,No,memory-unverified
+2017,North Carolina,Justin Jackson,,Yes,No,memory-unverified
+2017,Kansas,Frank Mason III,,Yes,No,memory-unverified
+2017,Purdue,Caleb Swanigan,,Yes,No,memory-unverified
+2018,Arizona,Deandre Ayton,,Yes,No,memory-unverified
+2018,Duke,Marvin Bagley III,,Yes,No,memory-unverified
+2018,Ohio State,Keita Bates-Diop,,Yes,No,memory-unverified
+2018,Villanova,Jalen Brunson,,Yes,No,memory-unverified
+2018,Kansas,Devonte' Graham,,Yes,No,memory-unverified
+2018,Oklahoma,Trae Young,,Yes,No,memory-unverified
+2019,Duke,RJ Barrett,,Yes,No,memory-unverified
+2019,Murray State,Ja Morant,,Yes,No,memory-unverified
+2019,Tennessee,Grant Williams,,Yes,No,memory-unverified
+2019,Duke,Zion Williamson,,Yes,No,memory-unverified
+2019,Michigan State,Cassius Winston,,Yes,No,memory-unverified
+2020,Iowa,Luka Garza,,Yes,No,memory-unverified
+2020,Marquette,Markus Howard,,Yes,No,memory-unverified
+2020,Seton Hall,Myles Powell,,Yes,No,memory-unverified
+2020,Oregon,Payton Pritchard,,Yes,No,memory-unverified
+2020,Dayton,Obi Toppin,,Yes,No,memory-unverified
+2021,Oklahoma State,Cade Cunningham,,Yes,No,memory-unverified
+2021,Illinois,Ayo Dosunmu,,Yes,No,memory-unverified
+2021,Iowa,Luka Garza,,Yes,No,memory-unverified
+2021,Gonzaga,Corey Kispert,,Yes,No,memory-unverified
+2021,Gonzaga,Jalen Suggs,,Yes,No,memory-unverified
+2022,Kansas,Ochai Agbaji,,Yes,No,memory-unverified
+2022,Wisconsin,Johnny Davis,,Yes,No,memory-unverified
+2022,Iowa,Keegan Murray,,Yes,No,memory-unverified
+2022,Gonzaga,Drew Timme,,Yes,No,memory-unverified
+2022,Kentucky,Oscar Tshiebwe,,Yes,No,memory-unverified
+2023,Purdue,Zach Edey,,Yes,No,memory-unverified
+2023,Indiana,Trayce Jackson-Davis,,Yes,No,memory-unverified
+2023,Alabama,Brandon Miller,,Yes,No,memory-unverified
+2023,Houston,Marcus Sasser,,Yes,No,memory-unverified
+2023,Kansas,Jalen Wilson,,Yes,No,memory-unverified
+2024,North Carolina,RJ Davis,,Yes,No,memory-unverified
+2024,Purdue,Zach Edey,,Yes,No,memory-unverified
+2024,Tennessee,Dalton Knecht,,Yes,No,memory-unverified
+2024,Marquette,Tyler Kolek,,Yes,No,memory-unverified
+2024,Houston,Jamal Shead,,Yes,No,memory-unverified
+2025,Auburn,Johni Broome,,Yes,No,memory-unverified
+2025,Florida,Walter Clayton Jr.,,Yes,No,memory-unverified
+2025,Duke,Cooper Flagg,,Yes,No,memory-unverified
+2025,Alabama,Mark Sears,,Yes,No,memory-unverified
+2025,Purdue,Braden Smith,,Yes,No,memory-unverified

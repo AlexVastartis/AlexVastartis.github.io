@@ -1,4 +1,6 @@
 import type { StatKey, Team } from '../types';
+import { IS_BASKETBALL } from './site';
+import { BASKETBALL_RUNS } from './dynastyRunsBasketball';
 
 /** the 8 counting stats a run adds to (everything but win %) */
 export type CountingKey = Exclude<StatKey, 'winPct'>;
@@ -40,7 +42,7 @@ export interface DynastyRun {
  * hand-counted. Clicking a coach loads "today + this exact run" into the what-if
  * editor.
  */
-export const DYNASTY_RUNS: DynastyRun[] = [
+const FOOTBALL_RUNS: DynastyRun[] = [
   {
     id: 'saban',
     coach: 'Nick Saban',
@@ -273,6 +275,9 @@ export const DYNASTY_RUNS: DynastyRun[] = [
     note: 'AP-poll weeks count from 1936, the poll’s first year.',
   },
 ];
+
+/** the runs for this site — football's, or basketball's (generated from its data) */
+export const DYNASTY_RUNS: DynastyRun[] = IS_BASKETBALL ? BASKETBALL_RUNS : FOOTBALL_RUNS;
 
 /** the runs shown in the picker — every coach is enabled; `hidden` stays available
  *  to pull one back out without deleting its data */

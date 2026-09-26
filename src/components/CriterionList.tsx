@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import type { CategoryKey, StatKey, Team } from '../types';
 import { CATEGORIES, STATS } from '../config/stats';
 import TeamLogo from './TeamLogo';
+import { IS_BASKETBALL as BB, SITE } from '../config/site';
 
 type SortCol = 'pctl' | 'team' | 'x' | 'y';
 
@@ -10,12 +11,12 @@ type SortCol = 'pctl' | 'team' | 'x' | 'y';
 const HDR: Record<StatKey, [string, string]> = {
   weeksApPoll: ['Weeks in the', 'AP Poll'],
   weeksApTop10: ['Weeks in the', 'AP Top 10'],
-  consensusAA: ['Consensus', 'All-Americans'],
-  unanimousAA: ['Unanimous', 'All-Americans'],
-  nationalTitles: ['National', 'Championships'],
-  conferenceTitles: ['Conference', 'Championships'],
-  nflDraftPicks: ['NFL Draft', 'Picks'],
-  firstRoundPicks: ['First-Round', 'NFL Draft Picks'],
+  consensusAA: BB ? ['Consensus 1st-Team', 'All-Americans'] : ['Consensus', 'All-Americans'],
+  unanimousAA: BB ? ['National Players', 'of the Year'] : ['Unanimous', 'All-Americans'],
+  nationalTitles: BB ? ['NCAA', 'Championships'] : ['National', 'Championships'],
+  conferenceTitles: BB ? ['Conference', 'Reg.-Season Titles'] : ['Conference', 'Championships'],
+  nflDraftPicks: BB ? ['Sweet 16', 'Appearances'] : ['NFL Draft', 'Picks'],
+  firstRoundPicks: BB ? ['Final Four', 'Appearances'] : ['First-Round', 'NFL Draft Picks'],
   allTimeWins: ['All-Time', 'Wins'],
   winPct: ['All-Time', 'Winning %'],
 };
@@ -119,7 +120,7 @@ export default function CriterionList({ criterion, teams, favorite, onPick }: Pr
                 </span>
                 <span
                   className="w-20 text-center font-bold"
-                  title={`${CATEGORIES[criterion].label} score ${t.critScore[criterion].toFixed(1)} — mean of the two stats’ FBS percentiles`}
+                  title={`${CATEGORIES[criterion].label} score ${t.critScore[criterion].toFixed(1)} — mean of the two stats’ ${SITE.field} percentiles`}
                 >
                   {t.critScore[criterion].toFixed(1)}
                 </span>

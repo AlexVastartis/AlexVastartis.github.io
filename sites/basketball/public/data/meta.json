@@ -1,0 +1,215 @@
+{
+  "generatedAt": "2026-09-26T21:32:27.921Z",
+  "model": "percentile-trimmed-mean",
+  "modelBlurb": "Rank each of the ten stats within Division I, drop each program’s single best and single worst percentile, average the other eight.",
+  "trendRecentFraction": 0.2,
+  "trendRecentYears": 10,
+  "trendDeltaPoints": 8,
+  "trendSurgePoints": 25,
+  "trendMinHistory": 30,
+  "latestSeason": 2026,
+  "latestChampion": "Michigan",
+  "conferenceYear": 2026,
+  "titleSelectors": [
+    "NCAA"
+  ],
+  "sources": {
+    "store": "data/staging",
+    "network": false
+  },
+  "provenance": {
+    "perception": "Weeks in the AP poll and weeks in the AP top 10, every poll since 1949-50, preseason and final polls included. Through 2015-16 from Sports-Reference’s poll archive; since then from the AP rank ESPN carries on each game (data/basketball/staging/_staging_ap_poll_success.csv).",
+    "wins": "Division I wins and losses season by season (Sports-Reference through 2015-16, ESPN game results since). NCAA-vacated wins are removed in the NCAA official view (data/basketball/staging/_staging_wins.csv).",
+    "championships": "NCAA tournament titles since 1939, and conference regular-season titles (co-champions count in full) — computed from conference games since 1950, earlier titles from Sports-Reference’s all-time totals. A title the NCAA vacated (Louisville 2013) counts only in the as-played view (data/basketball/staging/_staging_championships.csv, _staging_conference_titles.csv).",
+    "allAmericans": "Consensus first-team All-Americans since 1949-50, and national players of the year (UPI 1955–60, AP 1961–68, Naismith since 1969). Compiled by hand and still being verified against the NCAA record book (data/basketball/staging/_staging_all_americans.csv, _staging_player_of_year.csv).",
+    "nflDraft": "Every NCAA tournament since 1939: Sweet 16s (reached the regional semifinals; every team in the 8- and 16-team fields of 1939–52) and Final Fours. Vacated runs count only in the as-played view (data/basketball/staging/_staging_ncaa_tournament.csv)."
+  },
+  "tierDescriptions": {
+    "Blue Bloods": "The programs the data sets clearly apart at the top. Each has hung banners across multiple eras, on sustained excellence rather than one run.",
+    "Blue Blood Fringe": "Just outside the inner circle. Their histories carry too much weight to ignore, and the numbers place them firmly in the tier right below the top.",
+    "Blue Blood Contenders": "The next tier, where the path to the top is less defined. Each has the history and the March résumé to make a run at blue-blood status, but needs more decades of sustained success — or a truly dominant era — to close the gap.",
+    "National Powers": "Programs the whole country knows, with real Final Four history. The band runs from genuine current risers to powers coasting on an era two or three decades back.",
+    "National Brands": "Recognisable names and real tournament pedigrees, but a clear class break below the powers. Also where newer high-major programs still accruing the cumulative totals land.",
+    "The Field": "Everyone else — mostly one-bid leagues, regional followings and thin résumés, plus the young Division I programs whose ceilings haven’t been tested by the counting stats."
+  },
+  "blueBloodBenchmark": {
+    "members": [
+      "Kentucky",
+      "North Carolina",
+      "Duke",
+      "UCLA",
+      "Kansas"
+    ],
+    "rating": 99.18150684931504,
+    "pct": {
+      "weeksApPoll": 99.31506849315068,
+      "weeksApTop10": 99.31506849315068,
+      "consensusAA": 99.31506849315069,
+      "unanimousAA": 98.43835616438358,
+      "nationalTitles": 99.0958904109589,
+      "conferenceTitles": 98.57534246575342,
+      "nflDraftPicks": 99.31506849315068,
+      "firstRoundPicks": 99.31506849315069,
+      "allTimeWins": 99.26027397260273,
+      "winPct": 99.26027397260273
+    },
+    "stats": {
+      "weeksApPoll": 905.8,
+      "weeksApTop10": 667.2,
+      "consensusAA": 19.8,
+      "unanimousAA": 4.6,
+      "nationalTitles": 6.8,
+      "conferenceTitles": 43.4,
+      "nflDraftPicks": 38.6,
+      "firstRoundPicks": 18,
+      "allTimeWins": 2346.4,
+      "winPct": 0.7241326989041154
+    },
+    "critScore": {
+      "perception": 99.31506849315068,
+      "allAmericans": 98.87671232876713,
+      "championships": 98.83561643835617,
+      "nflDraft": 99.31506849315068,
+      "wins": 99.26027397260273
+    },
+    "trimmedLow": "unanimousAA",
+    "trimmedHigh": "consensusAA"
+  },
+  "granular": {
+    "allAmericans": "per-player list for 97/365 programs; the rest (no consensus selections) sit at zero.",
+    "nationalTitles": "per-year, one row per selector (data/staging/_staging_championships.csv)",
+    "conferenceTitles": "per-year for 331/365 programs (_staging_conference_titles.csv); the rest use a summary total"
+  },
+  "dataRange": "AP poll 1949-50 → 2025-26; Division I records from the 1890s; NCAA tournament from 1939; All-Americans from 1949-50 — our own compilation",
+  "groupings": [
+    "Blue Bloods",
+    "Blue Blood Fringe",
+    "Blue Blood Contenders",
+    "National Powers",
+    "National Brands",
+    "The Field"
+  ],
+  "tierBoundaries": [
+    5,
+    15,
+    40,
+    67,
+    103
+  ],
+  "tierGaps": [
+    1.8664383561643803,
+    1.1643835616438452,
+    0.3253424657534083,
+    0.3938356164383521,
+    1.4041095890410915
+  ],
+  "tierRatingThresholds": [
+    98.05650684931507,
+    93.32191780821918,
+    82.76541095890411,
+    72.52568493150685,
+    61.849315068493155
+  ],
+  "tierMinRating": 60,
+  "tierMaxSpan": 12,
+  "stats": {
+    "weeksApPoll": {
+      "mean": 77.52876712328766,
+      "stddev": 159.46344063289254,
+      "min": 0,
+      "max": 985
+    },
+    "weeksApTop10": {
+      "mean": 35.74246575342466,
+      "stddev": 95.65130439401328,
+      "min": 0,
+      "max": 763
+    },
+    "consensusAA": {
+      "mean": 1.0767123287671232,
+      "stddev": 2.9515967607031235,
+      "min": 0,
+      "max": 25
+    },
+    "unanimousAA": {
+      "mean": 0.19452054794520549,
+      "stddev": 0.7992959934806524,
+      "min": 0,
+      "max": 10
+    },
+    "nationalTitles": {
+      "mean": 0.2328767123287671,
+      "stddev": 1.005744431509557,
+      "min": 0,
+      "max": 11
+    },
+    "conferenceTitles": {
+      "mean": 8.224657534246575,
+      "stddev": 8.09863477116297,
+      "min": 0,
+      "max": 64
+    },
+    "nflDraftPicks": {
+      "mean": 3.4438356164383563,
+      "stddev": 6.567687324690149,
+      "min": 0,
+      "max": 49
+    },
+    "firstRoundPicks": {
+      "mean": 0.9068493150684932,
+      "stddev": 2.5849050096281885,
+      "min": 0,
+      "max": 21
+    },
+    "allTimeWins": {
+      "mean": 1028.6054794520549,
+      "stddev": 567.1022405200426,
+      "min": 14,
+      "max": 2453
+    },
+    "winPct": {
+      "mean": 0.5142753737838911,
+      "stddev": 0.08308730695797317,
+      "min": 0.2581967213114754,
+      "max": 0.7568906782285537
+    }
+  },
+  "composites": {
+    "perception": {
+      "mean": -5.170901758528127e-18,
+      "stddev": 0.9890331602089352,
+      "min": -0.4299299222266584,
+      "max": 6.505859991597061
+    },
+    "allAmericans": {
+      "mean": -1.3991851817193755e-17,
+      "stddev": 0.9543788817000165,
+      "min": -0.30407731327586746,
+      "max": 10.186423421014801
+    },
+    "championships": {
+      "mean": 3.406711746795001e-17,
+      "stddev": 0.8778311767749373,
+      "min": -0.6235537986305034,
+      "max": 6.820673913159214
+    },
+    "nflDraft": {
+      "mean": -9.794296272035628e-17,
+      "stddev": 0.9768375963541946,
+      "min": -0.4375927382225535,
+      "max": 6.581113910231748
+    },
+    "wins": {
+      "mean": -9.109912215759846e-16,
+      "stddev": 0.9203033511859396,
+      "min": -2.1701897753455883,
+      "max": 2.707920508882461
+    }
+  },
+  "overall": {
+    "mean": 0,
+    "stddev": 1.0000000000000004,
+    "min": -1.1893164115359334,
+    "max": 2.3734646786179137
+  }
+}

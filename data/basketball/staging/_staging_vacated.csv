@@ -1,0 +1,48 @@
+# NCAA-vacated men's basketball results, hand-curated from the NCAA's published penalties.
+# NOT yet checked against the NCAA record book — the major cases (every vacated Final Four,
+# Louisville 2012-15, Memphis 2008, Michigan 1992-99, Ohio State 1999-2002) are well documented;
+# the smaller tournament-only cases may be incomplete. Season = the year the season ENDS.
+# wins_vacated = wins removed in the "NCAA official" view (a whole season, or just that year's
+#   tournament wins). losses stay on the books, as the NCAA leaves them.
+# tournament_vacated=1 → that NCAA tournament run (appearance, Sweet 16, Final Four, title) is
+#   dropped from the official view. compile_sources.py folds this into the staging files.
+school,season,wins_vacated,losses_vacated,tournament_vacated,note
+Saint Joseph's,1961,3,0,1,1961 Final Four vacated (point shaving)
+Villanova,1971,4,0,1,1971 runner-up vacated (Howard Porter)
+Western Kentucky,1971,4,0,1,1971 Final Four vacated (Jim McDaniels)
+UCLA,1980,5,0,1,1980 runner-up vacated
+Memphis,1982,1,0,1,1982-86 tournament records vacated (tournament wins approximate)
+Memphis,1983,1,0,1,1982-86 tournament records vacated (tournament wins approximate)
+Memphis,1984,1,0,1,1982-86 tournament records vacated (tournament wins approximate)
+Memphis,1985,4,0,1,1985 Final Four vacated
+Memphis,1986,1,0,1,1982-86 tournament records vacated (tournament wins approximate)
+Kentucky,1988,2,0,1,1988 tournament vacated (Eric Manuel)
+Michigan,1992,5,0,1,1992 Final Four vacated (Ed Martin / Chris Webber)
+Michigan,1993,31,0,1,1992-93 season vacated incl. Final Four (Ed Martin)
+Michigan,1996,20,0,1,1995-96 season vacated (Ed Martin)
+Michigan,1997,24,0,0,1996-97 season vacated (Ed Martin)
+Michigan,1998,25,0,1,1997-98 season vacated (Ed Martin)
+Michigan,1999,12,0,0,1998-99 season vacated (Ed Martin)
+UMass,1996,4,0,1,1996 Final Four vacated (Marcus Camby)
+UConn,1996,2,0,1,1996 tournament vacated
+Purdue,1996,1,0,1,1996 tournament vacated
+Minnesota,1994,1,0,1,1994-98 postseason vacated (academic fraud)
+Minnesota,1995,0,0,1,1994-98 postseason vacated (academic fraud)
+Minnesota,1997,4,0,1,1997 Final Four vacated (academic fraud)
+Ohio State,1999,27,0,1,1998-99 season vacated incl. Final Four (Jim O'Brien era)
+Ohio State,2000,23,0,1,1999-2000 season vacated
+Ohio State,2001,20,0,1,2000-01 season vacated
+Ohio State,2002,24,0,1,2001-02 season vacated
+Fresno State,2000,0,0,1,2000 tournament vacated
+Georgia,2002,1,0,1,2002 tournament vacated
+Syracuse,2005,15,0,0,101 wins vacated across 2004-07 and 2010-12 (per-season split approximate)
+Syracuse,2006,23,0,0,101 wins vacated across 2004-07 and 2010-12 (per-season split approximate)
+Syracuse,2007,24,0,0,101 wins vacated across 2004-07 and 2010-12 (per-season split approximate)
+Syracuse,2011,25,0,0,101 wins vacated across 2004-07 and 2010-12 (per-season split approximate)
+Syracuse,2012,14,0,0,101 wins vacated across 2004-07 and 2010-12 (per-season split approximate)
+Memphis,2008,38,0,1,2007-08 season vacated incl. runner-up (Derrick Rose)
+USC,2008,21,0,1,2007-08 season vacated (O.J. Mayo)
+Louisville,2012,30,0,1,2011-12 season vacated incl. Final Four
+Louisville,2013,35,0,1,2012-13 season vacated incl. national title
+Louisville,2014,31,0,1,2013-14 season vacated
+Louisville,2015,27,0,1,2014-15 season vacated

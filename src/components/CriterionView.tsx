@@ -7,6 +7,7 @@ import ScatterChart from './ScatterChart';
 import BellCurve from './BellCurve';
 import CriterionList from './CriterionList';
 import MarkerToggle from './MarkerToggle';
+import { SITE } from '../config/site';
 
 interface Props {
   criterion: CategoryKey;
@@ -24,7 +25,7 @@ export default function CriterionView({ criterion, ctx }: Props) {
   const [xk, yk] = cat.stats;
   const scope =
     teams.length === allTeams.length
-      ? `all ${allTeams.length} FBS programs`
+      ? `all ${allTeams.length} ${SITE.field} programs`
       : `${teams.length} of ${allTeams.length} programs (filtered)`;
 
   // Esc leaves the expanded view; lock body scroll while it's open
@@ -54,7 +55,7 @@ export default function CriterionView({ criterion, ctx }: Props) {
         </div>
         <CriterionList criterion={criterion} teams={teams} favorite={favorite} onPick={pick} />
         <p className="text-xs text-muted">
-          {scope} · ranked by criterion percentile (mean of the two stats’ FBS percentiles) ·{' '}
+          {scope} · ranked by criterion percentile (mean of the two stats’ {SITE.field} percentiles) ·{' '}
           <span className="italic">{data.meta.provenance[criterion]}</span>
         </p>
       </div>
@@ -92,7 +93,7 @@ export default function CriterionView({ criterion, ctx }: Props) {
       {scope}
       {view === 'plot'
         ? ` · where logos overlap, the higher ${cat.label} sits on top · axes scale to the teams shown`
-        : ' · position = the criterion score (mean of the two stats’ FBS percentiles) · bands are ±1σ / ±2σ'}
+        : ` · position = the criterion score (mean of the two stats’ ${SITE.field} percentiles) · bands are ±1σ / ±2σ`}
       {' · '}
       <span className="italic">{data.meta.provenance[criterion]}</span>
     </>

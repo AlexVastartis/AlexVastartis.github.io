@@ -1,8 +1,12 @@
 name: Deploy to Pages
 
-# Builds the Vite app and publishes dist/ to GitHub Pages on every push to main.
-# Pages "Source" must be set to "GitHub Actions" in repo Settings for this to take
-# effect.
+# One repo, two sites, built from the same code on every push to main:
+#   BlueBloodFootball   → this repo's GitHub Pages (bluebloodfootball.com). Pages "Source"
+#                         must be set to "GitHub Actions" in repo Settings.
+#   BlueBloodBasketball → a second repo's GitHub Pages (bluebloodbasketball.com) — a repo
+#                         can serve only one custom domain. See DEPLOY.md: it needs the
+#                         BASKETBALL_DEPLOY_KEY secret (and BASKETBALL_REPO if the target
+#                         isn't AlexVastartis/bluebloodbasketball). Skipped until the key exists.
 
 on:
   push:
@@ -42,3 +46,29 @@ jobs:
     steps:
       - id: deploy
         uses: actions/deploy-pages@v4
+
+  basketball:
+    runs-on: ubuntu-latest
+    env:
+      HAS_KEY: ${{ secrets.BASKETBALL_DEPLOY_KEY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build:bb
+      - name: Publish to the basketball Pages repo
+        if: env.HAS_KEY == 'true'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.BASKETBALL_DEPLOY_KEY }}
+          external_repository: ${{ vars.BASKETBALL_REPO || 'AlexVastartis/bluebloodbasketball' }}
+          publish_branch: gh-pages
+          publish_dir: dist-basketball
+          cname: bluebloodbasketball.com
+          commit_message: 'Deploy BlueBloodBasketball from ${{ github.sha }}'
+      - name: Basketball not published (no deploy key yet)
+        if: env.HAS_KEY != 'true'
+        run: echo "::notice::BlueBloodBasketball built but not published — add the BASKETBALL_DEPLOY_KEY secret (see DEPLOY.md)."

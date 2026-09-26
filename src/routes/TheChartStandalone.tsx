@@ -1,6 +1,7 @@
 import { useTeams } from '../data/useTeams';
 import ScatterChart from '../components/ScatterChart';
 import { CATEGORIES } from '../config/stats';
+import { IS_BASKETBALL, SITE } from '../config/site';
 
 /**
  * "The Chart" — the shareable hook. Bare: no nav, no controls, no filters, and
@@ -16,7 +17,7 @@ export default function TheChartStandalone() {
       <h1 className="shrink-0 text-lg font-black tracking-tight">
         The Chart
         <span className="ml-2 align-middle text-sm font-normal text-muted">
-          · college football’s AP-poll pedigree
+          · college {IS_BASKETBALL ? 'basketball' : 'football'}’s AP-poll pedigree
         </span>
       </h1>
       {loading && <p className="text-sm text-muted">Loading…</p>}
@@ -35,7 +36,7 @@ export default function TheChartStandalone() {
         </div>
       )}
       <p className="shrink-0 text-xs text-muted">
-        X: weeks ranked in the AP poll · Y: weeks in the AP top ten · every ballot since 1936 ·{' '}
+        X: weeks ranked in the AP poll · Y: weeks in the AP top ten · every ballot since {SITE.apSince} ·{' '}
         <a className="text-accent underline" href="#/">the full Blue Blood Ranking →</a>
       </p>
     </div>

@@ -1,0 +1,15 @@
+# The Blue Blood Rating knobs for BlueBloodBasketball (same meaning as data/staging/_staging_blue_blood_rating.csv).
+# ap_from = first season (year it ends) whose AP polls are on record — 1950 = 1949-50.
+# title_selectors = NCAA: a national title is an NCAA tournament championship.
+# trend_min_history = fewer Division I seasons since ap_from than this → "too new to chart".
+key,value
+trim_fraction,0.2
+trend_recent_fraction,0.2
+trend_recent_years,10
+trend_delta_points,8
+trend_surge_points,25
+trend_min_history,30
+tier_max_span,12
+zero_pct_no_national_title,0
+ap_from,1950
+title_selectors,NCAA

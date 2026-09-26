@@ -2,6 +2,7 @@ import { useChartContext } from '../App';
 import { useMemo } from 'react';
 import RankedList from '../components/RankedList';
 import DecadeRankChart from '../components/DecadeRankChart';
+import { IS_BASKETBALL, SITE } from '../config/site';
 
 export default function Ranking() {
   const { data, teams, favorite, setFavorite, showNotes, benchmark, scenarioSchool, view, marker, wins } = useChartContext();
@@ -31,6 +32,7 @@ export default function Ranking() {
       )}
 
       <div data-map="the method & data notes" className="flex flex-col gap-3 text-xs leading-relaxed text-muted">
+        {IS_BASKETBALL ? <BasketballNotes recentYears={data.meta.trendRecentYears ?? 10} surge={data.meta.trendSurgePoints ?? 25} /> : (<>
         <p>
           <strong className="text-ink">The method.</strong> Ten stats, in five pairs. Each stat
           becomes a percentile among all 136 FBS programs; we drop each program’s single highest and
@@ -62,7 +64,46 @@ export default function Ranking() {
             <li><strong className="font-medium text-ink">All-time wins</strong> and <strong className="font-medium text-ink">win pct</strong> — season by season from 1869, the first year anyone played; a tie is half a win.</li>
           </ul>
         </div>
+        </>)}
       </div>
     </div>
+  );
+}
+
+/** the method & data notes, basketball edition */
+function BasketballNotes({ recentYears, surge }: { recentYears: number; surge: number }) {
+  const B = ({ children }: { children: React.ReactNode }) => <strong className="font-medium text-ink">{children}</strong>;
+  return (
+    <>
+      <p>
+        <strong className="text-ink">The method.</strong> Ten stats, in five pairs. Each stat
+        becomes a percentile among all {SITE.fieldCount} Division I programs; we drop each program’s single
+        highest and single lowest percentile and average the other eight. That average, on a 0–100 scale,
+        is the Blue Blood Rating. Records are <em>NCAA-official</em>: wins, Final Fours and titles the NCAA
+        vacated aren’t counted — Louisville’s 2013 title and 123 wins from 2011–15, Memphis’s 2008 season,
+        Michigan’s Fab Five Final Fours.
+      </p>
+      <p>
+        <strong className="text-ink">The trajectory arrow</strong> runs the same formula a second
+        time on the last {recentYears} seasons alone — every program ranked against every other
+        program’s last decade — and sets that against the same five stats all-time. ▲ ahead, ▼ behind,
+        – level; a stacked arrow when the gap tops {surge} points. It uses the five stats that separate
+        teams over a decade — wins, win rate, AP weeks, AP top-10 weeks, Sweet 16s; the rarer counters
+        don’t rank cleanly in ten years.
+      </p>
+      <div>
+        <p className="mb-1">
+          <strong className="text-ink">The data</strong> is compiled here, season by season. Each
+          series reaches back as far as the thing itself does:
+        </p>
+        <ul className="ml-4 list-disc space-y-0.5">
+          <li><B>AP Poll weeks</B> and <B>weeks in the top 10</B> — every AP poll since 1949-50, preseason and final polls included.</li>
+          <li><B>Consensus first-team All-Americans</B> since 1949-50, and <B>national players of the year</B> — UPI 1955–60, AP 1961–68, the Naismith since 1969.</li>
+          <li><B>NCAA championships</B> — every tournament since the first in 1939. <B>Conference titles</B> — regular-season champions, co-champions counted in full.</li>
+          <li><B>Sweet 16s</B> and <B>Final Fours</B> — tournament finishes since 1939. In the 8- and 16-team fields of 1939–52 every team counts as a Sweet 16.</li>
+          <li><B>All-time wins</B> and <B>win pct</B> — every Division I season on record, back to the 1890s.</li>
+        </ul>
+      </div>
+    </>
   );
 }

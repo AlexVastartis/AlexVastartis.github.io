@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { StatKey, Team } from '../types';
 import { VISIBLE_RUNS, runTargets, type DynastyRun } from '../config/dynastyRuns';
+import { IS_BASKETBALL } from '../config/site';
 
 const BASE = import.meta.env.BASE_URL;
 const initials = (name: string) =>
@@ -86,9 +87,19 @@ function RunCard({ run, team }: { run: DynastyRun; team: Team }) {
       </div>
       <ul className="mt-0.5 flex flex-col gap-0.5 text-[10px] tabular-nums">
         <li>+{d.allTimeWins} wins <span className="text-muted">at {pct(run.tenureWinPct)}</span></li>
-        <li>+{d.nationalTitles} national · +{d.conferenceTitles} conference titles</li>
-        <li>+{d.consensusAA} consensus / +{d.unanimousAA} unanimous All-Americans</li>
-        <li>+{d.nflDraftPicks} draft picks (+{d.firstRoundPicks} first-round)</li>
+        {IS_BASKETBALL ? (
+          <>
+            <li>+{d.nationalTitles} NCAA · +{d.conferenceTitles} conference titles</li>
+            <li>+{d.firstRoundPicks} Final Fours · +{d.nflDraftPicks} Sweet 16s</li>
+            <li>+{d.consensusAA} first-team All-Americans · +{d.unanimousAA} national POY</li>
+          </>
+        ) : (
+          <>
+            <li>+{d.nationalTitles} national · +{d.conferenceTitles} conference titles</li>
+            <li>+{d.consensusAA} consensus / +{d.unanimousAA} unanimous All-Americans</li>
+            <li>+{d.nflDraftPicks} draft picks (+{d.firstRoundPicks} first-round)</li>
+          </>
+        )}
         <li>+{d.weeksApPoll} ranked / +{d.weeksApTop10} top-10 weeks</li>
       </ul>
       {run.note && (

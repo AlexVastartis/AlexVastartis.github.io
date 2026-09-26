@@ -1,0 +1,2507 @@
+# One row per (school, season) conference regular-season title; co-champions each get a row.
+# Computed from conference games (best conference win %; ties = co-champions): Sports-Reference
+# game logs 1950-2016, ESPN 2017+. year=1949 rows are a LUMP (count = N) — titles before 1950 per
+# Sports-Reference's all-time total that the game logs cannot place in a season.
+school,year,conference,shared,count,source
+Air Force,2004,MWC,0,1,sports-reference-games
+Akron,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Akron,1986,OVC,1,1,sports-reference-games
+Akron,2012,MAC,0,1,sports-reference-games
+Akron,2013,MAC,1,1,sports-reference-games
+Akron,2016,MAC,0,1,sports-reference-games
+Akron,2017,MAC,0,1,espn-games
+Akron,2020,MAC,0,1,espn-games
+Akron,2025,MAC,0,1,espn-games
+Alabama,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Alabama,1956,SEC,0,1,sports-reference-games
+Alabama,1974,SEC,1,1,sports-reference-games
+Alabama,1975,SEC,1,1,sports-reference-games
+Alabama,1976,SEC,0,1,sports-reference-games
+Alabama,1987,SEC,0,1,sports-reference-games
+Alabama,2002,SEC,0,1,sports-reference-games
+Alabama,2021,SEC,0,1,espn-games
+Alabama,2023,SEC,0,1,espn-games
+Alabama A&M,2005,SWAC,0,1,sports-reference-games
+Alabama State,1983,SWAC,1,1,sports-reference-games
+Alabama State,1984,SWAC,0,1,sports-reference-games
+Alabama State,2001,SWAC,0,1,sports-reference-games
+Alabama State,2008,SWAC,0,1,sports-reference-games
+Alabama State,2009,SWAC,0,1,sports-reference-games
+Albany,2006,AEC,0,1,sports-reference-games
+Albany,2015,AEC,0,1,sports-reference-games
+Alcorn State,1978,SWAC,1,1,sports-reference-games
+Alcorn State,1979,SWAC,0,1,sports-reference-games
+Alcorn State,1980,SWAC,0,1,sports-reference-games
+Alcorn State,1981,SWAC,0,1,sports-reference-games
+Alcorn State,1982,SWAC,1,1,sports-reference-games
+Alcorn State,1985,SWAC,0,1,sports-reference-games
+Alcorn State,1986,SWAC,1,1,sports-reference-games
+Alcorn State,1999,SWAC,0,1,sports-reference-games
+Alcorn State,2000,SWAC,0,1,sports-reference-games
+Alcorn State,2002,SWAC,0,1,sports-reference-games
+Alcorn State,2022,SWAC,0,1,espn-games
+Alcorn State,2023,SWAC,0,1,espn-games
+American,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+American,1981,ECC,0,1,sports-reference-games
+American,1983,ECC,0,1,sports-reference-games
+American,2002,Patriot,0,1,sports-reference-games
+American,2004,Patriot,1,1,sports-reference-games
+American,2008,Patriot,0,1,sports-reference-games
+American,2009,Patriot,0,1,sports-reference-games
+American,2025,Patriot,1,1,espn-games
+Appalachian State,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Appalachian State,1978,Southern,0,1,sports-reference-games
+Appalachian State,1979,Southern,0,1,sports-reference-games
+Appalachian State,1981,Southern,1,1,sports-reference-games
+Appalachian State,1998,Southern,1,1,sports-reference-games
+Appalachian State,2000,Southern,1,1,sports-reference-games
+Appalachian State,2024,Sun Belt,0,1,espn-games
+Arizona,1949,,0,7,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Arizona,1951,BIAA,0,1,sports-reference-games
+Arizona,1976,WAC,0,1,sports-reference-games
+Arizona,1986,Pac-10,0,1,sports-reference-games
+Arizona,1988,Pac-10,0,1,sports-reference-games
+Arizona,1989,Pac-10,0,1,sports-reference-games
+Arizona,1991,Pac-10,0,1,sports-reference-games
+Arizona,1993,Pac-10,0,1,sports-reference-games
+Arizona,1994,Pac-10,0,1,sports-reference-games
+Arizona,1998,Pac-10,0,1,sports-reference-games
+Arizona,2000,Pac-10,1,1,sports-reference-games
+Arizona,2003,Pac-10,0,1,sports-reference-games
+Arizona,2005,Pac-10,0,1,sports-reference-games
+Arizona,2011,Pac-10,0,1,sports-reference-games
+Arizona,2014,Pac-12,0,1,sports-reference-games
+Arizona,2015,Pac-12,0,1,sports-reference-games
+Arizona,2017,21,0,1,espn-games
+Arizona,2018,21,0,1,espn-games
+Arizona,2022,21,0,1,espn-games
+Arizona,2024,21,0,1,espn-games
+Arizona,2026,Big 12,0,1,espn-games
+Arizona State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Arizona State,1958,BIAA,0,1,sports-reference-games
+Arizona State,1961,BIAA,0,1,sports-reference-games
+Arizona State,1962,BIAA,0,1,sports-reference-games
+Arizona State,1963,WAC,0,1,sports-reference-games
+Arizona State,1964,WAC,1,1,sports-reference-games
+Arizona State,1973,WAC,0,1,sports-reference-games
+Arizona State,1975,WAC,0,1,sports-reference-games
+Arkansas,1949,,0,14,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Arkansas,1950,SWC,0,1,sports-reference-games
+Arkansas,1958,SWC,0,1,sports-reference-games
+Arkansas,1977,SWC,0,1,sports-reference-games
+Arkansas,1978,SWC,1,1,sports-reference-games
+Arkansas,1979,SWC,1,1,sports-reference-games
+Arkansas,1981,SWC,0,1,sports-reference-games
+Arkansas,1982,SWC,0,1,sports-reference-games
+Arkansas,1989,SWC,0,1,sports-reference-games
+Arkansas,1990,SWC,0,1,sports-reference-games
+Arkansas,1991,SWC,0,1,sports-reference-games
+Arkansas,1992,SEC,0,1,sports-reference-games
+Arkansas,1994,SEC,0,1,sports-reference-games
+Arkansas State,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Arkansas State,1971,Southland,0,1,sports-reference-games
+Arkansas State,1991,ASC,1,1,sports-reference-games
+Arkansas State,1998,Sun Belt,1,1,sports-reference-games
+Arkansas State,2025,Sun Belt,1,1,espn-games
+Auburn,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Auburn,1960,SEC,0,1,sports-reference-games
+Auburn,1999,SEC,0,1,sports-reference-games
+Auburn,2022,SEC,0,1,espn-games
+Auburn,2025,SEC,0,1,espn-games
+Austin Peay,1973,OVC,0,1,sports-reference-games
+Austin Peay,1974,OVC,1,1,sports-reference-games
+Austin Peay,1977,OVC,0,1,sports-reference-games
+Austin Peay,1997,OVC,1,1,sports-reference-games
+Austin Peay,2003,OVC,1,1,sports-reference-games
+Austin Peay,2004,OVC,0,1,sports-reference-games
+Austin Peay,2007,OVC,0,1,sports-reference-games
+Austin Peay,2008,OVC,0,1,sports-reference-games
+Austin Peay,2026,ASUN,1,1,espn-games
+BYU,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+BYU,1950,MSAC,0,1,sports-reference-games
+BYU,1951,MSAC,0,1,sports-reference-games
+BYU,1957,MSAC,0,1,sports-reference-games
+BYU,1965,WAC,0,1,sports-reference-games
+BYU,1969,WAC,0,1,sports-reference-games
+BYU,1971,WAC,0,1,sports-reference-games
+BYU,1972,WAC,0,1,sports-reference-games
+BYU,1979,WAC,0,1,sports-reference-games
+BYU,1980,WAC,0,1,sports-reference-games
+BYU,1983,WAC,1,1,sports-reference-games
+BYU,1988,WAC,0,1,sports-reference-games
+BYU,1990,WAC,1,1,sports-reference-games
+BYU,1992,WAC,1,1,sports-reference-games
+BYU,1993,WAC,1,1,sports-reference-games
+BYU,2001,MWC,1,1,sports-reference-games
+BYU,2003,MWC,1,1,sports-reference-games
+BYU,2007,MWC,0,1,sports-reference-games
+BYU,2008,MWC,0,1,sports-reference-games
+BYU,2009,MWC,1,1,sports-reference-games
+BYU,2011,MWC,1,1,sports-reference-games
+Ball State,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Ball State,1981,MAC,1,1,sports-reference-games
+Ball State,1982,MAC,0,1,sports-reference-games
+Ball State,1989,MAC,0,1,sports-reference-games
+Ball State,1990,MAC,0,1,sports-reference-games
+Ball State,1993,MAC,1,1,sports-reference-games
+Ball State,1998,MAC,1,1,sports-reference-games
+Baylor,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Baylor,2021,Big 12,0,1,espn-games
+Baylor,2022,Big 12,1,1,espn-games
+Belmont,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Belmont,2006,A-Sun,1,1,sports-reference-games
+Belmont,2008,A-Sun,0,1,sports-reference-games
+Belmont,2010,A-Sun,0,1,sports-reference-games
+Belmont,2011,A-Sun,0,1,sports-reference-games
+Belmont,2012,A-Sun,0,1,sports-reference-games
+Belmont,2013,OVC,0,1,sports-reference-games
+Belmont,2014,OVC,0,1,sports-reference-games
+Belmont,2016,OVC,0,1,sports-reference-games
+Belmont,2017,Ohio Valley,0,1,espn-games
+Belmont,2020,Ohio Valley,0,1,espn-games
+Belmont,2021,Ohio Valley,0,1,espn-games
+Belmont,2026,Missouri Valley,0,1,espn-games
+Bethune-Cookman,2011,MEAC,0,1,sports-reference-games
+Bethune-Cookman,2026,SWAC,0,1,espn-games
+Binghamton,2009,AEC,1,1,sports-reference-games
+Boise State,1976,Big Sky,1,1,sports-reference-games
+Boise State,1988,Big Sky,0,1,sports-reference-games
+Boise State,1989,Big Sky,1,1,sports-reference-games
+Boise State,1999,Big West,1,1,sports-reference-games
+Boise State,2008,WAC,1,1,sports-reference-games
+Boise State,2015,MWC,1,1,sports-reference-games
+Boise State,2022,Mountain West,0,1,espn-games
+Boston College,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Boston College,1981,Big East,0,1,sports-reference-games
+Boston College,1983,Big East,1,1,sports-reference-games
+Boston College,1997,Big East,1,1,sports-reference-games
+Boston College,2001,Big East,0,1,sports-reference-games
+Boston College,2005,Big East,1,1,sports-reference-games
+Boston University,1983,ECACN,1,1,sports-reference-games
+Boston University,1990,NAC,1,1,sports-reference-games
+Boston University,1997,AEC,0,1,sports-reference-games
+Boston University,1998,AEC,1,1,sports-reference-games
+Boston University,2002,AEC,1,1,sports-reference-games
+Boston University,2003,AEC,0,1,sports-reference-games
+Boston University,2004,AEC,0,1,sports-reference-games
+Boston University,2014,Patriot,0,1,sports-reference-games
+Bowling Green,1959,MAC,0,1,sports-reference-games
+Bowling Green,1962,MAC,0,1,sports-reference-games
+Bowling Green,1963,MAC,0,1,sports-reference-games
+Bowling Green,1968,MAC,0,1,sports-reference-games
+Bowling Green,1981,MAC,1,1,sports-reference-games
+Bowling Green,1983,MAC,0,1,sports-reference-games
+Bowling Green,1997,MAC,1,1,sports-reference-games
+Bowling Green,2000,MAC,0,1,sports-reference-games
+Bowling Green,2009,MAC,1,1,sports-reference-games
+Bradley,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Bradley,1950,MVC,0,1,sports-reference-games
+Bradley,1980,MVC,0,1,sports-reference-games
+Bradley,1982,MVC,0,1,sports-reference-games
+Bradley,1986,MVC,0,1,sports-reference-games
+Bradley,1988,MVC,0,1,sports-reference-games
+Bradley,1996,MVC,0,1,sports-reference-games
+Bradley,2023,Missouri Valley,0,1,espn-games
+Brown,1986,Ivy,0,1,sports-reference-games
+Bryant,2022,NEC,0,1,espn-games
+Bryant,2025,America East,0,1,espn-games
+Bucknell,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Bucknell,1984,ECC,0,1,sports-reference-games
+Bucknell,1985,ECC,0,1,sports-reference-games
+Bucknell,1987,ECC,0,1,sports-reference-games
+Bucknell,1989,ECC,0,1,sports-reference-games
+Bucknell,1992,Patriot,1,1,sports-reference-games
+Bucknell,1993,Patriot,0,1,sports-reference-games
+Bucknell,1995,Patriot,0,1,sports-reference-games
+Bucknell,2006,Patriot,0,1,sports-reference-games
+Bucknell,2007,Patriot,1,1,sports-reference-games
+Bucknell,2011,Patriot,0,1,sports-reference-games
+Bucknell,2012,Patriot,0,1,sports-reference-games
+Bucknell,2013,Patriot,0,1,sports-reference-games
+Bucknell,2015,Patriot,0,1,sports-reference-games
+Bucknell,2016,Patriot,0,1,sports-reference-games
+Bucknell,2017,Patriot,0,1,espn-games
+Bucknell,2018,Patriot,0,1,espn-games
+Bucknell,2025,Patriot,1,1,espn-games
+Buffalo,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Buffalo,2009,MAC,1,1,sports-reference-games
+Buffalo,2015,MAC,1,1,sports-reference-games
+Buffalo,2018,MAC,0,1,espn-games
+Buffalo,2019,MAC,0,1,espn-games
+Butler,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Butler,1997,MW Coll,0,1,sports-reference-games
+Butler,2000,MW Coll,0,1,sports-reference-games
+Butler,2001,MW Coll,0,1,sports-reference-games
+Butler,2002,Horizon,0,1,sports-reference-games
+Butler,2003,Horizon,0,1,sports-reference-games
+Butler,2007,Horizon,1,1,sports-reference-games
+Butler,2008,Horizon,0,1,sports-reference-games
+Butler,2009,Horizon,0,1,sports-reference-games
+Butler,2010,Horizon,0,1,sports-reference-games
+Butler,2011,Horizon,1,1,sports-reference-games
+Cal Poly,1996,AWC,0,1,sports-reference-games
+Cal State Bakersfield,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Cal State Fullerton,1976,PCAA,1,1,sports-reference-games
+Cal State Fullerton,2008,Big West,1,1,sports-reference-games
+Cal State Northridge,2001,Big Sky,0,1,sports-reference-games
+Cal State Northridge,2008,Big West,1,1,sports-reference-games
+Cal State Northridge,2009,Big West,0,1,sports-reference-games
+California,1949,,0,9,sports-reference-total (titles before 1950 / not reproduced from game logs)
+California,1957,PCC,0,1,sports-reference-games
+California,1958,PCC,0,1,sports-reference-games
+California,1959,PCC,0,1,sports-reference-games
+California,1960,AAWU,0,1,sports-reference-games
+California,2010,Pac-10,0,1,sports-reference-games
+Campbell,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Canisius,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Canisius,1985,ECACN,1,1,sports-reference-games
+Canisius,1994,MAAC,0,1,sports-reference-games
+Canisius,2018,MAAC,1,1,espn-games
+Central Arkansas,2026,ASUN,1,1,espn-games
+Central Connecticut,2000,NEC,0,1,sports-reference-games
+Central Connecticut,2002,NEC,0,1,sports-reference-games
+Central Connecticut,2007,NEC,0,1,sports-reference-games
+Central Connecticut,2024,NEC,1,1,espn-games
+Central Connecticut,2025,NEC,0,1,espn-games
+Central Michigan,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Central Michigan,1975,MAC,0,1,sports-reference-games
+Central Michigan,1977,MAC,1,1,sports-reference-games
+Central Michigan,1979,MAC,1,1,sports-reference-games
+Central Michigan,1987,MAC,0,1,sports-reference-games
+Central Michigan,2001,MAC,0,1,sports-reference-games
+Central Michigan,2003,MAC,0,1,sports-reference-games
+Central Michigan,2015,MAC,1,1,sports-reference-games
+Charleston,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Charleston,1993,A-Sun,0,1,sports-reference-games
+Charleston,1994,A-Sun,0,1,sports-reference-games
+Charleston,1995,A-Sun,0,1,sports-reference-games
+Charleston,1996,A-Sun,0,1,sports-reference-games
+Charleston,1997,A-Sun,0,1,sports-reference-games
+Charleston,1998,A-Sun,0,1,sports-reference-games
+Charleston,1999,Southern,0,1,sports-reference-games
+Charleston,2000,Southern,1,1,sports-reference-games
+Charleston,2003,Southern,0,1,sports-reference-games
+Charleston,2011,Southern,1,1,sports-reference-games
+Charleston,2018,CAA,0,1,espn-games
+Charleston,2023,CAA,1,1,espn-games
+Charleston,2024,CAA,0,1,espn-games
+Charleston Southern,1986,Big South,0,1,sports-reference-games
+Charleston Southern,1987,Big South,0,1,sports-reference-games
+Charleston Southern,2013,Big South,1,1,sports-reference-games
+Charleston Southern,2015,Big South,1,1,sports-reference-games
+Charlotte,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Charlotte,1978,Sun Belt,0,1,sports-reference-games
+Charlotte,1988,Sun Belt,0,1,sports-reference-games
+Charlotte,1995,Metro,0,1,sports-reference-games
+Charlotte,2004,CUSA,1,1,sports-reference-games
+Chattanooga,1949,,0,6,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Chattanooga,1981,Southern,1,1,sports-reference-games
+Chattanooga,1982,Southern,0,1,sports-reference-games
+Chattanooga,1983,Southern,0,1,sports-reference-games
+Chattanooga,1985,Southern,0,1,sports-reference-games
+Chattanooga,1986,Southern,0,1,sports-reference-games
+Chattanooga,1989,Southern,0,1,sports-reference-games
+Chattanooga,1991,Southern,1,1,sports-reference-games
+Chattanooga,1992,Southern,1,1,sports-reference-games
+Chattanooga,1993,Southern,0,1,sports-reference-games
+Chattanooga,1994,Southern,0,1,sports-reference-games
+Chattanooga,1995,Southern,1,1,sports-reference-games
+Chattanooga,1997,Southern,1,1,sports-reference-games
+Chattanooga,2016,Southern,0,1,sports-reference-games
+Chattanooga,2022,SoCon,0,1,espn-games
+Chattanooga,2025,SoCon,0,1,espn-games
+Chicago State,2010,GWC,1,1,sports-reference-games
+Cincinnati,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Cincinnati,1950,MAC,0,1,sports-reference-games
+Cincinnati,1951,MAC,0,1,sports-reference-games
+Cincinnati,1958,MVC,0,1,sports-reference-games
+Cincinnati,1959,MVC,0,1,sports-reference-games
+Cincinnati,1960,MVC,0,1,sports-reference-games
+Cincinnati,1961,MVC,0,1,sports-reference-games
+Cincinnati,1962,MVC,0,1,sports-reference-games
+Cincinnati,1963,MVC,0,1,sports-reference-games
+Cincinnati,1966,MVC,0,1,sports-reference-games
+Cincinnati,1992,GMWC,1,1,sports-reference-games
+Cincinnati,1993,GMWC,0,1,sports-reference-games
+Cincinnati,1996,CUSA,1,1,sports-reference-games
+Cincinnati,1997,CUSA,0,1,sports-reference-games
+Cincinnati,1998,CUSA,0,1,sports-reference-games
+Cincinnati,1999,CUSA,0,1,sports-reference-games
+Cincinnati,2000,CUSA,0,1,sports-reference-games
+Cincinnati,2001,CUSA,1,1,sports-reference-games
+Cincinnati,2002,CUSA,0,1,sports-reference-games
+Cincinnati,2004,CUSA,1,1,sports-reference-games
+Cincinnati,2014,AAC,1,1,sports-reference-games
+Cincinnati,2018,American,0,1,espn-games
+Cincinnati,2020,American,1,1,espn-games
+Clemson,1990,ACC,0,1,sports-reference-games
+Cleveland State,1985,Mid-Cont,0,1,sports-reference-games
+Cleveland State,1986,Mid-Cont,0,1,sports-reference-games
+Cleveland State,1989,Mid-Cont,0,1,sports-reference-games
+Cleveland State,1993,Mid-Cont,0,1,sports-reference-games
+Cleveland State,2011,Horizon,1,1,sports-reference-games
+Cleveland State,2021,Horizon,1,1,espn-games
+Cleveland State,2022,Horizon,1,1,espn-games
+Coastal Carolina,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Coastal Carolina,1988,Big South,0,1,sports-reference-games
+Coastal Carolina,1989,Big South,0,1,sports-reference-games
+Coastal Carolina,1990,Big South,0,1,sports-reference-games
+Coastal Carolina,1991,Big South,0,1,sports-reference-games
+Coastal Carolina,2010,Big South,0,1,sports-reference-games
+Coastal Carolina,2011,Big South,0,1,sports-reference-games
+Colgate,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Colgate,1994,Patriot,1,1,sports-reference-games
+Colgate,1996,Patriot,1,1,sports-reference-games
+Colgate,2019,Patriot,0,1,espn-games
+Colgate,2020,Patriot,0,1,espn-games
+Colgate,2022,Patriot,0,1,espn-games
+Colgate,2023,Patriot,0,1,espn-games
+Colgate,2024,Patriot,0,1,espn-games
+Colorado,1949,,0,16,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Colorado,1955,Big 7,0,1,sports-reference-games
+Colorado,1963,Big 8,1,1,sports-reference-games
+Colorado,1969,Big 8,1,1,sports-reference-games
+Colorado State,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Colorado State,1954,MSAC,0,1,sports-reference-games
+Colorado State,1989,WAC,0,1,sports-reference-games
+Colorado State,1990,WAC,1,1,sports-reference-games
+Columbia,1949,,0,11,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Columbia,1951,Ivy,0,1,sports-reference-games
+Columbia,1968,Ivy,0,1,sports-reference-games
+Coppin State,1990,MEAC,0,1,sports-reference-games
+Coppin State,1991,MEAC,0,1,sports-reference-games
+Coppin State,1993,MEAC,0,1,sports-reference-games
+Coppin State,1994,MEAC,0,1,sports-reference-games
+Coppin State,1995,MEAC,0,1,sports-reference-games
+Coppin State,1996,MEAC,0,1,sports-reference-games
+Coppin State,1997,MEAC,0,1,sports-reference-games
+Coppin State,1998,MEAC,0,1,sports-reference-games
+Coppin State,1999,MEAC,1,1,sports-reference-games
+Coppin State,2004,MEAC,1,1,sports-reference-games
+Cornell,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Cornell,1954,Ivy,0,1,sports-reference-games
+Cornell,1988,Ivy,0,1,sports-reference-games
+Cornell,2008,Ivy,0,1,sports-reference-games
+Cornell,2009,Ivy,0,1,sports-reference-games
+Cornell,2010,Ivy,0,1,sports-reference-games
+Creighton,1949,,0,7,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Creighton,1977,MVC,1,1,sports-reference-games
+Creighton,1978,MVC,0,1,sports-reference-games
+Creighton,1989,MVC,0,1,sports-reference-games
+Creighton,1991,MVC,0,1,sports-reference-games
+Creighton,2001,MVC,0,1,sports-reference-games
+Creighton,2002,MVC,1,1,sports-reference-games
+Creighton,2009,MVC,1,1,sports-reference-games
+Creighton,2013,MVC,0,1,sports-reference-games
+Creighton,2020,Big East,1,1,espn-games
+Dartmouth,1949,,0,9,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Dartmouth,1956,Ivy,0,1,sports-reference-games
+Dartmouth,1958,Ivy,0,1,sports-reference-games
+Dartmouth,1959,Ivy,1,1,sports-reference-games
+Davidson,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Davidson,1964,Southern,0,1,sports-reference-games
+Davidson,1965,Southern,0,1,sports-reference-games
+Davidson,1966,Southern,0,1,sports-reference-games
+Davidson,1968,Southern,0,1,sports-reference-games
+Davidson,1969,Southern,0,1,sports-reference-games
+Davidson,1970,Southern,0,1,sports-reference-games
+Davidson,1971,Southern,0,1,sports-reference-games
+Davidson,1972,Southern,0,1,sports-reference-games
+Davidson,1973,Southern,0,1,sports-reference-games
+Davidson,1981,Southern,1,1,sports-reference-games
+Davidson,1996,Southern,0,1,sports-reference-games
+Davidson,1998,Southern,1,1,sports-reference-games
+Davidson,2002,Southern,1,1,sports-reference-games
+Davidson,2005,Southern,0,1,sports-reference-games
+Davidson,2007,Southern,0,1,sports-reference-games
+Davidson,2008,Southern,0,1,sports-reference-games
+Davidson,2009,Southern,0,1,sports-reference-games
+Davidson,2012,Southern,0,1,sports-reference-games
+Davidson,2013,Southern,0,1,sports-reference-games
+Davidson,2014,Southern,0,1,sports-reference-games
+Davidson,2015,A-10,0,1,sports-reference-games
+Davidson,2022,Atlantic 10,0,1,espn-games
+Dayton,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Dayton,2016,A-10,1,1,sports-reference-games
+Dayton,2017,Atlantic 10,0,1,espn-games
+Dayton,2020,Atlantic 10,0,1,espn-games
+DePaul,1992,GMWC,1,1,sports-reference-games
+DePaul,2004,CUSA,1,1,sports-reference-games
+Delaware,1992,NAC,0,1,sports-reference-games
+Delaware,1998,AEC,1,1,sports-reference-games
+Delaware,1999,AEC,1,1,sports-reference-games
+Delaware,2014,CAA,0,1,sports-reference-games
+Delaware State,2005,MEAC,0,1,sports-reference-games
+Delaware State,2006,MEAC,0,1,sports-reference-games
+Delaware State,2007,MEAC,0,1,sports-reference-games
+Denver,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Denver,2005,Sun Belt,0,1,sports-reference-games
+Denver,2013,WAC,1,1,sports-reference-games
+Detroit Mercy,1998,MW Coll,1,1,sports-reference-games
+Detroit Mercy,1999,MW Coll,0,1,sports-reference-games
+Drake,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Drake,1969,MVC,0,1,sports-reference-games
+Drake,1970,MVC,0,1,sports-reference-games
+Drake,1971,MVC,1,1,sports-reference-games
+Drake,2008,MVC,0,1,sports-reference-games
+Drake,2019,Missouri Valley,1,1,espn-games
+Drake,2025,Missouri Valley,0,1,espn-games
+Drexel,1986,ECC,0,1,sports-reference-games
+Drexel,1993,NAC,1,1,sports-reference-games
+Drexel,1994,NAC,0,1,sports-reference-games
+Drexel,1995,NAC,0,1,sports-reference-games
+Drexel,1996,NAC,0,1,sports-reference-games
+Drexel,1999,AEC,1,1,sports-reference-games
+Drexel,2012,CAA,0,1,sports-reference-games
+Duke,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Duke,1954,ACC,0,1,sports-reference-games
+Duke,1958,ACC,1,1,sports-reference-games
+Duke,1962,ACC,1,1,sports-reference-games
+Duke,1963,ACC,0,1,sports-reference-games
+Duke,1964,ACC,0,1,sports-reference-games
+Duke,1965,ACC,0,1,sports-reference-games
+Duke,1966,ACC,0,1,sports-reference-games
+Duke,1979,ACC,0,1,sports-reference-games
+Duke,1986,ACC,0,1,sports-reference-games
+Duke,1991,ACC,0,1,sports-reference-games
+Duke,1992,ACC,0,1,sports-reference-games
+Duke,1994,ACC,0,1,sports-reference-games
+Duke,1997,ACC,0,1,sports-reference-games
+Duke,1998,ACC,0,1,sports-reference-games
+Duke,1999,ACC,0,1,sports-reference-games
+Duke,2000,ACC,0,1,sports-reference-games
+Duke,2001,ACC,1,1,sports-reference-games
+Duke,2004,ACC,0,1,sports-reference-games
+Duke,2006,ACC,0,1,sports-reference-games
+Duke,2010,ACC,1,1,sports-reference-games
+Duke,2022,ACC,0,1,espn-games
+Duke,2025,ACC,0,1,espn-games
+Duke,2026,ACC,0,1,espn-games
+Duquesne,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Duquesne,1981,EAA,0,1,sports-reference-games
+East Tennessee State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+East Tennessee State,1978,OVC,1,1,sports-reference-games
+East Tennessee State,1990,Southern,0,1,sports-reference-games
+East Tennessee State,1991,Southern,1,1,sports-reference-games
+East Tennessee State,1992,Southern,1,1,sports-reference-games
+East Tennessee State,2001,Southern,0,1,sports-reference-games
+East Tennessee State,2002,Southern,1,1,sports-reference-games
+East Tennessee State,2004,Southern,0,1,sports-reference-games
+East Tennessee State,2007,A-Sun,0,1,sports-reference-games
+East Tennessee State,2017,SoCon,0,1,espn-games
+East Tennessee State,2020,SoCon,0,1,espn-games
+East Tennessee State,2026,SoCon,0,1,espn-games
+Eastern Kentucky,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Eastern Kentucky,1959,OVC,0,1,sports-reference-games
+Eastern Kentucky,1961,OVC,1,1,sports-reference-games
+Eastern Kentucky,1965,OVC,0,1,sports-reference-games
+Eastern Kentucky,1972,OVC,0,1,sports-reference-games
+Eastern Kentucky,1979,OVC,0,1,sports-reference-games
+Eastern Kentucky,2024,ASUN,0,1,espn-games
+Eastern Michigan,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Eastern Michigan,1988,MAC,0,1,sports-reference-games
+Eastern Michigan,1991,MAC,0,1,sports-reference-games
+Eastern Michigan,1996,MAC,0,1,sports-reference-games
+Eastern Washington,2000,Big Sky,1,1,sports-reference-games
+Eastern Washington,2004,Big Sky,0,1,sports-reference-games
+Eastern Washington,2015,Big Sky,1,1,sports-reference-games
+Eastern Washington,2020,Big Sky,0,1,espn-games
+Eastern Washington,2023,Big Sky,0,1,espn-games
+Eastern Washington,2024,Big Sky,0,1,espn-games
+Elon,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Evansville,1982,MW City,0,1,sports-reference-games
+Evansville,1987,MW Coll,1,1,sports-reference-games
+Evansville,1989,MW Coll,0,1,sports-reference-games
+Evansville,1992,MW Coll,0,1,sports-reference-games
+Evansville,1993,MW Coll,1,1,sports-reference-games
+Evansville,1999,MVC,0,1,sports-reference-games
+FIU,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Fairfield,1986,MAAC,0,1,sports-reference-games
+Fairfield,1996,MAAC,1,1,sports-reference-games
+Fairfield,2011,MAAC,0,1,sports-reference-games
+Fairleigh Dickinson,1982,ECACM,0,1,sports-reference-games
+Fairleigh Dickinson,1986,ECACM,0,1,sports-reference-games
+Fairleigh Dickinson,1988,ECACM,1,1,sports-reference-games
+Fairleigh Dickinson,1991,NEC,1,1,sports-reference-games
+Fairleigh Dickinson,2006,NEC,0,1,sports-reference-games
+Fairleigh Dickinson,2019,NEC,0,1,espn-games
+Florida,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Florida,1989,SEC,0,1,sports-reference-games
+Florida,2000,SEC,1,1,sports-reference-games
+Florida,2001,SEC,1,1,sports-reference-games
+Florida,2007,SEC,0,1,sports-reference-games
+Florida,2011,SEC,0,1,sports-reference-games
+Florida,2013,SEC,0,1,sports-reference-games
+Florida,2014,SEC,0,1,sports-reference-games
+Florida,2026,SEC,0,1,espn-games
+Florida Atlantic,2011,Sun Belt,0,1,sports-reference-games
+Florida Atlantic,2023,C-USA,0,1,espn-games
+Florida Gulf Coast,2014,A-Sun,1,1,sports-reference-games
+Florida Gulf Coast,2017,ASUN,0,1,espn-games
+Florida Gulf Coast,2018,ASUN,0,1,espn-games
+Florida State,1978,Metro,0,1,sports-reference-games
+Florida State,1989,Metro,0,1,sports-reference-games
+Florida State,2020,ACC,0,1,espn-games
+Fordham,1963,Metro NY,1,1,sports-reference-games
+Fordham,1981,ECACM,0,1,sports-reference-games
+Fordham,1991,Patriot,0,1,sports-reference-games
+Fordham,1992,Patriot,1,1,sports-reference-games
+Fordham,1994,Patriot,1,1,sports-reference-games
+Fresno State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Fresno State,1978,PCAA,1,1,sports-reference-games
+Fresno State,1981,PCAA,0,1,sports-reference-games
+Fresno State,1982,PCAA,0,1,sports-reference-games
+Fresno State,2001,WAC,0,1,sports-reference-games
+Fresno State,2003,WAC,0,1,sports-reference-games
+Furman,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Furman,1974,Southern,0,1,sports-reference-games
+Furman,1975,Southern,0,1,sports-reference-games
+Furman,1980,Southern,0,1,sports-reference-games
+Furman,1991,Southern,1,1,sports-reference-games
+Furman,2023,SoCon,1,1,espn-games
+Gardner-Webb,2005,A-Sun,1,1,sports-reference-games
+George Mason,1999,CAA,0,1,sports-reference-games
+George Mason,2000,CAA,1,1,sports-reference-games
+George Mason,2006,CAA,1,1,sports-reference-games
+George Mason,2011,CAA,0,1,sports-reference-games
+George Mason,2025,Atlantic 10,1,1,espn-games
+George Washington,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+George Washington,1954,Southern,0,1,sports-reference-games
+George Washington,1956,Southern,1,1,sports-reference-games
+George Washington,1999,A-10,1,1,sports-reference-games
+George Washington,2006,A-10,0,1,sports-reference-games
+Georgetown,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Georgetown,1984,Big East,0,1,sports-reference-games
+Georgetown,1987,Big East,1,1,sports-reference-games
+Georgetown,1989,Big East,0,1,sports-reference-games
+Georgetown,1992,Big East,1,1,sports-reference-games
+Georgetown,2007,Big East,0,1,sports-reference-games
+Georgetown,2008,Big East,0,1,sports-reference-games
+Georgetown,2013,Big East,1,1,sports-reference-games
+Georgia,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Georgia,1990,SEC,0,1,sports-reference-games
+Georgia Southern,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Georgia Southern,1985,A-Sun,0,1,sports-reference-games
+Georgia Southern,1988,A-Sun,1,1,sports-reference-games
+Georgia Southern,1989,A-Sun,0,1,sports-reference-games
+Georgia Southern,1992,A-Sun,0,1,sports-reference-games
+Georgia Southern,2006,Southern,0,1,sports-reference-games
+Georgia State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Georgia State,2000,A-Sun,1,1,sports-reference-games
+Georgia State,2001,A-Sun,0,1,sports-reference-games
+Georgia State,2002,A-Sun,1,1,sports-reference-games
+Georgia State,2014,Sun Belt,0,1,sports-reference-games
+Georgia State,2015,Sun Belt,0,1,sports-reference-games
+Georgia State,2019,Sun Belt,0,1,espn-games
+Georgia Tech,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Georgia Tech,1985,ACC,0,1,sports-reference-games
+Georgia Tech,1996,ACC,0,1,sports-reference-games
+Gonzaga,1966,Big Sky,1,1,sports-reference-games
+Gonzaga,1967,Big Sky,0,1,sports-reference-games
+Gonzaga,1994,WCC,0,1,sports-reference-games
+Gonzaga,1996,WCC,1,1,sports-reference-games
+Gonzaga,1998,WCC,0,1,sports-reference-games
+Gonzaga,1999,WCC,0,1,sports-reference-games
+Gonzaga,2001,WCC,0,1,sports-reference-games
+Gonzaga,2002,WCC,1,1,sports-reference-games
+Gonzaga,2003,WCC,0,1,sports-reference-games
+Gonzaga,2004,WCC,0,1,sports-reference-games
+Gonzaga,2005,WCC,0,1,sports-reference-games
+Gonzaga,2006,WCC,0,1,sports-reference-games
+Gonzaga,2007,WCC,0,1,sports-reference-games
+Gonzaga,2008,WCC,0,1,sports-reference-games
+Gonzaga,2009,WCC,0,1,sports-reference-games
+Gonzaga,2010,WCC,0,1,sports-reference-games
+Gonzaga,2011,WCC,1,1,sports-reference-games
+Gonzaga,2013,WCC,0,1,sports-reference-games
+Gonzaga,2014,WCC,0,1,sports-reference-games
+Gonzaga,2015,WCC,0,1,sports-reference-games
+Gonzaga,2016,WCC,1,1,sports-reference-games
+Gonzaga,2017,West Coast,0,1,espn-games
+Gonzaga,2018,West Coast,0,1,espn-games
+Gonzaga,2019,West Coast,0,1,espn-games
+Gonzaga,2020,West Coast,0,1,espn-games
+Gonzaga,2021,West Coast,0,1,espn-games
+Gonzaga,2022,West Coast,0,1,espn-games
+Gonzaga,2023,West Coast,1,1,espn-games
+Gonzaga,2026,West Coast,1,1,espn-games
+Grambling,1987,SWAC,0,1,sports-reference-games
+Grambling,1989,SWAC,1,1,sports-reference-games
+Grambling,2018,SWAC,0,1,espn-games
+Grambling,2024,SWAC,0,1,espn-games
+Grand Canyon,2021,WAC,0,1,espn-games
+Grand Canyon,2024,WAC,0,1,espn-games
+Green Bay,1992,Mid-Cont,0,1,sports-reference-games
+Green Bay,1994,Mid-Cont,0,1,sports-reference-games
+Green Bay,1996,MW Coll,0,1,sports-reference-games
+Green Bay,2014,Horizon,0,1,sports-reference-games
+Hampton,2001,MEAC,1,1,sports-reference-games
+Hampton,2002,MEAC,0,1,sports-reference-games
+Hampton,2016,MEAC,0,1,sports-reference-games
+Hampton,2018,MEAC,0,1,espn-games
+Harvard,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Harvard,2012,Ivy,0,1,sports-reference-games
+Harvard,2013,Ivy,0,1,sports-reference-games
+Harvard,2014,Ivy,0,1,sports-reference-games
+Harvard,2015,Ivy,0,1,sports-reference-games
+Hawaii,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Hawaii,2002,WAC,1,1,sports-reference-games
+Hawaii,2016,Big West,1,1,sports-reference-games
+High Point,2013,Big South,1,1,sports-reference-games
+High Point,2014,Big South,0,1,sports-reference-games
+High Point,2015,Big South,1,1,sports-reference-games
+High Point,2016,Big South,1,1,sports-reference-games
+High Point,2024,Big South,0,1,espn-games
+High Point,2025,Big South,0,1,espn-games
+High Point,2026,Big South,0,1,espn-games
+Hofstra,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Hofstra,1990,ECC,1,1,sports-reference-games
+Hofstra,1992,ECC,0,1,sports-reference-games
+Hofstra,2000,AEC,0,1,sports-reference-games
+Hofstra,2001,AEC,0,1,sports-reference-games
+Hofstra,2016,CAA,1,1,sports-reference-games
+Hofstra,2019,CAA,1,1,espn-games
+Hofstra,2020,CAA,0,1,espn-games
+Hofstra,2023,CAA,1,1,espn-games
+Holy Cross,1980,ECACN,0,1,sports-reference-games
+Holy Cross,1981,ECACN,1,1,sports-reference-games
+Holy Cross,1994,Patriot,1,1,sports-reference-games
+Holy Cross,2001,Patriot,0,1,sports-reference-games
+Holy Cross,2003,Patriot,0,1,sports-reference-games
+Holy Cross,2005,Patriot,0,1,sports-reference-games
+Holy Cross,2007,Patriot,1,1,sports-reference-games
+Houston,1956,MVC,0,1,sports-reference-games
+Houston,1983,SWC,0,1,sports-reference-games
+Houston,1984,SWC,0,1,sports-reference-games
+Houston,1992,SWC,1,1,sports-reference-games
+Houston,2019,American,0,1,espn-games
+Houston,2020,American,1,1,espn-games
+Houston,2022,American,0,1,espn-games
+Houston,2023,American,0,1,espn-games
+Houston,2024,Big 12,0,1,espn-games
+Houston,2025,Big 12,0,1,espn-games
+Houston Christian,1981,A-Sun,1,1,sports-reference-games
+Houston Christian,1984,A-Sun,0,1,sports-reference-games
+Howard,1977,MEAC,1,1,sports-reference-games
+Howard,1980,MEAC,0,1,sports-reference-games
+Howard,1983,MEAC,0,1,sports-reference-games
+Howard,1987,MEAC,0,1,sports-reference-games
+Howard,1992,MEAC,1,1,sports-reference-games
+Howard,2023,MEAC,0,1,espn-games
+Howard,2026,MEAC,0,1,espn-games
+IU Indy,2006,Mid-Cont,1,1,sports-reference-games
+Idaho,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Idaho,1981,Big Sky,0,1,sports-reference-games
+Idaho,1982,Big Sky,0,1,sports-reference-games
+Idaho,1989,Big Sky,1,1,sports-reference-games
+Idaho,1990,Big Sky,0,1,sports-reference-games
+Idaho,1993,Big Sky,0,1,sports-reference-games
+Idaho State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Idaho State,1976,Big Sky,1,1,sports-reference-games
+Idaho State,1977,Big Sky,0,1,sports-reference-games
+Idaho State,1994,Big Sky,1,1,sports-reference-games
+Illinois,1949,,0,8,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Illinois,1951,Big Ten,0,1,sports-reference-games
+Illinois,1952,Big Ten,0,1,sports-reference-games
+Illinois,1963,Big Ten,1,1,sports-reference-games
+Illinois,1984,Big Ten,1,1,sports-reference-games
+Illinois,1998,Big Ten,1,1,sports-reference-games
+Illinois,2001,Big Ten,1,1,sports-reference-games
+Illinois,2002,Big Ten,1,1,sports-reference-games
+Illinois,2004,Big Ten,0,1,sports-reference-games
+Illinois,2005,Big Ten,0,1,sports-reference-games
+Illinois,2022,Big Ten,1,1,espn-games
+Illinois State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Illinois State,1984,MVC,1,1,sports-reference-games
+Illinois State,1992,MVC,1,1,sports-reference-games
+Illinois State,1993,MVC,0,1,sports-reference-games
+Illinois State,1997,MVC,0,1,sports-reference-games
+Illinois State,1998,MVC,0,1,sports-reference-games
+Indiana,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Indiana,1953,Big Ten,0,1,sports-reference-games
+Indiana,1954,Big Ten,0,1,sports-reference-games
+Indiana,1957,Big Ten,1,1,sports-reference-games
+Indiana,1958,Big Ten,0,1,sports-reference-games
+Indiana,1967,Big Ten,1,1,sports-reference-games
+Indiana,1973,Big Ten,0,1,sports-reference-games
+Indiana,1974,Big Ten,1,1,sports-reference-games
+Indiana,1975,Big Ten,0,1,sports-reference-games
+Indiana,1976,Big Ten,0,1,sports-reference-games
+Indiana,1980,Big Ten,0,1,sports-reference-games
+Indiana,1981,Big Ten,0,1,sports-reference-games
+Indiana,1983,Big Ten,0,1,sports-reference-games
+Indiana,1987,Big Ten,1,1,sports-reference-games
+Indiana,1989,Big Ten,0,1,sports-reference-games
+Indiana,1991,Big Ten,1,1,sports-reference-games
+Indiana,1993,Big Ten,0,1,sports-reference-games
+Indiana,2002,Big Ten,1,1,sports-reference-games
+Indiana,2013,Big Ten,0,1,sports-reference-games
+Indiana,2016,Big Ten,0,1,sports-reference-games
+Indiana State,1977,MVC,1,1,sports-reference-games
+Indiana State,1979,MVC,0,1,sports-reference-games
+Indiana State,2000,MVC,0,1,sports-reference-games
+Indiana State,2024,Missouri Valley,0,1,espn-games
+Iona,1980,ECACM,0,1,sports-reference-games
+Iona,1983,MAAC,0,1,sports-reference-games
+Iona,1984,MAAC,0,1,sports-reference-games
+Iona,1985,MAAC,0,1,sports-reference-games
+Iona,1996,MAAC,1,1,sports-reference-games
+Iona,1997,MAAC,0,1,sports-reference-games
+Iona,1998,MAAC,0,1,sports-reference-games
+Iona,2001,MAAC,1,1,sports-reference-games
+Iona,2012,MAAC,0,1,sports-reference-games
+Iona,2014,MAAC,0,1,sports-reference-games
+Iona,2015,MAAC,0,1,sports-reference-games
+Iona,2019,MAAC,0,1,espn-games
+Iona,2022,MAAC,0,1,espn-games
+Iona,2023,MAAC,0,1,espn-games
+Iowa,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Iowa,1955,Big Ten,0,1,sports-reference-games
+Iowa,1956,Big Ten,0,1,sports-reference-games
+Iowa,1968,Big Ten,1,1,sports-reference-games
+Iowa,1970,Big Ten,0,1,sports-reference-games
+Iowa State,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Iowa State,1956,Big 7,1,1,sports-reference-games
+Iowa State,2000,Big 12,0,1,sports-reference-games
+Iowa State,2001,Big 12,0,1,sports-reference-games
+Jackson State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Jackson State,1978,SWAC,1,1,sports-reference-games
+Jackson State,1982,SWAC,1,1,sports-reference-games
+Jackson State,1991,SWAC,0,1,sports-reference-games
+Jackson State,1993,SWAC,0,1,sports-reference-games
+Jackson State,1996,SWAC,1,1,sports-reference-games
+Jackson State,2010,SWAC,0,1,sports-reference-games
+Jackson State,2021,SWAC,1,1,espn-games
+Jacksonville,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Jacksonville,2009,A-Sun,0,1,sports-reference-games
+Jacksonville State,2022,ASUN,0,1,espn-games
+James Madison,1982,ECACS,0,1,sports-reference-games
+James Madison,1990,CAA,0,1,sports-reference-games
+James Madison,1991,CAA,0,1,sports-reference-games
+James Madison,1992,CAA,1,1,sports-reference-games
+James Madison,1993,CAA,1,1,sports-reference-games
+James Madison,1994,CAA,1,1,sports-reference-games
+James Madison,2000,CAA,1,1,sports-reference-games
+James Madison,2015,CAA,1,1,sports-reference-games
+James Madison,2021,CAA,1,1,espn-games
+James Madison,2025,Sun Belt,1,1,espn-games
+Kansas,1949,,0,24,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Kansas,1952,Big 7,0,1,sports-reference-games
+Kansas,1953,Big 7,0,1,sports-reference-games
+Kansas,1954,Big 7,0,1,sports-reference-games
+Kansas,1957,Big 7,0,1,sports-reference-games
+Kansas,1960,Big 8,0,1,sports-reference-games
+Kansas,1966,Big 8,0,1,sports-reference-games
+Kansas,1967,Big 8,0,1,sports-reference-games
+Kansas,1969,Big 8,1,1,sports-reference-games
+Kansas,1971,Big 8,0,1,sports-reference-games
+Kansas,1974,Big 8,0,1,sports-reference-games
+Kansas,1975,Big 8,0,1,sports-reference-games
+Kansas,1978,Big 8,0,1,sports-reference-games
+Kansas,1979,Big 8,1,1,sports-reference-games
+Kansas,1986,Big 8,0,1,sports-reference-games
+Kansas,1991,Big 8,1,1,sports-reference-games
+Kansas,1992,Big 8,0,1,sports-reference-games
+Kansas,1993,Big 8,0,1,sports-reference-games
+Kansas,1995,Big 8,0,1,sports-reference-games
+Kansas,1996,Big 8,0,1,sports-reference-games
+Kansas,1997,Big 12,0,1,sports-reference-games
+Kansas,1998,Big 12,0,1,sports-reference-games
+Kansas,2002,Big 12,0,1,sports-reference-games
+Kansas,2003,Big 12,0,1,sports-reference-games
+Kansas,2005,Big 12,1,1,sports-reference-games
+Kansas,2006,Big 12,1,1,sports-reference-games
+Kansas,2007,Big 12,0,1,sports-reference-games
+Kansas,2008,Big 12,1,1,sports-reference-games
+Kansas,2009,Big 12,0,1,sports-reference-games
+Kansas,2010,Big 12,0,1,sports-reference-games
+Kansas,2011,Big 12,0,1,sports-reference-games
+Kansas,2012,Big 12,0,1,sports-reference-games
+Kansas,2013,Big 12,1,1,sports-reference-games
+Kansas,2014,Big 12,0,1,sports-reference-games
+Kansas,2015,Big 12,0,1,sports-reference-games
+Kansas,2016,Big 12,0,1,sports-reference-games
+Kansas,2017,Big 12,0,1,espn-games
+Kansas,2018,Big 12,0,1,espn-games
+Kansas,2020,Big 12,0,1,espn-games
+Kansas,2022,Big 12,1,1,espn-games
+Kansas,2023,Big 12,0,1,espn-games
+Kansas State,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Kansas State,1950,Big 7,0,1,sports-reference-games
+Kansas State,1951,Big 7,0,1,sports-reference-games
+Kansas State,1956,Big 7,1,1,sports-reference-games
+Kansas State,1958,Big 8,0,1,sports-reference-games
+Kansas State,1959,Big 8,0,1,sports-reference-games
+Kansas State,1961,Big 8,0,1,sports-reference-games
+Kansas State,1962,Big 8,0,1,sports-reference-games
+Kansas State,1963,Big 8,1,1,sports-reference-games
+Kansas State,1964,Big 8,0,1,sports-reference-games
+Kansas State,1968,Big 8,0,1,sports-reference-games
+Kansas State,1970,Big 8,0,1,sports-reference-games
+Kansas State,1972,Big 8,0,1,sports-reference-games
+Kansas State,1973,Big 8,0,1,sports-reference-games
+Kansas State,1977,Big 8,0,1,sports-reference-games
+Kansas State,2013,Big 12,1,1,sports-reference-games
+Kansas State,2019,Big 12,0,1,espn-games
+Kennesaw State,2023,ASUN,1,1,espn-games
+Kent State,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Kent State,2002,MAC,0,1,sports-reference-games
+Kent State,2006,MAC,0,1,sports-reference-games
+Kent State,2008,MAC,0,1,sports-reference-games
+Kent State,2010,MAC,0,1,sports-reference-games
+Kent State,2011,MAC,0,1,sports-reference-games
+Kent State,2015,MAC,1,1,sports-reference-games
+Kentucky,1949,,0,17,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Kentucky,1950,SEC,0,1,sports-reference-games
+Kentucky,1951,SEC,0,1,sports-reference-games
+Kentucky,1952,SEC,0,1,sports-reference-games
+Kentucky,1954,SEC,1,1,sports-reference-games
+Kentucky,1955,SEC,0,1,sports-reference-games
+Kentucky,1957,SEC,0,1,sports-reference-games
+Kentucky,1958,SEC,0,1,sports-reference-games
+Kentucky,1962,SEC,1,1,sports-reference-games
+Kentucky,1964,SEC,0,1,sports-reference-games
+Kentucky,1966,SEC,0,1,sports-reference-games
+Kentucky,1968,SEC,0,1,sports-reference-games
+Kentucky,1969,SEC,0,1,sports-reference-games
+Kentucky,1970,SEC,0,1,sports-reference-games
+Kentucky,1971,SEC,0,1,sports-reference-games
+Kentucky,1972,SEC,1,1,sports-reference-games
+Kentucky,1973,SEC,0,1,sports-reference-games
+Kentucky,1975,SEC,1,1,sports-reference-games
+Kentucky,1977,SEC,1,1,sports-reference-games
+Kentucky,1978,SEC,0,1,sports-reference-games
+Kentucky,1980,SEC,0,1,sports-reference-games
+Kentucky,1982,SEC,1,1,sports-reference-games
+Kentucky,1983,SEC,0,1,sports-reference-games
+Kentucky,1984,SEC,0,1,sports-reference-games
+Kentucky,1986,SEC,0,1,sports-reference-games
+Kentucky,1988,SEC,0,1,sports-reference-games
+Kentucky,1991,SEC,0,1,sports-reference-games
+Kentucky,1995,SEC,0,1,sports-reference-games
+Kentucky,1996,SEC,0,1,sports-reference-games
+Kentucky,1998,SEC,0,1,sports-reference-games
+Kentucky,2000,SEC,1,1,sports-reference-games
+Kentucky,2001,SEC,1,1,sports-reference-games
+Kentucky,2003,SEC,0,1,sports-reference-games
+Kentucky,2005,SEC,0,1,sports-reference-games
+Kentucky,2010,SEC,0,1,sports-reference-games
+Kentucky,2012,SEC,0,1,sports-reference-games
+Kentucky,2015,SEC,0,1,sports-reference-games
+Kentucky,2016,SEC,1,1,sports-reference-games
+Kentucky,2017,SEC,0,1,espn-games
+Kentucky,2020,SEC,0,1,espn-games
+LIU,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+LIU,1984,ECACM,1,1,sports-reference-games
+LIU,1997,NEC,0,1,sports-reference-games
+LIU,1998,NEC,0,1,sports-reference-games
+LIU,2011,NEC,0,1,sports-reference-games
+LIU,2012,NEC,0,1,sports-reference-games
+LIU,2026,NEC,0,1,espn-games
+LSU,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+LSU,1953,SEC,0,1,sports-reference-games
+LSU,1954,SEC,1,1,sports-reference-games
+LSU,1979,SEC,0,1,sports-reference-games
+LSU,1981,SEC,0,1,sports-reference-games
+LSU,1985,SEC,0,1,sports-reference-games
+LSU,2000,SEC,1,1,sports-reference-games
+LSU,2006,SEC,0,1,sports-reference-games
+LSU,2009,SEC,0,1,sports-reference-games
+LSU,2019,SEC,0,1,espn-games
+La Salle,1968,Mid-Atl,0,1,sports-reference-games
+La Salle,1969,Mid-Atl,0,1,sports-reference-games
+La Salle,1974,Mid-Atl,0,1,sports-reference-games
+La Salle,1975,ECC,0,1,sports-reference-games
+La Salle,1978,ECC,0,1,sports-reference-games
+La Salle,1988,MAAC,0,1,sports-reference-games
+La Salle,1989,MAAC,0,1,sports-reference-games
+La Salle,1990,MAAC,0,1,sports-reference-games
+La Salle,1991,MAAC,1,1,sports-reference-games
+Lafayette,1949,,0,10,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Lafayette,1971,Mid-Atl,1,1,sports-reference-games
+Lafayette,1976,ECC,0,1,sports-reference-games
+Lafayette,1977,ECC,0,1,sports-reference-games
+Lafayette,1988,ECC,0,1,sports-reference-games
+Lafayette,1998,Patriot,1,1,sports-reference-games
+Lafayette,1999,Patriot,0,1,sports-reference-games
+Lafayette,2000,Patriot,1,1,sports-reference-games
+Lamar,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Lamar,1978,Southland,1,1,sports-reference-games
+Lamar,1979,Southland,0,1,sports-reference-games
+Lamar,1980,Southland,0,1,sports-reference-games
+Lamar,1981,Southland,0,1,sports-reference-games
+Lamar,1983,Southland,0,1,sports-reference-games
+Lamar,1984,Southland,0,1,sports-reference-games
+Lehigh,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Lehigh,1990,ECC,1,1,sports-reference-games
+Lehigh,2004,Patriot,1,1,sports-reference-games
+Lehigh,2010,Patriot,0,1,sports-reference-games
+Liberty,1997,Big South,1,1,sports-reference-games
+Liberty,2004,Big South,1,1,sports-reference-games
+Liberty,2019,ASUN,0,1,espn-games
+Liberty,2020,ASUN,0,1,espn-games
+Liberty,2021,ASUN,0,1,espn-games
+Liberty,2023,ASUN,1,1,espn-games
+Liberty,2025,C-USA,0,1,espn-games
+Liberty,2026,C-USA,0,1,espn-games
+Lipscomb,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Lipscomb,2006,A-Sun,1,1,sports-reference-games
+Lipscomb,2025,ASUN,1,1,espn-games
+Little Rock,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Little Rock,1982,A-Sun,0,1,sports-reference-games
+Little Rock,1983,A-Sun,0,1,sports-reference-games
+Little Rock,1986,A-Sun,0,1,sports-reference-games
+Little Rock,1987,A-Sun,0,1,sports-reference-games
+Little Rock,1988,A-Sun,1,1,sports-reference-games
+Little Rock,1996,Sun Belt,1,1,sports-reference-games
+Little Rock,2009,Sun Belt,1,1,sports-reference-games
+Little Rock,2016,Sun Belt,0,1,sports-reference-games
+Little Rock,2020,Sun Belt,0,1,espn-games
+Little Rock,2024,Ohio Valley,1,1,espn-games
+Long Beach State,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Long Beach State,1971,PCAA,0,1,sports-reference-games
+Long Beach State,1972,PCAA,0,1,sports-reference-games
+Long Beach State,1973,PCAA,0,1,sports-reference-games
+Long Beach State,1974,PCAA,0,1,sports-reference-games
+Long Beach State,1975,PCAA,0,1,sports-reference-games
+Long Beach State,1976,PCAA,1,1,sports-reference-games
+Long Beach State,1977,PCAA,1,1,sports-reference-games
+Long Beach State,1996,Big West,0,1,sports-reference-games
+Long Beach State,2007,Big West,0,1,sports-reference-games
+Long Beach State,2011,Big West,0,1,sports-reference-games
+Long Beach State,2012,Big West,0,1,sports-reference-games
+Long Beach State,2013,Big West,0,1,sports-reference-games
+Long Beach State,2022,Big West,0,1,espn-games
+Longwood,2022,Big South,0,1,espn-games
+Louisiana,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Louisiana,1972,Southland,0,1,sports-reference-games
+Louisiana,1973,Southland,0,1,sports-reference-games
+Louisiana,1977,Southland,0,1,sports-reference-games
+Louisiana,1982,Southland,0,1,sports-reference-games
+Louisiana,1992,Sun Belt,1,1,sports-reference-games
+Louisiana,2000,Sun Belt,1,1,sports-reference-games
+Louisiana,2004,Sun Belt,0,1,sports-reference-games
+Louisiana,2018,Sun Belt,0,1,espn-games
+Louisiana Tech,1976,Southland,0,1,sports-reference-games
+Louisiana Tech,1985,Southland,0,1,sports-reference-games
+Louisiana Tech,1987,Southland,0,1,sports-reference-games
+Louisiana Tech,1988,ASC,1,1,sports-reference-games
+Louisiana Tech,1990,ASC,1,1,sports-reference-games
+Louisiana Tech,1992,Sun Belt,1,1,sports-reference-games
+Louisiana Tech,1999,Sun Belt,0,1,sports-reference-games
+Louisiana Tech,2013,WAC,1,1,sports-reference-games
+Louisiana Tech,2014,CUSA,1,1,sports-reference-games
+Louisiana Tech,2015,CUSA,0,1,sports-reference-games
+Louisiana-Monroe,1979,A-Sun,1,1,sports-reference-games
+Louisiana-Monroe,1980,A-Sun,0,1,sports-reference-games
+Louisiana-Monroe,1981,A-Sun,1,1,sports-reference-games
+Louisiana-Monroe,1986,Southland,0,1,sports-reference-games
+Louisiana-Monroe,1990,Southland,0,1,sports-reference-games
+Louisiana-Monroe,1991,Southland,0,1,sports-reference-games
+Louisiana-Monroe,1993,Southland,0,1,sports-reference-games
+Louisiana-Monroe,1994,Southland,0,1,sports-reference-games
+Louisiana-Monroe,1996,Southland,0,1,sports-reference-games
+Louisiana-Monroe,1997,Southland,1,1,sports-reference-games
+Louisville,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Louisville,1967,MVC,0,1,sports-reference-games
+Louisville,1968,MVC,0,1,sports-reference-games
+Louisville,1971,MVC,1,1,sports-reference-games
+Louisville,1972,MVC,1,1,sports-reference-games
+Louisville,1974,MVC,0,1,sports-reference-games
+Louisville,1977,Metro,0,1,sports-reference-games
+Louisville,1979,Metro,0,1,sports-reference-games
+Louisville,1980,Metro,0,1,sports-reference-games
+Louisville,1981,Metro,0,1,sports-reference-games
+Louisville,1983,Metro,0,1,sports-reference-games
+Louisville,1984,Metro,0,1,sports-reference-games
+Louisville,1986,Metro,0,1,sports-reference-games
+Louisville,1987,Metro,0,1,sports-reference-games
+Louisville,1988,Metro,0,1,sports-reference-games
+Louisville,1990,Metro,0,1,sports-reference-games
+Louisville,1993,Metro,0,1,sports-reference-games
+Louisville,1994,Metro,0,1,sports-reference-games
+Louisville,2005,CUSA,0,1,sports-reference-games
+Louisville,2009,Big East,0,1,sports-reference-games
+Louisville,2013,Big East,1,1,sports-reference-games
+Louisville,2014,AAC,1,1,sports-reference-games
+Loyola Chicago,1980,MW City,0,1,sports-reference-games
+Loyola Chicago,1983,MW City,0,1,sports-reference-games
+Loyola Chicago,1985,MW City,0,1,sports-reference-games
+Loyola Chicago,1987,MW Coll,1,1,sports-reference-games
+Loyola Chicago,2018,Missouri Valley,0,1,espn-games
+Loyola Chicago,2019,Missouri Valley,1,1,espn-games
+Loyola Chicago,2021,Missouri Valley,0,1,espn-games
+Loyola Chicago,2024,Atlantic 10,1,1,espn-games
+Loyola Marymount,1960,WCAC,0,1,sports-reference-games
+Loyola Marymount,1961,WCAC,0,1,sports-reference-games
+Loyola Marymount,1988,WCAC,0,1,sports-reference-games
+Loyola Marymount,1990,WCC,0,1,sports-reference-games
+Manhattan,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Manhattan,1953,Metro NY,0,1,sports-reference-games
+Manhattan,1955,Metro NY,0,1,sports-reference-games
+Manhattan,1959,Metro NY,0,1,sports-reference-games
+Manhattan,1977,NJNY7,0,1,sports-reference-games
+Manhattan,1992,MAAC,0,1,sports-reference-games
+Manhattan,1993,MAAC,0,1,sports-reference-games
+Manhattan,1995,MAAC,0,1,sports-reference-games
+Manhattan,2003,MAAC,0,1,sports-reference-games
+Manhattan,2004,MAAC,0,1,sports-reference-games
+Manhattan,2006,MAAC,0,1,sports-reference-games
+Marist,1985,ECACM,0,1,sports-reference-games
+Marist,1987,ECACM,0,1,sports-reference-games
+Marist,1988,ECACM,1,1,sports-reference-games
+Marist,2002,MAAC,1,1,sports-reference-games
+Marist,2007,MAAC,0,1,sports-reference-games
+Marquette,1994,GMWC,0,1,sports-reference-games
+Marquette,2003,CUSA,0,1,sports-reference-games
+Marquette,2013,Big East,1,1,sports-reference-games
+Marquette,2023,Big East,0,1,espn-games
+Marshall,1956,MAC,0,1,sports-reference-games
+Marshall,1984,Southern,0,1,sports-reference-games
+Marshall,1987,Southern,0,1,sports-reference-games
+Marshall,1988,Southern,0,1,sports-reference-games
+Marshall,1995,Southern,1,1,sports-reference-games
+Marshall,1997,Southern,1,1,sports-reference-games
+Maryland,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Maryland,1975,ACC,0,1,sports-reference-games
+Maryland,1980,ACC,0,1,sports-reference-games
+Maryland,1995,ACC,1,1,sports-reference-games
+Maryland,2002,ACC,0,1,sports-reference-games
+Maryland,2010,ACC,1,1,sports-reference-games
+Maryland,2020,Big Ten,1,1,espn-games
+Maryland Eastern Shore,1974,MEAC,0,1,sports-reference-games
+McNeese,1974,Southland,0,1,sports-reference-games
+McNeese,1975,Southland,0,1,sports-reference-games
+McNeese,1978,Southland,1,1,sports-reference-games
+McNeese,1997,Southland,1,1,sports-reference-games
+McNeese,2001,Southland,0,1,sports-reference-games
+McNeese,2002,Southland,0,1,sports-reference-games
+McNeese,2011,Southland,0,1,sports-reference-games
+McNeese,2024,Southland,0,1,espn-games
+McNeese,2025,Southland,0,1,espn-games
+Memphis,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Memphis,1972,MVC,1,1,sports-reference-games
+Memphis,1973,MVC,0,1,sports-reference-games
+Memphis,1982,Metro,0,1,sports-reference-games
+Memphis,1985,Metro,0,1,sports-reference-games
+Memphis,1995,GMWC,0,1,sports-reference-games
+Memphis,1996,CUSA,1,1,sports-reference-games
+Memphis,2004,CUSA,1,1,sports-reference-games
+Memphis,2006,CUSA,0,1,sports-reference-games
+Memphis,2007,CUSA,0,1,sports-reference-games
+Memphis,2008,CUSA,0,1,sports-reference-games
+Memphis,2009,CUSA,0,1,sports-reference-games
+Memphis,2012,CUSA,0,1,sports-reference-games
+Memphis,2013,CUSA,0,1,sports-reference-games
+Memphis,2025,American,0,1,espn-games
+Mercer,1979,A-Sun,1,1,sports-reference-games
+Mercer,2003,A-Sun,1,1,sports-reference-games
+Mercer,2013,A-Sun,0,1,sports-reference-games
+Mercer,2014,A-Sun,1,1,sports-reference-games
+Merrimack,2020,NEC,0,1,espn-games
+Merrimack,2023,NEC,0,1,espn-games
+Merrimack,2024,NEC,1,1,espn-games
+Merrimack,2026,MAAC,0,1,espn-games
+Miami (FL),2000,Big East,1,1,sports-reference-games
+Miami (FL),2013,ACC,0,1,sports-reference-games
+Miami (FL),2023,ACC,1,1,espn-games
+Miami (OH),1952,MAC,0,1,sports-reference-games
+Miami (OH),1953,MAC,0,1,sports-reference-games
+Miami (OH),1955,MAC,0,1,sports-reference-games
+Miami (OH),1957,MAC,0,1,sports-reference-games
+Miami (OH),1958,MAC,0,1,sports-reference-games
+Miami (OH),1966,MAC,0,1,sports-reference-games
+Miami (OH),1969,MAC,0,1,sports-reference-games
+Miami (OH),1971,MAC,0,1,sports-reference-games
+Miami (OH),1973,MAC,0,1,sports-reference-games
+Miami (OH),1977,MAC,1,1,sports-reference-games
+Miami (OH),1978,MAC,0,1,sports-reference-games
+Miami (OH),1984,MAC,0,1,sports-reference-games
+Miami (OH),1986,MAC,0,1,sports-reference-games
+Miami (OH),1992,MAC,0,1,sports-reference-games
+Miami (OH),1993,MAC,1,1,sports-reference-games
+Miami (OH),1995,MAC,0,1,sports-reference-games
+Miami (OH),1997,MAC,1,1,sports-reference-games
+Miami (OH),1999,MAC,0,1,sports-reference-games
+Miami (OH),2005,MAC,0,1,sports-reference-games
+Miami (OH),2026,MAC,0,1,espn-games
+Michigan,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Michigan,1964,Big Ten,1,1,sports-reference-games
+Michigan,1965,Big Ten,0,1,sports-reference-games
+Michigan,1966,Big Ten,0,1,sports-reference-games
+Michigan,1974,Big Ten,1,1,sports-reference-games
+Michigan,1977,Big Ten,0,1,sports-reference-games
+Michigan,1985,Big Ten,0,1,sports-reference-games
+Michigan,1986,Big Ten,0,1,sports-reference-games
+Michigan,2012,Big Ten,1,1,sports-reference-games
+Michigan,2014,Big Ten,0,1,sports-reference-games
+Michigan,2021,Big Ten,0,1,espn-games
+Michigan,2026,Big Ten,0,1,espn-games
+Michigan State,1957,Big Ten,1,1,sports-reference-games
+Michigan State,1959,Big Ten,0,1,sports-reference-games
+Michigan State,1967,Big Ten,1,1,sports-reference-games
+Michigan State,1978,Big Ten,0,1,sports-reference-games
+Michigan State,1979,Big Ten,0,1,sports-reference-games
+Michigan State,1990,Big Ten,0,1,sports-reference-games
+Michigan State,1998,Big Ten,1,1,sports-reference-games
+Michigan State,1999,Big Ten,0,1,sports-reference-games
+Michigan State,2000,Big Ten,1,1,sports-reference-games
+Michigan State,2001,Big Ten,1,1,sports-reference-games
+Michigan State,2009,Big Ten,0,1,sports-reference-games
+Michigan State,2010,Big Ten,1,1,sports-reference-games
+Michigan State,2012,Big Ten,1,1,sports-reference-games
+Michigan State,2018,Big Ten,0,1,espn-games
+Michigan State,2019,Big Ten,0,1,espn-games
+Michigan State,2020,Big Ten,1,1,espn-games
+Michigan State,2025,Big Ten,0,1,espn-games
+Middle Tennessee,1975,OVC,0,1,sports-reference-games
+Middle Tennessee,1978,OVC,1,1,sports-reference-games
+Middle Tennessee,1986,OVC,1,1,sports-reference-games
+Middle Tennessee,1987,OVC,0,1,sports-reference-games
+Middle Tennessee,1989,OVC,1,1,sports-reference-games
+Middle Tennessee,2010,Sun Belt,1,1,sports-reference-games
+Middle Tennessee,2012,Sun Belt,0,1,sports-reference-games
+Middle Tennessee,2013,Sun Belt,0,1,sports-reference-games
+Middle Tennessee,2014,CUSA,1,1,sports-reference-games
+Middle Tennessee,2017,C-USA,0,1,espn-games
+Middle Tennessee,2018,C-USA,0,1,espn-games
+Milwaukee,2004,Horizon,0,1,sports-reference-games
+Milwaukee,2005,Horizon,0,1,sports-reference-games
+Milwaukee,2006,Horizon,0,1,sports-reference-games
+Milwaukee,2011,Horizon,1,1,sports-reference-games
+Minnesota,1949,,0,6,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Minnesota,1972,Big Ten,0,1,sports-reference-games
+Minnesota,1982,Big Ten,0,1,sports-reference-games
+Minnesota,1997,Big Ten,0,1,sports-reference-games
+Mississippi State,1949,,0,7,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Mississippi State,1959,SEC,0,1,sports-reference-games
+Mississippi State,1961,SEC,0,1,sports-reference-games
+Mississippi State,1962,SEC,1,1,sports-reference-games
+Mississippi State,1963,SEC,0,1,sports-reference-games
+Mississippi State,2004,SEC,0,1,sports-reference-games
+Mississippi Valley State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Mississippi Valley State,1992,SWAC,1,1,sports-reference-games
+Mississippi Valley State,1996,SWAC,1,1,sports-reference-games
+Mississippi Valley State,1997,SWAC,0,1,sports-reference-games
+Mississippi Valley State,2004,SWAC,0,1,sports-reference-games
+Mississippi Valley State,2007,SWAC,0,1,sports-reference-games
+Mississippi Valley State,2012,SWAC,0,1,sports-reference-games
+Missouri,1949,,0,7,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Missouri,1976,Big 8,0,1,sports-reference-games
+Missouri,1980,Big 8,0,1,sports-reference-games
+Missouri,1981,Big 8,0,1,sports-reference-games
+Missouri,1982,Big 8,0,1,sports-reference-games
+Missouri,1983,Big 8,0,1,sports-reference-games
+Missouri,1987,Big 8,0,1,sports-reference-games
+Missouri,1990,Big 8,0,1,sports-reference-games
+Missouri,1994,Big 8,0,1,sports-reference-games
+Missouri State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Missouri State,1987,Mid-Cont,0,1,sports-reference-games
+Missouri State,1988,Mid-Cont,0,1,sports-reference-games
+Missouri State,1990,Mid-Cont,0,1,sports-reference-games
+Missouri State,2011,MVC,0,1,sports-reference-games
+Monmouth,2004,NEC,1,1,sports-reference-games
+Monmouth,2005,NEC,0,1,sports-reference-games
+Monmouth,2016,MAAC,0,1,sports-reference-games
+Monmouth,2017,MAAC,0,1,espn-games
+Montana,1974,Big Sky,0,1,sports-reference-games
+Montana,1975,Big Sky,0,1,sports-reference-games
+Montana,1978,Big Sky,0,1,sports-reference-games
+Montana,1986,Big Sky,1,1,sports-reference-games
+Montana,1991,Big Sky,0,1,sports-reference-games
+Montana,1992,Big Sky,0,1,sports-reference-games
+Montana,1995,Big Sky,1,1,sports-reference-games
+Montana,2000,Big Sky,1,1,sports-reference-games
+Montana,2012,Big Sky,0,1,sports-reference-games
+Montana,2013,Big Sky,0,1,sports-reference-games
+Montana,2015,Big Sky,1,1,sports-reference-games
+Montana,2018,Big Sky,0,1,espn-games
+Montana,2019,Big Sky,0,1,espn-games
+Montana,2025,Big Sky,1,1,espn-games
+Montana State,1949,,0,6,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Montana State,1964,Big Sky,0,1,sports-reference-games
+Montana State,1987,Big Sky,0,1,sports-reference-games
+Montana State,1996,Big Sky,0,1,sports-reference-games
+Montana State,2002,Big Sky,0,1,sports-reference-games
+Montana State,2022,Big Sky,0,1,espn-games
+Morehead State,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Morehead State,1957,OVC,1,1,sports-reference-games
+Morehead State,1963,OVC,1,1,sports-reference-games
+Morehead State,1974,OVC,1,1,sports-reference-games
+Morehead State,1984,OVC,0,1,sports-reference-games
+Morehead State,2003,OVC,1,1,sports-reference-games
+Morehead State,2023,Ohio Valley,0,1,espn-games
+Morehead State,2024,Ohio Valley,1,1,espn-games
+Morehead State,2026,Ohio Valley,1,1,espn-games
+Morgan State,2008,MEAC,0,1,sports-reference-games
+Morgan State,2009,MEAC,0,1,sports-reference-games
+Morgan State,2010,MEAC,0,1,sports-reference-games
+Mount St. Mary's,1996,NEC,0,1,sports-reference-games
+Mount St. Mary's,2017,NEC,0,1,espn-games
+Murray State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Murray State,1956,OVC,0,1,sports-reference-games
+Murray State,1964,OVC,0,1,sports-reference-games
+Murray State,1968,OVC,0,1,sports-reference-games
+Murray State,1969,OVC,0,1,sports-reference-games
+Murray State,1980,OVC,1,1,sports-reference-games
+Murray State,1982,OVC,1,1,sports-reference-games
+Murray State,1983,OVC,0,1,sports-reference-games
+Murray State,1988,OVC,0,1,sports-reference-games
+Murray State,1989,OVC,1,1,sports-reference-games
+Murray State,1990,OVC,0,1,sports-reference-games
+Murray State,1991,OVC,0,1,sports-reference-games
+Murray State,1992,OVC,0,1,sports-reference-games
+Murray State,1994,OVC,0,1,sports-reference-games
+Murray State,1995,OVC,1,1,sports-reference-games
+Murray State,1996,OVC,0,1,sports-reference-games
+Murray State,1997,OVC,1,1,sports-reference-games
+Murray State,1998,OVC,0,1,sports-reference-games
+Murray State,1999,OVC,0,1,sports-reference-games
+Murray State,2000,OVC,1,1,sports-reference-games
+Murray State,2006,OVC,0,1,sports-reference-games
+Murray State,2010,OVC,0,1,sports-reference-games
+Murray State,2011,OVC,0,1,sports-reference-games
+Murray State,2012,OVC,0,1,sports-reference-games
+Murray State,2015,OVC,0,1,sports-reference-games
+Murray State,2018,Ohio Valley,0,1,espn-games
+Murray State,2019,Ohio Valley,0,1,espn-games
+Murray State,2022,Ohio Valley,0,1,espn-games
+NC State,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+NC State,1950,Southern,0,1,sports-reference-games
+NC State,1951,Southern,0,1,sports-reference-games
+NC State,1953,Southern,0,1,sports-reference-games
+NC State,1955,ACC,0,1,sports-reference-games
+NC State,1956,ACC,0,1,sports-reference-games
+NC State,1959,ACC,1,1,sports-reference-games
+NC State,1973,ACC,0,1,sports-reference-games
+NC State,1974,ACC,0,1,sports-reference-games
+NC State,1989,ACC,0,1,sports-reference-games
+NJIT,2010,GWC,1,1,sports-reference-games
+NJIT,2013,GWC,0,1,sports-reference-games
+Navy,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Navy,1986,CAA,0,1,sports-reference-games
+Navy,1987,CAA,0,1,sports-reference-games
+Navy,1994,Patriot,1,1,sports-reference-games
+Navy,1996,Patriot,1,1,sports-reference-games
+Navy,1997,Patriot,0,1,sports-reference-games
+Navy,1998,Patriot,1,1,sports-reference-games
+Navy,2000,Patriot,1,1,sports-reference-games
+Navy,2021,Patriot,0,1,espn-games
+Navy,2026,Patriot,0,1,espn-games
+Nebraska,1949,,0,7,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Nevada,1983,Big Sky,1,1,sports-reference-games
+Nevada,1985,Big Sky,0,1,sports-reference-games
+Nevada,1997,Big West,1,1,sports-reference-games
+Nevada,2004,WAC,1,1,sports-reference-games
+Nevada,2005,WAC,0,1,sports-reference-games
+Nevada,2006,WAC,0,1,sports-reference-games
+Nevada,2007,WAC,0,1,sports-reference-games
+Nevada,2008,WAC,1,1,sports-reference-games
+Nevada,2012,WAC,0,1,sports-reference-games
+Nevada,2017,Mountain West,0,1,espn-games
+Nevada,2018,Mountain West,0,1,espn-games
+New Hampshire,1983,ECACN,1,1,sports-reference-games
+New Mexico,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+New Mexico,1964,WAC,1,1,sports-reference-games
+New Mexico,1968,WAC,0,1,sports-reference-games
+New Mexico,1974,WAC,0,1,sports-reference-games
+New Mexico,1978,WAC,0,1,sports-reference-games
+New Mexico,1994,WAC,0,1,sports-reference-games
+New Mexico,2009,MWC,1,1,sports-reference-games
+New Mexico,2010,MWC,0,1,sports-reference-games
+New Mexico,2012,MWC,1,1,sports-reference-games
+New Mexico,2013,MWC,0,1,sports-reference-games
+New Mexico,2025,Mountain West,0,1,espn-games
+New Mexico State,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+New Mexico State,1952,BIAA,0,1,sports-reference-games
+New Mexico State,1959,BIAA,0,1,sports-reference-games
+New Mexico State,1960,BIAA,0,1,sports-reference-games
+New Mexico State,1990,Big West,1,1,sports-reference-games
+New Mexico State,1993,Big West,0,1,sports-reference-games
+New Mexico State,1994,Big West,0,1,sports-reference-games
+New Mexico State,1997,Big West,1,1,sports-reference-games
+New Mexico State,1999,Big West,1,1,sports-reference-games
+New Mexico State,2008,WAC,1,1,sports-reference-games
+New Mexico State,2015,WAC,0,1,sports-reference-games
+New Mexico State,2016,WAC,0,1,sports-reference-games
+New Mexico State,2017,WAC,0,1,espn-games
+New Mexico State,2018,WAC,0,1,espn-games
+New Mexico State,2019,WAC,0,1,espn-games
+New Mexico State,2020,WAC,0,1,espn-games
+New Mexico State,2022,WAC,1,1,espn-games
+New Orleans,1977,Sun Belt,0,1,sports-reference-games
+New Orleans,1988,ASC,1,1,sports-reference-games
+New Orleans,1989,ASC,0,1,sports-reference-games
+New Orleans,1990,ASC,1,1,sports-reference-games
+New Orleans,1991,ASC,1,1,sports-reference-games
+New Orleans,1993,Sun Belt,0,1,sports-reference-games
+New Orleans,1996,Sun Belt,1,1,sports-reference-games
+New Orleans,1997,Sun Belt,1,1,sports-reference-games
+New Orleans,2017,Southland,0,1,espn-games
+Niagara,1949,,0,6,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Niagara,1999,MAAC,1,1,sports-reference-games
+Niagara,2001,MAAC,1,1,sports-reference-games
+Niagara,2005,MAAC,1,1,sports-reference-games
+Niagara,2013,MAAC,0,1,sports-reference-games
+Nicholls,1995,Southland,0,1,sports-reference-games
+Nicholls,1998,Southland,0,1,sports-reference-games
+Nicholls,2021,Southland,0,1,espn-games
+Nicholls,2022,Southland,1,1,espn-games
+Norfolk State,2013,MEAC,0,1,sports-reference-games
+Norfolk State,2019,MEAC,0,1,espn-games
+Norfolk State,2022,MEAC,0,1,espn-games
+Norfolk State,2024,MEAC,0,1,espn-games
+Norfolk State,2025,MEAC,1,1,espn-games
+North Alabama,2025,ASUN,1,1,espn-games
+North Carolina,1949,,0,10,sports-reference-total (titles before 1950 / not reproduced from game logs)
+North Carolina,1957,ACC,0,1,sports-reference-games
+North Carolina,1958,ACC,1,1,sports-reference-games
+North Carolina,1959,ACC,1,1,sports-reference-games
+North Carolina,1961,ACC,0,1,sports-reference-games
+North Carolina,1967,ACC,0,1,sports-reference-games
+North Carolina,1968,ACC,0,1,sports-reference-games
+North Carolina,1969,ACC,0,1,sports-reference-games
+North Carolina,1971,ACC,0,1,sports-reference-games
+North Carolina,1972,ACC,0,1,sports-reference-games
+North Carolina,1976,ACC,0,1,sports-reference-games
+North Carolina,1977,ACC,1,1,sports-reference-games
+North Carolina,1978,ACC,0,1,sports-reference-games
+North Carolina,1982,ACC,1,1,sports-reference-games
+North Carolina,1983,ACC,1,1,sports-reference-games
+North Carolina,1984,ACC,0,1,sports-reference-games
+North Carolina,1987,ACC,0,1,sports-reference-games
+North Carolina,1988,ACC,0,1,sports-reference-games
+North Carolina,1993,ACC,0,1,sports-reference-games
+North Carolina,1995,ACC,1,1,sports-reference-games
+North Carolina,2001,ACC,1,1,sports-reference-games
+North Carolina,2005,ACC,0,1,sports-reference-games
+North Carolina,2007,ACC,1,1,sports-reference-games
+North Carolina,2008,ACC,0,1,sports-reference-games
+North Carolina,2009,ACC,0,1,sports-reference-games
+North Carolina,2011,ACC,0,1,sports-reference-games
+North Carolina,2012,ACC,0,1,sports-reference-games
+North Carolina,2016,ACC,0,1,sports-reference-games
+North Carolina,2017,ACC,0,1,espn-games
+North Carolina,2019,ACC,1,1,espn-games
+North Carolina,2024,ACC,0,1,espn-games
+North Carolina A&T,1975,MEAC,0,1,sports-reference-games
+North Carolina A&T,1976,MEAC,0,1,sports-reference-games
+North Carolina A&T,1978,MEAC,0,1,sports-reference-games
+North Carolina A&T,1979,MEAC,0,1,sports-reference-games
+North Carolina A&T,1981,MEAC,0,1,sports-reference-games
+North Carolina A&T,1982,MEAC,0,1,sports-reference-games
+North Carolina A&T,1984,MEAC,0,1,sports-reference-games
+North Carolina A&T,1985,MEAC,0,1,sports-reference-games
+North Carolina A&T,1986,MEAC,0,1,sports-reference-games
+North Carolina A&T,1988,MEAC,0,1,sports-reference-games
+North Carolina A&T,1992,MEAC,1,1,sports-reference-games
+North Carolina A&T,2021,MEAC,0,1,espn-games
+North Carolina Central,2014,MEAC,0,1,sports-reference-games
+North Carolina Central,2015,MEAC,0,1,sports-reference-games
+North Carolina Central,2017,MEAC,0,1,espn-games
+North Carolina Central,2020,MEAC,0,1,espn-games
+North Dakota,2017,Big Sky,0,1,espn-games
+North Dakota State,2009,Summit,0,1,sports-reference-games
+North Dakota State,2014,Summit,0,1,sports-reference-games
+North Dakota State,2015,Summit,1,1,sports-reference-games
+North Dakota State,2020,Summit,0,1,espn-games
+North Dakota State,2026,Summit,0,1,espn-games
+North Florida,2015,A-Sun,0,1,sports-reference-games
+North Florida,2016,A-Sun,0,1,sports-reference-games
+North Texas,1988,Southland,0,1,sports-reference-games
+North Texas,1989,Southland,0,1,sports-reference-games
+North Texas,2010,Sun Belt,1,1,sports-reference-games
+North Texas,2020,C-USA,0,1,espn-games
+North Texas,2022,C-USA,0,1,espn-games
+Northeastern,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Northeastern,1981,ECACN,1,1,sports-reference-games
+Northeastern,1982,ECACN,0,1,sports-reference-games
+Northeastern,1984,ECACN,0,1,sports-reference-games
+Northeastern,1985,ECACN,1,1,sports-reference-games
+Northeastern,1986,ECACN,0,1,sports-reference-games
+Northeastern,1987,ECACN,0,1,sports-reference-games
+Northeastern,1990,NAC,1,1,sports-reference-games
+Northeastern,1991,NAC,0,1,sports-reference-games
+Northeastern,1993,NAC,1,1,sports-reference-games
+Northeastern,2013,CAA,0,1,sports-reference-games
+Northeastern,2015,CAA,1,1,sports-reference-games
+Northeastern,2019,CAA,1,1,espn-games
+Northeastern,2021,CAA,1,1,espn-games
+Northern Arizona,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Northern Arizona,1986,Big Sky,1,1,sports-reference-games
+Northern Arizona,1997,Big Sky,0,1,sports-reference-games
+Northern Arizona,1998,Big Sky,0,1,sports-reference-games
+Northern Arizona,2006,Big Sky,0,1,sports-reference-games
+Northern Arizona,2007,Big Sky,0,1,sports-reference-games
+Northern Colorado,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Northern Colorado,2011,Big Sky,0,1,sports-reference-games
+Northern Colorado,2025,Big Sky,1,1,espn-games
+Northern Illinois,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Northern Illinois,1981,MAC,1,1,sports-reference-games
+Northern Illinois,1991,Mid-Cont,0,1,sports-reference-games
+Northern Iowa,2009,MVC,1,1,sports-reference-games
+Northern Iowa,2010,MVC,0,1,sports-reference-games
+Northern Iowa,2020,Missouri Valley,0,1,espn-games
+Northern Iowa,2022,Missouri Valley,0,1,espn-games
+Northern Kentucky,2019,Horizon,0,1,espn-games
+Northwestern,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Northwestern State,1986,GSC,0,1,sports-reference-games
+Northwestern State,2005,Southland,1,1,sports-reference-games
+Northwestern State,2006,Southland,0,1,sports-reference-games
+Notre Dame,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Oakland,2000,Mid-Cont,0,1,sports-reference-games
+Oakland,2010,Summit,0,1,sports-reference-games
+Oakland,2011,Summit,0,1,sports-reference-games
+Oakland,2017,Horizon,1,1,espn-games
+Oakland,2024,Horizon,0,1,espn-games
+Ohio,1960,MAC,0,1,sports-reference-games
+Ohio,1961,MAC,0,1,sports-reference-games
+Ohio,1964,MAC,0,1,sports-reference-games
+Ohio,1965,MAC,0,1,sports-reference-games
+Ohio,1970,MAC,0,1,sports-reference-games
+Ohio,1972,MAC,1,1,sports-reference-games
+Ohio,1974,MAC,0,1,sports-reference-games
+Ohio,1985,MAC,0,1,sports-reference-games
+Ohio,1994,MAC,0,1,sports-reference-games
+Ohio,2013,MAC,1,1,sports-reference-games
+Ohio State,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Ohio State,1950,Big Ten,0,1,sports-reference-games
+Ohio State,1960,Big Ten,0,1,sports-reference-games
+Ohio State,1961,Big Ten,0,1,sports-reference-games
+Ohio State,1962,Big Ten,0,1,sports-reference-games
+Ohio State,1963,Big Ten,1,1,sports-reference-games
+Ohio State,1964,Big Ten,1,1,sports-reference-games
+Ohio State,1968,Big Ten,1,1,sports-reference-games
+Ohio State,1971,Big Ten,0,1,sports-reference-games
+Ohio State,1991,Big Ten,1,1,sports-reference-games
+Ohio State,1992,Big Ten,0,1,sports-reference-games
+Ohio State,2000,Big Ten,1,1,sports-reference-games
+Ohio State,2002,Big Ten,1,1,sports-reference-games
+Ohio State,2006,Big Ten,0,1,sports-reference-games
+Ohio State,2007,Big Ten,0,1,sports-reference-games
+Ohio State,2010,Big Ten,1,1,sports-reference-games
+Ohio State,2011,Big Ten,0,1,sports-reference-games
+Ohio State,2012,Big Ten,1,1,sports-reference-games
+Oklahoma,1949,,0,8,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Oklahoma,1979,Big 8,1,1,sports-reference-games
+Oklahoma,1984,Big 8,0,1,sports-reference-games
+Oklahoma,1985,Big 8,0,1,sports-reference-games
+Oklahoma,1988,Big 8,0,1,sports-reference-games
+Oklahoma,1989,Big 8,0,1,sports-reference-games
+Oklahoma,2005,Big 12,1,1,sports-reference-games
+Oklahoma State,1949,,0,13,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Oklahoma State,1951,MVC,0,1,sports-reference-games
+Oklahoma State,1953,MVC,0,1,sports-reference-games
+Oklahoma State,1954,MVC,0,1,sports-reference-games
+Oklahoma State,1965,Big 8,0,1,sports-reference-games
+Oklahoma State,1991,Big 8,1,1,sports-reference-games
+Oklahoma State,2004,Big 12,0,1,sports-reference-games
+Old Dominion,1980,ECACS,0,1,sports-reference-games
+Old Dominion,1983,Sun Belt,1,1,sports-reference-games
+Old Dominion,1986,Sun Belt,0,1,sports-reference-games
+Old Dominion,1993,CAA,1,1,sports-reference-games
+Old Dominion,1994,CAA,1,1,sports-reference-games
+Old Dominion,1995,CAA,0,1,sports-reference-games
+Old Dominion,1997,CAA,1,1,sports-reference-games
+Old Dominion,2005,CAA,0,1,sports-reference-games
+Old Dominion,2010,CAA,0,1,sports-reference-games
+Old Dominion,2019,C-USA,0,1,espn-games
+Ole Miss,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Omaha,2025,Summit,0,1,espn-games
+Oral Roberts,1984,MW City,0,1,sports-reference-games
+Oral Roberts,1999,Mid-Cont,1,1,sports-reference-games
+Oral Roberts,2005,Mid-Cont,0,1,sports-reference-games
+Oral Roberts,2006,Mid-Cont,1,1,sports-reference-games
+Oral Roberts,2007,Mid-Cont,0,1,sports-reference-games
+Oral Roberts,2008,Summit,0,1,sports-reference-games
+Oral Roberts,2012,Summit,0,1,sports-reference-games
+Oral Roberts,2023,Summit,0,1,espn-games
+Oregon,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Oregon,2002,Pac-10,0,1,sports-reference-games
+Oregon,2016,Pac-12,0,1,sports-reference-games
+Oregon,2020,21,0,1,espn-games
+Oregon,2021,21,0,1,espn-games
+Oregon State,1949,,0,6,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Oregon State,1966,AAWU,0,1,sports-reference-games
+Oregon State,1980,Pac-10,0,1,sports-reference-games
+Oregon State,1981,Pac-10,0,1,sports-reference-games
+Oregon State,1982,Pac-10,0,1,sports-reference-games
+Oregon State,1984,Pac-10,0,1,sports-reference-games
+Oregon State,1990,Pac-10,0,1,sports-reference-games
+Pacific,1966,WCAC,0,1,sports-reference-games
+Pacific,1967,WCAC,0,1,sports-reference-games
+Pacific,1971,WCAC,0,1,sports-reference-games
+Pacific,1979,PCAA,0,1,sports-reference-games
+Pacific,1997,Big West,1,1,sports-reference-games
+Pacific,1998,Big West,0,1,sports-reference-games
+Pacific,2004,Big West,1,1,sports-reference-games
+Pacific,2005,Big West,0,1,sports-reference-games
+Pacific,2006,Big West,0,1,sports-reference-games
+Pacific,2010,Big West,1,1,sports-reference-games
+Penn State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Pennsylvania,1949,,0,12,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Pennsylvania,1953,Ivy,0,1,sports-reference-games
+Pennsylvania,1966,Ivy,0,1,sports-reference-games
+Pennsylvania,1970,Ivy,0,1,sports-reference-games
+Pennsylvania,1971,Ivy,0,1,sports-reference-games
+Pennsylvania,1972,Ivy,0,1,sports-reference-games
+Pennsylvania,1973,Ivy,0,1,sports-reference-games
+Pennsylvania,1974,Ivy,0,1,sports-reference-games
+Pennsylvania,1975,Ivy,0,1,sports-reference-games
+Pennsylvania,1978,Ivy,0,1,sports-reference-games
+Pennsylvania,1979,Ivy,0,1,sports-reference-games
+Pennsylvania,1980,Ivy,1,1,sports-reference-games
+Pennsylvania,1981,Ivy,1,1,sports-reference-games
+Pennsylvania,1982,Ivy,0,1,sports-reference-games
+Pennsylvania,1985,Ivy,0,1,sports-reference-games
+Pennsylvania,1987,Ivy,0,1,sports-reference-games
+Pennsylvania,1993,Ivy,0,1,sports-reference-games
+Pennsylvania,1994,Ivy,0,1,sports-reference-games
+Pennsylvania,1995,Ivy,0,1,sports-reference-games
+Pennsylvania,1999,Ivy,0,1,sports-reference-games
+Pennsylvania,2000,Ivy,0,1,sports-reference-games
+Pennsylvania,2002,Ivy,0,1,sports-reference-games
+Pennsylvania,2003,Ivy,0,1,sports-reference-games
+Pennsylvania,2005,Ivy,0,1,sports-reference-games
+Pennsylvania,2006,Ivy,0,1,sports-reference-games
+Pennsylvania,2007,Ivy,0,1,sports-reference-games
+Pennsylvania,2018,Ivy League,0,1,espn-games
+Pepperdine,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Pepperdine,1976,WCAC,0,1,sports-reference-games
+Pepperdine,1981,WCAC,1,1,sports-reference-games
+Pepperdine,1982,WCAC,0,1,sports-reference-games
+Pepperdine,1983,WCAC,0,1,sports-reference-games
+Pepperdine,1985,WCAC,0,1,sports-reference-games
+Pepperdine,1986,WCAC,0,1,sports-reference-games
+Pepperdine,1991,WCC,0,1,sports-reference-games
+Pepperdine,1992,WCC,0,1,sports-reference-games
+Pepperdine,1993,WCC,0,1,sports-reference-games
+Pepperdine,2000,WCC,0,1,sports-reference-games
+Pepperdine,2002,WCC,1,1,sports-reference-games
+Pittsburgh,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Pittsburgh,1987,Big East,1,1,sports-reference-games
+Pittsburgh,1988,Big East,0,1,sports-reference-games
+Pittsburgh,2002,Big East,1,1,sports-reference-games
+Pittsburgh,2003,Big East,1,1,sports-reference-games
+Pittsburgh,2004,Big East,0,1,sports-reference-games
+Pittsburgh,2011,Big East,0,1,sports-reference-games
+Portland State,2005,Big Sky,0,1,sports-reference-games
+Portland State,2008,Big Sky,0,1,sports-reference-games
+Portland State,2026,Big Sky,0,1,espn-games
+Prairie View A&M,2003,SWAC,0,1,sports-reference-games
+Prairie View A&M,2019,SWAC,0,1,espn-games
+Prairie View A&M,2020,SWAC,0,1,espn-games
+Prairie View A&M,2021,SWAC,1,1,espn-games
+Princeton,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Princeton,1950,Ivy,0,1,sports-reference-games
+Princeton,1952,Ivy,0,1,sports-reference-games
+Princeton,1955,Ivy,0,1,sports-reference-games
+Princeton,1959,Ivy,1,1,sports-reference-games
+Princeton,1960,Ivy,0,1,sports-reference-games
+Princeton,1961,Ivy,0,1,sports-reference-games
+Princeton,1963,Ivy,1,1,sports-reference-games
+Princeton,1964,Ivy,0,1,sports-reference-games
+Princeton,1965,Ivy,0,1,sports-reference-games
+Princeton,1967,Ivy,0,1,sports-reference-games
+Princeton,1969,Ivy,0,1,sports-reference-games
+Princeton,1976,Ivy,0,1,sports-reference-games
+Princeton,1977,Ivy,0,1,sports-reference-games
+Princeton,1980,Ivy,1,1,sports-reference-games
+Princeton,1981,Ivy,1,1,sports-reference-games
+Princeton,1983,Ivy,0,1,sports-reference-games
+Princeton,1984,Ivy,0,1,sports-reference-games
+Princeton,1989,Ivy,0,1,sports-reference-games
+Princeton,1990,Ivy,0,1,sports-reference-games
+Princeton,1991,Ivy,0,1,sports-reference-games
+Princeton,1992,Ivy,0,1,sports-reference-games
+Princeton,1996,Ivy,0,1,sports-reference-games
+Princeton,1997,Ivy,0,1,sports-reference-games
+Princeton,1998,Ivy,0,1,sports-reference-games
+Princeton,2001,Ivy,0,1,sports-reference-games
+Princeton,2004,Ivy,0,1,sports-reference-games
+Princeton,2011,Ivy,0,1,sports-reference-games
+Princeton,2017,Ivy League,0,1,espn-games
+Princeton,2022,Ivy League,0,1,espn-games
+Princeton,2023,Ivy League,1,1,espn-games
+Princeton,2024,Ivy League,0,1,espn-games
+Providence,2022,Big East,0,1,espn-games
+Purdue,1949,,0,14,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Purdue,1969,Big Ten,0,1,sports-reference-games
+Purdue,1984,Big Ten,1,1,sports-reference-games
+Purdue,1987,Big Ten,1,1,sports-reference-games
+Purdue,1988,Big Ten,0,1,sports-reference-games
+Purdue,1994,Big Ten,0,1,sports-reference-games
+Purdue,1995,Big Ten,0,1,sports-reference-games
+Purdue,1996,Big Ten,0,1,sports-reference-games
+Purdue,2010,Big Ten,1,1,sports-reference-games
+Purdue,2017,Big Ten,0,1,espn-games
+Purdue,2023,Big Ten,0,1,espn-games
+Purdue,2024,Big Ten,0,1,espn-games
+Purdue Fort Wayne,2016,Summit,1,1,sports-reference-games
+Purdue Fort Wayne,2022,Horizon,1,1,espn-games
+Quinnipiac,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Quinnipiac,2024,MAAC,0,1,espn-games
+Quinnipiac,2025,MAAC,0,1,espn-games
+Radford,1992,Big South,0,1,sports-reference-games
+Radford,2000,Big South,0,1,sports-reference-games
+Radford,2001,Big South,0,1,sports-reference-games
+Radford,2009,Big South,0,1,sports-reference-games
+Radford,2018,Big South,0,1,espn-games
+Radford,2019,Big South,0,1,espn-games
+Rhode Island,1949,,0,11,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Rhode Island,1966,Yankee,0,1,sports-reference-games
+Rhode Island,1968,Yankee,1,1,sports-reference-games
+Rhode Island,1972,Yankee,0,1,sports-reference-games
+Rhode Island,2018,Atlantic 10,0,1,espn-games
+Rice,1949,,0,8,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Rice,1954,SWC,0,1,sports-reference-games
+Rice,1970,SWC,0,1,sports-reference-games
+Richmond,1984,ECACS,0,1,sports-reference-games
+Richmond,1985,ECACS,0,1,sports-reference-games
+Richmond,1988,CAA,0,1,sports-reference-games
+Richmond,1989,CAA,0,1,sports-reference-games
+Richmond,1992,CAA,1,1,sports-reference-games
+Richmond,2001,CAA,0,1,sports-reference-games
+Richmond,2024,Atlantic 10,1,1,espn-games
+Rider,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Rider,1993,NEC,0,1,sports-reference-games
+Rider,1994,NEC,0,1,sports-reference-games
+Rider,1995,NEC,0,1,sports-reference-games
+Rider,2002,MAAC,1,1,sports-reference-games
+Rider,2005,MAAC,1,1,sports-reference-games
+Rider,2008,MAAC,1,1,sports-reference-games
+Rider,2018,MAAC,1,1,espn-games
+Robert Morris,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Robert Morris,1983,ECACM,0,1,sports-reference-games
+Robert Morris,1984,ECACM,1,1,sports-reference-games
+Robert Morris,1989,NEC,0,1,sports-reference-games
+Robert Morris,1990,NEC,0,1,sports-reference-games
+Robert Morris,1992,NEC,0,1,sports-reference-games
+Robert Morris,2008,NEC,0,1,sports-reference-games
+Robert Morris,2009,NEC,0,1,sports-reference-games
+Robert Morris,2010,NEC,0,1,sports-reference-games
+Robert Morris,2013,NEC,0,1,sports-reference-games
+Robert Morris,2014,NEC,0,1,sports-reference-games
+Robert Morris,2025,Horizon,0,1,espn-games
+Rutgers,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Rutgers,1977,ECBL,0,1,sports-reference-games
+Rutgers,1978,EAA,1,1,sports-reference-games
+Rutgers,1983,A-10,0,1,sports-reference-games
+Rutgers,1991,A-10,0,1,sports-reference-games
+SE Louisiana,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+SE Louisiana,1985,GSC,0,1,sports-reference-games
+SE Louisiana,2004,Southland,1,1,sports-reference-games
+SE Louisiana,2005,Southland,1,1,sports-reference-games
+SE Louisiana,2022,Southland,1,1,espn-games
+SMU,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+SMU,1955,SWC,0,1,sports-reference-games
+SMU,1956,SWC,0,1,sports-reference-games
+SMU,1957,SWC,0,1,sports-reference-games
+SMU,1966,SWC,0,1,sports-reference-games
+SMU,1967,SWC,0,1,sports-reference-games
+SMU,1972,SWC,1,1,sports-reference-games
+SMU,1988,SWC,0,1,sports-reference-games
+SMU,1993,SWC,0,1,sports-reference-games
+SMU,2015,AAC,0,1,sports-reference-games
+SMU,2017,American,0,1,espn-games
+Saint Francis,1981,ECACS,0,1,sports-reference-games
+Saint Francis,1991,NEC,1,1,sports-reference-games
+Saint Joseph's,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Saint Joseph's,1959,Mid-Atl,0,1,sports-reference-games
+Saint Joseph's,1960,Mid-Atl,0,1,sports-reference-games
+Saint Joseph's,1961,Mid-Atl,0,1,sports-reference-games
+Saint Joseph's,1962,Mid-Atl,0,1,sports-reference-games
+Saint Joseph's,1963,Mid-Atl,0,1,sports-reference-games
+Saint Joseph's,1965,Mid-Atl,0,1,sports-reference-games
+Saint Joseph's,1966,Mid-Atl,0,1,sports-reference-games
+Saint Joseph's,1970,Mid-Atl,0,1,sports-reference-games
+Saint Joseph's,1971,Mid-Atl,1,1,sports-reference-games
+Saint Joseph's,1973,Mid-Atl,0,1,sports-reference-games
+Saint Joseph's,1980,ECC,0,1,sports-reference-games
+Saint Joseph's,1986,A-10,0,1,sports-reference-games
+Saint Joseph's,1997,A-10,1,1,sports-reference-games
+Saint Joseph's,2001,A-10,0,1,sports-reference-games
+Saint Joseph's,2004,A-10,0,1,sports-reference-games
+Saint Joseph's,2005,A-10,0,1,sports-reference-games
+Saint Louis,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Saint Louis,1952,MVC,0,1,sports-reference-games
+Saint Louis,1955,MVC,1,1,sports-reference-games
+Saint Louis,1957,MVC,0,1,sports-reference-games
+Saint Louis,1971,MVC,1,1,sports-reference-games
+Saint Louis,2013,A-10,0,1,sports-reference-games
+Saint Louis,2014,A-10,0,1,sports-reference-games
+Saint Louis,2026,Atlantic 10,1,1,espn-games
+Saint Mary's,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Saint Mary's,1959,WCAC,0,1,sports-reference-games
+Saint Mary's,1989,WCAC,0,1,sports-reference-games
+Saint Mary's,1997,WCC,1,1,sports-reference-games
+Saint Mary's,2011,WCC,1,1,sports-reference-games
+Saint Mary's,2012,WCC,0,1,sports-reference-games
+Saint Mary's,2016,WCC,1,1,sports-reference-games
+Saint Mary's,2023,West Coast,1,1,espn-games
+Saint Mary's,2024,West Coast,0,1,espn-games
+Saint Mary's,2025,West Coast,0,1,espn-games
+Saint Mary's,2026,West Coast,1,1,espn-games
+Saint Peter's,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Saint Peter's,1967,MCC,1,1,sports-reference-games
+Saint Peter's,1968,MCC,0,1,sports-reference-games
+Saint Peter's,1969,MCC,0,1,sports-reference-games
+Saint Peter's,1982,MAAC,0,1,sports-reference-games
+Saint Peter's,1987,MAAC,0,1,sports-reference-games
+Sam Houston,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Sam Houston,2000,Southland,0,1,sports-reference-games
+Sam Houston,2003,Southland,0,1,sports-reference-games
+Sam Houston,2010,Southland,0,1,sports-reference-games
+Sam Houston,2019,Southland,0,1,espn-games
+Sam Houston,2024,C-USA,0,1,espn-games
+Samford,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Samford,1999,A-Sun,0,1,sports-reference-games
+Samford,2023,SoCon,1,1,espn-games
+Samford,2024,SoCon,0,1,espn-games
+San Diego,1984,WCAC,0,1,sports-reference-games
+San Diego,1987,WCAC,0,1,sports-reference-games
+San Diego State,1977,PCAA,1,1,sports-reference-games
+San Diego State,1978,PCAA,1,1,sports-reference-games
+San Diego State,2006,MWC,0,1,sports-reference-games
+San Diego State,2011,MWC,1,1,sports-reference-games
+San Diego State,2012,MWC,1,1,sports-reference-games
+San Diego State,2014,MWC,0,1,sports-reference-games
+San Diego State,2015,MWC,1,1,sports-reference-games
+San Diego State,2016,MWC,0,1,sports-reference-games
+San Diego State,2020,Mountain West,0,1,espn-games
+San Diego State,2021,Mountain West,0,1,espn-games
+San Diego State,2023,Mountain West,0,1,espn-games
+San Francisco,1955,CBA,0,1,sports-reference-games
+San Francisco,1956,CBA,0,1,sports-reference-games
+San Francisco,1957,WCAC,0,1,sports-reference-games
+San Francisco,1958,WCAC,0,1,sports-reference-games
+San Francisco,1963,WCAC,0,1,sports-reference-games
+San Francisco,1964,WCAC,0,1,sports-reference-games
+San Francisco,1965,WCAC,0,1,sports-reference-games
+San Francisco,1972,WCAC,0,1,sports-reference-games
+San Francisco,1973,WCAC,0,1,sports-reference-games
+San Francisco,1974,WCAC,0,1,sports-reference-games
+San Francisco,1977,WCAC,0,1,sports-reference-games
+San Francisco,1978,WCAC,0,1,sports-reference-games
+San Francisco,1979,WCAC,0,1,sports-reference-games
+San Francisco,1980,WCAC,0,1,sports-reference-games
+San Francisco,1981,WCAC,1,1,sports-reference-games
+San Jose State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Santa Clara,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Santa Clara,1953,CBA,0,1,sports-reference-games
+Santa Clara,1954,CBA,0,1,sports-reference-games
+Santa Clara,1962,WCAC,0,1,sports-reference-games
+Santa Clara,1968,WCAC,0,1,sports-reference-games
+Santa Clara,1969,WCAC,0,1,sports-reference-games
+Santa Clara,1970,WCAC,0,1,sports-reference-games
+Santa Clara,1995,WCC,0,1,sports-reference-games
+Santa Clara,1996,WCC,1,1,sports-reference-games
+Santa Clara,1997,WCC,1,1,sports-reference-games
+Seattle,2022,WAC,1,1,espn-games
+Seton Hall,1979,NJNY7,0,1,sports-reference-games
+Seton Hall,1992,Big East,1,1,sports-reference-games
+Seton Hall,1993,Big East,0,1,sports-reference-games
+Seton Hall,2020,Big East,1,1,espn-games
+Siena,1988,ECACN,0,1,sports-reference-games
+Siena,1989,NAC,0,1,sports-reference-games
+Siena,1991,MAAC,1,1,sports-reference-games
+Siena,1999,MAAC,1,1,sports-reference-games
+Siena,2000,MAAC,0,1,sports-reference-games
+Siena,2001,MAAC,1,1,sports-reference-games
+Siena,2008,MAAC,1,1,sports-reference-games
+Siena,2009,MAAC,0,1,sports-reference-games
+Siena,2010,MAAC,0,1,sports-reference-games
+Siena,2020,MAAC,0,1,espn-games
+Siena,2021,MAAC,0,1,espn-games
+South Alabama,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+South Alabama,1979,Sun Belt,0,1,sports-reference-games
+South Alabama,1980,Sun Belt,0,1,sports-reference-games
+South Alabama,1981,Sun Belt,1,1,sports-reference-games
+South Alabama,1989,Sun Belt,0,1,sports-reference-games
+South Alabama,1991,Sun Belt,0,1,sports-reference-games
+South Alabama,1997,Sun Belt,1,1,sports-reference-games
+South Alabama,1998,Sun Belt,1,1,sports-reference-games
+South Alabama,2000,Sun Belt,1,1,sports-reference-games
+South Alabama,2007,Sun Belt,0,1,sports-reference-games
+South Alabama,2008,Sun Belt,1,1,sports-reference-games
+South Alabama,2025,Sun Belt,1,1,espn-games
+South Carolina,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+South Carolina,1970,ACC,0,1,sports-reference-games
+South Carolina,1997,SEC,0,1,sports-reference-games
+South Carolina State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+South Carolina State,1977,MEAC,1,1,sports-reference-games
+South Carolina State,1989,MEAC,0,1,sports-reference-games
+South Carolina State,1999,MEAC,1,1,sports-reference-games
+South Carolina State,2000,MEAC,0,1,sports-reference-games
+South Carolina State,2001,MEAC,1,1,sports-reference-games
+South Carolina State,2003,MEAC,0,1,sports-reference-games
+South Carolina State,2004,MEAC,1,1,sports-reference-games
+South Carolina State,2025,MEAC,1,1,espn-games
+South Dakota,2017,Summit,0,1,espn-games
+South Dakota State,2013,Summit,1,1,sports-reference-games
+South Dakota State,2015,Summit,1,1,sports-reference-games
+South Dakota State,2016,Summit,1,1,sports-reference-games
+South Dakota State,2018,Summit,0,1,espn-games
+South Dakota State,2019,Summit,0,1,espn-games
+South Dakota State,2021,Summit,0,1,espn-games
+South Dakota State,2022,Summit,0,1,espn-games
+South Dakota State,2024,Summit,0,1,espn-games
+South Florida,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+South Florida,2024,American,0,1,espn-games
+South Florida,2026,American,0,1,espn-games
+Southeast Missouri State,2000,OVC,1,1,sports-reference-games
+Southeast Missouri State,2025,Ohio Valley,0,1,espn-games
+Southern,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Southern,1978,SWAC,1,1,sports-reference-games
+Southern,1986,SWAC,1,1,sports-reference-games
+Southern,1988,SWAC,0,1,sports-reference-games
+Southern,1989,SWAC,1,1,sports-reference-games
+Southern,1990,SWAC,0,1,sports-reference-games
+Southern,2006,SWAC,0,1,sports-reference-games
+Southern,2014,SWAC,0,1,sports-reference-games
+Southern,2025,SWAC,0,1,espn-games
+Southern Illinois,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Southern Illinois,1975,MVC,0,1,sports-reference-games
+Southern Illinois,1990,MVC,0,1,sports-reference-games
+Southern Illinois,1992,MVC,1,1,sports-reference-games
+Southern Illinois,2002,MVC,1,1,sports-reference-games
+Southern Illinois,2003,MVC,0,1,sports-reference-games
+Southern Illinois,2004,MVC,0,1,sports-reference-games
+Southern Illinois,2005,MVC,0,1,sports-reference-games
+Southern Illinois,2007,MVC,0,1,sports-reference-games
+Southern Miss,1991,Metro,0,1,sports-reference-games
+Southern Miss,2001,CUSA,1,1,sports-reference-games
+Southern Miss,2014,CUSA,1,1,sports-reference-games
+Southern Miss,2023,Sun Belt,0,1,espn-games
+Southern Utah,1995,AWC,0,1,sports-reference-games
+Southern Utah,2001,Mid-Cont,1,1,sports-reference-games
+Southern Utah,2021,Big Sky,0,1,espn-games
+St. Bonaventure,1949,,0,6,sports-reference-total (titles before 1950 / not reproduced from game logs)
+St. Bonaventure,2016,A-10,1,1,sports-reference-games
+St. Bonaventure,2021,Atlantic 10,0,1,espn-games
+St. John's,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+St. John's,1951,Metro NY,0,1,sports-reference-games
+St. John's,1952,Metro NY,0,1,sports-reference-games
+St. John's,1958,Metro NY,0,1,sports-reference-games
+St. John's,1961,Metro NY,0,1,sports-reference-games
+St. John's,1962,Metro NY,0,1,sports-reference-games
+St. John's,1978,NJNY7,0,1,sports-reference-games
+St. John's,1980,Big East,0,1,sports-reference-games
+St. John's,1983,Big East,1,1,sports-reference-games
+St. John's,1985,Big East,0,1,sports-reference-games
+St. John's,1986,Big East,1,1,sports-reference-games
+St. John's,1992,Big East,1,1,sports-reference-games
+St. John's,2025,Big East,0,1,espn-games
+St. John's,2026,Big East,0,1,espn-games
+Stanford,1949,,0,7,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Stanford,1999,Pac-10,0,1,sports-reference-games
+Stanford,2000,Pac-10,1,1,sports-reference-games
+Stanford,2001,Pac-10,0,1,sports-reference-games
+Stanford,2004,Pac-10,0,1,sports-reference-games
+Stephen F. Austin,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Stephen F. Austin,1987,GSC,0,1,sports-reference-games
+Stephen F. Austin,2008,Southland,0,1,sports-reference-games
+Stephen F. Austin,2009,Southland,0,1,sports-reference-games
+Stephen F. Austin,2013,Southland,0,1,sports-reference-games
+Stephen F. Austin,2014,Southland,0,1,sports-reference-games
+Stephen F. Austin,2015,Southland,0,1,sports-reference-games
+Stephen F. Austin,2016,Southland,0,1,sports-reference-games
+Stephen F. Austin,2018,Southland,0,1,espn-games
+Stephen F. Austin,2020,Southland,0,1,espn-games
+Stephen F. Austin,2022,WAC,1,1,espn-games
+Stephen F. Austin,2026,Southland,0,1,espn-games
+Stony Brook,2010,AEC,0,1,sports-reference-games
+Stony Brook,2012,AEC,0,1,sports-reference-games
+Stony Brook,2013,AEC,0,1,sports-reference-games
+Stony Brook,2016,AEC,0,1,sports-reference-games
+Syracuse,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Syracuse,1986,Big East,1,1,sports-reference-games
+Syracuse,1987,Big East,1,1,sports-reference-games
+Syracuse,1990,Big East,1,1,sports-reference-games
+Syracuse,1991,Big East,0,1,sports-reference-games
+Syracuse,2000,Big East,1,1,sports-reference-games
+Syracuse,2003,Big East,1,1,sports-reference-games
+Syracuse,2010,Big East,0,1,sports-reference-games
+Syracuse,2012,Big East,0,1,sports-reference-games
+TCU,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+TCU,1952,SWC,0,1,sports-reference-games
+TCU,1953,SWC,0,1,sports-reference-games
+TCU,1959,SWC,0,1,sports-reference-games
+TCU,1968,SWC,0,1,sports-reference-games
+TCU,1971,SWC,0,1,sports-reference-games
+TCU,1986,SWC,1,1,sports-reference-games
+TCU,1987,SWC,0,1,sports-reference-games
+TCU,1998,WAC,0,1,sports-reference-games
+Temple,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Temple,1964,Mid-Atl,0,1,sports-reference-games
+Temple,1967,Mid-Atl,0,1,sports-reference-games
+Temple,1972,Mid-Atl,0,1,sports-reference-games
+Temple,1979,ECC,0,1,sports-reference-games
+Temple,1982,ECC,0,1,sports-reference-games
+Temple,1984,A-10,0,1,sports-reference-games
+Temple,1987,A-10,0,1,sports-reference-games
+Temple,1988,A-10,0,1,sports-reference-games
+Temple,1990,A-10,0,1,sports-reference-games
+Temple,1998,A-10,0,1,sports-reference-games
+Temple,1999,A-10,1,1,sports-reference-games
+Temple,2000,A-10,0,1,sports-reference-games
+Temple,2010,A-10,1,1,sports-reference-games
+Temple,2012,A-10,0,1,sports-reference-games
+Temple,2016,AAC,0,1,sports-reference-games
+Tennessee,1949,,0,6,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Tennessee,1967,SEC,0,1,sports-reference-games
+Tennessee,1972,SEC,1,1,sports-reference-games
+Tennessee,1977,SEC,1,1,sports-reference-games
+Tennessee,1982,SEC,1,1,sports-reference-games
+Tennessee,2000,SEC,1,1,sports-reference-games
+Tennessee,2008,SEC,0,1,sports-reference-games
+Tennessee,2018,SEC,0,1,espn-games
+Tennessee,2024,SEC,0,1,espn-games
+Tennessee State,1993,OVC,0,1,sports-reference-games
+Tennessee State,1995,OVC,1,1,sports-reference-games
+Tennessee State,2026,Ohio Valley,1,1,espn-games
+Tennessee Tech,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Tennessee Tech,1958,OVC,0,1,sports-reference-games
+Tennessee Tech,1963,OVC,1,1,sports-reference-games
+Tennessee Tech,1985,OVC,0,1,sports-reference-games
+Tennessee Tech,2001,OVC,0,1,sports-reference-games
+Tennessee Tech,2002,OVC,0,1,sports-reference-games
+Tennessee Tech,2005,OVC,0,1,sports-reference-games
+Texas,1949,,0,13,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Texas,1963,SWC,0,1,sports-reference-games
+Texas,1972,SWC,1,1,sports-reference-games
+Texas,1974,SWC,0,1,sports-reference-games
+Texas,1978,SWC,1,1,sports-reference-games
+Texas,1979,SWC,1,1,sports-reference-games
+Texas,1986,SWC,1,1,sports-reference-games
+Texas,1992,SWC,1,1,sports-reference-games
+Texas,1994,SWC,0,1,sports-reference-games
+Texas,1995,SWC,1,1,sports-reference-games
+Texas,1999,Big 12,0,1,sports-reference-games
+Texas,2006,Big 12,1,1,sports-reference-games
+Texas,2008,Big 12,1,1,sports-reference-games
+Texas A&M,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Texas A&M,1951,SWC,0,1,sports-reference-games
+Texas A&M,1960,SWC,0,1,sports-reference-games
+Texas A&M,1964,SWC,0,1,sports-reference-games
+Texas A&M,1969,SWC,0,1,sports-reference-games
+Texas A&M,1975,SWC,0,1,sports-reference-games
+Texas A&M,1976,SWC,0,1,sports-reference-games
+Texas A&M,1980,SWC,0,1,sports-reference-games
+Texas A&M,1986,SWC,1,1,sports-reference-games
+Texas A&M,2016,SEC,1,1,sports-reference-games
+Texas A&M-Corpus Christi,2007,Southland,0,1,sports-reference-games
+Texas A&M-Corpus Christi,2023,Southland,0,1,espn-games
+Texas Southern,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Texas Southern,1983,SWAC,1,1,sports-reference-games
+Texas Southern,1989,SWAC,1,1,sports-reference-games
+Texas Southern,1992,SWAC,1,1,sports-reference-games
+Texas Southern,1994,SWAC,0,1,sports-reference-games
+Texas Southern,1995,SWAC,0,1,sports-reference-games
+Texas Southern,1998,SWAC,0,1,sports-reference-games
+Texas Southern,2011,SWAC,0,1,sports-reference-games
+Texas Southern,2013,SWAC,0,1,sports-reference-games
+Texas Southern,2015,SWAC,0,1,sports-reference-games
+Texas Southern,2016,SWAC,0,1,sports-reference-games
+Texas Southern,2017,SWAC,0,1,espn-games
+Texas State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Texas State,1997,Southland,1,1,sports-reference-games
+Texas State,1999,Southland,0,1,sports-reference-games
+Texas State,2021,Sun Belt,0,1,espn-games
+Texas State,2022,Sun Belt,0,1,espn-games
+Texas Tech,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Texas Tech,1954,BIAA,0,1,sports-reference-games
+Texas Tech,1956,BIAA,0,1,sports-reference-games
+Texas Tech,1961,SWC,0,1,sports-reference-games
+Texas Tech,1962,SWC,0,1,sports-reference-games
+Texas Tech,1965,SWC,0,1,sports-reference-games
+Texas Tech,1973,SWC,0,1,sports-reference-games
+Texas Tech,1985,SWC,0,1,sports-reference-games
+Texas Tech,1995,SWC,1,1,sports-reference-games
+Texas Tech,1996,SWC,0,1,sports-reference-games
+Toledo,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Toledo,1954,MAC,0,1,sports-reference-games
+Toledo,1967,MAC,0,1,sports-reference-games
+Toledo,1972,MAC,1,1,sports-reference-games
+Toledo,1979,MAC,1,1,sports-reference-games
+Toledo,1980,MAC,0,1,sports-reference-games
+Toledo,1981,MAC,1,1,sports-reference-games
+Toledo,2007,MAC,0,1,sports-reference-games
+Toledo,2014,MAC,1,1,sports-reference-games
+Toledo,2021,MAC,0,1,espn-games
+Toledo,2022,MAC,0,1,espn-games
+Toledo,2023,MAC,0,1,espn-games
+Toledo,2024,MAC,0,1,espn-games
+Towson,1990,ECC,1,1,sports-reference-games
+Towson,1991,ECC,0,1,sports-reference-games
+Towson,1993,Big South,0,1,sports-reference-games
+Towson,1994,Big South,0,1,sports-reference-games
+Towson,2022,CAA,1,1,espn-games
+Towson,2025,CAA,0,1,espn-games
+Troy,1994,ECC,0,1,sports-reference-games
+Troy,2000,A-Sun,1,1,sports-reference-games
+Troy,2002,A-Sun,1,1,sports-reference-games
+Troy,2003,A-Sun,1,1,sports-reference-games
+Troy,2004,A-Sun,0,1,sports-reference-games
+Troy,2010,Sun Belt,1,1,sports-reference-games
+Troy,2025,Sun Belt,1,1,espn-games
+Troy,2026,Sun Belt,0,1,espn-games
+Tulane,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Tulane,1976,Metro,0,1,sports-reference-games
+Tulane,1992,Metro,0,1,sports-reference-games
+Tulsa,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Tulsa,1955,MVC,1,1,sports-reference-games
+Tulsa,1984,MVC,1,1,sports-reference-games
+Tulsa,1985,MVC,0,1,sports-reference-games
+Tulsa,1987,MVC,0,1,sports-reference-games
+Tulsa,1994,MVC,0,1,sports-reference-games
+Tulsa,1995,MVC,0,1,sports-reference-games
+Tulsa,2000,WAC,0,1,sports-reference-games
+Tulsa,2002,WAC,1,1,sports-reference-games
+Tulsa,2014,CUSA,1,1,sports-reference-games
+Tulsa,2020,American,1,1,espn-games
+UAB,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+UAB,1981,Sun Belt,1,1,sports-reference-games
+UAB,1982,Sun Belt,0,1,sports-reference-games
+UAB,1990,Sun Belt,0,1,sports-reference-games
+UAB,2004,CUSA,1,1,sports-reference-games
+UAB,2011,CUSA,0,1,sports-reference-games
+UAB,2016,CUSA,0,1,sports-reference-games
+UC Davis,2015,Big West,0,1,sports-reference-games
+UC Davis,2017,Big West,1,1,espn-games
+UC Davis,2018,Big West,0,1,espn-games
+UC Irvine,2001,Big West,0,1,sports-reference-games
+UC Irvine,2002,Big West,1,1,sports-reference-games
+UC Irvine,2014,Big West,0,1,sports-reference-games
+UC Irvine,2016,Big West,1,1,sports-reference-games
+UC Irvine,2017,Big West,1,1,espn-games
+UC Irvine,2019,Big West,0,1,espn-games
+UC Irvine,2020,Big West,0,1,espn-games
+UC Irvine,2023,Big West,1,1,espn-games
+UC Irvine,2024,Big West,0,1,espn-games
+UC Irvine,2026,Big West,0,1,espn-games
+UC San Diego,2025,Big West,0,1,espn-games
+UC Santa Barbara,1999,Big West,1,1,sports-reference-games
+UC Santa Barbara,2003,Big West,0,1,sports-reference-games
+UC Santa Barbara,2008,Big West,1,1,sports-reference-games
+UC Santa Barbara,2010,Big West,1,1,sports-reference-games
+UC Santa Barbara,2021,Big West,0,1,espn-games
+UC Santa Barbara,2023,Big West,1,1,espn-games
+UCF,2005,A-Sun,1,1,sports-reference-games
+UCLA,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+UCLA,1950,PCC,0,1,sports-reference-games
+UCLA,1955,PCC,0,1,sports-reference-games
+UCLA,1956,PCC,0,1,sports-reference-games
+UCLA,1962,AAWU,0,1,sports-reference-games
+UCLA,1963,AAWU,0,1,sports-reference-games
+UCLA,1964,AAWU,0,1,sports-reference-games
+UCLA,1965,AAWU,0,1,sports-reference-games
+UCLA,1967,AAWU,0,1,sports-reference-games
+UCLA,1968,AAWU,0,1,sports-reference-games
+UCLA,1969,Pac-8,0,1,sports-reference-games
+UCLA,1970,Pac-8,0,1,sports-reference-games
+UCLA,1971,Pac-8,0,1,sports-reference-games
+UCLA,1972,Pac-8,0,1,sports-reference-games
+UCLA,1973,Pac-8,0,1,sports-reference-games
+UCLA,1974,Pac-8,0,1,sports-reference-games
+UCLA,1975,Pac-8,0,1,sports-reference-games
+UCLA,1976,Pac-8,0,1,sports-reference-games
+UCLA,1977,Pac-8,0,1,sports-reference-games
+UCLA,1978,Pac-8,0,1,sports-reference-games
+UCLA,1979,Pac-10,0,1,sports-reference-games
+UCLA,1983,Pac-10,0,1,sports-reference-games
+UCLA,1987,Pac-10,0,1,sports-reference-games
+UCLA,1992,Pac-10,0,1,sports-reference-games
+UCLA,1995,Pac-10,0,1,sports-reference-games
+UCLA,1996,Pac-10,0,1,sports-reference-games
+UCLA,1997,Pac-10,0,1,sports-reference-games
+UCLA,2006,Pac-10,0,1,sports-reference-games
+UCLA,2007,Pac-10,0,1,sports-reference-games
+UCLA,2008,Pac-10,0,1,sports-reference-games
+UCLA,2013,Pac-12,0,1,sports-reference-games
+UCLA,2023,21,0,1,espn-games
+UConn,1949,,0,13,sports-reference-total (titles before 1950 / not reproduced from game logs)
+UConn,1963,Yankee,0,1,sports-reference-games
+UConn,1964,Yankee,0,1,sports-reference-games
+UConn,1965,Yankee,0,1,sports-reference-games
+UConn,1967,Yankee,0,1,sports-reference-games
+UConn,1970,Yankee,1,1,sports-reference-games
+UConn,1990,Big East,1,1,sports-reference-games
+UConn,1994,Big East,0,1,sports-reference-games
+UConn,1995,Big East,0,1,sports-reference-games
+UConn,1996,Big East,0,1,sports-reference-games
+UConn,1998,Big East,0,1,sports-reference-games
+UConn,1999,Big East,0,1,sports-reference-games
+UConn,2002,Big East,1,1,sports-reference-games
+UConn,2005,Big East,1,1,sports-reference-games
+UConn,2006,Big East,1,1,sports-reference-games
+UConn,2024,Big East,0,1,espn-games
+UIC,1984,Mid-Cont,0,1,sports-reference-games
+UIC,1998,MW Coll,1,1,sports-reference-games
+UMBC,1999,NEC,0,1,sports-reference-games
+UMBC,2008,AEC,0,1,sports-reference-games
+UMBC,2021,America East,1,1,espn-games
+UMBC,2026,America East,0,1,espn-games
+UMass,1962,Yankee,0,1,sports-reference-games
+UMass,1968,Yankee,1,1,sports-reference-games
+UMass,1969,Yankee,0,1,sports-reference-games
+UMass,1970,Yankee,1,1,sports-reference-games
+UMass,1971,Yankee,0,1,sports-reference-games
+UMass,1973,Yankee,0,1,sports-reference-games
+UMass,1974,Yankee,0,1,sports-reference-games
+UMass,1975,Yankee,0,1,sports-reference-games
+UMass,1976,Yankee,0,1,sports-reference-games
+UMass,1992,A-10,0,1,sports-reference-games
+UMass,1993,A-10,0,1,sports-reference-games
+UMass,1994,A-10,0,1,sports-reference-games
+UMass,1995,A-10,0,1,sports-reference-games
+UMass,1996,A-10,0,1,sports-reference-games
+UMass,2007,A-10,1,1,sports-reference-games
+UNC Asheville,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+UNC Asheville,1997,Big South,1,1,sports-reference-games
+UNC Asheville,1998,Big South,0,1,sports-reference-games
+UNC Asheville,2002,Big South,1,1,sports-reference-games
+UNC Asheville,2008,Big South,1,1,sports-reference-games
+UNC Asheville,2012,Big South,0,1,sports-reference-games
+UNC Asheville,2023,Big South,0,1,espn-games
+UNC Greensboro,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+UNC Greensboro,1995,Big South,0,1,sports-reference-games
+UNC Greensboro,1996,Big South,0,1,sports-reference-games
+UNC Greensboro,2002,Southern,1,1,sports-reference-games
+UNC Greensboro,2018,SoCon,0,1,espn-games
+UNC Greensboro,2021,SoCon,0,1,espn-games
+UNC Wilmington,1997,CAA,1,1,sports-reference-games
+UNC Wilmington,1998,CAA,1,1,sports-reference-games
+UNC Wilmington,2002,CAA,0,1,sports-reference-games
+UNC Wilmington,2003,CAA,0,1,sports-reference-games
+UNC Wilmington,2006,CAA,1,1,sports-reference-games
+UNC Wilmington,2015,CAA,1,1,sports-reference-games
+UNC Wilmington,2016,CAA,1,1,sports-reference-games
+UNC Wilmington,2017,CAA,0,1,espn-games
+UNC Wilmington,2022,CAA,1,1,espn-games
+UNC Wilmington,2026,CAA,0,1,espn-games
+UNLV,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+UNLV,1975,WCAC,0,1,sports-reference-games
+UNLV,1983,PCAA,0,1,sports-reference-games
+UNLV,1984,PCAA,0,1,sports-reference-games
+UNLV,1985,PCAA,0,1,sports-reference-games
+UNLV,1986,PCAA,0,1,sports-reference-games
+UNLV,1987,PCAA,0,1,sports-reference-games
+UNLV,1988,PCAA,0,1,sports-reference-games
+UNLV,1989,Big West,0,1,sports-reference-games
+UNLV,1990,Big West,1,1,sports-reference-games
+UNLV,1991,Big West,0,1,sports-reference-games
+UNLV,1992,Big West,0,1,sports-reference-games
+UNLV,2000,MWC,1,1,sports-reference-games
+USC,1949,,0,4,sports-reference-total (titles before 1950 / not reproduced from game logs)
+USC,1954,PCC,0,1,sports-reference-games
+USC,1961,AAWU,0,1,sports-reference-games
+USC,1985,Pac-10,1,1,sports-reference-games
+UT Arlington,2004,Southland,1,1,sports-reference-games
+UT Arlington,2012,Southland,0,1,sports-reference-games
+UT Arlington,2017,Sun Belt,0,1,espn-games
+UT Martin,2009,OVC,0,1,sports-reference-games
+UT Martin,2024,Ohio Valley,1,1,espn-games
+UT Rio Grande Valley,1979,A-Sun,1,1,sports-reference-games
+UT Rio Grande Valley,2010,GWC,1,1,sports-reference-games
+UTEP,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+UTEP,1957,BIAA,0,1,sports-reference-games
+UTEP,1970,WAC,0,1,sports-reference-games
+UTEP,1983,WAC,1,1,sports-reference-games
+UTEP,1984,WAC,0,1,sports-reference-games
+UTEP,1985,WAC,0,1,sports-reference-games
+UTEP,1986,WAC,1,1,sports-reference-games
+UTEP,1987,WAC,0,1,sports-reference-games
+UTEP,1992,WAC,1,1,sports-reference-games
+UTEP,2004,WAC,1,1,sports-reference-games
+UTEP,2010,CUSA,0,1,sports-reference-games
+UTSA,1991,A-Sun,0,1,sports-reference-games
+UTSA,1992,Southland,0,1,sports-reference-games
+UTSA,2004,Southland,1,1,sports-reference-games
+Utah,1949,,0,8,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Utah,1955,MSAC,0,1,sports-reference-games
+Utah,1956,MSAC,0,1,sports-reference-games
+Utah,1959,MSAC,0,1,sports-reference-games
+Utah,1960,MSAC,0,1,sports-reference-games
+Utah,1961,MSAC,0,1,sports-reference-games
+Utah,1962,MSAC,0,1,sports-reference-games
+Utah,1966,WAC,0,1,sports-reference-games
+Utah,1977,WAC,0,1,sports-reference-games
+Utah,1981,WAC,1,1,sports-reference-games
+Utah,1983,WAC,1,1,sports-reference-games
+Utah,1986,WAC,1,1,sports-reference-games
+Utah,1991,WAC,0,1,sports-reference-games
+Utah,1993,WAC,1,1,sports-reference-games
+Utah,1995,WAC,0,1,sports-reference-games
+Utah,1996,WAC,0,1,sports-reference-games
+Utah,1997,WAC,0,1,sports-reference-games
+Utah,1999,WAC,0,1,sports-reference-games
+Utah,2000,MWC,1,1,sports-reference-games
+Utah,2001,MWC,1,1,sports-reference-games
+Utah,2003,MWC,1,1,sports-reference-games
+Utah,2005,MWC,0,1,sports-reference-games
+Utah,2009,MWC,1,1,sports-reference-games
+Utah State,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Utah State,1980,PCAA,0,1,sports-reference-games
+Utah State,1995,Big West,0,1,sports-reference-games
+Utah State,1997,Big West,1,1,sports-reference-games
+Utah State,2000,Big West,0,1,sports-reference-games
+Utah State,2002,Big West,1,1,sports-reference-games
+Utah State,2004,Big West,1,1,sports-reference-games
+Utah State,2008,WAC,1,1,sports-reference-games
+Utah State,2009,WAC,0,1,sports-reference-games
+Utah State,2010,WAC,0,1,sports-reference-games
+Utah State,2011,WAC,0,1,sports-reference-games
+Utah State,2019,Mountain West,0,1,espn-games
+Utah State,2024,Mountain West,0,1,espn-games
+Utah State,2026,Mountain West,0,1,espn-games
+Utah Valley,2010,GWC,1,1,sports-reference-games
+Utah Valley,2011,GWC,0,1,sports-reference-games
+Utah Valley,2012,GWC,0,1,sports-reference-games
+Utah Valley,2014,WAC,0,1,sports-reference-games
+Utah Valley,2023,WAC,0,1,espn-games
+Utah Valley,2025,WAC,0,1,espn-games
+Utah Valley,2026,WAC,0,1,espn-games
+VCU,1981,Sun Belt,1,1,sports-reference-games
+VCU,1983,Sun Belt,1,1,sports-reference-games
+VCU,1984,Sun Belt,0,1,sports-reference-games
+VCU,1985,Sun Belt,0,1,sports-reference-games
+VCU,1996,CAA,0,1,sports-reference-games
+VCU,2004,CAA,0,1,sports-reference-games
+VCU,2007,CAA,0,1,sports-reference-games
+VCU,2008,CAA,0,1,sports-reference-games
+VCU,2009,CAA,0,1,sports-reference-games
+VCU,2016,A-10,1,1,sports-reference-games
+VCU,2019,Atlantic 10,0,1,espn-games
+VCU,2023,Atlantic 10,0,1,espn-games
+VCU,2025,Atlantic 10,1,1,espn-games
+VCU,2026,Atlantic 10,1,1,espn-games
+VMI,1976,Southern,0,1,sports-reference-games
+VMI,1977,Southern,0,1,sports-reference-games
+Valparaiso,1995,Mid-Cont,0,1,sports-reference-games
+Valparaiso,1996,Mid-Cont,0,1,sports-reference-games
+Valparaiso,1997,Mid-Cont,0,1,sports-reference-games
+Valparaiso,1998,Mid-Cont,0,1,sports-reference-games
+Valparaiso,1999,Mid-Cont,1,1,sports-reference-games
+Valparaiso,2001,Mid-Cont,1,1,sports-reference-games
+Valparaiso,2002,Mid-Cont,0,1,sports-reference-games
+Valparaiso,2003,Mid-Cont,0,1,sports-reference-games
+Valparaiso,2004,Mid-Cont,0,1,sports-reference-games
+Valparaiso,2012,Horizon,0,1,sports-reference-games
+Valparaiso,2013,Horizon,0,1,sports-reference-games
+Valparaiso,2015,Horizon,0,1,sports-reference-games
+Valparaiso,2016,Horizon,0,1,sports-reference-games
+Valparaiso,2017,Horizon,1,1,espn-games
+Vanderbilt,1965,SEC,0,1,sports-reference-games
+Vanderbilt,1974,SEC,1,1,sports-reference-games
+Vanderbilt,1993,SEC,0,1,sports-reference-games
+Vermont,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Vermont,2002,AEC,1,1,sports-reference-games
+Vermont,2005,AEC,0,1,sports-reference-games
+Vermont,2007,AEC,0,1,sports-reference-games
+Vermont,2009,AEC,1,1,sports-reference-games
+Vermont,2011,AEC,0,1,sports-reference-games
+Vermont,2014,AEC,0,1,sports-reference-games
+Vermont,2017,America East,0,1,espn-games
+Vermont,2018,America East,0,1,espn-games
+Vermont,2019,America East,0,1,espn-games
+Vermont,2020,America East,0,1,espn-games
+Vermont,2021,America East,1,1,espn-games
+Vermont,2022,America East,0,1,espn-games
+Vermont,2023,America East,0,1,espn-games
+Vermont,2024,America East,0,1,espn-games
+Villanova,1978,EAA,1,1,sports-reference-games
+Villanova,1979,EAA,0,1,sports-reference-games
+Villanova,1980,EAA,0,1,sports-reference-games
+Villanova,1982,Big East,0,1,sports-reference-games
+Villanova,1983,Big East,1,1,sports-reference-games
+Villanova,1997,Big East,1,1,sports-reference-games
+Villanova,2006,Big East,1,1,sports-reference-games
+Villanova,2014,Big East,0,1,sports-reference-games
+Villanova,2015,Big East,0,1,sports-reference-games
+Villanova,2016,Big East,0,1,sports-reference-games
+Villanova,2017,Big East,0,1,espn-games
+Villanova,2018,Big East,0,1,espn-games
+Villanova,2019,Big East,0,1,espn-games
+Villanova,2020,Big East,1,1,espn-games
+Villanova,2021,Big East,0,1,espn-games
+Virginia,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Virginia,1981,ACC,0,1,sports-reference-games
+Virginia,1982,ACC,1,1,sports-reference-games
+Virginia,1983,ACC,1,1,sports-reference-games
+Virginia,1995,ACC,1,1,sports-reference-games
+Virginia,2007,ACC,1,1,sports-reference-games
+Virginia,2014,ACC,0,1,sports-reference-games
+Virginia,2015,ACC,0,1,sports-reference-games
+Virginia,2018,ACC,0,1,espn-games
+Virginia,2019,ACC,1,1,espn-games
+Virginia,2021,ACC,0,1,espn-games
+Virginia,2023,ACC,1,1,espn-games
+Virginia Tech,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Virginia Tech,1960,Southern,0,1,sports-reference-games
+Wagner,2003,NEC,0,1,sports-reference-games
+Wagner,2016,NEC,0,1,sports-reference-games
+Wagner,2018,NEC,0,1,espn-games
+Wagner,2021,NEC,0,1,espn-games
+Wake Forest,1960,ACC,0,1,sports-reference-games
+Wake Forest,1962,ACC,1,1,sports-reference-games
+Wake Forest,1977,ACC,1,1,sports-reference-games
+Wake Forest,1995,ACC,1,1,sports-reference-games
+Wake Forest,2003,ACC,0,1,sports-reference-games
+Washington,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Washington,1951,PCC,0,1,sports-reference-games
+Washington,1952,PCC,0,1,sports-reference-games
+Washington,1953,PCC,0,1,sports-reference-games
+Washington,1985,Pac-10,1,1,sports-reference-games
+Washington,2009,Pac-10,0,1,sports-reference-games
+Washington,2012,Pac-12,0,1,sports-reference-games
+Washington,2019,21,0,1,espn-games
+Washington State,1949,,0,2,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Weber State,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Weber State,1965,Big Sky,0,1,sports-reference-games
+Weber State,1966,Big Sky,1,1,sports-reference-games
+Weber State,1968,Big Sky,0,1,sports-reference-games
+Weber State,1969,Big Sky,0,1,sports-reference-games
+Weber State,1970,Big Sky,0,1,sports-reference-games
+Weber State,1971,Big Sky,0,1,sports-reference-games
+Weber State,1972,Big Sky,0,1,sports-reference-games
+Weber State,1973,Big Sky,0,1,sports-reference-games
+Weber State,1976,Big Sky,1,1,sports-reference-games
+Weber State,1979,Big Sky,0,1,sports-reference-games
+Weber State,1980,Big Sky,0,1,sports-reference-games
+Weber State,1983,Big Sky,1,1,sports-reference-games
+Weber State,1984,Big Sky,0,1,sports-reference-games
+Weber State,1994,Big Sky,1,1,sports-reference-games
+Weber State,1995,Big Sky,1,1,sports-reference-games
+Weber State,1999,Big Sky,0,1,sports-reference-games
+Weber State,2003,Big Sky,0,1,sports-reference-games
+Weber State,2009,Big Sky,0,1,sports-reference-games
+Weber State,2010,Big Sky,0,1,sports-reference-games
+Weber State,2014,Big Sky,0,1,sports-reference-games
+Weber State,2016,Big Sky,0,1,sports-reference-games
+West Virginia,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+West Virginia,1952,Southern,0,1,sports-reference-games
+West Virginia,1955,Southern,0,1,sports-reference-games
+West Virginia,1956,Southern,1,1,sports-reference-games
+West Virginia,1957,Southern,0,1,sports-reference-games
+West Virginia,1958,Southern,0,1,sports-reference-games
+West Virginia,1959,Southern,0,1,sports-reference-games
+West Virginia,1961,Southern,0,1,sports-reference-games
+West Virginia,1962,Southern,0,1,sports-reference-games
+West Virginia,1963,Southern,0,1,sports-reference-games
+West Virginia,1967,Southern,0,1,sports-reference-games
+West Virginia,1982,EAA,0,1,sports-reference-games
+West Virginia,1985,A-10,0,1,sports-reference-games
+West Virginia,1989,A-10,0,1,sports-reference-games
+Western Carolina,1949,,0,3,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Western Illinois,1983,Mid-Cont,0,1,sports-reference-games
+Western Illinois,2013,Summit,1,1,sports-reference-games
+Western Kentucky,1949,,0,7,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Western Kentucky,1957,OVC,1,1,sports-reference-games
+Western Kentucky,1960,OVC,0,1,sports-reference-games
+Western Kentucky,1961,OVC,1,1,sports-reference-games
+Western Kentucky,1962,OVC,0,1,sports-reference-games
+Western Kentucky,1966,OVC,0,1,sports-reference-games
+Western Kentucky,1967,OVC,0,1,sports-reference-games
+Western Kentucky,1970,OVC,0,1,sports-reference-games
+Western Kentucky,1971,OVC,0,1,sports-reference-games
+Western Kentucky,1976,OVC,0,1,sports-reference-games
+Western Kentucky,1980,OVC,1,1,sports-reference-games
+Western Kentucky,1981,OVC,0,1,sports-reference-games
+Western Kentucky,1982,OVC,1,1,sports-reference-games
+Western Kentucky,1987,Sun Belt,0,1,sports-reference-games
+Western Kentucky,1994,Sun Belt,0,1,sports-reference-games
+Western Kentucky,1995,Sun Belt,0,1,sports-reference-games
+Western Kentucky,2001,Sun Belt,0,1,sports-reference-games
+Western Kentucky,2002,Sun Belt,0,1,sports-reference-games
+Western Kentucky,2003,Sun Belt,0,1,sports-reference-games
+Western Kentucky,2006,Sun Belt,0,1,sports-reference-games
+Western Kentucky,2008,Sun Belt,1,1,sports-reference-games
+Western Kentucky,2009,Sun Belt,1,1,sports-reference-games
+Western Kentucky,2021,C-USA,0,1,espn-games
+Western Michigan,1949,,0,5,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Western Michigan,1976,MAC,0,1,sports-reference-games
+Western Michigan,1981,MAC,1,1,sports-reference-games
+Western Michigan,1998,MAC,1,1,sports-reference-games
+Western Michigan,2004,MAC,0,1,sports-reference-games
+Western Michigan,2014,MAC,1,1,sports-reference-games
+Wichita State,1964,MVC,0,1,sports-reference-games
+Wichita State,1965,MVC,0,1,sports-reference-games
+Wichita State,1976,MVC,0,1,sports-reference-games
+Wichita State,1981,MVC,0,1,sports-reference-games
+Wichita State,1983,MVC,0,1,sports-reference-games
+Wichita State,2006,MVC,0,1,sports-reference-games
+Wichita State,2012,MVC,0,1,sports-reference-games
+Wichita State,2014,MVC,0,1,sports-reference-games
+Wichita State,2015,MVC,0,1,sports-reference-games
+Wichita State,2016,MVC,0,1,sports-reference-games
+Wichita State,2017,Missouri Valley,0,1,espn-games
+Wichita State,2021,American,0,1,espn-games
+William & Mary,1983,ECACS,0,1,sports-reference-games
+William & Mary,1998,CAA,1,1,sports-reference-games
+William & Mary,2015,CAA,1,1,sports-reference-games
+Winthrop,1999,Big South,0,1,sports-reference-games
+Winthrop,2002,Big South,1,1,sports-reference-games
+Winthrop,2003,Big South,0,1,sports-reference-games
+Winthrop,2005,Big South,0,1,sports-reference-games
+Winthrop,2006,Big South,0,1,sports-reference-games
+Winthrop,2007,Big South,0,1,sports-reference-games
+Winthrop,2008,Big South,1,1,sports-reference-games
+Winthrop,2016,Big South,1,1,sports-reference-games
+Winthrop,2017,Big South,0,1,espn-games
+Winthrop,2020,Big South,0,1,espn-games
+Winthrop,2021,Big South,0,1,espn-games
+Wisconsin,1949,,0,14,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Wisconsin,2002,Big Ten,1,1,sports-reference-games
+Wisconsin,2003,Big Ten,0,1,sports-reference-games
+Wisconsin,2008,Big Ten,0,1,sports-reference-games
+Wisconsin,2015,Big Ten,0,1,sports-reference-games
+Wisconsin,2020,Big Ten,1,1,espn-games
+Wisconsin,2022,Big Ten,1,1,espn-games
+Wofford,2010,Southern,0,1,sports-reference-games
+Wofford,2011,Southern,1,1,sports-reference-games
+Wofford,2015,Southern,0,1,sports-reference-games
+Wofford,2019,SoCon,0,1,espn-games
+Wright State,2007,Horizon,1,1,sports-reference-games
+Wright State,2018,Horizon,0,1,espn-games
+Wright State,2020,Horizon,0,1,espn-games
+Wright State,2021,Horizon,1,1,espn-games
+Wright State,2026,Horizon,0,1,espn-games
+Wyoming,1949,,0,12,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Wyoming,1952,MSAC,0,1,sports-reference-games
+Wyoming,1953,MSAC,0,1,sports-reference-games
+Wyoming,1958,MSAC,0,1,sports-reference-games
+Wyoming,1967,WAC,0,1,sports-reference-games
+Wyoming,1981,WAC,1,1,sports-reference-games
+Wyoming,1982,WAC,0,1,sports-reference-games
+Wyoming,1986,WAC,1,1,sports-reference-games
+Wyoming,2001,MWC,1,1,sports-reference-games
+Wyoming,2002,MWC,0,1,sports-reference-games
+Xavier,1949,,0,1,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Xavier,1981,MW City,0,1,sports-reference-games
+Xavier,1986,MW Coll,0,1,sports-reference-games
+Xavier,1988,MW Coll,0,1,sports-reference-games
+Xavier,1990,MW Coll,0,1,sports-reference-games
+Xavier,1991,MW Coll,0,1,sports-reference-games
+Xavier,1993,MW Coll,1,1,sports-reference-games
+Xavier,1994,MW Coll,0,1,sports-reference-games
+Xavier,1995,MW Coll,0,1,sports-reference-games
+Xavier,1997,A-10,1,1,sports-reference-games
+Xavier,2002,A-10,0,1,sports-reference-games
+Xavier,2003,A-10,0,1,sports-reference-games
+Xavier,2007,A-10,1,1,sports-reference-games
+Xavier,2008,A-10,0,1,sports-reference-games
+Xavier,2009,A-10,0,1,sports-reference-games
+Xavier,2010,A-10,1,1,sports-reference-games
+Xavier,2011,A-10,0,1,sports-reference-games
+Yale,1949,,0,8,sports-reference-total (titles before 1950 / not reproduced from game logs)
+Yale,1957,Ivy,0,1,sports-reference-games
+Yale,1962,Ivy,0,1,sports-reference-games
+Yale,1963,Ivy,1,1,sports-reference-games
+Yale,2016,Ivy,0,1,sports-reference-games
+Yale,2019,Ivy League,0,1,espn-games
+Yale,2020,Ivy League,0,1,espn-games
+Yale,2023,Ivy League,1,1,espn-games
+Yale,2025,Ivy League,0,1,espn-games
+Yale,2026,Ivy League,0,1,espn-games
+Youngstown State,2023,Horizon,0,1,espn-games

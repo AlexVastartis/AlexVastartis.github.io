@@ -1,0 +1,74 @@
+# One national player of the year per row: UPI 1955-60, AP 1961-68, Naismith 1969 -> 2024-25.
+# source=memory-unverified (see _staging_all_americans.csv). 2025-26 winner not yet entered.
+year,player,school,award,source
+1955,Tom Gola,La Salle,UPI,memory-unverified
+1956,Bill Russell,San Francisco,UPI,memory-unverified
+1957,Chet Forte,Columbia,UPI,memory-unverified
+1958,Oscar Robertson,Cincinnati,UPI,memory-unverified
+1959,Oscar Robertson,Cincinnati,UPI,memory-unverified
+1960,Oscar Robertson,Cincinnati,UPI,memory-unverified
+1961,Jerry Lucas,Ohio State,AP,memory-unverified
+1962,Jerry Lucas,Ohio State,AP,memory-unverified
+1963,Art Heyman,Duke,AP,memory-unverified
+1964,Gary Bradds,Ohio State,AP,memory-unverified
+1965,Bill Bradley,Princeton,AP,memory-unverified
+1966,Cazzie Russell,Michigan,AP,memory-unverified
+1967,Lew Alcindor,UCLA,AP,memory-unverified
+1968,Elvin Hayes,Houston,AP,memory-unverified
+1969,Lew Alcindor,UCLA,Naismith,memory-unverified
+1970,Pete Maravich,LSU,Naismith,memory-unverified
+1971,Austin Carr,Notre Dame,Naismith,memory-unverified
+1972,Bill Walton,UCLA,Naismith,memory-unverified
+1973,Bill Walton,UCLA,Naismith,memory-unverified
+1974,Bill Walton,UCLA,Naismith,memory-unverified
+1975,David Thompson,NC State,Naismith,memory-unverified
+1976,Scott May,Indiana,Naismith,memory-unverified
+1977,Marques Johnson,UCLA,Naismith,memory-unverified
+1978,Butch Lee,Marquette,Naismith,memory-unverified
+1979,Larry Bird,Indiana State,Naismith,memory-unverified
+1980,Mark Aguirre,DePaul,Naismith,memory-unverified
+1981,Ralph Sampson,Virginia,Naismith,memory-unverified
+1982,Ralph Sampson,Virginia,Naismith,memory-unverified
+1983,Ralph Sampson,Virginia,Naismith,memory-unverified
+1984,Michael Jordan,North Carolina,Naismith,memory-unverified
+1985,Patrick Ewing,Georgetown,Naismith,memory-unverified
+1986,Johnny Dawkins,Duke,Naismith,memory-unverified
+1987,David Robinson,Navy,Naismith,memory-unverified
+1988,Danny Manning,Kansas,Naismith,memory-unverified
+1989,Danny Ferry,Duke,Naismith,memory-unverified
+1990,Lionel Simmons,La Salle,Naismith,memory-unverified
+1991,Larry Johnson,UNLV,Naismith,memory-unverified
+1992,Christian Laettner,Duke,Naismith,memory-unverified
+1993,Calbert Cheaney,Indiana,Naismith,memory-unverified
+1994,Glenn Robinson,Purdue,Naismith,memory-unverified
+1995,Joe Smith,Maryland,Naismith,memory-unverified
+1996,Marcus Camby,UMass,Naismith,memory-unverified
+1997,Tim Duncan,Wake Forest,Naismith,memory-unverified
+1998,Antawn Jamison,North Carolina,Naismith,memory-unverified
+1999,Elton Brand,Duke,Naismith,memory-unverified
+2000,Kenyon Martin,Cincinnati,Naismith,memory-unverified
+2001,Shane Battier,Duke,Naismith,memory-unverified
+2002,Jason Williams,Duke,Naismith,memory-unverified
+2003,T.J. Ford,Texas,Naismith,memory-unverified
+2004,Jameer Nelson,Saint Joseph's,Naismith,memory-unverified
+2005,Andrew Bogut,Utah,Naismith,memory-unverified
+2006,J.J. Redick,Duke,Naismith,memory-unverified
+2007,Kevin Durant,Texas,Naismith,memory-unverified
+2008,Tyler Hansbrough,North Carolina,Naismith,memory-unverified
+2009,Blake Griffin,Oklahoma,Naismith,memory-unverified
+2010,Evan Turner,Ohio State,Naismith,memory-unverified
+2011,Jimmer Fredette,BYU,Naismith,memory-unverified
+2012,Anthony Davis,Kentucky,Naismith,memory-unverified
+2013,Trey Burke,Michigan,Naismith,memory-unverified
+2014,Doug McDermott,Creighton,Naismith,memory-unverified
+2015,Frank Kaminsky,Wisconsin,Naismith,memory-unverified
+2016,Buddy Hield,Oklahoma,Naismith,memory-unverified
+2017,Frank Mason III,Kansas,Naismith,memory-unverified
+2018,Jalen Brunson,Villanova,Naismith,memory-unverified
+2019,Zion Williamson,Duke,Naismith,memory-unverified
+2020,Obi Toppin,Dayton,Naismith,memory-unverified
+2021,Luka Garza,Iowa,Naismith,memory-unverified
+2022,Oscar Tshiebwe,Kentucky,Naismith,memory-unverified
+2023,Zach Edey,Purdue,Naismith,memory-unverified
+2024,Zach Edey,Purdue,Naismith,memory-unverified
+2025,Cooper Flagg,Duke,Naismith,memory-unverified

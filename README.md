@@ -1,4 +1,11 @@
-# BlueBloodFootball.com
+# BlueBloodFootball.com + BlueBloodBasketball.com
+
+**Two sites, one codebase.** Everything below describes BlueBloodFootball; the basketball
+twin — [BlueBloodBasketball.com](https://bluebloodbasketball.com) — looks and works exactly
+the same, ranks all 365 Division I programs on its own ten stats, and is built with
+`--mode basketball`. A 🏈 / 🏀 switch in each masthead jumps to the same page on the other
+site. See **[data/basketball/README.md](data/basketball/README.md)** for the basketball
+stats, sources and known gaps, and the *Two sites* section below.
 
 A century-long ledger of college-football prestige. **The Chart** (`/the-chart`) plots
 every program on the AP-poll scatter — the shareable one. **The Blue Blood Ranking**
@@ -83,6 +90,24 @@ in the **NCAA official** view; the trajectory always uses as-played wins.
 Edit the CSVs in `data/staging/` by hand and re-run `npm run build:data`. There is
 no fetch step and no API key. `npm run draft` and `npm run archive` are optional
 offline helpers that recompute derived sheets / `PROGRAMS.md` from the staging CSVs.
+
+## Two sites
+
+| | Football | Basketball |
+| --- | --- | --- |
+| data store | `data/staging/` | `data/basketball/staging/` |
+| build the data | `npm run build:data` | `npm run build:data:bb` |
+| public folder (Vite `publicDir`) | `public/` | `sites/basketball/public/` |
+| dev server | `npm run dev` (:5174) | `npm run dev:bb` (:5175) |
+| production build | `npm run build` → `dist/` | `npm run build:bb` → `dist-basketball/` |
+| domain | bluebloodfootball.com | bluebloodbasketball.com |
+
+The sport comes from `import.meta.env.VITE_SPORT` (set by `vite.config.ts` from the mode) —
+`src/config/site.ts` holds the per-site names and the stat-key mapping, and
+`scripts/build-data.mjs` switches its paths and blurb vocabulary on `SPORT=basketball`.
+Basketball's ten stats: AP weeks · AP top-10 weeks · wins · win % · NCAA titles ·
+conference regular-season titles · consensus first-team All-Americans · national players of
+the year · **Sweet 16s · Final Fours** (the NCAA Tournament criterion replaces the NFL Draft).
 
 ## Roadmap
 

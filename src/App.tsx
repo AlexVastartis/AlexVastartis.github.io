@@ -16,6 +16,8 @@ import LogoToggle from './components/LogoToggle';
 import { useLogoVariant } from './lib/logoVariant';
 import { useIsMobile } from './lib/useMedia';
 import MapLayer from './map/MapLayer';
+import SiteSwitch from './components/SiteSwitch';
+import { SITE } from './config/site';
 import ViewTabs, { type Subject } from './components/ViewTabs';
 import type { BlueBloodBenchmark, CategoryKey, StatKey, Team, TeamsPayload } from './types';
 import { CATEGORIES } from './config/stats';
@@ -238,6 +240,7 @@ function Layout() {
   return (
     <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-6">
       <header data-map="the masthead" className="flex items-start justify-between gap-2 sm:gap-3">
+        <div className="flex min-w-0 flex-col gap-1.5">
         <Link to={{ pathname: '/', search }} className="group flex items-center gap-2.5">
           <img
             src={logoVariant === 'alt' ? '/logo-alt.png' : '/logo.png'}
@@ -245,13 +248,17 @@ function Layout() {
             className="-my-1 h-14 w-auto shrink-0 sm:-mb-1 sm:-mt-5 sm:h-20"
           />
           <div>
-            <h1 className="text-xl font-black leading-none tracking-tight sm:text-2xl">
-              BlueBlood<span className="text-accent">Football</span>
+            <h1 className="text-lg font-black leading-none tracking-tight min-[400px]:text-xl sm:text-2xl">
+              BlueBlood<span className="text-accent">{SITE.wordmark}</span>
             </h1>
-            <p className="mt-1 hidden text-sm text-muted sm:block">A century-long ledger of college football prestige.</p>
+            <p className="mt-1 hidden text-sm text-muted sm:block">{SITE.tagline}</p>
           </div>
         </Link>
+        {/* on a phone the masthead has no room beside the wordmark — the switch drops under it */}
+        {mobile && <div className="self-start"><SiteSwitch /></div>}
+        </div>
         <div className="flex shrink-0 items-center gap-2">
+          {!mobile && <SiteSwitch />}
           {SHOW_LOGO_TOGGLE && !mobile && <LogoToggle variant={logoVariant} onSetVariant={setLogoVariant} />}
           {mapDev && !mobile && <MapToggle on={state.map} onToggle={() => update({ map: !state.map })} />}
           <div data-map="the theme buttons">
@@ -405,7 +412,10 @@ function Layout() {
           <footer data-map="the footer" className="mt-2 text-xs leading-relaxed text-muted">
             Current through the 2026 off-season · vibecoded in a weekend with Claude · logos are each
             school’s trademarks, used for identification ·{' '}
-            <a className="underline hover:text-accent" href="#/the-chart">The Chart</a>
+            <a className="underline hover:text-accent" href="#/the-chart">The Chart</a> ·{' '}
+            <a className="underline hover:text-accent" href={SITE.other.url}>
+              Blue Blood {SITE.other.label} →
+            </a>
           </footer>
         </>
       )}

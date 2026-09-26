@@ -1,0 +1,369 @@
+# One program per row: every 2025-26 NCAA Division I men's basketball program (365).
+# espn_id / sr_id link the program to ESPN and Sports-Reference. Colours from ESPN. Written by
+# scripts/basketball/compile_sources.py; edit by hand freely (a recompile overwrites).
+school,slug,espn_id,sr_id,abbr,primary_hex,secondary_hex,conference,former_fcs
+Abilene Christian,abilene-christian,2000,abilene-christian,ACU,#592d82,#b1b3b3,WAC,0
+Air Force,air-force,2005,air-force,AF,#003594,#ffffff,Mountain West,0
+Akron,akron,2006,akron,AKR,#041e42,#c5b783,MAC,0
+Alabama,alabama,333,alabama,ALA,#9e1b32,#ffffff,SEC,0
+Alabama A&M,alabama-am,2010,alabama-am,AAMU,#790000,#ffffff,SWAC,0
+Alabama State,alabama-state,2011,alabama-state,ALST,#e9a900,#0a0a0a,SWAC,0
+Albany,albany,399,albany-ny,UALB,#3D2777,#ffffff,America East,0
+Alcorn State,alcorn-state,2016,alcorn-state,ALCN,#4b0058,#46166a,SWAC,0
+American,american,44,american,AMER,#c41130,#c8102e,Patriot,0
+Appalachian State,appalachian-st,2026,appalachian-state,APP,#000000,#ffcd00,Sun Belt,0
+Arizona,arizona,12,arizona,ARIZ,#cc0033,#003366,Big 12,0
+Arizona State,arizona-st,9,arizona-state,ASU,#ffc627,#8c1d40,Big 12,0
+Arkansas,arkansas,8,arkansas,ARK,#a32136,#ffffff,SEC,0
+Arkansas State,arkansas-st,2032,arkansas-state,ARST,#cc092f,#000000,Sun Belt,0
+Arkansas-Pine Bluff,arkansas-pine-bluff,2029,arkansas-pine-bluff,UAPB,#e0aa0f,#eaaa00,SWAC,0
+Army,army,349,army,ARMY,#000000,#d3bc8d,Patriot,0
+Auburn,auburn,2,auburn,AUB,#002b5c,#f26522,SEC,0
+Austin Peay,austin-peay,2046,austin-peay,APSU,#8e0b0b,#999999,ASUN,0
+BYU,byu,252,brigham-young,BYU,#0047ba,#002e5d,Big 12,0
+Ball State,ball-st,2050,ball-state,BALL,#ba0c2f,#ffffff,MAC,0
+Baylor,baylor,239,baylor,BAY,#154734,#ffb81c,Big 12,0
+Bellarmine,bellarmine,91,,BELL,#000000,#999999,ASUN,0
+Belmont,belmont,2057,belmont,BEL,#182142,#c9262d,Missouri Valley,0
+Bethune-Cookman,bethune-cookman,2065,bethune-cookman,BCU,#7b1831,#e9aa12,SWAC,0
+Binghamton,binghamton,2066,binghamton,BING,#00614A,#f0f0f0,America East,0
+Boise State,boise-st,68,boise-state,BOIS,#0033a0,#d64309,Mountain West,0
+Boston College,boston-college,103,boston-college,BC,#8c2232,#dbcca6,ACC,0
+Boston University,boston-university,104,boston-university,BU,#cc0000,#ffffff,Patriot,0
+Bowling Green,bowling-green,189,bowling-green-state,BGSU,#fd5000,#4f2c1d,MAC,0
+Bradley,bradley,71,bradley,BRAD,#b70002,#c0c0c0,Missouri Valley,0
+Brown,brown,225,brown,BRWN,#411e09,#949300,Ivy League,0
+Bryant,bryant,2803,bryant,BRY,#000000,#9f8343,America East,0
+Bucknell,bucknell,2083,bucknell,BUCK,#000060,#00316e,Patriot,0
+Buffalo,buffalo,2084,buffalo,BUF,#005bbb,#ffffff,MAC,0
+Butler,butler,2086,butler,BUT,#0d1361,#00a3e0,Big East,0
+Cal Poly,cal-poly,13,cal-poly,CP,#1E4D2B,#eed897,Big West,0
+Cal State Bakersfield,cal-state-bakersfield,2934,cal-state-bakersfield,CSUB,#003BAB,#999999,Big West,0
+Cal State Fullerton,cal-state-fullerton,2239,cal-state-fullerton,CSUF,#003767,#ff8300,Big West,0
+Cal State Northridge,cal-state-northridge,2463,cal-state-northridge,CSUN,#b50000,#999999,Big West,0
+California,california,25,california,CAL,#041e42,#ffc72c,ACC,0
+California Baptist,california-baptist,2856,,CBU,#000080,#999999,WAC,0
+Campbell,campbell,2097,campbell,CAM,#000000,#999999,CAA,0
+Canisius,canisius,2099,canisius,CAN,#004a81,#dda50f,MAAC,0
+Central Arkansas,central-arkansas,2110,central-arkansas,CARK,#a7a9ac,#8e959a,ASUN,0
+Central Connecticut,central-connecticut,2115,central-connecticut-state,CCSU,#1B49A2,#d1d5d8,NEC,0
+Central Michigan,central-mich,2117,central-michigan,CMU,#4c0027,#fbab18,MAC,0
+Charleston,charleston,232,college-of-charleston,COFC,#7a2531,#9e8959,CAA,0
+Charleston Southern,charleston-southern,2127,charleston-southern,CHSO,#2e3192,#ded090,Big South,0
+Charlotte,charlotte,2429,charlotte,CLT,#005035,#a49665,American,0
+Chattanooga,chattanooga,236,chattanooga,UTC,#00386b,#dca71d,SoCon,0
+Chicago State,chicago-state,2130,chicago-state,CHST,#006700,#999999,NEC,0
+Cincinnati,cincinnati,2132,cincinnati,CIN,#000000,#e00122,Big 12,0
+Clemson,clemson,228,clemson,CLEM,#f56600,#ffffff,ACC,0
+Cleveland State,cleveland-state,325,cleveland-state,CLE,#006633,#231f20,Horizon,0
+Coastal Carolina,coastal-caro,324,coastal-carolina,CCU,#006f71,#a27752,Sun Belt,0
+Colgate,colgate,2142,colgate,COLG,#821019,#ffffff,Patriot,0
+Colorado,colorado,38,colorado,COLO,#cfb87c,#000000,Big 12,0
+Colorado State,colorado-st,36,colorado-state,CSU,#004c23,#c8c372,Mountain West,0
+Columbia,columbia,171,columbia,COLU,#7ba4db,#183863,Ivy League,0
+Coppin State,coppin-state,2154,coppin-state,COPP,#2e3192,#ffd204,MEAC,0
+Cornell,cornell,172,cornell,COR,#b31b1b,#ffffff,Ivy League,0
+Creighton,creighton,156,creighton,CREI,#005ca9,#6cadde,Big East,0
+Dartmouth,dartmouth,159,dartmouth,DART,#005730,#000000,Ivy League,0
+Davidson,davidson,2166,davidson,DAV,#000000,#e51837,Atlantic 10,0
+Dayton,dayton,2168,dayton,DAY,#004B8D,#ffffff,Atlantic 10,0
+DePaul,depaul,305,depaul,DEP,#2d649c,#ce1125,Big East,0
+Delaware,delaware,48,delaware,DEL,#00539f,#ffd200,C-USA,0
+Delaware State,delaware-state,2169,delaware-state,DSU,#009cdb,#d51c28,MEAC,0
+Denver,denver,2172,denver,DEN,#98002e,#a8996e,Summit,0
+Detroit Mercy,detroit-mercy,2174,detroit-mercy,DETM,#165b9e,#d31733,Horizon,0
+Drake,drake,2181,drake,DRKE,#005596,#bec0c2,Missouri Valley,0
+Drexel,drexel,2182,drexel,DREX,#020260,#ffd65a,CAA,0
+Duke,duke,150,duke,DUKE,#00539b,#ffffff,ACC,0
+Duquesne,duquesne,2184,duquesne,DUQ,#002D62,#b90b2e,Atlantic 10,0
+East Carolina,east-carolina,151,east-carolina,ECU,#582c83,#ffc72c,American,0
+East Tennessee State,east-tennessee-state,2193,east-tennessee-state,ETSU,#002d61,#ffc423,SoCon,0
+East Texas A&M,east-texas-am,2837,,ETAM,#000000,#999999,Southland,0
+Eastern Illinois,eastern-illinois,2197,eastern-illinois,EIU,#000000,#bebab9,Ohio Valley,0
+Eastern Kentucky,eastern-kentucky,2198,eastern-kentucky,EKU,#660819,#f0f0f0,ASUN,0
+Eastern Michigan,eastern-mich,2199,eastern-michigan,EMU,#006938,#ffffff,MAC,0
+Eastern Washington,eastern-washington,331,eastern-washington,EWU,#a10022,#abb4bc,Big Sky,0
+Elon,elon,2210,elon,ELON,#020303,#b59a57,CAA,0
+Evansville,evansville,339,evansville,EVAN,#663399,#ef6f00,Missouri Valley,0
+FIU,fiu,2229,florida-international,FIU,#091f3f,#c3993f,C-USA,0
+Fairfield,fairfield,2217,fairfield,FAIR,#000000,#ebebeb,MAAC,0
+Fairleigh Dickinson,fairleigh-dickinson,161,fairleigh-dickinson,FDU,#72293c,#28334a,NEC,0
+Florida,florida,57,florida,FLA,#0021a5,#fa4616,SEC,0
+Florida A&M,florida-am,50,florida-am,FAMU,#F89728,#00843d,SWAC,0
+Florida Atlantic,fla-atlantic,2226,florida-atlantic,FAU,#003366,#cc0000,American,0
+Florida Gulf Coast,florida-gulf-coast,526,florida-gulf-coast,FGCU,#00885a,#076c3b,ASUN,0
+Florida State,florida-st,52,florida-state,FSU,#782f40,#ceb888,ACC,0
+Fordham,fordham,2230,fordham,FOR,#830032,#909090,Atlantic 10,0
+Fresno State,fresno-st,278,fresno-state,FRES,#b1102b,#13284c,Mountain West,0
+Furman,furman,231,furman,FUR,#582c83,#ffffff,SoCon,0
+Gardner-Webb,gardner-webb,2241,gardner-webb,GWEB,#c12535,#909090,Big South,0
+George Mason,george-mason,2244,george-mason,GMU,#016600,#ecb010,Atlantic 10,0
+George Washington,george-washington,45,george-washington,GW,#002843,#e8d2a1,Atlantic 10,0
+Georgetown,georgetown,46,georgetown,GTWN,#110E42,#001c58,Big East,0
+Georgia,georgia,61,georgia,UGA,#ba0c2f,#2c2a29,SEC,0
+Georgia Southern,ga-southern,290,georgia-southern,GASO,#041e42,#a3aaae,Sun Belt,0
+Georgia State,georgia-st,2247,georgia-state,GAST,#0039a6,#ffffff,Sun Belt,0
+Georgia Tech,georgia-tech,59,georgia-tech,GT,#b3a369,#ffffff,ACC,0
+Gonzaga,gonzaga,2250,gonzaga,GONZ,#041e42,#c8102e,West Coast,0
+Grambling,grambling,2755,grambling,GRAM,#ee8601,#ffd10a,SWAC,0
+Grand Canyon,grand-canyon,2253,grand-canyon,GCU,#522398,#ffffff,Mountain West,0
+Green Bay,green-bay,2739,green-bay,GB,#006633,#ffffff,Horizon,0
+Hampton,hampton,2261,hampton,HAMP,#0067AC,#999999,CAA,0
+Harvard,harvard,108,harvard,HARV,#990000,#dbdbdb,Ivy League,0
+Hawaii,hawaii,62,hawaii,HAW,#005737,#000000,Big West,0
+High Point,high-point,2272,high-point,HPU,#330072,#ffffff,Big South,0
+Hofstra,hofstra,2275,hofstra,HOF,#003594,#ffc72c,CAA,0
+Holy Cross,holy-cross,107,holy-cross,HC,#582c83,#ffffff,Patriot,0
+Houston,houston,248,houston,HOU,#c8102e,#ffffff,Big 12,0
+Houston Christian,houston-christian,2277,houston-baptist,HCU,#00539c,#999999,Southland,0
+Howard,howard,47,howard,HOW,#003a63,#e51937,MEAC,0
+IU Indy,iu-indy,85,iupui,IUIN,#A81F30,#d59f0f,Horizon,0
+Idaho,idaho,70,idaho,IDHO,#000000,#8c6e4a,Big Sky,0
+Idaho State,idaho-state,304,idaho-state,IDST,#ef8c00,#e9a126,Big Sky,0
+Illinois,illinois,356,illinois,ILL,#ff5f05,#13294b,Big Ten,0
+Illinois State,illinois-state,2287,illinois-state,ILST,#CE1126,#ffe716,Missouri Valley,0
+Incarnate Word,incarnate-word,2916,incarnate-word,UIW,#000000,#080808,Southland,0
+Indiana,indiana,84,indiana,IU,#970310,#ffffff,Big Ten,0
+Indiana State,indiana-state,282,indiana-state,INST,#00669a,#f0f0f0,Missouri Valley,0
+Iona,iona,314,iona,IONA,#6f2c3e,#f0ab00,MAAC,0
+Iowa,iowa,2294,iowa,IOWA,#231f20,#fcd116,Big Ten,0
+Iowa State,iowa-st,66,iowa-state,ISU,#ae192d,#ffc72a,Big 12,0
+Jackson State,jackson-state,2296,jackson-state,JKST,#123297,#b5b7ba,SWAC,0
+Jacksonville,jacksonville,294,jacksonville,JAX,#00523e,#999999,ASUN,0
+Jacksonville State,jacksonville-st,55,jacksonville-state,JXST,#cc0000,#000000,C-USA,0
+James Madison,james-madison,256,james-madison,JMU,#450084,#cbb677,Sun Belt,0
+Kansas,kansas,2305,kansas,KU,#0051ba,#e8000d,Big 12,0
+Kansas City,kansas-city,140,missouri-kansas-city,KC,#004b87,#ffc72c,Summit,0
+Kansas State,kansas-st,2306,kansas-state,KSU,#330a57,#e2e3e4,Big 12,0
+Kennesaw State,kennesaw-st,338,kennesaw-state,KENN,#fdbb30,#0b1315,C-USA,0
+Kent State,kent-st,2309,kent-state,KENT,#002664,#eaab00,MAC,0
+Kentucky,kentucky,96,kentucky,UK,#0033a0,#ffffff,SEC,0
+LIU,liu,112358,long-island-university,LIU,#50c9f7,#ffbf00,NEC,0
+LSU,lsu,99,louisiana-state,LSU,#461d76,#fdd023,SEC,0
+La Salle,la-salle,2325,la-salle,LAS,#003356,#ffce00,Atlantic 10,0
+Lafayette,lafayette,322,lafayette,LAF,#790000,#a59474,Patriot,0
+Lamar,lamar,2320,lamar,LAM,#000000,#ebebeb,Southland,0
+Le Moyne,le-moyne,2330,,LEM,#555555,#999999,NEC,0
+Lehigh,lehigh,2329,lehigh,LEH,#6c2b2a,#b69e70,Patriot,0
+Liberty,liberty,2335,liberty,LIB,#0a254e,#b72025,C-USA,0
+Lindenwood,lindenwood,2815,,LIN,#000000,#999999,Ohio Valley,0
+Lipscomb,lipscomb,288,lipscomb,LIP,#20366C,#f6b734,ASUN,0
+Little Rock,little-rock,2031,arkansas-little-rock,LR,#AD0000,#898d8f,Ohio Valley,0
+Long Beach State,long-beach-state,299,long-beach-state,LBSU,#000000,#f1f2f3,Big West,0
+Longwood,longwood,2344,longwood,LONG,#003273,#9ea2a3,Big South,0
+Louisiana,la-lafayette,309,louisiana-lafayette,UL,#ce181e,#000000,Sun Belt,0
+Louisiana Tech,louisiana-tech,2348,louisiana-tech,LT,#003087,#cb333b,C-USA,0
+Louisiana-Monroe,la-monroe,2433,louisiana-monroe,ULM,#840029,#fdb913,Sun Belt,0
+Louisville,louisville,97,louisville,LOU,#c9001f,#ffffff,ACC,0
+Loyola Chicago,loyola-chicago,2350,loyola-il,LUC,#9d1244,#999999,Atlantic 10,0
+Loyola Maryland,loyola-maryland,2352,loyola-md,L-MD,#76a7a0,#c9cbca,Patriot,0
+Loyola Marymount,loyola-marymount,2351,loyola-marymount,LMU,#880029,#00345b,West Coast,0
+Maine,maine,311,maine,ME,#127dbe,#999999,America East,0
+Manhattan,manhattan,2363,manhattan,MAN,#4f8537,#b5b7ba,MAAC,0
+Marist,marist,2368,marist,MRST,#e53730,#f0f0f0,MAAC,0
+Marquette,marquette,269,marquette,MARQ,#003366,#ffcc00,Big East,0
+Marshall,marshall,276,marshall,MRSH,#00b140,#000000,Sun Belt,0
+Maryland,maryland,120,maryland,MD,#ce1126,#ffffff,Big Ten,0
+Maryland Eastern Shore,maryland-eastern-shore,2379,maryland-eastern-shore,UMES,#5c2301,#b5b7ba,MEAC,0
+McNeese,mcneese,2377,mcneese-state,MCN,#00529C,#ffd204,Southland,0
+Memphis,memphis,235,memphis,MEM,#004991,#8e908f,American,0
+Mercer,mercer,2382,mercer,MER,#ff7f29,#080808,SoCon,0
+Mercyhurst,mercyhurst,2385,,MERC,#000000,#999999,NEC,0
+Merrimack,merrimack,2771,,MRMK,#2f4f93,#e8c535,MAAC,0
+Miami (FL),miami-fl,2390,miami-fl,MIA,#f47423,#035131,ACC,0
+Miami (OH),miami-oh,193,miami-oh,M-OH,#c41230,#ffffff,MAC,0
+Michigan,michigan,130,michigan,MICH,#00274c,#ffcb05,Big Ten,0
+Michigan State,michigan-st,127,michigan-state,MSU,#173f35,#ffffff,Big Ten,0
+Middle Tennessee,middle-tenn,2393,middle-tennessee,MTSU,#036eb7,#ffffff,C-USA,0
+Milwaukee,milwaukee,270,milwaukee,MILW,#000000,#ffc20e,Horizon,0
+Minnesota,minnesota,135,minnesota,MINN,#5e0a2f,#fab41c,Big Ten,0
+Mississippi State,mississippi-st,344,mississippi-state,MSST,#5d1725,#c1c6c8,SEC,0
+Mississippi Valley State,mississippi-valley-state,2400,mississippi-valley-state,MVSU,#005328,#cf2d34,SWAC,0
+Missouri,missouri,142,missouri,MIZ,#f1b82d,#000000,SEC,0
+Missouri State,missouri-st,2623,missouri-state,MOST,#5e0009,#ffffff,C-USA,0
+Monmouth,monmouth,2405,monmouth,MONM,#051844,#999999,CAA,0
+Montana,montana,149,montana,MONT,#751D4A,#666666,Big Sky,0
+Montana State,montana-state,147,montana-state,MTST,#00205c,#bc955c,Big Sky,0
+Morehead State,morehead-state,2413,morehead-state,MORE,#094FA3,#fed91a,Ohio Valley,0
+Morgan State,morgan-state,2415,morgan-state,MORG,#014786,#f47937,MEAC,0
+Mount St. Mary's,mount-st-marys,116,mount-st-marys,MSM,#005596,#ebebeb,MAAC,0
+Murray State,murray-state,93,murray-state,MUR,#002148,#000e00,Missouri Valley,0
+NC State,north-carolina-st,152,north-carolina-state,NCSU,#cc0000,#ffffff,ACC,0
+NJIT,njit,2885,njit,NJIT,#EE3024,#df3e2e,America East,0
+Navy,navy,2426,navy,NAVY,#00225b,#b5a67c,Patriot,0
+Nebraska,nebraska,158,nebraska,NEB,#e31937,#ffffff,Big Ten,0
+Nevada,nevada,2440,nevada,NEV,#041e42,#8a8d8f,Mountain West,0
+New Hampshire,new-hampshire,160,new-hampshire,UNH,#004990,#c3c4c6,America East,0
+New Haven,new-haven,2441,,NHVN,#041e42,#ffc425,NEC,0
+New Mexico,new-mexico,167,new-mexico,UNM,#ba0c2f,#a7a8aa,Mountain West,0
+New Mexico State,new-mexico-st,166,new-mexico-state,NMSU,#7e141b,#231f20,C-USA,0
+New Orleans,new-orleans,2443,new-orleans,UNO,#005da6,#a2a9ae,Southland,0
+Niagara,niagara,315,niagara,NIA,#69207E,#f0f0f0,MAAC,0
+Nicholls,nicholls,2447,nicholls-state,NICH,#C41230,#f0f0f0,Southland,0
+Norfolk State,norfolk-state,2450,norfolk-state,NORF,#0c8968,#fdb813,MEAC,0
+North Alabama,north-alabama,2453,,UNA,#663399,#999999,ASUN,0
+North Carolina,north-carolina,153,north-carolina,UNC,#7bafd4,#13294b,ACC,0
+North Carolina A&T,north-carolina-at,2448,north-carolina-at,NCAT,#0505aa,#004684,CAA,0
+North Carolina Central,north-carolina-central,2428,north-carolina-central,NCCU,#880023,#c2c3c0,MEAC,0
+North Dakota,north-dakota,155,north-dakota,UND,#00A26B,#c2c3c0,Summit,0
+North Dakota State,north-dakota-st,2449,north-dakota-state,NDSU,#01402A,#ffffff,Summit,0
+North Florida,north-florida,2454,north-florida,UNF,#004B8D,#babcbe,ASUN,0
+North Texas,north-texas,249,north-texas,UNT,#068f33,#ffffff,American,0
+Northeastern,northeastern,111,northeastern,NE,#CC0001,#c2c3c0,CAA,0
+Northern Arizona,northern-arizona,2464,northern-arizona,NAU,#003976,#1b3069,Big Sky,0
+Northern Colorado,northern-colorado,2458,northern-colorado,UNCO,#13558D,#ffc533,Big Sky,0
+Northern Illinois,northern-ill,2459,northern-illinois,NIU,#c8102e,#000000,MAC,0
+Northern Iowa,northern-iowa,2460,northern-iowa,UNI,#473282,#ffffff,Missouri Valley,0
+Northern Kentucky,northern-kentucky,94,northern-kentucky,NKU,#ffc82e,#000000,Horizon,0
+Northwestern,northwestern,77,northwestern,NU,#492f92,#ffffff,Big Ten,0
+Northwestern State,northwestern-state,2466,northwestern-state,NWST,#492F91,#ed6118,Southland,0
+Notre Dame,notre-dame,87,notre-dame,ND,#062340,#c99700,ACC,0
+Oakland,oakland,2473,oakland,OAK,#04091c,#bc955c,Horizon,0
+Ohio,ohio,195,ohio,OHIO,#154734,#ffffff,MAC,0
+Ohio State,ohio-st,194,ohio-state,OSU,#ba0c2f,#a8adb4,Big Ten,0
+Oklahoma,oklahoma,201,oklahoma,OU,#990000,#ffffff,SEC,0
+Oklahoma State,oklahoma-st,197,oklahoma-state,OKST,#fe5c00,#000000,Big 12,0
+Old Dominion,old-dominion,295,old-dominion,ODU,#003768,#a1d2f1,Sun Belt,0
+Ole Miss,ole-miss,145,mississippi,MISS,#13294b,#cf142b,SEC,0
+Omaha,omaha,2437,nebraska-omaha,OMA,#e3193e,#474648,Summit,0
+Oral Roberts,oral-roberts,198,oral-roberts,ORU,#002462,#dac792,Summit,0
+Oregon,oregon,2483,oregon,ORE,#00934b,#fff41b,Big Ten,0
+Oregon State,oregon-st,204,oregon-state,ORST,#dc4405,#000000,West Coast,0
+Pacific,pacific,279,pacific,PAC,#F47820,#c2c3c0,West Coast,0
+Penn State,penn-st,213,penn-state,PSU,#061440,#ffffff,Big Ten,0
+Pennsylvania,pennsylvania,219,pennsylvania,PENN,#082A74,#a6163d,Ivy League,0
+Pepperdine,pepperdine,2492,pepperdine,PEPP,#003A72,#dc762f,West Coast,0
+Pittsburgh,pittsburgh,221,pittsburgh,PITT,#003594,#ffb81c,ACC,0
+Portland,portland,2501,portland,PORT,#330072,#a8b3ba,West Coast,0
+Portland State,portland-state,2502,portland-state,PRST,#00311e,#ebebeb,Big Sky,0
+Prairie View A&M,prairie-view-am,2504,prairie-view,PV,#582c83,#eaaa00,SWAC,0
+Presbyterian,presbyterian,2506,presbyterian,PRES,#194896,#990134,Big South,0
+Princeton,princeton,163,princeton,PRIN,#000000,#ff6000,Ivy League,0
+Providence,providence,2507,providence,PROV,#000000,#a3a19e,Big East,0
+Purdue,purdue,2509,purdue,PUR,#ceb888,#000000,Big Ten,0
+Purdue Fort Wayne,purdue-fort-wayne,2870,ipfw,PFW,#cfb991,#000000,Horizon,0
+Queens,queens,2511,,QUC,#192C66,#857040,ASUN,0
+Quinnipiac,quinnipiac,2514,quinnipiac,QUIN,#041B43,#999999,MAAC,0
+Radford,radford,2515,radford,RAD,#BC1515,#c2c3c0,Big South,0
+Rhode Island,rhode-island,227,rhode-island,URI,#091f3f,#5ab3e8,Atlantic 10,0
+Rice,rice,242,rice,RICE,#00205b,#c1c6c8,American,0
+Richmond,richmond,257,richmond,RICH,#9e0712,#b90b2e,Atlantic 10,0
+Rider,rider,2520,rider,RID,#a80532,#ebebeb,MAAC,0
+Robert Morris,robert-morris,2523,robert-morris,RMU,#00214D,#a21d2b,Horizon,0
+Rutgers,rutgers,164,rutgers,RUTG,#ce0e2d,#ffffff,Big Ten,0
+SE Louisiana,se-louisiana,2545,southeastern-louisiana,SELA,#215732,#ffc72c,Southland,0
+SIU Edwardsville,siu-edwardsville,2565,southern-illinois-edwardsville,SIUE,#eb1c23,#080808,Ohio Valley,0
+SMU,smu,2567,southern-methodist,SMU,#a80000,#0033a1,ACC,0
+Sacramento State,sacramento-st,16,sacramento-state,SAC,#00573C,#cdb97d,Big Sky,0
+Sacred Heart,sacred-heart,2529,sacred-heart,SHU,#a40012,#c29472,MAAC,0
+Saint Francis,saint-francis,2598,saint-francis-pa,SFPA,#a20012,#000000,NEC,0
+Saint Joseph's,saint-josephs,2603,saint-josephs,JOES,#9e1b32,#6c6f70,Atlantic 10,0
+Saint Louis,saint-louis,139,saint-louis,SLU,#00539C,#ebebeb,Atlantic 10,0
+Saint Mary's,saint-marys,2608,saint-marys-ca,SMC,#d80024,#003057,West Coast,0
+Saint Peter's,saint-peters,2612,saint-peters,SPU,#004CC2,#999999,MAAC,0
+Sam Houston,sam-houston,2534,sam-houston-state,SHSU,#f56423,#ffffff,C-USA,0
+Samford,samford,2535,samford,SAM,#005485,#bc0023,SoCon,0
+San Diego,san-diego,301,san-diego,USD,#2f99d4,#2f99d4,West Coast,0
+San Diego State,san-diego-st,21,san-diego-state,SDSU,#a6192e,#000000,Mountain West,0
+San Francisco,san-francisco,2539,san-francisco,SF,#005a36,#ffffff,West Coast,0
+San Jose State,san-jose-st,23,san-jose-state,SJSU,#0038a8,#ffb81a,Mountain West,0
+Santa Clara,santa-clara,2541,santa-clara,SCU,#690b0b,#101010,West Coast,0
+Seattle,seattle,2547,seattle,SEA,#BF2E1A,#c2c3c0,West Coast,0
+Seton Hall,seton-hall,2550,seton-hall,HALL,#0857B1,#8a8d8f,Big East,0
+Siena,siena,2561,siena,SIE,#037961,#eea60f,MAAC,0
+South Alabama,south-ala,6,south-alabama,USA,#00205b,#bf0d3e,Sun Belt,0
+South Carolina,south-carolina,2579,south-carolina,SC,#73000a,#000000,SEC,0
+South Carolina State,south-carolina-state,2569,south-carolina-state,SCST,#7d1315,#104897,MEAC,0
+South Carolina Upstate,south-carolina-upstate,2908,south-carolina-upstate,UPST,#008545,#000000,Big South,0
+South Dakota,south-dakota,233,south-dakota,SDAK,#CD1241,#f0f0f0,Summit,0
+South Dakota State,south-dakota-state,2571,south-dakota-state,SDST,#0033a0,#ffd100,Summit,0
+South Florida,south-fla,58,south-florida,USF,#006747,#cfc493,American,0
+Southeast Missouri State,southeast-missouri-state,2546,southeast-missouri-state,SEMO,#c8102e,#000000,Ohio Valley,0
+Southern,southern,2582,southern,SOU,#004B97,#ffc82d,SWAC,0
+Southern Illinois,southern-illinois,79,southern-illinois,SIU,#85283D,#c2c3c0,Missouri Valley,0
+Southern Indiana,southern-indiana,88,,USI,#555555,#999999,Ohio Valley,0
+Southern Miss,southern-miss,2572,southern-mississippi,USM,#ffc72c,#231f20,Sun Belt,0
+Southern Utah,southern-utah,253,southern-utah,SUU,#c72026,#000000,WAC,0
+St. Bonaventure,st-bonaventure,179,st-bonaventure,SBU,#70261D,#999999,Atlantic 10,0
+St. John's,st-johns,2599,st-johns-ny,SJU,#d10000,#101010,Big East,0
+St. Thomas,st-thomas,2900,,STMN,#000000,#999999,Summit,0
+Stanford,stanford,24,stanford,STAN,#8c1515,#ffffff,ACC,0
+Stephen F. Austin,stephen-f-austin,2617,stephen-f-austin,SFA,#393996,#bec0c2,Southland,0
+Stetson,stetson,56,stetson,STET,#0a5640,#56854e,ASUN,0
+Stonehill,stonehill,284,,STO,#000000,#999999,NEC,0
+Stony Brook,stony-brook,2619,stony-brook,STBK,#990000,#999999,CAA,0
+Syracuse,syracuse,183,syracuse,SYR,#000e54,#ff431b,ACC,0
+TCU,tcu,2628,texas-christian,TCU,#4d1979,#ffffff,Big 12,0
+Tarleton State,tarleton-state,2627,,TAR,#000000,#999999,WAC,0
+Temple,temple,218,temple,TEM,#a41e35,#ffffff,American,0
+Tennessee,tennessee,2633,tennessee,TENN,#ff8200,#ffffff,SEC,0
+Tennessee State,tennessee-state,2634,tennessee-state,TNST,#171796,#f0f0f0,Ohio Valley,0
+Tennessee Tech,tennessee-tech,2635,tennessee-tech,TNTC,#5A4099,#ffde00,Ohio Valley,0
+Texas,texas,251,texas,TEX,#af5c37,#ffffff,SEC,0
+Texas A&M,texas-am,245,texas-am,TA&M,#500000,#ffffff,SEC,0
+Texas A&M-Corpus Christi,texas-am-corpus-christi,357,texas-am-corpus-christi,AMCC,#0067c5,#007f3e,Southland,0
+Texas Southern,texas-southern,2640,texas-southern,TXSO,#860038,#ffffff,SWAC,0
+Texas State,texas-st,326,texas-state,TXST,#501214,#6a5638,Sun Belt,0
+Texas Tech,texas-tech,2641,texas-tech,TTU,#da291c,#000000,Big 12,0
+The Citadel,the-citadel,2643,citadel,CIT,#7badd3,#002856,SoCon,0
+Toledo,toledo,2649,toledo,TOL,#0b2240,#ffcd00,MAC,0
+Towson,towson,119,towson,TOW,#FFC229,#999999,CAA,0
+Troy,troy,2653,troy,TROY,#862633,#b1b1b1,Sun Belt,0
+Tulane,tulane,2655,tulane,TULN,#006747,#418fde,American,0
+Tulsa,tulsa,202,tulsa,TLSA,#003595,#d0b787,American,0
+UAB,uab,5,alabama-birmingham,UAB,#1a5632,#fdb913,American,0
+UC Davis,uc-davis,302,california-davis,UCD,#002855,#c3c4c6,Big West,0
+UC Irvine,uc-irvine,300,california-irvine,UCI,#002B5C,#fec52e,Big West,0
+UC Riverside,uc-riverside,27,california-riverside,UCR,#14234F,#999999,Big West,0
+UC San Diego,uc-san-diego,28,,UCSD,#000000,#ffcd00,Big West,0
+UC Santa Barbara,uc-santa-barbara,2540,california-santa-barbara,UCSB,#1e1840,#febc11,Big West,0
+UCF,ucf,2116,central-florida,UCF,#000000,#b4a169,Big 12,0
+UCLA,ucla,26,ucla,UCLA,#2774ae,#f2a900,Big Ten,0
+UConn,uconn,41,connecticut,CONN,#0c2340,#a2aaad,Big East,0
+UIC,uic,82,illinois-chicago,UIC,#001e62,#d50032,Missouri Valley,0
+UMBC,umbc,2378,maryland-baltimore-county,UMBC,#000000,#ad860a,America East,0
+UMass,massachusetts,113,massachusetts,MASS,#881c1c,#ffffff,MAC,0
+UMass Lowell,umass-lowell,2349,massachusetts-lowell,UML,#00529C,#cf1f2f,America East,0
+UNC Asheville,unc-asheville,2427,north-carolina-asheville,UNCA,#003da5,#ffffff,Big South,0
+UNC Greensboro,unc-greensboro,2430,north-carolina-greensboro,UNCG,#003559,#ffd90a,SoCon,0
+UNC Wilmington,unc-wilmington,350,north-carolina-wilmington,UNCW,#00665e,#ffda00,CAA,0
+UNLV,unlv,2439,nevada-las-vegas,UNLV,#cf0a2c,#cac8c8,Mountain West,0
+USC,southern-california,30,southern-california,USC,#9d2235,#ffc72c,Big Ten,0
+UT Arlington,ut-arlington,250,texas-arlington,UTA,#004b7c,#f58024,WAC,0
+UT Martin,ut-martin,2630,tennessee-martin,UTM,#FF6700,#102a5c,Ohio Valley,0
+UT Rio Grande Valley,ut-rio-grande-valley,292,texas-pan-american,RGV,#dc6000,#e1732d,Southland,0
+UTEP,utep,2638,texas-el-paso,UTEP,#ff8200,#041e42,C-USA,0
+UTSA,utsa,2636,texas-san-antonio,UTSA,#0c2340,#f15a22,American,0
+Utah,utah,254,utah,UTAH,#be0000,#ffffff,Big 12,0
+Utah State,utah-st,328,utah-state,USU,#0f2439,#ffffff,Mountain West,0
+Utah Tech,utah-tech,3101,,UTU,#000000,#999999,WAC,0
+Utah Valley,utah-valley,3084,utah-valley,UVU,#004812,#e1c736,WAC,0
+VCU,vcu,2670,virginia-commonwealth,VCU,#ffaf00,#000000,Atlantic 10,0
+VMI,vmi,2678,virginia-military-institute,VMI,#ae122a,#ffd619,SoCon,0
+Valparaiso,valparaiso,2674,valparaiso,VAL,#794500,#999999,Missouri Valley,0
+Vanderbilt,vanderbilt,238,vanderbilt,VAN,#000000,#cfae70,SEC,0
+Vermont,vermont,261,vermont,UVM,#154734,#ffc72c,America East,0
+Villanova,villanova,222,villanova,VILL,#00205b,#13b5ea,Big East,0
+Virginia,virginia,258,virginia,UVA,#232d4b,#f84c1e,ACC,0
+Virginia Tech,virginia-tech,259,virginia-tech,VT,#6a2c3e,#cf4520,ACC,0
+Wagner,wagner,2681,wagner,WAG,#00483A,#ffffff,NEC,0
+Wake Forest,wake-forest,154,wake-forest,WAKE,#ceb888,#2c2a29,ACC,0
+Washington,washington,264,washington,WASH,#33006f,#e8d3a2,Big Ten,0
+Washington State,washington-st,265,washington-state,WSU,#a60f2d,#4d4d4d,West Coast,0
+Weber State,weber-state,2692,weber-state,WEB,#18005a,#ebebeb,Big Sky,0
+West Georgia,west-georgia,2698,,WGA,#0033a1,#db1a21,ASUN,0
+West Virginia,west-virginia,277,west-virginia,WVU,#eaaa00,#002855,Big 12,0
+Western Carolina,western-carolina,2717,western-carolina,WCU,#492F91,#bf9e70,SoCon,0
+Western Illinois,western-illinois,2710,western-illinois,WIU,#4e1e8a,#ffc90a,Ohio Valley,0
+Western Kentucky,western-ky,98,western-kentucky,WKU,#e13a3e,#ffffff,C-USA,0
+Western Michigan,western-mich,2711,western-michigan,WMU,#532e1f,#f1c500,MAC,0
+Wichita State,wichita-state,2724,wichita-state,WICH,#ffcd00,#27251f,American,0
+William & Mary,william-mary,2729,william-mary,W&M,#115740,#f0b323,CAA,0
+Winthrop,winthrop,2737,winthrop,WIN,#9e0b0e,#fdb41e,Big South,0
+Wisconsin,wisconsin,275,wisconsin,WIS,#a00000,#ffffff,Big Ten,0
+Wofford,wofford,2747,wofford,WOF,#533B22,#f0f0f0,SoCon,0
+Wright State,wright-state,2750,wright-state,WRST,#cba052,#cba052,Horizon,0
+Wyoming,wyoming,2751,wyoming,WYO,#492f24,#ffc425,Mountain West,0
+Xavier,xavier,2752,xavier,XAV,#21304e,#a5a7a8,Big East,0
+Yale,yale,43,yale,YALE,#004a81,#286dc0,Ivy League,0
+Youngstown State,youngstown-state,2754,youngstown-state,YSU,#E51935,#690717,Horizon,0

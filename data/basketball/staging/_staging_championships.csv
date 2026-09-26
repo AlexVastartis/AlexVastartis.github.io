@@ -1,0 +1,88 @@
+# One NCAA tournament champion per row (1939 → present). status=vacated → as-played view only.
+school,year,scope,selector,conference,shared,status,source
+Oregon,1939,national,NCAA,,0,,sports-reference
+Indiana,1940,national,NCAA,,0,,sports-reference
+Wisconsin,1941,national,NCAA,,0,,sports-reference
+Stanford,1942,national,NCAA,,0,,sports-reference
+Wyoming,1943,national,NCAA,,0,,sports-reference
+Utah,1944,national,NCAA,,0,,sports-reference
+Oklahoma State,1945,national,NCAA,,0,,sports-reference
+Oklahoma State,1946,national,NCAA,,0,,sports-reference
+Holy Cross,1947,national,NCAA,,0,,sports-reference
+Kentucky,1948,national,NCAA,,0,,sports-reference
+Kentucky,1949,national,NCAA,,0,,sports-reference
+Kentucky,1951,national,NCAA,,0,,sports-reference
+Kansas,1952,national,NCAA,,0,,sports-reference
+Indiana,1953,national,NCAA,,0,,sports-reference
+La Salle,1954,national,NCAA,,0,,sports-reference
+San Francisco,1955,national,NCAA,,0,,sports-reference
+San Francisco,1956,national,NCAA,,0,,sports-reference
+North Carolina,1957,national,NCAA,,0,,sports-reference
+Kentucky,1958,national,NCAA,,0,,sports-reference
+California,1959,national,NCAA,,0,,sports-reference
+Ohio State,1960,national,NCAA,,0,,sports-reference
+Cincinnati,1961,national,NCAA,,0,,sports-reference
+Cincinnati,1962,national,NCAA,,0,,sports-reference
+Loyola Chicago,1963,national,NCAA,,0,,sports-reference
+UCLA,1964,national,NCAA,,0,,sports-reference
+UCLA,1965,national,NCAA,,0,,sports-reference
+UTEP,1966,national,NCAA,,0,,sports-reference
+UCLA,1967,national,NCAA,,0,,sports-reference
+UCLA,1968,national,NCAA,,0,,sports-reference
+UCLA,1969,national,NCAA,,0,,sports-reference
+UCLA,1970,national,NCAA,,0,,sports-reference
+UCLA,1971,national,NCAA,,0,,sports-reference
+UCLA,1972,national,NCAA,,0,,sports-reference
+UCLA,1973,national,NCAA,,0,,sports-reference
+NC State,1974,national,NCAA,,0,,sports-reference
+UCLA,1975,national,NCAA,,0,,sports-reference
+Indiana,1976,national,NCAA,,0,,sports-reference
+Marquette,1977,national,NCAA,,0,,sports-reference
+Kentucky,1978,national,NCAA,,0,,sports-reference
+Michigan State,1979,national,NCAA,,0,,sports-reference
+Louisville,1980,national,NCAA,,0,,sports-reference
+Indiana,1981,national,NCAA,,0,,sports-reference
+North Carolina,1982,national,NCAA,,0,,sports-reference
+NC State,1983,national,NCAA,,0,,sports-reference
+Georgetown,1984,national,NCAA,,0,,sports-reference
+Villanova,1985,national,NCAA,,0,,sports-reference
+Louisville,1986,national,NCAA,,0,,sports-reference
+Indiana,1987,national,NCAA,,0,,sports-reference
+Kansas,1988,national,NCAA,,0,,sports-reference
+Michigan,1989,national,NCAA,,0,,sports-reference
+UNLV,1990,national,NCAA,,0,,sports-reference
+Duke,1991,national,NCAA,,0,,sports-reference
+Duke,1992,national,NCAA,,0,,sports-reference
+North Carolina,1993,national,NCAA,,0,,sports-reference
+Arkansas,1994,national,NCAA,,0,,sports-reference
+UCLA,1995,national,NCAA,,0,,sports-reference
+Kentucky,1996,national,NCAA,,0,,sports-reference
+Arizona,1997,national,NCAA,,0,,sports-reference
+Kentucky,1998,national,NCAA,,0,,sports-reference
+UConn,1999,national,NCAA,,0,,sports-reference
+Michigan State,2000,national,NCAA,,0,,sports-reference
+Duke,2001,national,NCAA,,0,,sports-reference
+Maryland,2002,national,NCAA,,0,,sports-reference
+Syracuse,2003,national,NCAA,,0,,sports-reference
+UConn,2004,national,NCAA,,0,,sports-reference
+North Carolina,2005,national,NCAA,,0,,sports-reference
+Florida,2006,national,NCAA,,0,,sports-reference
+Florida,2007,national,NCAA,,0,,sports-reference
+Kansas,2008,national,NCAA,,0,,sports-reference
+North Carolina,2009,national,NCAA,,0,,sports-reference
+Duke,2010,national,NCAA,,0,,sports-reference
+UConn,2011,national,NCAA,,0,,sports-reference
+Kentucky,2012,national,NCAA,,0,,sports-reference
+Louisville,2013,national,NCAA,,0,vacated,sports-reference
+UConn,2014,national,NCAA,,0,,sports-reference
+Duke,2015,national,NCAA,,0,,sports-reference
+Villanova,2016,national,NCAA,,0,,sports-reference
+North Carolina,2017,national,NCAA,,0,,espn
+Villanova,2018,national,NCAA,,0,,espn
+Virginia,2019,national,NCAA,,0,,espn
+Baylor,2021,national,NCAA,,0,,espn
+Kansas,2022,national,NCAA,,0,,espn
+UConn,2023,national,NCAA,,0,,espn
+UConn,2024,national,NCAA,,0,,espn
+Florida,2025,national,NCAA,,0,,espn
+Michigan,2026,national,NCAA,,0,,espn

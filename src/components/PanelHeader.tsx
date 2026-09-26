@@ -1,8 +1,9 @@
 import type { Team } from '../types';
 import TeamLogo from './TeamLogo';
+import { SITE } from '../config/site';
 
 const RATING_HINT =
-  'Blue Blood Rating: rank each of the 10 stats within FBS, drop this program’s single best and single worst percentile, average the other 8.';
+  `Blue Blood Rating: rank each of the 10 stats within ${SITE.field}, drop this program’s single best and single worst percentile, average the other 8.`;
 
 interface Props {
   team: Team;

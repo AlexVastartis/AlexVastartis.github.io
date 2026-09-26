@@ -1,5 +1,6 @@
 import { TIMEPOINT_YEARS, type ViewState, type WinsMode } from '../data/useViewState';
 import { SHOW_TIMEPOINTS, SHOW_WINS_TOGGLE } from '../config/flags';
+import { SITE } from '../config/site';
 
 interface Props {
   conferences: string[];
@@ -52,7 +53,7 @@ export default function Controls({
         <span className="mr-1 hidden text-xs font-semibold uppercase tracking-wide text-muted sm:inline">Conference</span>
         <button
           onClick={onClearConferences}
-          title="Show every FBS program"
+          title={`Show every ${SITE.field} program`}
           className={`rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-line ${
             state.conferences.length === 0 ? 'bg-accent text-white' : 'hover:bg-panel'
           }`}
