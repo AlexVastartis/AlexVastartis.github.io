@@ -165,10 +165,11 @@ function setupShip(ship) {
   const loc = ship.location;
   // Sit on the water; on dry land, rest on the keel like a ship in dry dock.
   const surface = findWaterSurface(dim, loc) ?? Math.floor(loc.y) + 3;
-  // Point the bow the way the placing player is looking.
+  // Point the bow the way the placing player is looking, lined up with the
+  // block grid so the deck's edges match the model exactly.
   let yaw = 0;
   const placer = dim.getPlayers({ location: loc, maxDistance: 12, closest: 1 })[0];
-  if (placer) yaw = placer.getRotation().y;
+  if (placer) yaw = wrapYaw(Math.round(placer.getRotation().y / 90) * 90);
   ship.setDynamicProperty("pirate:surface", surface);
   ship.setDynamicProperty("pirate:yaw", yaw);
   ship.teleport({ x: loc.x, y: surface, z: loc.z }, { rotation: { x: 0, y: yaw } });
@@ -177,6 +178,23 @@ function setupShip(ship) {
   st.z = loc.z;
   spawnPart(ship, st, HELM_TYPE, HELM, "helmId");
   spawnPart(ship, st, CHEST_TYPE, CHEST, "chestId");
+  placer?.sendMessage(
+    surface === Math.floor(loc.y) + 3 && !findWaterSurface(dim, loc)
+      ? "§6[Pirate Ship]§r Launched on dry land, so it can't sail. Place it on water to set sail."
+      : "§6[Pirate Ship]§r Ready! Use the ship's wheel on the upper deck at the back to take the helm."
+  );
+}
+
+// Tell players about script errors (once each) instead of failing silently.
+const reported = new Set();
+function report(e) {
+  const msg = `${e}`;
+  console.warn(`[pirate ship] ${msg}`);
+  if (reported.has(msg) || reported.size > 5) return;
+  reported.add(msg);
+  try {
+    world.sendMessage(`§6[Pirate Ship]§r §cscript error:§r ${msg}`);
+  } catch {}
 }
 
 // ------------------------------------------------------------------ sailing
@@ -479,7 +497,11 @@ function cleanOrphans(dim) {
 
 system.runInterval(() => {
   tickCount++;
-  restoreLeftovers();
+  try {
+    restoreLeftovers();
+  } catch (e) {
+    report(e);
+  }
   const desired = new Map();
   for (const id of DIMENSIONS) {
     let dim;
@@ -495,7 +517,7 @@ system.runInterval(() => {
         if (ship.getDynamicProperty("pirate:surface") === undefined) setupShip(ship);
         tickShip(ship, dim, desired);
       } catch (e) {
-        if (tickCount % 100 === 0) console.warn(`[pirate ship] ${e}`);
+        report(e);
       }
     }
     if (tickCount % 20 === 0) {
@@ -507,7 +529,7 @@ system.runInterval(() => {
   try {
     syncBarriers(desired);
   } catch (e) {
-    if (tickCount % 100 === 0) console.warn(`[pirate ship] ${e}`);
+    report(e);
   }
 }, 1);
 

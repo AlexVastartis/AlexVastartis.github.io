@@ -337,6 +337,12 @@ def voxel_cubes(vox):
             if (x, b, h - 1) not in solid: faces.add("down")
         if (run[0] + 1, b, h) not in solid: faces.add("north")
         if (run[-1] - 1, b, h) not in solid: faces.add("south")
+        # Bedrock mirrors the model's x axis, so which of east/west ends up on
+        # the outside isn't what the numbers suggest. Draw both sides of a pair
+        # whenever either is exposed (the hidden one costs nothing to draw).
+        for pair in (("east", "west"), ("north", "south")):
+            if faces & set(pair):
+                faces.update(pair)
         if not faces:
             continue
         o = cell_origin(run[0], b, h)
