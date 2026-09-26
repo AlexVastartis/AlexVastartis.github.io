@@ -2,8 +2,9 @@
  * Builds the static assets for BlueBloodBasketball into sites/basketball/public/
  * (the Vite publicDir for `--mode basketball`). Offline and deterministic:
  *
- *   logo.png                 the masthead mark — a crowned basketball in a shield, drawn
- *                            here as SVG in the same style as the football Logo A
+ *   logo.png                 the masthead mark — from assets/logo-src-basketball.png when
+ *                            it exists (trimmed, ~440px tall, like the football logo);
+ *                            otherwise a placeholder crowned basketball drawn here as SVG
  *   favicon-16/32, apple-touch-icon.png   copied from public/ (the crown tile is sport-neutral)
  *   CNAME, robots.txt        bluebloodbasketball.com
  *   logos/<slug>.png (+ -dark.png)
@@ -58,10 +59,15 @@ const logo = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="440" v
   <rect x="50" y="130" width="200" height="30" rx="8" fill="url(#blue)" stroke="#0f172a" stroke-width="5"/>
   <rect x="62" y="139" width="176" height="6" rx="3" fill="#bfdbfe" opacity="0.7"/>
 </svg>`;
-await sharp(Buffer.from(logo), { density: 288 })
-  .resize({ height: 440, fit: 'inside' })
+const LOGO_SRC = path.join(REPO, 'assets/logo-src-basketball.png');
+const logoIn = fs.existsSync(LOGO_SRC)
+  ? await sharp(fs.readFileSync(LOGO_SRC)).trim({ threshold: 8 }).png().toBuffer()
+  : await sharp(Buffer.from(logo), { density: 288 }).png().toBuffer();
+await sharp(logoIn)
+  .resize({ height: 440, fit: 'inside', withoutEnlargement: fs.existsSync(LOGO_SRC) })
   .png({ compressionLevel: 9 })
   .toFile(path.join(OUT, 'logo.png'));
+console.log(`  logo.png from ${fs.existsSync(LOGO_SRC) ? 'assets/logo-src-basketball.png' : 'the placeholder SVG'}`);
 
 /* ---- icons (sport-neutral crown tile), CNAME, robots ---- */
 for (const f of ['favicon-16.png', 'favicon-32.png', 'apple-touch-icon.png']) {
