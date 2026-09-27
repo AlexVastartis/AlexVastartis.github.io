@@ -29,7 +29,8 @@ interface SiteMeta {
   fieldCount: number;
   /** the season the AP poll starts, as shown in copy */
   apSince: string;
-  /** the sibling site, for the quick switch in the masthead */
+  /** the sibling site, for the quick switch in the masthead (the other local dev server
+   *  under `npm run dev` / `dev:bb`, so the switch works on your own machine) */
   other: { sport: Sport; label: string; url: string };
 }
 
@@ -43,7 +44,7 @@ const FOOTBALL: SiteMeta = {
   other: {
     sport: 'basketball',
     label: 'Basketball',
-    url: import.meta.env.VITE_OTHER_SITE_URL || 'https://bluebloodbasketball.com',
+    url: import.meta.env.VITE_OTHER_SITE_URL || (import.meta.env.DEV ? 'http://localhost:5175' : 'https://bluebloodbasketball.com'),
   },
 };
 
@@ -57,7 +58,7 @@ const BASKETBALL: SiteMeta = {
   other: {
     sport: 'football',
     label: 'Football',
-    url: import.meta.env.VITE_OTHER_SITE_URL || 'https://bluebloodfootball.com',
+    url: import.meta.env.VITE_OTHER_SITE_URL || (import.meta.env.DEV ? 'http://localhost:5174' : 'https://bluebloodfootball.com'),
   },
 };
 

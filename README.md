@@ -105,7 +105,9 @@ npm install
 npm run dev:bb      # BlueBloodBasketball → http://localhost:5175
 ```
 
-In a second PowerShell window, `npm run dev` serves BlueBloodFootball at
+Or just double-click **`start-sites.cmd`** in the folder: it opens both servers and both
+sites in your browser (close the two server windows to stop). By hand: in a second
+PowerShell window, `npm run dev` serves BlueBloodFootball at
 http://localhost:5174. Stop either with Ctrl+C. The basketball masthead logo is
 `assets\logo-src-basketball.png` — replace that file and restart `npm run dev:bb`.
 When you're ready to publish: `git add -A`, `git commit -m "…"`, `git push`.
