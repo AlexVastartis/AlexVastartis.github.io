@@ -1,3 +1,0 @@
-# BlueBloodBasketball.com — static hobby site, nothing to disallow.
-User-agent: *
-Allow: /

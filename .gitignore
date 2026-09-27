@@ -12,3 +12,14 @@ scripts/tmp/
 # data/staging/ (the hand-maintained data store) and data/archive/ (frozen raw
 # source dumps) are BOTH committed on purpose — the build reads staging, never the network
 dist-basketball
+
+# BlueBloodBasketball's generated static assets — rebuilt from tracked sources by
+# scripts/basketball/build-site-assets.mjs on every `npm run build:bb` (and in CI), so
+# they aren't tracked. sites/basketball/public/data/ IS tracked (built by `build:data:bb`).
+sites/basketball/public/logos/
+sites/basketball/public/logo.png
+sites/basketball/public/favicon-16.png
+sites/basketball/public/favicon-32.png
+sites/basketball/public/apple-touch-icon.png
+sites/basketball/public/CNAME
+sites/basketball/public/robots.txt
