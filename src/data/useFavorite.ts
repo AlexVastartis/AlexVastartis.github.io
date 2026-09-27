@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const KEY = 'bbf-favorite';
+import { IS_BASKETBALL } from '../config/site';
+
+// the two sites share one origin (football at /, basketball at /basketball/), so their
+// saved picks must not share a key — Nebraska is a football pick, not a basketball one
+const KEY = IS_BASKETBALL ? 'bbf-favorite-basketball' : 'bbf-favorite';
 
 /** the viewer's favourite program (school name), persisted locally */
 export function useFavorite(): [string | null, (school: string | null) => void] {

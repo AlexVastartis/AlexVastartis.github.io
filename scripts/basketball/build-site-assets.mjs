@@ -6,7 +6,8 @@
  *                            it exists (trimmed, ~440px tall, like the football logo);
  *                            otherwise a placeholder crowned basketball drawn here as SVG
  *   favicon-16/32, apple-touch-icon.png   copied from public/ (the crown tile is sport-neutral)
- *   CNAME, robots.txt        bluebloodbasketball.com
+ *   robots.txt               (no CNAME — the site is served under /basketball/ of the football
+ *                            site's domain; see vite.config.ts and .github/workflows/deploy.yml)
  *   logos/<slug>.png (+ -dark.png)
  *                            a program that is also on BlueBloodFootball reuses that logo
  *                            (public/logos/, from assets/logos-src/); every other program
@@ -69,11 +70,11 @@ await sharp(logoIn)
   .toFile(path.join(OUT, 'logo.png'));
 console.log(`  logo.png from ${fs.existsSync(LOGO_SRC) ? 'assets/logo-src-basketball.png' : 'the placeholder SVG'}`);
 
-/* ---- icons (sport-neutral crown tile), CNAME, robots ---- */
+/* ---- icons (sport-neutral crown tile), robots ---- */
 for (const f of ['favicon-16.png', 'favicon-32.png', 'apple-touch-icon.png']) {
   fs.copyFileSync(path.join(FB_PUBLIC, f), path.join(OUT, f));
 }
-fs.writeFileSync(path.join(OUT, 'CNAME'), 'bluebloodbasketball.com\n');
+fs.rmSync(path.join(OUT, 'CNAME'), { force: true }); // no CNAME: served under /basketball/ (a stale one from an older build)
 fs.writeFileSync(path.join(OUT, 'robots.txt'), '# BlueBloodBasketball.com — static hobby site, nothing to disallow.\nUser-agent: *\nAllow: /\n');
 
 /* ---- team logos ---- */
@@ -128,4 +129,4 @@ for (const t of ident) {
 // drop logos for programs no longer in the identity file
 const keep = new Set(ident.flatMap((t) => [`${t.slug}.png`, `${t.slug}-dark.png`]));
 for (const f of fs.readdirSync(path.join(OUT, 'logos'))) if (!keep.has(f)) fs.rmSync(path.join(OUT, 'logos', f));
-console.log(`✓ sites/basketball/public: logo, icons, CNAME · team logos: ${reused} from football, ${own} basketball art, ${made} monogram badges`);
+console.log(`✓ sites/basketball/public: logo, icons · team logos: ${reused} from football, ${own} basketball art, ${made} monogram badges`);

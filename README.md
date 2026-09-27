@@ -1,7 +1,7 @@
 # BlueBloodSports — BlueBloodFootball.com + BlueBloodBasketball.com
 
 **Two sites, one codebase.** Everything below describes BlueBloodFootball; the basketball
-twin — [BlueBloodBasketball.com](https://bluebloodbasketball.com) — looks and works exactly
+twin — [BlueBloodBasketball](https://bluebloodfootball.com/basketball/) — looks and works exactly
 the same, ranks all 365 Division I programs on its own ten stats, and is built with
 `--mode basketball`. A 🏈 / 🏀 switch in each masthead jumps to the same page on the other
 site. See **[data/basketball/README.md](data/basketball/README.md)** for the basketball
@@ -120,8 +120,8 @@ When you're ready to publish: `git add -A`, `git commit -m "…"`, `git push`.
 | build the data | `npm run build:data` | `npm run build:data:bb` |
 | public folder (Vite `publicDir`) | `public/` | `sites/basketball/public/` |
 | dev server | `npm run dev` (:5174) | `npm run dev:bb` (:5175) |
-| production build | `npm run build` → `dist/` | `npm run build:bb` → `dist-basketball/` |
-| domain | bluebloodfootball.com | bluebloodbasketball.com |
+| production build | `npm run build` → `dist/` | `npm run build:bb` → `dist-basketball/` (CI copies it into `dist/basketball/`) |
+| where it lives | bluebloodfootball.com | bluebloodfootball.com/basketball/ (same Pages deploy) |
 
 The sport comes from `import.meta.env.VITE_SPORT` (set by `vite.config.ts` from the mode) —
 `src/config/site.ts` holds the per-site names and the stat-key mapping, and

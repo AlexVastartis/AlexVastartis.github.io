@@ -44,7 +44,8 @@ const FOOTBALL: SiteMeta = {
   other: {
     sport: 'basketball',
     label: 'Basketball',
-    url: import.meta.env.VITE_OTHER_SITE_URL || (import.meta.env.DEV ? 'http://localhost:5175' : 'https://bluebloodbasketball.com'),
+    // production: the two sites share one origin — basketball lives under /basketball/
+    url: import.meta.env.VITE_OTHER_SITE_URL || (import.meta.env.DEV ? 'http://localhost:5175' : '/basketball/'),
   },
 };
 
@@ -58,7 +59,7 @@ const BASKETBALL: SiteMeta = {
   other: {
     sport: 'football',
     label: 'Football',
-    url: import.meta.env.VITE_OTHER_SITE_URL || (import.meta.env.DEV ? 'http://localhost:5174' : 'https://bluebloodfootball.com'),
+    url: import.meta.env.VITE_OTHER_SITE_URL || (import.meta.env.DEV ? 'http://localhost:5174' : '/'),
   },
 };
 

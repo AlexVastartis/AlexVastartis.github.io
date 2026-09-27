@@ -1,8 +1,8 @@
 # Deploying BlueBloodFootball.com (and BlueBloodBasketball.com)
 
-> **BlueBloodBasketball** is built from this same repo on every push (`npm run build:bb`
-> → `dist-basketball/`) — see [*The basketball site*](#the-basketball-site) at the bottom
-> for the one-time setup it needs.
+> **BlueBloodBasketball** ships in the same deploy — built with `npm run build:bb` and published
+> under **/basketball/** of the football site (bluebloodfootball.com/basketball/). See
+> [*The basketball site*](#the-basketball-site) at the bottom. No extra setup.
 
 The site is a **static bundle**: `npm run build` produces `dist/` (HTML + JS + the
 pre-baked `public/data/*.json`). No server, no database, no runtime secret.
@@ -138,35 +138,23 @@ Deploy Action. Nothing about the app changes — `base` stays `/`.
 
 ## The basketball site
 
-GitHub Pages serves **one custom domain per repository**, so bluebloodbasketball.com is
-published to a second, otherwise-empty repo. The `basketball` job in
-`.github/workflows/deploy.yml` builds it on every push to `main` and pushes
-`dist-basketball/` to that repo's `gh-pages` branch. Until the secret below exists, the job
-builds and stops with a notice — nothing fails.
+BlueBloodBasketball is **not on its own domain** — it is served from the same GitHub Pages
+site as football, at **https://bluebloodfootball.com/basketball/**. The deploy workflow
+builds both (`npm run build`, then `npm run build:bb` — which uses `base: '/basketball/'`,
+see `vite.config.ts`), copies `dist-basketball/` to `dist/basketball/`, and publishes the
+one `dist/` as the Pages artifact. No second repo, deploy key, secret or DNS record.
 
-One-time setup:
-
-1. **Create the repo** `AlexVastartis/bluebloodbasketball` on GitHub (public, empty). A
-   different name works too — then add a repository *variable* `BASKETBALL_REPO` =
-   `owner/name` on this repo (Settings → Secrets and variables → Actions → Variables).
-2. **Deploy key.** Locally: `ssh-keygen -t ed25519 -C bbb-deploy -f bbb-deploy -N ""`.
-   - In **bluebloodbasketball** → Settings → Deploy keys → Add: paste `bbb-deploy.pub`,
-     tick **Allow write access**.
-   - In **this repo** → Settings → Secrets and variables → Actions → New secret:
-     `BASKETBALL_DEPLOY_KEY` = the contents of `bbb-deploy` (the private key).
-3. **Run the workflow** (Actions → Deploy to Pages → Run workflow). The first run creates
-   the `gh-pages` branch in bluebloodbasketball.
-4. In **bluebloodbasketball** → Settings → Pages: Source = *Deploy from a branch*,
-   branch `gh-pages` / root. Custom domain `bluebloodbasketball.com` (the build ships a
-   `CNAME` file, so it should fill in by itself).
-5. **DNS** for bluebloodbasketball.com (Cloudflare, *DNS only* / grey cloud) — the same
-   records as football above: the four `A` + four `AAAA` records on `@`, and
-   `CNAME www → alexvastartis.github.io`. Once the cert is issued, tick **Enforce HTTPS**.
+- The 🏈 / 🏀 switch in each masthead links to the other site with root-relative URLs
+  (`/basketball/` and `/`), keeping the page you're on. In dev they point at the two local
+  servers (5174 / 5175). `VITE_OTHER_SITE_URL` overrides both.
+- The sites share one origin, so anything saved in `localStorage` is shared too. The
+  favourite team is keyed per sport (`bbf-favorite` / `bbf-favorite-basketball`); the theme
+  is deliberately shared.
+- Want basketball on its own domain later? Publish `dist-basketball/` (built with base `/`
+  — set it in `vite.config.ts`) from a second repo's Pages, then point `VITE_OTHER_SITE_URL`
+  at it. The old bluebloodbasketball.com is **not ours** (it serves an unrelated site).
 
 Updating basketball data is the same loop as football: edit
 `data/basketball/staging/*.csv` → `npm run build:data:bb` → commit
 `data/basketball/` + `sites/basketball/public/data/` → push. Refreshing from the raw sources
 (a new season) is described in `data/basketball/README.md`.
-
-The 🏈 / 🏀 switch links to the production domains. To point it elsewhere (a staging URL),
-set `VITE_OTHER_SITE_URL` when building.
