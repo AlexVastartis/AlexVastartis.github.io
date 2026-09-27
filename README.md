@@ -1,4 +1,4 @@
-# BlueBloodFootball.com + BlueBloodBasketball.com
+# BlueBloodSports — BlueBloodFootball.com + BlueBloodBasketball.com
 
 **Two sites, one codebase.** Everything below describes BlueBloodFootball; the basketball
 twin — [BlueBloodBasketball.com](https://bluebloodbasketball.com) — looks and works exactly
@@ -98,8 +98,8 @@ Then in PowerShell:
 
 ```powershell
 cd $HOME\Desktop
-git clone https://github.com/AlexVastartis/AlexVastartis.github.io.git BlueBloodSites
-cd BlueBloodSites
+git clone https://github.com/AlexVastartis/AlexVastartis.github.io.git BlueBloodSports
+cd BlueBloodSports
 git checkout claude/zen-wozniak-hnmi7s
 npm install
 npm run dev:bb      # BlueBloodBasketball → http://localhost:5175
