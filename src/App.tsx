@@ -105,6 +105,12 @@ function Layout() {
   const [whatIf, setWhatIf] = useState<Partial<Record<StatKey, number>>>({});
   const [whatIfOpen, setWhatIfOpen] = useState(false);
   const [ratingMathOpen, setRatingMathOpen] = useState(false);
+  const goHome = () => {
+    setWhatIf({});
+    setWhatIfOpen(false);
+    setRatingMathOpen(false);
+    window.scrollTo({ top: 0 });
+  };
   useEffect(() => {
     setWhatIf({});
     setWhatIfOpen(false);
@@ -241,7 +247,13 @@ function Layout() {
     <div className="mx-auto flex min-h-full max-w-7xl flex-col gap-4 px-4 py-6">
       <header data-map="the masthead" className="flex items-start justify-between gap-2 sm:gap-3">
         <div className="flex min-w-0 flex-col gap-1.5">
-        <Link to={{ pathname: '/', search }} className="group flex items-center gap-2.5">
+        {/* the masthead is "home": Blue Blood Rating list, everything reset — no what-if, no As Of,
+            no conference filter, no view / coach / wins params (the URL comes back bare) */}
+        <Link
+          to="/"
+          onClick={goHome}
+          className="group flex items-center gap-2.5"
+        >
           <img
             src={`${import.meta.env.BASE_URL}${logoVariant === 'alt' ? 'logo-alt.png' : 'logo.png'}`}
             alt=""
