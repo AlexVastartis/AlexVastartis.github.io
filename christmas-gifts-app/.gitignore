@@ -1,1 +1,5 @@
 build/
+# Family data: never commit
+assets/seed.js
+*.apk
+*.idsig

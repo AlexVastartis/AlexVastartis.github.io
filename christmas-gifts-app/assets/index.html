@@ -5,226 +5,597 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Gift List</title>
 <style>
-  :root { --red:#b0182c; --dark:#7a1020; --green:#1e783c; --bg:#fbf6f1; --card:#fff; --text:#2a1a1a; --muted:#8a7a7a; --line:#eee2da; }
+  :root {
+    --red:#b0182c; --dark:#7a1020; --green:#1e783c; --bg:#fbf6f1; --card:#fff; --text:#2a1a1a;
+    --muted:#8a7a7a; --line:#eee2da;
+    --idea:#F9CB9C; --idea-t:#6b3500; --buy:#FFE599; --buy-t:#5c4700; --wrap:#B6D7A8; --wrap-t:#1d4d12;
+  }
   * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-  body { margin:0; font-family:system-ui,-apple-system,Roboto,sans-serif; background:var(--bg); color:var(--text); padding-bottom:96px; }
-  header { background:linear-gradient(160deg,var(--dark),var(--red)); color:#fff; padding:20px 16px 18px; }
-  h1 { margin:0; font-size:24px; }
-  .countdown { opacity:.9; margin-top:4px; font-size:14px; }
-  .stats { display:flex; gap:10px; margin-top:14px; }
-  .stat { flex:1; background:rgba(255,255,255,.14); border-radius:12px; padding:10px; }
+  body { margin:0; font-family:system-ui,-apple-system,Roboto,sans-serif; background:var(--bg); color:var(--text); padding-bottom:76px; }
+  button { font:inherit; cursor:pointer; color:inherit; }
+  header { background:linear-gradient(160deg,var(--dark),var(--red)); color:#fff; padding:14px 16px 14px; }
+  .top { display:flex; align-items:center; gap:8px; }
+  .top h1 { margin:0; font-size:22px; flex:1; display:flex; align-items:center; gap:6px; }
+  .top select { font:inherit; font-size:20px; font-weight:700; color:#fff; background:rgba(255,255,255,.15); border:0; border-radius:8px; padding:2px 6px; }
+  .top select option { color:#000; }
+  .icon { background:rgba(255,255,255,.15); border:0; color:#fff; border-radius:10px; width:40px; height:40px; font-size:18px; display:flex; align-items:center; justify-content:center; }
+  .icon.on { background:#fff; color:var(--red); }
+  .countdown { opacity:.9; margin-top:2px; font-size:14px; }
+  .stats { display:flex; gap:8px; margin-top:12px; }
+  .stat { flex:1; border-radius:10px; padding:8px 10px; color:var(--text); }
   .stat b { display:block; font-size:18px; }
-  .stat span { font-size:12px; opacity:.85; }
-  main { padding:12px 12px 0; }
-  .empty { text-align:center; color:var(--muted); padding:48px 16px; }
-  .empty div { font-size:56px; }
-  .person { background:var(--card); border-radius:14px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,.08); overflow:hidden; }
-  .phead { display:flex; align-items:center; padding:14px; gap:12px; }
+  .stat span { font-size:12px; }
+  .stat.s0 { background:var(--idea); } .stat.s1 { background:var(--buy); } .stat.s2 { background:var(--wrap); }
+  .stat.empty { background:rgba(255,255,255,.18); color:#fff; }
+  main { padding:12px; }
+  h3 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:14px 4px 8px; }
+  .empty { text-align:center; color:var(--muted); padding:40px 16px; }
+  .card { background:var(--card); border-radius:14px; margin-bottom:10px; box-shadow:0 1px 3px rgba(0,0,0,.08); overflow:hidden; }
+  .phead { display:flex; align-items:center; padding:12px 14px; gap:12px; }
   .avatar { width:40px; height:40px; border-radius:50%; background:var(--green); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; }
+  .avatar.fam { background:var(--dark); }
   .pinfo { flex:1; min-width:0; }
   .pname { font-weight:600; font-size:16px; }
   .psub { font-size:13px; color:var(--muted); }
-  .over { color:var(--red); font-weight:600; }
-  .bar { height:4px; background:var(--line); }
-  .bar i { display:block; height:100%; background:var(--green); }
-  .bar i.over { background:var(--red); }
-  .gifts { border-top:1px solid var(--line); }
-  .gift { display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid var(--line); }
-  .gift .t { flex:1; min-width:0; }
-  .gift .t.done { text-decoration:line-through; color:var(--muted); }
-  .gift .price { font-variant-numeric:tabular-nums; color:var(--muted); font-size:14px; }
-  .status { border:0; border-radius:999px; padding:5px 10px; font-size:12px; font-weight:600; min-width:74px; }
-  .s0 { background:#fdecc8; color:#7a5300; }
-  .s1 { background:#d6eadb; color:#14552a; }
-  .s2 { background:#f6d6da; color:#7a1020; }
-  .row { display:flex; gap:8px; padding:10px 14px; }
-  button { font:inherit; cursor:pointer; }
+  .seg { display:flex; height:5px; background:var(--line); }
+  .seg i { display:block; height:100%; }
+  .seg .s0 { background:#f0a868; } .seg .s1 { background:#f2cc3c; } .seg .s2 { background:#6aa84f; }
+  .chev { color:var(--muted); font-size:20px; }
+
+  /* Person page */
+  .page-head { display:flex; align-items:center; gap:10px; margin:2px 0 6px; }
+  .back { border:0; background:none; font-size:24px; padding:4px 8px 4px 0; }
+  .page-head h2 { margin:0; font-size:20px; flex:1; }
+  .section { background:var(--card); border-radius:14px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,.08); overflow:hidden; }
+  .section-h { display:flex; align-items:center; padding:10px 14px; font-weight:700; font-size:14px; background:#faf3ee; }
+  .section-h span { flex:1; }
+  .section-h small { color:var(--muted); font-weight:400; }
+  .gift { display:flex; align-items:center; gap:10px; padding:10px 14px; border-top:1px solid var(--line); min-height:52px; }
+  .gift .cat { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+  .gift .main { flex:1; min-width:0; }
+  .gift .t { font-size:15px; overflow-wrap:anywhere; }
+  .gift .hint { font-size:12px; color:var(--muted); margin-top:2px; }
+  .gift.slot-empty .t { color:var(--muted); font-style:italic; }
+  .chip { border:0; border-radius:999px; padding:6px 10px; font-size:12px; font-weight:700; min-width:82px; flex-shrink:0; }
+  .chip.s0 { background:var(--idea); color:var(--idea-t); } .chip.s1 { background:var(--buy); color:var(--buy-t); } .chip.s2 { background:var(--wrap); color:var(--wrap-t); }
+  .addbtn { border:1px dashed #d8c6bb; background:none; color:var(--red); border-radius:999px; padding:6px 12px; font-size:12px; font-weight:600; flex-shrink:0; }
+  .row-actions { display:flex; padding:8px 14px; border-top:1px solid var(--line); }
   .link { background:none; border:0; color:var(--red); font-weight:600; padding:6px 0; }
   .link.muted { color:var(--muted); font-weight:400; }
-  .fab { position:fixed; right:18px; bottom:22px; background:var(--red); color:#fff; border:0; border-radius:28px; padding:16px 22px; font-size:16px; font-weight:600; box-shadow:0 4px 12px rgba(176,24,44,.4); }
+  .secret { color:var(--muted); }
+
+  /* Grid */
+  .gridwrap { overflow-x:auto; background:var(--card); border-radius:14px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  table.grid { border-collapse:collapse; font-size:12px; min-width:100%; }
+  .grid th, .grid td { border:1px solid var(--line); padding:6px; vertical-align:top; text-align:left; }
+  .grid th { background:#faf3ee; position:sticky; top:0; }
+  .grid td.lbl, .grid th.lbl { position:sticky; left:0; background:#faf3ee; min-width:84px; max-width:96px; color:var(--muted); font-size:11px; z-index:1; }
+  .grid td.lbl b { color:var(--text); font-size:11px; display:block; }
+  .grid td.c { min-width:104px; max-width:140px; overflow-wrap:anywhere; }
+  .grid td.c.s0 { background:var(--idea); } .grid td.c.s1 { background:var(--buy); } .grid td.c.s2 { background:var(--wrap); }
+  .grid td.na { background:repeating-linear-gradient(45deg,#f6efe9,#f6efe9 4px,#fff 4px,#fff 8px); }
+  .grid tr.sep td { border-top:2px solid #d8c6bb; }
+  .legend { display:flex; gap:6px; flex-wrap:wrap; margin:0 2px 10px; font-size:12px; }
+  .legend span { padding:3px 8px; border-radius:6px; }
+
+  /* Shopping / search */
+  .tabs2 { display:flex; background:#efe5de; border-radius:10px; padding:3px; margin-bottom:10px; }
+  .tabs2 button { flex:1; border:0; background:none; padding:8px; border-radius:8px; font-weight:600; font-size:14px; color:var(--muted); }
+  .tabs2 button.on { background:#fff; color:var(--text); box-shadow:0 1px 2px rgba(0,0,0,.1); }
+  .check { width:26px; height:26px; border-radius:7px; border:2px solid #cdb8ab; background:#fff; flex-shrink:0; font-size:15px; line-height:20px; text-align:center; }
+  .search { width:100%; font:inherit; font-size:16px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff; margin-bottom:12px; color:var(--text); }
+  .yearlbl { font-weight:700; color:var(--red); }
+
+  /* Bottom nav */
+  nav { position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:1px solid var(--line); display:flex; z-index:5; }
+  nav button { flex:1; border:0; background:none; padding:8px 2px 10px; font-size:11px; color:var(--muted); display:flex; flex-direction:column; align-items:center; gap:2px; }
+  nav button b { font-size:20px; font-weight:400; filter:grayscale(1); opacity:.6; }
+  nav button.on { color:var(--red); font-weight:700; }
+  nav button.on b { filter:none; opacity:1; }
+
+  /* Sheet */
   .sheet-bg { position:fixed; inset:0; background:rgba(0,0,0,.4); display:none; align-items:flex-end; z-index:10; }
   .sheet-bg.open { display:flex; }
-  .sheet { background:#fff; width:100%; border-radius:18px 18px 0 0; padding:20px 16px 24px; }
-  .sheet h2 { margin:0 0 14px; font-size:18px; }
-  label { display:block; font-size:13px; color:var(--muted); margin:10px 0 4px; }
-  input { width:100%; font:inherit; font-size:16px; padding:12px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--text); }
-  input:focus { outline:2px solid var(--red); border-color:transparent; }
+  .sheet { background:#fff; width:100%; border-radius:18px 18px 0 0; padding:18px 16px 22px; max-height:90vh; overflow-y:auto; }
+  .sheet h2 { margin:0 0 4px; font-size:18px; }
+  .sheet .sub { color:var(--muted); font-size:13px; margin-bottom:6px; }
+  label { display:block; font-size:13px; color:var(--muted); margin:12px 0 4px; }
+  input[type=text], input[type=number], select.f { width:100%; font:inherit; font-size:16px; padding:11px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--text); }
+  input:focus, select.f:focus { outline:2px solid var(--red); border-color:transparent; }
+  .statuspick { display:flex; gap:6px; }
+  .statuspick button { flex:1; border:2px solid transparent; border-radius:10px; padding:10px 4px; font-weight:700; font-size:14px; opacity:.55; }
+  .statuspick button.on { opacity:1; border-color:var(--text); }
+  .statuspick .s0 { background:var(--idea); } .statuspick .s1 { background:var(--buy); } .statuspick .s2 { background:var(--wrap); }
   .actions { display:flex; gap:10px; margin-top:18px; }
   .btn { flex:1; border:0; border-radius:10px; padding:13px; font-size:16px; font-weight:600; }
   .btn.primary { background:var(--red); color:#fff; }
-  .btn.ghost { background:#f2ebe6; color:var(--text); }
+  .btn.ghost { background:#f2ebe6; }
   .btn.danger { background:none; color:var(--red); flex:0 0 auto; }
-  .filters { display:flex; gap:6px; padding:0 12px; margin-top:12px; overflow-x:auto; }
-  .chip { border:1px solid var(--line); background:#fff; border-radius:999px; padding:6px 12px; font-size:13px; white-space:nowrap; }
-  .chip.on { background:var(--text); color:#fff; border-color:var(--text); }
+  .menu button { display:block; width:100%; text-align:left; border:0; background:none; padding:14px 4px; font-size:16px; border-bottom:1px solid var(--line); }
+  .menu button small { display:block; color:var(--muted); font-size:13px; margin-top:2px; }
+  .yearpick label { display:flex; align-items:center; gap:10px; font-size:15px; color:var(--text); padding:10px 0; margin:0; border-bottom:1px solid var(--line); }
+  .yearpick input { width:22px; height:22px; accent-color:var(--red); }
+  .yearpick small { color:var(--muted); }
+  .kindpick { display:flex; gap:6px; }
+  .kindpick button { flex:1; border:1px solid var(--line); background:#fff; border-radius:10px; padding:10px; font-size:14px; }
+  .kindpick button.on { background:var(--text); color:#fff; border-color:var(--text); }
+  .toast { position:fixed; left:50%; bottom:90px; transform:translateX(-50%); background:#2a1a1a; color:#fff; padding:10px 16px; border-radius:10px; font-size:14px; z-index:20; opacity:0; transition:opacity .2s; pointer-events:none; max-width:90%; text-align:center; }
+  .toast.show { opacity:1; }
 </style>
 </head>
 <body>
 <header>
-  <h1>🎄 Christmas Gifts</h1>
-  <div class="countdown" id="countdown"></div>
-  <div class="stats">
-    <div class="stat"><b id="stSpent">0</b><span>spent</span></div>
-    <div class="stat"><b id="stBudget">0</b><span>budget</span></div>
-    <div class="stat"><b id="stLeft">0</b><span>gifts to get</span></div>
+  <div class="top">
+    <h1>🎄 <select id="yearSel" onchange="setYear(this.value)"></select></h1>
+    <button class="icon" id="sharkBtn" onclick="toggleShark()" title="Hide Shark gifts">🦈</button>
+    <button class="icon" onclick="openMenu()" title="Menu">⋮</button>
   </div>
+  <div class="countdown" id="countdown"></div>
+  <div class="stats" id="stats"></div>
 </header>
-<div class="filters" id="filters"></div>
-<main id="list"></main>
-<button class="fab" onclick="openPerson()">＋ Person</button>
+<main id="main"></main>
+<nav id="nav"></nav>
+<input type="file" id="fileIn" accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,*/*" style="display:none" onchange="importFile(this)">
+<div class="sheet-bg" id="sheetBg" onclick="if(event.target===this)closeSheet()"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
 
-<div class="sheet-bg" id="sheetBg" onclick="if(event.target===this)closeSheet()">
-  <div class="sheet" id="sheet"></div>
-</div>
-
+<script src="xlsx.mini.min.js"></script>
+<script src="importer.js"></script>
+<script src="seed.js" onerror="void 0"></script>
 <script>
-const KEY = 'giftlist.v1';
-const STATUS = ['Idea', 'Bought', 'Wrapped'];
-let data = load();
-let open = {};          // expanded person ids
-let filter = 'all';
+'use strict';
+const KEY = 'giftlist.v2';
+const STATUS = ['Idea', 'Purchased', 'Wrapped'];
+const CATS = ['Clothes - Pajamas','Clothes - Socks','Clothes - Outfit 1','Clothes - Outfit 2','Clothes - Winter Gear','Book','Toy','Game','Big Toy','Ornament','Household','Candy'];
 
+let S = load();
+let ui = { tab: 'people', person: null, shopMode: 0, q: '' };
+
+/* ---------- storage ---------- */
 function load() {
-  try { return JSON.parse(localStorage.getItem(KEY)) || { people: [] }; }
-  catch (e) { return { people: [] }; }
+  let s = null;
+  try { s = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+  if (!s || !s.years) {
+    s = { v: 2, hideShark: false, years: {} };
+    if (window.SEED && window.SEED.years) s.years = JSON.parse(JSON.stringify(window.SEED.years));
+    const ys = Object.keys(s.years).sort();
+    s.year = ys.length ? ys[ys.length - 1] : String(new Date().getFullYear());
+    if (!s.years[s.year]) s.years[s.year] = { people: [], slots: [], gifts: [] };
+    migrateV1(s);
+  }
+  return s;
 }
-function save() { try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {} render(); }
-function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
-function money(n) { return (Math.round((n || 0) * 100) / 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }); }
-function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
-function findP(id) { return data.people.find(p => p.id === id); }
-function spentOf(p) { return p.gifts.filter(g => g.status > 0).reduce((a, g) => a + (+g.price || 0), 0); }
-function plannedOf(p) { return p.gifts.reduce((a, g) => a + (+g.price || 0), 0); }
+function migrateV1(s) {
+  // Carry over anything entered in version 1 of the app as family entries.
+  try {
+    const old = JSON.parse(localStorage.getItem('giftlist.v1'));
+    if (!old || !old.people || !old.people.length) return;
+    const Y = s.years[s.year];
+    old.people.forEach(p => {
+      let person = Y.people.find(x => x.name.toLowerCase() === p.name.toLowerCase());
+      if (!person) { person = { id: uid(), name: p.name, kind: 'family' }; Y.people.push(person); }
+      (p.gifts || []).forEach(g => Y.gifts.push({ id: uid(), to: person.id, title: g.title, from: 'A & J', cat: '', status: g.status || 0, slot: null }));
+    });
+  } catch (e) {}
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} render(); }
+function uid() { return 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function jsq(s) { return esc(JSON.stringify(String(s))); }
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
+function Y(y) { return S.years[y || S.year]; }
+function years() { return Object.keys(S.years).sort(); }
+function person(id, y) { return Y(y).people.find(p => p.id === id); }
+function giftsOf(pid, y) { return Y(y).gifts.filter(g => g.to === pid); }
+function kids(y) { return Y(y).people.filter(p => p.kind === 'kid'); }
+function isSecret(g) { return S.hideShark && g.from === 'Shark'; }
+function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2200); }
 
+function fromLabel(f) {
+  if (f === 'A & J') return 'From A & J';
+  if (f === 'Shark') return '🦈 Shark Tree';
+  if (f === 'Stocking+') return '🎁 Stocking+';
+  if (f === 'Stocking') return '🧦 Stocking';
+  return f ? 'From ' + f : 'Other';
+}
+function fromOptions(p) {
+  const opts = ['A & J'];
+  if (p.kind === 'kid') {
+    kids().forEach(k => { if (k.id !== p.id) opts.push(k.name); });
+    opts.push('Shark', 'Stocking+', 'Stocking');
+  }
+  return opts;
+}
+
+/* ---------- slots ---------- */
+// The kid's rows from the sheet: each slot index, minus the "From <self>" row.
+function slotsFor(p, y) {
+  const yy = Y(y);
+  return yy.slots.map((s, i) => ({ ...s, i })).filter(s => s.from.toLowerCase() !== p.name.toLowerCase());
+}
+// Sections: slots grouped by "from", in sheet order, followed by extra gifts.
+function sectionsFor(p, y) {
+  const order = [], map = {};
+  const add = f => { if (!map[f]) { map[f] = { from: f, rows: [] }; order.push(map[f]); } return map[f]; };
+  const gs = giftsOf(p.id, y);
+  if (p.kind === 'kid') {
+    slotsFor(p, y).forEach(s => add(s.from).rows.push({ slot: s, gift: gs.find(g => g.slot === s.i) || null }));
+    gs.filter(g => g.slot == null || !Y(y).slots[g.slot]).forEach(g => add(g.from || 'A & J').rows.push({ slot: null, gift: g }));
+  } else {
+    const sec = add('A & J');
+    gs.forEach(g => sec.rows.push({ slot: null, gift: g }));
+  }
+  return order;
+}
+// What filled the same slot last year (matches by from + category + occurrence).
+function lastYearHint(p, slot) {
+  const ys = years(), idx = ys.indexOf(S.year);
+  for (let k = idx - 1; k >= 0 && k >= idx - 1; k--) {
+    const py = ys[k], prev = Y(py).people.find(x => x.name.toLowerCase() === p.name.toLowerCase());
+    if (!prev) continue;
+    const same = s => s.from === slot.from && (s.cat || '').toLowerCase() === (slot.cat || '').toLowerCase();
+    const nth = Y().slots.slice(0, slot.i).filter(same).length;
+    const ps = Y(py).slots.map((s, i) => ({ ...s, i })).filter(same)[nth];
+    if (!ps) continue;
+    const g = giftsOf(prev.id, py).find(g => g.slot === ps.i);
+    if (g) return py + ': ' + (S.hideShark && g.from === 'Shark' ? '🦈 (hidden)' : g.title);
+  }
+  return '';
+}
+function personStats(p) {
+  const gs = giftsOf(p.id), st = [0, 0, 0];
+  gs.forEach(g => st[g.status]++);
+  const slots = p.kind === 'kid' ? slotsFor(p) : [];
+  const filled = slots.filter(s => gs.some(g => g.slot === s.i)).length;
+  return { st, n: gs.length, slots: slots.length, filled };
+}
+
+/* ---------- render ---------- */
 function countdown() {
-  const now = new Date();
-  let xmas = new Date(now.getFullYear(), 11, 25);
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  if (today > xmas) xmas = new Date(now.getFullYear() + 1, 11, 25);
-  const days = Math.round((xmas - today) / 86400000);
-  return days === 0 ? '🎅 Merry Christmas! It\'s today!' : days === 1 ? '1 day until Christmas' : days + ' days until Christmas';
+  const now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  let x = new Date(now.getFullYear(), 11, 25);
+  if (today > x) x = new Date(now.getFullYear() + 1, 11, 25);
+  const d = Math.round((x - today) / 86400000);
+  return d === 0 ? '🎅 Merry Christmas!' : d + (d === 1 ? ' day' : ' days') + ' until Christmas';
 }
 
 function render() {
-  document.getElementById('countdown').textContent = countdown();
-  const all = data.people.flatMap(p => p.gifts);
-  document.getElementById('stSpent').textContent = money(data.people.reduce((a, p) => a + spentOf(p), 0));
-  document.getElementById('stBudget').textContent = money(data.people.reduce((a, p) => a + (+p.budget || 0), 0));
-  document.getElementById('stLeft').textContent = all.filter(g => g.status === 0).length;
+  const sel = document.getElementById('yearSel');
+  sel.innerHTML = years().slice().reverse().map(y => `<option ${y === S.year ? 'selected' : ''}>${y}</option>`).join('');
+  document.getElementById('sharkBtn').classList.toggle('on', !!S.hideShark);
+  document.getElementById('countdown').textContent = countdown() + (S.hideShark ? ' · 🦈 gifts hidden' : '');
+  const st = [0, 0, 0]; Y().gifts.forEach(g => st[g.status]++);
+  const empty = kids().reduce((a, k) => { const s = personStats(k); return a + s.slots - s.filled; }, 0);
+  document.getElementById('stats').innerHTML =
+    STATUS.map((l, i) => `<div class="stat s${i}"><b>${st[i]}</b><span>${l}</span></div>`).join('') +
+    `<div class="stat empty"><b>${empty}</b><span>Empty slots</span></div>`;
 
-  const f = [['all', 'Everyone'], ['todo', 'Still need gift'], ['done', 'All wrapped']];
-  document.getElementById('filters').innerHTML = data.people.length ? f.map(([k, l]) =>
-    `<button class="chip ${filter === k ? 'on' : ''}" onclick="filter='${k}';render()">${l}</button>`).join('') : '';
+  const tabs = [['people', '👨‍👩‍👧‍👦', 'People'], ['grid', '📋', 'Compare'], ['shop', '🛒', 'To do'], ['search', '🔍', 'History']];
+  document.getElementById('nav').innerHTML = tabs.map(([k, i, l]) =>
+    `<button class="${ui.tab === k ? 'on' : ''}" onclick="go('${k}')"><b>${i}</b>${l}</button>`).join('');
 
-  let people = data.people;
-  if (filter === 'todo') people = people.filter(p => !p.gifts.length || p.gifts.some(g => g.status === 0));
-  if (filter === 'done') people = people.filter(p => p.gifts.length && p.gifts.every(g => g.status === 2));
+  const m = document.getElementById('main');
+  if (ui.tab === 'people') m.innerHTML = ui.person && person(ui.person) ? renderPerson(person(ui.person)) : renderPeople();
+  else if (ui.tab === 'grid') m.innerHTML = renderGrid();
+  else if (ui.tab === 'shop') m.innerHTML = renderShop();
+  else m.innerHTML = renderSearch();
+}
 
-  const list = document.getElementById('list');
-  if (!data.people.length) {
-    list.innerHTML = `<div class="empty"><div>🎁</div><p>No one on your list yet.<br>Tap <b>＋ Person</b> to start.</p></div>`;
-    return;
+function segBar(st, total) {
+  if (!total) return '<div class="seg"></div>';
+  return `<div class="seg">${st.map((n, i) => `<i class="s${i}" style="width:${n / total * 100}%"></i>`).join('')}</div>`;
+}
+
+function renderPeople() {
+  const ps = Y().people;
+  if (!ps.length) return `<div class="empty"><div style="font-size:52px">🎁</div><p>No one on the ${esc(S.year)} list yet.<br>Use <b>⋮ → Import spreadsheet</b> or <b>Add person</b>.</p><button class="btn primary" onclick="openMenu()">Open menu</button></div>`;
+  const card = p => {
+    const s = personStats(p);
+    const sub = p.kind === 'kid'
+      ? `${s.filled} of ${s.slots} slots filled · ${s.st[2]} wrapped`
+      : (s.n ? `${s.n} gift${s.n > 1 ? 's' : ''} · ${s.st[2]} wrapped` : 'No gifts yet');
+    return `<div class="card" onclick="openPerson('${p.id}')">
+      <div class="phead"><div class="avatar ${p.kind === 'kid' ? '' : 'fam'}">${esc(p.name[0] || '?')}</div>
+      <div class="pinfo"><div class="pname">${esc(p.name)}</div><div class="psub">${sub}</div></div><div class="chev">›</div></div>
+      ${segBar(s.st, p.kind === 'kid' ? Math.max(s.slots, s.n) : s.n)}</div>`;
+  };
+  const k = ps.filter(p => p.kind === 'kid'), f = ps.filter(p => p.kind !== 'kid');
+  return (k.length ? `<h3>Kids</h3>${k.map(card).join('')}` : '') +
+    (f.length ? `<h3>Family</h3>${f.map(card).join('')}` : '') +
+    `<div style="text-align:center;margin-top:8px"><button class="link" onclick="editPerson()">＋ Add person</button></div>`;
+}
+
+function giftRow(p, row) {
+  const g = row.gift, s = row.slot;
+  const cat = (g && g.cat) || (s && s.cat) || '';
+  if (!g) {
+    const hint = lastYearHint(p, s);
+    return `<div class="gift slot-empty" onclick="editGift('${p.id}',null,${s.i})">
+      <div class="main">${cat ? `<div class="cat">${esc(cat)}</div>` : ''}<div class="t">Empty</div>${hint ? `<div class="hint">${esc(hint)}</div>` : ''}</div>
+      <button class="addbtn">＋ Add</button></div>`;
   }
-  if (!people.length) { list.innerHTML = `<div class="empty"><p>Nobody matches this filter.</p></div>`; return; }
+  if (isSecret(g)) {
+    return `<div class="gift" onclick="toast('Tap 🦈 at the top to show Shark gifts')">
+      <div class="main">${cat ? `<div class="cat">${esc(cat)}</div>` : ''}<div class="t secret">🦈 Surprise</div></div>
+      <span class="chip s${g.status}">${STATUS[g.status]}</span></div>`;
+  }
+  return `<div class="gift" onclick="editGift('${p.id}','${g.id}')">
+    <div class="main">${cat ? `<div class="cat">${esc(cat)}</div>` : ''}<div class="t">${esc(g.title)}</div></div>
+    <button class="chip s${g.status}" onclick="event.stopPropagation();cycle('${g.id}')">${STATUS[g.status]}</button></div>`;
+}
 
-  list.innerHTML = people.map(p => {
-    const spent = spentOf(p), budget = +p.budget || 0, planned = plannedOf(p);
-    const pct = budget ? Math.min(100, planned / budget * 100) : 0;
-    const over = budget && planned > budget;
-    const n = p.gifts.length, wrapped = p.gifts.filter(g => g.status === 2).length;
-    const sub = (n ? `${n} gift${n > 1 ? 's' : ''} · ${wrapped} wrapped` : 'No gifts yet') +
-      ` · <span class="${over ? 'over' : ''}">${money(planned)}${budget ? ' / ' + money(budget) : ''}</span>`;
-    const isOpen = open[p.id];
-    return `<div class="person">
-      <div class="phead" onclick="toggle('${p.id}')">
-        <div class="avatar">${esc((p.name[0] || '?').toUpperCase())}</div>
-        <div class="pinfo"><div class="pname">${esc(p.name)}</div><div class="psub">${sub}</div></div>
-        <div>${isOpen ? '▴' : '▾'}</div>
-      </div>
-      ${budget ? `<div class="bar"><i class="${over ? 'over' : ''}" style="width:${pct}%"></i></div>` : ''}
-      ${isOpen ? `<div class="gifts">
-        ${p.gifts.map(g => `<div class="gift">
-          <div class="t ${g.status === 2 ? 'done' : ''}" onclick="openGift('${p.id}','${g.id}')">${esc(g.title)}</div>
-          <div class="price">${g.price ? money(g.price) : ''}</div>
-          <button class="status s${g.status}" onclick="cycle('${p.id}','${g.id}')">${STATUS[g.status]}</button>
-        </div>`).join('')}
-        <div class="row">
-          <button class="link" onclick="openGift('${p.id}')">＋ Add gift</button>
-          <span style="flex:1"></span>
-          <button class="link muted" onclick="openPerson('${p.id}')">Edit person</button>
-        </div>
-      </div>` : ''}
-    </div>`;
+function renderPerson(p) {
+  const s = personStats(p);
+  const secs = sectionsFor(p);
+  const head = `<div class="page-head"><button class="back" onclick="closePerson()">‹</button>
+    <h2>${esc(p.name)}</h2><button class="link muted" onclick="editPerson('${p.id}')">Edit</button></div>
+    <div class="psub" style="margin:0 2px 10px">${p.kind === 'kid' ? `${s.filled} of ${s.slots} slots filled · ` : ''}${s.st[0]} idea · ${s.st[1]} purchased · ${s.st[2]} wrapped</div>`;
+  if (!secs.length || (p.kind !== 'kid' && !secs[0].rows.length)) {
+    return head + `<div class="empty">No gifts yet.</div><div style="text-align:center"><button class="btn primary" onclick="editGift('${p.id}')">＋ Add gift</button></div>`;
+  }
+  return head + secs.map(sec => {
+    const filled = sec.rows.filter(r => r.gift).length;
+    return `<div class="section"><div class="section-h"><span>${esc(p.kind === 'kid' ? fromLabel(sec.from) : 'Gifts')}</span><small>${filled}${p.kind === 'kid' ? ' / ' + sec.rows.length : ''}</small></div>
+      ${sec.rows.map(r => giftRow(p, r)).join('')}
+      <div class="row-actions"><button class="link" onclick="editGift('${p.id}',null,null,${jsq(sec.from)})">＋ Add ${p.kind === 'kid' ? 'extra' : 'gift'}</button></div></div>`;
   }).join('');
 }
 
-function toggle(id) { open[id] = !open[id]; render(); }
-function cycle(pid, gid) { const g = findP(pid).gifts.find(g => g.id === gid); g.status = (g.status + 1) % 3; save(); }
+function renderGrid() {
+  const ks = kids();
+  if (!ks.length) return `<div class="empty">The compare view lines kids up side by side, like the spreadsheet.<br>No kids on the ${esc(S.year)} list.</div>`;
+  const slots = Y().slots.map((s, i) => ({ ...s, i }));
+  const extras = ks.map(k => giftsOf(k.id).filter(g => g.slot == null || !Y().slots[g.slot]));
+  const maxExtra = Math.max(0, ...extras.map(e => e.length));
+  const cell = (k, g, slotIdx) => {
+    if (!g) return `<td class="c" onclick="editGift('${k.id}',null,${slotIdx})"></td>`;
+    return `<td class="c s${g.status}" onclick="${isSecret(g) ? "toast('Shark gifts are hidden')" : `editGift('${k.id}','${g.id}')`}">${isSecret(g) ? '🦈' : esc(g.title)}</td>`;
+  };
+  let prevFrom = null;
+  const rows = slots.map(s => {
+    const sep = prevFrom !== null && prevFrom !== s.from ? 'sep' : ''; prevFrom = s.from;
+    return `<tr class="${sep}"><td class="lbl"><b>${esc(fromLabel(s.from).replace('From ', ''))}</b>${esc(s.cat)}</td>${ks.map(k =>
+      k.name.toLowerCase() === s.from.toLowerCase() ? '<td class="na"></td>' : cell(k, giftsOf(k.id).find(g => g.slot === s.i), s.i)).join('')}</tr>`;
+  }).join('');
+  let extraRows = '';
+  for (let r = 0; r < maxExtra; r++) {
+    extraRows += `<tr class="${r === 0 ? 'sep' : ''}"><td class="lbl"><b>Extra</b></td>${ks.map((k, ki) => extras[ki][r] ? cell(k, extras[ki][r]) : '<td></td>').join('')}</tr>`;
+  }
+  const totals = ks.map(k => { const s = personStats(k); return `<td class="c" style="font-weight:600">${s.n} gifts<br><span style="font-weight:400;color:var(--muted)">${s.st[2]} wrapped</span></td>`; }).join('');
+  return `<div class="legend">${STATUS.map((l, i) => `<span class="chip s${i}" style="min-width:0">${l}</span>`).join('')}<span style="color:var(--muted)">Tap a cell to edit · blank = empty slot</span></div>
+    <div class="gridwrap"><table class="grid"><tr><th class="lbl"></th>${ks.map(k => `<th>${esc(k.name)}</th>`).join('')}</tr>
+    <tr><td class="lbl"><b>Total</b></td>${totals}</tr>${rows}${extraRows}</table></div>`;
+}
+
+function renderShop() {
+  const mode = ui.shopMode; // 0 = to buy (ideas), 1 = to wrap (purchased)
+  const groups = Y().people.map(p => ({ p, gs: giftsOf(p.id).filter(g => g.status === mode) })).filter(x => x.gs.length);
+  const n = groups.reduce((a, x) => a + x.gs.length, 0);
+  const tabs = `<div class="tabs2"><button class="${mode === 0 ? 'on' : ''}" onclick="ui.shopMode=0;render()">To buy (${Y().gifts.filter(g => g.status === 0).length})</button>
+    <button class="${mode === 1 ? 'on' : ''}" onclick="ui.shopMode=1;render()">To wrap (${Y().gifts.filter(g => g.status === 1).length})</button></div>`;
+  if (!n) return tabs + `<div class="empty">${mode === 0 ? 'Nothing left to buy 🎉' : 'Nothing waiting to be wrapped 🎉'}</div>`;
+  return tabs + `<div class="psub" style="margin:0 2px 10px">Tick a gift to mark it ${mode === 0 ? '<b>Purchased</b>' : '<b>Wrapped</b>'}.</div>` +
+    groups.map(({ p, gs }) => `<div class="section"><div class="section-h"><span>${esc(p.name)}</span><small>${gs.length}</small></div>
+      ${gs.map(g => `<div class="gift"><button class="check" onclick="advance('${g.id}')"></button>
+        <div class="main" onclick="${isSecret(g) ? '' : `editGift('${p.id}','${g.id}')`}"><div class="cat">${esc([p.kind === 'kid' ? fromLabel(g.from) : '', g.cat].filter(Boolean).join(' · '))}</div>
+        <div class="t ${isSecret(g) ? 'secret' : ''}">${isSecret(g) ? '🦈 Surprise' : esc(g.title)}</div></div></div>`).join('')}</div>`).join('');
+}
+
+function renderSearch() {
+  const q = ui.q.trim().toLowerCase();
+  let out = `<input class="search" id="q" type="search" placeholder="Search every year… e.g. Lego, pajamas, Gabriel" value="${esc(ui.q)}" oninput="ui.q=this.value;renderSearchResults()">`;
+  return out + `<div id="results">${searchResults(q)}</div>`;
+}
+function renderSearchResults() { document.getElementById('results').innerHTML = searchResults(ui.q.trim().toLowerCase()); }
+function searchResults(q) {
+  if (!q) {
+    return `<div class="psub" style="margin:0 2px 12px">Check what each person got in past years so nothing repeats.</div>` +
+      years().slice().reverse().map(y => { const yy = Y(y); return `<div class="card" onclick="setYear('${y}')"><div class="phead"><div class="pinfo"><div class="pname">${y}</div><div class="psub">${yy.gifts.length} gifts · ${yy.people.length} people</div></div><div class="chev">›</div></div></div>`; }).join('');
+  }
+  const hits = [];
+  years().slice().reverse().forEach(y => Y(y).gifts.forEach(g => {
+    const p = person(g.to, y); if (!p) return;
+    const secret = S.hideShark && g.from === 'Shark';
+    const hay = (secret ? '' : g.title + ' ' + g.cat + ' ') + p.name;
+    if (hay.toLowerCase().includes(q)) hits.push({ y, g, p, secret });
+  }));
+  if (!hits.length) return `<div class="empty">No matches for “${esc(q)}”.</div>`;
+  return `<div class="psub" style="margin:0 2px 8px">${hits.length} match${hits.length > 1 ? 'es' : ''}</div><div class="section">` + hits.slice(0, 300).map(h =>
+    `<div class="gift"><div class="main"><div class="cat"><span class="yearlbl">${h.y}</span> · ${esc(h.p.name)} · ${esc([h.p.kind === 'kid' ? fromLabel(h.g.from) : '', h.g.cat].filter(Boolean).join(' · '))}</div>
+     <div class="t ${h.secret ? 'secret' : ''}">${h.secret ? '🦈 Surprise' : esc(h.g.title)}</div></div><span class="chip s${h.g.status}">${STATUS[h.g.status]}</span></div>`).join('') + '</div>';
+}
+
+/* ---------- actions ---------- */
+function go(tab) { ui.tab = tab; if (tab !== 'people') ui.person = null; render(); window.scrollTo(0, 0); }
+function setYear(y) { S.year = y; ui.person = null; if (ui.tab === 'search') ui.tab = 'people'; save(); window.scrollTo(0, 0); }
+function openPerson(id) { ui.person = id; render(); window.scrollTo(0, 0); }
+function closePerson() { ui.person = null; render(); }
+function toggleShark() { S.hideShark = !S.hideShark; save(); toast(S.hideShark ? '🦈 Shark gifts hidden' : '🦈 Shark gifts shown'); }
+function findGift(id) { return Y().gifts.find(g => g.id === id); }
+function cycle(id) { const g = findGift(id); g.status = (g.status + 1) % 3; save(); }
+function advance(id) { const g = findGift(id); g.status = Math.min(2, g.status + 1); save(); toast(STATUS[g.status] + ': ' + (isSecret(g) ? '🦈' : g.title)); }
 
 function sheet(html) {
   document.getElementById('sheet').innerHTML = html;
   document.getElementById('sheetBg').classList.add('open');
-  setTimeout(() => { const i = document.querySelector('#sheet input'); if (i) i.focus(); }, 50);
 }
 function closeSheet() { document.getElementById('sheetBg').classList.remove('open'); }
+function sheetOpen() { return document.getElementById('sheetBg').classList.contains('open'); }
 window.handleBack = function () {
-  if (document.getElementById('sheetBg').classList.contains('open')) { closeSheet(); return true; }
+  if (sheetOpen()) { closeSheet(); return true; }
+  if (ui.person) { closePerson(); return true; }
+  if (ui.tab !== 'people') { go('people'); return true; }
   return false;
 };
 
-function openPerson(id) {
-  const p = id ? findP(id) : { name: '', budget: '' };
-  sheet(`<h2>${id ? 'Edit person' : 'Add person'}</h2>
-    <label>Name</label><input id="fName" value="${esc(p.name)}" placeholder="e.g. Mom">
-    <label>Budget (optional)</label><input id="fBudget" type="number" inputmode="decimal" value="${p.budget || ''}" placeholder="e.g. 50">
-    <div class="actions">
-      ${id ? `<button class="btn danger" onclick="delPerson('${id}')">Delete</button>` : ''}
-      <button class="btn ghost" onclick="closeSheet()">Cancel</button>
-      <button class="btn primary" onclick="savePerson('${id || ''}')">Save</button>
-    </div>`);
+let editing = null;
+function editGift(pid, gid, slotIdx, from) {
+  const p = person(pid);
+  let g = gid ? findGift(gid) : null;
+  const slot = slotIdx != null ? Y().slots[slotIdx] : null;
+  editing = { pid, gid, slotIdx: g ? g.slot : slotIdx, status: g ? g.status : 0 };
+  const f = g ? g.from : slot ? slot.from : (from || 'A & J');
+  const cat = g ? g.cat : slot ? slot.cat : '';
+  const hint = !g && slot ? lastYearHint(p, { ...slot, i: slotIdx }) : '';
+  const opts = fromOptions(p); if (f && !opts.includes(f)) opts.push(f);
+  sheet(`<h2>${g ? 'Edit gift' : 'Gift for ' + esc(p.name)}</h2>
+    <div class="sub">${p.kind === 'kid' ? esc(fromLabel(f)) + (cat ? ' · ' + esc(cat) : '') : ''}${hint ? ' · last year → ' + esc(hint) : ''}</div>
+    <label>Gift</label><input type="text" id="fTitle" value="${g ? esc(g.title) : ''}" placeholder="What's the gift?">
+    <label>Status</label><div class="statuspick">${STATUS.map((l, i) => `<button class="s${i} ${editing.status === i ? 'on' : ''}" onclick="pickStatus(${i})">${l}</button>`).join('')}</div>
+    ${p.kind === 'kid' ? `<label>From</label><select class="f" id="fFrom">${opts.map(o => `<option value="${esc(o)}" ${o === f ? 'selected' : ''}>${esc(fromLabel(o))}</option>`).join('')}</select>` : ''}
+    <label>Category (optional)</label><input type="text" id="fCat" list="cats" value="${esc(cat)}" placeholder="e.g. Toy, Book, Clothes - Pajamas">
+    <datalist id="cats">${CATS.map(c => `<option value="${esc(c)}">`).join('')}</datalist>
+    <div class="actions">${g ? `<button class="btn danger" onclick="delGift('${g.id}')">Delete</button>` : ''}
+      <button class="btn ghost" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveGift()">Save</button></div>`);
+  if (!g) setTimeout(() => document.getElementById('fTitle').focus(), 60);
 }
+function pickStatus(i) {
+  editing.status = i;
+  document.querySelectorAll('.statuspick button').forEach((b, k) => b.classList.toggle('on', k === i));
+}
+function saveGift() {
+  const title = document.getElementById('fTitle').value.trim();
+  if (!title) return document.getElementById('fTitle').focus();
+  const p = person(editing.pid);
+  const fromEl = document.getElementById('fFrom');
+  const from = fromEl ? fromEl.value : 'A & J';
+  const cat = document.getElementById('fCat').value.trim();
+  let slot = editing.slotIdx;
+  // Moving a gift to a different "from" / category takes it out of its sheet slot.
+  if (slot != null && Y().slots[slot]) {
+    const s = Y().slots[slot];
+    if (s.from !== from || (s.cat && s.cat !== cat)) slot = null;
+  }
+  if (p.kind !== 'kid') slot = null;
+  if (editing.gid) Object.assign(findGift(editing.gid), { title, from, cat, status: editing.status, slot });
+  else Y().gifts.push({ id: uid(), to: p.id, title, from, cat, status: editing.status, slot });
+  closeSheet(); save();
+}
+function delGift(id) { Y().gifts = Y().gifts.filter(g => g.id !== id); closeSheet(); save(); }
+
+let editingKind = 'kid';
+function editPerson(id) {
+  const p = id ? person(id) : { name: '', kind: kids().length ? 'family' : 'kid' };
+  editingKind = p.kind;
+  sheet(`<h2>${id ? 'Edit person' : 'Add person to ' + S.year}</h2>
+    <label>Name</label><input type="text" id="fName" value="${esc(p.name)}" placeholder="e.g. Gabriel or G&G Rohs">
+    <label>Type</label><div class="kindpick">
+      <button class="${p.kind === 'kid' ? 'on' : ''}" onclick="pickKind(this,'kid')">Kid · gets the slot list</button>
+      <button class="${p.kind !== 'kid' ? 'on' : ''}" onclick="pickKind(this,'family')">Family · simple list</button></div>
+    <div class="actions">${id ? `<button class="btn danger" onclick="delPerson('${id}')">Delete</button>` : ''}
+      <button class="btn ghost" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="savePerson('${id || ''}')">Save</button></div>`);
+  if (!id) setTimeout(() => document.getElementById('fName').focus(), 60);
+}
+function pickKind(btn, k) { editingKind = k; document.querySelectorAll('.kindpick button').forEach(b => b.classList.toggle('on', b === btn)); }
 function savePerson(id) {
   const name = document.getElementById('fName').value.trim();
   if (!name) return document.getElementById('fName').focus();
-  const budget = parseFloat(document.getElementById('fBudget').value) || 0;
-  if (id) Object.assign(findP(id), { name, budget });
-  else { const p = { id: uid(), name, budget, gifts: [] }; data.people.push(p); open[p.id] = true; }
+  if (id) {
+    const p = person(id), old = p.name;
+    Object.assign(p, { name, kind: editingKind });
+    Y().slots.forEach(s => { if (s.from === old) s.from = name; });
+    Y().gifts.forEach(g => { if (g.from === old) g.from = name; });
+  } else {
+    const p = { id: uid(), name, kind: editingKind };
+    const ps = Y().people;
+    if (p.kind === 'kid') {
+      const lastKid = ps.map(x => x.kind).lastIndexOf('kid'); ps.splice(lastKid + 1, 0, p);
+      // A new kid can also give gifts to their siblings: add a "From <name>" row after the other sibling rows.
+      const ks = Y().slots;
+      let at = -1; ks.forEach((s, i) => { if (kids().some(k => k.name === s.from)) at = i; });
+      if (at >= 0) { insertSlot(at + 1, { from: name, cat: '' }); }
+    } else ps.push(p);
+  }
   closeSheet(); save();
+}
+function insertSlot(at, slot) {
+  const yy = Y(); yy.slots.splice(at, 0, slot);
+  yy.gifts.forEach(g => { if (g.slot != null && g.slot >= at) g.slot++; });
 }
 function delPerson(id) {
-  if (!confirm('Delete this person and all their gifts?')) return;
-  data.people = data.people.filter(p => p.id !== id); closeSheet(); save();
+  const p = person(id);
+  if (!confirm(`Remove ${p.name} and their ${giftsOf(id).length} gifts from ${S.year}?`)) return;
+  Y().people = Y().people.filter(x => x.id !== id);
+  Y().gifts = Y().gifts.filter(g => g.to !== id);
+  ui.person = null; closeSheet(); save();
 }
 
-function openGift(pid, gid) {
-  const p = findP(pid);
-  const g = gid ? p.gifts.find(g => g.id === gid) : { title: '', price: '', status: 0 };
-  sheet(`<h2>${gid ? 'Edit gift' : 'Gift for ' + esc(p.name)}</h2>
-    <label>Gift</label><input id="fTitle" value="${esc(g.title)}" placeholder="e.g. Cozy scarf">
-    <label>Price (optional)</label><input id="fPrice" type="number" inputmode="decimal" value="${g.price || ''}" placeholder="e.g. 25">
-    <div class="actions">
-      ${gid ? `<button class="btn danger" onclick="delGift('${pid}','${gid}')">Delete</button>` : ''}
-      <button class="btn ghost" onclick="closeSheet()">Cancel</button>
-      <button class="btn primary" onclick="saveGift('${pid}','${gid || ''}')">Save</button>
-    </div>`);
+/* ---------- menu: import / share / new year ---------- */
+function openMenu() {
+  const next = String(Math.max(...years().map(Number), new Date().getFullYear() - 1) + 1);
+  sheet(`<h2>Menu</h2><div class="menu">
+    <button onclick="pickFile()">📥 Import spreadsheet<small>Google Sheets: File → Download → Microsoft Excel (.xlsx), then pick it here</small></button>
+    <button onclick="shareYear()">📤 Share ${S.year} list<small>Send as text (text, email, Keep…)${S.hideShark ? ' · Shark gifts stay hidden' : ''}</small></button>
+    <button onclick="newYear('${next}')">✨ Start ${next}<small>Same people and slots as ${years()[years().length - 1]}, no gifts yet</small></button>
+    <button onclick="closeSheet();editPerson()">➕ Add person to ${S.year}</button>
+    <button onclick="toggleShark();closeSheet()">🦈 ${S.hideShark ? 'Show' : 'Hide'} Shark gifts<small>Hide what the Shark brings when kids are looking</small></button>
+  </div><div class="actions"><button class="btn ghost" onclick="closeSheet()">Close</button></div>`);
 }
-function saveGift(pid, gid) {
-  const title = document.getElementById('fTitle').value.trim();
-  if (!title) return document.getElementById('fTitle').focus();
-  const price = parseFloat(document.getElementById('fPrice').value) || 0;
-  const p = findP(pid);
-  if (gid) Object.assign(p.gifts.find(g => g.id === gid), { title, price });
-  else p.gifts.push({ id: uid(), title, price, status: 0 });
-  closeSheet(); save();
+
+function pickFile() { const f = document.getElementById('fileIn'); f.value = ''; f.click(); }
+let pendingImport = null;
+function importFile(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const wb = XLSX.read(new Uint8Array(r.result), { type: 'array', cellStyles: true });
+      const found = GiftImporter.parseWorkbook(XLSX, wb);
+      const ys = Object.keys(found).sort().reverse();
+      if (!ys.length) return sheet(`<h2>Nothing to import</h2><p>No tabs named after a year (like “2026”) were found in ${esc(file.name)}.</p><div class="actions"><button class="btn ghost" onclick="closeSheet()">OK</button></div>`);
+      pendingImport = found;
+      sheet(`<h2>Import from ${esc(file.name)}</h2><div class="sub">Checked years replace what's in the app for that year.</div><div class="yearpick">
+        ${ys.map(y => { const has = S.years[y] && S.years[y].gifts.length; const d = found[y];
+          return `<label><input type="checkbox" value="${y}" ${!has || y === ys[0] ? 'checked' : ''}><span style="flex:1"><b>${y}</b> · ${d.gifts.length} gifts, ${d.people.length} people<br><small>${has ? `Replaces ${S.years[y].gifts.length} gifts in the app` : 'New'}</small></span></label>`; }).join('')}
+        </div><div class="actions"><button class="btn ghost" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="applyImport()">Import</button></div>`);
+    } catch (e) {
+      sheet(`<h2>Couldn't read that file</h2><p>${esc(e.message || e)}</p><p class="sub">Make sure it's an .xlsx download of the Christmas List sheet.</p><div class="actions"><button class="btn ghost" onclick="closeSheet()">OK</button></div>`);
+    }
+  };
+  r.readAsArrayBuffer(file);
 }
-function delGift(pid, gid) {
-  const p = findP(pid); p.gifts = p.gifts.filter(g => g.id !== gid); closeSheet(); save();
+function applyImport() {
+  const picked = [...document.querySelectorAll('.yearpick input:checked')].map(i => i.value);
+  if (!picked.length) return closeSheet();
+  picked.forEach(y => { S.years[y] = pendingImport[y]; });
+  S.year = picked.sort().reverse()[0]; ui.person = null; ui.tab = 'people';
+  pendingImport = null; closeSheet(); save();
+  toast('Imported ' + picked.sort().join(', '));
+}
+
+function shareYear() {
+  const lines = ['🎄 Christmas ' + S.year, ''];
+  Y().people.forEach(p => {
+    const secs = sectionsFor(p).map(sec => ({ ...sec, rows: sec.rows.filter(r => r.gift) })).filter(sec => sec.rows.length);
+    if (!secs.length) return;
+    lines.push(p.name.toUpperCase());
+    secs.forEach(sec => {
+      if (p.kind === 'kid') lines.push('  ' + fromLabel(sec.from));
+      sec.rows.forEach(({ gift: g }) => {
+        const t = isSecret(g) ? '🦈 (hidden)' : g.title;
+        lines.push(`  ${p.kind === 'kid' ? '  ' : ''}• ${g.cat ? g.cat + ': ' : ''}${t} [${STATUS[g.status]}]`);
+      });
+    });
+    lines.push('');
+  });
+  const text = lines.join('\n');
+  closeSheet();
+  if (window.Android && Android.share) Android.share('Christmas ' + S.year + ' gift list', text);
+  else if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => toast('Copied to clipboard'), () => toast('Could not share'));
+}
+
+function newYear(y) {
+  if (S.years[y]) { setYear(y); closeSheet(); return; }
+  const src = Y(years()[years().length - 1]);
+  const map = {};
+  const people = src.people.map(p => { const n = { id: uid(), name: p.name, kind: p.kind }; map[p.id] = n.id; return n; });
+  S.years[y] = { people, slots: src.slots.map(s => ({ from: s.from, cat: s.cat })), gifts: [] };
+  S.year = y; ui.person = null; ui.tab = 'people';
+  closeSheet(); save(); toast('Started ' + y + ' 🎄');
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && document.getElementById('sheetBg').classList.contains('open')) {
-    const b = document.querySelector('#sheet .btn.primary'); if (b) b.click();
-  }
+  if (e.key === 'Enter' && sheetOpen() && e.target.tagName === 'INPUT') { const b = document.querySelector('#sheet .btn.primary'); if (b) b.click(); }
 });
 render();
 </script>
