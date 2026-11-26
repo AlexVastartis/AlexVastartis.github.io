@@ -445,7 +445,6 @@
       '<button data-set="' + key + '" data-v="' + v + '" class="' + (String(settings[key]) === String(v) ? 'on' : '') + '">' + l + '</button>').join('') + '</div>';
     h += '<div class="card section"><h3>Settings</h3><div class="settings">' +
       '<div class="setting"><span>Answer timer</span>' + seg('timer', [[0, 'Off'], [10, '10s'], [20, '20s'], [30, '30s']]) + '</div>' +
-      '<div class="setting"><span>Theme</span>' + seg('theme', [['system', 'System'], ['light', 'Light'], ['dark', 'Dark']]) + '</div>' +
       '<div class="setting"><span>Backup <span class="muted">— move players to another device</span></span><div style="display:flex;gap:8px">' +
       '<button class="btn sm" id="export">Export</button><button class="btn sm" id="import">Import</button><input type="file" id="import-file" accept="application/json" hidden></div></div>' +
       '</div></div>';

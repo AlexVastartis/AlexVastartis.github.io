@@ -86,15 +86,14 @@ public class MainActivity extends Activity {
         return "application/octet-stream";
     }
 
-    /** Match the system bars to the page's light/dark background. */
+    /** Match the system bars to the Vast theme (always dark, like Vast Arcade). */
     private void applyTheme() {
-        boolean dark = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
-                == Configuration.UI_MODE_NIGHT_YES;
-        int bar = dark ? 0xff14101f : 0xfff6f3ff;
+        boolean dark = true; // Vast theme (shared with Vast Arcade) is always dark
+        int bar = dark ? 0xff1b1f3b : 0xff1b1f3b;
         Window w = getWindow();
         w.setStatusBarColor(bar);
-        w.setNavigationBarColor(dark ? 0xff14101f : 0xfff6f3ff);
-        web.setBackgroundColor(dark ? 0xff14101f : 0xfff6f3ff);
+        w.setNavigationBarColor(dark ? 0xff1b1f3b : 0xff1b1f3b);
+        web.setBackgroundColor(dark ? 0xff1b1f3b : 0xff1b1f3b);
         if (Build.VERSION.SDK_INT >= 23) {
             int flags = w.getDecorView().getSystemUiVisibility();
             if (dark) flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;

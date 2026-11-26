@@ -37,7 +37,7 @@ APPS = [
 HEAD = """<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>{title}</title>
 <style>
-:root{{--bg:#14172e;--card:#22274d;--text:#f4f5ff;--muted:#a9afd9;--accent:#ffd43b;--btn:#37b24d}}
+:root{{--bg:#1b1f3b;--card:#262c66;--text:#fff;--muted:#aab0e0;--accent:#ffd43b;--btn:#37b24d}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}}
 main{{max-width:560px;margin:0 auto;padding:24px 16px 48px}}
 h1{{font-size:28px;margin:8px 0 4px}}h2{{font-size:18px;margin:28px 0 8px}}

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <title>Vast Party Games</title>
 <meta name="description" content="Party games for one phone: pass-around, guessing, imposter, truth or dare and more.">
-<meta name="theme-color" content="#14101f">
+<meta name="theme-color" content="#1b1f3b">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -17,20 +17,13 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
 :root{
-  --bg:#f6f3ff; --surface:#ffffff; --surface-2:#ece7fb; --text:#1b1530; --muted:#6a6385;
-  --line:#ddd6f3; --accent:#7c4dff; --accent-ink:#fff; --good:#16a34a; --bad:#e5484d; --warn:#f59e0b;
-  --shadow:0 6px 20px rgba(40,20,90,.10);
+  /* Vast theme: the shared Vast Apps palette, from Vast Arcade (games/common.css). Always dark. */
+  --bg:#1b1f3b; --surface:#262c66; --surface-2:#2f3675; --text:#fff; --muted:#aab0e0;
+  --line:#3d4488; --accent:#ffd43b; --accent-ink:#1b1f3b; --good:#2fb86a; --bad:#ff6b6b; --warn:#ffa94d;
+  --shadow:0 5px 0 rgba(0,0,0,.25);
+  --btn:linear-gradient(#6b8afd,#4263eb); --btn-edge:#2b45b0;
   --c1:#7c4dff; --c2:#ff4d8d; --c3:#ff8a00; --c4:#00b37e; --c5:#0091ff; --c6:#e5484d; --c7:#a855f7; --c8:#14b8a6; --c9:#eab308; --c10:#ef4444; --c11:#6366f1;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#14101f; --surface:#1f1931; --surface-2:#2a2340; --text:#f4f0ff; --muted:#a59cc4;
-    --line:#352c52; --accent:#9b7bff; --accent-ink:#12091f; --shadow:0 6px 24px rgba(0,0,0,.35);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#14101f; --surface:#1f1931; --surface-2:#2a2340; --text:#f4f0ff; --muted:#a59cc4;
-  --line:#352c52; --accent:#9b7bff; --accent-ink:#12091f; --shadow:0 6px 24px rgba(0,0,0,.35);
+  color-scheme:dark;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
@@ -58,10 +51,10 @@ main{flex:1;display:flex;flex-direction:column;gap:12px}
 .section-label{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin:8px 2px 0}
 .card{background:var(--surface);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 20px;border-radius:18px;
-  background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:18px;width:100%;transition:transform .1s,opacity .2s}
-.btn:active{transform:scale(.98)}
-.btn.ghost{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
-.btn.good{background:var(--good);color:#fff}.btn.bad{background:var(--bad);color:#fff}
+  background:var(--btn);color:#fff;font-weight:800;font-size:18px;width:100%;box-shadow:0 5px 0 var(--btn-edge);transition:transform .1s,opacity .2s}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--btn-edge)}
+.btn.ghost{background:var(--surface-2);color:var(--text);box-shadow:0 5px 0 rgba(0,0,0,.25)}
+.btn.good{background:linear-gradient(#63e07a,#37b24d);color:#fff;box-shadow:0 5px 0 #2b8a3e}.btn.bad{background:linear-gradient(#ff8787,#f03e3e);color:#fff;box-shadow:0 5px 0 #c92a2a}
 .btn.big{min-height:72px;font-size:22px;border-radius:22px}
 .btn:disabled{opacity:.4}
 .row{display:flex;gap:10px}.row>*{flex:1}
@@ -82,7 +75,7 @@ input[type=text]:focus{border-color:var(--accent)}
 .pitem button{width:36px;height:36px;border-radius:10px;background:var(--surface-2);font-size:16px}
 .seg{display:flex;background:var(--surface-2);border-radius:14px;padding:4px;gap:4px}
 .seg button{flex:1;padding:10px 6px;border-radius:10px;font-weight:700;font-size:15px;color:var(--muted)}
-.seg button.on{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+.seg button.on{background:var(--accent);color:var(--accent-ink);box-shadow:none}
 .opt{display:flex;flex-direction:column;gap:8px}
 .opt label{font-weight:700;font-size:14px;color:var(--muted)}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
@@ -115,8 +108,8 @@ input[type=text]:focus{border-color:var(--accent)}
 .wyr .or{align-self:center;font-weight:900;color:var(--muted);font-size:15px;letter-spacing:.1em}
 .pct{display:block;font-size:15px;opacity:.9;margin-top:8px}
 /* finger chooser */
-#chooser{position:fixed;inset:0;z-index:20;background:#0c0916;touch-action:none;overflow:hidden;user-select:none;-webkit-user-select:none}
-#chooser .hint{position:absolute;inset:0;display:grid;place-items:center;color:#cfc6ef;text-align:center;font-weight:800;font-size:24px;padding:24px;pointer-events:none}
+#chooser{position:fixed;inset:0;z-index:20;background:#12152b;touch-action:none;overflow:hidden;user-select:none;-webkit-user-select:none}
+#chooser .hint{position:absolute;inset:0;display:grid;place-items:center;color:#aab0e0;text-align:center;font-weight:800;font-size:24px;padding:24px;pointer-events:none}
 .finger{position:absolute;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;pointer-events:none;transition:opacity .4s,transform .4s;
   box-shadow:0 0 0 6px rgba(255,255,255,.12)}
 .finger.alive{animation:pulse 1s ease-in-out infinite}
@@ -130,7 +123,7 @@ input[type=text]:focus{border-color:var(--accent)}
 .ratings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;background:var(--surface-2);border-radius:16px;padding:5px}
 .rate{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px;border-radius:12px;font-weight:700;font-size:13px;color:var(--muted);min-width:0;white-space:nowrap}
 .rate .rem{font-size:22px;line-height:1.1}
-.rate.on{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+.rate.on{background:var(--accent);color:var(--accent-ink);box-shadow:none}
 .toggle{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:12px;min-width:0;line-height:1.2;border-radius:16px;background:var(--surface);box-shadow:var(--shadow);font-weight:700;font-size:14.5px;text-align:left}
 .toggle i{flex:0 0 auto;width:38px;height:22px;border-radius:999px;background:var(--line);position:relative;transition:background .2s}
 .toggle i::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
