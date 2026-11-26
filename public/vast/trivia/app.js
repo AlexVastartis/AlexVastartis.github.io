@@ -215,8 +215,15 @@
     let slug = nextSlug && activeSlugs().includes(nextSlug) ? nextSlug : pickSlug();
     if (!pools[slug]) { cur = null; renderPlay(); }
     try { await loadPool(slug); } catch (e) {
-      if (my === turn) $app.innerHTML = '<div class="card loading">Could not load questions. Check your connection and reload.</div>';
-      return;
+      // offline or a failed download: use any selected category that is loaded or cached
+      slug = activeSlugs().find((s) => pools[s]) || null;
+      for (const s of slug ? [] : activeSlugs()) {
+        try { await loadPool(s); slug = s; break; } catch (e2) { /* try the next one */ }
+      }
+      if (!slug) {
+        if (my === turn) $app.innerHTML = '<div class="card loading">Could not load questions. Check your connection and reload.</div>';
+        return;
+      }
     }
     if (my !== turn) return; // a newer request superseded this one
     let q = pickQuestion(me(), slug);
@@ -227,7 +234,7 @@
     cur = q ? { q, answered: false, t0: Date.now() } : null;
     // prefetch the category for the following turn
     nextSlug = pickSlug();
-    loadPool(nextSlug).catch(() => {});
+    loadPool(nextSlug).catch(() => { nextSlug = null; });
     renderPlay();
     if (cur && settings.timer && route() === 'play') startTimer();
   }

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vast Apps</title>
+<meta name="description" content="Vast Apps: Vast Trivia and more.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0d0e10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Vast Apps">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="trivia/style.css">
+<style>
+  .hub h1 { font-size: 13px; font-weight: 800; letter-spacing: .14em; margin: 8px 0 24px; }
+  .apps { display: grid; gap: 12px; }
+  .app { display: flex; align-items: center; gap: 16px; padding: 18px; text-decoration: none; }
+  .app:hover { border-color: var(--ink-3); }
+  .app .ic { flex: none; width: 56px; height: 56px; border-radius: 13px; background: #111214; display: grid; place-items: center; }
+  .app .ic { box-shadow: inset 0 0 0 1px var(--line); }
+  .app .t { font-size: 18px; font-weight: 700; display: block; }
+  .app .d { font-size: 14px; color: var(--ink-3); display: block; margin-top: 2px; }
+  .app .go { margin-left: auto; color: var(--ink-3); }
+  .soon { padding: 18px; color: var(--ink-3); font-size: 14px; border-style: dashed; box-shadow: none; background: none; }
+  .install { padding: 18px; margin-top: 24px; font-size: 14px; color: var(--ink-2); }
+  .install b { color: var(--ink); }
+  .install p { margin: 6px 0 0; }
+</style>
+<script>
+  try {
+    var s = JSON.parse(localStorage.getItem('vt-settings') || '{}');
+    if (s.theme === 'light' || s.theme === 'dark') document.documentElement.dataset.theme = s.theme;
+  } catch (e) {}
+</script>
+</head>
+<body>
+<main class="hub">
+  <h1>VAST APPS</h1>
+  <div class="apps">
+    <a class="card app" href="trivia/">
+      <span class="ic"><svg width="30" height="30" viewBox="0 0 512 512" aria-hidden="true"><path d="M128 136h66l62 172 62-172h66L290 376h-68z" fill="#fff"/></svg></span>
+      <span><span class="t">Vast Trivia</span><span class="d" id="trivia-sub">48,862 questions · Elo rated</span></span>
+      <svg class="go" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+    </a>
+    <div class="card soon">More apps coming.</div>
+  </div>
+
+  <div class="card install" id="install" hidden>
+    <b>Put Vast Apps on your home screen</b>
+    <p id="install-how"></p>
+    <p><button class="btn primary sm" id="install-btn" hidden>Install</button></p>
+  </div>
+</main>
+<script>
+  // current trivia player, if any
+  try {
+    var ps = JSON.parse(localStorage.getItem('vt-players') || '[]');
+    var id = JSON.parse(localStorage.getItem('vt-current') || 'null');
+    var p = ps.find(function (x) { return x.id === id; });
+    if (p && p.games) document.getElementById('trivia-sub').textContent = p.name + ' · rated ' + p.r.toLocaleString() + ' · ' + p.games.toLocaleString() + ' answered';
+  } catch (e) {}
+
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
+
+  var standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  if (!standalone) {
+    var box = document.getElementById('install');
+    var how = document.getElementById('install-how');
+    var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (ios) {
+      how.textContent = 'In Safari, tap the Share button, then "Add to Home Screen".';
+      box.hidden = false;
+    } else if (/android/i.test(navigator.userAgent)) {
+      how.textContent = 'In Chrome, open the ⋮ menu and tap "Add to Home screen" or "Install app".';
+      box.hidden = false;
+    }
+    var deferred;
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault(); deferred = e;
+      how.textContent = 'Installs like an app and works offline.';
+      box.hidden = false;
+      var b = document.getElementById('install-btn'); b.hidden = false;
+      b.onclick = function () { deferred.prompt(); deferred.userChoice.then(function () { box.hidden = true; }); };
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-// Builds Vast Trivia's question bank (public/trivia/q/*.json) from OpenTriviaQA
+// Builds Vast Trivia's question bank (public/vast/trivia/q/*.json) from OpenTriviaQA
 // (github.com/uberspot/OpenTriviaQA, CC BY-SA 4.0).
 //
 //   node scripts/trivia/build-questions.mjs [path/to/OpenTriviaQA/categories]
@@ -20,7 +20,7 @@ if (!src) {
   }
   src = path.join(cache, 'categories');
 }
-const out = path.join(root, 'public/trivia/q');
+const out = path.join(root, 'public/vast/trivia/q');
 
 // source file -> category. Order matters: duplicates keep the first (most specific) home.
 const FILES = [

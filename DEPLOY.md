@@ -161,10 +161,15 @@ Updating basketball data is the same loop as football: edit
 
 ---
 
-## Vast Trivia (/trivia/)
+## Vast Apps (/vast/)
 
-A standalone static app in `public/trivia/` (plain HTML/CSS/JS, no build step), so Vite
-copies it into `dist/trivia/` on every football build — live at `/trivia/`.
-The question bank (`public/trivia/q/*.json`, ~49k questions from OpenTriviaQA, CC BY-SA 4.0)
-is generated and committed; rebuild it with `npm run trivia:questions`.
-Player ratings, question ratings and history live in each browser's localStorage.
+Standalone static apps in `public/vast/` (plain HTML/CSS/JS, no build step). Vite copies
+them into `dist/vast/` on every football build, so they go live with the normal deploy.
+
+- `/vast/` is the Vast Apps home screen. It is an installable web app (`manifest.webmanifest`)
+  and works offline after the first visit (`sw.js`). Bump `CACHE` in `sw.js` if an update
+  ever seems stuck on phones.
+- `/vast/trivia/` is Vast Trivia. Its question bank (`public/vast/trivia/q/*.json`, ~49k
+  questions from OpenTriviaQA, CC BY-SA 4.0) is generated and committed; rebuild it with
+  `npm run trivia:questions`.
+- Player ratings, question ratings and history live in each browser's localStorage.
