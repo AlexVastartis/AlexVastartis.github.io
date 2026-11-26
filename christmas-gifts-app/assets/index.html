@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Gift List</title>
+<style>
+  :root { --red:#b0182c; --dark:#7a1020; --green:#1e783c; --bg:#fbf6f1; --card:#fff; --text:#2a1a1a; --muted:#8a7a7a; --line:#eee2da; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { margin:0; font-family:system-ui,-apple-system,Roboto,sans-serif; background:var(--bg); color:var(--text); padding-bottom:96px; }
+  header { background:linear-gradient(160deg,var(--dark),var(--red)); color:#fff; padding:20px 16px 18px; }
+  h1 { margin:0; font-size:24px; }
+  .countdown { opacity:.9; margin-top:4px; font-size:14px; }
+  .stats { display:flex; gap:10px; margin-top:14px; }
+  .stat { flex:1; background:rgba(255,255,255,.14); border-radius:12px; padding:10px; }
+  .stat b { display:block; font-size:18px; }
+  .stat span { font-size:12px; opacity:.85; }
+  main { padding:12px 12px 0; }
+  .empty { text-align:center; color:var(--muted); padding:48px 16px; }
+  .empty div { font-size:56px; }
+  .person { background:var(--card); border-radius:14px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,.08); overflow:hidden; }
+  .phead { display:flex; align-items:center; padding:14px; gap:12px; }
+  .avatar { width:40px; height:40px; border-radius:50%; background:var(--green); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; }
+  .pinfo { flex:1; min-width:0; }
+  .pname { font-weight:600; font-size:16px; }
+  .psub { font-size:13px; color:var(--muted); }
+  .over { color:var(--red); font-weight:600; }
+  .bar { height:4px; background:var(--line); }
+  .bar i { display:block; height:100%; background:var(--green); }
+  .bar i.over { background:var(--red); }
+  .gifts { border-top:1px solid var(--line); }
+  .gift { display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid var(--line); }
+  .gift .t { flex:1; min-width:0; }
+  .gift .t.done { text-decoration:line-through; color:var(--muted); }
+  .gift .price { font-variant-numeric:tabular-nums; color:var(--muted); font-size:14px; }
+  .status { border:0; border-radius:999px; padding:5px 10px; font-size:12px; font-weight:600; min-width:74px; }
+  .s0 { background:#fdecc8; color:#7a5300; }
+  .s1 { background:#d6eadb; color:#14552a; }
+  .s2 { background:#f6d6da; color:#7a1020; }
+  .row { display:flex; gap:8px; padding:10px 14px; }
+  button { font:inherit; cursor:pointer; }
+  .link { background:none; border:0; color:var(--red); font-weight:600; padding:6px 0; }
+  .link.muted { color:var(--muted); font-weight:400; }
+  .fab { position:fixed; right:18px; bottom:22px; background:var(--red); color:#fff; border:0; border-radius:28px; padding:16px 22px; font-size:16px; font-weight:600; box-shadow:0 4px 12px rgba(176,24,44,.4); }
+  .sheet-bg { position:fixed; inset:0; background:rgba(0,0,0,.4); display:none; align-items:flex-end; z-index:10; }
+  .sheet-bg.open { display:flex; }
+  .sheet { background:#fff; width:100%; border-radius:18px 18px 0 0; padding:20px 16px 24px; }
+  .sheet h2 { margin:0 0 14px; font-size:18px; }
+  label { display:block; font-size:13px; color:var(--muted); margin:10px 0 4px; }
+  input { width:100%; font:inherit; font-size:16px; padding:12px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--text); }
+  input:focus { outline:2px solid var(--red); border-color:transparent; }
+  .actions { display:flex; gap:10px; margin-top:18px; }
+  .btn { flex:1; border:0; border-radius:10px; padding:13px; font-size:16px; font-weight:600; }
+  .btn.primary { background:var(--red); color:#fff; }
+  .btn.ghost { background:#f2ebe6; color:var(--text); }
+  .btn.danger { background:none; color:var(--red); flex:0 0 auto; }
+  .filters { display:flex; gap:6px; padding:0 12px; margin-top:12px; overflow-x:auto; }
+  .chip { border:1px solid var(--line); background:#fff; border-radius:999px; padding:6px 12px; font-size:13px; white-space:nowrap; }
+  .chip.on { background:var(--text); color:#fff; border-color:var(--text); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎄 Christmas Gifts</h1>
+  <div class="countdown" id="countdown"></div>
+  <div class="stats">
+    <div class="stat"><b id="stSpent">0</b><span>spent</span></div>
+    <div class="stat"><b id="stBudget">0</b><span>budget</span></div>
+    <div class="stat"><b id="stLeft">0</b><span>gifts to get</span></div>
+  </div>
+</header>
+<div class="filters" id="filters"></div>
+<main id="list"></main>
+<button class="fab" onclick="openPerson()">＋ Person</button>
+
+<div class="sheet-bg" id="sheetBg" onclick="if(event.target===this)closeSheet()">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<script>
+const KEY = 'giftlist.v1';
+const STATUS = ['Idea', 'Bought', 'Wrapped'];
+let data = load();
+let open = {};          // expanded person ids
+let filter = 'all';
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || { people: [] }; }
+  catch (e) { return { people: [] }; }
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {} render(); }
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function money(n) { return (Math.round((n || 0) * 100) / 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }); }
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
+function findP(id) { return data.people.find(p => p.id === id); }
+function spentOf(p) { return p.gifts.filter(g => g.status > 0).reduce((a, g) => a + (+g.price || 0), 0); }
+function plannedOf(p) { return p.gifts.reduce((a, g) => a + (+g.price || 0), 0); }
+
+function countdown() {
+  const now = new Date();
+  let xmas = new Date(now.getFullYear(), 11, 25);
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (today > xmas) xmas = new Date(now.getFullYear() + 1, 11, 25);
+  const days = Math.round((xmas - today) / 86400000);
+  return days === 0 ? '🎅 Merry Christmas! It\'s today!' : days === 1 ? '1 day until Christmas' : days + ' days until Christmas';
+}
+
+function render() {
+  document.getElementById('countdown').textContent = countdown();
+  const all = data.people.flatMap(p => p.gifts);
+  document.getElementById('stSpent').textContent = money(data.people.reduce((a, p) => a + spentOf(p), 0));
+  document.getElementById('stBudget').textContent = money(data.people.reduce((a, p) => a + (+p.budget || 0), 0));
+  document.getElementById('stLeft').textContent = all.filter(g => g.status === 0).length;
+
+  const f = [['all', 'Everyone'], ['todo', 'Still need gift'], ['done', 'All wrapped']];
+  document.getElementById('filters').innerHTML = data.people.length ? f.map(([k, l]) =>
+    `<button class="chip ${filter === k ? 'on' : ''}" onclick="filter='${k}';render()">${l}</button>`).join('') : '';
+
+  let people = data.people;
+  if (filter === 'todo') people = people.filter(p => !p.gifts.length || p.gifts.some(g => g.status === 0));
+  if (filter === 'done') people = people.filter(p => p.gifts.length && p.gifts.every(g => g.status === 2));
+
+  const list = document.getElementById('list');
+  if (!data.people.length) {
+    list.innerHTML = `<div class="empty"><div>🎁</div><p>No one on your list yet.<br>Tap <b>＋ Person</b> to start.</p></div>`;
+    return;
+  }
+  if (!people.length) { list.innerHTML = `<div class="empty"><p>Nobody matches this filter.</p></div>`; return; }
+
+  list.innerHTML = people.map(p => {
+    const spent = spentOf(p), budget = +p.budget || 0, planned = plannedOf(p);
+    const pct = budget ? Math.min(100, planned / budget * 100) : 0;
+    const over = budget && planned > budget;
+    const n = p.gifts.length, wrapped = p.gifts.filter(g => g.status === 2).length;
+    const sub = (n ? `${n} gift${n > 1 ? 's' : ''} · ${wrapped} wrapped` : 'No gifts yet') +
+      ` · <span class="${over ? 'over' : ''}">${money(planned)}${budget ? ' / ' + money(budget) : ''}</span>`;
+    const isOpen = open[p.id];
+    return `<div class="person">
+      <div class="phead" onclick="toggle('${p.id}')">
+        <div class="avatar">${esc((p.name[0] || '?').toUpperCase())}</div>
+        <div class="pinfo"><div class="pname">${esc(p.name)}</div><div class="psub">${sub}</div></div>
+        <div>${isOpen ? '▴' : '▾'}</div>
+      </div>
+      ${budget ? `<div class="bar"><i class="${over ? 'over' : ''}" style="width:${pct}%"></i></div>` : ''}
+      ${isOpen ? `<div class="gifts">
+        ${p.gifts.map(g => `<div class="gift">
+          <div class="t ${g.status === 2 ? 'done' : ''}" onclick="openGift('${p.id}','${g.id}')">${esc(g.title)}</div>
+          <div class="price">${g.price ? money(g.price) : ''}</div>
+          <button class="status s${g.status}" onclick="cycle('${p.id}','${g.id}')">${STATUS[g.status]}</button>
+        </div>`).join('')}
+        <div class="row">
+          <button class="link" onclick="openGift('${p.id}')">＋ Add gift</button>
+          <span style="flex:1"></span>
+          <button class="link muted" onclick="openPerson('${p.id}')">Edit person</button>
+        </div>
+      </div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function toggle(id) { open[id] = !open[id]; render(); }
+function cycle(pid, gid) { const g = findP(pid).gifts.find(g => g.id === gid); g.status = (g.status + 1) % 3; save(); }
+
+function sheet(html) {
+  document.getElementById('sheet').innerHTML = html;
+  document.getElementById('sheetBg').classList.add('open');
+  setTimeout(() => { const i = document.querySelector('#sheet input'); if (i) i.focus(); }, 50);
+}
+function closeSheet() { document.getElementById('sheetBg').classList.remove('open'); }
+window.handleBack = function () {
+  if (document.getElementById('sheetBg').classList.contains('open')) { closeSheet(); return true; }
+  return false;
+};
+
+function openPerson(id) {
+  const p = id ? findP(id) : { name: '', budget: '' };
+  sheet(`<h2>${id ? 'Edit person' : 'Add person'}</h2>
+    <label>Name</label><input id="fName" value="${esc(p.name)}" placeholder="e.g. Mom">
+    <label>Budget (optional)</label><input id="fBudget" type="number" inputmode="decimal" value="${p.budget || ''}" placeholder="e.g. 50">
+    <div class="actions">
+      ${id ? `<button class="btn danger" onclick="delPerson('${id}')">Delete</button>` : ''}
+      <button class="btn ghost" onclick="closeSheet()">Cancel</button>
+      <button class="btn primary" onclick="savePerson('${id || ''}')">Save</button>
+    </div>`);
+}
+function savePerson(id) {
+  const name = document.getElementById('fName').value.trim();
+  if (!name) return document.getElementById('fName').focus();
+  const budget = parseFloat(document.getElementById('fBudget').value) || 0;
+  if (id) Object.assign(findP(id), { name, budget });
+  else { const p = { id: uid(), name, budget, gifts: [] }; data.people.push(p); open[p.id] = true; }
+  closeSheet(); save();
+}
+function delPerson(id) {
+  if (!confirm('Delete this person and all their gifts?')) return;
+  data.people = data.people.filter(p => p.id !== id); closeSheet(); save();
+}
+
+function openGift(pid, gid) {
+  const p = findP(pid);
+  const g = gid ? p.gifts.find(g => g.id === gid) : { title: '', price: '', status: 0 };
+  sheet(`<h2>${gid ? 'Edit gift' : 'Gift for ' + esc(p.name)}</h2>
+    <label>Gift</label><input id="fTitle" value="${esc(g.title)}" placeholder="e.g. Cozy scarf">
+    <label>Price (optional)</label><input id="fPrice" type="number" inputmode="decimal" value="${g.price || ''}" placeholder="e.g. 25">
+    <div class="actions">
+      ${gid ? `<button class="btn danger" onclick="delGift('${pid}','${gid}')">Delete</button>` : ''}
+      <button class="btn ghost" onclick="closeSheet()">Cancel</button>
+      <button class="btn primary" onclick="saveGift('${pid}','${gid || ''}')">Save</button>
+    </div>`);
+}
+function saveGift(pid, gid) {
+  const title = document.getElementById('fTitle').value.trim();
+  if (!title) return document.getElementById('fTitle').focus();
+  const price = parseFloat(document.getElementById('fPrice').value) || 0;
+  const p = findP(pid);
+  if (gid) Object.assign(p.gifts.find(g => g.id === gid), { title, price });
+  else p.gifts.push({ id: uid(), title, price, status: 0 });
+  closeSheet(); save();
+}
+function delGift(pid, gid) {
+  const p = findP(pid); p.gifts = p.gifts.filter(g => g.id !== gid); closeSheet(); save();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('sheetBg').classList.contains('open')) {
+    const b = document.querySelector('#sheet .btn.primary'); if (b) b.click();
+  }
+});
+render();
+</script>
+</body>
+</html>
