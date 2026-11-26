@@ -1,5 +1,5 @@
-// Pass Party offline cache: network first, cache fallback, so updates show up when online.
-const CACHE = 'pass-party-v1';
+// Vast Party Games offline cache: network first, cache fallback, so updates show up when online.
+const CACHE = 'vast-party-v2';
 const FILES = ['./', './index.html', './manifest.json', './icon.svg'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener('activate', e => {

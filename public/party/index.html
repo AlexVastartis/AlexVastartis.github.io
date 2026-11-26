@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<title>Pass Party</title>
+<title>Vast Party Games</title>
 <meta name="description" content="Party games for one phone: pass-around, guessing, imposter, truth or dare and more.">
 <meta name="theme-color" content="#14101f">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Pass Party">
+<meta name="apple-mobile-web-app-title" content="Vast Party">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
@@ -231,7 +231,7 @@ function home() {
   const card = g => `<button class="game" style="background:${g.color}" data-g="${g.id}"><span class="em">${g.em}</span><span><b>${g.name}</b><small>${g.desc}</small></span></button>`;
   const sect = (label, t) => `<div class="section-label">${label}</div><div class="grid">${GAMES.filter(g => g.type === t).map(card).join("")}</div>`;
   screen("", `
-    <div class="hero"><h2>Pass Party 🎉</h2><p>Party games for one phone. Pick a game, pass it around.</p></div>
+    <div class="hero"><h2>Vast Party Games 🎉</h2><p>Party games for one phone. Pick a game, pass it around.</p></div>
     <div class="row" style="flex:0">
       <button class="chip" id="pbtn" style="flex:1;justify-content:center">👥 ${players.length ? `${players.length} player${players.length > 1 ? "s" : ""}` : "Add players"}</button>
       <button class="chip" id="sbtn" style="flex:0 0 auto" aria-label="Toggle sound">${soundOn ? "🔊" : "🔇"}</button>
