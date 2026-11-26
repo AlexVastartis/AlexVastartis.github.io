@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vast Trivia</title>
+<meta name="description" content="Vast Trivia: nearly 49,000 trivia questions, an Elo rating for every player, and question difficulty that sorts itself as people play.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Cpath d='M7 8h4l5 12 5-12h4l-7 16h-4z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+  try {
+    var s = JSON.parse(localStorage.getItem('vt-settings') || '{}');
+    if (s.theme === 'light' || s.theme === 'dark') document.documentElement.dataset.theme = s.theme;
+  } catch (e) {}
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#play">VAST TRIVIA</a>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#play" data-tab="play">Play</a>
+      <a href="#stats" data-tab="stats">Stats</a>
+      <a href="#players" data-tab="players">Players</a>
+    </nav>
+    <button class="who" id="who" type="button" title="Switch player"><span id="who-name"></span><b id="who-rating"></b></button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer class="foot">
+  <p>Questions from <a href="https://github.com/uberspot/OpenTriviaQA" rel="noopener">OpenTriviaQA</a>, licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>, lightly cleaned. Ratings and progress are saved in this browser.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

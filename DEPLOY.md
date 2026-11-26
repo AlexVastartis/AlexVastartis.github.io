@@ -158,3 +158,13 @@ Updating basketball data is the same loop as football: edit
 `data/basketball/staging/*.csv` → `npm run build:data:bb` → commit
 `data/basketball/` + `sites/basketball/public/data/` → push. Refreshing from the raw sources
 (a new season) is described in `data/basketball/README.md`.
+
+---
+
+## Vast Trivia (/trivia/)
+
+A standalone static app in `public/trivia/` (plain HTML/CSS/JS, no build step), so Vite
+copies it into `dist/trivia/` on every football build — live at `/trivia/`.
+The question bank (`public/trivia/q/*.json`, ~49k questions from OpenTriviaQA, CC BY-SA 4.0)
+is generated and committed; rebuild it with `npm run trivia:questions`.
+Player ratings, question ratings and history live in each browser's localStorage.
