@@ -1,5 +1,5 @@
 /build/
 /out/
-/shelf/*.apk
+
 *.keystore
 *.jks

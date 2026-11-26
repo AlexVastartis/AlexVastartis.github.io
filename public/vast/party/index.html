@@ -10,8 +10,10 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Vast Apps">
+<!--web-->
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<!--/web-->
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
 :root{
@@ -273,8 +275,9 @@ function toast(msg) { const t = document.createElement("div"); t.className = "to
 
 /* ------------------------------------------------------------------ shell */
 let currentGame = null;
+const ON_WEB = /^\/vast\/party\//.test(location.pathname);
 function screen(title, body, { back = true, right = "" } = {}) {
-  app.innerHTML = `<header>${back ? `<button class="iconbtn" data-act="home" aria-label="Back to games">←</button>` : `<a class="iconbtn" href="../" title="All Vast Apps" aria-label="All Vast Apps" style="color:inherit"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2h5v5H2zM11 2h5v5h-5zM2 11h5v5H2zM11 11h5v5h-5z" fill="currentColor"/></svg></a>`}<h1>${title}</h1>${right}</header><main>${body}</main>`;
+  app.innerHTML = `<header>${back ? `<button class="iconbtn" data-act="home" aria-label="Back to games">←</button>` : !ON_WEB ? "" : `<a class="iconbtn" href="../" title="All Vast Apps" aria-label="All Vast Apps" style="color:inherit"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2h5v5H2zM11 2h5v5h-5zM2 11h5v5H2zM11 11h5v5h-5z" fill="currentColor"/></svg></a>`}<h1>${title}</h1>${right}</header><main>${body}</main>`;
   app.querySelectorAll('[data-act="home"]').forEach(b => b.onclick = home);
   window.scrollTo(0, 0);
 }
