@@ -27,6 +27,8 @@ for d in mdpi:48 hdpi:72 xhdpi:96 xxhdpi:144 xxxhdpi:192; do
   python3 -c "import sys;from PIL import Image;Image.open(sys.argv[1]).resize((int(sys.argv[3]),)*2,Image.LANCZOS).save(sys.argv[2])" \
     "$root/apps/shelf/icons/party.png" "$b/res/mipmap-${d%%:*}/ic_launcher.png" "${d##*:}"
 done
+# Android 8+ adaptive icon (indigo background + foreground layer), made by apps/shelf/icons/make_icons.py --adaptive
+cp -r "$here/res/." "$b/res/"
 
 javac -nowarn -source 8 -target 8 -bootclasspath "$sdk" -d "$b/classes" "$here"/src/com/vastparty/app/*.java 2>&1 | grep -v 'warning: \[options\]' || true
 dalvik-exchange --dex --min-sdk-version=21 --output="$b/classes.dex" "$b/classes"
