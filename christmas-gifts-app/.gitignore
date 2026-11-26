@@ -3,3 +3,6 @@ build/
 assets/seed.js
 *.apk
 *.idsig
+# Signing key: never commit (build.sh makes a new one if missing)
+*.keystore
+*.jks

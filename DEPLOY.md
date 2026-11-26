@@ -172,4 +172,6 @@ them into `dist/vast/` on every football build, so they go live with the normal 
 - `/vast/trivia/` is Vast Trivia. Its question bank (`public/vast/trivia/q/*.json`, ~49k
   questions from OpenTriviaQA, CC BY-SA 4.0) is generated and committed; rebuild it with
   `npm run trivia:questions`.
+- `/vast/party/` is Vast Party Games (one file, `public/vast/party/index.html`). The old
+  `/party/` URL redirects there, and its old service worker removes itself.
 - Player ratings, question ratings and history live in each browser's localStorage.

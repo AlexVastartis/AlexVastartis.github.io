@@ -1,7 +1,7 @@
 {
   "name": "Vast Apps",
   "short_name": "Vast Apps",
-  "description": "Vast Trivia and more.",
+  "description": "Vast Trivia, Vast Party Games and more.",
   "id": "/vast/",
   "start_url": "./",
   "scope": "./",

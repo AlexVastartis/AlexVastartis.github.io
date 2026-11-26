@@ -12,3 +12,6 @@ status is Idea → Purchased → Wrapped (the sheet's fill colors).
 Build: `./build.sh` (needs `apt install aapt apksigner zipalign dalvik-exchange android-sdk-platform-23`).
 Optional: `node tools/make-seed.cjs "Christmas List.xlsx"` bakes the sheet into the APK as
 `assets/seed.js`. That file and the APK contain family data and are gitignored. Don't commit them.
+
+Signing: `build.sh` makes `giftlist.keystore` the first time it runs. The keystore is gitignored:
+keep your copy safe, because Android only installs updates signed with the same key.

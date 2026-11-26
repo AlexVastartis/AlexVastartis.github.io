@@ -1,9 +1,10 @@
 // Vast Apps service worker: works offline after first visit.
 // App files: network first (so updates land), cache as fallback.
 // Question banks: cache first (large, ids are stable), refreshed in the background.
-const CACHE = 'vast-v1';
+const CACHE = 'vast-v2';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png',
-  'trivia/', 'trivia/index.html', 'trivia/style.css', 'trivia/app.js', 'trivia/q/index.json'];
+  'trivia/', 'trivia/index.html', 'trivia/style.css', 'trivia/app.js', 'trivia/q/index.json',
+  'party/', 'party/index.html', 'party/icon.svg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
