@@ -121,6 +121,12 @@
   .kindpick button.on { background:var(--text); color:#fff; border-color:var(--text); }
   .toast { position:fixed; left:50%; bottom:90px; transform:translateX(-50%); background:#2a1a1a; color:#fff; padding:10px 16px; border-radius:10px; font-size:14px; z-index:20; opacity:0; transition:opacity .2s; pointer-events:none; max-width:90%; text-align:center; }
   .toast.show { opacity:1; }
+  .syncline { margin-top:4px; font-size:12px; opacity:.8; }
+  .syncline:empty { display:none; }
+  .code { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:26px; font-weight:700; letter-spacing:.06em; text-align:center; background:#faf3ee; border-radius:12px; padding:16px 8px; margin:14px 0 4px; user-select:all; }
+  .err { color:var(--red); font-size:14px; margin-top:8px; min-height:1em; }
+  .note { color:var(--muted); font-size:13px; margin-top:10px; }
+  input.codein { text-transform:uppercase; letter-spacing:.06em; font-family:ui-monospace,Menlo,Consolas,monospace; }
 </style>
 </head>
 <body>
@@ -131,6 +137,7 @@
     <button class="icon" onclick="openMenu()" title="Menu">⋮</button>
   </div>
   <div class="countdown" id="countdown"></div>
+  <div class="syncline" id="syncline" onclick="openShare()"></div>
   <div class="stats" id="stats"></div>
 </header>
 <main id="main"></main>
@@ -141,6 +148,7 @@
 
 <script src="xlsx.mini.min.js"></script>
 <script src="importer.js"></script>
+<script src="share.js"></script>
 <script src="seed.js" onerror="void 0"></script>
 <script>
 'use strict';
@@ -151,19 +159,43 @@ const CATS = ['Clothes - Pajamas','Clothes - Socks','Clothes - Outfit 1','Clothe
 let S = load();
 let ui = { tab: 'people', person: null, shopMode: 0, q: '' };
 
-/* ---------- storage ---------- */
+/* ---------- storage ----------
+ * Data model (v3): S.years[y] = { people, slots, gifts, gone }.
+ *   people {id, name, kind, u}   slots {id, from, cat, u}   gifts {id, to, title, from, cat, status, slot, u}
+ *   gift.slot is a slot id (or null for extras); u = updatedAt (ms); gone[id] = deletedAt (tombstones).
+ * Stable ids + u + tombstones let shared lists merge item by item (see share.js).
+ * Version 2 stored slots by position and reused ids like "p0"/"g0"; load() upgrades it once.
+ */
 function load() {
   let s = null;
   try { s = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
   if (!s || !s.years) {
-    s = { v: 2, hideShark: false, years: {} };
-    if (window.SEED && window.SEED.years) s.years = JSON.parse(JSON.stringify(window.SEED.years));
+    s = { v: 3, hideShark: false, years: {} };
+    const seed = window.SEED && window.SEED.years ? window.SEED.years : {};
+    Object.keys(seed).forEach(y => { s.years[y] = normYear(seed[y]); });
     const ys = Object.keys(s.years).sort();
     s.year = ys.length ? ys[ys.length - 1] : String(new Date().getFullYear());
-    if (!s.years[s.year]) s.years[s.year] = { people: [], slots: [], gifts: [] };
+    if (!s.years[s.year]) s.years[s.year] = emptyYear();
     migrateV1(s);
+  } else if ((s.v || 0) < 3) {
+    Object.keys(s.years).forEach(y => { s.years[y] = normYear(s.years[y]); });
+    s.v = 3;
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
   }
+  Object.keys(s.years).forEach(y => { if (!s.years[y].gone) s.years[y].gone = {}; });
+  if (!s.years[s.year]) { const ys = Object.keys(s.years).sort(); s.year = ys[ys.length - 1]; }
   return s;
+}
+function emptyYear() { return { people: [], slots: [], gifts: [], gone: {} }; }
+// Imported / version-2 year → v3: fresh unique ids, gifts point at slot ids instead of slot positions.
+function normYear(yy) {
+  const now = Date.now(), pid = {}, sid = {};
+  const people = (yy.people || []).map(p => { const id = uid(); pid[p.id] = id; return { id, name: p.name, kind: p.kind, u: now }; });
+  const slots = (yy.slots || []).map((s, i) => { const id = uid(); sid[i] = id; return { id, from: s.from, cat: s.cat || '', u: now }; });
+  const gifts = (yy.gifts || []).filter(g => pid[g.to]).map(g => ({
+    id: uid(), to: pid[g.to], title: g.title, from: g.from, cat: g.cat || '', status: g.status || 0,
+    slot: g.slot != null && sid[g.slot] ? sid[g.slot] : null, u: now }));
+  return { people, slots, gifts, gone: {} };
 }
 function migrateV1(s) {
   // Carry over anything entered in version 1 of the app as family entries.
@@ -173,13 +205,28 @@ function migrateV1(s) {
     const Y = s.years[s.year];
     old.people.forEach(p => {
       let person = Y.people.find(x => x.name.toLowerCase() === p.name.toLowerCase());
-      if (!person) { person = { id: uid(), name: p.name, kind: 'family' }; Y.people.push(person); }
-      (p.gifts || []).forEach(g => Y.gifts.push({ id: uid(), to: person.id, title: g.title, from: 'A & J', cat: '', status: g.status || 0, slot: null }));
+      if (!person) { person = touch({ id: uid(), name: p.name, kind: 'family' }); Y.people.push(person); }
+      (p.gifts || []).forEach(g => Y.gifts.push(touch({ id: uid(), to: person.id, title: g.title, from: 'A & J', cat: '', status: g.status || 0, slot: null })));
     });
   } catch (e) {}
 }
-function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} render(); }
-function uid() { return 'x' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+function store() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+// changed = the list itself changed (not just which year is shown or the hide toggle), so shared lists sync it.
+function save(changed = true) { store(); render(); if (changed) scheduleSync(); }
+function uid() {
+  let r = '';
+  try { r = Array.from(crypto.getRandomValues(new Uint8Array(6)), b => (b % 36).toString(36)).join(''); }
+  catch (e) { r = Math.random().toString(36).slice(2, 8); }
+  uid.n = ((uid.n || 0) + 1) % 1296;
+  return 'x' + Date.now().toString(36) + uid.n.toString(36) + r;
+}
+// Stamp an item as changed now (never older than its last change, even if clocks differ).
+function touch(o) { o.u = Math.max(Date.now(), (o.u || 0) + 1); return o; }
+// Delete with a tombstone, so the delete reaches the other phones of a shared list.
+function bury(yy, x) { yy.gone[x.id] = Math.max(Date.now(), (x.u || 0) + 1, yy.gone[x.id] || 0); }
+function slotById(id, y) { return id == null ? null : Y(y).slots.find(s => s.id === id) || null; }
+// "A & J" is stored as is (so re-imports still match) but shown as Mom and Dad.
+function showName(n) { return n === 'A & J' ? 'Mom and Dad' : n; }
 function jsq(s) { return esc(JSON.stringify(String(s))); }
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
 function Y(y) { return S.years[y || S.year]; }
@@ -191,7 +238,7 @@ function isSecret(g) { return S.hideShark && g.from === 'Shark'; }
 function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2200); }
 
 function fromLabel(f) {
-  if (f === 'A & J') return 'From A & J';
+  if (f === 'A & J') return 'From ' + showName(f);
   if (f === 'Shark') return '🦈 Shark Tree';
   if (f === 'Stocking+') return '🎁 Stocking+';
   if (f === 'Stocking') return '🧦 Stocking';
@@ -218,8 +265,8 @@ function sectionsFor(p, y) {
   const add = f => { if (!map[f]) { map[f] = { from: f, rows: [] }; order.push(map[f]); } return map[f]; };
   const gs = giftsOf(p.id, y);
   if (p.kind === 'kid') {
-    slotsFor(p, y).forEach(s => add(s.from).rows.push({ slot: s, gift: gs.find(g => g.slot === s.i) || null }));
-    gs.filter(g => g.slot == null || !Y(y).slots[g.slot]).forEach(g => add(g.from || 'A & J').rows.push({ slot: null, gift: g }));
+    slotsFor(p, y).forEach(s => add(s.from).rows.push({ slot: s, gift: gs.find(g => g.slot === s.id) || null }));
+    gs.filter(g => !slotById(g.slot, y)).forEach(g => add(g.from || 'A & J').rows.push({ slot: null, gift: g }));
   } else {
     const sec = add('A & J');
     gs.forEach(g => sec.rows.push({ slot: null, gift: g }));
@@ -236,7 +283,7 @@ function lastYearHint(p, slot) {
     const nth = Y().slots.slice(0, slot.i).filter(same).length;
     const ps = Y(py).slots.map((s, i) => ({ ...s, i })).filter(same)[nth];
     if (!ps) continue;
-    const g = giftsOf(prev.id, py).find(g => g.slot === ps.i);
+    const g = giftsOf(prev.id, py).find(g => g.slot === ps.id);
     if (g) return py + ': ' + (S.hideShark && g.from === 'Shark' ? '🦈 (hidden)' : g.title);
   }
   return '';
@@ -245,7 +292,7 @@ function personStats(p) {
   const gs = giftsOf(p.id), st = [0, 0, 0];
   gs.forEach(g => st[g.status]++);
   const slots = p.kind === 'kid' ? slotsFor(p) : [];
-  const filled = slots.filter(s => gs.some(g => g.slot === s.i)).length;
+  const filled = slots.filter(s => gs.some(g => g.slot === s.id)).length;
   return { st, n: gs.length, slots: slots.length, filled };
 }
 
@@ -263,7 +310,8 @@ function render() {
   sel.innerHTML = years().slice().reverse().map(y => `<option ${y === S.year ? 'selected' : ''}>${y}</option>`).join('');
   document.getElementById('sharkBtn').classList.toggle('on', !!S.hideShark);
   document.getElementById('countdown').textContent = countdown() + (S.hideShark ? ' · 🦈 gifts hidden' : '');
-  const st = [0, 0, 0]; Y().gifts.forEach(g => st[g.status]++);
+  showSync();
+  const st = [0, 0, 0]; Y().gifts.forEach(g => { if (person(g.to)) st[g.status]++; });
   const empty = kids().reduce((a, k) => { const s = personStats(k); return a + s.slots - s.filled; }, 0);
   document.getElementById('stats').innerHTML =
     STATUS.map((l, i) => `<div class="stat s${i}"><b>${st[i]}</b><span>${l}</span></div>`).join('') +
@@ -294,8 +342,8 @@ function renderPeople() {
       ? `${s.filled} of ${s.slots} slots filled · ${s.st[2]} wrapped`
       : (s.n ? `${s.n} gift${s.n > 1 ? 's' : ''} · ${s.st[2]} wrapped` : 'No gifts yet');
     return `<div class="card" onclick="openPerson('${p.id}')">
-      <div class="phead"><div class="avatar ${p.kind === 'kid' ? '' : 'fam'}">${esc(p.name[0] || '?')}</div>
-      <div class="pinfo"><div class="pname">${esc(p.name)}</div><div class="psub">${sub}</div></div><div class="chev">›</div></div>
+      <div class="phead"><div class="avatar ${p.kind === 'kid' ? '' : 'fam'}">${esc(showName(p.name)[0] || '?')}</div>
+      <div class="pinfo"><div class="pname">${esc(showName(p.name))}</div><div class="psub">${sub}</div></div><div class="chev">›</div></div>
       ${segBar(s.st, p.kind === 'kid' ? Math.max(s.slots, s.n) : s.n)}</div>`;
   };
   const k = ps.filter(p => p.kind === 'kid'), f = ps.filter(p => p.kind !== 'kid');
@@ -309,7 +357,7 @@ function giftRow(p, row) {
   const cat = (g && g.cat) || (s && s.cat) || '';
   if (!g) {
     const hint = lastYearHint(p, s);
-    return `<div class="gift slot-empty" onclick="editGift('${p.id}',null,${s.i})">
+    return `<div class="gift slot-empty" onclick="editGift('${p.id}',null,'${s.id}')">
       <div class="main">${cat ? `<div class="cat">${esc(cat)}</div>` : ''}<div class="t">Empty</div>${hint ? `<div class="hint">${esc(hint)}</div>` : ''}</div>
       <button class="addbtn">＋ Add</button></div>`;
   }
@@ -327,7 +375,7 @@ function renderPerson(p) {
   const s = personStats(p);
   const secs = sectionsFor(p);
   const head = `<div class="page-head"><button class="back" onclick="closePerson()">‹</button>
-    <h2>${esc(p.name)}</h2><button class="link muted" onclick="editPerson('${p.id}')">Edit</button></div>
+    <h2>${esc(showName(p.name))}</h2><button class="link muted" onclick="editPerson('${p.id}')">Edit</button></div>
     <div class="psub" style="margin:0 2px 10px">${p.kind === 'kid' ? `${s.filled} of ${s.slots} slots filled · ` : ''}${s.st[0]} idea · ${s.st[1]} purchased · ${s.st[2]} wrapped</div>`;
   if (!secs.length || (p.kind !== 'kid' && !secs[0].rows.length)) {
     return head + `<div class="empty">No gifts yet.</div><div style="text-align:center"><button class="btn primary" onclick="editGift('${p.id}')">＋ Add gift</button></div>`;
@@ -344,17 +392,17 @@ function renderGrid() {
   const ks = kids();
   if (!ks.length) return `<div class="empty">The compare view lines kids up side by side, like the spreadsheet.<br>No kids on the ${esc(S.year)} list.</div>`;
   const slots = Y().slots.map((s, i) => ({ ...s, i }));
-  const extras = ks.map(k => giftsOf(k.id).filter(g => g.slot == null || !Y().slots[g.slot]));
+  const extras = ks.map(k => giftsOf(k.id).filter(g => !slotById(g.slot)));
   const maxExtra = Math.max(0, ...extras.map(e => e.length));
-  const cell = (k, g, slotIdx) => {
-    if (!g) return `<td class="c" onclick="editGift('${k.id}',null,${slotIdx})"></td>`;
+  const cell = (k, g, slotId) => {
+    if (!g) return `<td class="c" onclick="editGift('${k.id}',null,'${slotId}')"></td>`;
     return `<td class="c s${g.status}" onclick="${isSecret(g) ? "toast('Shark gifts are hidden')" : `editGift('${k.id}','${g.id}')`}">${isSecret(g) ? '🦈' : esc(g.title)}</td>`;
   };
   let prevFrom = null;
   const rows = slots.map(s => {
     const sep = prevFrom !== null && prevFrom !== s.from ? 'sep' : ''; prevFrom = s.from;
     return `<tr class="${sep}"><td class="lbl"><b>${esc(fromLabel(s.from).replace('From ', ''))}</b>${esc(s.cat)}</td>${ks.map(k =>
-      k.name.toLowerCase() === s.from.toLowerCase() ? '<td class="na"></td>' : cell(k, giftsOf(k.id).find(g => g.slot === s.i), s.i)).join('')}</tr>`;
+      k.name.toLowerCase() === s.from.toLowerCase() ? '<td class="na"></td>' : cell(k, giftsOf(k.id).find(g => g.slot === s.id), s.id)).join('')}</tr>`;
   }).join('');
   let extraRows = '';
   for (let r = 0; r < maxExtra; r++) {
@@ -362,7 +410,7 @@ function renderGrid() {
   }
   const totals = ks.map(k => { const s = personStats(k); return `<td class="c" style="font-weight:600">${s.n} gifts<br><span style="font-weight:400;color:var(--muted)">${s.st[2]} wrapped</span></td>`; }).join('');
   return `<div class="legend">${STATUS.map((l, i) => `<span class="chip s${i}" style="min-width:0">${l}</span>`).join('')}<span style="color:var(--muted)">Tap a cell to edit · blank = empty slot</span></div>
-    <div class="gridwrap"><table class="grid"><tr><th class="lbl"></th>${ks.map(k => `<th>${esc(k.name)}</th>`).join('')}</tr>
+    <div class="gridwrap"><table class="grid"><tr><th class="lbl"></th>${ks.map(k => `<th>${esc(showName(k.name))}</th>`).join('')}</tr>
     <tr><td class="lbl"><b>Total</b></td>${totals}</tr>${rows}${extraRows}</table></div>`;
 }
 
@@ -374,7 +422,7 @@ function renderShop() {
     <button class="${mode === 1 ? 'on' : ''}" onclick="ui.shopMode=1;render()">To wrap (${Y().gifts.filter(g => g.status === 1).length})</button></div>`;
   if (!n) return tabs + `<div class="empty">${mode === 0 ? 'Nothing left to buy 🎉' : 'Nothing waiting to be wrapped 🎉'}</div>`;
   return tabs + `<div class="psub" style="margin:0 2px 10px">Tick a gift to mark it ${mode === 0 ? '<b>Purchased</b>' : '<b>Wrapped</b>'}.</div>` +
-    groups.map(({ p, gs }) => `<div class="section"><div class="section-h"><span>${esc(p.name)}</span><small>${gs.length}</small></div>
+    groups.map(({ p, gs }) => `<div class="section"><div class="section-h"><span>${esc(showName(p.name))}</span><small>${gs.length}</small></div>
       ${gs.map(g => `<div class="gift"><button class="check" onclick="advance('${g.id}')"></button>
         <div class="main" onclick="${isSecret(g) ? '' : `editGift('${p.id}','${g.id}')`}"><div class="cat">${esc([p.kind === 'kid' ? fromLabel(g.from) : '', g.cat].filter(Boolean).join(' · '))}</div>
         <div class="t ${isSecret(g) ? 'secret' : ''}">${isSecret(g) ? '🦈 Surprise' : esc(g.title)}</div></div></div>`).join('')}</div>`).join('');
@@ -395,24 +443,24 @@ function searchResults(q) {
   years().slice().reverse().forEach(y => Y(y).gifts.forEach(g => {
     const p = person(g.to, y); if (!p) return;
     const secret = S.hideShark && g.from === 'Shark';
-    const hay = (secret ? '' : g.title + ' ' + g.cat + ' ') + p.name;
+    const hay = (secret ? '' : g.title + ' ' + g.cat + ' ') + showName(p.name);
     if (hay.toLowerCase().includes(q)) hits.push({ y, g, p, secret });
   }));
   if (!hits.length) return `<div class="empty">No matches for “${esc(q)}”.</div>`;
   return `<div class="psub" style="margin:0 2px 8px">${hits.length} match${hits.length > 1 ? 'es' : ''}</div><div class="section">` + hits.slice(0, 300).map(h =>
-    `<div class="gift"><div class="main"><div class="cat"><span class="yearlbl">${h.y}</span> · ${esc(h.p.name)} · ${esc([h.p.kind === 'kid' ? fromLabel(h.g.from) : '', h.g.cat].filter(Boolean).join(' · '))}</div>
+    `<div class="gift"><div class="main"><div class="cat"><span class="yearlbl">${h.y}</span> · ${esc(showName(h.p.name))} · ${esc([h.p.kind === 'kid' ? fromLabel(h.g.from) : '', h.g.cat].filter(Boolean).join(' · '))}</div>
      <div class="t ${h.secret ? 'secret' : ''}">${h.secret ? '🦈 Surprise' : esc(h.g.title)}</div></div><span class="chip s${h.g.status}">${STATUS[h.g.status]}</span></div>`).join('') + '</div>';
 }
 
 /* ---------- actions ---------- */
 function go(tab) { ui.tab = tab; if (tab !== 'people') ui.person = null; render(); window.scrollTo(0, 0); }
-function setYear(y) { S.year = y; ui.person = null; if (ui.tab === 'search') ui.tab = 'people'; save(); window.scrollTo(0, 0); }
+function setYear(y) { S.year = y; ui.person = null; if (ui.tab === 'search') ui.tab = 'people'; save(false); window.scrollTo(0, 0); }
 function openPerson(id) { ui.person = id; render(); window.scrollTo(0, 0); }
 function closePerson() { ui.person = null; render(); }
-function toggleShark() { S.hideShark = !S.hideShark; save(); toast(S.hideShark ? '🦈 Shark gifts hidden' : '🦈 Shark gifts shown'); }
+function toggleShark() { S.hideShark = !S.hideShark; save(false); toast(S.hideShark ? '🦈 Shark gifts hidden' : '🦈 Shark gifts shown'); }
 function findGift(id) { return Y().gifts.find(g => g.id === id); }
-function cycle(id) { const g = findGift(id); g.status = (g.status + 1) % 3; save(); }
-function advance(id) { const g = findGift(id); g.status = Math.min(2, g.status + 1); save(); toast(STATUS[g.status] + ': ' + (isSecret(g) ? '🦈' : g.title)); }
+function cycle(id) { const g = findGift(id); if (!g) return render(); g.status = (g.status + 1) % 3; touch(g); save(); }
+function advance(id) { const g = findGift(id); if (!g) return render(); g.status = Math.min(2, g.status + 1); touch(g); save(); toast(STATUS[g.status] + ': ' + (isSecret(g) ? '🦈' : g.title)); }
 
 function sheet(html) {
   document.getElementById('sheet').innerHTML = html;
@@ -428,16 +476,17 @@ window.handleBack = function () {
 };
 
 let editing = null;
-function editGift(pid, gid, slotIdx, from) {
+function editGift(pid, gid, slotId, from) {
   const p = person(pid);
+  if (!p) return render();
   let g = gid ? findGift(gid) : null;
-  const slot = slotIdx != null ? Y().slots[slotIdx] : null;
-  editing = { pid, gid, slotIdx: g ? g.slot : slotIdx, status: g ? g.status : 0 };
+  const slot = g ? null : slotById(slotId);
+  editing = { pid, gid, slotId: g ? g.slot : slot ? slot.id : null, status: g ? g.status : 0 };
   const f = g ? g.from : slot ? slot.from : (from || 'A & J');
   const cat = g ? g.cat : slot ? slot.cat : '';
-  const hint = !g && slot ? lastYearHint(p, { ...slot, i: slotIdx }) : '';
+  const hint = !g && slot ? lastYearHint(p, { ...slot, i: Y().slots.indexOf(slot) }) : '';
   const opts = fromOptions(p); if (f && !opts.includes(f)) opts.push(f);
-  sheet(`<h2>${g ? 'Edit gift' : 'Gift for ' + esc(p.name)}</h2>
+  sheet(`<h2>${g ? 'Edit gift' : 'Gift for ' + esc(showName(p.name))}</h2>
     <div class="sub">${p.kind === 'kid' ? esc(fromLabel(f)) + (cat ? ' · ' + esc(cat) : '') : ''}${hint ? ' · last year → ' + esc(hint) : ''}</div>
     <label>Gift</label><input type="text" id="fTitle" value="${g ? esc(g.title) : ''}" placeholder="What's the gift?">
     <label>Status</label><div class="statuspick">${STATUS.map((l, i) => `<button class="s${i} ${editing.status === i ? 'on' : ''}" onclick="pickStatus(${i})">${l}</button>`).join('')}</div>
@@ -456,28 +505,34 @@ function saveGift() {
   const title = document.getElementById('fTitle').value.trim();
   if (!title) return document.getElementById('fTitle').focus();
   const p = person(editing.pid);
+  if (!p) { closeSheet(); render(); return toast('That person was removed on another phone'); }
   const fromEl = document.getElementById('fFrom');
   const from = fromEl ? fromEl.value : 'A & J';
   const cat = document.getElementById('fCat').value.trim();
-  let slot = editing.slotIdx;
+  let slot = editing.slotId;
   // Moving a gift to a different "from" / category takes it out of its sheet slot.
-  if (slot != null && Y().slots[slot]) {
-    const s = Y().slots[slot];
-    if (s.from !== from || (s.cat && s.cat !== cat)) slot = null;
-  }
+  const s = slotById(slot);
+  if (!s) slot = null;
+  else if (s.from !== from || (s.cat && s.cat !== cat)) slot = null;
   if (p.kind !== 'kid') slot = null;
-  if (editing.gid) Object.assign(findGift(editing.gid), { title, from, cat, status: editing.status, slot });
-  else Y().gifts.push({ id: uid(), to: p.id, title, from, cat, status: editing.status, slot });
+  const g = editing.gid ? findGift(editing.gid) : null;
+  if (g) touch(Object.assign(g, { title, from, cat, status: editing.status, slot }));
+  else Y().gifts.push(touch({ id: editing.gid || uid(), to: p.id, title, from, cat, status: editing.status, slot }));
   closeSheet(); save();
 }
-function delGift(id) { Y().gifts = Y().gifts.filter(g => g.id !== id); closeSheet(); save(); }
+function delGift(id) {
+  const yy = Y(), g = findGift(id);
+  if (g) bury(yy, g);
+  yy.gifts = yy.gifts.filter(x => x.id !== id); closeSheet(); save();
+}
 
 let editingKind = 'kid';
 function editPerson(id) {
   const p = id ? person(id) : { name: '', kind: kids().length ? 'family' : 'kid' };
+  if (id && !p) return render();
   editingKind = p.kind;
   sheet(`<h2>${id ? 'Edit person' : 'Add person to ' + S.year}</h2>
-    <label>Name</label><input type="text" id="fName" value="${esc(p.name)}" placeholder="e.g. Gabriel or G&G Rohs">
+    <label>Name</label><input type="text" id="fName" value="${esc(showName(p.name))}" placeholder="e.g. Gabriel or G&G Rohs">
     <label>Type</label><div class="kindpick">
       <button class="${p.kind === 'kid' ? 'on' : ''}" onclick="pickKind(this,'kid')">Kid · gets the slot list</button>
       <button class="${p.kind !== 'kid' ? 'on' : ''}" onclick="pickKind(this,'family')">Family · simple list</button></div>
@@ -487,15 +542,20 @@ function editPerson(id) {
 }
 function pickKind(btn, k) { editingKind = k; document.querySelectorAll('.kindpick button').forEach(b => b.classList.toggle('on', b === btn)); }
 function savePerson(id) {
-  const name = document.getElementById('fName').value.trim();
+  let name = document.getElementById('fName').value.trim();
   if (!name) return document.getElementById('fName').focus();
   if (id) {
-    const p = person(id), old = p.name;
-    Object.assign(p, { name, kind: editingKind });
-    Y().slots.forEach(s => { if (s.from === old) s.from = name; });
-    Y().gifts.forEach(g => { if (g.from === old) g.from = name; });
+    const p = person(id);
+    if (!p) { closeSheet(); return render(); }
+    const old = p.name;
+    if (name === showName(old)) name = old; // "Mom and Dad" stays stored as "A & J"
+    if (p.name !== name || p.kind !== editingKind) touch(Object.assign(p, { name, kind: editingKind }));
+    if (old !== name) {
+      Y().slots.forEach(s => { if (s.from === old) touch(Object.assign(s, { from: name })); });
+      Y().gifts.forEach(g => { if (g.from === old) touch(Object.assign(g, { from: name })); });
+    }
   } else {
-    const p = { id: uid(), name, kind: editingKind };
+    const p = touch({ id: uid(), name, kind: editingKind });
     const ps = Y().people;
     if (p.kind === 'kid') {
       const lastKid = ps.map(x => x.kind).lastIndexOf('kid'); ps.splice(lastKid + 1, 0, p);
@@ -508,23 +568,30 @@ function savePerson(id) {
   closeSheet(); save();
 }
 function insertSlot(at, slot) {
-  const yy = Y(); yy.slots.splice(at, 0, slot);
-  yy.gifts.forEach(g => { if (g.slot != null && g.slot >= at) g.slot++; });
+  Y().slots.splice(at, 0, touch({ id: uid(), ...slot }));
 }
 function delPerson(id) {
   const p = person(id);
-  if (!confirm(`Remove ${p.name} and their ${giftsOf(id).length} gifts from ${S.year}?`)) return;
-  Y().people = Y().people.filter(x => x.id !== id);
-  Y().gifts = Y().gifts.filter(g => g.to !== id);
+  if (!p) { closeSheet(); return render(); }
+  if (!confirm(`Remove ${showName(p.name)} and their ${giftsOf(id).length} gifts from ${S.year}?`)) return;
+  const yy = Y();
+  bury(yy, p); giftsOf(id).forEach(g => bury(yy, g));
+  yy.people = yy.people.filter(x => x.id !== id);
+  yy.gifts = yy.gifts.filter(g => g.to !== id);
   ui.person = null; closeSheet(); save();
 }
 
 /* ---------- menu: import / share / new year ---------- */
 function openMenu() {
   const next = String(Math.max(...years().map(Number), new Date().getFullYear() - 1) + 1);
+  const bk = loadBackup();
   sheet(`<h2>Menu</h2><div class="menu">
+    ${SH ? `<button onclick="openShare()">🔗 Shared list · ${esc(GiftShare.formatCode(SH.code))}<small>${esc(syncText() || 'Shared')} · code, Sync now, Stop sharing</small></button>`
+         : `<button onclick="startSharing()">🔗 Share this list<small>Get a code so others can see and change this list on their phone</small></button>`}
+    <button onclick="openJoin()">📲 Join a shared list<small>Enter a code from another phone. Replaces the list on this phone</small></button>
+    ${bk ? `<button onclick="askRestore()">↩️ Restore backup<small>The list this phone had before joining, saved ${esc(when(bk.at))}</small></button>` : ''}
     <button onclick="pickFile()">📥 Import spreadsheet<small>Google Sheets: File → Download → Microsoft Excel (.xlsx), then pick it here</small></button>
-    <button onclick="shareYear()">📤 Share ${S.year} list<small>Send as text (text, email, Keep…)${S.hideShark ? ' · Shark gifts stay hidden' : ''}</small></button>
+    <button onclick="shareYear()">📤 Send ${S.year} list as text<small>Send as text (text, email, Keep…)${S.hideShark ? ' · Shark gifts stay hidden' : ''}</small></button>
     <button onclick="newYear('${next}')">✨ Start ${next}<small>Same people and slots as ${years()[years().length - 1]}, no gifts yet</small></button>
     <button onclick="closeSheet();editPerson()">➕ Add person to ${S.year}</button>
     <button onclick="toggleShark();closeSheet()">🦈 ${S.hideShark ? 'Show' : 'Hide'} Shark gifts<small>Hide what the Shark brings when kids are looking</small></button>
@@ -557,7 +624,12 @@ function importFile(input) {
 function applyImport() {
   const picked = [...document.querySelectorAll('.yearpick input:checked')].map(i => i.value);
   if (!picked.length) return closeSheet();
-  picked.forEach(y => { S.years[y] = pendingImport[y]; });
+  // Replacing a year: everything that was there is deleted (tombstones, so shared copies drop it too).
+  picked.forEach(y => {
+    const old = S.years[y], fresh = normYear(pendingImport[y]);
+    if (old) { fresh.gone = { ...(old.gone || {}) }; [...old.people, ...old.slots, ...old.gifts].forEach(x => bury(fresh, x)); }
+    S.years[y] = fresh;
+  });
   S.year = picked.sort().reverse()[0]; ui.person = null; ui.tab = 'people';
   pendingImport = null; closeSheet(); save();
   toast('Imported ' + picked.sort().join(', '));
@@ -568,7 +640,7 @@ function shareYear() {
   Y().people.forEach(p => {
     const secs = sectionsFor(p).map(sec => ({ ...sec, rows: sec.rows.filter(r => r.gift) })).filter(sec => sec.rows.length);
     if (!secs.length) return;
-    lines.push(p.name.toUpperCase());
+    lines.push(showName(p.name).toUpperCase());
     secs.forEach(sec => {
       if (p.kind === 'kid') lines.push('  ' + fromLabel(sec.from));
       sec.rows.forEach(({ gift: g }) => {
@@ -587,17 +659,275 @@ function shareYear() {
 function newYear(y) {
   if (S.years[y]) { setYear(y); closeSheet(); return; }
   const src = Y(years()[years().length - 1]);
-  const map = {};
-  const people = src.people.map(p => { const n = { id: uid(), name: p.name, kind: p.kind }; map[p.id] = n.id; return n; });
-  S.years[y] = { people, slots: src.slots.map(s => ({ from: s.from, cat: s.cat })), gifts: [] };
+  // Ids come from the source year's ids, so two phones of a shared list starting the same year match up.
+  const people = src.people.map(p => touch({ id: 'y' + y + p.id, name: p.name, kind: p.kind }));
+  S.years[y] = { people, slots: src.slots.map(s => touch({ id: 'y' + y + s.id, from: s.from, cat: s.cat })), gifts: [], gone: {} };
   S.year = y; ui.person = null; ui.tab = 'people';
   closeSheet(); save(); toast('Started ' + y + ' 🎄');
 }
+
+/* ---------- shared list: code, end-to-end encrypted sync (share.js) ---------- */
+// Tests can point at a local server with ?api=http://localhost:8790/api (or localStorage giftlist.api).
+const API = (() => {
+  try { const q = new URLSearchParams(location.search).get('api'); if (q) return q.replace(/\/+$/, ''); } catch (e) {}
+  try { const v = localStorage.getItem('giftlist.api'); if (v) return v.replace(/\/+$/, ''); } catch (e) {}
+  return 'https://vast-apps.fly.dev/api';
+})();
+const SHARE_KEY = 'giftlist.share', BACKUP_KEY = 'giftlist.backup';
+let SH = (() => { try { const x = JSON.parse(localStorage.getItem(SHARE_KEY)); return x && x.code && x.room ? x : null; } catch (e) { return null; } })();
+let shKey = null, shKeyCode = '';
+let sync = { busy: null, again: false, state: SH ? 'idle' : '', timer: 0, retry: 0 };
+
+function saveShare() { try { if (SH) localStorage.setItem(SHARE_KEY, JSON.stringify(SH)); else localStorage.removeItem(SHARE_KEY); } catch (e) {} }
+function loadBackup() { try { const b = JSON.parse(localStorage.getItem(BACKUP_KEY)); return b && b.years ? b : null; } catch (e) { return null; } }
+function docOf() { return { fmt: 3, years: S.years }; }
+function giftCount(doc) { return Object.values(doc.years || {}).reduce((a, y) => a + (y.gifts || []).length, 0); }
+function when(t) { const d = new Date(t); return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }); }
+function ago(t) {
+  const m = Math.floor((Date.now() - t) / 60000);
+  if (m < 1) return 'just now';
+  if (m < 60) return m + ' min ago';
+  if (m < 24 * 60) return Math.floor(m / 60) + ' h ago';
+  return 'on ' + new Date(t).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+function syncText() {
+  if (!SH) return '';
+  if (sync.state === 'offline') return 'Offline — will sync';
+  if (sync.state === 'error') return 'Couldn’t sync — will try again';
+  if (sync.state === 'syncing' && !SH.last) return 'Syncing…';
+  return SH.last ? 'Synced ' + ago(SH.last) : 'Not synced yet';
+}
+function showSync() {
+  const el = document.getElementById('syncline');
+  if (el) el.textContent = SH ? '🔗 ' + syncText() : '';
+  const el2 = document.getElementById('shStatus');
+  if (el2) el2.textContent = syncText();
+}
+function cryptoMissing() {
+  if (GiftShare.cryptoOk()) return false;
+  sheet(`<h2>Sharing isn't available</h2><p>This phone's web viewer is missing the encryption that sharing needs.
+    Update <b>Android System WebView</b> (or Chrome) from the Play Store, then try again.</p>
+    <div class="actions"><button class="btn ghost" onclick="closeSheet()">OK</button></div>`);
+  return true;
+}
+async function keyOf(code) {
+  if (!shKey || shKeyCode !== code) { shKey = await GiftShare.keyFor(code); shKeyCode = code; }
+  return shKey;
+}
+function offlineErr(e) { return Object.assign(e instanceof Error ? e : new Error(String(e)), { offline: true }); }
+// One call to the share API. Network trouble (or a 15 s timeout) throws with e.offline.
+async function shareApi(method, room, body) {
+  const ctl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const t = setTimeout(() => ctl && ctl.abort(), 15000);
+  let r;
+  try {
+    r = await fetch(API + '/share/' + room, { method, cache: 'no-store', signal: ctl ? ctl.signal : undefined,
+      headers: body ? { 'Content-Type': 'application/json' } : {}, body: body ? JSON.stringify(body) : undefined });
+  } catch (e) { throw offlineErr(e); } finally { clearTimeout(t); }
+  let j = null; try { j = await r.json(); } catch (e) {}
+  return { status: r.status, body: j };
+}
+// Put a merged/joined list in place without counting it as a local edit.
+function applyDoc(doc) {
+  S.years = doc.years;
+  Object.keys(S.years).forEach(y => { if (!S.years[y].gone) S.years[y].gone = {}; });
+  if (!S.years[S.year]) { const ys = years(); S.year = ys.length ? ys[ys.length - 1] : String(new Date().getFullYear()); if (!S.years[S.year]) S.years[S.year] = emptyYear(); }
+  store(); render();
+}
+
+function scheduleSync(ms) {
+  if (!SH) return;
+  clearTimeout(sync.timer);
+  sync.timer = setTimeout(syncNow, ms == null ? 1500 : ms);
+}
+// GET the shared copy, merge it with this phone's, and PUT the result if this phone added anything.
+// A 409 means another phone saved first: merge with theirs and try again.
+function syncNow() {
+  if (!SH) return Promise.resolve();
+  clearTimeout(sync.timer);
+  if (sync.busy) { sync.again = true; return sync.busy; }
+  const sh = SH;
+  sync.state = 'syncing'; showSync();
+  sync.busy = (async () => {
+    try {
+      const key = await keyOf(sh.code);
+      let r = await shareApi('GET', sh.room);
+      for (let tries = 0; ; tries++) {
+        if (SH !== sh) return; // stopped sharing meanwhile
+        let remote = null, v = 0;
+        if ((r.status === 200 || r.status === 409) && r.body) { v = +r.body.v || 0; if (r.body.data) remote = await GiftShare.decrypt(key, r.body.data); }
+        else if (r.status !== 404) throw new Error('HTTP ' + r.status);
+        if (SH !== sh) return;
+        const local = docOf();
+        const merged = remote ? GiftShare.mergeDocs(local, remote) : local;
+        if (GiftShare.canon(merged) !== GiftShare.canon(local)) applyDoc(merged);
+        sh.v = v;
+        if (remote && GiftShare.canon(merged) === GiftShare.canon(remote)) break; // nothing new to send
+        if (tries >= 5) throw new Error('busy');
+        r = await shareApi('PUT', sh.room, { v, data: await GiftShare.encrypt(key, merged) });
+        if (r.status === 200 && r.body) { sh.v = r.body.v; break; }
+        if (r.status !== 409) throw new Error('HTTP ' + r.status);
+      }
+      sh.last = Date.now(); sync.state = 'ok'; sync.retry = 0;
+    } catch (e) {
+      sync.state = e && e.offline ? 'offline' : 'error';
+      sync.retry = Math.min((sync.retry || 30000) * 2, 10 * 60000);
+      scheduleSync(sync.retry);
+    } finally {
+      if (SH === sh) saveShare();
+      sync.busy = null; showSync();
+      if (sync.again) { sync.again = false; if (SH) syncNow(); }
+    }
+  })();
+  return sync.busy;
+}
+
+async function startSharing() {
+  if (cryptoMissing()) return;
+  sheet(`<h2>Share this list</h2><div class="sub">Making a code…</div>`);
+  try {
+    for (let i = 0; i < 3; i++) {
+      const code = GiftShare.newCode(), room = await GiftShare.roomFor(code), key = await keyOf(code);
+      const r = await shareApi('PUT', room, { v: 0, data: await GiftShare.encrypt(key, docOf()) });
+      if (r.status === 200 && r.body) {
+        SH = { code, room, v: r.body.v, last: Date.now() }; sync.state = 'ok'; saveShare(); showSync();
+        return openShare();
+      }
+      if (r.status !== 409) throw new Error(r.status === 413 ? 'too big' : 'HTTP ' + r.status);
+    }
+    throw new Error('busy');
+  } catch (e) {
+    sheet(`<h2>Couldn't share right now</h2><p>${e.offline ? 'The sharing server couldn’t be reached. Check the internet connection and try again.'
+      : e.message === 'too big' ? 'This list is too big to share.' : 'Something went wrong on the sharing server. Try again in a minute.'}</p>
+      <div class="actions"><button class="btn ghost" onclick="closeSheet()">OK</button><button class="btn primary" onclick="startSharing()">Try again</button></div>`);
+  }
+}
+function openShare() {
+  if (!SH) return;
+  const code = GiftShare.formatCode(SH.code);
+  sheet(`<h2>Shared list</h2>
+    <div class="sub">Anyone with this code can see and change this list. On their phone: ⋮ → Join a shared list.</div>
+    <div class="code" id="shCode">${esc(code)}</div>
+    <div class="actions" style="margin-top:10px"><button class="btn ghost" onclick="copyCode()">Copy</button><button class="btn primary" onclick="sendCode()">Share…</button></div>
+    <div class="note" style="display:flex;align-items:center;gap:10px"><span id="shStatus" style="flex:1">${esc(syncText())}</span><button class="link" onclick="syncNow()">Sync now</button></div>
+    <div class="menu" style="margin-top:8px"><button onclick="askStop()">Stop sharing on this phone<small>Keeps this phone's copy of the list</small></button></div>
+    <div class="actions"><button class="btn ghost" onclick="closeSheet()">Close</button></div>`);
+  syncNow();
+}
+function copyText(text) {
+  if (window.Android && Android.copy) { Android.copy(text); return toast('Code copied'); }
+  const fallback = () => {
+    const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select();
+    let ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+    t.remove(); toast(ok ? 'Code copied' : 'Couldn’t copy — press and hold the code instead');
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => toast('Code copied'), fallback);
+  else fallback();
+}
+function copyCode() { if (SH) copyText(GiftShare.formatCode(SH.code)); }
+function sendCode() {
+  if (!SH) return;
+  const code = GiftShare.formatCode(SH.code);
+  const text = `Join our Christmas gift list in the Christmas Gifts app: tap ⋮ → Join a shared list and enter ${code}`;
+  if (window.Android && Android.share) Android.share('Christmas gift list code', text);
+  else if (navigator.share) navigator.share({ title: 'Christmas gift list code', text }).catch(() => {});
+  else copyText(code);
+}
+function askStop() {
+  if (!SH) return;
+  sheet(`<h2>Stop sharing on this phone?</h2>
+    <p>This phone keeps its own copy of the list, but stops getting and sending changes. Other phones keep sharing.</p>
+    <p class="sub">To join again later you'll need the code: <b>${esc(GiftShare.formatCode(SH.code))}</b></p>
+    <div class="actions"><button class="btn ghost" onclick="openShare()">Cancel</button><button class="btn primary" onclick="stopSharing()">Stop sharing</button></div>`);
+}
+function stopSharing(quiet) {
+  SH = null; shKey = null; shKeyCode = ''; clearTimeout(sync.timer); sync.state = ''; sync.again = false;
+  saveShare(); showSync();
+  if (!quiet) { closeSheet(); toast('Stopped sharing on this phone'); }
+}
+
+let joining = null;
+function openJoin() {
+  if (cryptoMissing()) return;
+  sheet(`<h2>Join a shared list</h2>
+    <div class="sub">Type the code from the phone that shared the list.</div>
+    <label>Code</label><input type="text" id="fCode" class="codein" placeholder="XXXX-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false">
+    <div class="err" id="joinErr"></div>
+    <div class="actions"><button class="btn ghost" onclick="closeSheet()">Cancel</button><button class="btn primary" id="joinBtn" onclick="checkJoin()">Next</button></div>`);
+  setTimeout(() => document.getElementById('fCode').focus(), 60);
+}
+async function checkJoin() {
+  const input = document.getElementById('fCode'), err = document.getElementById('joinErr'), btn = document.getElementById('joinBtn');
+  if (!input) return;
+  const code = GiftShare.normCode(input.value);
+  if (!GiftShare.validCode(code)) {
+    err.textContent = 'That doesn’t look like a share code. Codes have 12 letters and numbers, like ABCD-EFGH-JKMN.';
+    return input.focus();
+  }
+  if (SH && SH.code === code) { err.textContent = 'This phone is already sharing that list.'; return; }
+  err.textContent = ''; btn.disabled = true; btn.textContent = 'Checking…';
+  const fail = msg => { if (document.getElementById('joinErr') === err) { err.textContent = msg; btn.disabled = false; btn.textContent = 'Next'; } };
+  try {
+    const room = await GiftShare.roomFor(code);
+    const r = await shareApi('GET', room);
+    if (r.status === 404 || (r.status === 200 && r.body && !r.body.data)) return fail('No shared list uses that code. Check it with the person who shared it.');
+    if (r.status !== 200 || !r.body) return fail('Something went wrong on the sharing server. Try again in a minute.');
+    let doc;
+    try { doc = await GiftShare.decrypt(await GiftShare.keyFor(code), r.body.data); } catch (e) { doc = null; }
+    if (!doc || !doc.years) return fail('That code didn’t open the list. Check it and try again.');
+    if (document.getElementById('joinErr') !== err) return; // sheet was closed
+    joining = { code, room, v: +r.body.v || 0, doc };
+    const ys = Object.keys(doc.years).sort(), mine = giftCount(docOf());
+    sheet(`<h2>Replace this phone's list?</h2>
+      <p>The shared list has <b>${giftCount(doc)} gifts</b>${ys.length ? ` (${ys.length > 1 ? esc(ys[0] + '–' + ys[ys.length - 1]) : esc(ys[0])})` : ''}.
+      Joining replaces everything on this phone with it.</p>
+      <p class="sub">This phone's current list (${mine} gift${mine === 1 ? '' : 's'}) is saved as a backup first. To get it back: ⋮ → Restore backup.${SH ? ' This phone also stops sharing its current code.' : ''}</p>
+      <div class="actions"><button class="btn ghost" onclick="joining=null;closeSheet()">Cancel</button><button class="btn primary" onclick="confirmJoin()">Replace and join</button></div>`);
+  } catch (e) {
+    fail(e.offline ? 'The sharing server couldn’t be reached. Check the internet connection and try again.' : 'Something went wrong. Try again in a minute.');
+  }
+}
+function confirmJoin() {
+  const j = joining; joining = null;
+  if (!j) return closeSheet();
+  try { localStorage.setItem(BACKUP_KEY, JSON.stringify({ at: Date.now(), year: S.year, years: S.years })); }
+  catch (e) { return sheet(`<h2>Couldn't join</h2><p>There isn't room on this phone to keep a backup of the current list, so nothing was changed.</p><div class="actions"><button class="btn ghost" onclick="closeSheet()">OK</button></div>`); }
+  stopSharing(true);
+  SH = { code: j.code, room: j.room, v: j.v, last: Date.now() }; sync.state = 'ok'; saveShare();
+  ui.person = null; ui.tab = 'people';
+  applyDoc(j.doc); closeSheet(); showSync();
+  toast('Joined the shared list');
+}
+function askRestore() {
+  const b = loadBackup();
+  if (!b) return closeSheet();
+  sheet(`<h2>Restore backup?</h2>
+    <p>Puts back the list this phone had on ${esc(when(b.at))} (${giftCount(b)} gifts), replacing what's on this phone now.</p>
+    ${SH ? `<p class="sub">This phone also stops sharing. The shared list itself isn't changed, and other phones keep it.</p>` : ''}
+    <div class="actions"><button class="btn ghost" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="restoreBackup()">Restore</button></div>`);
+}
+function restoreBackup() {
+  const b = loadBackup();
+  if (!b) return closeSheet();
+  if (SH) stopSharing(true);
+  S.year = b.year || S.year; ui.person = null; ui.tab = 'people';
+  applyDoc(b);
+  try { localStorage.removeItem(BACKUP_KEY); } catch (e) {}
+  closeSheet(); toast('Backup restored');
+}
+
+// Sync when the app opens, comes back to the front, or gets its connection back; and every few minutes while open.
+window.onAppResume = function () { if (SH && !sync.busy && (!SH.last || Date.now() - SH.last > 5000)) syncNow(); };
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') window.onAppResume(); });
+window.addEventListener('online', () => { if (SH) syncNow(); });
+setInterval(() => { showSync(); if (SH && document.visibilityState === 'visible' && !sync.busy && Date.now() - (SH.last || 0) > 3 * 60000) syncNow(); }, 30000);
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && sheetOpen() && e.target.tagName === 'INPUT') { const b = document.querySelector('#sheet .btn.primary'); if (b) b.click(); }
 });
 render();
+showSync();
+if (SH) syncNow();
 </script>
 </body>
 </html>

@@ -1,6 +1,9 @@
 package com.alexv.giftlist;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -72,6 +75,23 @@ public class MainActivity extends Activity {
             i.putExtra(Intent.EXTRA_TEXT, text);
             startActivity(Intent.createChooser(i, "Share gift list"));
         }
+
+        @JavascriptInterface
+        public void copy(final String text) {
+            runOnUiThread(new Runnable() {
+                @Override public void run() {
+                    ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    if (cm != null) cm.setPrimaryClip(ClipData.newPlainText("Gift list code", text));
+                }
+            });
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Shared lists sync when the app comes back to the front.
+        if (web != null) web.evaluateJavascript("window.onAppResume && window.onAppResume()", null);
     }
 
     @Override
