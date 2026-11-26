@@ -1,6 +1,10 @@
 package com.vasttrivia.app;
 
 import android.app.Activity;
+import android.webkit.JavascriptInterface;
+import android.content.Context;
+import android.content.ClipboardManager;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -33,6 +37,7 @@ public class MainActivity extends Activity {
         web = new WebView(this);
         WebSettings s = web.getSettings();
         s.setJavaScriptEnabled(true);
+        web.addJavascriptInterface(new Bridge(), "VastNative");
         s.setDomStorageEnabled(true);
         s.setAllowFileAccess(false);
         s.setAllowContentAccess(false);
@@ -136,4 +141,35 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onResume() { super.onResume(); web.onResume(); }
+
+    /** window.VastNative for the 👪 Family screen: tap the Family ID to copy it, hold it to share (text it), Paste in Join. */
+    public class Bridge {
+        @JavascriptInterface
+        public void copy(final String text) {
+            runOnUiThread(new Runnable() { @Override public void run() {
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if (cm != null) cm.setPrimaryClip(ClipData.newPlainText("Family ID", text));
+            } });
+        }
+
+        @JavascriptInterface
+        public void share(final String text) {
+            runOnUiThread(new Runnable() { @Override public void run() {
+                Intent send = new Intent(Intent.ACTION_SEND);
+                send.setType("text/plain");
+                send.putExtra(Intent.EXTRA_TEXT, text);
+                try { startActivity(Intent.createChooser(send, "Share the Family ID")); } catch (Exception ignored) { }
+            } });
+        }
+
+        @JavascriptInterface
+        public String paste() {
+            try {
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if (cm == null || !cm.hasPrimaryClip() || cm.getPrimaryClip().getItemCount() == 0) return "";
+                CharSequence t = cm.getPrimaryClip().getItemAt(0).coerceToText(MainActivity.this);
+                return t == null ? "" : t.toString();
+            } catch (Exception e) { return ""; }
+        }
+    }
 }

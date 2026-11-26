@@ -63,6 +63,13 @@
   .link { background:none; border:0; color:var(--red); font-weight:600; padding:6px 0; }
   .link.muted { color:var(--muted); font-weight:400; }
   .secret { color:var(--muted); }
+  /* Lists (a simple checklist for each person, and one for everyone) */
+  .check.on { background:var(--green); border-color:var(--green); color:#fff; }
+  .li.done .t { text-decoration:line-through; color:var(--muted); }
+  .addrow { display:flex; gap:8px; padding:8px 14px 10px; border-top:1px solid var(--line); }
+  .addrow input { flex:1; min-width:0; font:inherit; font-size:16px; padding:9px 11px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--text); }
+  .addrow input:focus { outline:2px solid var(--red); border-color:transparent; }
+  .avatar.list { background:#e9dfd6; color:var(--text); font-size:20px; }
 
   /* Grid */
   .gridwrap { overflow-x:auto; background:var(--card); border-radius:14px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
@@ -162,6 +169,7 @@ let ui = { tab: 'people', person: null, shopMode: 0, q: '' };
 /* ---------- storage ----------
  * Data model (v3): S.years[y] = { people, slots, gifts, gone }.
  *   people {id, name, kind, u}   slots {id, from, cat, u}   gifts {id, to, title, from, cat, status, slot, u}
+ *   notes {id, to, text, done, u}: list items; to = a person id, or "_all" for the list for everyone (Our list)
  *   gift.slot is a slot id (or null for extras); u = updatedAt (ms); gone[id] = deletedAt (tombstones).
  * Stable ids + u + tombstones let shared lists merge item by item (see share.js).
  * Version 2 stored slots by position and reused ids like "p0"/"g0"; load() upgrades it once.
@@ -182,11 +190,11 @@ function load() {
     s.v = 3;
     try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
   }
-  Object.keys(s.years).forEach(y => { if (!s.years[y].gone) s.years[y].gone = {}; });
+  Object.keys(s.years).forEach(y => { if (!s.years[y].gone) s.years[y].gone = {}; if (!s.years[y].notes) s.years[y].notes = []; });
   if (!s.years[s.year]) { const ys = Object.keys(s.years).sort(); s.year = ys[ys.length - 1]; }
   return s;
 }
-function emptyYear() { return { people: [], slots: [], gifts: [], gone: {} }; }
+function emptyYear() { return { people: [], slots: [], gifts: [], notes: [], gone: {} }; }
 // Imported / version-2 year → v3: fresh unique ids, gifts point at slot ids instead of slot positions.
 function normYear(yy) {
   const now = Date.now(), pid = {}, sid = {};
@@ -195,7 +203,7 @@ function normYear(yy) {
   const gifts = (yy.gifts || []).filter(g => pid[g.to]).map(g => ({
     id: uid(), to: pid[g.to], title: g.title, from: g.from, cat: g.cat || '', status: g.status || 0,
     slot: g.slot != null && sid[g.slot] ? sid[g.slot] : null, u: now }));
-  return { people, slots, gifts, gone: {} };
+  return { people, slots, gifts, notes: [], gone: {} };
 }
 function migrateV1(s) {
   // Carry over anything entered in version 1 of the app as family entries.
@@ -233,6 +241,8 @@ function Y(y) { return S.years[y || S.year]; }
 function years() { return Object.keys(S.years).sort(); }
 function person(id, y) { return Y(y).people.find(p => p.id === id); }
 function giftsOf(pid, y) { return Y(y).gifts.filter(g => g.to === pid); }
+function notesOf(to, y) { return (Y(y).notes || []).filter(n => n.to === to); }
+const ALL = '_all'; // the list for everyone
 function kids(y) { return Y(y).people.filter(p => p.kind === 'kid'); }
 function isSecret(g) { return S.hideShark && g.from === 'Shark'; }
 function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show'), 2200); }
@@ -322,7 +332,7 @@ function render() {
     `<button class="${ui.tab === k ? 'on' : ''}" onclick="go('${k}')"><b>${i}</b>${l}</button>`).join('');
 
   const m = document.getElementById('main');
-  if (ui.tab === 'people') m.innerHTML = ui.person && person(ui.person) ? renderPerson(person(ui.person)) : renderPeople();
+  if (ui.tab === 'people') m.innerHTML = ui.person === ALL ? renderOurList() : ui.person && person(ui.person) ? renderPerson(person(ui.person)) : renderPeople();
   else if (ui.tab === 'grid') m.innerHTML = renderGrid();
   else if (ui.tab === 'shop') m.innerHTML = renderShop();
   else m.innerHTML = renderSearch();
@@ -341,15 +351,36 @@ function renderPeople() {
     const sub = p.kind === 'kid'
       ? `${s.filled} of ${s.slots} slots filled · ${s.st[2]} wrapped`
       : (s.n ? `${s.n} gift${s.n > 1 ? 's' : ''} · ${s.st[2]} wrapped` : 'No gifts yet');
+    const nl = notesOf(p.id).filter(n => !n.done).length;
     return `<div class="card" onclick="openPerson('${p.id}')">
       <div class="phead"><div class="avatar ${p.kind === 'kid' ? '' : 'fam'}">${esc(showName(p.name)[0] || '?')}</div>
-      <div class="pinfo"><div class="pname">${esc(showName(p.name))}</div><div class="psub">${sub}</div></div><div class="chev">›</div></div>
+      <div class="pinfo"><div class="pname">${esc(showName(p.name))}</div><div class="psub">${sub}${nl ? ` · 📝 ${nl}` : ''}</div></div><div class="chev">›</div></div>
       ${segBar(s.st, p.kind === 'kid' ? Math.max(s.slots, s.n) : s.n)}</div>`;
   };
   const k = ps.filter(p => p.kind === 'kid'), f = ps.filter(p => p.kind !== 'kid');
   return (k.length ? `<h3>Kids</h3>${k.map(card).join('')}` : '') +
     (f.length ? `<h3>Family</h3>${f.map(card).join('')}` : '') +
-    `<div style="text-align:center;margin-top:8px"><button class="link" onclick="editPerson()">＋ Add person</button></div>`;
+    `<div style="text-align:center;margin-top:8px"><button class="link" onclick="editPerson()">＋ Add person</button></div>` +
+    ourListCard();
+}
+function ourListCard() {
+  const ns = notesOf(ALL), open = ns.filter(n => !n.done).length;
+  return `<h3>List</h3><div class="card" onclick="openPerson('${ALL}')"><div class="phead"><div class="avatar list">📝</div>
+    <div class="pinfo"><div class="pname">Our list</div><div class="psub">${ns.length ? `${open} to do · ${ns.length - open} done` : 'A simple list for anything: ideas, sizes, to-dos'}</div></div><div class="chev">›</div></div></div>`;
+}
+// A simple checklist: tick, tap to edit, type to add.
+function listSection(to, title, placeholder) {
+  const ns = notesOf(to), done = ns.filter(n => n.done).length;
+  return `<div class="section"><div class="section-h"><span>${title}</span><small>${ns.length ? done + ' / ' + ns.length + ' done' : ''}</small></div>
+    ${ns.map(n => `<div class="gift li ${n.done ? 'done' : ''}"><button class="check ${n.done ? 'on' : ''}" onclick="toggleNote('${n.id}')">${n.done ? '✓' : ''}</button>
+      <div class="main" onclick="editNote('${n.id}')"><div class="t">${esc(n.text)}</div></div></div>`).join('')}
+    <div class="addrow"><input type="text" id="noteIn" maxlength="200" placeholder="${esc(placeholder)}" onkeydown="if(event.key==='Enter')addNote('${to}')">
+      <button class="addbtn" onclick="addNote('${to}')">＋ Add</button></div></div>`;
+}
+function renderOurList() {
+  return `<div class="page-head"><button class="back" onclick="closePerson()">‹</button><h2>📝 Our list</h2></div>
+    <div class="psub" style="margin:0 2px 10px">For ${esc(S.year)}. Anything that isn't one person's: shopping, wrapping paper, ideas.</div>` +
+    listSection(ALL, 'List', 'Add to the list…');
 }
 
 function giftRow(p, row) {
@@ -377,15 +408,16 @@ function renderPerson(p) {
   const head = `<div class="page-head"><button class="back" onclick="closePerson()">‹</button>
     <h2>${esc(showName(p.name))}</h2><button class="link muted" onclick="editPerson('${p.id}')">Edit</button></div>
     <div class="psub" style="margin:0 2px 10px">${p.kind === 'kid' ? `${s.filled} of ${s.slots} slots filled · ` : ''}${s.st[0]} idea · ${s.st[1]} purchased · ${s.st[2]} wrapped</div>`;
+  const list = listSection(p.id, '📝 List', `Add to ${showName(p.name)}'s list…`);
   if (!secs.length || (p.kind !== 'kid' && !secs[0].rows.length)) {
-    return head + `<div class="empty">No gifts yet.</div><div style="text-align:center"><button class="btn primary" onclick="editGift('${p.id}')">＋ Add gift</button></div>`;
+    return head + `<div class="empty" style="padding:24px 16px">No gifts yet.</div><div style="text-align:center;margin-bottom:16px"><button class="btn primary" onclick="editGift('${p.id}')">＋ Add gift</button></div>` + list;
   }
   return head + secs.map(sec => {
     const filled = sec.rows.filter(r => r.gift).length;
     return `<div class="section"><div class="section-h"><span>${esc(p.kind === 'kid' ? fromLabel(sec.from) : 'Gifts')}</span><small>${filled}${p.kind === 'kid' ? ' / ' + sec.rows.length : ''}</small></div>
       ${sec.rows.map(r => giftRow(p, r)).join('')}
       <div class="row-actions"><button class="link" onclick="editGift('${p.id}',null,null,${jsq(sec.from)})">＋ Add ${p.kind === 'kid' ? 'extra' : 'gift'}</button></div></div>`;
-  }).join('');
+  }).join('') + list;
 }
 
 function renderGrid() {
@@ -526,6 +558,40 @@ function delGift(id) {
   yy.gifts = yy.gifts.filter(x => x.id !== id); closeSheet(); save();
 }
 
+/* ---------- lists ---------- */
+function findNote(id) { return (Y().notes || []).find(n => n.id === id); }
+function addNote(to) {
+  const inp = document.getElementById('noteIn'), text = inp ? inp.value.trim() : '';
+  if (!text) return inp && inp.focus();
+  if (to !== ALL && !person(to)) return render();
+  if (!Y().notes) Y().notes = [];
+  Y().notes.push(touch({ id: uid(), to, text, done: false }));
+  save();
+  const again = document.getElementById('noteIn'); if (again) again.focus(); // keep typing the next one
+}
+function toggleNote(id) { const n = findNote(id); if (!n) return render(); n.done = !n.done; touch(n); save(); }
+let editingNote = null;
+function editNote(id) {
+  const n = findNote(id); if (!n) return render();
+  editingNote = id;
+  sheet(`<h2>Edit list item</h2>
+    <label>Item</label><input type="text" id="fNote" maxlength="200" value="${esc(n.text)}">
+    <div class="actions"><button class="btn danger" onclick="delNote('${n.id}')">Delete</button>
+      <button class="btn ghost" onclick="closeSheet()">Cancel</button><button class="btn primary" onclick="saveNote()">Save</button></div>`);
+}
+function saveNote() {
+  const n = findNote(editingNote), text = document.getElementById('fNote').value.trim();
+  if (!n) { closeSheet(); return render(); }
+  if (!text) return document.getElementById('fNote').focus();
+  if (text !== n.text) touch(Object.assign(n, { text }));
+  closeSheet(); save();
+}
+function delNote(id) {
+  const yy = Y(), n = findNote(id);
+  if (n) bury(yy, n);
+  yy.notes = (yy.notes || []).filter(x => x.id !== id); closeSheet(); save();
+}
+
 let editingKind = 'kid';
 function editPerson(id) {
   const p = id ? person(id) : { name: '', kind: kids().length ? 'family' : 'kid' };
@@ -573,11 +639,12 @@ function insertSlot(at, slot) {
 function delPerson(id) {
   const p = person(id);
   if (!p) { closeSheet(); return render(); }
-  if (!confirm(`Remove ${showName(p.name)} and their ${giftsOf(id).length} gifts from ${S.year}?`)) return;
+  if (!confirm(`Remove ${showName(p.name)} and their ${giftsOf(id).length} gifts${notesOf(id).length ? ' and list' : ''} from ${S.year}?`)) return;
   const yy = Y();
-  bury(yy, p); giftsOf(id).forEach(g => bury(yy, g));
+  bury(yy, p); giftsOf(id).forEach(g => bury(yy, g)); notesOf(id).forEach(n => bury(yy, n));
   yy.people = yy.people.filter(x => x.id !== id);
   yy.gifts = yy.gifts.filter(g => g.to !== id);
+  yy.notes = (yy.notes || []).filter(n => n.to !== id);
   ui.person = null; closeSheet(); save();
 }
 
@@ -628,6 +695,14 @@ function applyImport() {
   picked.forEach(y => {
     const old = S.years[y], fresh = normYear(pendingImport[y]);
     if (old) { fresh.gone = { ...(old.gone || {}) }; [...old.people, ...old.slots, ...old.gifts].forEach(x => bury(fresh, x)); }
+    // Lists aren't in the spreadsheet: keep them, on the person with the same name (Our list stays Our list)
+    (old && old.notes || []).forEach(n => {
+      const was = n.to === ALL ? null : old.people.find(p => p.id === n.to);
+      const now = n.to === ALL ? { id: ALL } : was && fresh.people.find(p => p.name.toLowerCase() === was.name.toLowerCase());
+      if (now && now.id === n.to) { fresh.notes.push(n); return; }
+      bury(fresh, n);
+      if (now) fresh.notes.push(touch({ ...n, id: uid(), to: now.id }));
+    });
     S.years[y] = fresh;
   });
   S.year = picked.sort().reverse()[0]; ui.person = null; ui.tab = 'people';
@@ -639,7 +714,7 @@ function shareYear() {
   const lines = ['🎄 Christmas ' + S.year, ''];
   Y().people.forEach(p => {
     const secs = sectionsFor(p).map(sec => ({ ...sec, rows: sec.rows.filter(r => r.gift) })).filter(sec => sec.rows.length);
-    if (!secs.length) return;
+    if (!secs.length && !notesOf(p.id).length) return;
     lines.push(showName(p.name).toUpperCase());
     secs.forEach(sec => {
       if (p.kind === 'kid') lines.push('  ' + fromLabel(sec.from));
@@ -648,8 +723,12 @@ function shareYear() {
         lines.push(`  ${p.kind === 'kid' ? '  ' : ''}• ${g.cat ? g.cat + ': ' : ''}${t} [${STATUS[g.status]}]`);
       });
     });
+    const ns = notesOf(p.id);
+    if (ns.length) { lines.push('  📝 List'); ns.forEach(n => lines.push(`    ${n.done ? '☑' : '☐'} ${n.text}`)); }
     lines.push('');
   });
+  const ours = notesOf(ALL);
+  if (ours.length) { lines.push('📝 OUR LIST'); ours.forEach(n => lines.push(`  ${n.done ? '☑' : '☐'} ${n.text}`)); lines.push(''); }
   const text = lines.join('\n');
   closeSheet();
   if (window.Android && Android.share) Android.share('Christmas ' + S.year + ' gift list', text);
@@ -661,7 +740,7 @@ function newYear(y) {
   const src = Y(years()[years().length - 1]);
   // Ids come from the source year's ids, so two phones of a shared list starting the same year match up.
   const people = src.people.map(p => touch({ id: 'y' + y + p.id, name: p.name, kind: p.kind }));
-  S.years[y] = { people, slots: src.slots.map(s => touch({ id: 'y' + y + s.id, from: s.from, cat: s.cat })), gifts: [], gone: {} };
+  S.years[y] = { people, slots: src.slots.map(s => touch({ id: 'y' + y + s.id, from: s.from, cat: s.cat })), gifts: [], notes: [], gone: {} };
   S.year = y; ui.person = null; ui.tab = 'people';
   closeSheet(); save(); toast('Started ' + y + ' 🎄');
 }

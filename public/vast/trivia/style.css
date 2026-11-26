@@ -78,7 +78,9 @@ input[type=text]:focus { border-color: var(--focus); outline: none; }
 /* ---------- play ---------- */
 .filters { margin-bottom: 14px; }
 .filter-toggle { display: flex; align-items: center; gap: 8px; background: none; border: none; padding: 4px 0; font-size: 14px; color: var(--ink-2); }
-.filter-toggle b { color: var(--ink); font-weight: 600; }
+.filter-toggle b { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.playbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.playbar .mini { display: none; gap: 12px; font-size: 14px; font-weight: 700; color: var(--ink-2); white-space: nowrap; }
 .filter-toggle .chev { transition: transform .15s; }
 .filter-toggle[aria-expanded=true] .chev { transform: rotate(180deg); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
@@ -206,6 +208,13 @@ tr.me td { font-weight: 600; }
   .q-text { font-size: 21px; margin-bottom: 18px; }
   .opt { font-size: 16px; padding: 13px 14px; gap: 12px; }
   .hint { display: none; }
+  /* phones: the question gets the screen — slim top line, no stats card, no page footer while playing */
+  .playbar .mini { display: flex; }
+  .filters { margin-bottom: 10px; }
+  .q-meta { margin-bottom: 10px; }
+  .result { margin-top: 16px; padding-top: 14px; gap: 12px; }
+  .q-tools { margin-top: 8px; }
+  body[data-route=play] .foot { display: none; }
   .strip, .kpis { grid-template-columns: repeat(2, 1fr); }
   .strip div:nth-child(2), .kpis div:nth-child(2) { border-right: none; }
   .strip div:nth-child(-n+2), .kpis div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }

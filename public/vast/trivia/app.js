@@ -313,10 +313,13 @@
       : sel.length + ' categories';
     const totalSel = index.categories.filter((c) => slugs.includes(c.slug)).reduce((n, c) => n + c.count, 0);
 
-    let h = '<div class="filters">' +
-      '<button class="filter-toggle" id="ft" aria-expanded="' + filtersOpen + '"><span>Categories:</span><b>' + esc(selName) + '</b>' +
-      '<span class="muted">· ' + fmt(totalSel) + ' questions</span>' +
-      '<svg class="chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>';
+    // one slim line: the category picker on the left, streak and session score on the right
+    let h = '<div class="filters"><div class="playbar">' +
+      '<button class="filter-toggle" id="ft" aria-expanded="' + filtersOpen + '"><span class="hide-sm">Categories:</span><b>' + esc(selName) + '</b>' +
+      '<span class="muted hide-sm">· ' + fmt(totalSel) + ' questions</span>' +
+      '<svg class="chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>' +
+      '<span class="mini" title="Streak · right answers this session">' + (p.streak ? '<span>🔥 ' + p.streak + '</span>' : '') +
+      (session.n ? '<span>✓ ' + session.c + '/' + session.n + '</span>' : '') + '</span></div>';
     if (filtersOpen) {
       h += '<div class="chips"><button class="chip' + (sel.length ? '' : ' on') + '" data-cat="">All</button>';
       for (const c of visibleCats()) {
@@ -351,19 +354,20 @@
         h += '<div class="result">' +
           '<span class="verdict ' + (cur.ok ? 'good' : 'bad') + '">' + verdict + '</span>' +
           '<span class="delta ' + (cur.delta >= 0 ? 'pos' : 'neg') + '">' + signed(cur.delta) + '</span>' +
-          '<span class="muted">' + fmt(cur.before) + ' → <b style="color:var(--ink)">' + fmt(cur.after) + '</b></span>' +
+          '<span class="muted hide-sm">' + fmt(cur.before) + ' → <b style="color:var(--ink)">' + fmt(cur.after) + '</b></span>' +
           '<span class="spacer"></span>' +
           '<button class="btn primary" id="next">Next</button>' +
-          '<span class="qinfo" style="flex-basis:100%">Question rated ' + fmt(cur.qBefore) + ' (' + tier(cur.qBefore) + ') → ' + fmt(cur.qAfter) +
+          '<span class="qinfo hide-sm" style="flex-basis:100%">Question rated ' + fmt(cur.qBefore) + ' (' + tier(cur.qBefore) + ') → ' + fmt(cur.qAfter) +
           ' · answered ' + fmt(qCount(q)) + (qCount(q) === 1 ? ' time' : ' times') + ' on this device</span>' +
           '</div>';
       }
+      // "Remove it" only once the question is answered, so it isn't in the way while answering
       h += '</section>' +
         '<div class="q-tools"><div class="hint"><span><kbd>1</kbd>–<kbd>' + q[2].length + '</kbd> answer</span><span><kbd>Enter</kbd> next</span><span><kbd>X</kbd> remove question</span></div>' +
-        '<button class="btn ghost sm" id="flag" title="Remove this question for good. Undoes any rating change from it.">Bad question? Remove it</button></div>';
+        (cur.answered ? '<button class="btn ghost sm" id="flag" title="Remove this question for good. Undoes any rating change from it.">Bad question? Remove it</button>' : '') + '</div>';
     }
 
-    h += '<div class="card strip">' +
+    h += '<div class="card strip hide-sm">' +
       '<div><span class="label">Rating</span><span class="v">' + fmt(p.r) + '</span></div>' +
       '<div><span class="label">Session</span><span class="v ' + (session.delta > 0 ? 'pos' : session.delta < 0 ? 'neg' : '') + '">' + signed(session.delta) + '</span></div>' +
       '<div><span class="label">Streak</span><span class="v">' + p.streak + '</span></div>' +
@@ -568,6 +572,7 @@
   const route = () => (['play', 'stats', 'players', 'family'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'play');
   function render() {
     const r = route();
+    document.body.dataset.route = r;
     document.querySelectorAll('.tabs a').forEach((a) => a.classList.toggle('on', a.dataset.tab === r));
     if (r !== 'play') stopTimer();
     if (r === 'play') {

@@ -244,7 +244,11 @@
 #vfam .top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
 #vfam .x{background:#262c66;border:0;color:#fff;width:40px;height:40px;border-radius:12px;font-size:22px}
 #vfam .card{background:#262c66;border:2px solid #3d4488;border-radius:16px;padding:12px 14px;margin:8px 0}
-#vfam .code{font-size:34px;font-weight:900;letter-spacing:4px;text-align:center;color:#ffd43b;user-select:all;-webkit-user-select:all;padding:6px 0}
+#vfam .code{font-size:34px;font-weight:900;letter-spacing:4px;text-align:center;color:#ffd43b;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;padding:6px 0;cursor:pointer;border-radius:12px;touch-action:manipulation}
+#vfam .code:active,#vfam .code.held{background:rgba(255,212,59,.14)}
+#vfam .codehint{text-align:center;color:#aab0e0;font-size:13px}
+#vfam .pasterow{display:flex;gap:8px;align-items:stretch}#vfam .pasterow input{flex:1;min-width:0}
+#vfam .paste{flex:none;border:0;border-radius:12px;background:#262c66;color:#fff;font:inherit;font-weight:800;font-size:15px;padding:0 14px}
 #vfam .muted{color:#aab0e0;font-size:13px}
 #vfam .btn{display:block;width:100%;border:0;border-radius:14px;padding:14px;margin:10px 0 0;font:inherit;font-size:17px;font-weight:800;color:#fff;background:linear-gradient(#6b8afd,#4263eb);box-shadow:0 4px 0 #2b45b0}
 #vfam .btn.gold{background:#ffd43b;color:#1b1f3b;box-shadow:0 4px 0 #b8941f}
@@ -318,6 +322,46 @@
     out.push(r.quiet ? '🌙 Quiet hours ' + FAM.fmtTime(r.quiet.from) + ' – ' + FAM.fmtTime(r.quiet.to) : '🌙 No quiet hours');
     return out.map(x => '<div class="row"><span class="n">' + esc(x) + '</span></div>').join('');
   }
+  // The Family ID box: tap = copy, hold = share (text it). Native apps give window.VastNative; the web uses the browser's own.
+  function codeBox() {
+    return '<div class="code" data-a="code" role="button" tabindex="0" aria-label="Family ID ' + esc(FAM.format(st.code)) + '. Tap to copy, hold to share.">' +
+      esc(FAM.format(st.code)) + '</div><div class="codehint">Tap to copy · hold to share</div>';
+  }
+  function shareText() {
+    return 'Join our family in the Vast apps! Our Family ID is ' + FAM.format(st.code) +
+      '\nIn Vast Arcade, Vast Trivia, Vast Party Games or Vast Library: tap 👪 Family → Join with a Family ID.';
+  }
+  function copyText(t) {
+    const N = window.VastNative;
+    try { if (N && N.copy) { N.copy(t); return Promise.resolve(true); } } catch (e) {}
+    const old = () => { try { const a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly', ''); a.style.cssText = 'position:fixed;top:-100px;opacity:0';
+      document.body.appendChild(a); a.select(); const ok = document.execCommand('copy'); a.remove(); return ok; } catch (e) { return false; } };
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t).then(() => true, old);
+    return Promise.resolve(old());
+  }
+  FAM.copyId = function () { if (!st.code) return; copyText(FAM.format(st.code)).then(ok => toast(ok ? '📋 Family ID copied' : 'Could not copy — hold to share instead')); };
+  FAM.shareId = function () {
+    if (!st.code) return; const t = shareText(), N = window.VastNative;
+    try { if (N && N.share) { N.share(t); return; } } catch (e) {}
+    if (navigator.share) { navigator.share({ text: t }).catch(() => {}); return; }
+    copyText(t).then(ok => toast(ok ? '📋 Copied the invite — paste it into a text' : 'Could not share'));
+  };
+  function wireCode() {
+    const c = $('[data-a=code]'); if (!c) return;
+    let timer = 0, held = false;
+    const clear = () => { clearTimeout(timer); timer = 0; c.classList.remove('held'); };
+    c.addEventListener('pointerdown', () => { held = false; c.classList.add('held'); timer = setTimeout(() => { held = true; clear(); try { navigator.vibrate && navigator.vibrate(20); } catch (e) {} FAM.shareId(); }, 550); });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(t => c.addEventListener(t, clear));
+    c.addEventListener('contextmenu', e => e.preventDefault());
+    c.addEventListener('click', () => { if (held) { held = false; return; } FAM.copyId(); });
+    c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); FAM.copyId(); } });
+  }
+  function readClip() {
+    const N = window.VastNative;
+    try { if (N && N.paste) return Promise.resolve(String(N.paste() || '')); } catch (e) {}
+    if (navigator.clipboard && navigator.clipboard.readText) return navigator.clipboard.readText().catch(() => '');
+    return Promise.resolve('');
+  }
   function render() {
     if (!el) return;
     if (view === 'home') draft = null;           // a parent-settings draft lives until home, save or close
@@ -349,19 +393,25 @@
     }
     if (view === 'created') {
       shell('👪 Family ready!',
-        '<p>Your Family ID:</p><div class="card"><div class="code">' + esc(FAM.format(st.code)) + '</div></div>' +
+        '<p>Your Family ID:</p><div class="card">' + codeBox() + '</div>' +
         '<p>On each phone, open a Vast app → 👪 Family → <b>Join with a Family ID</b> and type this in. It works in Vast Arcade, Vast Trivia, Vast Party Games and Vast Library.</p>' +
         '<button class="btn" data-a="ok">Done</button>');
-      $('[data-a=ok]').onclick = () => { view = 'home'; render(); };
+      wireCode(); $('[data-a=ok]').onclick = () => { view = 'home'; render(); };
       return;
     }
     if (view === 'join') {
       shell('Join a family',
-        '<label>Family ID</label><input id="cd" class="codein" maxlength="11" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC-DEF-GHJ">' +
+        '<label>Family ID</label><div class="pasterow"><input id="cd" class="codein" maxlength="11" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC-DEF-GHJ"><button class="paste" data-a="paste" type="button">📋 Paste</button></div>' +
         '<label>Your name</label><input id="mn" maxlength="20" placeholder="Your name" value="' + esc(st.name || '') + '">' +
         '<div class="err"></div><button class="btn gold" data-a="go">Join</button>');
       const cd = $('#cd');
       cd.oninput = () => { const n = FAM.normalize(cd.value).slice(0, 9); const f = n.length > 6 ? FAM.format(n) : n.length > 3 ? n.slice(0, 3) + '-' + n.slice(3) : n; if (cd.value !== f) cd.value = f; };
+      // Paste finds the ID anywhere in what was copied (the bare ID, or a whole invite text)
+      $('[data-a=paste]').onclick = () => readClip().then(t => {
+        const u = String(t || '').toUpperCase(), m = u.match(/[A-Z0-9]{3}-[A-Z0-9]{3}-[A-Z0-9]{3}/g) || [];
+        const id = m.concat([u]).map(x => FAM.normalize(x)).find(x => FAM.valid(x));
+        if (id) { cd.value = FAM.format(id); toast('📋 Pasted ' + FAM.format(id)); } else toast('No Family ID on the clipboard — copy it in your other Vast app first');
+      });
       const b = $('[data-a=go]');
       b.onclick = busy(b, async () => {
         if (!$('#mn').value.trim()) throw new Error('Type your name.');
@@ -374,12 +424,12 @@
       const byName = {};
       ms.forEach(m => { const k = (m.name || 'Player').toLowerCase(); (byName[k] = byName[k] || { name: m.name || 'Player', apps: new Set(), self: false }); byName[k].apps.add(m.app); if (m.self) byName[k].self = true; });
       shell('👪 ' + esc((r && r.name) || 'Family'),
-        '<div class="card"><div class="muted" style="text-align:center">Family ID</div><div class="code">' + esc(FAM.format(st.code)) + '</div></div>' +
+        '<div class="card"><div class="muted" style="text-align:center">Family ID</div>' + codeBox() + '</div>' +
         '<label>Your name</label><input id="mn" maxlength="20" value="' + esc(st.name || '') + '">' +
         '<h3>Family</h3><div class="card">' + (Object.values(byName).map(p => '<div class="row"><span class="n">' + esc(p.name) + (p.self ? ' <span class="muted">(you)</span>' : '') + '</span><span>' + [...p.apps].map(a => APPS[a] || '').join(' ') + '</span></div>').join('') || '<div class="muted">Just you so far. Share the Family ID!</div>') + '</div>' +
         '<h3>Family rules</h3><div class="card">' + (r ? rulesSummary(r) : '') + '</div>' +
         '<button class="btn ghost" data-a="parent">🔒 Parent settings</button><button class="btn bad" data-a="leave">Leave family</button>');
-      const mn = $('#mn'); mn.onchange = () => FAM.setMyName(mn.value || 'Player');
+      wireCode(); const mn = $('#mn'); mn.onchange = () => FAM.setMyName(mn.value || 'Player');
       $('[data-a=parent]').onclick = () => { if (parentOk) go('parent'); else go('pin'); };
       $('[data-a=leave]').onclick = () => go('leave');
       return;

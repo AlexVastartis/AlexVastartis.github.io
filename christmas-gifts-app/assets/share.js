@@ -6,7 +6,7 @@
  *   key  = PBKDF2-SHA256(CODE, "vast-share-key", 150000) -> AES-256-GCM
  *   data = base64(12-byte IV || AES-GCM ciphertext of the JSON list)
  *
- * The shared document is { fmt: 3, years: { "2026": { people, slots, gifts, gone } } }.
+ * The shared document is { fmt: 3, years: { "2026": { people, slots, gifts, notes, gone } } } (notes = list items, since 2.2).
  * Every person / slot / gift has a stable id and u (updatedAt, ms). Deletes leave a tombstone in
  * gone[id] = deletedAt. Merging takes, per id, whichever of the live copies and tombstones is newest
  * (a tombstone wins a tie), so two phones editing at once keep each other's changes.
@@ -118,13 +118,20 @@
     var people = mergeList(l.people, r.people).filter(alive);
     var slots = mergeList(l.slots, r.slots).filter(alive);
     var gifts = mergeList(l.gifts, r.gifts).filter(alive);
+    var notes = mergeList(l.notes, r.notes).filter(alive);
     // A gift for someone who was removed goes with them.
     gifts = gifts.filter(function (g) {
       if (!gone[g.to] || people.some(function (p) { return p.id === g.to; })) return true;
       gone[g.id] = Math.max(gone[g.id] || 0, g.u || 0);
       return false;
     });
-    return { people: people, slots: slots, gifts: gifts, gone: gone };
+    // A list for someone who was removed goes with them ("_all" is the list for everyone).
+    notes = notes.filter(function (n) {
+      if (n.to === '_all' || !gone[n.to] || people.some(function (p) { return p.id === n.to; })) return true;
+      gone[n.id] = Math.max(gone[n.id] || 0, n.u || 0);
+      return false;
+    });
+    return { people: people, slots: slots, gifts: gifts, notes: notes, gone: gone };
   }
   function mergeDocs(local, remote) {
     var ly = (local && local.years) || {}, ry = (remote && remote.years) || {}, years = {}, y;
