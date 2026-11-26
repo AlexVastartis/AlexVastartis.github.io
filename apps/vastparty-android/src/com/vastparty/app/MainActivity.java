@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.ValueCallback;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -108,10 +109,22 @@ public class MainActivity extends Activity {
         applyTheme();
     }
 
+    /**
+     * Back closes the Vast Family sheet first (FAM.back(), one step at a time), then goes back
+     * in the page, then leaves. On the family break / quiet-hours screen, back simply leaves the app.
+     */
     @Override
     public void onBackPressed() {
-        if (web.canGoBack()) web.goBack();
-        else super.onBackPressed();
+        web.evaluateJavascript(
+                "(function(){try{var F=window.FAM;if(!F)return 0;if(F.resting&&F.resting())return 2;return F.back()?1:0;}catch(e){return 0;}})()",
+                new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String v) {
+                        if ("1".equals(v)) return;
+                        if (!"2".equals(v) && web.canGoBack()) web.goBack();
+                        else MainActivity.super.onBackPressed();
+                    }
+                });
     }
 
     @Override

@@ -35,6 +35,7 @@
       <a href="#play" data-tab="play">Play</a>
       <a href="#stats" data-tab="stats">Stats</a>
       <a href="#players" data-tab="players">Players</a>
+      <a href="#family" data-tab="family" title="Family"><span aria-hidden="true">👪</span><span class="fam-word"> Family</span></a>
     </nav>
     <button class="who" id="who" type="button" title="Switch player"><span id="who-name"></span><b id="who-rating"></b></button>
   </div>
@@ -46,6 +47,7 @@
   <p>Questions from <a href="https://github.com/uberspot/OpenTriviaQA" rel="noopener">OpenTriviaQA</a>, licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>, lightly cleaned. Ratings and progress are saved in this browser.</p>
 </footer>
 
+<script src="../family.js"></script>
 <script src="app.js"></script>
 <!--web--><script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../sw.js', { scope: '../' }).catch(function () {});</script><!--/web-->
 </body>

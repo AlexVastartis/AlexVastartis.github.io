@@ -23,6 +23,13 @@
   const SAMPLE = 350;
   const KEYS = ['1', '2', '3', '4', '5'];
 
+  // Vast Family (../family.js), set up at boot below
+  const FAM = window.FAM || null;
+  let famReady = false;
+  let famSyncedAt = 0;
+  const famGames = [];       // filled from q/index.json; the family "hide" picker lists these
+  function famPush() { if (famReady) FAM.push(); }
+
   // ---------------------------------------------------------------- storage
   const store = {
     get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
@@ -40,6 +47,7 @@
     store.set('vt-current', currentId);
     store.set('vt-q', qstate);
     store.set('vt-flags', [...flags]);
+    famPush();
   };
   const saveSettings = () => store.set('vt-settings', settings);
 
@@ -68,6 +76,7 @@
   const loading = {};        // slug -> promise
   const byId = new Map();    // id -> question tuple (for loaded pools)
   const catOf = new Map();   // id -> category name
+  const slugOf = new Map();  // id -> category slug
 
   async function loadIndex() {
     const res = await fetch('q/index.json');
@@ -83,15 +92,22 @@
         return r.json();
       }).then((qs) => {
         pools[slug] = qs;
-        for (const q of qs) { byId.set(q[0], q); catOf.set(q[0], name); }
+        for (const q of qs) { byId.set(q[0], q); catOf.set(q[0], name); slugOf.set(q[0], slug); }
         return qs;
       }).catch((e) => { delete loading[slug]; throw e; });
     }
     return loading[slug];
   }
 
-  const activeSlugs = () => (settings.cats.length ? settings.cats : index.categories.map((c) => c.slug))
-    .filter((s) => index.categories.some((c) => c.slug === s));
+  // ---------------------------------------------------------------- family
+  // Vast Family (../family.js): one shared leaderboard for the whole family, and categories a
+  // parent hid in the family rules are left out of play and the category picker.
+  const famHidden = (slug) => !!(FAM && slug && FAM.isHidden(slug));
+  const visibleCats = () => index.categories.filter((c) => !famHidden(c.slug));
+  const selectedCats = () => settings.cats.filter((s) => visibleCats().some((c) => c.slug === s));
+
+  // the chosen categories, or every shown category when none is chosen (or all chosen are hidden)
+  const activeSlugs = () => { const sel = selectedCats(); return sel.length ? sel : visibleCats().map((c) => c.slug); };
 
   // ---------------------------------------------------------------- rating
   const qRating = (q) => (qstate[q[0]] ? qstate[q[0]][0] : q[4]);
@@ -117,6 +133,7 @@
   function pickSlug() {
     const slugs = activeSlugs();
     const cats = index.categories.filter((c) => slugs.includes(c.slug));
+    if (!cats.length) return null;
     let i = Math.random() * cats.reduce((n, c) => n + c.count, 0);
     for (const c of cats) { if (i < c.count) return c.slug; i -= c.count; }
     return cats[cats.length - 1].slug;
@@ -213,6 +230,11 @@
     stopTimer();
     const my = ++turn;
     let slug = nextSlug && activeSlugs().includes(nextSlug) ? nextSlug : pickSlug();
+    if (!slug) {
+      cur = null;
+      if (route() === 'play') $app.innerHTML = '<div class="card loading">No categories to play right now. A grown-up can choose which ones show in 👪 Family → Parent settings.</div>';
+      return;
+    }
     if (!pools[slug]) { cur = null; renderPlay(); }
     try { await loadPool(slug); } catch (e) {
       // offline or a failed download: use any selected category that is loaded or cached
@@ -234,7 +256,7 @@
     cur = q ? { q, answered: false, t0: Date.now() } : null;
     // prefetch the category for the following turn
     nextSlug = pickSlug();
-    loadPool(nextSlug).catch(() => { nextSlug = null; });
+    if (nextSlug) loadPool(nextSlug).catch(() => { nextSlug = null; });
     renderPlay();
     if (cur && settings.timer && route() === 'play') startTimer();
   }
@@ -243,6 +265,7 @@
     const limit = settings.timer * 1000;
     const tick = () => {
       if (!cur || cur.answered) return stopTimer();
+      if (FAM && FAM.resting()) { cur.t0 += 100; return; } // the clock waits during a family break
       const left = Math.max(0, limit - (Date.now() - cur.t0));
       const el = document.getElementById('timer');
       if (el) {
@@ -284,9 +307,10 @@
     if (!index) { $app.innerHTML = '<div class="card loading">Loading questions…</div>'; return; }
     const p = me();
     const slugs = activeSlugs();
-    const selName = settings.cats.length === 0 ? 'All categories'
-      : settings.cats.length === 1 ? index.categories.find((c) => c.slug === settings.cats[0]).name
-      : settings.cats.length + ' categories';
+    const sel = selectedCats();
+    const selName = sel.length === 0 ? 'All categories'
+      : sel.length === 1 ? index.categories.find((c) => c.slug === sel[0]).name
+      : sel.length + ' categories';
     const totalSel = index.categories.filter((c) => slugs.includes(c.slug)).reduce((n, c) => n + c.count, 0);
 
     let h = '<div class="filters">' +
@@ -294,8 +318,8 @@
       '<span class="muted">· ' + fmt(totalSel) + ' questions</span>' +
       '<svg class="chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>';
     if (filtersOpen) {
-      h += '<div class="chips"><button class="chip' + (settings.cats.length ? '' : ' on') + '" data-cat="">All</button>';
-      for (const c of index.categories) {
+      h += '<div class="chips"><button class="chip' + (sel.length ? '' : ' on') + '" data-cat="">All</button>';
+      for (const c of visibleCats()) {
         h += '<button class="chip' + (settings.cats.includes(c.slug) ? ' on' : '') + '" data-cat="' + c.slug + '">' + esc(c.name) + '<small>' + fmt(c.count) + '</small></button>';
       }
       h += '</div>';
@@ -457,6 +481,52 @@
     $app.innerHTML = h;
   }
 
+  // Family leaderboard: every player on every family phone, ranked by rating. Everyone sees the same list.
+  function familyPlayers() {
+    const out = [];
+    for (const m of FAM.members()) {
+      if (m.app !== 'trivia' || !Array.isArray(m.players)) continue;
+      const solo = m.players.length === 1;
+      for (const p of m.players) {
+        if (!p || !(+p.games > 0)) continue;
+        // a lone "Player 1" on a phone goes by that phone's family name instead
+        const name = solo && /^Player \d+$/.test(p.name || '') && m.name ? m.name : (p.name || m.name || 'Player');
+        out.push({ name: String(name).slice(0, 32), r: +p.r || START, best: +p.best || 0, games: +p.games || 0, correct: +p.correct || 0,
+          mine: m.self && me() && p.name === me().name });
+      }
+    }
+    return out.sort((a, b) => b.r - a.r || b.games - a.games);
+  }
+  function renderFamily() {
+    updateWho();
+    if (route() !== 'family') return;
+    if (!FAM) { $app.innerHTML = '<div class="card loading">Family is not available here.</div>'; return; }
+    if (!FAM.joined()) {
+      $app.innerHTML = '<div class="card section fam-invite">' +
+        '<div class="fam-big" aria-hidden="true">👪</div>' +
+        '<h2>Play together as a family</h2>' +
+        '<p>Join your family and everyone’s ratings land in one family leaderboard, on every phone. Who will climb to the top?</p>' +
+        '<p class="muted">Everyone in the family sees the same list. It also works with Vast Arcade, Vast Party Games and Vast Library.</p>' +
+        '<button class="btn primary" data-fam>Start or join a family</button></div>';
+      return;
+    }
+    const r = FAM.rules() || {};
+    const list = familyPlayers();
+    let h = '<div class="fam-head"><h2>👪 ' + esc(r.name || 'Family') + '</h2><button class="btn sm" data-fam>Family settings</button></div>' +
+      '<div class="card section" style="margin-top:0"><h3>Family leaderboard</h3>';
+    if (!list.length) h += '<p class="empty">No answers yet. Play a few questions and you’ll be the first one on the list!</p>';
+    else {
+      h += '<table class="fam-table"><thead><tr><th></th><th>Name</th><th class="n">Rating</th><th class="n">Best streak</th><th class="n">Answered</th><th class="n hide-sm">Correct</th></tr></thead><tbody>';
+      list.forEach((p, i) => {
+        h += '<tr class="' + (p.mine ? 'me' : '') + '"><td class="rank">' + (i < 3 ? ['🥇', '🥈', '🥉'][i] : i + 1) + '</td><td>' + esc(p.name) + '</td>' +
+          '<td class="n">' + fmt(p.r) + '</td><td class="n">' + fmt(p.best) + '</td><td class="n">' + fmt(p.games) + '</td><td class="n hide-sm">' + pct(p.correct, p.games) + '</td></tr>';
+      });
+      h += '</tbody></table>';
+    }
+    h += '</div><p class="muted fam-note">Everyone in the family sees this same list. It refreshes every few minutes.</p>';
+    $app.innerHTML = h;
+  }
+
   // ---------------------------------------------------------------- modal
   function openPicker() {
     const ov = document.createElement('div');
@@ -495,7 +565,7 @@
   }
 
   // ---------------------------------------------------------------- routing
-  const route = () => (['play', 'stats', 'players'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'play');
+  const route = () => (['play', 'stats', 'players', 'family'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'play');
   function render() {
     const r = route();
     document.querySelectorAll('.tabs a').forEach((a) => a.classList.toggle('on', a.dataset.tab === r));
@@ -504,7 +574,10 @@
       renderPlay();
       if (cur && settings.timer && !cur.answered && !timerId) startTimer();
     } else if (r === 'stats') renderStats();
-    else renderPlayers();
+    else if (r === 'family') {
+      renderFamily();
+      if (FAM && FAM.joined() && Date.now() - famSyncedAt > 15000) { famSyncedAt = Date.now(); FAM.sync(); }
+    } else renderPlayers();
   }
   window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
 
@@ -519,10 +592,11 @@
     const chip = t.closest('.chip');
     if (chip) {
       const s = chip.dataset.cat;
+      settings.cats = selectedCats();
       if (!s) settings.cats = [];
       else if (settings.cats.includes(s)) settings.cats = settings.cats.filter((x) => x !== s);
       else settings.cats = settings.cats.concat(s);
-      if (settings.cats.length === index.categories.length) settings.cats = [];
+      if (settings.cats.length === visibleCats().length) settings.cats = [];
       saveSettings();
       nextSlug = null;
       if (!cur || !cur.answered) next(); else renderPlay();
@@ -567,6 +641,7 @@
       return;
     }
     if (t.closest('#import')) return document.getElementById('import-file').click();
+    if (t.closest('[data-fam]')) { if (FAM) FAM.open(); return; }
   });
 
   $app.addEventListener('change', (e) => {
@@ -601,7 +676,7 @@
   document.getElementById('who').addEventListener('click', openPicker);
 
   document.addEventListener('keydown', (e) => {
-    if (route() !== 'play' || !cur || document.querySelector('.overlay')) return;
+    if (route() !== 'play' || !cur || document.querySelector('.overlay') || (FAM && FAM.isOpen())) return;
     if (e.target.closest('input, textarea, select') || e.metaKey || e.ctrlKey || e.altKey) return;
     const k = e.key.toLowerCase();
     if (!cur.answered) {
@@ -614,10 +689,31 @@
   });
 
   // ---------------------------------------------------------------- boot
+  if (FAM) {
+    FAM.init({
+      app: 'trivia',
+      collect: () => ({ players: players.map((p) => ({ name: p.name, r: Math.round(p.r), peak: Math.round(p.peak), best: p.best, games: p.games, correct: p.correct })) }),
+      games: famGames,
+      itemWord: 'categories', itemOne: 'category',
+    });
+    famReady = true;
+    const hidSig = () => JSON.stringify(((FAM.rules() || {}).hidden || {}).trivia || []);
+    let lastHid = hidSig();
+    FAM.on('change', () => {
+      const r = route();
+      if (r === 'family') renderFamily();
+      const sig = hidSig();
+      if (sig === lastHid || !index) return;
+      lastHid = sig;   // the family's hidden categories changed
+      if (nextSlug && famHidden(nextSlug)) nextSlug = null;
+      if ((cur && !cur.answered && famHidden(slugOf.get(cur.q[0]))) || !cur) next();
+      else if (r === 'play') renderPlay();
+    });
+  }
   updateWho();
   render();
   loadIndex()
-    .then(() => next())
+    .then(() => { famGames.push(...index.categories.map((c) => ({ id: c.slug, name: c.name }))); return next(); })
     .catch(() => {
       $app.innerHTML = '<div class="card loading">Could not load questions. Check your connection and reload.</div>';
     });

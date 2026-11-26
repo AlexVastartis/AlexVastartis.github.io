@@ -2,7 +2,7 @@
 // App files: network first (so updates land), cache as fallback.
 // Question banks: cache first (large, ids are stable), refreshed in the background.
 const CACHE = 'vast-v2';
-const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png',
+const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'family.js',
   'trivia/', 'trivia/index.html', 'trivia/style.css', 'trivia/app.js', 'trivia/q/index.json',
   'party/', 'party/index.html', 'party/icon.svg'];
 

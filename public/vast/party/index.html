@@ -128,11 +128,17 @@ input[type=text]:focus{border-color:var(--accent)}
 .toggle i{flex:0 0 auto;width:38px;height:22px;border-radius:999px;background:var(--line);position:relative;transition:background .2s}
 .toggle i::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
 .toggle.on i{background:var(--accent)}.toggle.on i::after{transform:translateX(16px)}
+.famfav{align-self:flex-start;display:inline-block;margin-top:8px;padding:3px 8px;border-radius:999px;background:rgba(0,0,0,.28);font-size:11.5px;font-weight:800;letter-spacing:.01em}
+.famfav+b{margin-top:4px}
+.famchip{flex:0 0 auto;padding:10px 12px}
+/* the shared Family sheet (../family.js) brings its own look; keep this page's .row rule off it */
+#vfam .row>*{flex:0 0 auto}#vfam .row>.n{flex:1}
 .drink{align-self:center;display:inline-flex;gap:6px;padding:8px 14px;border-radius:999px;background:rgba(255,184,0,.22);color:inherit;font-weight:700;font-size:15px;line-height:1.3;text-align:center;max-width:100%}
 </style>
 </head>
 <body>
 <div id="app"></div>
+<script src="../family.js"></script>
 <script>
 "use strict";
 /* ------------------------------------------------------------------ content */
@@ -269,7 +275,9 @@ function toast(msg) { const t = document.createElement("div"); t.className = "to
 /* ------------------------------------------------------------------ shell */
 let currentGame = null;
 const ON_WEB = /^\/vast\/party\//.test(location.pathname);
+let atHome = false;
 function screen(title, body, { back = true, right = "" } = {}) {
+  atHome = false;
   app.innerHTML = `<header>${back ? `<button class="iconbtn" data-act="home" aria-label="Back to games">←</button>` : !ON_WEB ? "" : `<a class="iconbtn" href="../" title="All Vast Apps" aria-label="All Vast Apps" style="color:inherit"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2h5v5H2zM11 2h5v5h-5zM2 11h5v5H2zM11 11h5v5h-5z" fill="currentColor"/></svg></a>`}<h1>${title}</h1>${right}</header><main>${body}</main>`;
   app.querySelectorAll('[data-act="home"]').forEach(b => b.onclick = home);
   window.scrollTo(0, 0);
@@ -302,8 +310,11 @@ const GAMES = [
 function home() {
   runCleanup(); currentGame = null;
   if (wake) { try { wake.release(); } catch {} wake = null; }
-  const card = g => `<button class="game" style="background:${g.color}" data-g="${g.id}"><span class="em">${g.em}</span><span><b>${g.name}</b><small>${g.desc}</small></span></button>`;
-  const sect = (label, t) => `<div class="section-label">${label}</div><div class="grid">${GAMES.filter(g => g.type === t).map(card).join("")}</div>`;
+  const favs = famFavorites();
+  const shown = GAMES.filter(g => !famHidden(g) && !favs.includes(g));
+  const card = g => `<button class="game" style="background:${g.color}" data-g="${g.id}"><span class="em">${g.em}</span><span>${favs.includes(g) ? `<span class="famfav">👪 Family favorite</span>` : ""}<b>${g.name}</b><small>${g.desc}</small></span></button>`;
+  const grid = (label, gs) => gs.length ? `<div class="section-label">${label}</div><div class="grid">${gs.map(card).join("")}</div>` : "";
+  const sect = (label, t) => grid(label, shown.filter(g => g.type === t));
   screen("", `
     <div class="hero"><h2>Vast Party Games 🎉</h2><p>Party games for one phone. Pick a game, pass it around.</p></div>
     <div class="row" style="flex:0">
@@ -316,18 +327,36 @@ function home() {
     </div>
     ${rating !== "family" ? `<button class="toggle ${drinks ? "on" : ""}" id="dbtn" aria-pressed="${drinks}"><span>🍺 Drinking rules</span><i></i></button>
     ${drinks ? `<p class="muted" style="margin:0;font-size:14px">Rules show up at the end of each round. Water counts. Pace yourselves and get home safe.</p>` : ""}` : ""}
+    ${grid("👪 Family favorites", favs)}
     ${sect("Pass the phone", "pass")}
     ${sect("Guess the word", "guess")}
     ${sect("Talk & confess", "talk")}
     ${sect("Tools", "tool")}
     <p class="muted center" style="font-size:13px;margin-top:8px">Works offline. Add to your home screen to use it like an app.</p>
-  `, { back: false });
-  on(".game", (e, el) => { const g = GAMES.find(x => x.id === el.dataset.g); currentGame = g; keepAwake(); g.fn(); });
+  `, { back: false, right: fam ? `<button class="chip famchip" id="fbtn" aria-label="Family">👪 Family</button>` : "" });
+  atHome = true; homeSig = famSig();
+  on(".game", (e, el) => { const g = GAMES.find(x => x.id === el.dataset.g); countPlay(g); currentGame = g; keepAwake(); g.fn(); });
+  on("#fbtn", () => fam.open());
   on("#pbtn", () => playersScreen(home));
   on("#sbtn", () => { soundOn = !soundOn; store.set("sound", soundOn); home(); });
   on(".rate", (e, el) => { if (el.dataset.r === rating) return; rating = el.dataset.r; store.set("rating", rating); setDrinks(); home(); toast(`Rating: ${RATINGS.find(r => r.id === rating).label}`); });
   on("#dbtn", () => { drinksPref = !drinksPref; store.set("drinks", drinksPref); setDrinks(); home(); toast(drinks ? "Drinking rules on" : "Drinking rules off"); });
 }
+
+/* ------------------------------------------------------------------ Vast Family (../family.js)
+   Plays are counted per game on this phone and shared with the family as totals (no names).
+   The games the family plays most float up with a badge; games a parent hid leave the list. */
+const fam = window.FAM || null;
+let plays = store.get("plays", {}), homeSig = "";
+const famHidden = g => !!(fam && fam.isHidden(g.name));
+function countPlay(g) { plays[g.name] = (plays[g.name] || 0) + 1; store.set("plays", plays); if (fam) fam.push(); }
+function famFavorites() {
+  if (!fam || !fam.joined()) return [];
+  const n = Object.assign({}, plays);   // this phone counts from its own tally, everyone else from the family list
+  fam.members().forEach(m => { if (m.app === "party" && !m.self && m.plays) for (const [k, v] of Object.entries(m.plays)) n[k] = (n[k] || 0) + (+v || 0); });
+  return GAMES.filter(g => !famHidden(g) && (n[g.name] || 0) >= 3).sort((a, b) => n[b.name] - n[a.name]).slice(0, 4);
+}
+const famSig = () => (fam && fam.joined() ? "j" : "") + GAMES.map(g => famHidden(g) ? "h" : "-").join("") + famFavorites().map(g => g.id).join(",");
 
 function playersScreen(after, need = 0) {
   const render = () => {
@@ -760,6 +789,13 @@ function gChooser() {
 }
 
 /* ------------------------------------------------------------------ boot */
+if (fam) {
+  fam.init({ app: "party", collect: () => ({ plays }), games: GAMES.map(g => ({ id: g.name, name: g.name })) });
+  // refresh the home list when the family's favorites or hidden games change (keeping the scroll spot)
+  fam.on("change", () => { if (atHome && !currentGame && famSig() !== homeSig) { const y = window.scrollY; home(); window.scrollTo(0, y); } });
+  // a family break or quiet hours: stop the running game so nothing keeps ticking behind the rest screen
+  window.addEventListener("vastfamilyrest", () => { if (currentGame) home(); });
+}
 home();
 if ("serviceWorker" in navigator && /^\/vast\/party\//.test(location.pathname)) {
   navigator.serviceWorker.register("../sw.js", { scope: "../" }).catch(() => {});

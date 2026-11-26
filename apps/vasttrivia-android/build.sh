@@ -19,6 +19,10 @@ b="$here/build"; rm -rf "$b"; mkdir -p "$b/assets/www" "$b/classes" "$here/out"
 # web app -> assets/www (web-only bits stripped: service worker, hub link, web fonts)
 cp -r "$root/public/vast/trivia/q" "$root/public/vast/trivia/app.js" "$root/public/vast/trivia/style.css" "$b/assets/www/"
 perl -0pe 's/<!--web-->.*?<!--\/web-->\n?//gs' "$root/public/vast/trivia/index.html" > "$b/assets/www/index.html"
+# Vast Family: index.html loads ../family.js. The app is served from https://appassets.androidplatform.net/index.html,
+# where ../family.js resolves to /family.js = assets/www/family.js (also one level up, for file:///android_asset/www/).
+cp "$root/public/vast/family.js" "$b/assets/www/family.js"
+cp "$root/public/vast/family.js" "$b/assets/family.js"
 if grep -q 'serviceWorker\|fonts.googleapis\|manifest.webmanifest' "$b/assets/www/index.html"; then echo "strip failed" >&2; exit 1; fi
 
 javac -nowarn -source 8 -target 8 -bootclasspath "$sdk" -d "$b/classes" "$here"/src/com/vasttrivia/app/*.java 2>&1 | grep -v 'warning: \[options\]' || true
