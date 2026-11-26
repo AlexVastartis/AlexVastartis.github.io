@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vastparty.app"
-    android:versionCode="4"
-    android:versionName="1.3">
+    android:versionCode="5"
+    android:versionName="1.4">
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
     <!-- Vast Family: shares (encrypted) family scores and rules with vast-apps.fly.dev -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Vast Family: the other Vast apps on this phone (one-tap join, one name per phone) -->
+    <queries>
+        <package android:name="com.vastarcade.app" />
+        <package android:name="com.vasttrivia.app" />
+        <package android:name="com.pocketlibrary" />
+    </queries>
 
     <application
         android:label="Vast Party Games"
@@ -25,5 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Vast Family "this phone" record for the other Vast apps only (checked by package + signing key) -->
+        <provider android:name=".VastPhone$Provider" android:authorities="com.vastparty.app.vastfamily" android:exported="true" />
     </application>
 </manifest>

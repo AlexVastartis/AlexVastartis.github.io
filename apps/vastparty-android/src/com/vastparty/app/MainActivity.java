@@ -146,6 +146,13 @@ public class MainActivity extends Activity {
 
     /** window.VastNative for the 👪 Family screen: tap the Family ID to copy it, hold it to share (text it), Paste in Join. */
     public class Bridge {
+
+        /** Vast Family "this phone" record: this app publishes its own, and reads the other Vast apps' (VastPhone). */
+        @JavascriptInterface
+        public void setPhone(String json) { VastPhone.save(MainActivity.this, json); }
+
+        @JavascriptInterface
+        public String siblings() { return VastPhone.siblings(MainActivity.this); }
         @JavascriptInterface
         public void copy(final String text) {
             runOnUiThread(new Runnable() { @Override public void run() {

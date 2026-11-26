@@ -18,6 +18,11 @@
  *   FAM.on('change', fn)    after every sync or rules change
  *   FAM.isOpen() / FAM.close() / FAM.back()   for Android back-button handling (back() returns true if it closed something)
  * The break / quiet-hours screen runs by itself once init() is called (also with gateOnly on game pages).
+ *
+ * "This phone" (Android apps only, through window.VastNative): every Vast app on a phone publishes
+ * {code, name, nameT, dev, devT, fam} and reads the others'. That gives one-tap join ("the family is already on
+ * this phone"), one name per phone across the apps (the newest name wins), and one phone id (dev, the oldest wins)
+ * so parents see one line per phone. See AppShelf/FAMILY.md.
  */
 (function () {
   'use strict';
@@ -29,6 +34,8 @@
   const TIME = () => 'vast_family_time_' + opt.app;   // {day, sec, extra}
   const MEMBER = () => 'vast_family_member_' + opt.app;
   const UNLOCK = 'vast_family_unlock';       // {until}
+  const PHONE = 'vast_family_phone';         // {dev, devT, name, nameT}: this phone's id and the person's name (kept when leaving)
+  const OFFER = 'vast_family_offer_seen';    // Family ID whose one-tap offer was already shown on start
   const APPS = { arcade: '🕹️', trivia: '❓', party: '🎉', library: '🎬' };
   const APP_NAMES = { arcade: 'Vast Arcade', trivia: 'Vast Trivia', party: 'Vast Party Games', library: 'Vast Library' };
   let opt = { app: 'app', collect: () => ({}), games: [], gateOnly: false, itemWord: 'games', itemOne: 'game' };
@@ -96,11 +103,25 @@
   FAM.memberId = () => mid() || '';
   function mid() { return lget(MEMBER(), null); }
   function setMid(v) { if (v) lset(MEMBER(), v); else { try { localStorage.removeItem(MEMBER()); } catch (e) {} } }
-  FAM.setMyName = function (n) { st.name = clean(n, 20); save(); FAM.push(true); emit(); };
+  FAM.setMyName = function (n) { st.name = clean(n, 20); save(); nameSet(st.name); FAM.push(true); emit(); };
   FAM.members = function () {
     if (!FAM.joined()) return [];
     const gone = new Set((st.rules && st.rules.removed) || []);
     return (st.members || []).filter(m => !gone.has(m.id)).map(m => Object.assign({}, m, { self: m.id === mid() }));
+  };
+  // The family as people: records on the same phone (same dev) or with the same name are one person.
+  // [{name, apps:Set, self}] - the name is the one set most recently.
+  FAM.people = function () {
+    const ms = FAM.members(), up = ms.map((_, i) => i);
+    const find = i => (up[i] === i ? i : (up[i] = find(up[i])));
+    const first = {};
+    ms.forEach((m, i) => [m.dev ? 'd:' + m.dev : '', 'n:' + (m.name || 'Player').toLowerCase()].filter(Boolean).forEach(k => {
+      if (k in first) up[find(i)] = find(first[k]); else first[k] = i;
+    }));
+    const g = {};
+    ms.forEach((m, i) => { const r = find(i); const x = (g[r] = g[r] || { name: m.name || 'Player', t: -1, apps: new Set(), self: false });
+      if ((+m.t || 0) > x.t) { x.t = +m.t || 0; x.name = m.name || 'Player'; } x.apps.add(m.app); if (m.self) x.self = true; });
+    return Object.values(g);
   };
   FAM.isHidden = function (id) { const r = FAM.rules(); return !!(r && r.hidden && (r.hidden[opt.app] || []).includes(id)); };
   function clean(s, n) { return String(s == null ? '' : s).replace(/[<>]/g, '').trim().slice(0, n); }
@@ -126,7 +147,7 @@
         }
         st.members = ms; st.at = Date.now();
         if (st.rules && (st.rules.removed || []).includes(mid())) { leaveLocal(); toast('This phone was taken out of the family.'); emit(); return true; }
-        save(); emit(); checkGate();
+        save(); emit(); checkGate(); publish();
         if (!ms.some(m => m.id === mid())) lastPushed = '';
         FAM.push();
         return true;
@@ -140,7 +161,7 @@
     pushTimer = setTimeout(async () => {
       try {
         let data = {}; try { data = opt.collect() || {}; } catch (e) {}
-        const rec = Object.assign({}, data, { app: opt.app, name: st.name || 'Player' });
+        const rec = Object.assign({}, data, { app: opt.app, name: st.name || 'Player', dev: phone().dev });
         const sig = JSON.stringify(rec); if (sig === lastPushed) return;
         rec.t = Date.now();
         const r = await req('PUT', '/family/' + st.room + '/members/' + memberId(), { data: await seal(rec) });
@@ -163,22 +184,22 @@
       hidden: {}, dailyMinutes: 0, quiet: null, removed: [], t: Date.now() };
     const r = await req('PUT', '/family/' + st.room + '/rules', { v: 0, data: await seal(rules) });
     if (r.status !== 200) { st = prev; keyObj = null; throw new Error(r.status === 409 ? 'Try again.' : 'Could not reach the family server. Check the internet and try again.'); }
-    st.rules = rules; st.rv = r.json.v; st.name = clean(myName, 20); st.members = []; save();
-    lastPushed = ''; FAM.push(true); emit(); return code;
+    st.rules = rules; st.rv = r.json.v; st.name = clean(myName, 20); st.members = []; save(); nameSet(st.name);
+    lastPushed = ''; FAM.push(true); emit(); publish(); return code;
   };
-  FAM.join = async function (code, myName) {
+  FAM.join = async function (code, myName, nameT) {
     code = FAM.normalize(code);
     if (!FAM.valid(code)) throw new Error('A Family ID is 9 letters and numbers, like ABC-DEF-GHJ.');
     const prev = st; st = {}; await setFamily(code);
     let r; try { r = await req('GET', '/family/' + st.room); } catch (e) { r = { status: 0 }; }
     if (r.status !== 200 || !r.json || !r.json.rules) { st = prev; keyObj = null; throw new Error(r.status === 200 ? 'No family has that ID. Check the letters and try again.' : 'Could not reach the family server. Check the internet and try again.'); }
-    st.name = clean(myName, 20);
+    st.name = clean(myName, 20); nameSet(st.name, nameT);
     // a phone a parent removed earlier joins again under a new member id
     try { const rules = await open(r.json.rules.data); if ((rules.removed || []).includes(mid())) setMid(null); } catch (e) {}
     save();
-    lastPushed = ''; await FAM.sync(); emit(); return true;
+    lastPushed = ''; await FAM.sync(); emit(); publish(); return true;
   };
-  function leaveLocal() { st = {}; keyObj = null; lastPushed = ''; save(); }
+  function leaveLocal() { st = {}; keyObj = null; lastPushed = ''; save(); publish(); }
   FAM.leave = async function () {
     if (FAM.joined() && mid()) { try { await req('DELETE', '/family/' + st.room + '/members/' + mid()); } catch (e) {} }
     leaveLocal(); emit(); checkGate();
@@ -196,10 +217,78 @@
     }
     throw new Error('Could not save. Try again.');
   };
+  FAM.removeMembers = async function (ids) {
+    await FAM.editRules(r => { r.removed = (r.removed || []).filter(x => !ids.includes(x)).concat(ids).slice(-200); });
+    for (const id of ids) { try { await req('DELETE', '/family/' + st.room + '/members/' + id); } catch (e) {} }
+    st.members = (st.members || []).filter(m => !ids.includes(m.id)); save(); emit();
+  };
   FAM.removeMember = async function (id) {
     await FAM.editRules(r => { r.removed = (r.removed || []).filter(x => x !== id).concat([id]).slice(-200); });
     try { await req('DELETE', '/family/' + st.room + '/members/' + id); } catch (e) {}
     st.members = (st.members || []).filter(m => m.id !== id); save(); emit();
+  };
+
+  /* ---------- this phone: shared with the other Vast apps on it (Android) ---------- */
+  const NATIVE = () => window.VastNative;
+  function phone() {
+    let p = lget(PHONE, null);
+    if (!p || !p.dev) {
+      const b = crypto.getRandomValues(new Uint8Array(9));
+      p = Object.assign({ name: st.name || '', nameT: 0 }, p || {}, { dev: b64(b).replace(/[+/=]/g, 'x'), devT: Date.now() });
+      lset(PHONE, p);
+    }
+    return p;
+  }
+  function nameSet(n, t) { const p = phone(); p.name = n; p.nameT = t || Date.now(); lset(PHONE, p); publish(); }
+  function publish() {
+    const N = NATIVE(); if (!N || !N.setPhone) return;
+    const p = phone();
+    try {
+      N.setPhone(JSON.stringify({ v: 1, code: FAM.joined() ? st.code : '', name: (FAM.joined() ? st.name : p.name) || '', nameT: p.nameT || 0,
+        dev: p.dev, devT: p.devT, fam: (FAM.joined() && st.rules && st.rules.name) || '' }));
+    } catch (e) {}
+  }
+  let sibs = [];
+  function readSiblings() {
+    const N = NATIVE(); sibs = [];
+    if (!N || !N.siblings) return sibs;
+    try { sibs = (JSON.parse(N.siblings() || '[]') || []).filter(x => x && x.phone && typeof x.phone === 'object'); } catch (e) { sibs = []; }
+    return sibs;
+  }
+  // The other apps' family on this phone (the one most of them are in), or null.
+  FAM.phoneFamily = function () {
+    const by = {};
+    sibs.forEach(x => { const c = FAM.normalize(x.phone.code); if (FAM.valid(c) && c !== st.code) (by[c] = by[c] || []).push(x); });
+    const best = Object.values(by).sort((a, b) => b.length - a.length)[0];
+    if (!best) return null;
+    const named = best.slice().sort((a, b) => (+b.phone.nameT || 0) - (+a.phone.nameT || 0))[0].phone;
+    return { code: FAM.normalize(named.code), name: clean(named.name, 20), nameT: +named.nameT || 0, fam: clean(best.map(x => x.phone.fam).find(Boolean) || '', 30),
+      apps: best.map(x => APP_NAMES[x.app] || x.app) };
+  };
+  // Line up with the other Vast apps on this phone: one phone id (the oldest), and in the same family one name (the newest).
+  function reconcile() {
+    readSiblings();
+    const p = phone(); let changed = false;
+    sibs.forEach(({ phone: q }) => {
+      if (q.dev && q.devT && (q.devT < p.devT || (q.devT === p.devT && q.dev < p.dev))) { p.dev = String(q.dev).slice(0, 24); p.devT = +q.devT; changed = true; }
+    });
+    if (FAM.joined()) {
+      sibs.forEach(({ phone: q }) => {
+        if (FAM.normalize(q.code) !== st.code || !q.name) return;
+        const qt = +q.nameT || 0, pt = p.nameT || 0, qn = clean(q.name, 20);
+        if (qn !== st.name && (qt > pt || (qt === pt && qn < (st.name || '')))) { st.name = qn; p.name = qn; p.nameT = qt; save(); changed = true; }
+      });
+    }
+    if (changed) { lset(PHONE, p); FAM.push(true); emit(); }
+    publish();
+    return changed;
+  }
+  FAM.joinPhoneFamily = async function () {
+    const f = FAM.phoneFamily(); if (!f) throw new Error('The family is no longer on this phone.');
+    if (FAM.joined()) { try { await req('DELETE', '/family/' + st.room + '/members/' + mid()); } catch (e) {} leaveLocal(); }
+    await FAM.join(f.code, f.name || phone().name || 'Player', f.nameT || Date.now());
+    reconcile();
+    return f;
   };
 
   /* ---------- daily time + quiet hours ---------- */
@@ -300,6 +389,7 @@
   FAM.open = function (v) {
     css(); if (!el) { el = document.createElement('div'); el.id = 'vfam'; document.body.appendChild(el);
       el.addEventListener('click', e => { if (e.target === el) FAM.close(); }); }
+    if (!opt.gateOnly) reconcile();
     view = v || 'home'; stack = []; render(); if (FAM.joined()) FAM.sync().then(() => { if (el && view === 'home') render(); });
   };
   function go(v) { stack.push(view); view = v; render(); }
@@ -366,18 +456,32 @@
     if (!el) return;
     if (view === 'home') draft = null;           // a parent-settings draft lives until home, save or close
     const r = FAM.rules();
-    if (view === 'home' && !FAM.joined()) {
+    if ((view === 'home' || view === 'offer') && !FAM.joined() && FAM.phoneFamily()) {
+      const f = FAM.phoneFamily(), nm = f.name || phone().name;
+      shell('👪 Family',
+        '<div class="card"><p style="margin-top:0">👪 <b>' + esc(f.fam || 'Your family') + '</b> is already on this phone in ' + esc(f.apps.join(', ')) + '.</p>' +
+        '<p class="muted" style="margin-bottom:0">Join with one tap — same family, same name, so you show up once in the family.</p></div>' +
+        '<div class="err"></div><button class="btn gold" data-a="one">Join' + (nm ? ' as ' + esc(nm) : '') + '</button>' +
+        (view === 'offer' ? '<button class="btn ghost" data-a="later">Not now</button>' : '<button class="btn ghost" data-a="other">Use a different Family ID</button>'));
+      const b = $('[data-a=one]');
+      b.onclick = busy(b, async () => { const ff = await FAM.joinPhoneFamily(); stack = []; view = 'home'; render(); toast('Welcome to ' + (ff.fam || 'the family') + '!'); });
+      if ($('[data-a=later]')) $('[data-a=later]').onclick = () => FAM.close();
+      if ($('[data-a=other]')) $('[data-a=other]').onclick = () => go('intro');
+      return;
+    }
+    if ((view === 'home' || view === 'intro') && !FAM.joined()) {
       shell('👪 Family',
         '<p>Join your family to share one high-score list, see the games your family loves, and play together — even on different phones.</p>' +
         '<p class="muted">Everyone in the family sees the same lists. Parents can set family rules with a PIN.</p>' +
         '<button class="btn gold" data-a="start">Start a family</button><button class="btn" data-a="join">Join with a Family ID</button>');
       $('[data-a=start]').onclick = () => go('start'); $('[data-a=join]').onclick = () => go('join');
+      if (view === 'intro') return;
       return;
     }
     if (view === 'start') {
       shell('Start a family',
         '<label>Family name</label><input id="fn" maxlength="30" placeholder="The Smith family">' +
-        '<label>Your name</label><input id="mn" maxlength="20" placeholder="Mom">' +
+        '<label>Your name</label><input id="mn" maxlength="20" placeholder="Mom" value="' + esc(phone().name || '') + '">' +
         '<label>Parent PIN (4 digits)</label><input id="p1" inputmode="numeric" maxlength="4" type="password" placeholder="••••">' +
         '<input id="p2" inputmode="numeric" maxlength="4" type="password" placeholder="PIN again">' +
         '<p class="muted">The PIN guards the family rules. Keep it to the grown-ups.</p><div class="err"></div><button class="btn gold" data-a="go">Create family</button>');
@@ -394,7 +498,7 @@
     if (view === 'created') {
       shell('👪 Family ready!',
         '<p>Your Family ID:</p><div class="card">' + codeBox() + '</div>' +
-        '<p>On each phone, open a Vast app → 👪 Family → <b>Join with a Family ID</b> and type this in. It works in Vast Arcade, Vast Trivia, Vast Party Games and Vast Library.</p>' +
+        '<p>The other Vast apps on this phone will offer to join with one tap. On other phones, open a Vast app → 👪 Family → <b>Join with a Family ID</b> and type this in (or tap the ID to copy it, hold to text it).</p>' +
         '<button class="btn" data-a="ok">Done</button>');
       wireCode(); $('[data-a=ok]').onclick = () => { view = 'home'; render(); };
       return;
@@ -402,7 +506,7 @@
     if (view === 'join') {
       shell('Join a family',
         '<label>Family ID</label><div class="pasterow"><input id="cd" class="codein" maxlength="11" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC-DEF-GHJ"><button class="paste" data-a="paste" type="button">📋 Paste</button></div>' +
-        '<label>Your name</label><input id="mn" maxlength="20" placeholder="Your name" value="' + esc(st.name || '') + '">' +
+        '<label>Your name</label><input id="mn" maxlength="20" placeholder="Your name" value="' + esc(st.name || phone().name || '') + '">' +
         '<div class="err"></div><button class="btn gold" data-a="go">Join</button>');
       const cd = $('#cd');
       cd.oninput = () => { const n = FAM.normalize(cd.value).slice(0, 9); const f = n.length > 6 ? FAM.format(n) : n.length > 3 ? n.slice(0, 3) + '-' + n.slice(3) : n; if (cd.value !== f) cd.value = f; };
@@ -420,16 +524,17 @@
       return;
     }
     if (view === 'home') {
-      const ms = FAM.members();
-      const byName = {};
-      ms.forEach(m => { const k = (m.name || 'Player').toLowerCase(); (byName[k] = byName[k] || { name: m.name || 'Player', apps: new Set(), self: false }); byName[k].apps.add(m.app); if (m.self) byName[k].self = true; });
+      const byName = FAM.people();
       shell('👪 ' + esc((r && r.name) || 'Family'),
         '<div class="card"><div class="muted" style="text-align:center">Family ID</div>' + codeBox() + '</div>' +
         '<label>Your name</label><input id="mn" maxlength="20" value="' + esc(st.name || '') + '">' +
+        (FAM.phoneFamily() ? '<div class="card"><p style="margin:0">' + esc(FAM.phoneFamily().apps.join(', ')) + ' on this phone ' + (FAM.phoneFamily().apps.length > 1 ? 'are' : 'is') + ' in a different family: <b>' +
+          esc(FAM.phoneFamily().fam || FAM.format(FAM.phoneFamily().code)) + '</b>.</p><div class="err"></div><button class="btn ghost" data-a="switch">Switch ' + esc(APP_NAMES[opt.app] || 'this app') + ' to that family</button></div>' : '') +
         '<h3>Family</h3><div class="card">' + (Object.values(byName).map(p => '<div class="row"><span class="n">' + esc(p.name) + (p.self ? ' <span class="muted">(you)</span>' : '') + '</span><span>' + [...p.apps].map(a => APPS[a] || '').join(' ') + '</span></div>').join('') || '<div class="muted">Just you so far. Share the Family ID!</div>') + '</div>' +
         '<h3>Family rules</h3><div class="card">' + (r ? rulesSummary(r) : '') + '</div>' +
         '<button class="btn ghost" data-a="parent">🔒 Parent settings</button><button class="btn bad" data-a="leave">Leave family</button>');
       wireCode(); const mn = $('#mn'); mn.onchange = () => FAM.setMyName(mn.value || 'Player');
+      const sw = $('[data-a=switch]'); if (sw) sw.onclick = busy(sw, async () => { const ff = await FAM.joinPhoneFamily(); render(); toast('Welcome to ' + (ff.fam || 'the family') + '!'); });
       $('[data-a=parent]').onclick = () => { if (parentOk) go('parent'); else go('pin'); };
       $('[data-a=leave]').onclick = () => go('leave');
       return;
@@ -492,10 +597,15 @@
       return;
     }
     if (view === 'members') {
-      const ms = FAM.members();
-      shell('Family members', '<p class="muted">Each line is one Vast app on one phone. Removing one takes it out of the family; it can join again with the Family ID.</p><div class="card">' +
-        (ms.map(m => '<div class="row"><span>' + (APPS[m.app] || '') + '</span><span class="n">' + esc(m.name || 'Player') + (m.self ? ' <span class="muted">(this phone)</span>' : '') + '<br><span class="muted">' + esc(APP_NAMES[m.app] || m.app) + '</span></span>' + (m.self ? '' : '<button data-id="' + esc(m.id) + '">Remove</button>') + '</div>').join('') || '<div class="muted">Nobody yet.</div>') + '</div><div class="err"></div>');
-      el.querySelectorAll('.row button').forEach(bt => (bt.onclick = busy(bt, async () => { await FAM.removeMember(bt.dataset.id); toast('Removed'); render(); })));
+      // one line per phone (the Vast apps on one phone share a phone id); older app versions without one get their own line
+      const ms = FAM.members(), myDev = phone().dev, phones = {};
+      ms.forEach(m => { const k = m.dev ? 'd:' + m.dev : 'm:' + m.id; const g = (phones[k] = phones[k] || { name: 'Player', t: -1, apps: [], ids: [], self: false });
+        if ((+m.t || 0) > g.t) { g.t = +m.t || 0; g.name = m.name || 'Player'; } g.apps.push(m.app); g.ids.push(m.id); if (m.self || (m.dev && m.dev === myDev)) g.self = true; });
+      const list = Object.values(phones);
+      shell('Family members', '<p class="muted">One line per phone, with the Vast apps on it. Removing a phone takes it out of the family; it can join again with the Family ID.</p><div class="card">' +
+        (list.map((g, i) => '<div class="row"><span class="n">' + esc(g.name) + (g.self ? ' <span class="muted">(this phone)</span>' : '') + '<br><span class="muted">' +
+          g.apps.map(a => (APPS[a] || '') + ' ' + esc(APP_NAMES[a] || a)).join(' · ') + '</span></span>' + (g.self ? '' : '<button data-i="' + i + '">Remove</button>') + '</div>').join('') || '<div class="muted">Nobody yet.</div>') + '</div><div class="err"></div>');
+      el.querySelectorAll('.row button').forEach(bt => (bt.onclick = busy(bt, async () => { await FAM.removeMembers(list[+bt.dataset.i].ids); toast('Removed'); render(); })));
       return;
     }
     if (view === 'newpin') {
@@ -570,11 +680,17 @@
     opt = Object.assign(opt, o || {});
     const go = () => {
       checkGate();
+      if (!opt.gateOnly) {
+        reconcile();
+        // the family is already on this phone in another Vast app: offer it once, one tap to join
+        const f = FAM.phoneFamily();
+        if (!FAM.joined() && f && lget(OFFER, '') !== f.code) { lset(OFFER, f.code); setTimeout(() => { if (!FAM.isOpen() && !FAM.joined()) FAM.open('offer'); }, 900); }
+      }
       if (FAM.joined()) { FAM.sync(); }
-      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { lastTick = Date.now(); checkGate(); if (FAM.joined() && Date.now() - (st.at || 0) > 60000) FAM.sync(); } });
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { lastTick = Date.now(); checkGate(); if (!opt.gateOnly) reconcile(); if (FAM.joined() && Date.now() - (st.at || 0) > 60000) FAM.sync(); } });
       setInterval(() => { if (FAM.joined() && document.visibilityState === 'visible') FAM.sync(); }, 5 * 60000);
     };
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
   };
-  FAM._test = { roomOf, rawKeyOf: async c => b64(await rawKeyOf(c)), gateState, inQuiet };
+  FAM._test = { reconcile, phone, roomOf, rawKeyOf: async c => b64(await rawKeyOf(c)), gateState, inQuiet };
 })();
