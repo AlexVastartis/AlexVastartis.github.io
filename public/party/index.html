@@ -206,6 +206,12 @@ function screen(title, body, { back = true, right = "" } = {}) {
   app.querySelectorAll('[data-act="home"]').forEach(b => b.onclick = home);
   window.scrollTo(0, 0);
 }
+// tap once to arm, tap again within 3s to confirm (browser confirm() dialogs are blocked in some viewers)
+function twoTap(el, label, fn) {
+  if (el.dataset.armed) { fn(); return; }
+  const orig = el.innerHTML; el.dataset.armed = "1"; el.innerHTML = label; vib(15);
+  setTimeout(() => { if (el.isConnected) { delete el.dataset.armed; el.innerHTML = orig; } }, 3000);
+}
 function on(sel, fn, root = app) { root.querySelectorAll(sel).forEach(el => el.onclick = e => { audio(); fn(e, el); }); }
 function full(bg, html) {
   const d = document.createElement("div"); d.className = "full"; d.style.background = bg; d.innerHTML = html;
@@ -261,7 +267,7 @@ function playersScreen(after, need = 0) {
     $("#addf").onsubmit = e => { e.preventDefault(); const v = inp.value.trim(); if (!v) return; if (players.some(p => p.toLowerCase() === v.toLowerCase())) { toast("Already added"); return; } players.push(v); savePlayers(); render(); $("#pname").focus(); };
     on("[data-del]", (e, el) => { players.splice(+el.dataset.del, 1); savePlayers(); render(); });
     on("[data-up]", (e, el) => { const i = +el.dataset.up; if (i > 0) { [players[i - 1], players[i]] = [players[i], players[i - 1]]; savePlayers(); render(); } });
-    on("#clear", () => { if (confirm("Remove all players?")) { players = []; savePlayers(); render(); } });
+    on("#clear", (e, el) => twoTap(el, "Tap again to remove everyone", () => { players = []; savePlayers(); render(); }));
     on("#done", () => after());
   };
   render();
@@ -404,8 +410,7 @@ function gImposter() {
       <button class="btn ghost" id="new">New round</button>`);
     every(1000, () => { secs++; const t = $("#t"); if (t) t.textContent = `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}`; });
     on("#new", () => { runCleanup(); gImposter(); });
-    on("#rv", () => {
-      if (!confirm("Voted already? Reveal now?")) return;
+    on("#rv", (e, el) => twoTap(el, "Voted? Tap again to reveal", () => {
       runCleanup();
       const names = [...impSet].map(i => esc(order[i])).join(" & ");
       boom(); vib(200);
@@ -419,7 +424,7 @@ function gImposter() {
         </div>
         <button class="btn big" id="again">Play again</button>`);
       on("#again", gImposter);
-    });
+    }));
   }
 }
 
