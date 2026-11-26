@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Vast Party Games</title>
+<meta name="description" content="Party games for one phone: pass-around, guessing, imposter, truth or dare and more.">
+<meta name="theme-color" content="#14101f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vast Party">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+:root{
+  --bg:#f6f3ff; --surface:#ffffff; --surface-2:#ece7fb; --text:#1b1530; --muted:#6a6385;
+  --line:#ddd6f3; --accent:#7c4dff; --accent-ink:#fff; --good:#16a34a; --bad:#e5484d; --warn:#f59e0b;
+  --shadow:0 6px 20px rgba(40,20,90,.10);
+  --c1:#7c4dff; --c2:#ff4d8d; --c3:#ff8a00; --c4:#00b37e; --c5:#0091ff; --c6:#e5484d; --c7:#a855f7; --c8:#14b8a6; --c9:#eab308; --c10:#ef4444; --c11:#6366f1;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14101f; --surface:#1f1931; --surface-2:#2a2340; --text:#f4f0ff; --muted:#a59cc4;
+    --line:#352c52; --accent:#9b7bff; --accent-ink:#12091f; --shadow:0 6px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14101f; --surface:#1f1931; --surface-2:#2a2340; --text:#f4f0ff; --muted:#a59cc4;
+  --line:#352c52; --accent:#9b7bff; --accent-ink:#12091f; --shadow:0 6px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
+  font-family:ui-rounded,"SF Pro Rounded",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  overscroll-behavior:none}
+body{min-height:100dvh}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+#app{max-width:560px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top) + 8px) 16px calc(env(safe-area-inset-bottom) + 16px)}
+header{display:flex;align-items:center;gap:8px;min-height:48px;margin-bottom:8px}
+header h1{font-size:20px;margin:0;flex:1;font-weight:800;letter-spacing:-.01em}
+.iconbtn{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--surface);box-shadow:var(--shadow);font-size:20px}
+main{flex:1;display:flex;flex-direction:column;gap:12px}
+.hero{padding:8px 2px 4px}
+.hero h2{font-size:34px;margin:0;font-weight:900;letter-spacing:-.02em}
+.hero p{margin:4px 0 0;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-weight:600;font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.game{position:relative;text-align:left;border-radius:22px;padding:14px;min-height:124px;color:#fff;
+  display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow);overflow:hidden;transition:transform .12s}
+.game:active{transform:scale(.97)}
+.game .em{font-size:34px;line-height:1}
+.game b{font-size:17px;display:block;margin-top:8px}
+.game small{opacity:.9;font-size:12.5px;line-height:1.25;display:block;margin-top:2px}
+.section-label{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin:8px 2px 0}
+.card{background:var(--surface);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 20px;border-radius:18px;
+  background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:18px;width:100%;transition:transform .1s,opacity .2s}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+.btn.good{background:var(--good);color:#fff}.btn.bad{background:var(--bad);color:#fff}
+.btn.big{min-height:72px;font-size:22px;border-radius:22px}
+.btn:disabled{opacity:.4}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.stack{display:flex;flex-direction:column;gap:10px}
+.spacer{flex:1}
+.prompt{font-size:clamp(26px,7.5vw,40px);font-weight:850;line-height:1.15;letter-spacing:-.01em;text-wrap:balance}
+.kicker{font-size:14px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--muted)}
+.center{text-align:center}
+.bigcard{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px;
+  border-radius:28px;padding:24px;color:#fff;min-height:300px;box-shadow:var(--shadow)}
+.bigcard .kicker{color:rgba(255,255,255,.85)}
+input[type=text]{font:inherit;font-size:18px;width:100%;padding:14px 16px;border-radius:16px;border:2px solid var(--line);background:var(--surface);color:var(--text);outline:none}
+input[type=text]:focus{border-color:var(--accent)}
+.plist{display:flex;flex-direction:column;gap:8px}
+.pitem{display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:16px;padding:10px 10px 10px 14px;box-shadow:var(--shadow);font-weight:700;font-size:17px}
+.pitem .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:14px}
+.pitem span{flex:1}
+.pitem button{width:36px;height:36px;border-radius:10px;background:var(--surface-2);font-size:16px}
+.seg{display:flex;background:var(--surface-2);border-radius:14px;padding:4px;gap:4px}
+.seg button{flex:1;padding:10px 6px;border-radius:10px;font-weight:700;font-size:15px;color:var(--muted)}
+.seg button.on{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+.opt{display:flex;flex-direction:column;gap:8px}
+.opt label{font-weight:700;font-size:14px;color:var(--muted)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:10px 14px;border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font-weight:700;font-size:15px;border:2px solid transparent}
+.pill.on{border-color:var(--accent);color:var(--accent)}
+.score{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:14px;background:var(--surface-2);font-weight:700}
+.score b{font-size:22px}
+.muted{color:var(--muted)}
+.timer{font-variant-numeric:tabular-nums;font-weight:900}
+.ring{width:220px;height:220px;position:relative;display:grid;place-items:center;margin:0 auto}
+.ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.ring .num{font-size:84px;font-weight:900;font-variant-numeric:tabular-nums}
+/* full-screen overlays */
+.full{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;
+  padding:calc(env(safe-area-inset-top) + 16px) 20px calc(env(safe-area-inset-bottom) + 16px);user-select:none;-webkit-user-select:none}
+.full .x{position:absolute;top:calc(env(safe-area-inset-top) + 10px);left:12px;width:44px;height:44px;border-radius:14px;background:rgba(0,0,0,.25);color:#fff;font-size:20px;z-index:3}
+.tapzones{position:absolute;inset:0;display:flex}
+.tapzones button{flex:1;display:flex;align-items:flex-end;justify-content:center;padding-bottom:calc(env(safe-area-inset-bottom) + 22px);font-weight:800;font-size:18px;color:rgba(255,255,255,.85)}
+.fhword{font-size:clamp(44px,13vw,110px);font-weight:900;line-height:1.05;padding:0 24px;pointer-events:none;position:relative;z-index:2;text-wrap:balance}
+.fhtime{position:absolute;top:calc(env(safe-area-inset-top) + 14px);right:18px;font-size:30px;font-weight:900;z-index:2;pointer-events:none}
+.flash{animation:flash .35s ease}
+@keyframes flash{0%{filter:brightness(1.8)}100%{filter:brightness(1)}}
+.shake{animation:shake .5s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes shake{10%,90%{transform:translate3d(-2px,0,0)}20%,80%{transform:translate3d(4px,0,0)}30%,50%,70%{transform:translate3d(-8px,0,0)}40%,60%{transform:translate3d(8px,0,0)}}
+.pop{animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+.bomb{font-size:140px;line-height:1;transition:transform .1s}
+.wyr{flex:1;display:flex;flex-direction:column;gap:10px;min-height:420px}
+.wyr button{flex:1;border-radius:26px;color:#fff;font-size:clamp(22px,6.5vw,32px);font-weight:850;padding:20px;line-height:1.2;box-shadow:var(--shadow);text-wrap:balance;position:relative}
+.wyr .or{align-self:center;font-weight:900;color:var(--muted);font-size:15px;letter-spacing:.1em}
+.pct{display:block;font-size:15px;opacity:.9;margin-top:8px}
+/* finger chooser */
+#chooser{position:fixed;inset:0;z-index:20;background:#0c0916;touch-action:none;overflow:hidden;user-select:none;-webkit-user-select:none}
+#chooser .hint{position:absolute;inset:0;display:grid;place-items:center;color:#cfc6ef;text-align:center;font-weight:800;font-size:24px;padding:24px;pointer-events:none}
+.finger{position:absolute;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;pointer-events:none;transition:opacity .4s,transform .4s;
+  box-shadow:0 0 0 6px rgba(255,255,255,.12)}
+.finger.alive{animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.finger.win{transform:scale(1.5);box-shadow:0 0 0 14px rgba(255,255,255,.5),0 0 60px 20px currentColor;animation:none}
+.finger.lose{opacity:0;transform:scale(.3)}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 24px);transform:translateX(-50%);background:var(--text);color:var(--bg);padding:12px 18px;border-radius:14px;font-weight:700;z-index:50}
+.hidden{display:none!important}
+.rotate-tip{font-size:15px;color:var(--muted)}
+.list{margin:0;padding:0;list-style:none;line-height:1.7}
+.ratings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;background:var(--surface-2);border-radius:16px;padding:5px}
+.rate{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px;border-radius:12px;font-weight:700;font-size:13px;color:var(--muted);min-width:0;white-space:nowrap}
+.rate .rem{font-size:22px;line-height:1.1}
+.rate.on{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:12px;min-width:0;line-height:1.2;border-radius:16px;background:var(--surface);box-shadow:var(--shadow);font-weight:700;font-size:14.5px;text-align:left}
+.toggle i{flex:0 0 auto;width:38px;height:22px;border-radius:999px;background:var(--line);position:relative;transition:background .2s}
+.toggle i::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.toggle.on i{background:var(--accent)}.toggle.on i::after{transform:translateX(16px)}
+.drink{align-self:center;display:inline-flex;gap:6px;padding:8px 14px;border-radius:999px;background:rgba(255,184,0,.22);color:inherit;font-weight:700;font-size:15px;line-height:1.3;text-align:center;max-width:100%}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+"use strict";
+/* ------------------------------------------------------------------ content */
+const DECKS = {
+  "Animals": ["Elephant","Penguin","Kangaroo","Octopus","Giraffe","Sloth","Shark","Owl","Flamingo","Chameleon","Gorilla","Hedgehog","Crocodile","Peacock","Jellyfish","Panda","Bat","Snail","Zebra","Koala","Dolphin","Camel","Squirrel","Lobster","Rooster","Polar bear","Hamster","Spider","Horse","Woodpecker","Llama","Butterfly","Moose","Seal","Turtle","Rhino","Frog","Bee","Skunk","Parrot"],
+  "Food": ["Pizza","Sushi","Taco","Pancakes","Spaghetti","Popcorn","Burrito","Ice cream","Hot dog","Donut","Cheeseburger","Watermelon","Pineapple","Croissant","Pretzel","Nachos","Cupcake","Avocado","Lasagna","Fried chicken","Bacon","Corn on the cob","Birthday cake","Ramen","Waffles","Banana","Popsicle","Cotton candy","Meatball","Salad","Dumplings","Cereal","Lemon","Garlic","Smoothie","Sandwich","Chili pepper","Marshmallow","Omelette","French fries"],
+  "Jobs": ["Firefighter","Dentist","Pilot","Chef","Astronaut","Lifeguard","Magician","Plumber","Teacher","Surgeon","Mail carrier","DJ","Barber","Farmer","Police officer","Referee","Waiter","Scientist","Photographer","Clown","Detective","Construction worker","Librarian","Flight attendant","Personal trainer","Judge","Tattoo artist","Zookeeper","Babysitter","Taxi driver","Painter","Mechanic","Ballet dancer","News anchor","Cashier","Lumberjack","Weather forecaster","Rock star","Nurse","Ski instructor"],
+  "Places": ["Beach","Hospital","School","Airport","Casino","Zoo","Library","Gym","Movie theater","Cruise ship","Space station","Supermarket","Bank","Restaurant","Farm","Museum","Wedding","Hotel","Campsite","Submarine","Amusement park","Haunted house","Car wash","Ski resort","Bowling alley","Prison","Desert island","Pirate ship","Circus","Dentist's office","Train station","Night club","Laundromat","Volcano","Igloo","Castle","Gas station","Jungle","Stadium","Spa"],
+  "Actions": ["Brushing teeth","Riding a bike","Swimming","Taking a selfie","Walking a dog","Changing a diaper","Juggling","Surfing","Doing yoga","Baking a cake","Mowing the lawn","Skydiving","Fishing","Playing guitar","Ice skating","Sneezing","Bowling","Climbing a ladder","Washing a car","Milking a cow","Lifting weights","Blowing bubbles","Playing tennis","Sleepwalking","Building a snowman","Putting on makeup","Riding a horse","Eating spaghetti","Doing laundry","Shoveling snow","Rowing a boat","Karate","Hula hooping","Opening a stuck jar","Walking a tightrope","Texting while walking","Getting a haircut","Hailing a taxi","Jump rope","Wrapping a present"],
+  "Things": ["Umbrella","Toothbrush","Ladder","Toaster","Skateboard","Headphones","Candle","Vacuum","Scissors","Trampoline","Backpack","Microwave","Hammock","Mirror","Balloon","Treasure chest","Rubber duck","Remote control","Lawn mower","Telescope","Sunglasses","Pillow","Basketball","Selfie stick","Alarm clock","Tent","Fire extinguisher","Kite","Guitar","Wheelchair","Shopping cart","Disco ball","Hairdryer","Bicycle","Paper airplane","Snow globe","Magnifying glass","Piggy bank","Hot air balloon","Roller coaster"],
+  "Sports & Hobbies": ["Soccer","Golf","Bowling","Chess","Knitting","Surfing","Boxing","Gardening","Archery","Skiing","Karaoke","Fishing","Wrestling","Gymnastics","Rock climbing","Skateboarding","Baseball","Hockey","Volleyball","Ping pong","Camping","Photography","Scuba diving","Fencing","Cheerleading","Painting","Darts","Horse racing","Badminton","Video games","Ballet","Hiking","Pottery","Weightlifting","Cooking","Sumo wrestling","Bird watching","Lacrosse","Bungee jumping","Poker"]
+};
+const BOMB_CATS = ["Things in a kitchen","Pizza toppings","Animals that live in water","Things that are red","Breakfast foods","Countries","Things you take on vacation","Sports","Things with wheels","Jobs","Things in a bathroom","Fruits","Words that rhyme with \"cat\"","Things that are cold","Dog breeds","Things in a school","Body parts","Things you find at the beach","Car brands","Things that fly","Vegetables","Cities","Board or card games","Musical instruments","Things that are sticky","Ice cream flavors","Things in a toolbox","Things that smell bad","Clothing items","Desserts","Things that are round","Superpowers","Things at a birthday party","Things you plug in","Flowers","Ways to say hello","Things in the sky","Things in a forest","Famous landmarks","Drinks"];
+const BOMB_SYL = ["AN","ER","ST","CH","OU","TR","IN","PL","OR","ACK","ITE","UMP","ING","BR","SH","OO","ART","EN","GR","ALL","UN","OW","IGHT","AL"];
+const TRUTHS = ["What's the most embarrassing thing on your phone right now?","Who in this room would you trust with your deepest secret?","What's the worst gift you've ever received?","What's a habit you'd never admit to a date?","What's the last lie you told?","What's the weirdest thing you've ever eaten?","Who was your first crush?","What's your most irrational fear?","What's the most childish thing you still do?","Have you ever pretended to be sick to skip something? What?","What's the worst haircut you've ever had?","What's the most money you've wasted on one thing?","What's a song you secretly love?","What would you do if you were invisible for a day?","What's the most trouble you've ever been in?","Which person here would survive longest in a zombie apocalypse?","What's your guilty-pleasure TV show?","What's the strangest dream you remember?","Have you ever re-gifted a present?","What's a secret talent nobody knows about?","What's the pettiest thing you've ever done?","What's the longest you've gone without showering?","What's one thing you'd change about yourself?","Who do you text the most?","What's the most awkward date you've been on?","Have you ever blamed someone else for something you did?","What's your most-used emoji?","What's your biggest pet peeve?","Have you ever stalked an ex online?","What's something you're glad your parents never found out?","What's the most embarrassing thing you've said to a teacher or boss?","If you could swap lives with someone here for a day, who?","What's the worst thing you've ever cooked?","What's the last thing you searched online?","What's a rumor you once believed?"];
+const DARES = ["Do your best impression of someone in the room until they guess who.","Talk in an accent for the next 3 rounds.","Let the group pick a new contact name for you in someone's phone.","Do 15 jumping jacks.","Speak only in questions until your next turn.","Show the last photo in your camera roll.","Sing the chorus of the last song you listened to.","Let someone draw a mustache on you (washable!).","Do your best runway walk across the room.","Talk like a pirate until your next turn.","Hold a plank for 30 seconds.","Let the person to your left style your hair.","Do your best evil villain laugh.","Text the 5th person in your contacts a single 🦆 emoji.","Act out your morning routine in 20 seconds.","Eat a spoonful of a condiment the group picks.","Dance with no music for 20 seconds.","Do an impression of a famous celebrity.","Let someone else post a story on your social media (nothing mean).","Say the alphabet backwards as fast as you can.","Give a 30-second dramatic speech about your shoes.","Balance a spoon on your nose for 10 seconds.","Imitate a farm animal until someone guesses it.","Compliment everyone in the room.","Pretend to be a news reporter covering this party.","Do your best robot dance.","Swap a piece of clothing with the person to your right.","Wear your socks on your hands until your next turn.","Call someone and sing them happy birthday.","Try to lick your elbow.","Narrate the next minute like a nature documentary.","Hum a song until someone guesses it.","Make up a rap about the person to your left.","Keep a straight face while everyone tries to make you laugh for 30 seconds.","Do your best slow-motion action scene."];
+const NHIE = ["Never have I ever fallen asleep in a movie theater.","Never have I ever sent a text to the wrong person.","Never have I ever broken a bone.","Never have I ever gone skinny dipping.","Never have I ever lied about my age.","Never have I ever eaten food off the floor.","Never have I ever been on TV.","Never have I ever cried at a commercial.","Never have I ever gotten lost in my own city.","Never have I ever sung karaoke.","Never have I ever ghosted someone.","Never have I ever cheated on a test.","Never have I ever been stuck in an elevator.","Never have I ever pulled an all-nighter.","Never have I ever dyed my hair a crazy color.","Never have I ever laughed so hard I cried.","Never have I ever forgotten someone's name right after meeting them.","Never have I ever binge-watched a whole season in one day.","Never have I ever walked into a glass door.","Never have I ever gone a whole day without my phone.","Never have I ever talked my way out of a ticket.","Never have I ever had a crush on a teacher.","Never have I ever snooped through someone's phone.","Never have I ever been kicked out of somewhere.","Never have I ever pretended to know a song.","Never have I ever eaten an entire pizza by myself.","Never have I ever been on a blind date.","Never have I ever fainted.","Never have I ever lost a bet.","Never have I ever stayed in the bathroom to avoid a conversation.","Never have I ever re-worn clothes without washing them.","Never have I ever ridden a horse.","Never have I ever broken something and hid it.","Never have I ever waved back at someone who wasn't waving at me.","Never have I ever been to a concert alone.","Never have I ever fallen off a stage or chair in public.","Never have I ever read someone's diary.","Never have I ever stolen a fry off someone's plate.","Never have I ever googled myself.","Never have I ever met a celebrity.","Never have I ever slid into someone's DMs.","Never have I ever laughed at a funeral.","Never have I ever peed in a pool.","Never have I ever faked being on the phone.","Never have I ever cut my own hair."];
+const WYR = [["Be able to fly","Be invisible"],["Always be 10 minutes late","Always be 20 minutes early"],["Have no phone for a month","Have no music for a year"],["Fight one horse-sized duck","Fight 100 duck-sized horses"],["Live without coffee","Live without dessert"],["Only whisper","Only shout"],["Know when you'll die","Know how you'll die"],["Have a rewind button for life","Have a pause button for life"],["Be famous","Be rich"],["Live in the mountains","Live by the beach"],["Speak every language","Play every instrument"],["Eat only pizza forever","Never eat pizza again"],["Have a personal chef","Have a personal driver"],["Go to the past","Go to the future"],["Have hiccups for a year","Feel like sneezing for a year"],["Be the funniest person in the room","Be the smartest person in the room"],["Give up showers","Give up brushing teeth"],["Read minds","Teleport"],["Have unlimited sushi","Have unlimited tacos"],["Never be cold again","Never be hot again"],["Be a famous athlete","Be a famous musician"],["Have fingers as long as legs","Have legs as short as fingers"],["Always have to sing instead of speak","Always have to dance when walking"],["Lose your phone","Lose your wallet"],["Have a pet dragon","Have a pet unicorn"],["Live without the internet","Live without AC and heating"],["Sweat cheese","Cry maple syrup"],["Be stuck on a broken elevator","Be stuck on a broken ski lift"],["Win the lottery","Live twice as long"],["Have a photographic memory","Never need sleep"],["Only eat sweet food","Only eat salty food"],["Talk to animals","Talk to plants"],["Be a wizard","Be a superhero"],["Always have a song stuck in your head","Always have an itch you can't reach"],["Explore space","Explore the deep ocean"],["Have no eyebrows","Have one giant unibrow"],["Live in a treehouse","Live in a houseboat"],["Be able to stop time","Be able to rewind 10 seconds"],["Know every secret","Have nobody ever know your secrets"],["Have a laugh track follow you","Have dramatic music follow you"]];
+const MLT = ["Who's most likely to become famous?","Who's most likely to survive a zombie apocalypse?","Who's most likely to forget their own birthday?","Who's most likely to get lost on vacation?","Who's most likely to win a reality TV show?","Who's most likely to adopt 10 cats?","Who's most likely to cry during a movie?","Who's most likely to become a millionaire?","Who's most likely to text their ex tonight?","Who's most likely to start a fight with a stranger online?","Who's most likely to move to another country?","Who's most likely to laugh at the wrong moment?","Who's most likely to fall asleep at this party?","Who's most likely to eat something off the floor?","Who's most likely to go viral?","Who's most likely to be late to their own wedding?","Who's most likely to become president?","Who's most likely to get arrested?","Who's most likely to talk to a stranger for an hour?","Who's most likely to spend all their money in one day?","Who's most likely to run a marathon?","Who's most likely to believe a conspiracy theory?","Who's most likely to have a secret talent?","Who's most likely to get a tattoo they regret?","Who's most likely to win an argument?","Who's most likely to trip over nothing?","Who's most likely to cook an amazing dinner?","Who's most likely to forget where they parked?","Who's most likely to join a cult (by accident)?","Who's most likely to sing in the shower the loudest?","Who's most likely to become a teacher?","Who's most likely to break their phone screen?","Who's most likely to win the lottery and lose the ticket?","Who's most likely to cry at a dog video?","Who's most likely to give the best advice?","Who's most likely to stay up all night?","Who's most likely to become a meme?","Who's most likely to be a secret agent?","Who's most likely to talk their way out of anything?","Who's most likely to dance on a table?"];
+const QUICK = ["Name 3 things you'd find in a fridge","Name 3 animals with stripes","Name 3 things that are yellow","Name 3 pizza toppings","Name 3 things you do in the morning","Name 3 famous singers","Name 3 types of shoes","Name 3 things that fly","Name 3 sports played with a ball","Name 3 things at a wedding","Name 3 countries in Europe","Name 3 kinds of dessert","Name 3 things in a bathroom","Name 3 cartoon characters","Name 3 things that are hot","Name 3 board games","Name 3 things in space","Name 3 vegetables","Name 3 car brands","Name 3 things that are sticky","Name 3 musical instruments","Name 3 things you wear in winter","Name 3 superheroes","Name 3 things in a classroom","Name 3 things that make noise","Name 3 farm animals","Name 3 breakfast foods","Name 3 things with buttons","Name 3 jobs that wear uniforms","Name 3 things you'd take camping","Name 3 colors of the rainbow","Name 3 things that are soft","Name 3 types of fish","Name 3 things at the beach","Name 3 things with wheels","Name 3 fast food restaurants","Name 3 things that smell good","Name 3 dances","Name 3 things you can throw","Name 3 holidays"];
+/* ---- Grown-ups mode: adult-oriented, not dirty ---- */
+const A_DECKS = {
+  "Adulting": ["Taxes","Mortgage","Group chat","Hangover","Open bar","Jury duty","Home Depot run","Meal prep","Bachelor party","Wedding toast","Midlife crisis","Minivan","Dad joke","Couch shopping","Dentist bill","Moving day","Landlord","Retirement plan","Car payment","Out-of-office reply","Self checkout","Parent-teacher conference","HOA meeting","Gym membership","Power nap","Babysitter","Back pain","Credit score","Grocery budget","Lawn care","Cholesterol","Reading glasses","Coupon","IKEA furniture","Thanksgiving argument","Neighbor drama","Sourdough starter","Fantasy football","Book club","Brunch"],
+  "Nostalgia": ["Dial-up internet","Flip phone","Mixtape","Blockbuster","Tamagotchi","Slap bracelet","Walkman","Boy band","Lunchables","Scrunchie","Pager","Floppy disk","Mall food court","MySpace","Away message","Rollerblades","Frosted tips","Lava lamp","Disposable camera","Burned CD","Snake (phone game)","Pogs","Beanie Babies","Trapper Keeper","Overhead projector","Jelly sandals","VHS tape","Butterfly clips","Encyclopedia","Prank call","Landline","Arcade","Choker necklace","Saturday morning cartoons","Video store late fee","Hit Clips","Gel pens","Y2K","Super Soaker","Dance Dance Revolution"],
+  "Office Life": ["Reply all","Zoom call","\"You're on mute\"","Team building","Performance review","Stapler","Break room","Microwave fish","Office birthday cake","Printer jam","Casual Friday","Spreadsheet","Synergy","Coffee run","Water cooler gossip","Standing desk","Expense report","Layoffs","Corner office","Intern","HR complaint","Slack message","Calendar invite","Two-week notice","Holiday party","LinkedIn post","Desk plant","Commute","Work from home","Free pizza","Elevator small talk","Name tag","Deadline","Vacation request","Trust fall","Raise","Open floor plan","PowerPoint","\"Per my last email\"","Burnout"],
+  "Dating": ["First date","Dating app","Swipe right","Ghosting","Third wheel","Wingman","Love letter","Proposal","Engagement ring","Meet the parents","Breakup text","Rebound","Ex","Situationship","Pickup line","Double date","Anniversary","Couples costume","Blind date","Speed dating","Slow dance","Valentine's Day","Wedding crasher","Bouquet toss","Honeymoon","Cuddling","Butterflies","Red flag","Love bombing","Long distance","Couples therapy","Second date","Friend zone","Love triangle","Morning after","Pet names","\"We need to talk\"","Jealousy","Matching tattoos","Soulmate"],
+  "Nightlife": ["Karaoke","Bartender","Bouncer","Shot glass","Beer pong","Last call","Happy hour","Uber surge pricing","Dance floor","DJ booth","Pub crawl","Cocktail umbrella","Wine tasting","Margarita","Tequila","Drunk text","Late-night tacos","Bar tab","Fake ID","Hangover cure","Coat check","Bottle service","Pregame","Afterparty","Taking a selfie","Sloppy hug","Wine mom","Brewery tour","Champagne toast","Rooftop bar","Cover charge","Dive bar","Mimosas","Bar fight","Bachelorette sash","Limo","Jukebox","Trivia night","Designated driver","Walk of shame"]
+};
+const A_BOMB = ["Things you'd find in a junk drawer","Excuses for being late to work","Things you'd say on a first date","Cocktails","Things that cost too much","Things in a medicine cabinet","Wedding traditions","Things people complain about at work","Bad pickup lines","Hangover foods","Reasons to cancel plans","Beer brands","Things at a Costco","90s TV shows","Things you do on a lazy Sunday","Things parents say","Things on a dating profile","Reasons to call in sick","Things in a grown-up's fridge","Bills you have to pay","Things that hurt more after 30","Office supplies","Things at a bachelor or bachelorette party","Wine words","Celebrity couples","Things you'd buy at 2am","Phone apps","Road trip essentials","Things you regret buying","Words that mean drunk"];
+const A_TRUTHS = ["What's the most unprofessional thing you've done at work?","Which friend's partner do you secretly not like?","What's the most you've spent on a night out?","What's your worst hangover story?","Have you ever lied on a résumé? About what?","What's the pettiest reason you've ended things with someone?","Who here would you call to help you hide something, no questions asked?","What's a dating red flag you ignored?","What's the worst date you've ever been on?","Have you ever pretended to like a gift from a partner? What was it?","What's your most embarrassing drunk text?","What's the longest you've let a work email go unanswered on purpose?","What's a secret you've kept from your parents as an adult?","What's the biggest lie on your dating profile or social media?","Have you ever gone through a partner's phone?","Who in this room would you least want to be stuck on a road trip with?","What's the most childish thing you did this year?","What's the worst thing you've said about a boss behind their back?","What's your biggest financial regret?","Have you ever faked being sick to get out of a wedding or party?","What's the last thing you got caught doing?","Who was your most regrettable crush?","What's the cringiest thing you've posted online?","What do you secretly judge people here for?","Have you ever been kicked out of a bar or party?","What's a habit your partner or roommate doesn't know you have?","What's the most awkward thing that's happened to you at a work event?","If you had to marry someone in this room, who?","What's something you pretend to understand but don't?","What's the worst advice you've ever followed?","What would your exes agree is your worst quality?","What's the most you've ever cried over something dumb?","What's the most rebellious thing you did as a teenager?","Which of your friends' weddings were you secretly bored at?","What's a text you'd never want this group to see?"];
+const A_DARES = ["Read your last 3 texts out loud.","Let the group write your next dating-app bio (or LinkedIn headline).","Call your mom or dad and tell them you've joined a band.","Show everyone your screen time report.","Let the group send one emoji to anyone in your recent texts.","Do your best impression of your boss.","Give a 30-second wedding toast for two people in the room.","Show the most recent photo you took that you didn't post.","Read your last search history entry out loud.","Let someone scroll your camera roll for 10 seconds.","Talk like a news anchor until your next turn.","Do a dramatic reading of your last work email.","Pitch the group a terrible business idea in 30 seconds.","Let the person to your left change your phone wallpaper.","Serenade the person to your right with a love song.","Do your best 'I'm totally sober' walk across the room.","Text a friend 'I need to tell you something' and don't reply for 10 minutes.","Speak only in movie quotes until your next turn.","Let the group pick a song and lip-sync it with full commitment.","Reenact your worst date in 30 seconds.","Show the last thing you bought online.","Do a 30-second stand-up bit about your job.","Let someone post a 'thought of the day' on your social media (keep it clean).","Describe your love life using only cooking terms.","Do your best karaoke power ballad, no music.","Make a toast to your ex. Keep it classy.","Leave a voice memo for your future self and play it for the group.","Plank while answering 3 rapid-fire questions from the group.","Imitate someone in the room ordering at a bar.","Let the group pick your profile picture on any app for 24 hours."];
+const A_NHIE = ["Never have I ever lied on a résumé.","Never have I ever called in sick to go to a concert.","Never have I ever drunk-texted an ex.","Never have I ever fallen asleep at work.","Never have I ever been on a dating app date that lasted under 30 minutes.","Never have I ever pretended to be busy to get out of plans.","Never have I ever forgotten a partner's birthday.","Never have I ever cried in a work bathroom.","Never have I ever lied about my salary.","Never have I ever woken up somewhere and not known where I was.","Never have I ever re-gifted a wedding present.","Never have I ever eaten someone else's food from the office fridge.","Never have I ever stalked a new partner's ex online.","Never have I ever been hungover at a family event.","Never have I ever sent a message to the wrong group chat.","Never have I ever lied to get out of a second date.","Never have I ever been on a first date with someone a friend set me up with.","Never have I ever quit a job without notice.","Never have I ever snuck into a hotel pool or party.","Never have I ever ordered food twice in one night.","Never have I ever cancelled plans to stay home and do nothing.","Never have I ever pretended to know a wine I'd never heard of.","Never have I ever gone to work in the same clothes as the day before.","Never have I ever been on a work call in pajama pants.","Never have I ever lost my phone on a night out.","Never have I ever lied about having read a book.","Never have I ever had a crush on a coworker.","Never have I ever been the last one to leave a party.","Never have I ever googled an ex's new partner.","Never have I ever paid for something and immediately returned it.","Never have I ever got a tattoo I regret.","Never have I ever had a bar tab over $200.","Never have I ever kissed someone at a wedding.","Never have I ever said 'I love you' first.","Never have I ever been banned from a bar or restaurant.","Never have I ever eaten cereal for dinner more than twice in a week.","Never have I ever cried at a wedding I didn't care about.","Never have I ever dated two people at the same time.","Never have I ever thrown up in a taxi or rideshare.","Never have I ever cheated at a board game with friends.","Never have I ever lied about my age at a bar.","Never have I ever muted someone in this room's stories.","Never have I ever crashed a party I wasn't invited to.","Never have I ever done karaoke completely sober.","Never have I ever woken up with a new contact in my phone and no memory of them."];
+const A_WYR = [["Have your browser history made public","Have your texts made public"],["Work 4 tens","Work 5 eights"],["Get paid double but have to work weekends","Keep your pay and get a 4-day week"],["Date someone with a terrible laugh","Date someone with a terrible taste in music"],["Never drink alcohol again","Never drink coffee again"],["Have a boss you hate and great pay","Have a boss you love and bad pay"],["Go on a blind date chosen by your mom","Go on a blind date chosen by your ex"],["Have every hangover last 2 days","Never be able to have more than 2 drinks"],["Retire at 40 with a little","Retire at 70 with a lot"],["Live next to your in-laws","Live next to your ex"],["Have your partner read all your texts","Have your boss read all your texts"],["Give a wedding speech with no notice","Get roasted at your own wedding"],["Always have to reply-all","Never be able to use email again"],["Never use a dating app again","Only meet people on dating apps"],["Know what your friends really think of you","Know what your exes really think of you"],["Win $10k now","Win $1k a month for 2 years"],["Have a free personal chef","Have a free house cleaner"],["Attend your high-school reunion as you are","Never see anyone from high school again"],["Lose your phone on vacation","Lose your luggage on vacation"],["Share a bathroom with 5 roommates","Have a 2-hour commute"],["Only drink beer for the rest of your life","Only drink wine for the rest of your life"],["Be the drunkest person at the party","Be the most sober person at the party"],["Have your parents move in with you","Move back in with your parents"],["Have your karaoke video go viral","Have your dance-floor video go viral"],["Always be overdressed","Always be underdressed"],["Know when you'll get married","Know when you'll get a promotion"],["Have a 6-hour layover","Take a red-eye with a middle seat"],["Date a celebrity for a month","Have a celebrity as your best friend for a year"],["Text your ex by accident","Text your boss something meant for a friend"],["Never take a vacation again","Never have a weekend off again"],["Be famous for something embarrassing","Be unknown and successful"],["Cook every meal for a year","Eat only takeout for a year"],["Have a partner who's always early","Have a partner who's always late"],["Plan a wedding","Plan a funeral"],["Get a tattoo chosen by the group","Get a haircut chosen by the group"]];
+const A_MLT = ["Who's most likely to get fired for something hilarious?","Who's most likely to marry someone they met on vacation?","Who's most likely to be hungover at brunch tomorrow?","Who's most likely to have a secret side hustle?","Who's most likely to quit their job to travel?","Who's most likely to drunk-text an ex tonight?","Who's most likely to get a regrettable tattoo on a trip?","Who's most likely to become a wine snob?","Who's most likely to forget their own anniversary?","Who's most likely to start a podcast?","Who's most likely to cry at a stranger's wedding?","Who's most likely to end up on a reality dating show?","Who's most likely to retire early?","Who's most likely to move to the suburbs first?","Who's most likely to buy a boat they can't afford?","Who's most likely to fall asleep at the bar?","Who's most likely to get into a fight with an HOA?","Who's most likely to have 5 kids?","Who's most likely to be the last one at the party?","Who's most likely to leave the party without saying goodbye?","Who's most likely to get a DUI... in a golf cart?","Who's most likely to become the boss's favorite?","Who's most likely to have a midlife crisis first?","Who's most likely to date someone 10 years younger?","Who's most likely to secretly be a millionaire?","Who's most likely to start a fight at a family reunion?","Who's most likely to get kicked out of a wedding?","Who's most likely to cancel plans at the last minute?","Who's most likely to cry during their own wedding vows?","Who's most likely to become a crazy plant parent?","Who's most likely to win a karaoke contest?","Who's most likely to order the most expensive thing on the menu?","Who's most likely to give terrible relationship advice?","Who's most likely to be secretly famous on the internet?","Who's most likely to get lost on the way home tonight?"];
+const A_QUICK = ["Name 3 cocktails","Name 3 reasons to call in sick","Name 3 things in a junk drawer","Name 3 bad first-date topics","Name 3 hangover cures","Name 3 things you'd find at Costco","Name 3 90s bands","Name 3 dating apps","Name 3 things you do at a wedding reception","Name 3 bills you pay every month","Name 3 things that hurt after 30","Name 3 wine types","Name 3 beer brands","Name 3 excuses for being late","Name 3 office supplies","Name 3 things people bring to a potluck","Name 3 kinds of shots","Name 3 things in a medicine cabinet","Name 3 reality TV shows","Name 3 things you'd never say to your boss","Name 3 bachelor party destinations","Name 3 things you do on a lazy Sunday","Name 3 famous divorces","Name 3 things on a grocery list","Name 3 things you bring on a road trip","Name 3 words that mean drunk","Name 3 apps you use every day","Name 3 things you'd buy if you won the lottery","Name 3 things at a hardware store","Name 3 things people fight about in group chats"];
+
+/* active content: Grown-ups mode swaps every deck */
+/* ---- Family rating: kid-safe replacements ---- */
+const F_TRUTHS = ["What's the silliest thing you've ever cried about?","What's your most embarrassing moment at school?","If you could be any animal for a day, what would you be?","What's the weirdest food you actually like?","Who in this room makes you laugh the most?","What's something you're secretly scared of?","What's the worst gift you've ever gotten?","If you could have one superpower, what would it be?","What's the funniest thing you've ever seen happen?","Have you ever blamed a sibling or pet for something you did?","What's your favorite thing about the person to your left?","What's the strangest dream you remember?","What's the last thing that made you laugh really hard?","What's a food you refuse to eat?","If you could switch lives with anyone for a day, who?","What's the most trouble you've ever been in?","What's your hidden talent?","What's a song you know every word to?","What's something you did as a little kid that you still remember?","If you were invisible for a day, what would you do?","What's the best present you've ever given someone?","What would you name a pet dragon?","What's the grossest thing you've ever touched?","What's one rule you would make if you ran the world?","What's your favorite memory with someone in this room?"];
+const F_DARES = ["Do your best impression of someone in the room until they guess who.","Talk like a robot until your next turn.","Do 15 jumping jacks.","Sing the chorus of your favorite song.","Do your best runway walk across the room.","Talk like a pirate until your next turn.","Hold a plank for 20 seconds.","Do your best evil villain laugh.","Dance with no music for 20 seconds.","Imitate a farm animal until someone guesses it.","Compliment everyone in the room.","Pretend to be a news reporter covering this game.","Do your best robot dance.","Wear your socks on your hands until your next turn.","Try to lick your elbow.","Narrate the next minute like a nature documentary.","Hum a song until someone guesses it.","Keep a straight face while everyone tries to make you laugh for 30 seconds.","Do your best slow-motion action scene.","Say the alphabet backwards as fast as you can.","Balance a book on your head and walk across the room.","Make up a short song about the person to your right.","Act like a cat until your next turn.","Do 10 squats while saying the names of 10 fruits.","Give a 30-second speech about why your shoes are the best."];
+const F_NHIE = ["Never have I ever fallen asleep in a car.","Never have I ever broken a bone.","Never have I ever eaten food off the floor.","Never have I ever been on a plane.","Never have I ever cried at a movie.","Never have I ever gotten lost in a store.","Never have I ever sung in the shower.","Never have I ever laughed so hard I cried.","Never have I ever forgotten someone's name right after meeting them.","Never have I ever walked into a glass door.","Never have I ever ridden a horse.","Never have I ever broken something and hid it.","Never have I ever waved back at someone who wasn't waving at me.","Never have I ever stayed up all night.","Never have I ever built a snowman.","Never have I ever eaten a bug.","Never have I ever gotten a sunburn.","Never have I ever lost a tooth while eating.","Never have I ever been on TV.","Never have I ever seen a shooting star.","Never have I ever fallen off a bike.","Never have I ever gone camping.","Never have I ever been stung by a bee.","Never have I ever eaten a whole pizza by myself.","Never have I ever won a trophy.","Never have I ever had a nickname I didn't like.","Never have I ever snuck a snack into bed.","Never have I ever gone a whole day without screens.","Never have I ever tripped in front of a crowd.","Never have I ever been to a concert."];
+const F_MLT = ["Who's most likely to become famous?","Who's most likely to survive in the wild?","Who's most likely to forget their own birthday?","Who's most likely to get lost on vacation?","Who's most likely to win a talent show?","Who's most likely to adopt 10 cats?","Who's most likely to cry during a movie?","Who's most likely to become a millionaire?","Who's most likely to become an astronaut?","Who's most likely to laugh at the wrong moment?","Who's most likely to fall asleep first tonight?","Who's most likely to eat something off the floor?","Who's most likely to go viral?","Who's most likely to become president?","Who's most likely to talk to a stranger for an hour?","Who's most likely to run a marathon?","Who's most likely to have a secret talent?","Who's most likely to win an argument?","Who's most likely to trip over nothing?","Who's most likely to cook an amazing dinner?","Who's most likely to sing the loudest?","Who's most likely to become a teacher?","Who's most likely to cry at a puppy video?","Who's most likely to give the best advice?","Who's most likely to invent something?"];
+const F_SKIP = new Set(["Casino", "Night club", "Prison", "Haunted house"]);
+
+/* ---- Spicy rating: flirty and bold, still not explicit. Added on top of Grown-ups. ---- */
+const S_TRUTHS = ["Who in this room would you most want to go on a date with?","What's your type, honestly?","Rate your kissing skills from 1 to 10.","What's the boldest move you've ever made on someone?","Have you ever had a crush on a friend's partner?","What's your best flirting move? Demonstrate it.","What's the most scandalous text you've ever sent?","Have you ever kissed someone in this room?","What's the most daring place you've kissed someone?","What's the biggest turn-off on a first date?","Who was your most unexpected crush?","What's the cheesiest line that actually worked on you?","Have you ever had a vacation fling?","What's the shortest relationship you've ever had?","What's the most romantic thing you've done to win someone over?","What's something you find attractive that most people don't?","Who here do you think is the best flirt?","What's your most embarrassing moment with a crush?","Have you ever had a crush on a coworker? Did anything happen?","What's the wildest thing you've done on a first date?"];
+const S_DARES = ["Give your best pickup line to the person on your left.","Slow dance with someone for 30 seconds (with their okay).","Whisper the most flirty thing you can think of to the person on your right.","Do your most seductive dance move for 10 seconds.","Serenade someone with a love song while holding eye contact.","Give someone a 30-second shoulder massage (if they're up for it).","Read the last flirty text you sent out loud.","Kiss someone on the cheek (only if they say yes).","Describe your perfect date in your sultriest voice.","Let the group pick someone for you to compliment for 30 seconds straight.","Hold eye contact with someone for 30 seconds without laughing.","Act out how you'd ask someone here on a date.","Show the group your best 'come here' look.","Let someone go through your dating app for 30 seconds.","Do your best romantic movie scene with someone in the room."];
+const S_NHIE = ["Never have I ever kissed a stranger.","Never have I ever made out in a car.","Never have I ever been caught kissing.","Never have I ever kissed two people in one night.","Never have I ever had a crush on a friend's sibling.","Never have I ever dated a coworker.","Never have I ever flirted my way out of a ticket.","Never have I ever used a fake name at a bar.","Never have I ever kissed someone in this room.","Never have I ever had a vacation fling.","Never have I ever gone skinny dipping.","Never have I ever sent a flirty text to the wrong person.","Never have I ever gone on a date with someone I met that same day.","Never have I ever been someone's secret.","Never have I ever gotten back together with an ex.","Never have I ever had a crush on someone in this room.","Never have I ever kissed someone on a dare.","Never have I ever been on a date with two people in one day."];
+const S_WYR = [["Go on a date with your celebrity crush","Get a second chance with the one that got away"],["Kiss someone in this room","Tell everyone your biggest crush"],["Have a vacation fling","Have a secret office romance"],["Date a terrible kisser","Date someone with no sense of humor"],["Be a great kisser","Be a great dancer"],["Only date people you meet at bars","Only date people your mom picks"],["Have your ex give your wedding toast","Have your ex be your wedding DJ"],["Read your partner's texts","Have them read yours"],["Fall in love at first sight","Fall for your best friend"],["Have a love life everyone gossips about","Have a love life nobody knows about"],["Get caught flirting by your partner","Get caught flirting by your boss"],["Go on a blind date chosen by this group","Swipe on a dating app with the whole group watching"]];
+const S_MLT = ["Who's most likely to kiss someone tonight?","Who's most likely to have a secret admirer?","Who's most likely to have a vacation fling?","Who's most likely to get back with an ex?","Who's most likely to fall in love at first sight?","Who's most likely to flirt with the bartender?","Who's most likely to send a risky text tonight?","Who's most likely to elope in Vegas?","Who's most likely to have the wildest dating history?","Who's most likely to get caught making out?","Who's most likely to be the best kisser?","Who's most likely to date two people at once?","Who's most likely to have a crush on someone here?","Who's most likely to slide into a celebrity's DMs?","Who's most likely to marry someone they just met?"];
+
+const RATINGS = [
+  { id: "family", label: "Family", em: "🧸", note: "Kid-safe cards. Drinking rules are off." },
+  { id: "party", label: "Party", em: "🎉", note: "PG-13. Works for teens and adults." },
+  { id: "grown", label: "Grown-ups", em: "🍸", note: "Work, dating, money and nights out. Fun, not dirty." },
+  { id: "spicy", label: "Spicy", em: "🌶️", note: "Flirty and bold, still not explicit. Anyone can pass on anything, no questions asked." }
+];
+
+let rating = "party", drinksPref = false, drinks = false;
+const isAdult = () => rating === "grown" || rating === "spicy";
+const setDrinks = () => { drinks = drinksPref && rating !== "family"; };
+const FAMILY_DECKS = Object.fromEntries(Object.entries(DECKS).map(([k, v]) => [k, v.filter(w => !F_SKIP.has(w))]));
+const D = () => isAdult() ? { ...A_DECKS, "Places": DECKS["Places"], "Actions": DECKS["Actions"], "Jobs": DECKS["Jobs"] } : rating === "family" ? FAMILY_DECKS : DECKS;
+const sp = (a, b) => ({ mix: [a, b], w: .65 });
+const C = () => ({
+  family: { bomb: BOMB_CATS, truths: F_TRUTHS, dares: F_DARES, nhie: F_NHIE, wyr: WYR, mlt: F_MLT, quick: QUICK },
+  party:  { bomb: BOMB_CATS, truths: TRUTHS, dares: DARES, nhie: NHIE, wyr: WYR, mlt: MLT, quick: QUICK },
+  grown:  { bomb: A_BOMB, truths: A_TRUTHS, dares: A_DARES, nhie: A_NHIE, wyr: A_WYR, mlt: A_MLT, quick: A_QUICK },
+  // Spicy: about two in three cards come from the spicy set, the rest from Grown-ups
+  spicy:  { bomb: A_BOMB, truths: sp(S_TRUTHS, A_TRUTHS), dares: sp(S_DARES, A_DARES), nhie: sp(S_NHIE, A_NHIE), wyr: sp(S_WYR, A_WYR), mlt: sp(S_MLT, A_MLT), quick: A_QUICK }
+})[rating];
+const K = k => isAdult() ? k + ":a" : k;  // adult ratings remember their own deck choices
+const DEF = { imp: [["Places"], ["Nightlife"]], fh: [["Animals", "Food", "Things"], ["Adulting", "Nostalgia", "Dating"]], ch: [["Actions", "Jobs", "Animals"], ["Nightlife", "Office Life", "Actions"]] };
+const defDecks = g => DEF[g][isAdult() ? 1 : 0];
+// drinking rule line, shown only when the switch is on
+const rule = t => drinks ? `<div class="drink">🍺 ${t}</div>` : "";
+
+const COLORS = ["var(--c1)","var(--c2)","var(--c3)","var(--c4)","var(--c5)","var(--c7)","var(--c8)","var(--c9)","var(--c10)","var(--c11)"];
+const RAW = ["#7c4dff","#ff4d8d","#ff8a00","#00b37e","#0091ff","#a855f7","#14b8a6","#eab308","#ef4444","#6366f1"];
+
+/* ------------------------------------------------------------------ utils */
+const $ = s => document.querySelector(s);
+const app = $("#app");
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pick = a => a[Math.floor(Math.random() * a.length)];
+function deck(items) {
+  // { mix: [a, b], w } draws from a with probability w, else b, each without repeats
+  if (items.mix) { const a = deck(items.mix[0]), b = deck(items.mix[1]); return () => Math.random() < items.w ? a() : b(); }
+  let pile = []; return () => { if (!pile.length) pile = shuffle(items); return pile.pop(); }; }
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("pp:" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("pp:" + k, JSON.stringify(v)); } catch {} }
+};
+let players = store.get("players", []);
+const savePlayers = () => store.set("players", players);
+const pColor = i => RAW[i % RAW.length];
+
+let cleanups = [];
+function onCleanup(fn) { cleanups.push(fn); }
+function runCleanup() { cleanups.forEach(f => { try { f(); } catch {} }); cleanups = []; document.querySelectorAll(".full,#chooser").forEach(e => e.remove()); }
+function every(ms, fn) { const id = setInterval(fn, ms); onCleanup(() => clearInterval(id)); return id; }
+function later(ms, fn) { const id = setTimeout(fn, ms); onCleanup(() => clearTimeout(id)); return id; }
+
+// sound + haptics
+let actx = null;
+function audio() { if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch { return null; } } if (actx.state === "suspended") actx.resume(); return actx; }
+let soundOn = store.get("sound", true);
+rating = store.get("rating", store.get("grown", false) ? "grown" : "party"); if (!RATINGS.some(r => r.id === rating)) rating = "party";
+drinksPref = store.get("drinks", false); setDrinks();
+function beep(freq = 660, dur = .08, type = "sine", vol = .2) {
+  if (!soundOn) return; const a = audio(); if (!a) return;
+  const o = a.createOscillator(), g = a.createGain(); o.type = type; o.frequency.value = freq;
+  g.gain.setValueAtTime(vol, a.currentTime); g.gain.exponentialRampToValueAtTime(.0001, a.currentTime + dur);
+  o.connect(g).connect(a.destination); o.start(); o.stop(a.currentTime + dur + .02);
+}
+function boom() {
+  if (!soundOn) return; const a = audio(); if (!a) return;
+  const len = a.sampleRate * 1.2, buf = a.createBuffer(1, len, a.sampleRate), d = buf.getChannelData(0);
+  for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.5);
+  const src = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain();
+  src.buffer = buf; f.type = "lowpass"; f.frequency.value = 700; g.gain.value = .9;
+  src.connect(f).connect(g).connect(a.destination); src.start();
+}
+const ding = () => { beep(880, .12, "triangle", .25); setTimeout(() => beep(1320, .18, "triangle", .2), 90); };
+const buzz = () => beep(140, .45, "sawtooth", .25);
+const vib = p => { try { navigator.vibrate && navigator.vibrate(p); } catch {} };
+
+let wake = null;
+async function keepAwake() { try { if ("wakeLock" in navigator && !wake) { wake = await navigator.wakeLock.request("screen"); wake.addEventListener("release", () => wake = null); } } catch {} }
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && currentGame) keepAwake(); });
+function toast(msg) { const t = document.createElement("div"); t.className = "toast pop"; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 1800); }
+
+/* ------------------------------------------------------------------ shell */
+let currentGame = null;
+function screen(title, body, { back = true, right = "" } = {}) {
+  app.innerHTML = `<header>${back ? `<button class="iconbtn" data-act="home" aria-label="Back to games">←</button>` : ""}<h1>${title}</h1>${right}</header><main>${body}</main>`;
+  app.querySelectorAll('[data-act="home"]').forEach(b => b.onclick = home);
+  window.scrollTo(0, 0);
+}
+// tap once to arm, tap again within 3s to confirm (browser confirm() dialogs are blocked in some viewers)
+function twoTap(el, label, fn) {
+  if (el.dataset.armed) { fn(); return; }
+  const orig = el.innerHTML; el.dataset.armed = "1"; el.innerHTML = label; vib(15);
+  setTimeout(() => { if (el.isConnected) { delete el.dataset.armed; el.innerHTML = orig; } }, 3000);
+}
+function on(sel, fn, root = app) { root.querySelectorAll(sel).forEach(el => el.onclick = e => { audio(); fn(e, el); }); }
+function full(bg, html) {
+  const d = document.createElement("div"); d.className = "full"; d.style.background = bg; d.innerHTML = html;
+  document.body.appendChild(d); return d;
+}
+
+const GAMES = [
+  { id: "bomb", name: "Pass the Bomb", em: "💣", color: "var(--c6)", desc: "Say a word, pass the phone. Don't hold it when it blows.", fn: gBomb, type: "pass" },
+  { id: "imposter", name: "Imposter", em: "🕵️", color: "var(--c1)", desc: "Everyone knows the secret word… except one.", fn: gImposter, type: "pass" },
+  { id: "forehead", name: "Forehead", em: "🤯", color: "var(--c3)", desc: "Phone on your forehead. Friends give clues.", fn: gForehead, type: "guess" },
+  { id: "charades", name: "Team Charades", em: "🎭", color: "var(--c4)", desc: "Act it out. Two teams, one timer.", fn: gCharades, type: "guess" },
+  { id: "quick", name: "Quick Three", em: "⏱️", color: "var(--c5)", desc: "Name 3 things in 5 seconds. Then pass.", fn: gQuick, type: "pass" },
+  { id: "tod", name: "Truth or Dare", em: "🔥", color: "var(--c2)", desc: "The classic, with names and turns.", fn: gTod, type: "talk" },
+  { id: "nhie", name: "Never Have I Ever", em: "🙈", color: "var(--c7)", desc: "Fingers up. Confess or keep quiet.", fn: gNhie, type: "talk" },
+  { id: "wyr", name: "Would You Rather", em: "🤔", color: "var(--c8)", desc: "Two choices. Defend your answer.", fn: gWyr, type: "talk" },
+  { id: "mlt", name: "Most Likely To", em: "👉", color: "var(--c11)", desc: "Count down, then everyone points.", fn: gMlt, type: "talk" },
+  { id: "chooser", name: "Finger Chooser", em: "☝️", color: "var(--c9)", desc: "Everyone touches the screen. Fate picks one.", fn: gChooser, type: "tool" },
+];
+
+function home() {
+  runCleanup(); currentGame = null;
+  if (wake) { try { wake.release(); } catch {} wake = null; }
+  const card = g => `<button class="game" style="background:${g.color}" data-g="${g.id}"><span class="em">${g.em}</span><span><b>${g.name}</b><small>${g.desc}</small></span></button>`;
+  const sect = (label, t) => `<div class="section-label">${label}</div><div class="grid">${GAMES.filter(g => g.type === t).map(card).join("")}</div>`;
+  screen("", `
+    <div class="hero"><h2>Vast Party Games 🎉</h2><p>Party games for one phone. Pick a game, pass it around.</p></div>
+    <div class="row" style="flex:0">
+      <button class="chip" id="pbtn" style="flex:1;justify-content:center">👥 ${players.length ? `${players.length} player${players.length > 1 ? "s" : ""}` : "Add players"}</button>
+      <button class="chip" id="sbtn" style="flex:0 0 auto" aria-label="Toggle sound">${soundOn ? "🔊" : "🔇"}</button>
+    </div>
+    <div class="opt"><label>Rating</label>
+      <div class="ratings" role="radiogroup" aria-label="Card rating">${RATINGS.map(r => `<button role="radio" aria-checked="${r.id === rating}" class="rate ${r.id === rating ? "on" : ""}" data-r="${r.id}"><span class="rem">${r.em}</span>${r.label}</button>`).join("")}</div>
+      <p class="muted" style="margin:0;font-size:14px">${RATINGS.find(r => r.id === rating).note}</p>
+    </div>
+    ${rating !== "family" ? `<button class="toggle ${drinks ? "on" : ""}" id="dbtn" aria-pressed="${drinks}"><span>🍺 Drinking rules</span><i></i></button>
+    ${drinks ? `<p class="muted" style="margin:0;font-size:14px">Rules show up at the end of each round. Water counts. Pace yourselves and get home safe.</p>` : ""}` : ""}
+    ${sect("Pass the phone", "pass")}
+    ${sect("Guess the word", "guess")}
+    ${sect("Talk & confess", "talk")}
+    ${sect("Tools", "tool")}
+    <p class="muted center" style="font-size:13px;margin-top:8px">Works offline. Add to your home screen to use it like an app.</p>
+  `, { back: false });
+  on(".game", (e, el) => { const g = GAMES.find(x => x.id === el.dataset.g); currentGame = g; keepAwake(); g.fn(); });
+  on("#pbtn", () => playersScreen(home));
+  on("#sbtn", () => { soundOn = !soundOn; store.set("sound", soundOn); home(); });
+  on(".rate", (e, el) => { if (el.dataset.r === rating) return; rating = el.dataset.r; store.set("rating", rating); setDrinks(); home(); toast(`Rating: ${RATINGS.find(r => r.id === rating).label}`); });
+  on("#dbtn", () => { drinksPref = !drinksPref; store.set("drinks", drinksPref); setDrinks(); home(); toast(drinks ? "Drinking rules on" : "Drinking rules off"); });
+}
+
+function playersScreen(after, need = 0) {
+  const render = () => {
+    screen("Players", `
+      <form id="addf" class="row" style="flex:0"><input type="text" id="pname" placeholder="Add a name" maxlength="20" autocomplete="off" enterkeyhint="done"><button class="btn" style="flex:0 0 72px" type="submit">Add</button></form>
+      <div class="plist">${players.map((p, i) => `<div class="pitem"><span class="dot" style="background:${pColor(i)}">${esc(p[0].toUpperCase())}</span><span>${esc(p)}</span><button data-up="${i}" aria-label="Move up">↑</button><button data-del="${i}" aria-label="Remove">✕</button></div>`).join("") || `<div class="card muted center">No players yet. Names are used for turns and the Imposter game.</div>`}</div>
+      ${need ? `<p class="muted center">This game needs at least ${need} players.</p>` : ""}
+      <div class="spacer"></div>
+      ${players.length ? `<button class="btn ghost" id="clear">Clear all</button>` : ""}
+      <button class="btn big" id="done" ${players.length < need ? "disabled" : ""}>Done</button>
+    `);
+    const inp = $("#pname");
+    $("#addf").onsubmit = e => { e.preventDefault(); const v = inp.value.trim(); if (!v) return; if (players.some(p => p.toLowerCase() === v.toLowerCase())) { toast("Already added"); return; } players.push(v); savePlayers(); render(); $("#pname").focus(); };
+    on("[data-del]", (e, el) => { players.splice(+el.dataset.del, 1); savePlayers(); render(); });
+    on("[data-up]", (e, el) => { const i = +el.dataset.up; if (i > 0) { [players[i - 1], players[i]] = [players[i], players[i - 1]]; savePlayers(); render(); } });
+    on("#clear", (e, el) => twoTap(el, "Tap again to remove everyone", () => { players = []; savePlayers(); render(); }));
+    on("#done", () => after());
+  };
+  render();
+}
+function needPlayers(n, then) { if (players.length >= n) then(); else playersScreen(() => players.length >= n ? then() : home(), n); }
+
+function deckPills(id, selected, multi = true) {
+  return `<div class="pills" id="${id}">${Object.keys(D()).map(k => `<button class="pill ${selected.includes(k) ? "on" : ""}" data-k="${esc(k)}">${esc(k)}</button>`).join("")}</div>`;
+}
+function bindPills(id, selected, multi = true) {
+  on(`#${id} .pill`, (e, el) => {
+    const k = el.dataset.k;
+    if (!multi) { selected.length = 0; selected.push(k); document.querySelectorAll(`#${id} .pill`).forEach(p => p.classList.toggle("on", p === el)); return; }
+    const i = selected.indexOf(k);
+    if (i >= 0) { if (selected.length > 1) selected.splice(i, 1); } else selected.push(k);
+    el.classList.toggle("on", selected.includes(k));
+  });
+}
+function seg(id, opts, val) { return `<div class="seg" id="${id}">${opts.map(([v, l]) => `<button data-v="${v}" class="${v == val ? "on" : ""}">${l}</button>`).join("")}</div>`; }
+function bindSeg(id, cb) { on(`#${id} button`, (e, el) => { document.querySelectorAll(`#${id} button`).forEach(b => b.classList.toggle("on", b === el)); cb(el.dataset.v); }); }
+const wordsFrom = sel => sel.flatMap(k => D()[k]);
+function countdown3(bg, then) {
+  const d = full(bg, `<div class="kicker" style="color:#fff">Get ready</div><div class="fhword pop" id="cd">3</div>`);
+  let n = 3; beep(520, .1);
+  const id = setInterval(() => { n--; if (n === 0) { clearInterval(id); d.remove(); beep(990, .2, "triangle"); then(); return; } d.querySelector("#cd").textContent = n; d.querySelector("#cd").classList.remove("pop"); void d.offsetWidth; d.querySelector("#cd").classList.add("pop"); beep(520, .1); }, 900);
+  onCleanup(() => clearInterval(id));
+}
+
+/* ------------------------------------------------------------------ Pass the Bomb */
+function gBomb() {
+  let mode = store.get("bomb:mode", "mix"), len = store.get("bomb:len", "med");
+  const nextCat = deck(C().bomb), nextSyl = deck(BOMB_SYL);
+  screen("💣 Pass the Bomb", `
+    <div class="card stack">
+      <div>A topic appears. Say something that fits, then <b>pass the phone</b> to the next person. Nobody knows when the bomb goes off. Whoever's holding it loses the round.</div>
+    </div>
+    <div class="opt"><label>Prompts</label>${seg("bm", [["cat", "Categories"], ["syl", "Letters"], ["mix", "Mix"]], mode)}</div>
+    <div class="opt"><label>Fuse</label>${seg("bl", [["short", "10–25s"], ["med", "20–45s"], ["long", "40–75s"]], len)}</div>
+    <div class="spacer"></div>
+    <button class="btn big" id="go" style="background:var(--c6);color:#fff">Light the fuse</button>`);
+  bindSeg("bm", v => { mode = v; store.set("bomb:mode", v); });
+  bindSeg("bl", v => { len = v; store.set("bomb:len", v); });
+  on("#go", round);
+  function round() {
+    const useSyl = mode === "syl" || (mode === "mix" && Math.random() < .4);
+    const prompt = useSyl ? `Words containing<br><span style="font-size:1.6em;letter-spacing:.05em">“${nextSyl()}”</span>` : esc(nextCat());
+    const [lo, hi] = { short: [10, 25], med: [20, 45], long: [40, 75] }[len];
+    const total = (lo + Math.random() * (hi - lo)) * 1000, start = performance.now();
+    const d = full("var(--c6)", `<button class="x" aria-label="Stop">✕</button>
+      <div class="kicker" style="color:rgba(255,255,255,.85)">Say one, then pass!</div>
+      <div class="prompt" style="margin:14px 0 26px">${prompt}</div>
+      <div class="bomb" id="bomb">💣</div>
+      <button class="btn big" id="pass" style="background:rgba(0,0,0,.25);color:#fff;margin-top:30px;max-width:340px">Passed ➜</button>`);
+    d.querySelector(".x").onclick = () => { runCleanup(); gBomb(); };
+    let passes = 0;
+    d.querySelector("#pass").onclick = () => { passes++; vib(15); beep(700, .05); };
+    let nextTick = 0;
+    const raf = () => {
+      const t = performance.now() - start, f = t / total;
+      if (f >= 1) return explode();
+      const gap = 600 - 480 * f; // ticks speed up
+      if (t >= nextTick) { nextTick = t + gap; beep(f > .75 ? 1100 : 900, .03, "square", .12); const b = d.querySelector("#bomb"); b.style.transform = "scale(1.12)"; setTimeout(() => b.style.transform = "", 80); }
+      rid = requestAnimationFrame(raf);
+    };
+    let rid = requestAnimationFrame(raf); onCleanup(() => cancelAnimationFrame(rid));
+    function explode() {
+      boom(); vib([400, 100, 400]);
+      d.style.background = "#111"; d.classList.add("shake");
+      d.innerHTML = `<div class="bomb pop">💥</div><div class="prompt" style="margin-top:12px">BOOM!</div>
+        <p style="font-size:19px;opacity:.9">Whoever's holding the phone loses this round.</p>${rule("The holder drinks.")}
+        <p style="opacity:.6">${passes} pass${passes === 1 ? "" : "es"}</p>
+        <div class="stack" style="width:100%;max-width:340px;margin-top:16px">
+          <button class="btn big" id="again" style="background:var(--c6);color:#fff">Next round</button>
+          <button class="btn" id="out" style="background:rgba(255,255,255,.12);color:#fff">Back</button></div>`;
+      d.querySelector("#again").onclick = () => { runCleanup(); gBomb(); setTimeout(round, 0); };
+      d.querySelector("#out").onclick = () => { runCleanup(); gBomb(); };
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ Imposter */
+function gImposter() {
+  needPlayers(3, setup);
+  function setup() {
+    const sel = store.get(K("imp:decks"), defDecks("imp")).filter(k => D()[k]); if (!sel.length) sel.push(...defDecks("imp"));
+    let imps = Math.min(store.get("imp:n", 1), players.length > 4 ? 2 : 1), hint = store.get("imp:hint", true);
+    screen("🕵️ Imposter", `
+      <div class="card">Everyone gets the same secret word, except the <b>imposter</b>. Take turns giving one-word clues, then vote. Imposter wins by blending in or guessing the word.</div>
+      <div class="chip" id="pp" style="align-self:flex-start">👥 ${players.map(esc).join(", ")} ✎</div>
+      <div class="opt"><label>Word category</label>${deckPills("idk", sel)}</div>
+      <div class="opt"><label>Imposters</label>${seg("in", [[1, "1"], [2, "2"]], imps)}</div>
+      <div class="opt"><label>Imposter sees the category?</label>${seg("ih", [["1", "Yes"], ["0", "No"]], hint ? "1" : "0")}</div>
+      <div class="spacer"></div>
+      <button class="btn big" id="go">Deal roles</button>`);
+    bindPills("idk", sel); bindSeg("in", v => imps = +v); bindSeg("ih", v => hint = v === "1");
+    on("#pp", () => playersScreen(gImposter, 3));
+    on("#go", () => {
+      if (imps >= players.length - 1) imps = 1;
+      store.set(K("imp:decks"), sel); store.set("imp:n", imps); store.set("imp:hint", hint);
+      const cat = pick(sel), word = pick(D()[cat]);
+      const order = players.slice(), impSet = new Set(shuffle(order.map((_, i) => i)).slice(0, imps));
+      deal(order, impSet, cat, word, hint, 0);
+    });
+  }
+  function deal(order, impSet, cat, word, hint, i) {
+    if (i >= order.length) return discuss(order, impSet, cat, word);
+    const name = esc(order[i]);
+    screen("🕵️ Imposter", `
+      <div class="bigcard" style="background:${pColor(i)}">
+        <div class="kicker">Player ${i + 1} of ${order.length}</div>
+        <div class="prompt">Pass the phone to<br>${name}</div>
+        <p style="opacity:.85;margin:0">Don't let anyone else see the screen.</p>
+      </div>
+      <button class="btn big" id="rev">I'm ${name} — reveal</button>`);
+    on("#rev", () => {
+      const isImp = impSet.has(i);
+      screen("🕵️ Imposter", `
+        <div class="bigcard pop" style="background:${isImp ? "#1a1a1a" : pColor(i)}">
+          <div class="kicker">${name}, you are…</div>
+          ${isImp ? `<div class="prompt">🕵️ The IMPOSTER</div><p style="opacity:.85;margin:0">${hint ? `Category: <b>${esc(cat)}</b>. ` : ""}Blend in. Figure out the word.</p>`
+                  : `<div class="kicker">The secret word</div><div class="prompt" style="font-size:clamp(34px,10vw,56px)">${esc(word)}</div><p style="opacity:.85;margin:0">Category: ${esc(cat)}</p>`}
+        </div>
+        <button class="btn big" id="hide">Got it — hide</button>`);
+      vib(20);
+      on("#hide", () => deal(order, impSet, cat, word, hint, i + 1));
+    });
+  }
+  function discuss(order, impSet, cat, word) {
+    const starter = pick(order);
+    let secs = 0;
+    screen("🕵️ Imposter", `
+      <div class="card stack center">
+        <div class="kicker">Category: ${esc(cat)}</div>
+        <div class="prompt">${esc(starter)} goes first</div>
+        <p class="muted" style="margin:0">Go around the circle. Everyone gives one clue about the word. Do 2 rounds, then vote on who the imposter is.</p>
+        <div class="timer" id="t" style="font-size:40px">0:00</div>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn big" id="rv" style="background:#1a1a1a;color:#fff">Reveal the imposter${impSet.size > 1 ? "s" : ""}</button>
+      <button class="btn ghost" id="new">New round</button>`);
+    every(1000, () => { secs++; const t = $("#t"); if (t) t.textContent = `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}`; });
+    on("#new", () => { runCleanup(); gImposter(); });
+    on("#rv", (e, el) => twoTap(el, "Voted? Tap again to reveal", () => {
+      runCleanup();
+      const names = [...impSet].map(i => esc(order[i])).join(" & ");
+      boom(); vib(200);
+      screen("🕵️ Imposter", `
+        <div class="bigcard pop" style="background:#1a1a1a">
+          <div class="kicker">The imposter${impSet.size > 1 ? "s were" : " was"}</div>
+          <div class="prompt">${names}</div>
+          <div class="kicker">The word was</div>
+          <div class="prompt">${esc(word)}</div>
+          <p style="opacity:.8;margin:0">Imposter caught? Give them one guess at the word to steal the win.</p>${rule("Imposter caught: they drink. Imposter got away or guessed the word: everyone else drinks.")}
+        </div>
+        <button class="btn big" id="again">Play again</button>`);
+      on("#again", gImposter);
+    }));
+  }
+}
+
+/* ------------------------------------------------------------------ Forehead */
+function gForehead() {
+  const sel = store.get(K("fh:decks"), defDecks("fh")).filter(k => D()[k]); if (!sel.length) sel.push(...defDecks("fh"));
+  let secs = store.get("fh:secs", 60);
+  screen("🤯 Forehead", `
+    <div class="card">Hold the phone on your forehead, screen facing out. Friends shout clues. Tap the <b>right side</b> when you get it, <b>left side</b> to pass.</div>
+    <div class="opt"><label>Decks</label>${deckPills("fdk", sel)}</div>
+    <div class="opt"><label>Time</label>${seg("fs", [[30, "30s"], [60, "60s"], [90, "90s"], [120, "2 min"]], secs)}</div>
+    <p class="rotate-tip center">Tip: turn the phone sideways and lock rotation off for bigger words.</p>
+    <div class="spacer"></div>
+    <button class="btn big" id="go" style="background:var(--c3);color:#fff">Start</button>`);
+  bindPills("fdk", sel); bindSeg("fs", v => secs = +v);
+  on("#go", () => { store.set(K("fh:decks"), sel); store.set("fh:secs", secs); countdown3("var(--c3)", () => play(wordsFrom(sel), secs)); });
+  function play(words, secs) {
+    const next = deck(words), log = [];
+    let word = next(), left = secs, done = false;
+    const d = full("var(--c3)", `<button class="x" aria-label="Stop">✕</button>
+      <div class="fhtime" id="tm">${left}</div>
+      <div class="fhword pop" id="w">${esc(word)}</div>
+      <div class="tapzones"><button id="ps">← Pass</button><button id="ok">Got it →</button></div>`);
+    const W = d.querySelector("#w");
+    const show = (bg) => { d.style.background = bg; d.classList.remove("flash"); void d.offsetWidth; d.classList.add("flash"); word = next(); W.textContent = word; W.classList.remove("pop"); void W.offsetWidth; W.classList.add("pop"); later(350, () => { if (!done) d.style.background = "var(--c3)"; }); };
+    d.querySelector("#ok").onclick = () => { if (done) return; log.push([word, true]); ding(); vib(30); show("var(--good)"); };
+    d.querySelector("#ps").onclick = () => { if (done) return; log.push([word, false]); beep(300, .12, "triangle"); vib([10, 40, 10]); show("var(--bad)"); };
+    d.querySelector(".x").onclick = () => end();
+    every(1000, () => { left--; d.querySelector("#tm").textContent = left; if (left <= 5 && left > 0) beep(1000, .06, "square", .15); if (left <= 0) end(); });
+    function end() {
+      if (done) return; done = true; runCleanup(); buzz(); vib(300);
+      const got = log.filter(x => x[1]).length;
+      screen("🤯 Forehead", `
+        <div class="card center stack"><div class="kicker">Time's up!</div><div class="prompt">${got} correct</div>${rule(`Drink once for every pass (${log.length - got}).`)}</div>
+        <div class="card"><ul class="list">${log.map(([w, ok]) => `<li style="color:${ok ? "var(--good)" : "var(--muted)"}">${ok ? "✓" : "✗"} ${esc(w)}</li>`).join("") || "<li class='muted'>No words played</li>"}</ul></div>
+        <div class="spacer"></div>
+        <button class="btn big" id="again" style="background:var(--c3);color:#fff">Next player</button>
+        <button class="btn ghost" id="set">Change decks</button>`);
+      on("#again", () => countdown3("var(--c3)", () => play(words, secs)));
+      on("#set", gForehead);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ Team Charades */
+function gCharades() {
+  const sel = store.get(K("ch:decks"), defDecks("ch")).filter(k => D()[k]); if (!sel.length) sel.push(...defDecks("ch"));
+  let secs = store.get("ch:secs", 60), target = store.get("ch:target", 15);
+  const teams = [{ name: "Team 1", score: 0, color: "var(--c4)" }, { name: "Team 2", score: 0, color: "var(--c5)" }];
+  let turn = 0, next;
+  screen("🎭 Team Charades", `
+    <div class="card">Split into two teams. The actor sees the word and acts it out, no talking! Their team guesses. Tap <b>Got it</b> or <b>Skip</b>, then pass to the other team.</div>
+    <div class="row" style="flex:0"><input type="text" id="t1" value="Team 1" maxlength="16"><input type="text" id="t2" value="Team 2" maxlength="16"></div>
+    <div class="opt"><label>Decks</label>${deckPills("cdk", sel)}</div>
+    <div class="opt"><label>Turn length</label>${seg("cs", [[45, "45s"], [60, "60s"], [90, "90s"]], secs)}</div>
+    <div class="opt"><label>Play to</label>${seg("ct", [[10, "10"], [15, "15"], [25, "25"], [999, "∞"]], target)}</div>
+    <div class="spacer"></div>
+    <button class="btn big" id="go" style="background:var(--c4);color:#fff">Start game</button>`);
+  bindPills("cdk", sel); bindSeg("cs", v => secs = +v); bindSeg("ct", v => target = +v);
+  on("#go", () => {
+    teams[0].name = $("#t1").value.trim() || "Team 1"; teams[1].name = $("#t2").value.trim() || "Team 2";
+    store.set(K("ch:decks"), sel); store.set("ch:secs", secs); store.set("ch:target", target);
+    next = deck(wordsFrom(sel)); between();
+  });
+  const board = () => `<div class="stack">${teams.map((t, i) => `<div class="score" style="${i === turn ? `outline:3px solid ${t.color}` : ""}"><span>${esc(t.name)}</span><b>${t.score}</b></div>`).join("")}</div>`;
+  function between() {
+    const winner = teams.find(t => t.score >= target);
+    if (winner) {
+      screen("🎭 Team Charades", `<div class="bigcard pop" style="background:${winner.color}"><div class="kicker">Winner</div><div class="prompt">🏆 ${esc(winner.name)}</div>${rule("Losing team finishes their drinks.")}</div>${board()}<button class="btn big" id="again">New game</button>`);
+      ding(); on("#again", gCharades); return;
+    }
+    const t = teams[turn];
+    screen("🎭 Team Charades", `
+      ${board()}
+      <div class="bigcard" style="background:${t.color}"><div class="kicker">Up next</div><div class="prompt">${esc(t.name)}</div><p style="margin:0;opacity:.9">Pick an actor. Only they look at the screen.</p>${rule("The actor drinks once for every skip.")}</div>
+      <button class="btn big" id="go">Start turn (${secs}s)</button>
+      <button class="btn ghost" id="end">End game</button>`);
+    on("#go", () => countdown3(t.color, () => play(t)));
+    on("#end", () => { const w = teams[0].score === teams[1].score ? null : teams[0].score > teams[1].score ? teams[0] : teams[1]; screen("🎭 Team Charades", `<div class="bigcard" style="background:${w ? w.color : "var(--c1)"}"><div class="kicker">Final</div><div class="prompt">${w ? "🏆 " + esc(w.name) : "It's a tie!"}</div></div>${board()}<button class="btn big" id="again">New game</button>`); on("#again", gCharades); });
+  }
+  function play(t) {
+    let left = secs, word = next(), got = 0, done = false;
+    const d = full(t.color, `<button class="x" aria-label="End turn">✕</button>
+      <div class="fhtime" id="tm">${left}</div>
+      <div class="kicker" style="color:rgba(255,255,255,.85)">Act out</div>
+      <div class="fhword pop" id="w" style="margin:10px 0 40px">${esc(word)}</div>
+      <div class="row" style="width:100%;max-width:420px;position:relative;z-index:2"><button class="btn big" id="sk" style="background:rgba(0,0,0,.25);color:#fff">Skip</button><button class="btn big" id="ok" style="background:#fff;color:#111">Got it ✓</button></div>
+      <div style="margin-top:16px;font-weight:800;font-size:20px" id="gc">0 this turn</div>`);
+    const W = d.querySelector("#w");
+    const nw = () => { word = next(); W.textContent = word; W.classList.remove("pop"); void W.offsetWidth; W.classList.add("pop"); };
+    d.querySelector("#ok").onclick = () => { if (done) return; got++; t.score++; d.querySelector("#gc").textContent = `${got} this turn`; ding(); vib(30); nw(); };
+    d.querySelector("#sk").onclick = () => { if (done) return; beep(300, .1, "triangle"); nw(); };
+    d.querySelector(".x").onclick = () => end();
+    every(1000, () => { left--; d.querySelector("#tm").textContent = left; if (left <= 5 && left > 0) beep(1000, .06, "square", .15); if (left <= 0) end(); });
+    function end() { if (done) return; done = true; runCleanup(); buzz(); vib(300); toast(`${t.name}: +${got}`); turn = 1 - turn; between(); }
+  }
+}
+
+/* ------------------------------------------------------------------ Quick Three */
+function gQuick() {
+  const next = deck(C().quick);
+  const scores = players.map(() => 0);
+  let i = 0;
+  turn();
+  function turn() {
+    const has = players.length > 0, name = has ? esc(players[i % players.length]) : "";
+    const q = next();
+    screen("⏱️ Quick Three", `
+      ${has ? `<div class="kicker center">${name}'s turn</div>` : ""}
+      <div class="bigcard" style="background:var(--c5)"><div class="prompt" id="q">${esc(q)}</div>
+        <div class="ring" id="ring"><svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="96" stroke="rgba(255,255,255,.25)" stroke-width="16" fill="none"/><circle id="arc" cx="110" cy="110" r="96" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round" stroke-dasharray="603" stroke-dashoffset="0"/></svg><div class="num" id="n">5</div></div>
+      </div>
+      <button class="btn big" id="go">Start 5 seconds</button>
+      ${has ? `<div class="row hidden" id="res" style="flex:0"><button class="btn bad big" id="miss">Missed</button><button class="btn good big" id="hit">Made it</button></div>${rule("Missed it? Drink.")}` : `<button class="btn ghost hidden" id="nx">Next prompt</button>`}
+      ${has ? `<details class="card"><summary style="font-weight:800">Scoreboard</summary><div class="stack" style="margin-top:10px">${players.map((p, k) => `<div class="score"><span>${esc(p)}</span><b>${scores[k]}</b></div>`).join("")}</div></details>` : `<p class="muted center">Add players on the home screen to keep score.</p>`}`);
+    on("#go", (e, b) => {
+      b.disabled = true; const t0 = performance.now(), D = 5000; beep(700, .08);
+      let last = 5;
+      const tick = () => {
+        const el = performance.now() - t0, rem = Math.max(0, D - el), s = Math.ceil(rem / 1000);
+        const arc = $("#arc"); if (!arc) return; arc.setAttribute("stroke-dashoffset", String(603 * (el / D)));
+        if (s !== last) { last = s; $("#n").textContent = s; if (s > 0) beep(700, .06); }
+        if (rem <= 0) { buzz(); vib(300); $("#n").textContent = "⏰"; b.classList.add("hidden"); (has ? $("#res") : $("#nx")).classList.remove("hidden"); return; }
+        rid = requestAnimationFrame(tick);
+      };
+      let rid = requestAnimationFrame(tick); onCleanup(() => cancelAnimationFrame(rid));
+    });
+    on("#hit", () => { scores[i % players.length]++; ding(); i++; turn(); });
+    on("#miss", () => { i++; turn(); });
+    on("#nx", turn);
+  }
+}
+
+/* ------------------------------------------------------------------ Truth or Dare */
+function gTod() {
+  const nT = deck(C().truths), nD = deck(C().dares);
+  let i = Math.floor(Math.random() * Math.max(players.length, 1));
+  choose();
+  function choose() {
+    const name = players.length ? esc(players[i % players.length]) : "";
+    screen("🔥 Truth or Dare", `
+      <div class="bigcard" style="background:var(--c2)"><div class="kicker">${players.length ? "Your turn" : "Next up"}</div><div class="prompt">${name || "Truth or dare?"}</div>${name ? `<p style="margin:0;opacity:.9">Truth or dare?</p>` : ""}</div>
+      <div class="row" style="flex:0"><button class="btn big" id="t" style="background:var(--c5);color:#fff">Truth</button><button class="btn big" id="d" style="background:var(--c6);color:#fff">Dare</button></div>
+      <button class="btn ghost" id="r">🎲 Random</button>
+      ${players.length ? "" : `<p class="muted center">Add players on the home screen and it'll call out turns.</p>`}`);
+    on("#t", () => show("Truth", nT()));
+    on("#d", () => show("Dare", nD()));
+    on("#r", () => Math.random() < .5 ? show("Truth", nT()) : show("Dare", nD()));
+  }
+  function show(kind, text) {
+    const name = players.length ? esc(players[i % players.length]) + " · " : "";
+    screen("🔥 Truth or Dare", `
+      <div class="bigcard pop" style="background:${kind === "Truth" ? "var(--c5)" : "var(--c6)"}"><div class="kicker">${name}${kind}</div><div class="prompt">${esc(text)}</div>${rule(kind === "Truth" ? "Won't answer? Drink twice." : "Won't do it? Drink twice.")}</div>
+      <button class="btn big" id="n">Next player</button>
+      <button class="btn ghost" id="sw">Swap for another ${kind.toLowerCase()}</button>`);
+    vib(20);
+    on("#n", () => { i++; choose(); });
+    on("#sw", () => show(kind, kind === "Truth" ? nT() : nD()));
+  }
+}
+
+/* ------------------------------------------------------------------ simple card games */
+function cardGame({ title, color, next, sub, extra = "" }) {
+  const render = () => {
+    screen(title, `
+      <div class="bigcard pop" style="background:${color}">${sub ? `<div class="kicker">${sub}</div>` : ""}<div class="prompt">${esc(next())}</div></div>
+      ${extra}
+      <button class="btn big" id="n">Next card</button>`);
+    on("#n", render);
+    bindExtra && bindExtra();
+  };
+  let bindExtra = null;
+  return { render, setBind(f) { bindExtra = f; } };
+}
+function gNhie() {
+  const next = deck(C().nhie);
+  cardGame({ title: "🙈 Never Have I Ever", color: "var(--c7)", next, sub: drinks ? "Drink if you have" : "Put a finger down if you have" }).render();
+}
+function gMlt() {
+  const next = deck(C().mlt);
+  const g = cardGame({ title: "👉 Most Likely To", color: "var(--c11)", next, sub: "On the count of 3, everyone points", extra: `${rule("Whoever gets the most fingers drinks.")}<button class="btn ghost" id="cnt">Count me down</button>` });
+  g.setBind(() => on("#cnt", () => {
+    const d = full("var(--c11)", `<div class="fhword pop" id="c">3</div>`); let n = 3; beep(520, .1);
+    const id = setInterval(() => { n--; const c = d.querySelector("#c"); if (n > 0) { c.textContent = n; beep(520, .1); } else if (n === 0) { c.textContent = "POINT! 👉"; beep(990, .3, "triangle"); vib(200); } else { clearInterval(id); d.remove(); } c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop"); }, 800);
+    onCleanup(() => clearInterval(id));
+  }));
+  g.render();
+}
+function gWyr() {
+  const next = deck(C().wyr);
+  const render = () => {
+    const [a, b] = next(); let chosen = false;
+    screen("🤔 Would You Rather", `
+      <p class="center muted" style="margin:0">Everyone picks. Tap to lock in the majority, then defend your choice.</p>${rule("Everyone in the minority drinks.")}
+      <div class="wyr"><button style="background:var(--c8)" id="a">${esc(a)}</button><div class="or">OR</div><button style="background:var(--c2)" id="b">${esc(b)}</button></div>
+      <button class="btn big" id="n">Next</button>`);
+    const choose = (el, other) => { if (chosen) return; chosen = true; el.classList.add("pop"); el.insertAdjacentHTML("afterbegin", "✓ "); other.style.opacity = ".45"; ding(); };
+    on("#a", () => choose($("#a"), $("#b")));
+    on("#b", () => choose($("#b"), $("#a")));
+    on("#n", render);
+  };
+  render();
+}
+
+/* ------------------------------------------------------------------ Finger Chooser */
+function gChooser() {
+  let mode = "one";
+  const root = document.createElement("div"); root.id = "chooser";
+  root.innerHTML = `<button class="x" style="position:absolute;top:calc(env(safe-area-inset-top) + 10px);left:12px;width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.12);color:#fff;font-size:20px;z-index:3" aria-label="Close">✕</button>
+    <div style="position:absolute;top:calc(env(safe-area-inset-top) + 12px);right:12px;z-index:3;width:210px" class="seg" id="cm"><button data-v="one" class="on">Pick one</button><button data-v="teams">2 teams</button></div>
+    <div class="hint" id="hint">Everyone put a finger on the screen<br><span style="font-size:16px;opacity:.7;font-weight:600">and hold still…</span></div>`;
+  document.body.appendChild(root);
+  const fingers = new Map(); let timer = null, decided = false, colorIdx = 0;
+  const x = root.querySelector(".x");
+  x.addEventListener("pointerdown", e => e.stopPropagation());
+  x.onclick = () => { runCleanup(); home(); };
+  root.querySelector("#cm").addEventListener("pointerdown", e => e.stopPropagation());
+  root.querySelectorAll("#cm button").forEach(b => b.onclick = () => { mode = b.dataset.v; root.querySelectorAll("#cm button").forEach(o => o.classList.toggle("on", o === b)); });
+  const hint = root.querySelector("#hint");
+  const arm = () => {
+    clearTimeout(timer); if (decided) return;
+    hint.classList.toggle("hidden", fingers.size > 0);
+    if (fingers.size >= 2) timer = setTimeout(decide, 2200);
+  };
+  function decide() {
+    decided = true; const list = [...fingers.values()];
+    if (mode === "one") {
+      const w = pick(list);
+      list.forEach(f => { f.el.classList.remove("alive"); f.el.classList.add(f === w ? "win" : "lose"); });
+      root.style.background = `radial-gradient(circle at ${w.el.style.left} ${w.el.style.top}, ${w.color}66, transparent 70%), #0c0916`;
+    } else {
+      const sh = shuffle(list), half = Math.ceil(sh.length / 2);
+      sh.forEach((f, k) => { f.el.classList.remove("alive"); const c = k < half ? "#ff4d8d" : "#0091ff"; f.el.style.background = c; f.el.style.color = c; f.el.style.transform = "scale(1.3)"; });
+    }
+    if (drinks) { const m = document.createElement("div"); m.className = "dmsg pop"; m.style.cssText = "position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 40px);text-align:center;color:#fff;font-weight:900;font-size:28px;pointer-events:none"; m.textContent = mode === "one" ? "🍺 Chosen one drinks!" : "🍺 Teams set. Cheers!"; root.appendChild(m); }
+    ding(); vib(250);
+  }
+  const down = e => {
+    e.preventDefault(); audio();
+    if (decided && fingers.size === 0) reset();
+    if (decided) return;
+    const c = RAW[colorIdx++ % RAW.length], el = document.createElement("div");
+    el.className = "finger alive"; el.style.background = c; el.style.color = c; el.style.left = e.clientX + "px"; el.style.top = e.clientY + "px";
+    root.appendChild(el); fingers.set(e.pointerId, { el, color: c }); beep(400 + fingers.size * 80, .06); arm();
+  };
+  const move = e => { const f = fingers.get(e.pointerId); if (f) { f.el.style.left = e.clientX + "px"; f.el.style.top = e.clientY + "px"; } };
+  const up = e => {
+    const f = fingers.get(e.pointerId); if (!f) return;
+    fingers.delete(e.pointerId);
+    if (!decided) { f.el.remove(); arm(); } else if (fingers.size === 0) setTimeout(() => { if (fingers.size === 0) reset(); }, 1500);
+  };
+  function reset() { decided = false; root.style.background = "#0c0916"; root.querySelectorAll(".finger,.dmsg").forEach(e => e.remove()); fingers.clear(); colorIdx = 0; hint.classList.remove("hidden"); }
+  root.addEventListener("pointerdown", down); root.addEventListener("pointermove", move);
+  root.addEventListener("pointerup", up); root.addEventListener("pointercancel", up);
+  const noctx = e => e.preventDefault(); root.addEventListener("contextmenu", noctx);
+  onCleanup(() => clearTimeout(timer));
+}
+
+/* ------------------------------------------------------------------ boot */
+home();
+if ("serviceWorker" in navigator && /^\/party\//.test(location.pathname)) {
+  navigator.serviceWorker.register("sw.js").catch(() => {});
+}
+</script>
+</body>
+</html>
